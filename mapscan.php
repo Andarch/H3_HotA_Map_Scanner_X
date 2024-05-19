@@ -42,7 +42,7 @@ require_once 'fun/config.php';
 </style>
 </head>
 <body>
-<a href="mapscan.php">Reload</a> | <a href="mapscan.php?scan=1">Scan</a> | <a href="maplist.php">Map List</a>
+<a href="mapscan.php">Reload</a> | <a href="mapscan.php?scan=1">Scan</a> | <a href="mapindex.php">Map List</a>
 | <a href="mapscan.php?nl=1">Reload no list</a>
 <br />
 <?php

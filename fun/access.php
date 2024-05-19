@@ -3,9 +3,9 @@
 	global $_cfg;
 		$_cfg = array(
 		'mq.host' => 'localhost',
-		'mq.user' => '',
+		'mq.user' => 'root',
 		'mq.pass' => '',
-		'mq.db'   => '',
+		'mq.db'   => 'heroes3mapscan',
 		'mq.port' => '3306',
 	);
 
