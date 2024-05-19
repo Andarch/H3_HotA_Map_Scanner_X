@@ -25,6 +25,7 @@ class H3MAPSCAN {
 	const HOTA_SUBREV3 = 3;
 	const HOTA_SUBREV4 = 4;
 	const HOTA_SUBREV5 = 5;
+	const HOTA_SUBREV6 = 6;
 
 	//variables to simplify version checks
 	private $isROE   = false;
@@ -249,7 +250,7 @@ class H3MAPSCAN {
 
 	//return true on valid version, false otherwise
 	private function CheckVersion() {
-		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV5));
+		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV6));
 	}
 
 	private function SaveMap() {
@@ -382,7 +383,7 @@ class H3MAPSCAN {
 		}
 
 		if($this->CheckVersion() == false) {
-			throw new Exception('Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')');
+			throw new Exception('<div class="content">Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')</div>');
 			return;
 		}
 
@@ -1244,7 +1245,7 @@ class H3MAPSCAN {
 			$img = imagecreate($this->map_size, $this->map_size); //map by size
 
 			if(!$img) {
-				throw new Exception('Image Creation problem');
+				throw new Exception('<div class="content">Image Creation problem</div>');
 				return;
 			}
 
@@ -1474,7 +1475,7 @@ class H3MAPSCAN {
 
 			//echo ($i + 1).'/'.$this->objectsNum.' :: '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z - [".$this->rpos().']<br />';
 			if($objid < 0) {
-				throw new Exception('Invalid object ID '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')');
+				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 				return;
 			}
 
@@ -1553,6 +1554,9 @@ class H3MAPSCAN {
 							$event['move_bonus_type'] = $this->br->ReadUint32();
 							$event['move_bonus_value'] = $this->br->ReadUint32();
 						}
+						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
+							$event['difficulty'] = $this->br->ReadUint32();
+						}
 
 						$this->br->SkipBytes(4);
 					}
@@ -1565,6 +1569,9 @@ class H3MAPSCAN {
 							$event['humanActivate'] = $this->br->ReadUint8();
 							$event['move_bonus_type'] = $this->br->ReadUint32();
 							$event['move_bonus_value'] = $this->br->ReadUint32();
+						}
+						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
+							$event['difficulty'] = $this->br->ReadUint32();
 						}
 					}
 
@@ -2806,11 +2813,11 @@ class H3MAPSCAN {
 
 	private function GetVersionName() {
 		switch($this->version) {
-			case $this::ROE:  $this->versionname = 'ROE';  break;
+			case $this::ROE:  $this->versionname = 'RoE';  break;
 			case $this::AB:   $this->versionname = 'AB';   break;
-			case $this::SOD:  $this->versionname = 'SOD';  break;
-			case $this::WOG:  $this->versionname = 'WOG';  break;
-			case $this::HOTA: $this->versionname = 'HOTA'; break;
+			case $this::SOD:  $this->versionname = 'SoD';  break;
+			case $this::WOG:  $this->versionname = 'WoG';  break;
+			case $this::HOTA: $this->versionname = 'HotA'; break;
 			default:          $this->versionname = '?';    break;
 		}
 

@@ -16,7 +16,6 @@ class H3MAPSCAN_PRINT {
 
 		$subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
 
-
 		$print = '<div class="sidebarMain">
 					<a href="#description">Description</a>
 					<a href="#players">Players</a>
