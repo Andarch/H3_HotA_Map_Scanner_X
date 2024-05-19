@@ -12,21 +12,23 @@ $mapsearch = expost('map', exget('map', ''));
 	<title>Heroes III Map List</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
 <style>
-	* {background: #ddc; font-family: calibri, arial, sans-serif; }
+	* {background: #333; font-family: calibri, arial, sans-serif; }
 	table {border-collapse:collapse; margin: 1em; border: solid 1px #000;}
-	th { background: #dd1;}
-	th, td {border: solid 1px #000; min-width: 1em; padding: 1px 5px;}
+	th { background: #005663;}
+	th, td {border: solid 1px #000; min-width: 1em; padding: 1px 5px; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
 	.mc { margin: 0px auto; }
 
-	a, a:visited { color: #00f; text-decoration: none; }
+	a, a:visited { color: #e6b800; text-decoration: none; }
 	a:hover { text-decoration: underline; }
 
 	.smalltable {font-size: 14px;}
 	.smalltable1 { width: 75%;  margin: 1em auto;}
 	img { width: 256px; margin: 0px auto;}
+
+	body, table { color: #ddd; }
 </style>
 </head>
 <body>

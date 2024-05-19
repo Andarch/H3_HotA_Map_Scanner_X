@@ -16,18 +16,23 @@ require_once 'fun/config.php';
 	<script type="application/javascript" src="js/jquery-ui.js"></script>
 	<script type="application/javascript" src="js/mapread.js"></script>
 <style>
-	*, body {background: #ddc; font-family: calibri, arial, sans-serif; }
+	*, body {background: #333; font-family: calibri, arial, sans-serif; }
 	table {border-collapse:collapse; margin: 1em; border: solid 1px #000;}
-	th { background: #dd1;}
+	th { background: #005663;}
 	th, td {border: solid 1px #000; min-width: 1em; padding: 1px 5px;}
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
 	.mc { margin: 0px auto; }
 
+	a, a:visited { color: #e6b800; text-decoration: none; }
+	a:hover { text-decoration: underline; }
+
 	.smalltable {font-size: 14px;}
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
+
+	body, table { color: #ddd; }
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
