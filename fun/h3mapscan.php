@@ -339,7 +339,10 @@ class H3MAPSCAN {
 			require_once 'fun/h3mapscan-print.php';
 			$this->br = null; //free some memory
 			$this->ParseFinish();
-			$h3map_print = new H3MAPSCAN_PRINT($this);
+
+			session_start();
+			$section = isset($_GET['section']) ? $_GET['section'] : 'general';
+			$h3map_print = new H3MAPSCAN_PRINT($this, $section);
 		}
 
 		if($this->save) {
@@ -486,15 +489,8 @@ class H3MAPSCAN {
 				$this->mapplayersnum++;
 			}
 
-			if($human == 1)
-				$this->players[$i]['human'] = 'Yes';
-			else
-				$this->players[$i]['human'] = 'No';
-
-			if($human == 1)
-				$this->players[$i]['ai'] = 'Yes';
-			else
-				$this->players[$i]['ai'] = 'No';
+			$this->players[$i]['human'] = $this->yesOrNo($human);
+			$this->players[$i]['ai'] = $this->yesOrNo($ai);
 
 			//def values
 			$this->players[$i]['HeroAtMain'] = 1;
@@ -504,6 +500,8 @@ class H3MAPSCAN {
 			$this->players[$i]['HeroCount'] = 0;
 			$this->players[$i]['townsOwned'] = 0;
 			$this->players[$i]['placeholder'] = OBJECT_INVALID;
+			$this->players[$i]['mainTownFaction'] = '';
+			$this->players[$i]['HasMainTown'] = '';
 
 			$this->players[$i]['behaviour'] = $this->br->ReadUint8();
 
@@ -527,7 +525,7 @@ class H3MAPSCAN {
 			$towns_allowed = [];
 
 			if($towns == HNONE || $towns == HNONE_TOWN) {
-				$towns_allowed[] = 'Random Town';
+				$towns_allowed[] = 'Random';
 			}
 			elseif($towns != HNULL) {
 				for($n = 0; $n < $maxtowns; $n++) {
@@ -539,14 +537,14 @@ class H3MAPSCAN {
 			$this->players[$i]['towns_allowed'] = implode($towns_allowed, ', ');
 
 			$this->players[$i]['IsRandomTown'] = $this->br->ReadUint8();
-			$this->players[$i]['HasMainTown'] = $this->br->ReadUint8();
+			$this->players[$i]['HasMainTown'] = $this->yesOrNo($this->br->ReadUint8());
 
 			//def values
 			$townpos;
 
 			if($this->players[$i]['HasMainTown']) {
 				if(!$this->isROE) {
-					$this->players[$i]['HeroAtMain'] = $this->br->ReadUint8();
+					$this->players[$i]['HeroAtMain'] = $this->yesOrNo($this->br->ReadUint8());
 					$this->players[$i]['GenerateHero'] = dechex($this->br->ReadUint8());
 				}
 				$townpos = new MapCoords($this->br->ReadUint8(), $this->br->ReadUint8(), $this->br->ReadUint8());
@@ -1802,7 +1800,7 @@ class H3MAPSCAN {
 						$this->players[$tileowner]['townsOwned']++;
 					}
 
-					$affiliation = ($objid == OBJECTS::TOWN) ? $this->GetTownById($objsubid) : 'Random Town';
+					$affiliation = ($objid == OBJECTS::TOWN) ? $this->GetTownById($objsubid) : 'Random';
 					$obj['data']['affiliation'] = $affiliation;
 
 					$this->towns_list[] = $obj;
@@ -1817,6 +1815,21 @@ class H3MAPSCAN {
 						'type' => $objsubid,
 						'uid' => $obj['data']['uid']
 					];
+
+					//Check each player's main town to see if it matches this town's coordinates
+					foreach($this->players as &$player) {
+						//print('<div style="margin-left:250px">');
+						//print_r($player['townpos']);
+						//if($player['HasMainTown'])
+							//print($player['townpos']->x)
+						//print($affiliation);
+						//print('</br></br></div>');
+						if($player['townpos']->x == $obj['pos']->x && $player['townpos']->y == $obj['pos']->y && $player['townpos']->z == $obj['pos']->z)
+							$player['mainTownFaction'] = $affiliation;
+					}
+
+					print(' ');
+					
 					break;
 
 				case OBJECTS::MINE:
@@ -3163,6 +3176,13 @@ class H3MAPSCAN {
 			$bprint = sprintf('%08b', ($var >> 8) & 0xff).' '.$bprint;
 		}
 		return $bprint;
+	}
+
+	private function yesOrNo($value) {
+		if($value == 1)
+			return 'Yes';
+		else
+			return 'No';
 	}
 
 }

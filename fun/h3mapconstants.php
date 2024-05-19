@@ -400,7 +400,7 @@
 			6 => 'Stronghold',
 			7 => 'Fortress',
 			8 => 'Conflux',
-			9 => 'Neutral/Cove',
+			9 => 'Cove',
 			10 => 'Factory',
 		];
 
