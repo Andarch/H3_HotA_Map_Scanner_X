@@ -278,9 +278,9 @@ class H3MAPSCAN {
 
 		if(mq($sql)) {
 			$this->mapid = mii();
-			$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapid}') WHERE idm={$this->mapid}";
-			mq($sql);
-		}
+			//$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapid}') WHERE idm={$this->mapid}";
+			//mq($sql);
+		}		
 	}
 
 	public function SetCamId($camid) {
@@ -1223,14 +1223,14 @@ class H3MAPSCAN {
 	public function BuildMap() {
 		if($this->buildMapImage) {
 			//image path and filenames
-			if($this->mapid) {
-				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_g.png'; //ground
-				$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_u.png'; //underground
-			}
-			else {
+			//if($this->mapid) {
+			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_g.png'; //ground
+			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_u.png'; //underground
+			//}
+			//else {
 				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g.png'; //ground
 				$imgmapnameu = MAPDIRIMG.$this->mapimage.'_u.png'; //underground
-			}
+			//}
 
 			//images already exists
 			if(file_exists($imgmapnameg) && ($this->underground == 0 || file_exists($imgmapnameu))) {

@@ -17,38 +17,32 @@ class H3MAPSCAN_PRINT {
 		$subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
 
 
-		$print = '<div class="mapdetail">
-			<table class="mapdetailtable">
-				<tr>
-					<td class="mapdtd vat">
-					  <p class="listcontent">
-							List of details<br />
-							<a href="#description">Description</a><br />
-							<a href="#players">Players</a><br />
-							<a href="#mapimage">Map</a><br />
-							<a href="#terrain">Terrain</a><br />
-							<a href="#events">Events</a><br />
-							<a href="#heroescustom">Heroes custom</a><br />
-							<a href="#artdis">Disabled artifacts</a><br />
-							<a href="#spelldis">Disabled spells</a><br />
-							<a href="#skilldis">Disabled skills</a><br />
-							<a href="#towns">Towns</a><br />
-							<a href="#heroes">Heroes</a><br />
-							<a href="#artifacts">Artifacts</a><br />
-							<a href="#spells">Spells</a><br />
-							<a href="#mines">Mines</a><br />
-							<a href="#monsters">Monsters</a><br />
-							<a href="#quests">Quests</a><br />
-							<a href="#townevent">Town events</a><br />
-							<a href="#eventbox">Events and pandoras</a><br />
-							<a href="#signs">Signs and bottels</a><br />
-							<a href="#rumors">Rumors</a><br />
-							<a href="#keys">Keys and gates</a><br />
-							<a href="#monolith">Monoliths</a><br />
-							<a href="#objects">Objects</a>
-						</p>
-					</td>
-					<td class="mapdtd">'.EOL.EOL;
+		$print = '<div class="sidebarMain">
+					<a href="#description">Description</a>
+					<a href="#players">Players</a>
+					<a href="#mapimage">Map</a>
+					<a href="#terrain">Terrain</a>
+					<a href="#events">Events</a>
+					<a href="#heroescustom">Heroes custom</a>
+					<a href="#artdis">Disabled artifacts</a>
+					<a href="#spelldis">Disabled spells</a>
+					<a href="#skilldis">Disabled skills</a>
+					<a href="#towns">Towns</a>
+					<a href="#heroes">Heroes</a>
+					<a href="#artifacts">Artifacts</a>
+					<a href="#spells">Spells</a>
+					<a href="#mines">Mines</a>
+					<a href="#monsters">Monsters</a>
+					<a href="#quests">Quests</a>
+					<a href="#townevent">Town events</a>
+					<a href="#eventbox">Events and pandoras</a>
+					<a href="#signs">Signs and bottels</a>
+					<a href="#rumors">Rumors</a>
+					<a href="#keys">Keys and gates</a>
+					<a href="#monolith">Monoliths</a>
+					<a href="#objects">Objects</a>
+	  </div>
+		<div class="content">';
 
 
 		$print .= '<a name="description"></a>
@@ -754,7 +748,6 @@ class H3MAPSCAN_PRINT {
 					</tr>';
 			}
 		}
-		$print .= '</table>';
 
 
 		$print .= '<br />Templates count: '.$this->h3mapscan->objTemplatesNum.'<br />';

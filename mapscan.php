@@ -6,7 +6,7 @@ require_once 'fun/config.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="cz" xml:lang="cz">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 	<title>Heroes III Map Scanner</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
@@ -25,7 +25,7 @@ require_once 'fun/config.php';
 	.al { text-align:left; }
 	.mc { margin: 0px auto; }
 
-	a, a:visited { color: #e6b800; text-decoration: none; }
+	a, a:visited { color: #e6b800; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
 	.smalltable {font-size: 14px;}
@@ -33,6 +33,58 @@ require_once 'fun/config.php';
 	.colA { width: 30%; }
 
 	body, table { color: #ddd; }
+
+	.sidebarTop {
+	margin: 0;
+	padding: 16px 0px;
+	width: 250px;
+	background-color: #444;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	height: 50px;
+	overflow: auto;
+	color: #ddd;
+	font-size: 14px;
+	}
+
+	.sidebarMain {
+	margin: 0;
+	padding: 0;
+	width: 250px;
+	background-color: #444;
+	position: fixed;
+	left: 0px;
+	top: 50px;
+	height: 100%;
+	overflow: auto;
+	color: #ddd;
+	font-size: 22px;
+	}
+
+	.sidebarMain a {
+	display: block;
+	color:  #ddd;
+	padding: 0px 10px 4px 10px;
+	text-decoration: none;
+	font-weight: bold;
+	}
+
+	.sidebarMain a.active {
+	color: #ddd;
+	background-color: #5e4b00;
+	}
+
+	.sidebarMain a:hover:not(.active) {
+	background-color: #555;
+	color: #ddd;
+	}
+
+	.content {
+		position: absolute;
+		left: 250px;
+		padding: 0px 10px 0px 10px;
+	}
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
@@ -47,9 +99,11 @@ require_once 'fun/config.php';
 </style>
 </head>
 <body>
+	<div class="sidebarTop ac">
 <a href="mapscan.php">Reload</a> | <a href="mapscan.php?scan=1">Scan</a> | <a href="mapindex.php">Map List</a>
 | <a href="mapscan.php?nl=1">Reload no list</a>
 <br />
+</div>
 <?php
 
 require_once 'fun/h3mapscan.php';
@@ -79,6 +133,8 @@ if($mapid) {
 	}
 }
 elseif($scan) {
+	echo '<div class="content">';
+	
 	$scan = new ScanSubDir();
 	$scan->SetFilter(array('h3m'));
 	$scan->scansubdirs(MAPDIR);
@@ -134,6 +190,8 @@ elseif($scan) {
 		}
 
 	}
+	
+	echo '</div>';
 }
 
 if($mapfiledb) {
@@ -164,8 +222,8 @@ if($mapok) {
 	$map = new H3MAPSCAN($mapfile, H3M_WEBMODE | H3M_PRINTINFO | H3M_BUILDMAP); // | H3M_BUILDMAP | H3M_SAVEMAPDB | H3M_MAPHTMCACHE
 	$map->ReadMap();
 
-	$tm->Measure('End');
-	$tm->showTimes();
+	//$tm->Measure('End');
+	//$tm->showTimes();
 }
 
 ?>
