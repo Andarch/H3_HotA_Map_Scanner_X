@@ -65,24 +65,23 @@ class H3MAPSCAN_PRINT {
 		$print .= '<a name="players"></a>
 			<table class="smalltable">
 				<tr>
-					<th>#</th>
-					<th>Color</th>
-					<th class="nowrap" nowrap="nowrap">Human</th>
-					<th>AI</th>
-					<th class="nowrap" nowrap="nowrap">Behaviour</th>
-					<th class="nowrap" nowrap="nowrap">Team</th>
-					<th class="nowrap">Town count</th>
-					<th class="nowrap">Factions allowed</th>
-					<th class="nowrap">Random town</th>
-					<th>Main town</th>
-					<th>Hero at Main</th>
-					<th class="nowrap">Generate hero</th>
-					<th class="nowrap">Town coords</th>
-					<th class="nowrap">Random Hero</th>
-					<th>Main hero</th>
-					<th>Heroes count</th>
-					<th>Heroes ids</th>
-					<th>Heroes names</th>
+				<th class="ac nowrap" nowrap="nowrap">#</th>
+					<th class="ac nowrap" nowrap="nowrap">Color</th>
+					<th class="ac nowrap" nowrap="nowrap">Human</th>
+					<th class="ac nowrap" nowrap="nowrap">AI</th>
+					<th class="ac nowrap" nowrap="nowrap">Behaviour</th>
+					<th class="ac nowrap" nowrap="nowrap">Team</th>
+					<th class="ac nowrap" nowrap="nowrap">Factions allowed</th>
+					<th class="ac nowrap" nowrap="nowrap">Random town</th>
+					<th class="ac nowrap" nowrap="nowrap">Main town</th>
+					<th class="ac nowrap" nowrap="nowrap">Hero at Main</th>
+					<th class="ac nowrap" nowrap="nowrap">Generate hero</th>
+					<th class="ac nowrap" nowrap="nowrap">Town coords</th>
+					<th class="ac nowrap" nowrap="nowrap">Random Hero</th>
+					<th class="ac nowrap" nowrap="nowrap">Main hero</th>
+					<th class="ac nowrap" nowrap="nowrap">Heroes count</th>
+					<th class="ac nowrap" nowrap="nowrap">Heroes ids</th>
+					<th class="ac nowrap" nowrap="nowrap">Heroes names</th>
 				</tr>';
 
 
@@ -91,24 +90,23 @@ class H3MAPSCAN_PRINT {
 			$teamNum = $tm + 1;
 
 			$print .= '<tr>
-					<td class="ac">'.($k + 1).'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.($k + 1).'</td>
 					<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
 					<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
-					<td class="ac">'.$player['ai'].'</td>
-					<td>'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
-					<td class="ac">'.$teamNum.'</td>
-					<td class="ac">'.$player['townsOwned'].'</td>
-					<td>'.$player['towns_allowed'].'</td>
-					<td class="ac">'.$player['IsRandomTown'].'</td>
-					<td class="ac">'.$player['HasMainTown'].'</td>
-					<td class="ac">'.$player['HeroAtMain'].'</td>
-					<td class="ac">'.$player['GenerateHero'].'</td>
-					<td>'.$player['townpos']->GetCoords().'</td>
-					<td class="ac">'.$player['RandomHero'].'</td>
-					<td class="nowrap">'.$player['MainHeroName'].'</td>
-					<td class="ac">'.$player['HeroCount'].'</td>
-					<td>'.implode($player['HeroFace'], ', ').'</td>
-					<td>'.implode($player['HeroName'], ', ').'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['ai'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
+					<td class="nowrap" nowrap="nowrap">'.$player['towns_allowed'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['IsRandomTown'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['HasMainTown'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['HeroAtMain'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['GenerateHero'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['townpos']->GetCoords().'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['RandomHero'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['MainHeroName'].'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$player['HeroCount'].'</td>
+					<td class="nowrap" nowrap="nowrap">'.implode($player['HeroFace'], ', ').'</td>
+					<td class="nowrap" nowrap="nowrap">'.implode($player['HeroName'], ', ').'</td>
 				</tr>';
 		}
 		$print .= '</table>';
