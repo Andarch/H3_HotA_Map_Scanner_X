@@ -1486,6 +1486,10 @@ class H3MAPSCAN {
 				return;
 			}
 
+			//echo ('<div class="content">');
+			//echo('</br>'.$obj['id'].'</br>'.$obj['subid'].'</br>'.$obj['objname'].'</br>');
+			//echo ('</div');
+
 		// ======= GET OBJECT DATA
 			switch($objid) {
 				case OBJECTS::EVENT:
