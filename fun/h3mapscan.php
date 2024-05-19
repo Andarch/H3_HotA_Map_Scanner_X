@@ -486,8 +486,15 @@ class H3MAPSCAN {
 				$this->mapplayersnum++;
 			}
 
-			$this->players[$i]['human'] = $human;
-			$this->players[$i]['ai'] = $ai;
+			if($human == 1)
+				$this->players[$i]['human'] = 'Yes';
+			else
+				$this->players[$i]['human'] = 'No';
+
+			if($human == 1)
+				$this->players[$i]['ai'] = 'Yes';
+			else
+				$this->players[$i]['ai'] = 'No';
 
 			//def values
 			$this->players[$i]['HeroAtMain'] = 1;
@@ -841,7 +848,7 @@ class H3MAPSCAN {
 		$this->lossCond['type'] = $this->br->ReadUint8();
 		if($this->lossCond['type'] == LOSS::NONE) {
 			$this->lossCond['name'] = 'None';
-			$this->lossInfo = 'Loose all towns and heroes';
+			$this->lossInfo = 'Lose all towns and heroes';
 			return;
 		}
 
@@ -2790,7 +2797,7 @@ class H3MAPSCAN {
 				break;
 			case LOSS::HERO:
 				$name = $this->GetMapObjectByPos(MAPOBJECTS::HERO, $this->lossCond['coor']);
-				$this->lossInfo = 'Loose hero '.$name.' at '.$this->lossCond['coor']->GetCoords();
+				$this->lossInfo = 'Lose hero '.$name.' at '.$this->lossCond['coor']->GetCoords();
 				break;
 		}
 

@@ -45,7 +45,7 @@ class H3MAPSCAN_PRINT {
 
 
 		$print .= '<a name="description"></a>
-		<table>
+		<table class="smalltable">
 				<tr><th colspan="2">Map details</th></tr>
 				<tr><td class="colw200">File</td><td>'.$this->h3mapscan->mapfile.'</td></tr>
 				<tr><td>Name</td><td>'.$this->h3mapscan->map_name.'</td></tr>
@@ -87,14 +87,17 @@ class H3MAPSCAN_PRINT {
 
 
 		foreach($this->h3mapscan->players as $k => $player) {
+			$tm = $this->h3mapscan->teams[($k)];
+			$teamNum = $tm + 1;
+
 			$print .= '<tr>
 					<td class="ac">'.($k + 1).'</td>
 					<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
 					<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
 					<td class="ac">'.$player['ai'].'</td>
 					<td>'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
-					<td class="ac">'.$this->h3mapscan->teams[$k].'</td>
-					<td class="ar">'.$player['townsOwned'].'</td>
+					<td class="ac">'.$teamNum.'</td>
+					<td class="ac">'.$player['townsOwned'].'</td>
 					<td>'.$player['towns_allowed'].'</td>
 					<td class="ac">'.$player['IsRandomTown'].'</td>
 					<td class="ac">'.$player['HasMainTown'].'</td>
@@ -103,7 +106,7 @@ class H3MAPSCAN_PRINT {
 					<td>'.$player['townpos']->GetCoords().'</td>
 					<td class="ac">'.$player['RandomHero'].'</td>
 					<td class="nowrap">'.$player['MainHeroName'].'</td>
-					<td class="ar">'.$player['HeroCount'].'</td>
+					<td class="ac">'.$player['HeroCount'].'</td>
 					<td>'.implode($player['HeroFace'], ', ').'</td>
 					<td>'.implode($player['HeroName'], ', ').'</td>
 				</tr>';
