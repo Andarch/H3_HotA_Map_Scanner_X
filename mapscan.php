@@ -17,9 +17,9 @@ require_once 'fun/config.php';
 	<script type="application/javascript" src="js/mapread.js"></script>
 <style>
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
-	table {border-collapse:collapse; margin: 1em; border: solid 1px #000;}
+	table {border-collapse:collapse; margin: 1em; border: solid 1px #ddd;}
 	th { background: #005663;}
-	th, td {border: solid 1px #000; min-width: 1em; padding: 1px 5px;}
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 1px 5px;}
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
@@ -28,7 +28,7 @@ require_once 'fun/config.php';
 	a, a:visited { color: #e6b800; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.smalltable {font-size: 14px;}
+	.smalltable {font-size: 14px; border: solid 1px #ddd;}
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
