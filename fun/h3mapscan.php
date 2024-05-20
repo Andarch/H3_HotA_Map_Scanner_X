@@ -1362,7 +1362,7 @@ class H3MAPSCAN {
 		//$output = '<br />Map : size='.$this->map_size.', cells='.$mapsizepow.', bytes='.($mapsizepow * 7).'<br />';
 
 		$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'" alt="ground" title="ground" />' : 'Map Ground';
-		$output = '<table class="mapimages"><tr><td>'.$imgground.'</td>';
+		$output = '<table class="mapimages"><th>Ground</th><th>Underground</th><tr><td>'.$imgground.'</td>';
 		if($this->underground) {
 			$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'" alt="ground" title="ground" />' : 'Map Underground';
 			$output .= '<td>'.$imguground.'</td>';

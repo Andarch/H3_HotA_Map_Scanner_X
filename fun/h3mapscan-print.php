@@ -20,10 +20,13 @@ class H3MAPSCAN_PRINT {
         switch ($section) {
             case 'general':
                 include 'h3mapscan-print-general.php';
-                break;				
+                break;
             case 'players':
                 include 'h3mapscan-print-players.php';
                 break;
+			case 'map':
+				include 'h3mapscan-print-map.php';
+				break;
             default:
                 include 'h3mapscan-print-general.php';
                 break;
@@ -36,32 +39,17 @@ class H3MAPSCAN_PRINT {
     private function generateSidebar() {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
-        return '<div class="sidebarMain">
-					<a href="?'.$mapidParam.'section=general">General Info</a>
-					<a href="?'.$mapidParam.'section=players">Players</a>
-                    <a href="#mapimage">Map</a>
-                    <a href="#terrain">Terrain</a>
-                    <a href="#events">Events</a>
-                    <a href="#heroescustom">Heroes custom</a>
-                    <a href="#artdis">Disabled artifacts</a>
-                    <a href="#spelldis">Disabled spells</a>
-                    <a href="#skilldis">Disabled skills</a>
-                    <a href="#towns">Towns</a>
-                    <a href="#heroes">Heroes</a>
-                    <a href="#artifacts">Artifacts</a>
-                    <a href="#spells">Spells</a>
-                    <a href="#mines">Mines</a>
-                    <a href="#monsters">Monsters</a>
-                    <a href="#quests">Quests</a>
-                    <a href="#townevent">Town events</a>
-                    <a href="#eventbox">Events and pandoras</a>
-                    <a href="#signs">Signs and bottels</a>
-                    <a href="#rumors">Rumors</a>
-                    <a href="#keys">Keys and gates</a>
-                    <a href="#monolith">Monoliths</a>
-                    <a href="#objects">Objects</a>
-                </div>
-                <div class="content">';
-    }
+		$currentSection = $_GET['section'] ?? '';
+		$sections = ['general', 'players', 'map']; // add all your sections here
+	
+		$sidebar = '<div class="sidebarMain">';
+		foreach ($sections as $section) {
+			$selectedClass = $section === $currentSection ? 'selected' : '';
+			$sidebar .= "<a href=\"?{$mapidParam}section={$section}\" class=\"{$selectedClass}\">" . ucfirst($section) . "</a>";
+		}
+		$sidebar .= '</div><div class="content">';
+	
+		return $sidebar;
+	}
 }
 ?>
