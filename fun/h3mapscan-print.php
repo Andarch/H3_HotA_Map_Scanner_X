@@ -18,14 +18,23 @@ class H3MAPSCAN_PRINT {
         
         ob_start(); // Start output buffering
         switch ($section) {
-            case 'general':
+            case 'General':
                 include 'h3mapscan-print-general.php';
                 break;
-            case 'players':
+            case 'Players':
                 include 'h3mapscan-print-players.php';
                 break;
-			case 'map':
+			case 'Map':
 				include 'h3mapscan-print-map.php';
+				break;
+			case 'Heroes':
+				include 'h3mapscan-print-heroes.php';
+				break;
+			case 'Disabled':
+				include 'h3mapscan-print-disabled.php';
+				break;
+			case 'Town Details':
+				include 'h3mapscan-print-towndetails.php';
 				break;
             default:
                 include 'h3mapscan-print-general.php';
@@ -40,7 +49,7 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['general', 'players', 'map']; // add all your sections here
+		$sections = ['General', 'Players', 'Map', 'Heroes', 'Disabled', 'Town Details']; // add all your sections here
 	
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {
