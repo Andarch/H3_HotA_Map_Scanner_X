@@ -1803,6 +1803,9 @@ class H3MAPSCAN {
 					$affiliation = ($objid == OBJECTS::TOWN) ? $this->GetTownById($objsubid) : 'Random';
 					$obj['data']['affiliation'] = $affiliation;
 
+					// Update the count of the town type for the owner.
+    				$this->UpdateTownTypeCount($tileowner, $affiliation);
+
 					$this->towns_list[] = $obj;
 
 					$obj['pos']->x -=2; //substract 2, to make position centered to town gate
@@ -1818,12 +1821,6 @@ class H3MAPSCAN {
 
 					//Check each player's main town to see if it matches this town's coordinates
 					foreach($this->players as &$player) {
-						//print('<div style="margin-left:250px">');
-						//print_r($player['townpos']);
-						//if($player['HasMainTown'])
-							//print($player['townpos']->x)
-						//print($affiliation);
-						//print('</br></br></div>');
 						if($player['townpos']->x == $obj['pos']->x && $player['townpos']->y == $obj['pos']->y && $player['townpos']->z == $obj['pos']->z)
 							$player['mainTownFaction'] = $affiliation;
 					}
@@ -2359,6 +2356,21 @@ class H3MAPSCAN {
 
 		return $town;
 	}
+
+	private function UpdateTownTypeCount($owner, $affiliation) {
+		// Initialize the count for the owner if it doesn't exist.
+		if (!isset($this->townTypeCounts[$owner])) {
+			$this->townTypeCounts[$owner] = [];
+		}
+	
+		// Initialize the count for the town type if it doesn't exist.
+		if (!isset($this->townTypeCounts[$owner][$affiliation])) {
+			$this->townTypeCounts[$owner][$affiliation] = 0;
+		}
+	
+		// Increment the count for the town type.
+		$this->townTypeCounts[$owner][$affiliation]++;
+	} 
 
 	private function ReadSeerHut() {
 		$hut = [];

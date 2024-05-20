@@ -68,41 +68,69 @@ echo '</table>';
 
 echo '</br><table style="border:none; margin:0; padding:0;">';
 
-sort($this->h3mapscan->disabledArtifacts);
-		echo '<td style="vertical-align:top; border:none;">
-			<table class="mediumtable">
-				<tr><th>#</th><th>Disabled Artifacts</th></tr>';
-		foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
-			echo '<tr>
-				<td class="rowheader">'.($k+1).'</td>
-				<td>'.$art.'</td>
-			</tr>';
-		}
-		echo '</table>';
+	echo '<td style="vertical-align:top; border:none;">
+	<table class="mediumtable">
+	<tr>
+		<th class="nowrap" nowrap="nowrap">Player</th>
+		<th class="nowrap" nowrap="nowrap">Town Count</th>
+	</tr>';
+	
+	// Sort the townTypeCounts array by player ID
+	ksort($this->h3mapscan->townTypeCounts);
+	
+	foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
+		ksort($townCounts);
+		$townCountsList = '';
+		foreach ($townCounts as $affiliation => $count) {
+			$townCountsList .= $affiliation . ': ' . $count . '</br>';
+	}
 
-		sort($this->h3mapscan->disabledSpells);
-		echo '<td style="vertical-align:top; border:none;">
-			<table class="mediumtable">
-				<tr><th>#</th><th>Disabled Spells</th></tr>';
-		foreach($this->h3mapscan->disabledSpells as $k => $spell) {
-			echo '<tr>
-				<td class="rowheader">'.($k+1).'</td>
-				<td>'.$spell.'</td>
-			</tr>';
-		}
-		echo '</table>';
+	// Remove the trailing comma and space
+	$townCountsList = rtrim($townCountsList, ', ');
 
-		sort($this->h3mapscan->disabledSkills);
-		echo '<td style="vertical-align:top; border:none;">
-			<table class="mediumtable">
-				<tr><th>#</th><th>Disabled Skills</th></tr>';
-		foreach($this->h3mapscan->disabledSkills as $k => $spell) {
-			echo '<tr>
-				<td class="rowheader">'.($k+1).'</td>
-				<td>'.$spell.'</td>
-			</tr>';
-		}
-		echo '</table>';
+	echo '<tr>
+			<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player). '</td>
+			<td class="nowrap" nowrap="nowrap">' . $townCountsList . '</td>
+		</tr>';
+	}
 
-		echo '</table>';
+	echo '</table></td>';
+
+	sort($this->h3mapscan->disabledArtifacts);
+	echo '<td style="vertical-align:top; border:none;">
+		<table class="mediumtable">
+			<tr><th>#</th><th>Disabled Artifacts</th></tr>';
+	foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
+		echo '<tr>
+			<td class="rowheader">'.($k+1).'</td>
+			<td>'.$art.'</td>
+		</tr>';
+	}
+	echo '</table>';
+
+	sort($this->h3mapscan->disabledSpells);
+	echo '<td style="vertical-align:top; border:none;">
+		<table class="mediumtable">
+			<tr><th>#</th><th>Disabled Spells</th></tr>';
+	foreach($this->h3mapscan->disabledSpells as $k => $spell) {
+		echo '<tr>
+			<td class="rowheader">'.($k+1).'</td>
+			<td>'.$spell.'</td>
+		</tr>';
+	}
+	echo '</table>';
+
+	sort($this->h3mapscan->disabledSkills);
+	echo '<td style="vertical-align:top; border:none;">
+		<table class="mediumtable">
+			<tr><th>#</th><th>Disabled Skills</th></tr>';
+	foreach($this->h3mapscan->disabledSkills as $k => $spell) {
+		echo '<tr>
+			<td class="rowheader">'.($k+1).'</td>
+			<td>'.$spell.'</td>
+		</tr>';
+	}
+	echo '</table>';
+
+echo '</table>';
 ?>
