@@ -3,7 +3,7 @@
 $this->h3mapscan = $_SESSION['h3mapscan'];
 
 $this->h3mapscan->BuildMap();
-echo '<a name="mapimage"></a>'.EOL.$this->h3mapscan->DisplayMap();
+echo EOL.$this->h3mapscan->DisplayMap();
 
 //terrain percentage
 $totalsize1 = $this->h3mapscan->map_size * $this->h3mapscan->map_size;

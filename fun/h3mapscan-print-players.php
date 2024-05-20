@@ -2,8 +2,7 @@
 // Retrieve the $h3mapscan object from the session
 $this->h3mapscan = $_SESSION['h3mapscan'];
 
-echo '<a name="players"></a>
-	<table class="smalltable">
+echo '<table class="smalltable">
 		<tr>
 		<th class="ac nowrap" nowrap="nowrap">#</th>
 			<th class="ac nowrap" nowrap="nowrap">Color</th>

@@ -2,8 +2,7 @@
 // Retrieve the $h3mapscan object from the session
 $this->h3mapscan = $_SESSION['h3mapscan'];
 
-echo '<a name="general"></a>
-	<table class="bigtable">
+echo '<table class="bigtable">
 			<tr><th colspan="2">General Info</th></tr>
 			<tr><td class="rowheader">File</td><td>'.$this->h3mapscan->mapfile.'</td></tr>
 			<tr><td class="rowheader">Name</td><td>'.$this->h3mapscan->map_name.'</td></tr>

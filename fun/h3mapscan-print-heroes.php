@@ -4,8 +4,7 @@ $this->h3mapscan = $_SESSION['h3mapscan'];
 
 //disabled heroes
 $n = 0;
-echo '<a name="heroescustom"></a>
-	<table class="smalltable">
+echo '<table class="smalltable">
 		<tr><th>#</th><th colspan="2">Unavailable Heroes</th></tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>

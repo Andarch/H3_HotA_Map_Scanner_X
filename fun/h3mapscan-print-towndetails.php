@@ -5,8 +5,7 @@ $this->h3mapscan = $_SESSION['h3mapscan'];
 //towns list
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
-echo '<a name="towndetails"></a>
-	<table class="smalltable">
+echo '<table class="smalltable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">Towns</th>
 			<th>Name</th>
