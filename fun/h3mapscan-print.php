@@ -36,6 +36,12 @@ class H3MAPSCAN_PRINT {
 			case 'Town Details':
 				include 'h3mapscan-print-towndetails.php';
 				break;
+			case 'Artifacts':
+				include 'h3mapscan-print-artifacts.php';
+				break;
+			case 'Spells':
+				include 'h3mapscan-print-spells.php';
+				break;
             default:
                 include 'h3mapscan-print-general.php';
                 break;
@@ -49,7 +55,7 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Players', 'Map', 'Heroes', 'Disabled', 'Town Details']; // add all your sections here
+		$sections = ['General', 'Players', 'Map', 'Heroes', 'Disabled', 'Town Details', 'Artifacts', 'Spells']; // add all your sections here
 	
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {
