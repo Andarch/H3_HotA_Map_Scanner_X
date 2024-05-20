@@ -2019,7 +2019,7 @@ class H3MAPSCAN {
 					if($this->hota_subrev >= $this::HOTA_SUBREV3) {
 						if($obj['subid'] == 1000) {
 							$quest = $this->ReadQuest();
-							$this->quest_list[] = new ListObject('Quest Guard', $this->curcoor, $quest['Qtext'], '', '', '', $quest['uid'], [$quest['textFirst'], $quest['textRepeat'], $quest['textDone']]);
+							$this->quest_list[] = new ListObject('Quest Gate', $this->curcoor, $quest['Qtext'], '', '', '', $quest['uid'], [$quest['textFirst'], $quest['textRepeat'], $quest['textDone']]);
 							$obj['data'] = $quest;
 						}
 					}
