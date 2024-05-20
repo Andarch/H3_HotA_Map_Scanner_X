@@ -51,20 +51,45 @@ class H3MAPSCAN_PRINT {
 			case 'Town Events':
 				include 'h3mapscan-print-townevents.php';
 				break;
+			case 'Event Objects':
+				include 'h3mapscan-print-eventobjects.php';
+				break;
+			case 'Pandora\'s Boxes':
+				include 'h3mapscan-print-pandoras.php';
+				break;
+			case 'Global Events':
+				include 'h3mapscan-print-globalevents.php';
+				break;
+			case 'Keymaster\'s Tents':
+				include 'h3mapscan-print-keymasters.php';
+				break;
+			case 'Monoliths/Portals':
+				include 'h3mapscan-print-portals.php';
+				break;
+			case 'Object Count':
+				include 'h3mapscan-print-objectcount.php';
+				break;
             default:
                 include 'h3mapscan-print-general.php';
                 break;
         }
         $print .= ob_get_clean(); // End output buffering and append the output to $print
         $print .= '</div>';
+
         echo $print;
+		
+		if($this->h3mapscan->maphtmcache) {
+			file_write(MAPDIRINFO.str_ireplace('.h3m', '.htm', $this->h3mapscan->mapfile).'.gz', gzencode($print));
+		}
     }
 
     private function generateSidebar() {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Players', 'Map', 'Heroes', 'Disabled', 'Town Details', 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events']; // add all your sections here
+		$sections = ['General', 'Players', 'Map', 'Heroes', 'Disabled', 'Town Details', 'Artifacts', 'Spells', 
+					 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects', 'Pandora\'s Boxes', 
+					 'Global Events', 'Keymaster\'s Tents', 'Monoliths/Portals', 'Object Count'];
 	
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {

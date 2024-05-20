@@ -4,8 +4,7 @@ $this->h3mapscan = $_SESSION['h3mapscan'];
 
 //towns events list
 $n = 0;
-echo '<a name="townevent"></a>
-	<table class="smalltable">
+echo '<table class="smalltable">
 		<tr>
 			<th>Town #</th>
 			<th>Name</th>

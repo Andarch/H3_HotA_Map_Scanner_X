@@ -895,7 +895,7 @@
 			23 => 'Marletto Tower',
 			24 => 'Derelict Ship',
 			25 => 'Dragon Utopia',
-			26 => 'Event',
+			26 => 'Event Object',
 			27 => 'Eye of the Magi',
 			28 => 'Faerie Ring',
 			29 => 'Flotsam',
