@@ -25,7 +25,7 @@ for ($i = 0; $i < 3; $i++) {
 	$n = 0;
 	arsort($this->h3mapscan->terrainRate[$i]);
 	echo '<td>'.$title.'
-		<table class="smalltable">
+		<table class="mediumtable">
 			<tr><th>#</th><th>Terrain</th><th>Percentage</th></tr>';
 	foreach($this->h3mapscan->terrainRate[$i] as $terrain => $ratio) {
 		echo '<tr>

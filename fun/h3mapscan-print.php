@@ -21,7 +21,7 @@ class H3MAPSCAN_PRINT {
             case 'General':
                 include 'h3mapscan-print-general.php';
                 break;
-			case 'Map':
+			case 'Map/Terrain':
 				include 'h3mapscan-print-map.php';
 				break;
 			case 'Heroes':
@@ -81,7 +81,7 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Map', 'Heroes', 'Town Details', 'Artifacts', 'Spells', 
+		$sections = ['General', 'Map/Terrain', 'Heroes', 'Town Details', 'Artifacts', 'Spells', 
 					 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects', 'Pandora\'s Boxes', 
 					 'Global Events', 'Keymaster\'s Tents', 'Monoliths/Portals', 'Object Count'];
 	

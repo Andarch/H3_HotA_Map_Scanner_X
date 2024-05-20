@@ -3,21 +3,29 @@
 $this->h3mapscan = $_SESSION['h3mapscan'];
 
 echo '<table class="mediumtable">
-			<tr><th colspan="2">General Info</th></tr>
-			<tr><td class="rowheader">File</td><td>'.$this->h3mapscan->mapfile.'</td></tr>
-			<tr><td class="rowheader">Name</td><td>'.$this->h3mapscan->map_name.'</td></tr>
-			<tr><td class="rowheader">Description</td><td>'.nl2br($this->h3mapscan->description).'</td></tr>
-			<tr><td class="rowheader">Version</td><td>'.$this->h3mapscan->versionname.$subrev.'</td></tr>
-			<tr><td class="rowheader">Size</td><td>'.$this->h3mapscan->map_sizename.'</td></tr>
-			<tr><td class="rowheader">Levels</td><td>'.($this->h3mapscan->underground ? 2 : 1).'</td></tr>
-			<tr><td class="rowheader">Difficulty</td><td>'.$this->h3mapscan->map_diffname.'</td></tr>
-			<tr><td class="rowheader">Victory</td><td>'.$this->h3mapscan->victoryInfo.'</td></tr>
-			<tr><td class="rowheader">Loss</td><td>'.$this->h3mapscan->lossInfo.'</td></tr>
-			<tr><td class="rowheader">Players count</td><td>'.$this->h3mapscan->mapplayersnum.', '.$this->h3mapscan->mapplayershuman.'/'.$this->h3mapscan->mapplayersai.'</td></tr>
-			<tr><td class="rowheader">Team count</td><td>'.$this->h3mapscan->teamscount.'</td></tr>
-			<tr><td class="rowheader">Heroes level cap</td><td>'.$this->h3mapscan->hero_levelcap.'</td></tr>
-			<tr><td class="rowheader">Language</td><td>'.$this->h3mapscan->GetLanguage().'</td></tr>
-		</table>';
+		<tr>
+			<th class="ac nowrap" nowrap="nowrap">File</th>
+			<th class="ac nowrap" nowrap="nowrap">Name</th>
+			<th style="width:600px">Description</th>
+			<th class="ac nowrap" nowrap="nowrap">Version</th>
+			<th class="ac nowrap" nowrap="nowrap">Size</th>
+			<th class="ac nowrap" nowrap="nowrap"># of</br>Levels</th>
+			<th class="ac nowrap" nowrap="nowrap">Difficulty</th>
+			<th class="ac nowrap" nowrap="nowrap">Victory Condition</th>
+			<th class="ac nowrap" nowrap="nowrap">Loss Condition</th>
+		</tr>
+		<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
+			<td style="width:600px">'.nl2br($this->h3mapscan->description).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->versionname.$subrev.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_sizename.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.($this->h3mapscan->underground ? 2 : 1).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_diffname.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->victoryInfo.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->lossInfo.'</td>
+		</tr>
+	</table>';
 
 echo '</br><table class="mediumtable">
 	<tr>
@@ -27,13 +35,13 @@ echo '</br><table class="mediumtable">
 		<th class="ac nowrap" nowrap="nowrap">Human</br>Allowed</th>
 		<th class="ac nowrap" nowrap="nowrap">AI</br>Allowed</th>
 		<th class="ac nowrap" nowrap="nowrap">AI</br>Behaviour</th>
-		<th class="ac nowrap" nowrap="nowrap">Allowed Factions</th>
+		<th class="ac nowrap" nowrap="nowrap">Allowed</br>Factions</th>
 		<th class="ac nowrap" nowrap="nowrap">Has</br>Main Town</th>
 		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Faction</th>
 		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Coords</th>
 		<th class="ac nowrap" nowrap="nowrap">Generate Hero</br>at Main</th>
 		<th class="ac nowrap" nowrap="nowrap">Random Hero</br>Count</th>
-		<th class="ac nowrap" nowrap="nowrap">Specific Heros</th>
+		<th class="ac nowrap" nowrap="nowrap">Specific</br>Heros</th>
 	</tr>';
 
 foreach($this->h3mapscan->players as $k => $player) {
@@ -41,7 +49,7 @@ $tm = $this->h3mapscan->teams[($k)];
 $teamNum = $tm + 1;
 
 echo '<tr>
-		<td class="ac nowrap" nowrap="nowrap">'.($k + 1).'</td>
+		<td class="rowheader nowrap" nowrap="nowrap">'.($k + 1).'</td>
 		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
@@ -66,7 +74,7 @@ sort($this->h3mapscan->disabledArtifacts);
 				<tr><th>#</th><th>Disabled Artifacts</th></tr>';
 		foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 			echo '<tr>
-				<td class="ac">'.($k+1).'</td>
+				<td class="rowheader">'.($k+1).'</td>
 				<td>'.$art.'</td>
 			</tr>';
 		}
@@ -78,7 +86,7 @@ sort($this->h3mapscan->disabledArtifacts);
 				<tr><th>#</th><th>Disabled Spells</th></tr>';
 		foreach($this->h3mapscan->disabledSpells as $k => $spell) {
 			echo '<tr>
-				<td class="ac">'.($k+1).'</td>
+				<td class="rowheader">'.($k+1).'</td>
 				<td>'.$spell.'</td>
 			</tr>';
 		}
@@ -90,7 +98,7 @@ sort($this->h3mapscan->disabledArtifacts);
 				<tr><th>#</th><th>Disabled Skills</th></tr>';
 		foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 			echo '<tr>
-				<td class="ac">'.($k+1).'</td>
+				<td class="rowheader">'.($k+1).'</td>
 				<td>'.$spell.'</td>
 			</tr>';
 		}

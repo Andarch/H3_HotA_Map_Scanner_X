@@ -18,8 +18,8 @@ require_once 'fun/config.php';
 <style>
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
 	table {border-collapse:collapse; margin: 1em; border: solid 1px #ddd;}
-	th { background: #5c4800;}
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 1px 5px;}
+	th { background: #004752; }
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 1px 5px; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
@@ -29,7 +29,7 @@ require_once 'fun/config.php';
 	a:hover { text-decoration: underline; }
 
 	.smalltable {font-size: 11px; border: solid 1px #ddd;}
-	.mediumtable {font-size: 14px; border: solid 1px #ddd;}
+	.mediumtable {font-size: 16px; border: solid 1px #ddd;}
 	.bigtable {font-size: 20px; border: solid 1px #ddd;}
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
@@ -92,7 +92,7 @@ require_once 'fun/config.php';
 		padding: 0px 10px 0px 10px;
 	}
 
-	.rowheader { background: #004752; }
+	.rowheader { background: #004752; font-weight: bold; text-align: center}
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
