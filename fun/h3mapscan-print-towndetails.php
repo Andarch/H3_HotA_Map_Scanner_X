@@ -5,7 +5,7 @@ $this->h3mapscan = $_SESSION['h3mapscan'];
 //towns list
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
-echo '<table class="mediumtable">
+echo '<table class="smalltable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">Towns</th>
 			<th>Name</th>
@@ -15,8 +15,7 @@ echo '<table class="mediumtable">
 			<th class="nowrap" nowrap="nowrap">Events</th>
 			<th>Troops</th>
 			<th>Max Mage Guild</th>
-			<th>Spell Research</th>
-			<th>Spells</th>
+			<th>Spell</th>
 		</tr>';
 foreach($this->h3mapscan->towns_list as $towno) {
 	$town = $towno['data'];
@@ -29,7 +28,6 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		<td class="ar">'.$town['eventsnum'].'</td>
 		<td class="colw100">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
 		<td class="ac">'.$town['max_guild'].'</td>
-		<td>'.$town['spellResearch'].'</td>
 		<td>'.$town['spells'].'</td>
 	</tr>';
 }
