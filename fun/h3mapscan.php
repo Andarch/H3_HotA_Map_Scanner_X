@@ -2222,15 +2222,40 @@ class H3MAPSCAN {
 
 		$hasCustomBuildings = $this->br->ReadUint8();
 		if($hasCustomBuildings) {
-			//$this->br->SkipBytes(12); //not really used right now
-			/*for($i = 0; $i < 6; $i++) {
-				$town['buildingsBuilt'][] = sprintf('%08b ', $this->br->ReadUint8());
+			for($i = 0; $i < 6; $i++) {
+				$buildings = $this->br->ReadUint8();
+				for ($j = 0; $j < 8; $j++) {
+					// Calculate the building ID
+					$buildingId = $i * 8 + $j;
+					// Check if the building ID exists in the Buildings array
+					if (array_key_exists($buildingId, $this->CS->Buildings)) {
+						// Check if the bit at position $j is set
+						if (($buildings & (1 << $j)) != 0) {
+							// The bit is set, so the building with ID $buildingId is built
+							$building = $this->GetBuildingById($buildingId);
+							$town['buildingsBuilt'][] = $building;
+						}
+					}
+				}
 			}
 
 			for($i = 0; $i < 6; $i++) {
-				$town['buildingsDisabled'][] = sprintf('%08b ', $this->br->ReadUint8());
-			}*/
-
+				$buildings = $this->br->ReadUint8();
+				for ($j = 0; $j < 8; $j++) {
+					// Calculate the building ID
+					$buildingId = $i * 8 + $j;
+					// Check if the building ID exists in the Buildings array
+					if (array_key_exists($buildingId, $this->CS->Buildings)) {
+						// Check if the bit at position $j is set
+						if (($buildings & (1 << $j)) != 0) {
+							// The bit is set, so the building with ID $buildingId is disabled
+							$building = $this->GetBuildingById($buildingId);
+							$town['buildingsDisabled'][] = $building;
+						}
+					}
+				}
+			}
+			/*
 			$this->br->SkipBytes(7); //not really used right now
 			//$town['max_guild'] = sprintf('%08b ', $this->br->ReadUint8()).'<br />'; //$this->br->ReadUint8(); //mage guilds
 			$mageguilds = $this->br->ReadUint8();
@@ -2243,7 +2268,7 @@ class H3MAPSCAN {
 					$town['max_guild'] = $i - 3;
 					break;
 				}
-			}
+			}*/
 		}
 		// Standard buildings
 		else {
@@ -2299,7 +2324,7 @@ class H3MAPSCAN {
 		}
 
 		if($this->hota_subrev >= $this::HOTA_SUBREV1) {
-			$this->br->SkipBytes(1); //spell research, not used currently in mapscan
+			$town['spell_research'] = $this->br->ReadUint8(); //spell research
 		}
 		if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 			$settings_count = $this->br->ReadInt32(); //special settings for towns
