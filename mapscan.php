@@ -29,7 +29,7 @@ require_once 'fun/config.php';
 	a:hover { text-decoration: underline; }
 
 	.smalltable {font-size: 11px; border: solid 1px #ddd;}
-	.mediumtable {font-size: 16px; border: solid 1px #ddd;}
+	.mediumtable {font-size: 15px; border: solid 1px #ddd;}
 	.bigtable {font-size: 20px; border: solid 1px #ddd;}
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }

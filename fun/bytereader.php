@@ -8,7 +8,7 @@ class ByteReader {
 	public $pos = 0;
 	public $length = 0;
 	public $data;
-	public $skipstrings = false;
+	public $skipstrings = true;
 
 
 	public function __construct($data = '') {
