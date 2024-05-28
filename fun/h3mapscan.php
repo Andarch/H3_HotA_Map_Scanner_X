@@ -340,7 +340,7 @@ class H3MAPSCAN {
 			$this->br = null; //free some memory
 			$this->ParseFinish();
 
-			session_start();
+			//session_start();
 			$section = isset($_GET['section']) ? $_GET['section'] : 'general';
 			$h3map_print = new H3MAPSCAN_PRINT($this, $section);
 		}
@@ -463,6 +463,9 @@ class H3MAPSCAN {
 	}
 
 	private function ReadPlayersData() {
+			
+		//print('</br></br></br></br>'); // Debug
+			
 		//players
 		for($i = 0; $i < PLAYERSNUM; $i++) {
 			$human = $this->br->ReadUint8();
@@ -500,7 +503,7 @@ class H3MAPSCAN {
 			$this->players[$i]['HeroCount'] = 0;
 			$this->players[$i]['townsOwned'] = 0;
 			$this->players[$i]['placeholder'] = OBJECT_INVALID;
-			$this->players[$i]['mainTownFaction'] = '';
+			$this->players[$i]['mainTownFaction'] = '-';
 			$this->players[$i]['HasMainTown'] = '';
 
 			$this->players[$i]['behaviour'] = $this->br->ReadUint8();
@@ -535,19 +538,29 @@ class H3MAPSCAN {
 				}
 			}
 			$this->players[$i]['towns_allowed'] = implode($towns_allowed, ', ');
+			
+			//print('</br></br>Player: '.$this->GetPlayerColorById($i)); // Debug
+			
+			//print('</br>towns_allowed: '.$this->players[$i]['towns_allowed']); // Debug
 
 			$this->players[$i]['IsRandomTown'] = $this->br->ReadUint8();
-			$this->players[$i]['HasMainTown'] = $this->yesOrNo($this->br->ReadUint8());
+			$hasmaintown = $this->br->ReadUint8();
+			$this->players[$i]['HasMainTown'] = $this->yesOrNo($hasmaintown);
+			
+			//print('</br>HasMainTown: '.$this->players[$i]['HasMainTown']); // Debug
 
 			//def values
 			$townpos;
 
-			if($this->players[$i]['HasMainTown']) {
+			if($hasmaintown) {
 				if(!$this->isROE) {
 					$this->players[$i]['HeroAtMain'] = $this->yesOrNo($this->br->ReadUint8());
 					$this->players[$i]['GenerateHero'] = dechex($this->br->ReadUint8());
 				}
 				$townpos = new MapCoords($this->br->ReadUint8(), $this->br->ReadUint8(), $this->br->ReadUint8());
+				
+				//print('</br>HeroAtMain: '.$this->players[$i]['HeroAtMain']); // Debug
+				//print('</br>townpos: '.$townpos->GetCoords()); // Debug
 			}
 			else {
 				$townpos = new MapCoords();
@@ -557,36 +570,84 @@ class H3MAPSCAN {
 
 			$heronum = 0;
 			$this->players[$i]['RandomHero'] = $this->br->ReadUint8();
-			$this->players[$i]['MainHeroType'] = $this->br->ReadUint8();
+			$this->players[$i]['StartingHeroID'] = $this->br->ReadUint8();
+			
+			//print('</br>StartingHeroID: '.$this->players[$i]['StartingHeroID']); // Debug
 
 			$this->players[$i]['MainHeroName'] = 'Random';
 
-			if($this->players[$i]['MainHeroType'] != HNONE) {
-				$heroid = $this->br->ReadUint8();
+			if($this->players[$i]['StartingHeroID'] != HNONE) {
+				$heroface = $this->br->ReadUint8();
+			
+				//print('</br>StartingHeroFace: '.$this->GetHeroById($heroface)); // Debug
+			
 				$heroname = $this->ReadString();
-				if($heroid != HNONE) {
-					$this->players[$i]['HeroFace'][] = $heroid;
+				
+				//print('</br>StartingHeroName: '.$heroname); // Debug
+				
+				if($heroface != HNONE) {
+					$this->players[$i]['HeroFace'][] = $heroface;
 					$this->players[$i]['HeroName'][] = $heroname;
 				}
-				$this->players[$i]['MainHeroName'] = $this->GetHeroById($heroid);
+				$this->players[$i]['MainHeroName'] = $this->GetHeroById($heroface);			
+				
+				$this->br->SkipBytes(1);
+
+				if(!$this->isROE) {
+
+					$herocount = $this->br->ReadUint32();
+					$this->players[$i]['HeroCount'] = $herocount;
+				
+					//print('</br>herocount: '.$herocount); // Debug
+
+					//$this->br->SkipBytes(3);
+					for($j = 0; $j < $herocount; $j++) {
+						$heroid = $this->br->ReadUint8();
+						
+						//print('</br>heroid: '.$heroid); // Debug
+						
+						$heroname = $this->ReadString();	
+						
+						//print('</br>heroname: '.$heroname); // Debug
+						//print('</br>GetHeroById: '.$this->GetHeroById($heroid)); // Debug
+						
+						if(!$heroname) {
+							$heroname = $this->GetHeroById($heroid);
+						}
+						$this->players[$i]['HeroFace'][] = $heroid;
+						$this->players[$i]['HeroName'][] = $heroname;
+					}	
+				}			
 			}
-
-			if(!$this->isROE) {
-				$this->players[$i]['placeholder'] = $this->br->ReadUint8(); //placeholder
-
-				$herocount = $this->br->ReadUint8();
+			else {
+				$this->br->SkipBytes(1);
+				
+				$herocount = $this->br->ReadUint32();
 				$this->players[$i]['HeroCount'] = $herocount;
-
-				$this->br->SkipBytes(3);
+				
+				//print('</br>PlaceholderHeroCount: '.$herocount); // Debug
+				
 				for($j = 0; $j < $herocount; $j++) {
+					$this->br->SkipBytes(5);
+					/*
 					$heroid = $this->br->ReadUint8();
+					
+					print('</br>PlaceholderHeroID: '.$heroid); // Debug
+					print('</br>GetHeroById: '.$this->GetHeroById($heroid)); // Debug
+					
 					$heroname = $this->ReadString();
+					
+					print('</br>PlaceholderHeroName: '.$heroname); // Debug
+					
 					if(!$heroname) {
 						$heroname = $this->GetHeroById($heroid);
 					}
 					$this->players[$i]['HeroFace'][] = $heroid;
 					$this->players[$i]['HeroName'][] = $heroname;
+					*/
 				}
+				
+				//$this->players[$i]['placeholder'] = $this->br->ReadUint8(); //placeholder
 			}
 		}
 
@@ -3261,7 +3322,7 @@ class MapCoords {
 
 	public function GetCoords() {
 		if($this->x == COOR_INVALID) {
-			return '?';
+			return '-';
 		}
 		return '['.$this->x.','.$this->y.','.$this->z.']';
 	}

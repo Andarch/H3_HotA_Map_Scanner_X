@@ -1,6 +1,6 @@
 <?php
 // Retrieve the $h3mapscan object from the session
-$this->h3mapscan = $_SESSION['h3mapscan'];
+//$this->h3mapscan = $_SESSION['h3mapscan'];
 
 echo '<table class="mediumtable">
 		<tr>
@@ -45,24 +45,24 @@ echo '</br><table class="mediumtable">
 	</tr>';
 
 foreach($this->h3mapscan->players as $k => $player) {
-$tm = $this->h3mapscan->teams[($k)];
-$teamNum = $tm + 1;
+	$tm = $this->h3mapscan->teams[($k)];
+	$teamNum = $tm + 1;
 
-echo '<tr>
-		<td class="rowheader nowrap" nowrap="nowrap">'.($k + 1).'</td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['ai'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
-		<td class="nowrap" nowrap="nowrap">'.$player['towns_allowed'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['HasMainTown'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['mainTownFaction'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['townpos']->GetCoords().'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['HeroAtMain'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$player['RandomHero'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.implode($player['HeroName'], ', ').'</td>
-	</tr>';
+	echo '<tr>
+			<td class="rowheader nowrap" nowrap="nowrap">'.($k + 1).'</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['ai'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
+			<td class="nowrap" nowrap="nowrap">'.$player['towns_allowed'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['HasMainTown'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['mainTownFaction'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['townpos']->GetCoords().'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['HeroAtMain'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$player['RandomHero'].'</td>
+			<td class="nowrap" nowrap="nowrap">'.implode($player['HeroName'], ', ').'</td>
+		</tr>';
 }
 echo '</table>';
 

@@ -1,6 +1,6 @@
 <?php
 // Retrieve the $h3mapscan object from the session
-$this->h3mapscan = $_SESSION['h3mapscan'];
+//$this->h3mapscan = $_SESSION['h3mapscan'];
 
 //towns events list
 $n = 0;

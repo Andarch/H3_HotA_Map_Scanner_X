@@ -1,6 +1,6 @@
 <?php
 // Retrieve the $h3mapscan object from the session
-$this->h3mapscan = $_SESSION['h3mapscan'];
+//$this->h3mapscan = $_SESSION['h3mapscan'];
 
 //day events
 usort($this->h3mapscan->events, 'EventSortByDate');
@@ -29,7 +29,7 @@ foreach($this->h3mapscan->events as $k => $event) {
 		<td>'.$event['name'].'</td>
 		<td class="ac">'.$event['humanAble'].'</td>
 		<td class="ac">'.$event['aiAble'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], true).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
 		<td class="ar">'.$event['first'].'</td>
 		<td class="ar">'.$event['interval'].'</td>
 		<td class="nowrap" nowrap="nowrap">'.implode($eres, '<br />').'</td>
