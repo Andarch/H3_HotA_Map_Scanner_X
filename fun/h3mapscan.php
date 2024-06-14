@@ -569,7 +569,8 @@ class H3MAPSCAN {
 			$this->players[$i]['townpos'] = $townpos;
 
 			$heronum = 0;
-			$this->players[$i]['RandomHero'] = $this->br->ReadUint8();
+			$randomhero = $this->br->ReadUint8();
+			$this->players[$i]['RandomHero'] = $this->yesOrNo($randomhero);
 			$this->players[$i]['StartingHeroID'] = $this->br->ReadUint8();
 
 			//print('</br>StartingHeroID: '.$this->players[$i]['StartingHeroID']); // Debug

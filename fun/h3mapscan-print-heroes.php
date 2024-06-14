@@ -4,19 +4,21 @@
 
 //disabled heroes
 $n = 0;
-echo '<table class="smalltable">
-		<tr><th>#</th><th colspan="2">Unavailable Heroes</th></tr>';
+echo '<table class="mediumtable">
+		<tr><th class="rowheaderLarge1" colspan="3">Disabled Heroes</th></tr>
+		<tr><th>#</th><th>Class</th><th>Name(s)</th></tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
-		<td class="ac">'.(++$n).'</td>
+		<td class="rowheader">'.(++$n).'</td>
 		<td>'.$class.'</td>
 		<td>'.implode($heroes, ', ').'</td>
 	</tr>';
 }
 echo '</table>';
 
-echo '
-	<table class="smalltable">
+echo '</br>
+	<table class="mediumtable">
+		<tr><th class="rowheaderLarge2" colspan="10">Predefined Hero Changes</th></tr>
 		<tr>
 			<th>#</th>
 			<th>Name</th>
@@ -41,7 +43,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 	}
 
 	echo '<tr>
-		<td class="ac">'.($k+1).'</td>
+		<td class="rowheader">'.($k+1).'</td>
 		<td>'.$hero['name'].'<br />('.$hero['defname'].')</td>
 		<td>'.$this->h3mapscan->PlayerColors($playermask).'</td>
 		<td class="ar">'.comma($hero['exp']).'</td>
@@ -56,9 +58,10 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 echo '</table>';
 //heroes and placeholder list
 $n = 0;
-echo '<table class="smalltable">
+echo '</br><table class="mediumtable">
+		<tr><th class="rowheaderLarge2" colspan="11">Map Heroes</th></tr>
 		<tr>
-			<th>Heroes</th>
+			<th>#</th>
 			<th>Name</th>
 			<th>Position</th>
 			<th>Owner</th>
@@ -90,7 +93,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 	sort($hero['data']['spells']);
 
 	echo '<tr>
-		<td>'.(++$n).'</td>
+		<td class="rowheader">'.(++$n).'</td>
 		<td>'.$hero['data']['name'].'</td>
 		<td>'.$hero['pos']->GetCoords().'</td>
 		<td>'.$color.'</td>
@@ -106,7 +109,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 
 foreach($this->h3mapscan->heroes_placeholder as $hero) {
 	echo '<tr>
-		<td>'.(++$n).'</td>
+		<td class="rowheader">'.(++$n).'</td>
 		<td>'.$hero['name'].'</td>
 		<td>'.$hero['pos']->GetCoords().'</td>
 		<td>'.$this->h3mapscan->GetPlayerColorById($hero['owner']).'</td>

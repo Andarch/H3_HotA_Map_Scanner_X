@@ -39,9 +39,9 @@ echo '</br><table class="mediumtable">
 		<th class="ac nowrap" nowrap="nowrap">Has</br>Main Town</th>
 		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Faction</th>
 		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Coords</th>
-		<th class="ac nowrap" nowrap="nowrap">Generate Hero</br>at Main</th>
-		<th class="ac nowrap" nowrap="nowrap">Random Hero</br>Count</th>
-		<th class="ac nowrap" nowrap="nowrap">Specific</br>Heros</th>
+		<th class="ac nowrap" nowrap="nowrap">Generate Hero</br>at Main Town</th>
+		<th class="ac nowrap" nowrap="nowrap">Random Hero</br>on Map</th>
+		<th class="ac nowrap" nowrap="nowrap">Specific Heros</br>on Map</th>
 	</tr>';
 
 foreach($this->h3mapscan->players as $k => $player) {
@@ -74,10 +74,10 @@ echo '</br><table style="border:none; margin:0; padding:0;">';
 		<th class="nowrap" nowrap="nowrap">Player</th>
 		<th class="nowrap" nowrap="nowrap">Town Count</th>
 	</tr>';
-	
+
 	// Sort the townTypeCounts array by player ID
 	ksort($this->h3mapscan->townTypeCounts);
-	
+
 	foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
 		ksort($townCounts);
 		$townCountsList = '';

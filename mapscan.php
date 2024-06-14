@@ -93,6 +93,8 @@ require_once 'fun/config.php';
 	}
 
 	.rowheader { background: #004752; font-weight: bold; text-align: center}
+	.rowheaderLarge1 { background: #451713; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
+	.rowheaderLarge2 { background: #3a1345; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
@@ -142,7 +144,7 @@ if($mapid) {
 }
 elseif($scan) {
 	echo '<div class="content">';
-	
+
 	$scan = new ScanSubDir();
 	$scan->SetFilter(array('h3m'));
 	$scan->scansubdirs(MAPDIR);
@@ -198,7 +200,7 @@ elseif($scan) {
 		}
 
 	}
-	
+
 	echo '</div>';
 }
 

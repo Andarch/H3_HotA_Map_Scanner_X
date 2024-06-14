@@ -29,7 +29,7 @@ for ($i = 0; $i < 3; $i++) {
 			<tr><th>#</th><th>Terrain</th><th>Percentage</th></tr>';
 	foreach($this->h3mapscan->terrainRate[$i] as $terrain => $ratio) {
 		echo '<tr>
-			<td class="ac">'.(++$n).'</td>
+			<td class="rowheader">'.(++$n).'</td>
 			<td>'.$this->h3mapscan->CS->TerrainType[$terrain].'</td>
 			<td class="ar">'.comma(100 * $ratio / $totalsize, 1).' %</td>
 		</tr>';
