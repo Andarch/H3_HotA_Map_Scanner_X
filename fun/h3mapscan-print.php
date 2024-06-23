@@ -1,4 +1,5 @@
 <?php
+
 //class to print h3mapscan data to html presentation
 class H3MAPSCAN_PRINT {
     private $h3mapscan;
@@ -95,3 +96,4 @@ class H3MAPSCAN_PRINT {
 		return $sidebar;
 	}
 }
+?>
