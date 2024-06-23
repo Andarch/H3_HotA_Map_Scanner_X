@@ -30,11 +30,11 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$buildingsDisabled = '';
 
 	if(isset($town['buildingsBuilt']) && $town['buildingsBuilt']) {
-		$buildingsBuilt = implode($town['buildingsBuilt'], '</br>');
+		$buildingsBuilt = implode('</br>', $town['buildingsBuilt']);
 	}
 
 	if(isset($town['buildingsDisabled']) && $town['buildingsDisabled']) {
-		$buildingsDisabled = implode($town['buildingsDisabled'], '</br>');
+		$buildingsDisabled = implode('</br>', $town['buildingsDisabled']);
 	}
 
 	echo '<tr>

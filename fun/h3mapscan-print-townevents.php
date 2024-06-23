@@ -82,9 +82,9 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				<td class="ac">'.$event['human'].'/'.$event['computerAffected'].'</td>
 				<td class="ac">'.$event['firstOccurence'].'</td>
 				<td class="ac">'.$event['nextOccurence'].'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode($resources, '<br />').'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode($monsters, '<br />').'</td>
-				<td>'.implode($buildings, '<br />').'</td>
+				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $resources).'</td>
+				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>
+				<td>'.implode('<br />', $buildings).'</td>
 				<td>'.nl2br($event['message']).'</td>
 			</tr>';
 	}

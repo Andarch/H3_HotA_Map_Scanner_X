@@ -34,7 +34,7 @@ foreach($this->h3mapscan->events as $k => $event) {
 		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
 		<td class="ar">'.$event['first'].'</td>
 		<td class="ar">'.$event['interval'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.implode($eres, '<br />').'</td>
+		<td class="nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
 		<td>'.nl2br($event['message']).'</td>
 	</tr>';
 }

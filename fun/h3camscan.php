@@ -152,7 +152,7 @@ class H3CAMSCAN {
 		$camname = mes($this->cam_name);
 		$camdesc = mes($this->description);
 
-		$mapsizes = implode($this->scenarios_size, ', '); //saves to mapsizes now
+		$mapsizes = implode(', ', $this->scenarios_size); //saves to mapsizes now
 
 		//if camversion is HOTA, then maps are always HOTA. There can be situation for former HOTA campaigns, where camversion is SOD, but maps are HOTA
 		$version = $this->camversion == 'HOTA' ? 'HOTA' : $this->mapsversion;
@@ -798,8 +798,8 @@ class H3CAMSCAN {
 			}
 
 
-			$keepM = implode($sc->keepMonster, ' ');
-			$keepA = implode($sc->keepArtifact, ' ');
+			$keepM = implode(' ', $sc->keepMonster);
+			$keepA = implode(' ', $sc->keepArtifact);
 
 			$artcarry = [];
 			foreach($sc->keepArtifact as $i => $byte) {
@@ -821,7 +821,7 @@ class H3CAMSCAN {
 				}
 			}
 
-			$moncarrySTR = count($moncarry) < 100 ? implode($moncarry, '<br />') : 'All';
+			$moncarrySTR = count($moncarry) < 100 ? implode('<br />', $moncarry) : 'All';
 
 			echo '
 			<tr>
@@ -834,9 +834,9 @@ class H3CAMSCAN {
 				<td>'.nl2br($sc->prolog['text']).'</td>
 				<td class="ac">'.$sc->epilog['video'].'/'.$sc->epilog['music'].'</td>
 				<td>'.nl2br($sc->epilog['text']).'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode($crossover, '<br />').'</td>
+				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $crossover).'</td>
 				<td>'.$moncarrySTR.'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode($artcarry, '<br />').'</td>
+				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $artcarry).'</td>
 			</tr>';
 		}
 

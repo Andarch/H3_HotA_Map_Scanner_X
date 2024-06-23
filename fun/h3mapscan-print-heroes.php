@@ -13,7 +13,7 @@ foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
 		<td>'.$class.'</td>
-		<td>'.implode($heroes, ', ').'</td>
+		<td>'.implode(', ', $heroes).'</td>
 	</tr>';
 }
 echo '</table>';
@@ -51,10 +51,10 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 		<td class="ar">'.comma($hero['exp']).'</td>
 		<td class="ac">'.$hero['sex'].'</td>
 		<td>'.nl2br($hero['bio']).'</td>
-		<td>'.implode($hero['priskills'], ', ').'</td>
-		<td>'.implode($skills, '<br />').'</td>
-		<td>'.implode($hero['spells'], ', ').'</td>
-		<td>'.implode($hero['artifacts'], '<br />').'</td>
+		<td>'.implode(', ', $hero['priskills']).'</td>
+		<td>'.implode('<br />', $skills).'</td>
+		<td>'.implode(', ', $hero['spells']).'</td>
+		<td>'.implode('<br />', $hero['artifacts']).'</td>
 	</tr>';
 }
 echo '</table>';
@@ -80,7 +80,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($hero['data']['subid']);
 
-	$primary = implode($hero['data']['priskills'], ' ');
+	$primary = implode(' ', $hero['data']['priskills']);
 	$secondary = '';
 	foreach($hero['data']['skills'] as $k => $skill) {
 		if($k > 0) {
@@ -88,7 +88,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 		}
 		$secondary .= $skill['skill'].': '.$skill['level'];
 	}
-	$artifacts = implode($hero['data']['artifacts'], '<br />');
+	$artifacts = implode('<br />', $hero['data']['artifacts']);
 
 	$level = $this->h3mapscan->GetLevelByExp($hero['data']['exp']);
 
@@ -105,7 +105,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 		<td>'.$secondary.'</td>
 		<td>'.$this->h3mapscan->PrintStack($hero['data']['stack']).'</td>
 		<td>'.$artifacts.'</td>
-		<td>'.implode($hero['data']['spells'], '<br />').'</td>
+		<td>'.implode('<br />', $hero['data']['spells']).'</td>
 	</tr>';
 }
 
@@ -120,7 +120,7 @@ foreach($this->h3mapscan->heroes_placeholder as $hero) {
 		<td></td>
 		<td></td>
 		<td>'.$this->h3mapscan->PrintStack($hero['stack']).'</td>
-		<td>'.implode($hero['artifacts'], '<br />').'</td>
+		<td>'.implode('<br />', $hero['artifacts']).'</td>
 		<td></td>
 	</tr>';
 }

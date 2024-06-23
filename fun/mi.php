@@ -103,11 +103,13 @@
 
 	function mlog($sql){
 		$me = mysqli_error(db_link());
+		/*
 		if(LOCAL) {
 			echo $me.'<br /><br />';
 			vd($sql);
 			return;
 		}
+		*/
 
 		$fmlogdir = 'cache/';
 		$fmlog = $fmlogdir.'log_sql.log';

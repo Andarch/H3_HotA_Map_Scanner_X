@@ -63,7 +63,7 @@ foreach($this->h3mapscan->players as $k => $player) {
 			<td class="ac nowrap" nowrap="nowrap">'.$player['townpos']->GetCoords().'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$player['HeroAtMain'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$player['RandomHero'].'</td>
-			<td class="nowrap" nowrap="nowrap">'.implode($player['HeroName'], ', ').'</td>
+			<td class="nowrap" nowrap="nowrap">'.implode(', ', $player['HeroName']).'</td>
 		</tr>';
 }
 echo '</table>';

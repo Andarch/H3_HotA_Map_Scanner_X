@@ -21,7 +21,6 @@ class ByteReader {
 		if($this->pos >= $this->length) {
 			dbglog();
 			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 		return ord($this->data[$this->pos++]);
 	}
@@ -29,7 +28,6 @@ class ByteReader {
 	public function ReadUint16() {
 		if($this->pos >= $this->length - 1) {
 			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 
 		$res = ord($this->data[$this->pos++]);
@@ -40,7 +38,6 @@ class ByteReader {
 	public function ReadUint32() {
 		if($this->pos >= $this->length - 3) {
 			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 
 		$res  = ord($this->data[$this->pos++]);
@@ -53,7 +50,6 @@ class ByteReader {
 	public function ReadInt8() {
 		if($this->pos >= $this->length) {
 			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 		$res  = ord($this->data[$this->pos++]);
 		if($res > 0x7E) {
@@ -65,7 +61,6 @@ class ByteReader {
 	public function ReadInt32() {
 		if($this->pos >= $this->length - 3) {
 			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 
 		$res  = ord($this->data[$this->pos++]);
@@ -84,7 +79,6 @@ class ByteReader {
 			dbglog();
 			$this->data = null;
 			throw new Exception('Bad string pos 0x'.dechex($this->pos).' '.$this->pos);
-			return;
 		}
 
 		if($length == -1) {
@@ -96,7 +90,6 @@ class ByteReader {
 				dbglog();
 				$this->data = null;
 				throw new Exception('Too long string '.$length);
-				return;
 			}
 
 			//fastread
@@ -130,7 +123,6 @@ class ByteReader {
 			dbglog();
 			$this->data = null;
 			throw new Exception('Bad string pos '.$this->pos);
-			return;
 		}
 
 		$length = $this->ReadUint16();
@@ -141,7 +133,6 @@ class ByteReader {
 			dbglog();
 			$this->data = null;
 			throw new Exception('Too long string '.$length);
-			return;
 		}
 
 		$res = substr($this->data, $this->pos, $length);

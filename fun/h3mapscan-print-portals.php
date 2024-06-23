@@ -38,7 +38,7 @@ foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 				<td class="ac">'.$subid.'</td>
 				<td>'.$color.'</td>
 				<td class="ac">'.count($lith).'</td>
-				<td>'.implode($lith, '<br />').'</td>
+				<td>'.implode('<br />', $lith).'</td>
 			</tr>';
 	}
 }

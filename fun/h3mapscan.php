@@ -65,6 +65,7 @@ class H3MAPSCAN {
 	public  $disabledSpells = [];
 	private $allowedSkills = [];
 	public  $disabledSkills = [];
+	private $townTypeCounts = [];
 
 	public  $objTemplatesNum = 0;
 	private $objTemplates = [];
@@ -387,7 +388,6 @@ class H3MAPSCAN {
 
 		if($this->CheckVersion() == false) {
 			throw new Exception('<div class="content">Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')</div>');
-			return;
 		}
 
 		$this->hero_any_onmap = $this->br->ReadUint8(); //hero presence
@@ -537,7 +537,7 @@ class H3MAPSCAN {
 					}
 				}
 			}
-			$this->players[$i]['towns_allowed'] = implode($towns_allowed, ', ');
+			$this->players[$i]['towns_allowed'] = implode(', ', $towns_allowed);
 
 			//print('</br></br>Player: '.$this->GetPlayerColorById($i)); // Debug
 
@@ -1313,7 +1313,6 @@ class H3MAPSCAN {
 
 			if(!$img) {
 				throw new Exception('<div class="content">Image Creation problem</div>');
-				return;
 			}
 
 			$imgmap = imagecreate($this::IMGSIZE, $this::IMGSIZE); //resized to constant size for all map sizes
@@ -1543,7 +1542,6 @@ class H3MAPSCAN {
 			//echo ($i + 1).'/'.$this->objectsNum.' :: '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z - [".$this->rpos().']<br />';
 			if($objid < 0) {
 				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
-				return;
 			}
 
 			//echo ('<div class="content">');
@@ -1883,6 +1881,7 @@ class H3MAPSCAN {
 
 					//Check each player's main town to see if it matches this town's coordinates
 					foreach($this->players as &$player) {
+						$player['townpos'] = $player['townpos'] ?? new MapCoords();
 						if($player['townpos']->x == $obj['pos']->x && $player['townpos']->y == $obj['pos']->y && $player['townpos']->z == $obj['pos']->z)
 							$player['mainTownFaction'] = $affiliation;
 					}
@@ -2379,10 +2378,10 @@ class H3MAPSCAN {
 
 		$town['spells'] = '';
 		if(!empty($town['spellsA'])) {
-			$town['spells'] .= 'Always: '.implode($town['spellsA'], ', ');
+			$town['spells'] .= 'Always: '.implode(', ', $town['spellsA']);
 		}
 		if(!empty($town['spellsD'])) {
-			$town['spells'] .= '<br />Disabled: '.implode($town['spellsD'], ', ');
+			$town['spells'] .= '<br />Disabled: '.implode(', ', $town['spellsD']);
 		}
 
 		if($this->hota_subrev >= $this::HOTA_SUBREV1) {
@@ -2561,7 +2560,7 @@ class H3MAPSCAN {
 					$quest['Qpriskill'][] = $value;
 					if($value > 0) {
 						$quest['Qarray'][] = $this->GetPriskillById($x).': '.$value;
-						$quest['Qtext'] = implode($quest['Qarray'], '</br>');
+						$quest['Qtext'] = implode('</br>', $quest['Qarray']);
 					}
 				}
 				break;
@@ -2610,7 +2609,7 @@ class H3MAPSCAN {
 						$resall[] = $this->GetResourceById($x).': '.$count;
 					}
 				}
-				$quest['Qtext'] = 'Resource:<br />'.implode($resall, '<br />');
+				$quest['Qtext'] = 'Resource:<br />'.implode('</br>', $resall);
 				break;
 			case QUESTMISSION::HERO:
 				$quest['Qhero'] = $this->br->ReadUint8();
@@ -2636,7 +2635,7 @@ class H3MAPSCAN {
 									}
 								}
 							}
-							$quest['Qtext'] = 'Be class: '.implode($class, ', ');
+							$quest['Qtext'] = 'Be class: '.implode('</br>', $class);
 						}
 					}
 					elseif($hotaquestid == QUESTMISSION::HOTA_NOTBEFORE) {
@@ -3020,9 +3019,11 @@ class H3MAPSCAN {
 		return $this->versionname;
 	}
 
+	/*
 	public function GetMapSubVersion() {
 		return $this->subversion;
 	}
+	*/
 
 	public function PlayerColors($playermask, $withtext = false) {
 		$colors = '';

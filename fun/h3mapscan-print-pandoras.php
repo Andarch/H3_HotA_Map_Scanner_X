@@ -49,10 +49,10 @@ foreach($this->h3mapscan->events_list as $evento) {
 			$content[] = $skill['skill'].' = '.$skill['level'];
 		}
 		if(!empty($event['artifacts'])) {
-			$content[] = 'Artifacts: '.implode($event['artifacts'], ', ');
+			$content[] = 'Artifacts: '.implode(', ', $event['artifacts']);
 		}
 		if(!empty($event['spells'])) {
-			$content[] = 'Spells: '.implode($event['spells'], ', ');
+			$content[] = 'Spells: '.implode(', ', $event['spells']);
 		}
 		if(array_key_exists('stack', $event)) {
 			$content[] = $this->h3mapscan->PrintStack($event['stack']);
@@ -67,7 +67,7 @@ foreach($this->h3mapscan->events_list as $evento) {
 			<td class="ac">'.$event['humanActivate'].'/'.$event['computerActivate'].'</td>
 			<td class="ac">'.$event['removeAfterVisit'].'</td>
 			<td>'.$stack.'</td>
-			<td>'.implode($content, '<br />').'</td>
+			<td>'.implode('<br />', $content).'</td>
 			<td>'.$msg.'</td>
 		</tr>';
 	}
