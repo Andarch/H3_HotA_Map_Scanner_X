@@ -196,7 +196,7 @@ elseif($scan) {
 			}
 			echo '<p id="mapreadstate"></p>';
 			echo '<p id="maplist"></p>';
-			echo '<script type="text/javascript">'.EOL.'var maplist = ['.EOL.TAB.'"'.implode($maplistjs, '",'.EOL.TAB.'"').'"'.EOL.']'.EOL.'</script>';
+			echo '<script type="text/javascript">'.EOL.'var maplist = ['.EOL.TAB.'"'.implode('",'.EOL.TAB.'"', $maplistjs).'"'.EOL.']'.EOL.'</script>';
 		}
 
 	}
