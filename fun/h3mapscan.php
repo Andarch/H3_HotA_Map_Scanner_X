@@ -752,9 +752,9 @@ class H3MAPSCAN {
 			for($n = 0; $n < 8; $n++) {
 				if(($byte & (1 << $n)) != 0) {
 					$ida = $i * 8 + $n;
-					if(!$this->isWOG && $ida > 140) {
-						break;
-					}
+					//if(!$this->isWOG && $ida > 140) {
+					//	break;
+					//}
 					$this->disabledArtifacts[] = $this->GetArtifactById($ida).' '.$ida;
 				}
 			}
