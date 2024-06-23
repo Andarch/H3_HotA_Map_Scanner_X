@@ -1521,9 +1521,9 @@ class H3MAPSCAN {
 			if(array_key_exists($defnum, $this->objTemplates)) {
 				$objid = $this->objTemplates[$defnum]->id;
 				$obj['id'] = $objid;
-				$obj['subid'] = $this->objTemplates[$defnum]->subid;
+				$objsubid = $this->objTemplates[$defnum]->subid;
+				$obj['subid'] = $objsubid;
 				$obj['objname'] = $this->GetObjectById($objid);
-				$objsubid = $obj['subid'];
 
 				if(!array_key_exists($objid, $this->objects_unique)) {
 					$this->objects_unique[$objid] = ['name' => $this->GetObjectById($objid), 'count' => 0];
