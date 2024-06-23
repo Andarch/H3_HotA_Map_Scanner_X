@@ -10,17 +10,32 @@ echo '<br />Templates count: '.$this->h3mapscan->objTemplatesNum.'<br />';
 		echo 'Objects total count: '.$this->h3mapscan->objectsNum.'<br />';
 
 		asort($this->h3mapscan->objects_unique);
+		foreach ($this->h3mapscan->objects_unique as &$obju) {
+			// Step 3: Sort each sub-array by its keys
+			ksort($obju);
+		}
+		unset($obju);
+
 		$n = 0;
 		echo '<a name="objects"></a>
 			<table class="smalltable">
-				<tr><th>Objects</th><th>ID</th><th>Name</th><th>Count</th></tr>';
-		foreach($this->h3mapscan->objects_unique as $objid => $obju) {
-			echo '<tr>
-				<td class="ac">'.(++$n).'</td>
-				<td>'.$objid.'</td>
-				<td>'.$obju['name'].'</td>
-				<td class="ar">'.$obju['count'].'</td>
-			</tr>';
+				<tr>
+					<th class="ac nowrap" nowrap="nowrap">#</th>
+					<th class="ac nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap" nowrap="nowrap">Sub ID</th>
+					<th class="ac nowrap" nowrap="nowrap">Name</th>
+					<th class="ac nowrap" nowrap="nowrap">Count</th>
+				</tr>';
+		foreach($this->h3mapscan->objects_unique as $objid => $obj) {
+			foreach($obj as $objsubid => $subobj) {
+				echo '<tr>
+					<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$objid.'</td>
+					<td class="ac nowrap" nowrap="nowrap">'.$objsubid.'</td>
+					<td class="nowrap" nowrap="nowrap">'.$subobj['name'].'</td>
+					<td class="ar nowrap" nowrap="nowrap">'.$subobj['count'].'</td>
+				</tr>';
+			}
 		}
 		echo '</table>
 						</td>

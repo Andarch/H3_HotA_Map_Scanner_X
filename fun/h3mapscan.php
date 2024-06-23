@@ -65,7 +65,7 @@ class H3MAPSCAN {
 	public  $disabledSpells = [];
 	private $allowedSkills = [];
 	public  $disabledSkills = [];
-	private $townTypeCounts = [];
+	public $townTypeCounts = [];
 
 	public  $objTemplatesNum = 0;
 	private $objTemplates = [];
@@ -1521,14 +1521,20 @@ class H3MAPSCAN {
 			if(array_key_exists($defnum, $this->objTemplates)) {
 				$objid = $this->objTemplates[$defnum]->id;
 				$obj['id'] = $objid;
+
 				$objsubid = $this->objTemplates[$defnum]->subid;
 				$obj['subid'] = $objsubid;
-				$obj['objname'] = $this->GetObjectById($objid);
 
-				if(!array_key_exists($objid, $this->objects_unique)) {
-					$this->objects_unique[$objid] = ['name' => $this->GetObjectById($objid), 'count' => 0];
+				$obj['objname'] = $this->GetObjectById($objid, $objsubid);
+				$objname = $obj['objname'];
+
+				if (!isset($this->objects_unique[$objid])) {
+					$this->objects_unique[$objid] = [];
 				}
-				$this->objects_unique[$objid]['count']++;
+				if (!isset($this->objects_unique[$objid][$objsubid])) {
+					$this->objects_unique[$objid][$objsubid] = ['name' => $objname, 'count' => 0];
+				}
+				$this->objects_unique[$objid][$objsubid]['count']++;
 			}
 			else {
 				$objid = OBJECT_INVALID;
@@ -3098,8 +3104,12 @@ class H3MAPSCAN {
 		return FromArray($id, $this->CS->Buildings);
 	}
 
-	public function GetObjectById($id) {
-		return FromArray($id, $this->CS->Objects);
+	public function GetObjectById($id, $subid = 0) {
+		$obj = FromArray($id, $this->CS->Objects);
+		if (is_array($obj)) {
+			return FromArray($subid, $obj);
+		}
+		return $obj;
 	}
 
 	private function GetSpellById($id) {
