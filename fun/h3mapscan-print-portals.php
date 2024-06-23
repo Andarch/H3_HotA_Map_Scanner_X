@@ -40,4 +40,3 @@ foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 			</tr>';
 	}
 }
-?>

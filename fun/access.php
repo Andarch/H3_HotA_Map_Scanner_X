@@ -8,5 +8,3 @@
 		'mq.db'   => 'heroes3mapscan',
 		'mq.port' => '3306',
 	);
-
-?>

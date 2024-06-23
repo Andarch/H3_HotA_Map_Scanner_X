@@ -25,4 +25,3 @@ foreach($this->h3mapscan->keys_list as $key) {
 	</tr>';
 }
 echo '</table>';
-?>

@@ -1614,7 +1614,7 @@
 
 		public $Buildings = [
 			//byte 0
-			0 => 'Town hall',  
+			0 => 'Town hall',
 			1 => 'City hall',
 			2 => 'Capitol',
 			3 => 'Fort',
@@ -1660,7 +1660,7 @@
 			//byte 5
 			40 => 'Dwelling lvl 7 upg',
 		];
-		
+
 		public $MonolithsOne = [
 			0 => 'Blue',
 			1 => 'Pink',
@@ -1675,7 +1675,7 @@
 			10 => 'Chartreuse',
 			11 => 'White',
 		];
-		
+
 		public $MonolithsTwo = [
 			0 => 'Green',
 			1 => 'Brown',
@@ -1783,7 +1783,7 @@
 			//76 => -2122926675,
 			76 => 0x100000000,
 		];
-		
+
 		public $ObjectColors = [
 			0 => 'Blue',
 			1 => 'Green',
@@ -1854,11 +1854,3 @@
 			LOSS::TIME => 'time',
 		];
 	}
-
-
-
-
-
-
-
-?>

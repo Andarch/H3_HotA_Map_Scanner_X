@@ -89,4 +89,3 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 }
 echo '</table>';
-?>

@@ -122,4 +122,3 @@ foreach($this->h3mapscan->heroes_placeholder as $hero) {
 		<td></td>
 	</tr>';
 }
-?>

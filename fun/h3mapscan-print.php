@@ -15,7 +15,7 @@ class H3MAPSCAN_PRINT {
         $subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
         $print = $this->generateSidebar();
         $section = $_GET['section'] ?? 'general';
-        
+
         ob_start(); // Start output buffering
         switch ($section) {
             case 'General':
@@ -71,7 +71,7 @@ class H3MAPSCAN_PRINT {
         $print .= '</div>';
 
         echo $print;
-		
+
 		if($this->h3mapscan->maphtmcache) {
 			file_write(MAPDIRINFO.str_ireplace('.h3m', '.htm', $this->h3mapscan->mapfile).'.gz', gzencode($print));
 		}
@@ -81,18 +81,17 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Map/Terrain', 'Heroes', 'Town Details', 'Artifacts', 'Spells', 
-					 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects', 'Pandora\'s Boxes', 
+		$sections = ['General', 'Map/Terrain', 'Heroes', 'Town Details', 'Artifacts', 'Spells',
+					 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects', 'Pandora\'s Boxes',
 					 'Global Events', 'Keymaster\'s Tents', 'Monoliths/Portals', 'Object Count'];
-	
+
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {
 			$selectedClass = $section === $currentSection ? 'selected' : '';
 			$sidebar .= "<a href=\"?{$mapidParam}section={$section}\" class=\"{$selectedClass}\">" . ucfirst($section) . "</a>";
 		}
 		$sidebar .= '</div><div class="content">';
-	
+
 		return $sidebar;
 	}
 }
-?>

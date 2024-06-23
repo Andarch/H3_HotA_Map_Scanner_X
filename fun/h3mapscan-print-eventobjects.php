@@ -71,4 +71,3 @@ foreach($this->h3mapscan->events_list as $evento) {
 	}
 }
 echo '</table>';
-?>

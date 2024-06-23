@@ -17,7 +17,7 @@ echo '<table class="smalltable">
 			<th>Max Mage Guild</th>
 			<th>Spell Research</th>
 			<th>Spells</th>
-			<th>Buildings Built</th>			
+			<th>Buildings Built</th>
 			<th>Buildings Disabled</th>
 		</tr>';
 foreach($this->h3mapscan->towns_list as $towno) {
@@ -30,7 +30,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	if(isset($town['buildingsBuilt']) && $town['buildingsBuilt']) {
 		$buildingsBuilt = implode($town['buildingsBuilt'], '</br>');
 	}
-	
+
 	if(isset($town['buildingsDisabled']) && $town['buildingsDisabled']) {
 		$buildingsDisabled = implode($town['buildingsDisabled'], '</br>');
 	}
@@ -51,4 +51,3 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	</tr>';
 }
 echo '</table>';
-?>

@@ -25,4 +25,3 @@ echo '<br />Templates count: '.$this->h3mapscan->objTemplatesNum.'<br />';
 					</tr>
 				</table>
 			</div>';
-?>

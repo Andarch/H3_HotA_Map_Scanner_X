@@ -34,5 +34,3 @@
 		$tm->showTime();
 		echo ' ** ';
 	}
-
-?>

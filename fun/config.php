@@ -23,5 +23,3 @@
 	DEFINE('MAPDIRINFO', './mapsinfo/');
 
 	require_once './fun/access.php';
-
-?>

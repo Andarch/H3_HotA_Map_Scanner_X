@@ -18,7 +18,7 @@ class ScanSubDir {
 	public function SetFilter($filter) {
 		$this->filter = $filter;
 	}
-	
+
 	public function scansubdirs_set($value) {
 		$this->scansubdirs = $value;
 	}
@@ -226,11 +226,11 @@ function h3mmakeFP($mapid, $terrate, $return = false) {
 			$bytefp .= chr(($ter & 0xff00) >> 8) . chr($ter & 0xff);
 		}
 	}
-	
+
 	if($bytefp == '') {
 		return;
 	}
-	
+
 	if($return) {
 		return $bytefp;
 	}
@@ -270,5 +270,3 @@ function GetCampaignLayout($layout) {
 		default: return 'Unknown';
 	}
 }
-
-?>

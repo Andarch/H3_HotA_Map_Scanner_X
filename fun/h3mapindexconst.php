@@ -49,6 +49,3 @@
 		LOSSi::HERO => 'Lose a specific hero',
 		LOSSi::TIME => 'Time expires',
 	];
-
-
-?>

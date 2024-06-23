@@ -40,4 +40,3 @@ foreach($this->h3mapscan->quest_list as $quest) {
     }
 }
 echo '</table>';
-?>

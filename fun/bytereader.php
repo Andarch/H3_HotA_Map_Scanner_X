@@ -161,11 +161,11 @@ class ByteReader {
 	public function GetPos() {
 		return $this->pos;
 	}
-	
+
 	public function ResetPos() {
 		return $this->pos = 0;
 	}
-	
+
 	public function Length() {
 		return strlen($this->data);
 	}
@@ -173,16 +173,16 @@ class ByteReader {
 	public function GetLength() {
 		return $this->length;
 	}
-	
+
 	public function Rewind($bytes) {
 		$this->pos -= $bytes;
 	}
-	
+
 	//print current position
 	public function ppos() {
 		vd(dechex($this->pos). ' '.$this->pos);
 	}
-	
+
 	public function rpos() {
 		return '0x'.dechex($this->pos);
 	}
@@ -200,5 +200,3 @@ class ByteReader {
 	}
 
 }
-
-?>

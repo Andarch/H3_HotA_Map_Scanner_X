@@ -3379,5 +3379,3 @@ function KeyMasterSort($a, $b) {
 	$res = $a['id'] <=> $b['id'];
 	return $res ? $res : $a['subid'] <=> $b['subid'];
 }
-
-?>

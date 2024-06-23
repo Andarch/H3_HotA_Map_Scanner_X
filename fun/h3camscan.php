@@ -559,7 +559,7 @@ class H3CAMSCAN {
 				}
 			}
 		}
-		
+
 		/*foreach($this->scenarios as $k => $s) {
 			echo $k.' '.$s->mapname.' > ['.implode($s->precondition, ' ').'] '.$s->size.' -- '.$s->part_index.'<br />';
 		}*/
@@ -676,24 +676,24 @@ class H3CAMSCAN {
 					$this->printinfo .= '<td'.$rowspan.$class.'>'.$hi.'</td>';
 					$k++;
 				}
-				
+
 				$this->printinfo .= $bonuses[0];
 				$this->printinfo .= '<td'.$rowspan.' class="ac vac">'.$image.'</td>'.EOL;
 				$this->printinfo .= '<td'.$rowspan.' class="colw100 downbutton ac"><span onclick="MapScan('.$mapid.'); return false;" title="Very detailed map scan" >Map Scan</span></td>';
 				$this->printinfo .= '</tr>'.EOL;
-				
+
 				for ($i = 1; $i < count($bonuses); $i++) {
 					$this->printinfo .= $bonuses[$i];
 				}
 			}
-			
+
 			$scenario_num++;
 		}
 
 		if($makehtm) {
 			$this->printinfo .= '</table>';
 		}
-		
+
 		if($this->printoutput) {
 			echo $this->printinfo;
 			$this->CamScenarioDetails();
@@ -702,7 +702,7 @@ class H3CAMSCAN {
 		if($this->htmcache) {
 			file_write(MAPDIRINFO.str_ireplace('.h3c', '.htm', $this->mapfile).'.gz', gzencode($this->printinfo));
 		}
-		
+
 		//SAVE CAM TO DB
 		if($this->save) {
 			$this->SaveCam();
@@ -725,7 +725,7 @@ class H3CAMSCAN {
 			}
 		}
 	}
-	
+
 	//sorts scenarios as they go in the campaign, which can differ from the order in gzip
 	private function SortScenarios() {
 		$scenario_sorted = [];
@@ -758,7 +758,7 @@ class H3CAMSCAN {
 		if(!$this->printoutput) {
 			return;
 		}
-	
+
 		echo '
 			<p class="campaign-info"><span class="campaign-title">'.$this->cam_name.'</span><br />'
 				.nl2br($this->description).'</p>';
@@ -785,7 +785,7 @@ class H3CAMSCAN {
 		foreach($scenario_sorted as $scenario_num) {
 
 			$sc = $this->scenarios[$scenario_num];
-			
+
 			$crossover = [];
 			for ($i = 0; $i < 5; $i++) {
 				switch($sc->keepHero & (1 << $i)) {
@@ -800,7 +800,7 @@ class H3CAMSCAN {
 
 			$keepM = implode($sc->keepMonster, ' ');
 			$keepA = implode($sc->keepArtifact, ' ');
-			
+
 			$artcarry = [];
 			foreach($sc->keepArtifact as $i => $byte) {
 				for($n = 0; $n < 8; $n++) {
@@ -810,7 +810,7 @@ class H3CAMSCAN {
 					}
 				}
 			}
-			
+
 			$moncarry = [];
 			foreach($sc->keepMonster as $i => $byte) {
 				for($n = 0; $n < 8; $n++) {
@@ -820,7 +820,7 @@ class H3CAMSCAN {
 					}
 				}
 			}
-			
+
 			$moncarrySTR = count($moncarry) < 100 ? implode($moncarry, '<br />') : 'All';
 
 			echo '
@@ -839,9 +839,9 @@ class H3CAMSCAN {
 				<td class="nowrap" nowrap="nowrap">'.implode($artcarry, '<br />').'</td>
 			</tr>';
 		}
-		
+
 		echo '</table>';
-		
+
 	}
 
 	private function GetVersionName() {
@@ -904,7 +904,7 @@ class H3CAMSCAN {
 	private function GetSecskillLevelById($id) {
 		return FromArray($id, $this->CS->SecSkillLevel);
 	}
-	
+
 	//check, if map is compressed or not, compressed starts with 1F 8B 08 00 in LE, that's 0x00088B1F
 	private function IsGZIP() {
 		$file = fopen($this->mapfile, 'rb');
@@ -938,7 +938,7 @@ class H3CAMSCAN {
 		}
 		return $this->isGzip;
 	}
-	
+
 	private function GzipSplit() {
 		//campaign files are several gzipped files together, split them first
 		//first is campaign header, rest are maps
@@ -976,7 +976,7 @@ class H3CAMSCAN {
 	private function ReadString() {
 	  return $this->LangConvert($this->br->ReadString());
 	}
-	
+
 	private function LangConvert($text) {
 		if($this->language == null) {
 			$this->GuessLanguage($text);
@@ -1085,6 +1085,3 @@ class Scenario {
 	public $keepMonster; //monsters
 	public $keepArtifact; //artifacts
 }
-
-
-?>
