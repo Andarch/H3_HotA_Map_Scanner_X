@@ -96,4 +96,3 @@ class H3MAPSCAN_PRINT {
 		return $sidebar;
 	}
 }
-?>
