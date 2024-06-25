@@ -1632,6 +1632,9 @@ class H3MAPSCAN {
 						$event['availableFor'] = $this->br->ReadUint8();
 						$event['computerActivate'] = $this->br->ReadUint8();
 						$event['removeAfterVisit'] = $this->br->ReadUint8();
+
+						$this->br->SkipBytes(4);
+
 						if($this->hota_subrev >= $this::HOTA_SUBREV3) {
 							$event['humanActivate'] = $this->br->ReadUint8();
 						}
@@ -1645,8 +1648,6 @@ class H3MAPSCAN {
 						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
 							$event['difficulty'] = $this->br->ReadUint32();
 						}
-
-						$this->br->SkipBytes(4);
 					}
 					else { //pandora
 						$event['availableFor'] = HNONE;
