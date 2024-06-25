@@ -29,20 +29,7 @@
 	const HNONE16 = 0xffff; //general heroes NONE value, 16 bit
 	const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
-	//some unused constants
-	/*
-	const BACKPACK_START = 19;
-	const CREATURES_PER_TOWN = 7; //without upgrades
-	const SPELL_LEVELS = 5;
-	const SPELL_SCHOOL_LEVELS = 4;
-	const ARMY_SIZE = 7;
-	const SKILL_PER_HERO = 8;
-	const SKILL_QUANTITY = 28;
-	const TERRAIN_TYPES = 10;
-	const F_NUMBER = 9;
-	const ARTIFACTS_QUANTITY = 171;
-	const CREATURES_COUNT = 197;
-	*/
+	const EMPTY_DATA = '<span style="color: grey;">–</span>';
 
 	//constants classes
 	class MAPOBJECTS {
