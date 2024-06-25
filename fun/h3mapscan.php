@@ -3131,7 +3131,6 @@ class H3MAPSCAN {
 			$subobj = FromArray($subid, $obj);
 			return $subobj;
 		}
-		$subid = EMPTY_DATA;
 		return $obj;
 	}
 
@@ -3159,10 +3158,12 @@ class H3MAPSCAN {
 
 			case OBJECTS::DWELLING_NORMAL:
 				$revdata['category'] = 'Dwellings';
+				$revdata['subid'] = EMPTY_DATA;
 				break;
 
 			case OBJECTS::DWELLING_MULTI:
 				$revdata['category'] = 'Dwellings';
+				$revdata['subid'] = EMPTY_DATA;
 				break;
 
 			case OBJECTS::MISC_OBJECTS_3:
