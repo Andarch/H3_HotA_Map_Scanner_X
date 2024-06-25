@@ -1545,14 +1545,9 @@ class H3MAPSCAN {
 
 			$this->br->SkipBytes(5);
 
-			//echo ($i + 1).'/'.$this->objectsNum.' :: '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z - [".$this->rpos().']<br />';
 			if($objid < 0) {
 				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 			}
-
-			//echo ('<div class="content">');
-			//echo('</br>'.$obj['id'].'</br>'.$obj['subid'].'</br>'.$obj['objname'].'</br>');
-			//echo ('</div');
 
 		// ======= GET OBJECT DATA
 			switch($objid) {
