@@ -22,7 +22,7 @@ $positions = [];
 foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 	ksort($liths);
 	foreach($liths as $subid => $lith) {
-		$name = $this->h3mapscan->GetObjectById($objid);
+		$name = $this->h3mapscan->GetObjectNameById($objid);
 		$color = '';
 		if($objid == OBJECTS::MONOLITH_PORTAL_TWO_WAY) {
 			$color = FromArray($subid, $this->h3mapscan->CS->MonolithsTwo);

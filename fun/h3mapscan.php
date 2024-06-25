@@ -1525,10 +1525,10 @@ class H3MAPSCAN {
 				$objsubid = $this->objTemplates[$defnum]->subid;
 				$obj['subid'] = $objsubid;
 
-				$obj['objname'] = $this->GetObjectById($objid);
+				$obj['objname'] = $this->GetObjectNameById($objid);
 				$objname = $obj['objname'];
 
-				$obj['objsubname'] = $this->GetObjectBySubId($objid, $objsubid);
+				$obj['objsubname'] = $this->GetObjectSubnameBySubId($objid, $objsubid);
 				$objsubname = $obj['objsubname'];
 
 				if(!array_key_exists($objid, $this->CS->OmittedObjects)) {
@@ -1564,7 +1564,7 @@ class H3MAPSCAN {
 			$this->br->SkipBytes(5);
 
 			if($objid < 0) {
-				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
+				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectNameById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 			}
 
 		// ======= GET OBJECT DATA
@@ -2832,7 +2832,7 @@ class H3MAPSCAN {
 		$spellid = $this->br->ReadInt32();
 
 		if($spellid != HOTA_RANDOM) {
-			$object_name = $object ? $object : $this->GetObjectById($this->curobj);
+			$object_name = $object ? $object : $this->GetObjectNameById($this->curobj);
 			$this->spells_list[] = new ListObject($this->GetSpellById($spellid), $this->curcoor, $object_name);
 		}
 	}
@@ -2842,7 +2842,7 @@ class H3MAPSCAN {
 		$artid = $this->br->ReadInt32();
 
 		if($artid != HOTA_RANDOM) {
-			$object_name = $object ? $object : $this->GetObjectById($this->curobj);
+			$object_name = $object ? $object : $this->GetObjectNameById($this->curobj);
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artid), $this->curcoor, $object_name);
 		}
 
@@ -3118,21 +3118,21 @@ class H3MAPSCAN {
 		return FromArray($id, $this->CS->Buildings);
 	}
 
-	public function GetObjectById($id) {
-		$obj = FromArray($id, $this->CS->Objects);
-		if(is_array($obj)) {
-			return FromArray(-1, $obj);
+	public function GetObjectNameById($id) {
+		$objname = FromArray($id, $this->CS->Objects);
+		if(is_array($objname)) {
+			return FromArray(-1, $objname);
 		}
-		return $obj;
+		return $objname;
 	}
 
-	public function GetObjectBySubId($id, &$subid) {
-		$obj = FromArray($id, $this->CS->Objects);
-		if(is_array($obj)) {
-			$subobj = FromArray($subid, $obj);
+	public function GetObjectSubnameBySubId($id, &$subid) {
+		$objsubname = FromArray($id, $this->CS->Objects);
+		if(is_array($objsubname)) {
+			$subobj = FromArray($subid, $objsubname);
 			return $subobj;
 		}
-		return $obj;
+		return $objsubname;
 	}
 
 	public function ReviseObjectCountData($id, $name, $subid, $subname) {
@@ -3142,6 +3142,12 @@ class H3MAPSCAN {
 			'subid' => (string)$subid,
 			'name' => $subname,
 		);
+
+		$obj = FromArray($id, $this->CS->Objects);
+		if(is_array($obj)) {
+			$subobj = FromArray($subid, $obj);
+			return $subobj;
+		}
 
 		switch($id) {
 			case OBJECTS::TRANSPORTS:
@@ -3256,7 +3262,7 @@ class H3MAPSCAN {
 
 			if($coords->x == $mapobj['pos']->x && $coords->y == $mapobj['pos']->y && $coords->z == $mapobj['pos']->z) {
 				if($mapobjectid == MAPOBJECTS::MONSTER && $mapobj['objid'] != OBJECTS::MONSTER) {
-					return $this->GetObjectById($mapobj['objid']);
+					return $this->GetObjectNameById($mapobj['objid']);
 				}
 				return $mapobj['name'];
 			}
