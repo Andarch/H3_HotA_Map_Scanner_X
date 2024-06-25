@@ -1790,8 +1790,8 @@ class H3MAPSCAN {
 					}
 					break;
 
-				case OBJECTS::GARRISON:
-				case OBJECTS::GARRISON2:
+				case OBJECTS::GARRISON_HORIZONTAL:
+				case OBJECTS::GARRISON_VERTICAL:
 					$stack = [];
 					$stack['owner'] = $this->br->ReadUint8();
 					$tileowner = $stack['owner'];
@@ -1897,14 +1897,14 @@ class H3MAPSCAN {
 					break;
 
 				case OBJECTS::MINE:
-				case OBJECTS::ABANDONED_MINE:
+				case OBJECTS::ABANDONED_MINE_2:
 					$mine['owner'] = $this->br->ReadUint8(); //owner or resource mask for abandoned mine
 					$this->br->SkipBytes(3);
 					$tileowner = $mine['owner'];
 
 					$resource = '';
 					//subteranean and some other mines dont have correct objid, but subid is always 7 for abandoned mine
-					if($objid == OBJECTS::ABANDONED_MINE || $obj['subid'] == 7) {
+					if($objid == OBJECTS::ABANDONED_MINE_2 || $obj['subid'] == 7) {
 						$n = 0;
 						//in this case, tileowner is mask for possible resources
 						for($j = 0; $j < 7; $j++) {
@@ -1935,10 +1935,10 @@ class H3MAPSCAN {
 					$obj['data'] = $mine;
 					break;
 
-				case OBJECTS::CREATURE_GENERATOR1:
-				case OBJECTS::CREATURE_GENERATOR2:
-				case OBJECTS::CREATURE_GENERATOR3:
-				case OBJECTS::CREATURE_GENERATOR4:
+				case OBJECTS::DWELLING_NORMAL:
+				case OBJECTS::DWELLING_2:
+				case OBJECTS::DWELLING_3:
+				case OBJECTS::DWELLING_MULTI:
 					$dwelling['owner'] = $this->br->ReadUint8();
 					$this->br->SkipBytes(3);
 					$tileowner = $dwelling['owner'];
@@ -2078,7 +2078,7 @@ class H3MAPSCAN {
 
 					break;
 
-				case OBJECTS::BORDER_GATE:
+				case OBJECTS::MISC_OBJECTS_3:
 					//HOTA quest gate
 					if($this->hota_subrev >= $this::HOTA_SUBREV3) {
 						if($obj['subid'] == 1000) {
@@ -2094,7 +2094,7 @@ class H3MAPSCAN {
 						}
 					}
 
-				case OBJECTS::BORDERGUARD:
+				case OBJECTS::BORDER_GUARD:
 				case OBJECTS::KEYMASTER:
 					$this->keys_list[] = $obj;
 					break;
@@ -2169,9 +2169,9 @@ class H3MAPSCAN {
 					}
 					break;
 
-				case OBJECTS::MONOLITH_ONE_WAY_ENTRANCE:
-				case OBJECTS::MONOLITH_ONE_WAY_EXIT:
-				case OBJECTS::MONOLITH_TWO_WAY:
+				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_ENTRANCE:
+				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_EXIT:
+				case OBJECTS::MONOLITH_PORTAL_TWO_WAY:
 				case OBJECTS::WHIRLPOOL:
 					//$this->monolith_list[] = $obj;
 					$this->monolith_list[$obj['id']][$obj['subid']][] = $obj['pos']->GetCoords();

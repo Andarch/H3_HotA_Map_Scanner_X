@@ -24,10 +24,10 @@ foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 	foreach($liths as $subid => $lith) {
 		$name = $this->h3mapscan->GetObjectById($objid);
 		$color = '';
-		if($objid == OBJECTS::MONOLITH_TWO_WAY) {
+		if($objid == OBJECTS::MONOLITH_PORTAL_TWO_WAY) {
 			$color = FromArray($subid, $this->h3mapscan->CS->MonolithsTwo);
 		}
-		elseif($objid == OBJECTS::MONOLITH_ONE_WAY_ENTRANCE || $objid == OBJECTS::MONOLITH_ONE_WAY_EXIT) {
+		elseif($objid == OBJECTS::MONOLITH_PORTAL_ONE_WAY_ENTRANCE || $objid == OBJECTS::MONOLITH_PORTAL_ONE_WAY_EXIT) {
 			$color = FromArray($subid, $this->h3mapscan->CS->MonolithsOne);
 		}
 
