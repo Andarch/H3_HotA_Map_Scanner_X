@@ -72,7 +72,9 @@
 
 	function mgr($sql){ //mysql get result - for one value results
 		@$res = mfa(mq($sql));
-		return $res[0];
+		if(is_array($res)) {
+			return $res[0];
+		}
 	}
 
 	function mgrow($sql){ //mysql get row - for one row result
