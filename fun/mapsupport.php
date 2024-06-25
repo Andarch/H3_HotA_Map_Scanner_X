@@ -100,7 +100,7 @@ class StringConvert {
 		//convert non asci chars to asci. Table is of course incomplete, just most common letters
 		$string = $this->AsciiConvert($string);
 		//sanity, remove all non asci chars and convert spaces to underscores
-		return $string;
+		// return $string;
 		return sanity_string($string);
 	}
 
@@ -115,7 +115,7 @@ class StringConvert {
 		/*if($chincheck === false) {
 			return @iconv('GB2312', 'UTF-8', $text); //chinese
 		}*/
-		return @iconv('WINDOWS-1250', 'UTF-8', $text); //middle/eastern europe
+		// return @iconv('WINDOWS-1250', 'UTF-8', $text); //middle/eastern europe
 		return @iconv('WINDOWS-1251', 'UTF-8', $text); //russian
 		//return @iconv('ISO-8859-2', 'UTF-8', $text); //middle/eastern europe
 		//return strtr($text, $this->map);  //more or less russian
