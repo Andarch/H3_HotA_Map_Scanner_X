@@ -1525,16 +1525,34 @@ class H3MAPSCAN {
 				$objsubid = $this->objTemplates[$defnum]->subid;
 				$obj['subid'] = $objsubid;
 
-				$obj['objname'] = $this->GetObjectById($objid, $objsubid);
+				$obj['objname'] = $this->GetObjectById($objid);
 				$objname = $obj['objname'];
 
-				if (!isset($this->objects_unique[$objid])) {
-					$this->objects_unique[$objid] = [];
+				$obj['objsubname'] = $this->GetObjectBySubId($objid, $objsubid);
+				$objsubname = $obj['objsubname'];
+
+				if(!array_key_exists($objid, $this->CS->OmittedObjects)) {
+					$objrev = $this->ReviseObjectCountData($objid, $objname, $objsubid, $objsubname);
+					$objidfinal = $objrev['id'];
+					$objcategoryfinal = $objrev['category'];
+					$objsubidfinal = $objrev['subid'];
+					$objnamefinal = $objrev['name'];
+
+					if(!array_key_exists($objidfinal, $this->objects_unique)) {
+						$this->objects_unique[$objidfinal] = [];
+						// $this->objects_unique[$objidfinal]['category'] = $objcategoryfinal;
+						// $this->objects_unique[$objidfinal]['subids'] = [];
+					}
+					if(!array_key_exists($objsubidfinal, $this->objects_unique[$objidfinal])) {
+						$this->objects_unique[$objidfinal][$objsubidfinal] =
+							[
+								'name' => $objnamefinal,
+								'category' => $objcategoryfinal,
+								'count' => 0
+							];
+					}
+					$this->objects_unique[$objidfinal][$objsubidfinal]['count']++;
 				}
-				if (!isset($this->objects_unique[$objid][$objsubid])) {
-					$this->objects_unique[$objid][$objsubid] = ['name' => $objname, 'count' => 0];
-				}
-				$this->objects_unique[$objid][$objsubid]['count']++;
 			}
 			else {
 				$objid = OBJECT_INVALID;
@@ -3099,12 +3117,105 @@ class H3MAPSCAN {
 		return FromArray($id, $this->CS->Buildings);
 	}
 
-	public function GetObjectById($id, $subid = 0) {
+	public function GetObjectById($id) {
 		$obj = FromArray($id, $this->CS->Objects);
-		if (is_array($obj)) {
-			return FromArray($subid, $obj);
+		if(is_array($obj)) {
+			return FromArray(-1, $obj);
 		}
 		return $obj;
+	}
+
+	public function GetObjectBySubId($id, &$subid) {
+		$obj = FromArray($id, $this->CS->Objects);
+		if(is_array($obj)) {
+			$subobj = FromArray($subid, $obj);
+			return $subobj;
+		}
+		$subid = EMPTY_DATA;
+		return $obj;
+	}
+
+	public function ReviseObjectCountData($id, $name, $subid, $subname) {
+		$revdata = array(
+			'id' => (string)$id,
+			'category' => $name,
+			'subid' => (string)$subid,
+			'name' => $subname,
+		);
+
+		switch($id) {
+			case OBJECTS::TRANSPORTS:
+				switch($subid) {
+					case TRANSPORTS::BOAT0:
+					case TRANSPORTS::BOAT1:
+					case TRANSPORTS::BOAT2:
+					case TRANSPORTS::BOAT3:
+					case TRANSPORTS::BOAT4:
+					case TRANSPORTS::BOAT5:
+						$revdata['subid'] = EMPTY_DATA;
+						break;
+				}
+				break;
+
+			case OBJECTS::DWELLING_NORMAL:
+				$revdata['category'] = 'Dwellings';
+				break;
+
+			case OBJECTS::DWELLING_MULTI:
+				$revdata['category'] = 'Dwellings';
+				break;
+
+			case OBJECTS::MISC_OBJECTS_3:
+				switch($subid) {
+					case MISC_OBJECTS_3::BORDER_GATE_LIGHTBLUE:
+					case MISC_OBJECTS_3::BORDER_GATE_GREEN:
+					case MISC_OBJECTS_3::BORDER_GATE_RED:
+					case MISC_OBJECTS_3::BORDER_GATE_DARKBLUE:
+					case MISC_OBJECTS_3::BORDER_GATE_BROWN:
+					case MISC_OBJECTS_3::BORDER_GATE_PURPLE:
+					case MISC_OBJECTS_3::BORDER_GATE_WHITE:
+					case MISC_OBJECTS_3::BORDER_GATE_BLACK:
+						$revdata['category'] = 'Border Gates';
+						break;
+
+					case MISC_OBJECTS_3::QUEST_GATE:
+						$revdata['category'] = 'Quest Gate';
+						break;
+
+					case MISC_OBJECTS_3::GRAVE:
+						$revdata['category'] = 'Grave';
+						break;
+				}
+				break;
+
+				case OBJECTS::GARRISON_HORIZONTAL:
+				case OBJECTS::GARRISON_VERTICAL:
+					$revdata['category'] = 'Garrisons';
+					$revdata['id'] = '33, 219';
+					break;
+
+				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_ENTRANCE:
+				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_EXIT:
+					$revdata['category'] = 'Monoliths/Portals – One-Way';
+					break;
+
+				case OBJECTS::MINE:
+					switch($subid) {
+						case MINES::ABANDONED_MINE_1:
+							$revdata['id'] = '53, 220';
+							$revdata['subid'] = '7, 0';
+							break;
+					}
+					break;
+
+				case OBJECTS::ABANDONED_MINE_2:
+					$revdata['category'] = 'Mines';
+					$revdata['id'] = '53, 220';
+					$revdata['subid'] = '7, 0';
+					break;
+		}
+
+		return $revdata;
 	}
 
 	private function GetSpellById($id) {
