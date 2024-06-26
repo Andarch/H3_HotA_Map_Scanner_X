@@ -149,7 +149,7 @@
 		const ARTIFACT = 5;
 		const PANDORAS_BOX = 6;
 		const BLACK_MARKET = 7;
-		const TRANSPORTS = 8;
+		const TRANSPORTATION = 8;
 		const BORDER_GUARD = 9;
 		const KEYMASTER = 10;
 		const BUOY = 11;
@@ -255,8 +255,9 @@
 		const WINDMILL = 112;
 		const WITCH_HUT = 113;
 		const HOLE = 124;
-		const WATER_RESOURCE = 145;
-		const SEA_UNIVERSITY = 146;
+		const MISC_OBJECTS_1 = 144;
+		const MISC_COLLECTIBLES = 145;
+		const MISC_OBJECTS_2 = 146;
 		const RANDOM_MONSTER_L5 = 162;
 		const RANDOM_MONSTER_L6 = 163;
 		const RANDOM_MONSTER_L7 = 164;
@@ -282,7 +283,7 @@
 		const ROCKLANDS = 231;
 	}
 
-	class TRANSPORTS {
+	class TRANSPORTATION {
 		const BOAT0 = 0;
 		const BOAT1 = 1;
 		const BOAT2 = 2;
@@ -290,6 +291,36 @@
 		const BOAT4 = 4;
 		const BOAT5 = 5;
 		const AIRSHIP = 100;
+	}
+
+	class MISC_COLLECTIBLES {
+		const ANCIENT_LAMP = 0;
+		const SEA_BARREL = 1;
+		const JETSAM = 2;
+		const VIAL_OF_MANA = 3;
+	}
+
+	class MISC_OBJECTS_1 {
+		const TEMPLE_OF_LOYALTY = 0;
+		const SKELETON_TRANSFORMER = 1;
+		const COLOSSEUM_OF_THE_MAGI = 2;
+		const WATERING_PLACE = 3;
+		const MINERAL_SPRING = 4;
+		const HERMITS_SHACK = 5;
+		const GAZEBO = 6;
+		const JUNKMAN = 7;
+		const DERRICK = 8;
+		const WARLOCKS_LAB = 9;
+		const PROSPECTOR = 10;
+		const TRAILBLAZER = 11;
+	}
+
+	class MISC_OBJECTS_2 {
+		const SEAFARING_ACADEMY = 0;
+		const OBSERVATORY = 1;
+		const ALTAR_OF_MANA = 2;
+		const TOWN_GATE = 3;
+		const ANCIENT_ALTAR = 4;
 	}
 
 	class MISC_OBJECTS_3 {
@@ -899,7 +930,7 @@
 			6 => 'Pandora\'s Box',
 			7 => 'Black Market',
 			8 => [
-				-1 => 'Transports',
+				-1 => 'Transportation',
 				0 => 'Boat',
 				1 => 'Boat',
 				2 => 'Boat',
@@ -933,7 +964,7 @@
 			11 => 'Buoy',
 			12 => 'Campfire',
 			13 => [
-				-1 => 'Cartographers',
+				-1 => 'Shroud',
 				0 => 'Cartographer – Water',
 				1 => 'Cartographer – Land',
 				2 => 'Cartographer – Subterranean',
@@ -966,11 +997,11 @@
 				31 => 'Wolf Raider Picket',
 				32 => 'Ruins',
 			],
-			17 => 'Dwelling - Normal',
+			17 => 'Dwellings', // Normal
 			18 => 'Dwellings 2',
 			19 => 'Dwellings 3',
 			20 => [
-				-1 => 'Dwelling - Multi',
+				-1 => 'Dwellings', // Multi
 				0 => 'Dwelling – Elemental Conflux',
 				1 => 'Dwelling – Golem Factory',
 			],
@@ -987,13 +1018,13 @@
 			31 => 'Fountain of Youth',
 			32 => 'Garden of Revelation',
 			33 => [
-				-1 => 'Garrisons – Horizontal',
+				-1 => 'Garrisons', // Horizontal
 				0 => 'Garrison – Normal',
 				1 => 'Garrison – Anti-magic',
 			],
 			34 => 'Hero',
 			35 => [
-				-1 => 'Hill Forts',
+				-1 => 'Other',
 				0 => 'Hill Fort – Original',
 				1 => 'Hill Fort – HotA',
 			],
@@ -1005,7 +1036,7 @@
 			41 => 'Library of Enlightenment',
 			42 => 'Lighthouse',
 			43 => [
-				-1 => 'Monoliths/Portals – One-Way Entrances',
+				-1 => 'Monoliths/Portals – One-Way', // Entrances
 				0 => 'Monolith – Blue One-Way Entrance',
 				1 => 'Monolith – Pink One-Way Entrance',
 				2 => 'Monolith – Orange One-Way Entrance',
@@ -1020,7 +1051,7 @@
 				11 => 'Monolith – White One-Way Entrance',
 			],
 			44 => [
-				-1 => 'Monoliths/Portals – One-Way Exits',
+				-1 => 'Monoliths/Portals – One-Way', // Exits
 				0 => 'Monolith – Blue One-Way Exit',
 				1 => 'Monolith – Pink One-Way Exit',
 				2 => 'Monolith – Orange One-Way Exit',
@@ -1084,11 +1115,19 @@
 			55 => 'Mystical Garden',
 			56 => 'Oasis',
 			57 => 'Obelisk',
-			58 => 'Redwood Observatory',
+			58 => [
+				-1 => 'Shroud',
+				0 => 'Redwood Observatory',
+				1 => 'Observation Tower',
+			],
 			59 => 'Ocean Bottle',
 			60 => 'Pillar of Fire',
 			61 => 'Star Axis',
-			62 => 'Prison',
+			62 => [
+				-1 => 'Prisons',
+				0 => 'Prison',
+				1 => 'Hero Camp',
+			],
 			63 => 'Pyramid',
 			64 => 'Rally Flag',
 			65 => 'Random Artifact',
@@ -1103,9 +1142,18 @@
 			74 => 'Random Monster 3',
 			75 => 'Random Monster 4',
 			76 => 'Random Resource',
-			77 => 'Random Town',
+			77 => 'Towns', // Random Town
 			78 => 'Refugee Camp',
-			79 => 'Resource',
+			79 => [
+				-1 => 'Resources',
+				0 => 'Wood',
+				1 => 'Mercury',
+				2 => 'Ore',
+				3 => 'Sulfur',
+				4 => 'Crystal',
+				5 => 'Gems',
+				6 => 'Gold',
+			],
 			80 => 'Sanctuary',
 			81 => 'Scholar',
 			82 => 'Sea Chest',
@@ -1113,7 +1161,11 @@
 			84 => 'Crypt',
 			85 => 'Shipwreck',
 			86 => 'Shipwreck Survivor',
-			87 => 'Shipyard',
+			87 => [
+				-1 => 'Transportation',
+				0 => 'Shipyard',
+				1 => 'Airship Yard',
+			],
 			88 => 'Shrine of Magic Incantation',
 			89 => 'Shrine of Magic Gesture',
 			90 => 'Shrine of Magic Thought',
@@ -1124,7 +1176,20 @@
 			95 => 'Tavern',
 			96 => 'Temple',
 			97 => 'Den of Thieves',
-			98 => 'Town',
+			98 => [
+				-1 => 'Towns',
+				0 => 'Castle',
+				1 => 'Rampart',
+				2 => 'Tower',
+				3 => 'Inferno',
+				4 => 'Necropolis',
+				5 => 'Dungeon',
+				6 => 'Stronghold',
+				7 => 'Fortress',
+				8 => 'Conflux',
+				9 => 'Cove',
+				10 => 'Factory',
+			],
 			99 => 'Trading Post',
 			100 => 'Learning Stone',
 			101 => 'Treasure Chest',
@@ -1132,7 +1197,11 @@
 			103 => 'Subterranean Gate',
 			104 => 'University',
 			105 => 'Wagon',
-			106 => 'War Machine Factory',
+			106 => [
+				-1 => 'War Machines',
+				0 => 'War Machine Factory',
+				1 => 'Cannon Yard',
+			],
 			107 => 'School of War',
 			108 => 'Warrior\'s Tomb',
 			109 => 'Water Wheel',
@@ -1175,9 +1244,37 @@
 			],
 			142 => 'Warehouses',
 			143 => 'OMITTED',
-			144 => 'Misc. Objects 1',
-			145 => 'Misc. Collectibles',
-			146 => 'Misc. Objects 2',
+			144 => [
+				-1 => 'Misc. Objects 1',
+				 0 => 'Temple of Loyalty',
+				 1 => 'Skeleton Transformer',
+				 2 => 'Colosseum of the Magi',
+				 3 => 'Watering Place',
+				 4 => 'Mineral Spring',
+				 5 => 'Hermit\'s Shack',
+				 6 => 'Gazebo',
+				 7 => 'Junkman',
+				 8 => 'Derrick',
+				 9 => 'Warlock\'s Lab',
+				 10 => 'Prospector',
+				 11 => 'Trailblazer',
+
+			],
+			145 => [
+				-1 => 'Misc. Collectibles',
+				 0 => 'Ancient Lamp',
+				 1 => 'Sea Barrel',
+				 2 => 'Jetsam',
+				 3 => 'Vial of Mana',
+			],
+			146 => [
+				-1 => 'Misc. Objects 2',
+				 0 => 'Seafaring Academy',
+				 1 => 'Observatory',
+				 2 => 'Altar of Mana',
+				 3 => 'Town Gate',
+				 4 => 'Ancient Altar',
+			],
 			147 => 'OMITTED',
 			148 => 'OMITTED',
 			149 => 'OMITTED',
@@ -1263,7 +1360,7 @@
 			217 => 'Random dwelling with no home castle type',
 			218 => 'Random dwelling with home castle type',
 			219 =>  [
-				-1 => 'Garrisons – Vertical',
+				-1 => 'Garrisons', // Vertical
 				0 => 'Garrison – Normal',
 				1 => 'Garrison – Anti-magic',
 			],

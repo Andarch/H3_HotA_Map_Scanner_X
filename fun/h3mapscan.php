@@ -2127,7 +2127,7 @@ class H3MAPSCAN {
 					}
 					break;
 
-				case OBJECTS::WATER_RESOURCE:
+				case OBJECTS::MISC_COLLECTIBLES:
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						if($obj['subid'] == 0 || $obj['subid'] == 1) { //Ancient lamp, Sea barrel
 							$this->ReadHotaResoursesCache('Ancient Lamp / Sea Barrel');
@@ -2210,7 +2210,7 @@ class H3MAPSCAN {
 					}
 					break;
 
-				case OBJECTS::SEA_UNIVERSITY:
+				case OBJECTS::MISC_OBJECTS_2:
 					if($this->hota_subrev >= $this::HOTA_SUBREV4 && $obj['subid'] == 0) {
 						$this->br->SkipBytes(8);
 						//$obj['data']['variant'] = $this->br->ReadInt32(); //-1 => random
@@ -3126,13 +3126,13 @@ class H3MAPSCAN {
 		return $objname;
 	}
 
-	public function GetObjectSubnameBySubId($id, &$subid) {
-		$objsubname = FromArray($id, $this->CS->Objects);
-		if(is_array($objsubname)) {
-			$subobj = FromArray($subid, $objsubname);
-			return $subobj;
+	public function GetObjectSubnameBySubId($id, $subid) {
+		$objname = FromArray($id, $this->CS->Objects);
+		if(is_array($objname)) {
+			$objsubname = FromArray($subid, $objname);
+			return $objsubname;
 		}
-		return $objsubname;
+		return $objname;
 	}
 
 	public function ReviseObjectCountData($id, $name, $subid, $subname) {
@@ -3143,34 +3143,82 @@ class H3MAPSCAN {
 			'name' => $subname,
 		);
 
-		$obj = FromArray($id, $this->CS->Objects);
-		if(is_array($obj)) {
-			$subobj = FromArray($subid, $obj);
-			return $subobj;
+		$objname = FromArray($id, $this->CS->Objects);
+		if(!is_array($objname)) {
+			$revdata['subid'] = EMPTY_DATA;
 		}
 
 		switch($id) {
-			case OBJECTS::TRANSPORTS:
+			case OBJECTS::DWELLING_NORMAL:
+				$revdata['name'] = 'Dwelling – Normal';
+				break;
+
+			case OBJECTS::GARRISON_HORIZONTAL:
+			case OBJECTS::GARRISON_VERTICAL:
+				$revdata['id'] = '33, 219';
+				break;
+
+			case OBJECTS::MINE:
+			case OBJECTS::ABANDONED_MINE_2:
 				switch($subid) {
-					case TRANSPORTS::BOAT0:
-					case TRANSPORTS::BOAT1:
-					case TRANSPORTS::BOAT2:
-					case TRANSPORTS::BOAT3:
-					case TRANSPORTS::BOAT4:
-					case TRANSPORTS::BOAT5:
-						$revdata['subid'] = EMPTY_DATA;
+					case MINES::ABANDONED_MINE_1:
+						$revdata['category'] = 'Mines';
+						$revdata['id'] = '53, 220';
+						$revdata['subid'] = '7, 0';
 						break;
 				}
 				break;
 
-			case OBJECTS::DWELLING_NORMAL:
-				$revdata['category'] = 'Dwellings';
-				$revdata['subid'] = EMPTY_DATA;
+			case OBJECTS::MISC_COLLECTIBLES:
+				switch($subid) {
+					case MISC_COLLECTIBLES::SEA_BARREL:
+					case MISC_COLLECTIBLES::JETSAM:
+						$revdata['category'] = 'Resources';
+						break;
+					case MISC_COLLECTIBLES::ANCIENT_LAMP:
+					case MISC_COLLECTIBLES::VIAL_OF_MANA:
+						$revdata['category'] = 'Other';
+						break;
+				}
 				break;
 
-			case OBJECTS::DWELLING_MULTI:
-				$revdata['category'] = 'Dwellings';
-				$revdata['subid'] = EMPTY_DATA;
+			case OBJECTS::MISC_OBJECTS_1:
+				switch($subid) {
+					case MISC_OBJECTS_1::TEMPLE_OF_LOYALTY:
+					case MISC_OBJECTS_1::WATERING_PLACE:
+					case MISC_OBJECTS_1::MINERAL_SPRING:
+					case MISC_OBJECTS_1::TRAILBLAZER:
+						$revdata['category'] = 'Bonuses';
+						break;
+					case MISC_OBJECTS_1::COLOSSEUM_OF_THE_MAGI:
+					case MISC_OBJECTS_1::HERMITS_SHACK:
+					case MISC_OBJECTS_1::GAZEBO:
+						$revdata['category'] = 'Hero Upgrades';
+						break;
+					case MISC_OBJECTS_1::DERRICK:
+					case MISC_OBJECTS_1::PROSPECTOR:
+						$revdata['category'] = 'Resource Generators';
+						break;
+					case MISC_OBJECTS_1::SKELETON_TRANSFORMER:
+					case MISC_OBJECTS_1::JUNKMAN:
+					case MISC_OBJECTS_1::WARLOCKS_LAB:
+						$revdata['category'] = 'Other';
+						break;
+				}
+				break;
+
+			case OBJECTS::MISC_OBJECTS_2:
+				switch($subid) {
+					case MISC_OBJECTS_2::SEAFARING_ACADEMY:
+						$revdata['category'] = 'Hero Upgrades';
+						break;
+					case MISC_OBJECTS_2::OBSERVATORY:
+					case MISC_OBJECTS_2::ALTAR_OF_MANA:
+					case MISC_OBJECTS_2::TOWN_GATE:
+					case MISC_OBJECTS_2::ANCIENT_ALTAR:
+						$revdata['category'] = 'Other';
+						break;
+				}
 				break;
 
 			case OBJECTS::MISC_OBJECTS_3:
@@ -3185,42 +3233,35 @@ class H3MAPSCAN {
 					case MISC_OBJECTS_3::BORDER_GATE_BLACK:
 						$revdata['category'] = 'Border Gates';
 						break;
-
 					case MISC_OBJECTS_3::QUEST_GATE:
-						$revdata['category'] = 'Quest Gate';
+						$revdata['category'] = 'Quests';
 						break;
-
 					case MISC_OBJECTS_3::GRAVE:
-						$revdata['category'] = 'Grave';
+						$revdata['category'] = 'Other';
 						break;
 				}
 				break;
 
-				case OBJECTS::GARRISON_HORIZONTAL:
-				case OBJECTS::GARRISON_VERTICAL:
-					$revdata['category'] = 'Garrisons';
-					$revdata['id'] = '33, 219';
-					break;
+			case OBJECTS::QUEST_GUARD:
+				$revdata['category'] = 'Quests';
+				break;
 
-				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_ENTRANCE:
-				case OBJECTS::MONOLITH_PORTAL_ONE_WAY_EXIT:
-					$revdata['category'] = 'Monoliths/Portals – One-Way';
-					break;
+			case OBJECTS::RANDOM_TOWN:
+				$revdata['name'] = 'Random Town';
+				break;
 
-				case OBJECTS::MINE:
-					switch($subid) {
-						case MINES::ABANDONED_MINE_1:
-							$revdata['id'] = '53, 220';
-							$revdata['subid'] = '7, 0';
-							break;
-					}
-					break;
-
-				case OBJECTS::ABANDONED_MINE_2:
-					$revdata['category'] = 'Mines';
-					$revdata['id'] = '53, 220';
-					$revdata['subid'] = '7, 0';
-					break;
+			case OBJECTS::TRANSPORTATION:
+				switch($subid) {
+					case TRANSPORTATION::BOAT0:
+					case TRANSPORTATION::BOAT1:
+					case TRANSPORTATION::BOAT2:
+					case TRANSPORTATION::BOAT3:
+					case TRANSPORTATION::BOAT4:
+					case TRANSPORTATION::BOAT5:
+						$revdata['subid'] = EMPTY_DATA;
+						break;
+				}
+				break;
 		}
 
 		return $revdata;
