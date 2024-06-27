@@ -1513,62 +1513,49 @@ class H3MAPSCAN {
 			$obj['pos'] = new MapCoords($x, $y, $z);
 			$this->curcoor = $obj['pos'];
 
-			$defnum = $this->br->ReadUint32(); //template index in template array
-			$obj['defnum'] = $defnum;
+			$obj['defnum'] = $this->br->ReadUint32(); //template index in template array
 
-			$objid = $objsubid = OBJECT_INVALID;
+			if(array_key_exists($obj['defnum'], $this->objTemplates)) {
+				$obj['id'] = $this->objTemplates[$obj['defnum']]->id;
+				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
-			if(array_key_exists($defnum, $this->objTemplates)) {
-				$objid = $this->objTemplates[$defnum]->id;
-				$obj['id'] = $objid;
+				$obj['objname'] = $this->GetObjectNameById($obj['id']);
+				$obj['objsubname'] = $this->GetObjectSubnameBySubId($obj['id'], $obj['subid']);
 
-				$objsubid = $this->objTemplates[$defnum]->subid;
-				$obj['subid'] = $objsubid;
+				if(!array_key_exists($obj['id'], $this->CS->OmittedObjects)) {
+					$objrev = $this->ReviseObjectCountData($obj['id'], $obj['objname'], $obj['subid'], $obj['objsubname']);
 
-				$obj['objname'] = $this->GetObjectNameById($objid);
-				$objname = $obj['objname'];
-
-				$obj['objsubname'] = $this->GetObjectSubnameBySubId($objid, $objsubid);
-				$objsubname = $obj['objsubname'];
-
-				if(!array_key_exists($objid, $this->CS->OmittedObjects)) {
-					$objrev = $this->ReviseObjectCountData($objid, $objname, $objsubid, $objsubname);
-					$objidfinal = $objrev['id'];
-					$objcategoryfinal = $objrev['category'];
-					$objsubidfinal = $objrev['subid'];
-					$objnamefinal = $objrev['name'];
-
-					if(!array_key_exists($objidfinal, $this->objects_unique)) {
-						$this->objects_unique[$objidfinal] = [];
-						// $this->objects_unique[$objidfinal]['category'] = $objcategoryfinal;
-						// $this->objects_unique[$objidfinal]['subids'] = [];
+					if(!array_key_exists($objrev['id'], $this->objects_unique)) {
+						$this->objects_unique[$objrev['id']] = [];
+						// $this->objects_unique[$objrev['id']]['category'] = $objrev['category'];
+						// $this->objects_unique[$objrev['id']]['subids'] = [];
 					}
-					if(!array_key_exists($objsubidfinal, $this->objects_unique[$objidfinal])) {
-						$this->objects_unique[$objidfinal][$objsubidfinal] =
+					if(!array_key_exists($objrev['subid'], $this->objects_unique[$objrev['id']])) {
+						$this->objects_unique[$objrev['id']][$objrev['subid']] =
 							[
-								'name' => $objnamefinal,
-								'category' => $objcategoryfinal,
+								'name' => $objrev['name'],
+								'category' => $objrev['category'],
 								'count' => 0
 							];
 					}
-					$this->objects_unique[$objidfinal][$objsubidfinal]['count']++;
+					$this->objects_unique[$objrev['id']][$objrev['subid']]['count']++;
 				}
 			}
 			else {
-				$objid = OBJECT_INVALID;
-				$obj['id'] = $objid;
+				$obj['id'] = OBJECT_INVALID;
+				$obj['subid'] = OBJECT_INVALID;
 			}
 
-			$this->curobj = $objid;
+			$this->curobj = $obj['id'];
 
 			$this->br->SkipBytes(5);
 
-			if($objid < 0) {
-				throw new Exception('<div class="content">Invalid object ID '.$objid.' - '.$this->GetObjectNameById($objid)."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
+			if($obj['id'] < 0) {
+				throw new Exception('<div class="content">Invalid object ID '.$obj['id'].' - '.$this->GetObjectNameById($obj['id'])."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 			}
 
 		// ======= GET OBJECT DATA
-			switch($objid) {
+			switch($obj['id']) {
 				case OBJECTS::EVENT:
 				case OBJECTS::PANDORAS_BOX:
 					$event = [];
@@ -1628,7 +1615,7 @@ class H3MAPSCAN {
 					$this->br->SkipBytes(8);
 
 					//event has some extras
-					if($objid == OBJECTS::EVENT) {
+					if($obj['id'] == OBJECTS::EVENT) {
 						$event['availableFor'] = $this->br->ReadUint8();
 						$event['computerActivate'] = $this->br->ReadUint8();
 						$event['removeAfterVisit'] = $this->br->ReadUint8();
@@ -1679,11 +1666,11 @@ class H3MAPSCAN {
 					$obj['pos']->x -= 1; //offset for hero in town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::HERO,
-						'objid' => $objid,
+						'objid' => $obj['id'],
 						'pos' => $obj['pos'],
 						'name' => $obj['data']['name'],
 						'owner' => $tileowner,
-						'type' => $objsubid,
+						'type' => $obj['subid'],
 						'uid' => $obj['data']['uid']
 					];
 					break;
@@ -1701,7 +1688,7 @@ class H3MAPSCAN {
 					$monster = [];
 					$monster['uid'] = OBJECT_INVALID;
 
-					$monster['name'] = ($objid == OBJECTS::MONSTER) ? $this->GetCreatureById($objsubid) : $obj['objname'];
+					$monster['name'] = ($obj['id'] == OBJECTS::MONSTER) ? $this->GetCreatureById($obj['subid']) : $obj['objname'];
 
 					if($this->version > $this::ROE) {
 						$monster['uid'] = $this->br->ReadUint32();
@@ -1758,11 +1745,11 @@ class H3MAPSCAN {
 
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::MONSTER,
-						'objid' => $objid,
+						'objid' => $obj['id'],
 						'pos' => $obj['pos'],
 						'name' => $monster['name'],
 						'owner' => OWNERNONE,
-						'type' => $objsubid,
+						'type' => $obj['subid'],
 						'uid' => $monster['uid'],
 					];
 					break;
@@ -1835,7 +1822,7 @@ class H3MAPSCAN {
 
 					$artifact['stack'] = $this->ReadMessageAndGuards();
 
-					if($objid == OBJECTS::SPELL_SCROLL) {
+					if($obj['id'] == OBJECTS::SPELL_SCROLL) {
 						$spellid = $this->br->ReadUint32();
 
 						$spell = $this->GetSpellById($spellid);
@@ -1843,7 +1830,7 @@ class H3MAPSCAN {
 
 						$artifact['name'] = $obj['objname'].': '.$spell;
 					}
-					elseif($objid == OBJECTS::ARTIFACT) {
+					elseif($obj['id'] == OBJECTS::ARTIFACT) {
 						$artifact['name'] = $this->GetArtifactById($obj['subid']); //artid
 					}
 					else {
@@ -1851,7 +1838,7 @@ class H3MAPSCAN {
 					}
 
 					//hota extra
-					if($this->hota_subrev >= $this::HOTA_SUBREV4 && $objid != OBJECTS::SPELL_SCROLL) {
+					if($this->hota_subrev >= $this::HOTA_SUBREV4 && $obj['id'] != OBJECTS::SPELL_SCROLL) {
 						$this->br->SkipBytes(5);
 						//$art_visit_type = $this->br->ReadUint32();
 						//$visit_flags = $this->br->ReadUint8();
@@ -1880,7 +1867,7 @@ class H3MAPSCAN {
 						$this->players[$tileowner]['townsOwned']++;
 					}
 
-					$affiliation = ($objid == OBJECTS::TOWN) ? $this->GetTownById($objsubid) : 'Random';
+					$affiliation = ($obj['id'] == OBJECTS::TOWN) ? $this->GetTownById($obj['subid']) : 'Random';
 					$obj['data']['affiliation'] = $affiliation;
 
 					// Update the count of the town type for the owner.
@@ -1891,11 +1878,11 @@ class H3MAPSCAN {
 					$obj['pos']->x -=2; //substract 2, to make position centered to town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::TOWN,
-						'objid' => $objid,
+						'objid' => $obj['id'],
 						'pos' => $obj['pos'],
 						'name' => $obj['data']['name'],
 						'owner' => $tileowner,
-						'type' => $objsubid,
+						'type' => $obj['subid'],
 						'uid' => $obj['data']['uid']
 					];
 
@@ -1918,7 +1905,7 @@ class H3MAPSCAN {
 
 					$resource = '';
 					//subteranean and some other mines dont have correct objid, but subid is always 7 for abandoned mine
-					if($objid == OBJECTS::ABANDONED_MINE_2 || $obj['subid'] == 7) {
+					if($obj['id'] == OBJECTS::ABANDONED_MINE_2 || $obj['subid'] == 7) {
 						$n = 0;
 						//in this case, tileowner is mask for possible resources
 						for($j = 0; $j < 7; $j++) {
@@ -1988,7 +1975,7 @@ class H3MAPSCAN {
 					$dwelling['player'] = $this->br->ReadUint32();
 
 					//216 and 217
-					if ($objid == OBJECTS::RANDOM_DWELLING || $objid == OBJECTS::RANDOM_DWELLING_LVL) {
+					if ($obj['id'] == OBJECTS::RANDOM_DWELLING || $obj['id'] == OBJECTS::RANDOM_DWELLING_LVL) {
 						$dwelling['uid'] =	$this->br->ReadUint32();
 						if(!$dwelling['uid']) {
 							$dwelling['asCastle'] = 0;
@@ -2001,7 +1988,7 @@ class H3MAPSCAN {
 					}
 
 					//216 and 218
-					if ($objid == OBJECTS::RANDOM_DWELLING || $objid == OBJECTS::RANDOM_DWELLING_FACTION) {
+					if ($obj['id'] == OBJECTS::RANDOM_DWELLING || $obj['id'] == OBJECTS::RANDOM_DWELLING_FACTION) {
 						$dwelling['minLevel'] = max($this->br->ReadUint8(), 1);
 						$dwelling['maxLevel'] = min($this->br->ReadUint8(), 7);
 					}
@@ -2067,12 +2054,12 @@ class H3MAPSCAN {
 
 					$this->heroes_placeholder[] = [
 						'object' => MAPOBJECTS::HERO,
-						'objid' => $objid,
+						'objid' => $obj['id'],
 						'heroid' => $placeholder['heroid'],
 						'pos' => $obj['pos'],
 						'name' => $heroname,
 						'owner' => $tileowner,
-						'type' => $objsubid,
+						'type' => $obj['subid'],
 						'power' => $placeholder['power'],
 						'stack' => $placeholder['stack'],
 						'artifacts' => $placeholder['artifacts'],
@@ -2080,12 +2067,12 @@ class H3MAPSCAN {
 
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::HERO,
-						'objid' => $objid,
+						'objid' => $obj['id'],
 						'uid' => 0,
 						'pos' => $obj['pos'],
 						'name' => $this->GetHeroById($placeholder['heroid']),
 						'owner' => $tileowner,
-						'type' => $objsubid,
+						'type' => $obj['subid'],
 					];
 
 
@@ -2228,10 +2215,10 @@ class H3MAPSCAN {
 
 			//object tiles
 			//if we dont build map, we dont need to save terrain access
-			if($this->buildMapImage && $objid != OBJECT_INVALID) {
+			if($this->buildMapImage && $obj['id'] != OBJECT_INVALID) {
 				$mapsizemax = $this->map_size - 1; //index starts with 0, we make variable here to not substract 1 in loop to make more readable
 
-				foreach($this->objTemplates[$defnum]->tiles as $iy => $col) { //y-axis of object tiles
+				foreach($this->objTemplates[$obj['defnum']]->tiles as $iy => $col) { //y-axis of object tiles
 					foreach($col as $ix => $tilemask) { //x-axis of object tiles
 						//real xy position on map
 						$mx = $x - $ix;
