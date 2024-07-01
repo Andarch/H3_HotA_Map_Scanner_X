@@ -1519,26 +1519,20 @@ class H3MAPSCAN {
 				$obj['id'] = $this->objTemplates[$obj['defnum']]->id;
 				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
-				$obj['objname'] = $this->GetObjectNameById($obj['id']);
-				$obj['objsubname'] = $this->GetObjectSubnameBySubId($obj['id'], $obj['subid']);
-
 				if(!array_key_exists($obj['id'], $this->CS->OmittedObjects)) {
-					$objrev = $this->ReviseObjectCountData($obj['id'], $obj['objname'], $obj['subid'], $obj['objsubname']);
+					$obj['comboid'] =  $this->GetComboId($obj['id'], $obj['subid']);
+					$obj['objname'] = FromArray('name', $this->CS->ObjectEx[$obj['comboid']]);
+					$obj['objcategory'] = FromArray('category', $this->CS->ObjectEx[$obj['comboid']]);
 
-					if(!array_key_exists($objrev['id'], $this->objects_unique)) {
-						$this->objects_unique[$objrev['id']] = [];
-						// $this->objects_unique[$objrev['id']]['category'] = $objrev['category'];
-						// $this->objects_unique[$objrev['id']]['subids'] = [];
+					if(!array_key_exists($obj['comboid'], $this->objects_unique)) {
+						$this->objects_unique[$obj['comboid']]  =
+						[
+							'name' => $obj['objname'],
+							'category' => $obj['objcategory'],
+							'count' => 0
+						];
 					}
-					if(!array_key_exists($objrev['subid'], $this->objects_unique[$objrev['id']])) {
-						$this->objects_unique[$objrev['id']][$objrev['subid']] =
-							[
-								'name' => $objrev['name'],
-								'category' => $objrev['category'],
-								'count' => 0
-							];
-					}
-					$this->objects_unique[$objrev['id']][$objrev['subid']]['count']++;
+					$this->objects_unique[$obj['comboid']]['count']++;
 				}
 			}
 			else {
@@ -3113,145 +3107,37 @@ class H3MAPSCAN {
 		return $objname;
 	}
 
-	public function GetObjectSubnameBySubId($id, $subid) {
-		$objname = FromArray($id, $this->CS->Objects);
-		if(is_array($objname)) {
-			$objsubname = FromArray($subid, $objname);
-			return $objsubname;
-		}
-		return $objname;
-	}
-
-	public function ReviseObjectCountData($id, $name, $subid, $subname) {
-		$revdata = array(
-			'id' => (string)$id,
-			'category' => $name,
-			'subid' => (string)$subid,
-			'name' => $subname,
-		);
-
-		$objname = FromArray($id, $this->CS->Objects);
-		if(!is_array($objname)) {
-			$revdata['subid'] = EMPTY_DATA;
-		}
-
+	public function GetComboId($id, $subid) {
 		switch($id) {
-			case OBJECTS::DWELLING_NORMAL:
-				$revdata['name'] = 'Dwelling – Normal';
+			case 5:
+			case 17:
+			case 34:
+			case 47:
+			case 54:
+			case 83:
+				$subid = 'X';
 				break;
 
-			case OBJECTS::GARRISON_HORIZONTAL:
-			case OBJECTS::GARRISON_VERTICAL:
-				$revdata['id'] = '33, 219';
-				break;
-
-			case OBJECTS::MINE:
-			case OBJECTS::ABANDONED_MINE_2:
-				switch($subid) {
-					case MINES::ABANDONED_MINE_1:
-						$revdata['category'] = 'Mines';
-						$revdata['id'] = '53, 220';
-						$revdata['subid'] = '7, 0';
-						break;
+			case 8:
+				if($subid != 100) {
+					$subid = 'X';
 				}
 				break;
 
-			case OBJECTS::MISC_COLLECTIBLES:
-				switch($subid) {
-					case MISC_COLLECTIBLES::SEA_BARREL:
-					case MISC_COLLECTIBLES::JETSAM:
-						$revdata['category'] = 'Resources';
-						break;
-					case MISC_COLLECTIBLES::ANCIENT_LAMP:
-					case MISC_COLLECTIBLES::VIAL_OF_MANA:
-						$revdata['category'] = 'Other';
-						break;
-				}
-				break;
+			case 53:
+			case 220:
+				return ABANDONED_MINE_COMBOID;
 
-			case OBJECTS::MISC_OBJECTS_1:
-				switch($subid) {
-					case MISC_OBJECTS_1::TEMPLE_OF_LOYALTY:
-					case MISC_OBJECTS_1::WATERING_PLACE:
-					case MISC_OBJECTS_1::MINERAL_SPRING:
-					case MISC_OBJECTS_1::TRAILBLAZER:
-						$revdata['category'] = 'Bonuses';
-						break;
-					case MISC_OBJECTS_1::COLOSSEUM_OF_THE_MAGI:
-					case MISC_OBJECTS_1::HERMITS_SHACK:
-					case MISC_OBJECTS_1::GAZEBO:
-						$revdata['category'] = 'Hero Upgrades';
-						break;
-					case MISC_OBJECTS_1::DERRICK:
-					case MISC_OBJECTS_1::PROSPECTOR:
-						$revdata['category'] = 'Resource Generators';
-						break;
-					case MISC_OBJECTS_1::SKELETON_TRANSFORMER:
-					case MISC_OBJECTS_1::JUNKMAN:
-					case MISC_OBJECTS_1::WARLOCKS_LAB:
-						$revdata['category'] = 'Other';
-						break;
-				}
-				break;
+			case 21:
+			case 223:
+				return CURSED_GROUND_COMBOID;
 
-			case OBJECTS::MISC_OBJECTS_2:
-				switch($subid) {
-					case MISC_OBJECTS_2::SEAFARING_ACADEMY:
-						$revdata['category'] = 'Hero Upgrades';
-						break;
-					case MISC_OBJECTS_2::OBSERVATORY:
-					case MISC_OBJECTS_2::ALTAR_OF_MANA:
-					case MISC_OBJECTS_2::TOWN_GATE:
-					case MISC_OBJECTS_2::ANCIENT_ALTAR:
-						$revdata['category'] = 'Other';
-						break;
-				}
-				break;
-
-			case OBJECTS::MISC_OBJECTS_3:
-				switch($subid) {
-					case MISC_OBJECTS_3::BORDER_GATE_LIGHTBLUE:
-					case MISC_OBJECTS_3::BORDER_GATE_GREEN:
-					case MISC_OBJECTS_3::BORDER_GATE_RED:
-					case MISC_OBJECTS_3::BORDER_GATE_DARKBLUE:
-					case MISC_OBJECTS_3::BORDER_GATE_BROWN:
-					case MISC_OBJECTS_3::BORDER_GATE_PURPLE:
-					case MISC_OBJECTS_3::BORDER_GATE_WHITE:
-					case MISC_OBJECTS_3::BORDER_GATE_BLACK:
-						$revdata['category'] = 'Border Gates';
-						break;
-					case MISC_OBJECTS_3::QUEST_GATE:
-						$revdata['category'] = 'Quests';
-						break;
-					case MISC_OBJECTS_3::GRAVE:
-						$revdata['category'] = 'Other';
-						break;
-				}
-				break;
-
-			case OBJECTS::QUEST_GUARD:
-				$revdata['category'] = 'Quests';
-				break;
-
-			case OBJECTS::RANDOM_TOWN:
-				$revdata['name'] = 'Random Town';
-				break;
-
-			case OBJECTS::TRANSPORTATION:
-				switch($subid) {
-					case TRANSPORTATION::BOAT0:
-					case TRANSPORTATION::BOAT1:
-					case TRANSPORTATION::BOAT2:
-					case TRANSPORTATION::BOAT3:
-					case TRANSPORTATION::BOAT4:
-					case TRANSPORTATION::BOAT5:
-						$revdata['subid'] = EMPTY_DATA;
-						break;
-				}
-				break;
+			case 99:
+			case 221:
+				return TRADING_POST_COMBOID;
 		}
 
-		return $revdata;
+		return $id.'-'.$subid;
 	}
 
 	private function GetSpellById($id) {

@@ -29,6 +29,11 @@
 	const HNONE16 = 0xffff; //general heroes NONE value, 16 bit
 	const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
+	const COMBOID_SEPARATOR = '<span style="color: grey;"> | </span>';
+	const ABANDONED_MINE_COMBOID = '53-7'.COMBOID_SEPARATOR.'220-7';
+	const CURSED_GROUND_COMBOID = '21-0'.COMBOID_SEPARATOR.'223-0';
+	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
+
 	const EMPTY_DATA = '<span style="color: grey;">–</span>';
 
 
@@ -51,6 +56,7 @@
 		const MAGICALTERRAINS = 'Magical Terrains';
 		const MINES = 'Mines';
 		const MONSTERS = 'Monsters';
+		const MONOLITHSPORTALS = 'Monoliths/Portals';
 		const QUESTGATESGUARDS = 'Quest Gates/Guards';
 		const PANDORASBOXES = 'Pandora\'s Boxes';
 		const RESOURCES = 'Resources';
@@ -1416,15 +1422,10 @@
 		public $ObjectEx = [
 			'2-0' => ['name' => 'Altar of Sacrifice', 'category' => OBJECTCATEGORIES::OTHER],
 			'4-0' => ['name' => 'Arena', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
-			'5-0' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
+			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::PANDORASBOXES],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::ARTIFACTS],
-			'8-0' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
-			'8-1' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
-			'8-2' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
-			'8-3' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
-			'8-4' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
-			'8-5' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
+			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
 			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
 			'9-0' => ['name' => 'Border Guard – Light Blue', 'category' => OBJECTCATEGORIES::BORDERGUARDS],
 			'9-1' => ['name' => 'Border Guard – Green', 'category' => OBJECTCATEGORIES::BORDERGUARDS],
@@ -1477,7 +1478,7 @@
 			'19-0' => ['name' => 'Dwellings 3', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'20-0' => ['name' => 'Elemental Conflux', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'20-1' => ['name' => 'Golem Factory', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'21-0' => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
+			CURSED_GROUND_COMBOID => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'22-0' => ['name' => 'Corpse', 'category' => OBJECTCATEGORIES::OTHER],
 			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'24-0' => ['name' => 'Derelict Ship', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
@@ -1491,7 +1492,7 @@
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'33-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
 			'33-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
-			'34-0' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
+			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::OTHER],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::OTHER],
 			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::GRAIL],
@@ -1550,7 +1551,7 @@
 			'45-23' => ['name' => 'Water Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
 			'45-24' => ['name' => 'Water Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
 			'46-0' => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
-			'47-0' => ['name' => 'School of Magic', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
+			'47-X' => ['name' => 'School of Magic', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'48-0' => ['name' => 'Magic Spring', 'category' => OBJECTCATEGORIES::BONUSMANA],
 			'49-0' => ['name' => 'Magic Well', 'category' => OBJECTCATEGORIES::BONUSMANA],
 			'51-0' => ['name' => 'Mercenary Camp', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
@@ -1562,7 +1563,7 @@
 			'53-4' => ['name' => 'Crystal Cavern', 'category' => OBJECTCATEGORIES::MINES],
 			'53-5' => ['name' => 'Gem Pond', 'category' => OBJECTCATEGORIES::MINES],
 			'53-6' => ['name' => 'Gold Mine', 'category' => OBJECTCATEGORIES::MINES],
-			'53-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
+			ABANDONED_MINE_COMBOID => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			'54-X' => ['name' => 'Monster', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'55-0' => ['name' => 'Mystical Garden', 'category' => OBJECTCATEGORIES::RESOURCEGENERATORS],
 			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::BONUSMIXED],
@@ -1600,14 +1601,15 @@
 			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::OTHER],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'83-0' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SEERSHUTS],
+			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SEERSHUTS],
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
 			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
 			'88-0' => ['name' => 'Shrine of Magic Incantation', 'category' => OBJECTCATEGORIES::SPELLS],
-			'89-01' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
+			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
+			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
 			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::TEXT],
 			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
@@ -1627,7 +1629,7 @@
 			'98-8' => ['name' => 'Conflux', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-9' => ['name' => 'Cove', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-10' => ['name' => 'Factory', 'category' => OBJECTCATEGORIES::TOWNS],
-			'99-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
+			TRADING_POST_COMBOID => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
 			'100-0' => ['name' => 'Learning Stone', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'101-0' => ['name' => 'Treasure Chest', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'102-0' => ['name' => 'Tree of Knowledge', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
@@ -1696,9 +1698,10 @@
 			'219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
 			'219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
 			'220-0' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
-			'221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
+			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
+			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
 			'222-0' => ['name' => 'Clover Field', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
-			'223-0' => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
+			// '223-0' => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'224-0' => ['name' => 'Evil Fog', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'225-0' => ['name' => 'Favourable Winds', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'226-0' => ['name' => 'Fiery Fields', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
