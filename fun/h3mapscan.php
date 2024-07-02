@@ -3115,6 +3115,8 @@ class H3MAPSCAN {
 			case 47:
 			case 54:
 			case 83:
+			case 217:
+			case 218:
 				$subid = 'X';
 				break;
 
@@ -3126,7 +3128,10 @@ class H3MAPSCAN {
 
 			case 53:
 			case 220:
-				return ABANDONED_MINE_COMBOID;
+				if($subid == 7) {
+					return ABANDONED_MINE_COMBOID;
+				}
+				break;
 
 			case 21:
 			case 223:
