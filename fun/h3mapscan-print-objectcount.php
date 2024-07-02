@@ -20,17 +20,19 @@ asort($this->h3mapscan->objects_unique);
 echo '</tr></td></table></br>'; */
 
 $n = 0;
-echo '<a name="objects"></a>
-	<table class="mediumtable">
-		<tr>
-			<th class="ac nowrap" nowrap="nowrap">#</th>
-			<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
-			<th class="ac nowrap" nowrap="nowrap">Category</th>
-			<th class="ac nowrap" nowrap="nowrap">Name</th>
-			<th class="ac nowrap" nowrap="nowrap">Count</th>
-		</tr>';
+echo '<table id="objectsTable" class="mediumtable" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">#</th>
+				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
+				<th class="ac nowrap" nowrap="nowrap">Category</th>
+				<th class="ac nowrap" nowrap="nowrap">Name</th>
+				<th class="ac nowrap" nowrap="nowrap">Count</th>
+			</tr>
+		</thead>
+    	<tbody>';
 foreach($this->h3mapscan->objects_unique as $objcomboid => $obju) {
-		echo '<tr>
+    echo '	<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$obju['category'].'</td>
@@ -38,7 +40,8 @@ foreach($this->h3mapscan->objects_unique as $objcomboid => $obju) {
 			<td class="ar nowrap" nowrap="nowrap">'.$obju['count'].'</td>
 		</tr>';
 }
-echo '</table>
+echo '	</tbody>
+	</table>
 				</td>
 			</tr>
 		</table>

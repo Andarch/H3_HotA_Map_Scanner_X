@@ -8,13 +8,15 @@ require_once 'fun/config.php';
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-	<title>Heroes III Map Scanner</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
-	<link rel="shortcut icon" href="css/img/heroes.png" type="image/x-icon" />
-	<link type="text/css" rel="stylesheet" media="all" href="css/heroesmaps.css	" />
-	<script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="application/javascript" src="js/jquery-ui.js"></script>
-	<script type="application/javascript" src="js/mapread.js"></script>
+<title>Heroes III Map Scanner</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+    <link rel="shortcut icon" href="css/img/heroes.png" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" media="all" href="css/heroesmaps.css	" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="application/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="application/javascript" src="js/jquery-ui.js"></script>
+    <script type="application/javascript" src="js/mapread.js"></script>
 <style>
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
 	table {border-collapse:collapse; margin: 1em; border: solid 1px #ddd;}
@@ -95,6 +97,11 @@ require_once 'fun/config.php';
 	.rowheader { background: #004752; font-weight: bold; text-align: center}
 	.rowheaderLarge1 { background: #451713; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
 	.rowheaderLarge2 { background: #3a1345; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
+
+	#objectsTable { border-collapse:collapse; margin: 1em; border: solid 1px #ddd; }
+	#objectsTable td, #objectsTable th { padding: 1px 5px; }
+	#objectsTable_filter input { background-color: #222; color: #ddd; }
+	#objectsTable_filter { color: grey; padding: 10px 0px; font-size: 14px; }
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
@@ -237,5 +244,23 @@ if($mapok) {
 }
 
 ?>
+<script type="text/javascript">
+$(document).ready(function() {
+    var table = $('#objectsTable').DataTable({
+        "paging": false,
+        "info": false,
+        "ordering": true,
+        "searching": true,
+        "columnDefs": [
+            { "orderable": false, "targets": 0 } // Disables sorting on the first column
+        ],
+        "rowCallback": function(row, data, displayIndex) {
+            // Update the first cell in each row with the row number based on its current position
+            // displayIndex is the display index of the row, starts from 0
+            $('td:eq(0)', row).html(displayIndex + 1);
+        }
+    });
+});
+</script>
 </body>
 </html>
