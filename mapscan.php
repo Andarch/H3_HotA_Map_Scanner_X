@@ -57,7 +57,7 @@ require_once 'fun/config.php';
 		height: 50px;
 		overflow: auto;
 		color: #ddd;
-		font-size: 14px;
+		font-size: 16px;
 	}
 
 	.sidebarMain {
@@ -170,10 +170,11 @@ require_once 'fun/config.php';
 </style>
 </head>
 <body>
-	<div class="sidebarTop ac">
-<a href="mapscan.php">Reload</a> | <a href="mapscan.php?scan=1">Scan</a> | <a href="mapindex.php">Map List</a>
-| <a href="mapscan.php?nl=1">Reload no list</a>
-<br />
+	<div class="sidebarTop al">
+		<span style="padding-left: 16px; background-color: #444;">
+			<a href="mapscan.php?scan=1">Scan</a> | <a href="mapindex.php">Map List</a>
+		</span>
+		<br />
 </div>
 <?php
 
