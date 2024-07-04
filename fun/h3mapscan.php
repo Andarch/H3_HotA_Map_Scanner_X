@@ -1593,14 +1593,26 @@ class H3MAPSCAN {
 						}
 						$artifact = $this->GetArtifactById($artid);
 						$event['artifacts'][] = $artifact;
-						$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Event');
+
+						if($obj['id'] == OBJECTS::EVENT) {
+							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Event');
+						}
+						else {
+							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Pandora\'s Box');
+						}
 					}
 
 					$spellnum = $this->br->ReadUint8(); // Number of gained spells
 					for($j = 0; $j < $spellnum; $j++) {
 						$spell = $this->GetSpellById($this->br->ReadUint8());;
 						$event['spells'][] = $spell;
-						$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event');
+
+						if($obj['id'] == OBJECTS::EVENT) {
+							$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event');
+						}
+						else {
+							$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Pandora\'s Box');
+						}
 					}
 
 					$stackNum = $this->br->ReadUint8(); //number of gained creatures
@@ -2085,7 +2097,7 @@ class H3MAPSCAN {
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						//grave
 						if($obj['subid'] == 1001) {
-							$this->ReadHotaResoursesCache('Grave');
+							$this->ReadGrave();
 						}
 					}
 
@@ -2096,38 +2108,86 @@ class H3MAPSCAN {
 
 				case OBJECTS::PYRAMID: //Pyramid or WoG object
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadHotaSpellReward();
+						$this->ReadPyramid();
 					}
 					break;
 
 				case OBJECTS::CAMPFIRE:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadCampfire();
+					}
+					break;
+
 				case OBJECTS::LEAN_TO:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadLeanTo();
+					}
+					break;
+
 				case OBJECTS::WAGON:
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadHotaResoursesCache();
+						$this->ReadWagon();
 					}
 					break;
 
 				case OBJECTS::MISC_COLLECTIBLES:
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						if($obj['subid'] == 0 || $obj['subid'] == 1) { //Ancient lamp, Sea barrel
-							$this->ReadHotaResoursesCache('Ancient Lamp / Sea Barrel');
-						}
-						elseif($obj['subid'] == 2 || $obj['subid'] == 3) { //Jetsam, Vial of mana
-							$this->ReadHotaSpellReward('Jetsam / Vial of Mana');
+						switch($obj['subid']) {
+							case 0:
+								$this->ReadAncientLamp();
+								break;
+							case 1:
+								$this->ReadSeaBarrel();
+								break;
+							case 2:
+								$this->ReadJetsam();
+								break;
+							case 3:
+								$this->ReadVialOfMana();
+								break;
 						}
 					}
 					break;
 
 				case OBJECTS::CORPSE:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadCorpse();
+					}
+					break;
+
 				case OBJECTS::FLOTSAM:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadFlotsam();
+					}
+					break;
+
 				case OBJECTS::SEA_CHEST:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadSeaChest();
+					}
+					break;
+
 				case OBJECTS::SHIPWRECK_SURVIVOR:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadShipwreckSurvivor();
+					}
+					break;
+
 				case OBJECTS::TREASURE_CHEST:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadTreasureChest();
+					}
+					break;
+
 				case OBJECTS::TREE_OF_KNOWLEDGE:
+					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
+						$this->ReadTreeOfKnowledge();
+					}
+					break;
+
 				case OBJECTS::WARRIORS_TOMB:
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadHotaSpellReward();
+						$this->ReadWarriorsTomb();
 					}
 					break;
 
@@ -2808,31 +2868,117 @@ class H3MAPSCAN {
 		return $resources;
 	}
 
-	private function ReadHotaSpellReward($object = false) {
-		$variant = $this->br->ReadInt32();
+	private function ReadPyramid() {
+		$contents = $this->br->ReadInt32();
 		$spellid = $this->br->ReadInt32();
 
 		if($spellid != HOTA_RANDOM) {
-			$object_name = $object ? $object : $this->GetObjectNameById($this->curobj);
-			$this->spells_list[] = new ListObject($this->GetSpellById($spellid), $this->curcoor, $object_name);
+			$this->spells_list[] = new ListObject($this->GetSpellById($spellid), $this->curcoor, 'Pyramid');
 		}
 	}
 
-	private function ReadHotaResoursesCache($object = false) {
-		$variant = $this->br->ReadInt32();
-		$artid = $this->br->ReadInt32();
+	private function ReadGrave() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
+		$amount = $this->br->ReadInt32();
+		$resource = $this->br->ReadUint8();
+		$this->br->SkipBytes(5);
 
-		if($artid != HOTA_RANDOM) {
-			$object_name = $object ? $object : $this->GetObjectNameById($this->curobj);
-			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artid), $this->curcoor, $object_name);
+		if($artifact != HOTA_RANDOM) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Grave');
+		}
+	}
+
+	private function ReadCampfire() {
+		$this->br->SkipBytes(8);
+		$resources = [];
+
+		for ($i = 0; $i < 2; $i++) {
+			$amount = $this->br->ReadInt32();
+			$resource = $this->GetResourceById($this->br->ReadUint8());
+			$resources[$resource] = $amount;
 		}
 
-		$this->br->SkipBytes(10);
-		/* //no interester in resources now
-		$amount1 = $this->br->ReadInt32();
-		$res1id = $this->br->ReadUint8();
-		$amount2 = $this->br->ReadInt32();
-		$res2id = $this->br->ReadUint8();*/
+	}
+
+	private function ReadLeanTo() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+		$amount = $this->br->ReadInt32();
+		$resource = $this->GetResourceById($this->br->ReadUint8());
+		$this->br->SkipBytes(5);
+	}
+
+	private function ReadWagon() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
+		$amount = $this->br->ReadInt32();
+		$resource = $this->GetResourceById($this->br->ReadUint8());
+		$this->br->SkipBytes(5);
+
+		if($artifact != HOTA_RANDOM) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Wagon');
+		}
+	}
+
+	private function ReadAncientLamp() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+		$amount = $this->br->ReadInt32();
+		$this->br->SkipBytes(6);
+	}
+
+	private function ReadSeaBarrel() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+		$amount = $this->br->ReadInt32();
+		$resource = $this->br->ReadUint8();
+		$this->br->SkipBytes(5);
+	}
+
+	private function ReadJetsam() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+	}
+
+	private function ReadVialOfMana() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+	}
+
+	private function ReadCorpse() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+	}
+
+	private function ReadFlotsam() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+	}
+
+	private function ReadSeaChest() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
+	}
+
+	private function ReadShipwreckSurvivor() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
+	}
+
+	private function ReadTreasureChest() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
+	}
+
+	private function ReadTreeOfKnowledge() {
+		$contents = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
+	}
+
+	private function ReadWarriorsTomb() {
+		$contents = $this->br->ReadInt32();
+		$artifact = $this->br->ReadInt32();
 	}
 
 	private function ReadHotaArtifact($artid) {
