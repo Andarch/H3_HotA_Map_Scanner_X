@@ -7,20 +7,19 @@
 //towns list
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="mediumtable">
 		<tr>
-			<th class="nowrap" nowrap="nowrap">Towns</th>
-			<th>Name</th>
-			<th>Position</th>
-			<th>Owner</th>
-			<th>Type</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
+			<th class="nowrap" nowrap="nowrap">Name</th>
+			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">Owner</th>
+			<th class="nowrap" nowrap="nowrap">Type</th>
 			<th class="nowrap" nowrap="nowrap">Events</th>
-			<th>Troops</th>
-			<th>Max Mage Guild</th>
-			<th>Spell Research</th>
-			<th>Spells</th>
-			<th>Buildings Built</th>
-			<th>Buildings Disabled</th>
+			<th class="nowrap" nowrap="nowrap">Troops</th>
+			<th class="nowrap" nowrap="nowrap">Spell Research</th>
+			<th class="nowrap" nowrap="nowrap">Spells</th>
+			<th class="nowrap" nowrap="nowrap">Buildings Built</th>
+			<th class="nowrap" nowrap="nowrap">Buildings Disabled</th>
 		</tr>';
 foreach($this->h3mapscan->towns_list as $towno) {
 	$town = $towno['data'];
@@ -38,18 +37,17 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	}
 
 	echo '<tr>
-		<td class="ac">'.(++$n).'</td>
-		<td>'.$town['name'].'</td>
+		<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$town['name'].'</td>
 		<td class="nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 		<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
-		<td>'.$town['affiliation'].'</td>
-		<td class="ar">'.$town['eventsnum'].'</td>
-		<td class="colw100">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
-		<td class="ac">'.$town['max_guild'].'</td>
-		<td>'.$town['spell_research'].'</td>
-		<td>'.$town['spells'].'</td>
-		<td>'.$buildingsBuilt.'</td>
-		<td>'.$buildingsDisabled.'</td>
+		<td class="nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
+		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>
+		<td class="nowrap" nowrap="nowrap">'.$town['spells'].'</td>
+		<td class="nowrap" nowrap="nowrap">'.$buildingsBuilt.'</td>
+		<td class="nowrap" nowrap="nowrap">'.$buildingsDisabled.'</td>
 	</tr>';
 }
 echo '</table>';
