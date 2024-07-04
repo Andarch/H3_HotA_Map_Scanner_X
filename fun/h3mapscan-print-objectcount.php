@@ -20,19 +20,19 @@ asort($this->h3mapscan->objects_unique);
 echo '</tr></td></table></br>'; */
 
 $n = 0;
-echo '<table id="h3DataTable" class="mediumtable">
+echo '<table id="objectsTable" class="h3DataTable">
 		<thead>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">#</th>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
 				<th class="ac nowrap" nowrap="nowrap">Category</th>
 				<th class="ac nowrap" nowrap="nowrap">Name</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="ac nowrap" nowrap="nowrap" style="min-width: 70px;">Count</th>
 			</tr>
 		</thead>
     	<tbody>';
 foreach($this->h3mapscan->objects_unique as $objcomboid => $obju) {
-    echo '	<tr>
+    echo '<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$obju['category'].'</td>

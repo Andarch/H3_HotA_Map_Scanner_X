@@ -11,15 +11,17 @@ require_once 'fun/config.php';
 <title>Heroes III Map Scanner</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
     <link rel="shortcut icon" href="css/img/heroes.png" type="image/x-icon" />
-    <link type="text/css" rel="stylesheet" media="all" href="css/heroesmaps.css	" />
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <!-- <link type="text/css" rel="stylesheet" media="all" href="css/heroesmaps.css	" /> -->
     <script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
-    <script type="application/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="application/javascript" src="js/jquery-ui.js"></script>
     <script type="application/javascript" src="js/mapread.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script type="application/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css">
+    <script type="application/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
 <style>
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
-	table {border-collapse:collapse; margin: 1em; border: solid 1px #ddd;}
+	/* table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; } */
 	th { background: #004752; }
 	th, td {border: solid 1px #aaa; min-width: 1em; padding: 1px 5px; }
 	.ar { text-align:right; }
@@ -30,48 +32,48 @@ require_once 'fun/config.php';
 	a, a:visited { color: #e6b800; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.smalltable {font-size: 11px; border: solid 1px #ddd;}
-	.mediumtable {font-size: 14px; border: solid 1px #ddd;}
-	.bigtable {font-size: 20px; border: solid 1px #ddd;}
+	.smalltable { font-size: 11px; border: solid 1px #ddd; }
+	.mediumtable { font-size: 14px; border: solid 1px #ddd; }
+	.bigtable { font-size: 20px; border: solid 1px #ddd; }
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
 	body, table { color: #ddd; }
 
 	.sidebarTop {
-	margin: 0;
-	padding: 16px 0px;
-	width: 250px;
-	background-color: #444;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	height: 50px;
-	overflow: auto;
-	color: #ddd;
-	font-size: 14px;
+		margin: 0;
+		padding: 16px 0px;
+		width: 250px;
+		background-color: #444;
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		height: 50px;
+		overflow: auto;
+		color: #ddd;
+		font-size: 14px;
 	}
 
 	.sidebarMain {
-	margin: 0;
-	padding: 0;
-	width: 250px;
-	background-color: #444;
-	position: fixed;
-	left: 0px;
-	top: 50px;
-	height: 100%;
-	overflow: auto;
-	color: #ddd;
-	font-size: 22px;
+		margin: 0;
+		padding: 0;
+		width: 250px;
+		background-color: #444;
+		position: fixed;
+		left: 0px;
+		top: 50px;
+		height: 100%;
+		overflow: auto;
+		color: #ddd;
+		font-size: 22px;
 	}
 
 	.sidebarMain a {
-	display: block;
-	color:  #ddd;
-	padding: 0px 10px 4px 10px;
-	text-decoration: none;
-	font-weight: bold;
+		display: block;
+		color:  #ddd;
+		padding: 0px 10px 4px 10px;
+		text-decoration: none;
+		font-weight: bold;
 	}
 
 	.sidebarMain a.selected {
@@ -79,29 +81,70 @@ require_once 'fun/config.php';
 	}
 
 	.sidebarMain a.active {
-	color: #ddd;
-	background-color: #5e4b00;
+		color: #ddd;
+		background-color: #5e4b00;
 	}
 
 	.sidebarMain a:hover:not(.active) {
-	background-color: #888;
-	color: #ddd;
+		background-color: #888;
+		color: #ddd;
 	}
 
 	.content {
 		position: absolute;
 		left: 250px;
-		padding: 0px 10px 0px 10px;
+		padding: 0px 20px 0px 20px;
 	}
 
-	.rowheader { background: #004752; font-weight: bold; text-align: center}
-	.rowheaderLarge1 { background: #451713; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
-	.rowheaderLarge2 { background: #3a1345; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
+	.rowheader {
+		background: #004752;
+		font-weight: bold;
+		text-align: center
+	}
 
-	#h3DataTable { border-collapse:collapse; margin: 1em; border: solid 1px #ddd; }
-	#h3DataTable td, #h3DataTable th { padding: 1px 5px; }
-	#h3DataTable_filter input { background-color: #222; color: #ddd; }
-	#h3DataTable_filter { color: grey; padding: 10px 0px; font-size: 14px; }
+	.rowheaderLarge1 {
+		background: #451713;
+		font-weight: bold;
+		text-align: left;
+		padding-left: 8px;
+		font-size: 18px;
+	}
+
+	.rowheaderLarge2 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: left;
+		padding-left: 8px;
+		font-size: 18px;
+	}
+
+	.h3DataTable {
+		border-collapse: collapse !important;
+		box-sizing: border-box !important;
+		font-size: 14px !important;
+		margin-bottom: 20px !important;
+	}
+
+	.h3DataTable td,
+	.h3DataTable th {
+		padding: 1px 5px !important;
+		border: solid 1px #ddd !important;
+		box-sizing: border-box !important;
+	}
+
+	#objectsTable_filter input,
+	#townDetailsTable_filter input {
+		background-color: #222 !important;
+		color: #ddd !important;
+	}
+
+	#objectsTable_filter,
+	#townDetailsTable_filter {
+		color: grey !important;
+		margin: 10px 0px !important;
+		font-size: 14px !important;
+		float: left !important;
+	}
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
@@ -246,19 +289,30 @@ if($mapok) {
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
-    var table = $('#h3DataTable').DataTable({
+    var objectsTable = $('#objectsTable').DataTable({
         "paging": false,
         "info": false,
         "ordering": true,
         "searching": true,
         "columnDefs": [
-            { "orderable": false, "targets": 0 } // Disables sorting on the first column
+            { "orderable": false, "targets": 0 }
         ],
-        "rowCallback": function(row, data, displayIndex) {
-            // Update the first cell in each row with the row number based on its current position
-            // displayIndex is the display index of the row, starts from 0
-            $('td:eq(0)', row).html(displayIndex + 1);
-        }
+        "initComplete": function(settings, json) {
+			new $.fn.dataTable.FixedHeader(this.api());
+		}
+    });
+
+    var townDetailsTable = $('#townDetailsTable').DataTable({
+        "paging": false,
+        "info": false,
+        "ordering": true,
+        "searching": true,
+        "columnDefs": [
+            { "orderable": false, "targets": 0 }
+        ],
+        "initComplete": function(settings, json) {
+			new $.fn.dataTable.FixedHeader(this.api());
+		}
     });
 });
 </script>
