@@ -2446,7 +2446,13 @@ class H3MAPSCAN {
 		}
 
 		if($this->hota_subrev >= $this::HOTA_SUBREV1) {
-			$town['spell_research'] = $this->br->ReadUint8(); //spell research
+			$spellresearch = $this->br->ReadUint8(); //spell research
+			if($spellresearch == 1) {
+				$town['spell_research'] = 'Enabled';
+			}
+			else {
+				$town['spell_research'] = 'Disabled';
+			}
 		}
 		if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 			$settings_count = $this->br->ReadInt32(); //special settings for towns
