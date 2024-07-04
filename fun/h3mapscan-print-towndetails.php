@@ -10,13 +10,13 @@ $n = 0;
 echo '<table class="mediumtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
-			<th class="nowrap" nowrap="nowrap">Name</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">Town Name</th>
+			<th class="nowrap" nowrap="nowrap">Coordinates</th>
 			<th class="nowrap" nowrap="nowrap">Owner</th>
-			<th class="nowrap" nowrap="nowrap">Type</th>
-			<th class="nowrap" nowrap="nowrap">Events</th>
-			<th class="nowrap" nowrap="nowrap">Troops</th>
-			<th class="nowrap" nowrap="nowrap">Spell Research</th>
+			<th class="nowrap" nowrap="nowrap">Faction</th>
+			<th class="nowrap" nowrap="nowrap"># of</br>Events</th>
+			<th class="nowrap" nowrap="nowrap">Garrison</th>
+			<th class="nowrap" nowrap="nowrap">Spell</br>Research</th>
 			<th class="nowrap" nowrap="nowrap">Spells</th>
 			<th class="nowrap" nowrap="nowrap">Buildings Built</th>
 			<th class="nowrap" nowrap="nowrap">Buildings Disabled</th>
@@ -39,9 +39,9 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	echo '<tr>
 		<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
 		<td class="nowrap" nowrap="nowrap">'.$town['name'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 		<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
 		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>

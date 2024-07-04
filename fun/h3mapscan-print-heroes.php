@@ -65,7 +65,7 @@ echo '</br><table class="mediumtable">
 		<tr>
 			<th>#</th>
 			<th>Name</th>
-			<th>Position</th>
+			<th>Coordinates</th>
 			<th>Owner</th>
 			<th>Class</th>
 			<th>Exp</th>
@@ -97,7 +97,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
 		<td>'.$hero['data']['name'].'</td>
-		<td>'.$hero['pos']->GetCoords().'</td>
+		<td class="ac">'.$hero['pos']->GetCoords().'</td>
 		<td>'.$color.'</td>
 		<td>'.$class.'</td>
 		<td>'.comma($hero['data']['exp']).'<br />Level '.$level.'</td>
