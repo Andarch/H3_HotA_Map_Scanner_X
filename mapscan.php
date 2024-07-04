@@ -28,14 +28,14 @@ require_once 'fun/config.php';
 
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
 	table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; }
-	th { background: #004752; font-family: 'Komet', calibri, arial, sans-serif; }
+	th { color: #fcf4ad; background: #555; font-family: 'Komet', calibri, arial, sans-serif; }
 	th, td {border: solid 1px #aaa; min-width: 1em; padding: 5px; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
 	.mc { margin: 0px auto; }
 
-	a, a:visited { color: #e6b800; text-decoration: none; background-color: transparent }
+	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
 	.smalltable { font-size: 11px; border: solid 1px #ddd; }
@@ -103,9 +103,10 @@ require_once 'fun/config.php';
 	}
 
 	.rowheader {
-		background: #004752;
+		background: #444;
 		font-weight: bold;
 		text-align: center;
+		/* color: #fbf08a; */
 	}
 
 	.rowheaderLarge1 {
