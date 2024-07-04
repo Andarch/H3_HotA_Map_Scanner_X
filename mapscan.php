@@ -26,7 +26,7 @@ require_once 'fun/config.php';
 		src: url('fonts/Komet Bold SC.woff') format('woff');
 	}
 
-	*, body {background: #333; font-family: calibri, arial, sans-serif; }
+	body { background: #333; font-family: calibri, arial, sans-serif; }
 	table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; }
 	th { color: #fcf4ad; background: #555; font-family: 'Komet', calibri, arial, sans-serif; }
 	th, td {border: solid 1px #aaa; min-width: 1em; padding: 5px; }
@@ -57,7 +57,9 @@ require_once 'fun/config.php';
 		height: 50px;
 		overflow: auto;
 		color: #ddd;
+		font-family: 'Komet', calibri, arial, sans-serif;
 		font-size: 16px;
+		text-align: center;
 	}
 
 	.sidebarMain {
@@ -170,9 +172,9 @@ require_once 'fun/config.php';
 </style>
 </head>
 <body>
-	<div class="sidebarTop al">
-		<span style="padding-left: 16px; background-color: #444;">
-			<a href="mapscan.php?scan=1">Scan</a> | <a href="mapindex.php">Map List</a>
+	<div class="sidebarTop">
+		<span style="background-color: #444;">
+			<a href="mapscan.php?scan=1">Scan</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mapindex.php">Map List</a>
 		</span>
 		<br />
 </div>
