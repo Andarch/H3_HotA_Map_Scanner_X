@@ -20,10 +20,16 @@ require_once 'fun/config.php';
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css">
     <script type="application/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
 <style>
+
+	@font-face {
+		font-family: 'Komet';
+		src: url('fonts/Komet Bold SC.woff') format('woff');
+	}
+
 	*, body {background: #333; font-family: calibri, arial, sans-serif; }
-	/* table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; } */
-	th { background: #004752; }
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 1px 5px; }
+	table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; }
+	th { background: #004752; font-family: 'Komet', calibri, arial, sans-serif; }
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 5px; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
@@ -99,7 +105,7 @@ require_once 'fun/config.php';
 	.rowheader {
 		background: #004752;
 		font-weight: bold;
-		text-align: center
+		text-align: center;
 	}
 
 	.rowheaderLarge1 {
@@ -127,9 +133,13 @@ require_once 'fun/config.php';
 
 	.h3DataTable td,
 	.h3DataTable th {
-		padding: 1px 5px !important;
+		padding: 5px !important;
 		border: solid 1px #ddd !important;
 		box-sizing: border-box !important;
+	}
+
+	.h3DataTable th {
+		padding: 5px 16px !important;
 	}
 
 	#objectsTable_filter input,
