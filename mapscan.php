@@ -98,10 +98,10 @@ require_once 'fun/config.php';
 	.rowheaderLarge1 { background: #451713; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
 	.rowheaderLarge2 { background: #3a1345; font-weight: bold; text-align: left; padding-left: 8px; font-size: 18px; }
 
-	#objectsTable { border-collapse:collapse; margin: 1em; border: solid 1px #ddd; }
-	#objectsTable td, #objectsTable th { padding: 1px 5px; }
-	#objectsTable_filter input { background-color: #222; color: #ddd; }
-	#objectsTable_filter { color: grey; padding: 10px 0px; font-size: 14px; }
+	#h3DataTable { border-collapse:collapse; margin: 1em; border: solid 1px #ddd; }
+	#h3DataTable td, #h3DataTable th { padding: 1px 5px; }
+	#h3DataTable_filter input { background-color: #222; color: #ddd; }
+	#h3DataTable_filter { color: grey; padding: 10px 0px; font-size: 14px; }
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
 	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
@@ -246,7 +246,7 @@ if($mapok) {
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
-    var table = $('#objectsTable').DataTable({
+    var table = $('#h3DataTable').DataTable({
         "paging": false,
         "info": false,
         "ordering": true,

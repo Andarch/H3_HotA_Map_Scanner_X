@@ -20,7 +20,7 @@ asort($this->h3mapscan->objects_unique);
 echo '</tr></td></table></br>'; */
 
 $n = 0;
-echo '<table id="objectsTable" class="mediumtable" cellspacing="0" width="100%">
+echo '<table id="h3DataTable" class="mediumtable">
 		<thead>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">#</th>
