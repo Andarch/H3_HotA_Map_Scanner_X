@@ -34,13 +34,14 @@ require_once 'fun/config.php';
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
-	.mc { margin: 16px; }
+	.mc { margin: 1em; }
 
 	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
 	.smalltable { font-size: 11px; }
 	.mediumtable { font-size: 14px; }
+	.bigtable { font-size: 16px; }
 	.bigtable th { font-size: 18px; }
 	.bigtable td { font-size: 16px; }
 	.containertable { vertical-align:top; border:none; margin:0; padding:0; }

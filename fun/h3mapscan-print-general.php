@@ -71,7 +71,7 @@ echo '</table>';
 echo '<table class="containertable">';
 
 	echo '<td class="containertable">
-	<table class="bigtable">
+	<table class="bigtable mc">
 	<tr>
 		<th class="nowrap" nowrap="nowrap">Player</th>
 		<th class="nowrap" nowrap="nowrap">Town Count</th>
@@ -100,7 +100,7 @@ echo '<table class="containertable">';
 
 	sort($this->h3mapscan->disabledArtifacts);
 	echo '<td class="containertable">
-		<table class="bigtable">
+		<table class="bigtable mc">
 			<tr><th>#</th><th>Disabled Artifacts</th></tr>';
 	foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 		echo '<tr>
@@ -112,7 +112,7 @@ echo '<table class="containertable">';
 
 	sort($this->h3mapscan->disabledSpells);
 	echo '<td class="containertable">
-		<table class="bigtable">
+		<table class="bigtable mc">
 			<tr><th>#</th><th>Disabled Spells</th></tr>';
 	foreach($this->h3mapscan->disabledSpells as $k => $spell) {
 		echo '<tr>
@@ -124,7 +124,7 @@ echo '<table class="containertable">';
 
 	sort($this->h3mapscan->disabledSkills);
 	echo '<td class="containertable">
-		<table class="bigtable">
+		<table class="bigtable mc">
 			<tr><th>#</th><th>Disabled Skills</th></tr>';
 	foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 		echo '<tr>
