@@ -27,20 +27,23 @@ require_once 'fun/config.php';
 	}
 
 	body { background: #333; font-family: calibri, arial, sans-serif; }
-	table { border-collapse: collapse; margin: 1em; border: solid 1px #ddd; }
-	th { color: #fcf4ad; background: #555; font-family: 'Komet', calibri, arial, sans-serif; }
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 5px; }
+	table { border-collapse: collapse; margin: 1em; border: solid 3px #aaa; }
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 6px; }
+	th { color: #fcf4ad; background: #555; font-family: 'Komet', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
+	td { border-right: solid 3px #aaa; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
-	.mc { margin: 0px auto; }
+	.mc { margin: 16px; }
 
 	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.smalltable { font-size: 11px; border: solid 1px #ddd; }
-	.mediumtable { font-size: 14px; border: solid 1px #ddd; }
-	.bigtable { font-size: 20px; border: solid 1px #ddd; }
+	.smalltable { font-size: 11px; }
+	.mediumtable { font-size: 14px; }
+	.bigtable th { font-size: 18px; }
+	.bigtable td { font-size: 16px; }
+	.containertable { vertical-align:top; border:none; margin:0; padding:0; }
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 

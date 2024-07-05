@@ -4,7 +4,7 @@
 // Retrieve the $h3mapscan object from the session
 //$this->h3mapscan = $_SESSION['h3mapscan'];
 
-echo '<table class="mediumtable">
+echo '<table class="bigtable">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap">File</th>
 			<th class="ac nowrap" nowrap="nowrap">Name</th>
@@ -29,7 +29,7 @@ echo '<table class="mediumtable">
 		</tr>
 	</table>';
 
-echo '</br><table class="mediumtable">
+echo '<table class="bigtable">
 	<tr>
 	<th class="ac nowrap" nowrap="nowrap">#</th>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
@@ -68,10 +68,10 @@ foreach($this->h3mapscan->players as $k => $player) {
 }
 echo '</table>';
 
-echo '</br><table style="border:none; margin:0; padding:0;">';
+echo '<table class="containertable">';
 
-	echo '<td style="vertical-align:top; border:none;">
-	<table class="mediumtable">
+	echo '<td class="containertable">
+	<table class="bigtable">
 	<tr>
 		<th class="nowrap" nowrap="nowrap">Player</th>
 		<th class="nowrap" nowrap="nowrap">Town Count</th>
@@ -99,8 +99,8 @@ echo '</br><table style="border:none; margin:0; padding:0;">';
 	echo '</table></td>';
 
 	sort($this->h3mapscan->disabledArtifacts);
-	echo '<td style="vertical-align:top; border:none;">
-		<table class="mediumtable">
+	echo '<td class="containertable">
+		<table class="bigtable">
 			<tr><th>#</th><th>Disabled Artifacts</th></tr>';
 	foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 		echo '<tr>
@@ -111,8 +111,8 @@ echo '</br><table style="border:none; margin:0; padding:0;">';
 	echo '</table>';
 
 	sort($this->h3mapscan->disabledSpells);
-	echo '<td style="vertical-align:top; border:none;">
-		<table class="mediumtable">
+	echo '<td class="containertable">
+		<table class="bigtable">
 			<tr><th>#</th><th>Disabled Spells</th></tr>';
 	foreach($this->h3mapscan->disabledSpells as $k => $spell) {
 		echo '<tr>
@@ -123,8 +123,8 @@ echo '</br><table style="border:none; margin:0; padding:0;">';
 	echo '</table>';
 
 	sort($this->h3mapscan->disabledSkills);
-	echo '<td style="vertical-align:top; border:none;">
-		<table class="mediumtable">
+	echo '<td class="containertable">
+		<table class="bigtable">
 			<tr><th>#</th><th>Disabled Skills</th></tr>';
 	foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 		echo '<tr>
