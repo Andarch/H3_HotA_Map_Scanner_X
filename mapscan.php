@@ -28,7 +28,7 @@ require_once 'fun/config.php';
 
 	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
 	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 3px #aaa; }
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 3px 6px; }
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 2px 6px; }
 	th { color: #fcf4ad; background: #51442c; font-family: 'Komet', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
 	td { border-right: solid 3px #aaa; background: #2b2b2b; }
 	.ar { text-align:right; }
@@ -177,15 +177,15 @@ require_once 'fun/config.php';
 		float: left !important;
 	}
 
-	.color1 { background: #ff0000; padding: 0px 6px; border-radius:5px; } /* red */
-	.color2 { background: #3152ff; padding: 0px 6px; border-radius:5px; } /* blue */
-	.color3 { background: #9c7352; padding: 0px 6px; border-radius:5px; } /* tan */
-	.color4 { background: #429429; padding: 0px 6px; border-radius:5px; } /* green */
-	.color5 { background: #ff8400; padding: 0px 6px; border-radius:5px; } /* orange */
-	.color6 { background: #8c29a5; padding: 0px 6px; border-radius:5px; } /* purple */
-	.color7 { background: #089ca5; padding: 0px 6px; border-radius:5px; } /* teal */
-	.color8 { background: #c67b8c; padding: 0px 6px; border-radius:5px; } /* pink */
-	.color256 { background: #848484; padding: 0px 6px; border-radius:5px; } /* neutral */
+	.color1 { background: #ff0000; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* red */
+	.color2 { background: #3152ff; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* blue */
+	.color3 { background: #9c7352; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* tan */
+	.color4 { background: #429429; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* green */
+	.color5 { background: #ff8400; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* orange */
+	.color6 { background: #8c29a5; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* purple */
+	.color7 { background: #089ca5; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* teal */
+	.color8 { background: #c67b8c; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* pink */
+	.color256 { background: #848484; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* neutral */
 
 </style>
 </head>
