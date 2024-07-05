@@ -26,11 +26,11 @@ require_once 'fun/config.php';
 		src: url('fonts/Komet Bold SC.woff') format('woff');
 	}
 
-	body { background: #333; font-family: calibri, arial, sans-serif; }
-	table { border-collapse: collapse; margin: 1em; border: solid 3px #aaa; }
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 6px; }
-	th { color: #fcf4ad; background: #555; font-family: 'Komet', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
-	td { border-right: solid 3px #aaa; }
+	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
+	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 3px #aaa; }
+	th, td {border: solid 1px #aaa; min-width: 1em; padding: 3px 6px; }
+	th { color: #fcf4ad; background: #51442c; font-family: 'Komet', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
+	td { border-right: solid 3px #aaa; background: #2b2b2b; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
@@ -41,14 +41,41 @@ require_once 'fun/config.php';
 
 	.smalltable { font-size: 11px; }
 	.mediumtable { font-size: 14px; }
-	.bigtable { font-size: 16px; }
-	.bigtable th { font-size: 18px; }
-	.bigtable td { font-size: 16px; }
-	.containertable { vertical-align:top; border:none; margin:0; padding:0; }
+
+	/* .bigtable { width: 100%; } */
+	.bigtable th { font-size: 16px; }
+	.bigtable td { font-size: 15px; }
+
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
 	body, table { color: #ddd; }
+
+	.content {
+		position: absolute;
+		left: 250px;
+		margin: 2em;
+		padding-bottom: 2em;
+	}
+
+	.rowheader {
+		background: #51442c;
+		font-weight: bold;
+		text-align: center;
+		/* color: #fbf08a; */
+	}
+
+	.tables-flex-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: start;
+		align-items: start;
+		gap: 2em;
+	}
+
+	.tables-flex-container .bigtable {
+		margin: 0;
+	}
 
 	.sidebarTop {
 		margin: 0;
@@ -100,19 +127,6 @@ require_once 'fun/config.php';
 	.sidebarMain a:hover:not(.active) {
 		background-color: #888;
 		color: #ddd;
-	}
-
-	.content {
-		position: absolute;
-		left: 250px;
-		padding: 0px 20px 0px 20px;
-	}
-
-	.rowheader {
-		background: #444;
-		font-weight: bold;
-		text-align: center;
-		/* color: #fbf08a; */
 	}
 
 	.rowheaderLarge1 {
