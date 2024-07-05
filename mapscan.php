@@ -59,7 +59,7 @@ require_once 'fun/config.php';
 	}
 
 	.rowheader {
-		background: #51442c;
+		background: #595142;
 		font-weight: bold;
 		text-align: center;
 		/* color: #fbf08a; */
