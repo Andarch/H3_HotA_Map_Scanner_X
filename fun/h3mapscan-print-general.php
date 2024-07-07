@@ -72,27 +72,30 @@ echo '<div class="tables-flex-container">';
 
 echo '<table class="bigtable">
 <tr>
+	<th>#</th>
 	<th class="nowrap" nowrap="nowrap">Player</th>
 	<th class="nowrap" nowrap="nowrap">Town Count</th>
 </tr>';
 
+$n = 0;
 // Sort the townTypeCounts array by player ID
 ksort($this->h3mapscan->townTypeCounts);
 
 foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
-	ksort($townCounts);
-	$townCountsList = '';
-	foreach ($townCounts as $affiliation => $count) {
-		$townCountsList .= $affiliation . ': ' . $count . '</br>';
-}
+		ksort($townCounts);
+		$townCountsList = '';
+		foreach ($townCounts as $affiliation => $count) {
+			$townCountsList .= $affiliation . ': ' . $count . '</br>';
+		}
 
-// Remove the trailing comma and space
-$townCountsList = rtrim($townCountsList, ', ');
+	// Remove the trailing comma and space
+	$townCountsList = rtrim($townCountsList, ', ');
 
-echo '<tr>
-		<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player). '</td>
-		<td class="nowrap" nowrap="nowrap">' . $townCountsList . '</td>
-	</tr>';
+	echo '<tr>
+			<td class="rowheader">'.(++$n).'</td>
+			<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player). '</td>
+			<td class="nowrap" nowrap="nowrap">' . $townCountsList . '</td>
+		</tr>';
 }
 
 echo '</table>';
