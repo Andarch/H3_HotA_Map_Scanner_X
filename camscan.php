@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-require_once 'fun/mi.php';
-require_once 'fun/config.php';
+require_once 'src/mi.php';
+require_once 'src/config.php';
 
 ?>
 <!DOCTYPE html>
@@ -42,11 +42,11 @@ require_once 'fun/config.php';
 //http://heroescommunity.com/viewthread.php3?TID=44079
 //http://heroescommunity.com/viewthread.php3?TID=42097&pagenumber=1
 
-require_once 'fun/h3camscan.php';
-require_once 'fun/h3camconstants.php';
-require_once 'fun/h3mapscan.php';
-require_once 'fun/h3mapconstants.php';
-require_once 'fun/mapsupport.php';
+require_once 'src/h3camscan.php';
+require_once 'src/h3camconstants.php';
+require_once 'src/h3mapscan.php';
+require_once 'src/h3mapconstants.php';
+require_once 'src/mapsupport.php';
 
 /*$scan = new ScanSubDir();
 $scan->SetFilter(array('h3c'));
@@ -90,10 +90,10 @@ $cam = [
 
 $camfile = $cam[$num];
 /*
-H3C_PRINTINFO   
-H3C_SAVECAMDB   
-H3C_EXPORTMAPS  
-H3C_CAMHTMCACHE 
+H3C_PRINTINFO
+H3C_SAVECAMDB
+H3C_EXPORTMAPS
+H3C_CAMHTMCACHE
 */
 
 $mapfile = MAPDIRCAM.$camfile;

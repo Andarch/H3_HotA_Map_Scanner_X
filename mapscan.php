@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 
-require_once 'fun/mi.php';
-require_once 'fun/config.php';
+require_once 'src/mi.php';
+require_once 'src/config.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -203,9 +203,9 @@ require_once 'fun/config.php';
 </div>
 <?php
 
-require_once 'fun/h3mapscan.php';
-require_once 'fun/h3mapconstants.php';
-require_once 'fun/mapsupport.php';
+require_once 'src/h3mapscan.php';
+require_once 'src/h3mapconstants.php';
+require_once 'src/mapsupport.php';
 
 
 

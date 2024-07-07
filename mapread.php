@@ -1,11 +1,11 @@
 <?php
 	header('Content-Type: text/html; charset=utf-8');
 
-	require_once './fun/mi.php';
-	require_once './fun/config.php';
-	require_once './fun/h3mapscan.php';
-	require_once './fun/h3mapconstants.php';
-	require_once './fun/mapsupport.php';
+	require_once './src/mi.php';
+	require_once './src/config.php';
+	require_once './src/h3mapscan.php';
+	require_once './src/h3mapconstants.php';
+	require_once './src/mapsupport.php';
 
 	$mapname = expost('map', '');
 	$num = expost('num', 0);

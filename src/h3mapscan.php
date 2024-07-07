@@ -1,6 +1,6 @@
 <?php
 
-require_once 'fun/bytereader.php';
+require_once 'src/bytereader.php';
 
 const H3M_WEBMODE       = 0x0001; //required for printinfo
 const H3M_PRINTINFO     = 0x0002; //prints map info, requires webmode
@@ -337,7 +337,7 @@ class H3MAPSCAN {
 		$this->mapimage = $SC->SanityString($this->mapfilename);
 
 		if($this->printoutput && $this->webmode) {
-			require_once 'fun/h3mapscan-print.php';
+			require_once 'src/h3mapscan-print.php';
 			$this->br = null; //free some memory
 			$this->ParseFinish();
 

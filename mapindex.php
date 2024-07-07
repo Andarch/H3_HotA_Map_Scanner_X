@@ -1,8 +1,8 @@
 <?php
 
-require_once 'fun/mi.php';
-require_once 'fun/config.php';
-require_once 'fun/h3mapindexconst.php';
+require_once 'src/mi.php';
+require_once 'src/config.php';
+require_once 'src/h3mapindexconst.php';
 
 $mapsearch = expost('map', exget('map', ''));
 ?>
