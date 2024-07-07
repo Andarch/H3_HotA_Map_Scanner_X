@@ -8,7 +8,7 @@
 	DEFINE('MAPDIR', './maps/');
 
 	//folder with uncompressed maps
-	DEFINE('MAPDIREXP', './mapsexp/');
+	// DEFINE('MAPDIREXP', './mapsexp/');
 
 	//folder with map images
 	DEFINE('MAPDIRIMG', './mapsimg/');
