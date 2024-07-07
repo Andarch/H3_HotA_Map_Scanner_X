@@ -185,10 +185,10 @@ class H3MAPSCAN {
 		$path = pathinfo($this->mapfile);
 		$this->mapfileinfo = $path;
 
-		$this->mapfileout = MAPDIREXP.$path['filename'].'.'.$path['extension'];
+		// $this->mapfileout = MAPDIREXP.$path['filename'].'.'.$path['extension'];
 
 		$h3mfile_exists = file_exists($this->mapfile); //original compressed map
-		$h3mfileun_exists = file_exists($this->mapfileout); //uncompressed map
+		// $h3mfileun_exists = file_exists($this->mapfileout); //uncompressed map
 
 		//map is already uncompressed
 		if($h3mfile_exists && $this->IsGZIP() == false) {
@@ -205,7 +205,7 @@ class H3MAPSCAN {
 
 		$this->mapfilename = $path['filename'];
 
-		if(!$h3mfileun_exists || filemtime($this->mapfileout) < filemtime($this->mapfile)) {
+		if(filemtime($this->mapfileout) < filemtime($this->mapfile)) {
 			if(!$this->filebad) {
 				if($this->isGzip) {
 					$mapdata = gzdecode(file_get_contents($this->mapfile));
