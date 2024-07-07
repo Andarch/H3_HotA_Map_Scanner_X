@@ -76,9 +76,9 @@ class H3MAPSCAN_PRINT {
 
         echo $print;
 
-		if($this->h3mapscan->maphtmcache) {
-			file_write(MAPDIRINFO.str_ireplace('.h3m', '.htm', $this->h3mapscan->mapfile).'.gz', gzencode($print));
-		}
+		// if($this->h3mapscan->maphtmcache) {
+		// 	file_write(MAPDIRINFO.str_ireplace('.h3m', '.htm', $this->h3mapscan->mapfile).'.gz', gzencode($print));
+		// }
     }
 
     private function generateSidebar() {
