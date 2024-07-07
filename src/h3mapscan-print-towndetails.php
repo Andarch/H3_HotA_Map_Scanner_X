@@ -1,9 +1,6 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-// Retrieve the $h3mapscan object from the session
-//$this->h3mapscan = $_SESSION['h3mapscan'];
-
 //towns list
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;

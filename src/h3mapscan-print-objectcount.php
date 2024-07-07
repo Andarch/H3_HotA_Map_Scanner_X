@@ -1,13 +1,6 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-// Retrieve the $h3mapscan object from the session
-// $this->h3mapscan = $_SESSION['h3mapscan'];
-
-// echo '<br />Templates count: '.$this->h3mapscan->objTemplatesNum.'<br />';
-// echo 'Objects type count: '.count($this->h3mapscan->objects_unique).'<br />';
-// echo 'Objects total count: '.$this->h3mapscan->objectsNum.'<br />';
-
 asort($this->h3mapscan->objects_unique);
 
 /* echo '<table class="bigtable">

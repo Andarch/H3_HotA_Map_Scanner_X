@@ -4,15 +4,10 @@
 class H3MAPSCAN_PRINT {
     private $h3mapscan;
     public function __construct($h3mapscan, $section) {
-        // Removed session_start() from here
-        // Store the $h3mapscan object in the session
-        //$_SESSION['h3mapscan'] = $h3mapscan;
         $this->h3mapscan = $h3mapscan;
         $this->PrintMapInfo($section);
     }
     private function PrintMapInfo($section) {
-        // Retrieve the $h3mapscan object from the session
-        //$this->h3mapscan = $_SESSION['h3mapscan'];
         $subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
         $print = $this->generateSidebar();
         $section = $_GET['section'] ?? 'general';
