@@ -7,7 +7,7 @@
 		//artifact list
 		usort($this->h3mapscan->artifacts_list, 'ListSortByName');
 		$n = 0;
-		echo '<table class="smalltable">
+		echo '<table class="bigtable">
 				<tr><th>Artifacts</th><th>Name</th><th>Position</th><th>Parent</th></tr>';
 		foreach($this->h3mapscan->artifacts_list as $art) {
 			echo '<tr>

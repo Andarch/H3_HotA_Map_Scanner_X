@@ -7,7 +7,7 @@
 //seers huts and quest master
 usort($this->h3mapscan->quest_list, 'ListSortByName');
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">Quest</th>
 			<th class="nowrap" nowrap="nowrap">Giver</th>

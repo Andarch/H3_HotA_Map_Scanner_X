@@ -39,10 +39,6 @@ require_once 'fun/config.php';
 	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.smalltable { font-size: 11px; }
-	.mediumtable { font-size: 14px; }
-
-	/* .bigtable { width: 100%; } */
 	.bigtable th { font-size: 16px; }
 	.bigtable td { font-size: 15px; }
 
@@ -63,6 +59,24 @@ require_once 'fun/config.php';
 		font-weight: bold;
 		text-align: center;
 		/* color: #fbf08a; */
+	}
+
+	.tableheader1 {
+		background: #451713;
+		font-weight: bold;
+		text-align: center;
+		padding-left: 8px;
+		font-size: 18px;
+		font-family: 'Komet', calibri, arial, sans-serif;
+	}
+
+	.tableheader2 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: center;
+		padding-left: 8px;
+		font-size: 18px;
+		font-family: 'Komet', calibri, arial, sans-serif;
 	}
 
 	.tables-flex-container {
@@ -127,22 +141,6 @@ require_once 'fun/config.php';
 	.sidebarMain a:hover:not(.active) {
 		background-color: #888;
 		color: #ddd;
-	}
-
-	.rowheaderLarge1 {
-		background: #451713;
-		font-weight: bold;
-		text-align: left;
-		padding-left: 8px;
-		font-size: 18px;
-	}
-
-	.rowheaderLarge2 {
-		background: #3a1345;
-		font-weight: bold;
-		text-align: left;
-		padding-left: 8px;
-		font-size: 18px;
 	}
 
 	.h3DataTable {

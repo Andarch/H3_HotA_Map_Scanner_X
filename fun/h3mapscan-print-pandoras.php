@@ -6,7 +6,7 @@
 
 //events, pandora box
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<tr><th>#</th><th>Event / Box</th><th>Position</th><th>Available for</th><th>Human/AI</th><th>One visit</th>
 			<th>Guards</th><th>Content</th>
 			<th style="width: 50%;">Text</th>

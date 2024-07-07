@@ -199,7 +199,7 @@ function MapStats() {
 }
 
 function MakeTableFromSQL($sql) {
-	echo '<table class="smalltable">';
+	echo '<table class="bigtable">';
 	$n = 0;
 	$ncol = 0;
 	$namecol = array();

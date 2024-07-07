@@ -8,7 +8,7 @@
 ksort($this->h3mapscan->monolith_list);
 $n = 0;
 echo '<a name="monolith"></a>
-	<table class="smalltable">
+	<table class="bigtable">
 		<tr>
 			<th>#</th>
 			<th>Monolith</th>

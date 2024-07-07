@@ -6,8 +6,8 @@
 
 //disabled heroes
 $n = 0;
-echo '<table class="mediumtable">
-		<tr><th class="rowheaderLarge1" colspan="3">Disabled Heroes</th></tr>
+echo '<table class="bigtable">
+		<tr><th class="tableheader1" colspan="3">Disabled Heroes</th></tr>
 		<tr><th>#</th><th>Class</th><th>Name(s)</th></tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
@@ -19,8 +19,8 @@ foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 echo '</table>';
 
 echo '</br>
-	<table class="mediumtable">
-		<tr><th class="rowheaderLarge2" colspan="10">Predefined Hero Changes</th></tr>
+	<table class="bigtable">
+		<tr><th class="tableheader2" colspan="10">Predefined Hero Changes</th></tr>
 		<tr>
 			<th>#</th>
 			<th>Name</th>
@@ -60,8 +60,8 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 echo '</table>';
 //heroes and placeholder list
 $n = 0;
-echo '</br><table class="mediumtable">
-		<tr><th class="rowheaderLarge2" colspan="11">Map Heroes</th></tr>
+echo '</br><table class="bigtable">
+		<tr><th class="tableheader2" colspan="11">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
 			<th>Name</th>

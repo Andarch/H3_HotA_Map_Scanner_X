@@ -7,7 +7,7 @@
 //keymaster's list
 usort($this->h3mapscan->keys_list, 'KeyMasterSort');
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
 			<th>Keymasters</th>

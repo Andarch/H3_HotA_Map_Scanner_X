@@ -8,7 +8,7 @@
 		usort($this->h3mapscan->spells_list, 'ListSortByName');
 		$n = 0;
 		echo '<a name="spells"></a>
-			<table class="smalltable">
+			<table class="bigtable">
 				<tr><th>Spells</th><th>Name</th><th>Position</th><th>Parent</th></tr>';
 		foreach($this->h3mapscan->spells_list as $art) {
 			echo '<tr>

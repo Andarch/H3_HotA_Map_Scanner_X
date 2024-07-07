@@ -6,7 +6,7 @@
 
 //day events
 usort($this->h3mapscan->events, 'EventSortByDate');
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">Events Date</th>
 			<th class="nowrap" nowrap="nowrap">Name</th>

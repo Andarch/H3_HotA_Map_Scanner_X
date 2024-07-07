@@ -6,7 +6,7 @@
 
 //towns events list
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<tr>
 			<th>Town #</th>
 			<th>Name</th>

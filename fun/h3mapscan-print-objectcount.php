@@ -10,7 +10,7 @@
 
 asort($this->h3mapscan->objects_unique);
 
-/* echo '<table class="smalltable">
+/* echo '<table class="bigtable">
 		<tr><td>';
 	echo '<pre>';
 	print_r($this->h3mapscan->objects_unique);

@@ -68,8 +68,6 @@ foreach($this->h3mapscan->players as $k => $player) {
 }
 echo '</table>';
 
-// echo '<div class="flex-break"></div>';
-
 echo '<div class="tables-flex-container">';
 
 echo '<table class="bigtable">
