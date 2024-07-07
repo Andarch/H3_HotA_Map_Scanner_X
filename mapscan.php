@@ -22,14 +22,14 @@ require_once 'fun/config.php';
 <style>
 
 	@font-face {
-		font-family: 'Komet';
-		src: url('fonts/Komet Bold SC.woff') format('woff');
+		font-family: 'H3Reader';
+		src: url('fonts/H3Reader.woff') format('woff');
 	}
 
 	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
 	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 3px #aaa; }
 	th, td {border: solid 1px #aaa; min-width: 1em; padding: 2px 6px 3px 6px; }
-	th { color: #fcf4ad; background: #51442c; font-family: 'Komet', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
+	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
 	td { border-right: solid 3px #aaa; background: #2b2b2b; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
@@ -74,7 +74,7 @@ require_once 'fun/config.php';
 		text-align: center;
 		padding-left: 8px;
 		font-size: 18px !important;
-		font-family: 'Komet', calibri, arial, sans-serif;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
 
 	.tableheader2 {
@@ -83,7 +83,7 @@ require_once 'fun/config.php';
 		text-align: center;
 		padding-left: 8px;
 		font-size: 18px !important;
-		font-family: 'Komet', calibri, arial, sans-serif;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
 
 	.tables-flex-container {
@@ -109,7 +109,7 @@ require_once 'fun/config.php';
 		height: 50px;
 		overflow: auto;
 		color: #ddd;
-		font-family: 'Komet', calibri, arial, sans-serif;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
 		font-size: 16px;
 		text-align: center;
 	}
