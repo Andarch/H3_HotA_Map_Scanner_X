@@ -10,12 +10,11 @@ $n = 0;
 echo '<a name="monolith"></a>
 	<table class="bigtable">
 		<tr>
-			<th>#</th>
-			<th>Monolith</th>
-			<th>Subid</th>
-			<th>Color</th>
-			<th>Count</th>
-			<th>Positions</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
+			<th class="nowrap" nowrap="nowrap">Object</th>
+			<th class="nowrap" nowrap="nowrap">Color</th>
+			<th class="nowrap" nowrap="nowrap">Count</th>
+			<th class="nowrap" nowrap="nowrap">Positions</th>
 		</tr>';
 $prev = false;
 $positions = [];
@@ -23,7 +22,7 @@ foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 	ksort($liths);
 	foreach($liths as $subid => $lith) {
 		$name = $this->h3mapscan->GetObjectNameById($objid);
-		$color = '';
+		$color = EMPTY_DATA;
 		if($objid == OBJECTS::MONOLITH_PORTAL_TWO_WAY) {
 			$color = FromArray($subid, $this->h3mapscan->CS->MonolithsTwo);
 		}
@@ -33,12 +32,11 @@ foreach($this->h3mapscan->monolith_list as $objid => $liths) {
 
 		echo '
 			<tr>
-				<td class="ac">'.(++$n).'</td>
-				<td>'.$name.'</td>
-				<td class="ac">'.$subid.'</td>
-				<td>'.$color.'</td>
-				<td class="ac">'.count($lith).'</td>
-				<td>'.implode('<br />', $lith).'</td>
+				<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+				<td class="nowrap" nowrap="nowrap">'.$name.'</td>
+				<td class="nowrap" nowrap="nowrap">'.$color.'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.count($lith).'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.implode('<br />', $lith).'</td>
 			</tr>';
 	}
 }

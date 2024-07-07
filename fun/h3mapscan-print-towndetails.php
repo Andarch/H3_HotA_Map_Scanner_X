@@ -55,12 +55,12 @@ foreach($this->h3mapscan->towns_list as $towno) {
 			<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>
-			<td>'.$spellsAlways.'</td>
-			<td>'.$spellsDisabled.'</td>
-			<td>'.$buildingsBuilt.'</td>
-			<td>'.$buildingsDisabled.'</td>
+			<td class="smalltext1">'.$spellsAlways.'</td>
+			<td class="smalltext1">'.$spellsDisabled.'</td>
+			<td class="smalltext1">'.$buildingsBuilt.'</td>
+			<td class="smalltext1">'.$buildingsDisabled.'</td>
 	</tr>';
 }
 echo '</tbody></table>';

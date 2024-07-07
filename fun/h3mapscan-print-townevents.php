@@ -8,11 +8,11 @@
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
-			<th>Town #</th>
-			<th>Name</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
-			<th>Owner</th>
-			<th>Type</th>
+			<th class="nowrap" nowrap="nowrap">Town #</th>
+			<th class="nowrap" nowrap="nowrap">Town Name</th>
+			<th class="nowrap" nowrap="nowrap">Coordinates</th>
+			<th class="nowrap" nowrap="nowrap">Owner</th>
+			<th class="nowrap" nowrap="nowrap">Type</th>
 			<th class="nowrap" nowrap="nowrap">Event #</th>
 			<th class="nowrap" nowrap="nowrap">Name</th>
 			<th class="nowrap" nowrap="nowrap">Players</th>
@@ -22,7 +22,7 @@ echo '<table class="bigtable">
 			<th class="nowrap" nowrap="nowrap">Resources</th>
 			<th class="nowrap" nowrap="nowrap">Monsters</th>
 			<th class="nowrap" nowrap="nowrap">Buildings</th>
-			<th>Message</th>
+			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
 foreach($this->h3mapscan->towns_list as $towno) {
 	$town = $towno['data'];
@@ -40,11 +40,11 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$rows = $town['eventsnum'];
 
 	echo '<tr>
-		<td class="ac" rowspan="'.$rows.'">'.(++$n).'</td>
-		<td rowspan="'.$rows.'">'.$town['name'].'</td>
-		<td rowspan="'.$rows.'" class="nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
+		<td class="rowheader" rowspan="'.$rows.'">'.(++$n).'</td>
+		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
+		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 		<td rowspan="'.$rows.'" class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
-		<td rowspan="'.$rows.'" class="nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>';
+		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>';
 
 	usort($town['events'], 'SortTownEventsByDate');
 	foreach($town['events'] as $e => $event) {
@@ -76,16 +76,16 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		}
 
 		echo '
-				<td class="ac">'.($e + 1).'</td>
+				<td class="ac specialcell1">'.($e + 1).'</td>
 				<td>'.$event['name'].'</td>
 				<td>'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac">'.$event['human'].'/'.$event['computerAffected'].'</td>
 				<td class="ac">'.$event['firstOccurence'].'</td>
 				<td class="ac">'.$event['nextOccurence'].'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $resources).'</td>
-				<td class="nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>
-				<td>'.implode('<br />', $buildings).'</td>
-				<td>'.nl2br($event['message']).'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $resources).'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $buildings).'</td>
+				<td class="smalltext1">'.nl2br($event['message']).'</td>
 			</tr>';
 	}
 

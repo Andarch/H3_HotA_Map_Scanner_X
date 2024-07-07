@@ -8,15 +8,15 @@
 usort($this->h3mapscan->events, 'EventSortByDate');
 echo '<table class="bigtable">
 		<tr>
-			<th class="nowrap" nowrap="nowrap">Events Date</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Name</th>
 			<th class="nowrap" nowrap="nowrap">Human</th>
-			<th>AI</th>
+			<th class="nowrap" nowrap="nowrap">AI</th>
 			<th class="nowrap" nowrap="nowrap">Players</th>
 			<th class="nowrap" nowrap="nowrap">First</th>
 			<th class="nowrap" nowrap="nowrap">Interval</th>
 			<th class="nowrap" nowrap="nowrap">Resources</th>
-			<th>Message</th>
+			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
 foreach($this->h3mapscan->events as $k => $event) {
 	$eres = [];
@@ -27,15 +27,15 @@ foreach($this->h3mapscan->events as $k => $event) {
 	}
 
 	echo '<tr>
-		<td class="ac">'.($k+1).'</td>
-		<td>'.$event['name'].'</td>
-		<td class="ac">'.$event['humanAble'].'</td>
-		<td class="ac">'.$event['aiAble'].'</td>
+		<td class="rowheader nowrap" nowrap="nowrap">'.($k+1).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$event['name'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$event['humanAble'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$event['aiAble'].'</td>
 		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
-		<td class="ar">'.$event['first'].'</td>
-		<td class="ar">'.$event['interval'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
-		<td>'.nl2br($event['message']).'</td>
+		<td lass="ac nowrap" nowrap="nowrap">'.$event['first'].'</td>
+		<td lass="ac nowrap" nowrap="nowrap">'.$event['interval'].'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
+		<td class="smalltext1">'.nl2br($event['message']).'</td>
 	</tr>';
 }
 echo '</table>';

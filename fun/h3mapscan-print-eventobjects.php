@@ -7,9 +7,16 @@
 //events, pandora box
 $n = 0;
 echo '<table class="bigtable">
-		<tr><th>#</th><th>Object</th><th>Position</th><th>Available for</th><th>Human/AI</th><th>One visit</th>
-			<th>Guards</th><th>Content</th>
-			<th style="width: 50%;">Text</th>
+		<tr>
+			<th class="nowrap" nowrap="nowrap">#</th>
+			<th class="nowrap" nowrap="nowrap">Object</th>
+			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">Available for</th>
+			<th class="nowrap" nowrap="nowrap">Human/AI</th>
+			<th class="nowrap" nowrap="nowrap">One Visit</th>
+			<th class="nowrap" nowrap="nowrap">Guards</th>
+			<th class="nowrap" nowrap="nowrap">Content</th>
+			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
 foreach($this->h3mapscan->events_list as $evento) {
 	if($evento['objname'] == 'Event Object') {
@@ -60,15 +67,15 @@ foreach($this->h3mapscan->events_list as $evento) {
 
 
 		echo '<tr>
-			<td class="ac">'.(++$n).'</td>
-			<td>'.$evento['objname'].'</td>
-			<td>'.$evento['pos']->GetCoords().'</td>
-			<td>'.$this->h3mapscan->PlayerColors($event['availableFor']).'</td>
-			<td class="ac">'.$event['humanActivate'].'/'.$event['computerActivate'].'</td>
-			<td class="ac">'.$event['removeAfterVisit'].'</td>
-			<td>'.$stack.'</td>
-			<td>'.implode('<br />', $content).'</td>
-			<td>'.$msg.'</td>
+			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$evento['objname'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$evento['pos']->GetCoords().'</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['availableFor']).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$event['humanActivate'].'/'.$event['computerActivate'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$event['removeAfterVisit'].'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap">'.$stack.'</td>
+			<td class="smalltext1" style="width:25%;">'.implode('<br />', $content).'</td>
+			<td class="smalltext1">'.$msg.'</td>
 		</tr>';
 	}
 }

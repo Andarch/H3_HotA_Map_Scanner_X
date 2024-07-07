@@ -9,9 +9,9 @@ usort($this->h3mapscan->quest_list, 'ListSortByName');
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
-			<th class="nowrap" nowrap="nowrap">Quest</th>
-			<th class="nowrap" nowrap="nowrap">Giver</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
+			<th class="nowrap" nowrap="nowrap">Object</th>
+			<th class="nowrap" nowrap="nowrap">Coordinates</th>
 			<th>Quest</th>
 			<th colspan="3">Reward</th>
 			<th class="colw300">Text Give</th>
@@ -32,16 +32,16 @@ foreach($this->h3mapscan->quest_list as $quest) {
         }
 
         echo '<tr>
-            <td class="ac">'.(++$n).'</td>
+            <td class="rowheader">'.(++$n).'</td>
             <td class="nowrap" nowrap="nowrap">'.$quest->name.'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->mapcoor->GetCoords().'</td>
-            <td class="nowrap" nowrap="nowrap">'.$questtext.'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->owner.'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->info.'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->count.'</td>
-            <td>'.nl2br($quest->add2[0]).'</td>
-            <td>'.nl2br($quest->add2[1]).'</td>
-            <td>'.nl2br($quest->add2[2]).'</td>
+            <td class="ac nowrap" nowrap="nowrap">'.$quest->mapcoor->GetCoords().'</td>
+            <td class="smalltext1 nowrap" nowrap="nowrap">'.$questtext.'</td>
+            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->owner.'</td>
+            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->info.'</td>
+            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->count.'</td>
+            <td class="smalltext1">'.nl2br($quest->add2[0]).'</td>
+            <td class="smalltext1">'.nl2br($quest->add2[1]).'</td>
+            <td class="smalltext1">'.nl2br($quest->add2[2]).'</td>
         </tr>';
     }
 }

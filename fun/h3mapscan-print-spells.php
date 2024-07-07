@@ -9,12 +9,17 @@
 		$n = 0;
 		echo '<a name="spells"></a>
 			<table class="bigtable">
-				<tr><th>Spells</th><th>Name</th><th>Position</th><th>Parent</th></tr>';
+				<tr>
+					<th>#</th>
+					<th>Spell</th>
+					<th>Coordinates</th>
+					<th>Parent</th>
+				</tr>';
 		foreach($this->h3mapscan->spells_list as $art) {
 			echo '<tr>
-				<td class="ac">'.(++$n).'</td>
+				<td class="rowheader">'.(++$n).'</td>
 				<td>'.$art->name.'</td>
-				<td>'.$art->mapcoor->GetCoords().'</td>
+				<td class="ac">'.$art->mapcoor->GetCoords().'</td>
 				<td>'.$art->parent.'</td>
 			</tr>';
 		}

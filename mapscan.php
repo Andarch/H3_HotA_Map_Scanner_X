@@ -39,8 +39,8 @@ require_once 'fun/config.php';
 	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.bigtable th { font-size: 16px; }
-	.bigtable td { font-size: 15px; }
+	.bigtable th { font-size: 15px; }
+	.bigtable td { font-size: 14px; }
 
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
@@ -58,7 +58,14 @@ require_once 'fun/config.php';
 		background: #595142;
 		font-weight: bold;
 		text-align: center;
-		/* color: #fbf08a; */
+	}
+
+	.specialcell1 {
+		background: #5a5855;
+	}
+
+	.smalltext1 {
+		font-size: 13px !important;
 	}
 
 	.tableheader1 {
@@ -66,7 +73,7 @@ require_once 'fun/config.php';
 		font-weight: bold;
 		text-align: center;
 		padding-left: 8px;
-		font-size: 18px;
+		font-size: 18px !important;
 		font-family: 'Komet', calibri, arial, sans-serif;
 	}
 
@@ -75,7 +82,7 @@ require_once 'fun/config.php';
 		font-weight: bold;
 		text-align: center;
 		padding-left: 8px;
-		font-size: 18px;
+		font-size: 18px !important;
 		font-family: 'Komet', calibri, arial, sans-serif;
 	}
 
