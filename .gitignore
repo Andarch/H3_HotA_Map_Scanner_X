@@ -1,8 +1,10 @@
 /mapsimg/*
+!/mapsimg/.gitkeep
 *.h3m
 /map_compare.php
 /dev
 /maps/*
+!/maps/.gitkeep
 /maps/*.*
 /css/*.gif
 /index.php
