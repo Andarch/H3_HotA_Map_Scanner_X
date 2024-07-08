@@ -175,13 +175,15 @@ require_once 'src/config.php';
 	}
 
 	#objectsTable_filter input,
-	#townDetailsTable_filter input {
+	#townDetailsTable_filter input,
+	#allObjectsTable_filter input {
 		background-color: #222 !important;
 		color: #ddd !important;
 	}
 
 	#objectsTable_filter,
-	#townDetailsTable_filter {
+	#townDetailsTable_filter,
+	#allObjectsTable_filter {
 		color: grey !important;
 		margin: 10px 0px !important;
 		font-size: 14px !important;

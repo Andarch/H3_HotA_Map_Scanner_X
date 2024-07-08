@@ -1,7 +1,7 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-asort($this->h3mapscan->objects_unique);
+ksort($this->h3mapscan->objects_all);
 
 /* echo '<table class="bigtable">
 		<tr><td>';
@@ -13,25 +13,27 @@ asort($this->h3mapscan->objects_unique);
 echo '</tr></td></table></br>'; */
 
 $n = 0;
-echo '<table id="objectsTable" class="h3DataTable">
+echo '<table id="allObjectsTable" class="h3DataTable">
 		<thead>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">#</th>
-				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
 				<th class="ac nowrap" nowrap="nowrap">Category</th>
+				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
 				<th class="ac nowrap" nowrap="nowrap">Name</th>
 				<th class="ac nowrap" nowrap="nowrap" style="min-width: 70px;">Count</th>
 			</tr>
 		</thead>
     	<tbody>';
-foreach($this->h3mapscan->objects_unique as $objcomboid => $obju) {
-    echo '<tr>
-			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obju['category'].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obju['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obju['count'].'</td>
-		</tr>';
+foreach($this->h3mapscan->objects_all as $objcategory => $objects) {
+	foreach($objects as $objcomboid => $obj) {
+		echo '<tr>
+				<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$objcategory.'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+				<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+				<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			</tr>';
+	}
 }
 echo '	</tbody>
 	</table>

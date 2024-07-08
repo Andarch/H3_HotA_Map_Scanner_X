@@ -72,6 +72,7 @@ class H3MAPSCAN {
 	public  $objectsNum = 0;
 	private $objects = [];
 	public  $objects_unique = [];
+	public  $objects_all = [];
 
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
@@ -1496,6 +1497,8 @@ class H3MAPSCAN {
 
 	private function ReadObjects() {
 
+		$this->InitializeAllObjectsCount();
+
 		$this->objectsNum = $this->br->ReadUint32();
 
 		// ======= ITERATE THROUGH OBJECTS
@@ -2312,6 +2315,19 @@ class H3MAPSCAN {
 			if($saveobject) {
 				$this->objects[] = $obj;
 			}
+		}
+	}
+
+	private function InitializeAllObjectsCount() {
+		foreach ($this->CS->ObjectEx as $comboid => $details) {
+			$category = $details['category'];
+			if (!isset($this->objects_all[$category])) {
+				$this->objects_all[$category] = [];
+			}
+			$this->objects_all[$category][$comboid] = [
+				'name' => $details['name'],
+				'count' => 0
+			];
 		}
 	}
 
