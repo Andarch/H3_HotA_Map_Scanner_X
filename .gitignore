@@ -1,5 +1,4 @@
-/mapsimg/*.png
-*.png
+/mapsimg/*
 *.h3m
 /map_compare.php
 /dev
