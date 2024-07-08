@@ -16,7 +16,7 @@ require_once 'src/config.php';
 <head>
 <title>H3 HotA Map Scanner X</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
-    <link rel="shortcut icon" href="css/img/heroes.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/hotaicon.png" type="image/x-icon" />
     <script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="application/javascript" src="js/jquery-ui.js"></script>
     <script type="application/javascript" src="js/mapread.js"></script>
