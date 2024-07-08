@@ -14,7 +14,7 @@ $mapsearch = expost('map', exget('map', ''));
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="cz" xml:lang="cz">
 <head>
-	<title>Heroes III Map List</title>
+	<title>H3 HotA Map Scanner X</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
 <style>
 	* {background: #333; font-family: calibri, arial, sans-serif; }
