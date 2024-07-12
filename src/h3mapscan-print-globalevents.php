@@ -18,9 +18,10 @@ echo '<table class="bigtable">
 foreach($this->h3mapscan->events as $k => $event) {
 	$eres = [];
 	foreach($event['resources'] as $r => $res) {
-		if($res != 0) {
-			$eres[] = $this->h3mapscan->GetResourceById($r).' '.$res;
-		}
+        if($res != 0) {
+            $sign = $res > 0 ? '+' : '';
+            $eres[] = $sign.comma($res).' '.$this->h3mapscan->GetResourceById($r);
+        }
 	}
 
 	echo '<tr>
