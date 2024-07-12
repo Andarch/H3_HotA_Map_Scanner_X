@@ -30,46 +30,50 @@
 	const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
 	const COMBOID_SEPARATOR = '<span style="color: grey;"> | </span>';
-	const ABANDONED_MINE_COMBOID = '53-7'.COMBOID_SEPARATOR.'220-7';
+	const ABANDONED_MINE_COMBOID = '53-7'.COMBOID_SEPARATOR.'220-X';
 	const CURSED_GROUND_COMBOID = '21-0'.COMBOID_SEPARATOR.'223-0';
+	const GARRISON_COMBOID = '33-0'.COMBOID_SEPARATOR.'219-0';
+	const AMGARRISON_COMBOID = '33-1'.COMBOID_SEPARATOR.'219-1';
+	const MAGIC_PLAINS_COMBOID = '46-0'.COMBOID_SEPARATOR.'230-0';
 	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
 
 	const EMPTY_DATA = '<span style="color: grey;">–</span>';
 
 
 	class OBJECTCATEGORIES {
-		const ARTIFACTS = 'Artifacts';
-		const BONUSMANA = 'Bonus – Mana';
-		const BONUSMORALE = 'Bonus – Morale';
-		const BONUSLUCK = 'Bonus – Luck';
-		const BONUSMOVEMENT = 'Bonus – Movement';
-		const BONUSMIXED = 'Bonus – Mixed';
-		const BORDERGATES = 'Border Gates';
-		const BORDERGUARDS = 'Border Guards';
-		const CREATUREBANKS = 'Creature Banks';
-		const DWELLINGS = 'Dwellings';
-		const GARRISONS = 'Garrisons';
-		const GRAIL = 'Grail';
-		const HEROES = 'Heroes';
-		const HEROUPGRADES = 'Hero Upgrades';
-		const KEYMASTERSTENTS = 'Keymaster\'s Tents';
-		const MAGICALTERRAINS = 'Magical Terrains';
-		const MINES = 'Mines';
-		const MONSTERS = 'Monsters';
-		const MONOLITHSPORTALS = 'Monoliths/Portals';
-		const QUESTGATESGUARDS = 'Quest Gates/Guards';
-		const PANDORASBOXES = 'Pandora\'s Boxes';
-		const RESOURCES = 'Resources';
-		const RESOURCEGENERATORS = 'Resource Generators';
-		const SCOUTING = 'Scouting';
-		const SEERSHUTS = 'Seer\'s Huts';
-		const SPELLS = 'Spells';
-		const TEXT = 'Text';
-		const TOWNS = 'Towns';
-		const TRADING = 'Trading';
-		const TRANSPORTATION = 'Transportation';
-		const WARMACHINES = 'War Machines';
-		const OTHER = 'Other';
+			const ARTIFACTS = 'Artifacts';
+			const BONUSMANA = 'Bonus – Mana';
+			const BONUSMORALE = 'Bonus – Morale';
+			const BONUSLUCK = 'Bonus – Luck';
+			const BONUSMOVEMENT = 'Bonus – Movement';
+			const BONUSMIXED = 'Bonus – Mixed';
+			const BORDERGATES = 'Border Gates';
+			const BORDERGUARDS = 'Border Guards';
+			const CREATUREBANKS = 'Creature Banks';
+			const DWELLINGS = 'Dwellings';
+			const GARRISONS = 'Garrisons';
+			const GRAIL = 'Grail';
+			const HEROES = 'Heroes';
+			const HEROUPGRADES = 'Hero Upgrades';
+			const KEYMASTERSTENTS = 'Keymaster\'s Tents';
+			const MAGICALTERRAINS = 'Magical Terrains';
+			const MINES = 'Mines';
+			const MONSTERS = 'Monsters';
+			const MONOLITHSPORTALSONEWAYENTRANCES = 'One-Way Monoliths/Portals – Entrances';
+			const MONOLITHSPORTALSONEWAYEXITS = 'One-Way Monoliths/Portals – Exits';
+			const MONOLITHSPORTALSTWOWAYMONOLITHS = 'Two-Way Monoliths';
+			const MONOLITHSPORTALSTWOWAYPORTALS = 'Two-Way Portals';
+			const QUESTS = 'Quests';
+			const RESOURCES = 'Resources';
+			const RESOURCEGENERATORS = 'Resource Generators';
+			const SCOUTING = 'Scouting';
+			const SPELLS = 'Spells';
+			const TEXT = 'Text';
+			const TOWNS = 'Towns';
+			const TRADING = 'Trading';
+			const TRANSPORTATION = 'Transportation';
+			const WARMACHINES = 'War Machines';
+			const OTHER = 'Other';
 	}
 
 	//constants classes
@@ -1395,7 +1399,7 @@
 				1001 => 'Grave',
 			],
 			213 => 'Freelancer\'s Guild',
-			214 => 'Hero Placeholder',
+			214 => 'OMITTED',
 			215 => 'Quest Guard',
 			216 => 'Random Dwelling',
 			217 => 'Random dwelling with no home castle type',
@@ -1423,7 +1427,7 @@
 			'2-0' => ['name' => 'Altar of Sacrifice', 'category' => OBJECTCATEGORIES::OTHER],
 			'4-0' => ['name' => 'Arena', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
-			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::PANDORASBOXES],
+			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
 			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
@@ -1479,7 +1483,7 @@
 			'20-0' => ['name' => 'Elemental Conflux', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'20-1' => ['name' => 'Golem Factory', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			CURSED_GROUND_COMBOID => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
-			'22-0' => ['name' => 'Corpse', 'category' => OBJECTCATEGORIES::OTHER],
+			'22-0' => ['name' => 'Corpse', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'24-0' => ['name' => 'Derelict Ship', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
 			'25-0' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
@@ -1490,8 +1494,8 @@
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::BONUSLUCK],
 			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::BONUSMIXED],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
-			'33-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
-			'33-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
+			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS],
+			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::OTHER],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::OTHER],
@@ -1501,56 +1505,56 @@
 			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::RESOURCEGENERATORS],
 			'41-0' => ['name' => 'Library of Enlightenment', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'42-0' => ['name' => 'Lighthouse', 'category' => OBJECTCATEGORIES::BONUSMOVEMENT],
-			'43-0' => ['name' => 'Monolith – Blue One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-1' => ['name' => 'Monolith – Pink One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-2' => ['name' => 'Monolith – Orange One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-3' => ['name' => 'Monolith – Yellow One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-4' => ['name' => 'Portal – Purple One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-5' => ['name' => 'Portal – Orange One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-6' => ['name' => 'Portal – Red One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-7' => ['name' => 'Portal – Cyan One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-8' => ['name' => 'Monolith – Turquoise One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-9' => ['name' => 'Monolith – Violet One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-10' => ['name' => 'Monolith – Chartreuse One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'43-11' => ['name' => 'Monolith – White One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-0' => ['name' => 'Monolith – Blue One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-1' => ['name' => 'Monolith – Pink One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-2' => ['name' => 'Monolith – Orange One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-3' => ['name' => 'Monolith – Yellow One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-4' => ['name' => 'Portal – Purple One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-5' => ['name' => 'Portal – Orange One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-6' => ['name' => 'Portal – Red One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-7' => ['name' => 'Portal – Cyan One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-8' => ['name' => 'Monolith – Turquoise One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-9' => ['name' => 'Monolith – Violet One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-10' => ['name' => 'Monolith – Chartreuse One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'44-11' => ['name' => 'Monolith – White One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-0' => ['name' => 'Monolith – Green Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-1' => ['name' => 'Monolith – Brown Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-2' => ['name' => 'Monolith – Violet Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-3' => ['name' => 'Monolith – Orange Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-4' => ['name' => 'Portal – Green Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-5' => ['name' => 'Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-6' => ['name' => 'Portal – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-7' => ['name' => 'Portal – Cyan Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-8' => ['name' => 'Water Portal – White Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-9' => ['name' => 'Monolith – Pink Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-10' => ['name' => 'Monolith – Turquoise Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-11' => ['name' => 'Monolith – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-12' => ['name' => 'Monolith – Black Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-13' => ['name' => 'Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-14' => ['name' => 'Portal – Turquoise Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-15' => ['name' => 'Portal – Violet Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-16' => ['name' => 'Portal – Orange Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-17' => ['name' => 'Monolith – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-18' => ['name' => 'Monolith – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-19' => ['name' => 'Portal – Pink Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-20' => ['name' => 'Portal – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-21' => ['name' => 'Water Portal – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-22' => ['name' => 'Water Portal – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-23' => ['name' => 'Water Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'45-24' => ['name' => 'Water Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALS],
-			'46-0' => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
+			'43-0' => ['name' => 'Monolith – Blue One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-1' => ['name' => 'Monolith – Pink One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-2' => ['name' => 'Monolith – Orange One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-3' => ['name' => 'Monolith – Yellow One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-4' => ['name' => 'Portal – Purple One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-5' => ['name' => 'Portal – Orange One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-6' => ['name' => 'Portal – Red One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-7' => ['name' => 'Portal – Cyan One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-8' => ['name' => 'Monolith – Turquoise One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-9' => ['name' => 'Monolith – Violet One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-10' => ['name' => 'Monolith – Chartreuse One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'43-11' => ['name' => 'Monolith – White One-Way Entrance', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES],
+			'44-0' => ['name' => 'Monolith – Blue One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-1' => ['name' => 'Monolith – Pink One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-2' => ['name' => 'Monolith – Orange One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-3' => ['name' => 'Monolith – Yellow One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-4' => ['name' => 'Portal – Purple One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-5' => ['name' => 'Portal – Orange One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-6' => ['name' => 'Portal – Red One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-7' => ['name' => 'Portal – Cyan One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-8' => ['name' => 'Monolith – Turquoise One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-9' => ['name' => 'Monolith – Violet One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-10' => ['name' => 'Monolith – Chartreuse One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'44-11' => ['name' => 'Monolith – White One-Way Exit', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS],
+			'45-0' => ['name' => 'Monolith – Green Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-1' => ['name' => 'Monolith – Brown Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-2' => ['name' => 'Monolith – Violet Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-3' => ['name' => 'Monolith – Orange Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-4' => ['name' => 'Portal – Green Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-5' => ['name' => 'Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-6' => ['name' => 'Portal – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-7' => ['name' => 'Portal – Cyan Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-8' => ['name' => 'Water Portal – White Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-9' => ['name' => 'Monolith – Pink Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-10' => ['name' => 'Monolith – Turquoise Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-11' => ['name' => 'Monolith – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-12' => ['name' => 'Monolith – Black Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-13' => ['name' => 'Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-14' => ['name' => 'Portal – Turquoise Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-15' => ['name' => 'Portal – Violet Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-16' => ['name' => 'Portal – Orange Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-17' => ['name' => 'Monolith – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-18' => ['name' => 'Monolith – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS],
+			'45-19' => ['name' => 'Portal – Pink Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-20' => ['name' => 'Portal – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-21' => ['name' => 'Water Portal – Red Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-22' => ['name' => 'Water Portal – Blue Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-23' => ['name' => 'Water Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			'45-24' => ['name' => 'Water Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
+			MAGIC_PLAINS_COMBOID => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'47-X' => ['name' => 'School of Magic', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'48-0' => ['name' => 'Magic Spring', 'category' => OBJECTCATEGORIES::BONUSMANA],
 			'49-0' => ['name' => 'Magic Well', 'category' => OBJECTCATEGORIES::BONUSMANA],
@@ -1601,7 +1605,7 @@
 			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::OTHER],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SEERSHUTS],
+			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::QUESTS],
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATUREBANKS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::ARTIFACTS],
@@ -1642,7 +1646,7 @@
 			'108-0' => ['name' => 'Warrior\'s Tomb', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCEGENERATORS],
 			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::BONUSMIXED],
-			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::TRANSPORTATION],
+			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS],
 			'112-0' => ['name' => 'Windmill', 'category' => OBJECTCATEGORIES::RESOURCEGENERATORS],
 			'113-0' => ['name' => 'Witch Hut', 'category' => OBJECTCATEGORIES::HEROUPGRADES],
 			'141-0' => ['name' => 'Cracked Ice', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
@@ -1687,17 +1691,16 @@
 			'212-5' => ['name' => 'Border Gate – Purple', 'category' => OBJECTCATEGORIES::BORDERGATES],
 			'212-6' => ['name' => 'Border Gate – White', 'category' => OBJECTCATEGORIES::BORDERGATES],
 			'212-7' => ['name' => 'Border Gate – Black', 'category' => OBJECTCATEGORIES::BORDERGATES],
-			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::QUESTGATESGUARDS],
-			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::OTHER],
+			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::QUESTS],
+			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING],
-			'214-0' => ['name' => 'Hero Placeholder', 'category' => OBJECTCATEGORIES::HEROES],
-			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::QUESTGATESGUARDS],
+			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::QUESTS],
 			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
-			'219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
-			'220-0' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
+			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
+			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
+			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
 			'222-0' => ['name' => 'Clover Field', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
@@ -1708,7 +1711,7 @@
 			'227-0' => ['name' => 'Holy Ground', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'228-0' => ['name' => 'Lucid Pools', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'229-0' => ['name' => 'Magic Clouds', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
-			'230-0' => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
+			// '230-0' => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 			'231-0' => ['name' => 'Rocklands', 'category' => OBJECTCATEGORIES::MAGICALTERRAINS],
 		];
 
@@ -1804,6 +1807,7 @@
 			209 => 'Rough Hills',
 			210 => 'Subterranean Rocks',
 			211 => 'Swamp Foliage',
+			214 => 'Hero Placeholder',
 		];
 
 		public $Mines = [

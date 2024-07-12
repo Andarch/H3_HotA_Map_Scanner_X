@@ -3296,11 +3296,13 @@ class H3MAPSCAN {
 				break;
 
 			case 53:
-			case 220:
 				if($subid == 7) {
 					return ABANDONED_MINE_COMBOID;
 				}
 				break;
+
+			case 220:
+				return ABANDONED_MINE_COMBOID;
 
 			case 21:
 			case 223:
@@ -3309,6 +3311,19 @@ class H3MAPSCAN {
 			case 99:
 			case 221:
 				return TRADING_POST_COMBOID;
+
+			case 33:
+			case 219:
+				if($subid == 0) {
+					return GARRISON_COMBOID;
+				}
+				else {
+					return AMGARRISON_COMBOID;
+				}
+
+			case 46:
+			case 230:
+				return MAGIC_PLAINS_COMBOID;
 		}
 
 		return $id.'-'.$subid;

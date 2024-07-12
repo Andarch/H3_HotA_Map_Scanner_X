@@ -29,6 +29,7 @@ for ($i = 0; $i < 3; $i++) {
 	echo '<table class="bigtable">
 			<tr>
 				<td colspan="3" class="tableheader2">'.$title.'</td>
+			</tr>
 			<tr>
 				<th>#</th>
 				<th>Terrain</th>
