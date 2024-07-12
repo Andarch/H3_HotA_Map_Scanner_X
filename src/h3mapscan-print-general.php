@@ -139,4 +139,18 @@ foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 }
 echo '</table>';
 
+echo '<table class="bigtable">
+		<tr>
+			<th colspan="2">Grail</th>
+		</tr>
+		<tr>
+			<td class="rowheader">Has Grail</td>
+			<td class="ac">'.($this->h3mapscan->hasGrail ? 'Yes' : 'No').'</td>
+		</tr>
+		<tr>
+			<td class="rowheader"># of Obelisks</td>
+			<td class="ac">'.$this->h3mapscan->obelisksnum.'</td>
+		</tr>
+	</table>';
+
 echo '</div>';

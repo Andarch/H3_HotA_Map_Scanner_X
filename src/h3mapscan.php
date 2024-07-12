@@ -128,6 +128,9 @@ class H3MAPSCAN {
 	public  $mapplayershuman = 0;
 	public  $mapplayersai = 0;
 
+	public $hasGrail = false;
+	public $obelisksnum = 0;
+
 	public  $CS; //heroes constants class
 	private $SC; //String Convert
 
@@ -1971,7 +1974,7 @@ class H3MAPSCAN {
 							break;
 						}
 					}
-
+					$this->hasGrail = true;
 					$grail['radius'] = $this->br->ReadUint32();
 					$obj['data'] = $grail;
 					break;
@@ -2259,6 +2262,10 @@ class H3MAPSCAN {
 						//$obj['data']['variant'] = $this->br->ReadInt32(); //-1 => random
 						//$obj['data']['skills'] = $this->br->ReadUint32();
 					}
+					break;
+
+				case OBJECTS::OBELISK:
+					$this->obelisksnum++;
 					break;
 
 
