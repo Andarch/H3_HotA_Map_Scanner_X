@@ -56,9 +56,6 @@ class H3MAPSCAN_PRINT {
 			case 'Monoliths/Portals':
 				include 'h3mapscan-print-portals.php';
 				break;
-			case 'Object Count (Old)':
-				include 'h3mapscan-print-objectcountold.php';
-				break;
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
 				break;
@@ -82,7 +79,7 @@ class H3MAPSCAN_PRINT {
 		$currentSection = $_GET['section'] ?? '';
 		$sections = ['General', 'Map/Terrain', 'Heroes', 'Town Details', 'Artifacts', 'Spells',
 					 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects', 'Pandora\'s Boxes',
-					 'Global Events', 'Keymaster\'s Tents', 'Monoliths/Portals', 'Object Count (Old)', 'Object Count'];
+					 'Global Events', 'Keymaster\'s Tents', 'Monoliths/Portals', 'Object Count'];
 
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {

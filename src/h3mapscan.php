@@ -1526,18 +1526,13 @@ class H3MAPSCAN {
 
 				if(!array_key_exists($obj['id'], $this->CS->OmittedObjects)) {
 					$obj['comboid'] =  $this->GetComboId($obj['id'], $obj['subid']);
-					$obj['objname'] = FromArray('name', $this->CS->ObjectEx[$obj['comboid']]);
 					$obj['objcategory'] = FromArray('category', $this->CS->ObjectEx[$obj['comboid']]);
+					$obj['objname'] = FromArray('name', $this->CS->ObjectEx[$obj['comboid']]);
 
-					if(!array_key_exists($obj['comboid'], $this->objects_unique)) {
-						$this->objects_unique[$obj['comboid']]  =
-						[
-							'name' => $obj['objname'],
-							'category' => $obj['objcategory'],
-							'count' => 0
-						];
-					}
-					$this->objects_unique[$obj['comboid']]['count']++;
+					$objcategory = $obj['objcategory'];
+					$objcomboid = $obj['comboid'];
+
+					$this->objects_all[$objcategory][$objcomboid]['count']++;
 				}
 			}
 			else {

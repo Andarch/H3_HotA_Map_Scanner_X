@@ -3,17 +3,8 @@
 
 ksort($this->h3mapscan->objects_all);
 
-/* echo '<table class="bigtable">
-		<tr><td>';
-	echo '<pre>';
-	print_r($this->h3mapscan->objects_unique);
-	// var_dump($this->h3mapscan->objects_unique);
-	// echo var_export($this->h3mapscan->objects_unique, true);
-	echo '</pre>';
-echo '</tr></td></table></br>'; */
-
 $n = 0;
-echo '<table id="allObjectsTable" class="h3DataTable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">#</th>
