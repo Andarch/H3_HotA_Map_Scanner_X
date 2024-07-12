@@ -1586,19 +1586,36 @@ class H3MAPSCAN {
 							$artid = $this->br->ReadUint8();
 						}
 						elseif($this->hota_subrev >= $this::HOTA_SUBREV4) {
-							$artid = $this->br->ReadUint32();
+							$artid = $this->br->ReadUint16();
+							$spellid = $this->br->ReadUint16();
 						}
 						else {
 							$artid = $this->br->ReadUint16();
 						}
-						$artifact = $this->GetArtifactById($artid);
-						$event['artifacts'][] = $artifact;
 
-						if($obj['id'] == OBJECTS::EVENT) {
-							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Event');
+						$artname = $this->GetArtifactById($artid);
+
+						if($artid != 1)	{
+							$event['artifacts'][] = $artname;
+							if($obj['id'] == OBJECTS::EVENT) {
+								$this->artifacts_list[] = new ListObject($artname, $obj['pos'], 'Event');
+							}
+							else {
+								$this->artifacts_list[] = new ListObject($artname, $obj['pos'], 'Pandora\'s Box');
+							}
 						}
 						else {
-							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Pandora\'s Box');
+							$spell = $this->GetSpellById($spellid);
+							$scroll = $artname.': '.$spell;
+							$event['artifacts'][] = $scroll;
+							if($obj['id'] == OBJECTS::EVENT) {
+								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Event');
+								$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event');
+							}
+							else {
+								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Pandora\'s Box');
+								$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Pandora\'s Box');
+							}
 						}
 					}
 

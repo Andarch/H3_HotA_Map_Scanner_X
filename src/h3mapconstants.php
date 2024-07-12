@@ -1834,7 +1834,7 @@
 		];
 
 		public $Artefacts = [
-			0 => 'Spell book',
+			0 => 'Spell Book',
 			1 => 'Spell Scroll',
 			2 => 'Grail',
 			3 => 'Catapult',
