@@ -9,10 +9,10 @@ echo '<table class="bigtable">
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
 			<th class="nowrap" nowrap="nowrap">Coordinates</th>
-			<th>Quest</th>
-			<th class="colw300">Text Give</th>
-			<th class="colw300">Text Repeat</th>
-			<th class="colw300">Text Finished</th>
+			<th class="nowrap" nowrap="nowrap">Quest</th>
+			<th>Text Give</th>
+			<th>Text Repeat</th>
+			<th>Text Finished</th>
 		</tr>';
 
 foreach($this->h3mapscan->quest_list as $quest) {
@@ -25,7 +25,7 @@ foreach($this->h3mapscan->quest_list as $quest) {
 
         echo '<tr>
             <td class="rowheader">'.(++$n).'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->name.'</td>
+            <td class="ac nowrap" nowrap="nowrap">'.$quest->name.'</td>
             <td class="ac nowrap" nowrap="nowrap">'.$quest->mapcoor->GetCoords().'</td>
             <td class="smalltext1 nowrap" nowrap="nowrap">'.$questtext.'</td>
             <td class="smalltext1">'.nl2br($quest->add2[0]).'</td>
