@@ -4,8 +4,14 @@
 //disabled heroes
 $n = 0;
 echo '<table class="bigtable">
-		<tr><th class="tableheader1" colspan="3">Disabled Heroes</th></tr>
-		<tr><th>#</th><th>Class</th><th>Name(s)</th></tr>';
+		<tr>
+			<th class="tableheader1" colspan="3">Disabled Heroes</th>
+		</tr>
+		<tr>
+			<th>#</th>
+			<th>Class</th>
+			<th>Heroes</th>
+		</tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
@@ -15,6 +21,7 @@ foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 }
 echo '</table>';
 
+//predefined hero changes
 echo '</br>
 	<table class="bigtable">
 		<tr><th class="tableheader2" colspan="10">Predefined Hero Changes</th></tr>
@@ -32,7 +39,7 @@ echo '</br>
 		</tr>';
 foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 	if($hero['mask'] == 0) {
-		//continue;
+		continue;
 	}
 	$playermask = $this->h3mapscan->playerMask & $hero['mask'];
 
@@ -43,7 +50,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 
 	echo '<tr>
 		<td class="rowheader">'.($k+1).'</td>
-		<td>'.$hero['name'].'<br />('.$hero['defname'].')</td>
+		<td class="nowrap" nowrap="nowrap">'.$hero['name'].'<br /><span style="font-size:0.9em;">('.$hero['defname'].')</span></td>
 		<td>'.$this->h3mapscan->PlayerColors($playermask).'</td>
 		<td class="ar">'.comma($hero['exp']).'</td>
 		<td class="ac">'.$hero['sex'].'</td>
@@ -55,13 +62,14 @@ foreach($this->h3mapscan->heroesPredefined as $k => $hero) {
 	</tr>';
 }
 echo '</table>';
+
 //heroes and placeholder list
 $n = 0;
 echo '</br><table class="bigtable">
 		<tr><th class="tableheader2" colspan="11">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
-			<th>Name</th>
+			<th>Heroes</th>
 			<th>Coordinates</th>
 			<th>Owner</th>
 			<th>Class</th>
