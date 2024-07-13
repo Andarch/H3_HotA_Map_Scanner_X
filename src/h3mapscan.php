@@ -1598,7 +1598,7 @@ class H3MAPSCAN {
 						if($artid != 1)	{
 							$event['artifacts'][] = $artname;
 							if($obj['id'] == OBJECTS::EVENT) {
-								$this->artifacts_list[] = new ListObject($artname, $obj['pos'], 'Event');
+								$this->artifacts_list[] = new ListObject($artname, $obj['pos'], 'Event Object');
 							}
 							else {
 								$this->artifacts_list[] = new ListObject($artname, $obj['pos'], 'Pandora\'s Box');
@@ -1609,8 +1609,8 @@ class H3MAPSCAN {
 							$scroll = $artname.': '.$spell;
 							$event['artifacts'][] = $scroll;
 							if($obj['id'] == OBJECTS::EVENT) {
-								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Event');
-								$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event');
+								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Event Object');
+								$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event Object');
 							}
 							else {
 								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Pandora\'s Box');
@@ -1625,7 +1625,7 @@ class H3MAPSCAN {
 						$event['spells'][] = $spell;
 
 						if($obj['id'] == OBJECTS::EVENT) {
-							$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event');
+							$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Event Object');
 						}
 						else {
 							$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Pandora\'s Box');
