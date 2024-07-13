@@ -7,8 +7,9 @@ echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
-			<th class="nowrap" nowrap="nowrap">Allowed Players</th>
+			<th class="nowrap" nowrap="nowrap">Coordinates</th>
+			<th class="nowrap" nowrap="nowrap">Players</th>
+			<th class="nowrap" nowrap="nowrap">Difficulty</th>
 			<th class="nowrap" nowrap="nowrap">Human/AI</th>
 			<th class="nowrap" nowrap="nowrap">Repeat</th>
 			<th class="nowrap" nowrap="nowrap">Guardians</th>
@@ -18,9 +19,9 @@ echo '<table class="bigtable">
 foreach($this->h3mapscan->events_list as $evento) {
 	if($evento['objname'] == 'Event Object') {
 		$event = $evento['data'];
-
 		$stack = '';
 		$msg = '';
+
 		if(!empty($event['MessageStack'])) {
 			$msg = nl2br($event['MessageStack']['message']);
 			if(array_key_exists('stack', $event['MessageStack'])) {
@@ -29,98 +30,15 @@ foreach($this->h3mapscan->events_list as $evento) {
 		}
 
 		$content = [];
-		$content[1] = [];
-		$content[2] = [];
-		$content[3] = [];
-		$content[4] = [];
-		$content[5] = [];
-		$content[6] = [];
-
-		if($event['gainedExp'] > 0) {
-			$content[1][] = '+'.comma($event['gainedExp']).' XP';
-		}
-		if($event['manaDiff'] != 0) {
-			$sign = $event['manaDiff'] > 0 ? '+' : '';
-			$content[1][] = $sign.comma($event['manaDiff']).' Mana';
-		}
-		if($event['moraleDiff'] != 0) {
-			$sign = $event['moraleDiff'] > 0 ? '+' : '';
-			$content[1][] = $sign.comma($event['moraleDiff']).' Morale';
-		}
-		if($event['luckDiff'] != 0) {
-			$sign = $event['luckDiff'] > 0 ? '+' : '';
-			$content[1][] = $sign.comma($event['luckDiff']).' Luck';
-		}
-		if(($event['move_bonus_type'] == 0 && $event['move_bonus_value'] > 0) || $event['move_bonus_type'] != 0) {
-			if($event['move_bonus_type'] != 1 && $event['move_bonus_value'] > 0) {
-				$sign = '+';
-			}
-			else if($event['move_bonus_type'] == 1) {
-				$sign = '-';
-			}
-			else {
-				$sign = '';
-			}
-			switch($event['move_bonus_type']) {
-				case 0:  // Give
-				case 4:  // Replenish
-					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points ('.$event['move_bonus_type_name'].')';
-					break;
-
-				case 1:  // Take
-					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points';
-					break;
-
-				case 2:  // Nullify
-					$content[1][] = $event['move_bonus_type_name'].' Movement Points';
-					break;
-
-				case 3:  // Set
-					$content[1][] = $event['move_bonus_type_name'].' Movement Points to '.comma($event['move_bonus_value']);
-					break;
-			}
-		}
-
-		foreach($event['resources'] as $rid => $amount) {
-			$sign = $amount > 0 ? '+' : '';
-			$content[2][] = $sign.comma($amount).' '.$this->h3mapscan->GetResourceById($rid);
-		}
-
-		foreach($event['priSkill'] as $k => $ps) {
-			if($ps > 0) {
-				$content[3][] = '+'.$ps.' '.$this->h3mapscan->GetPriskillById($k);
-			}
-		}
-		if($content[3] != null && $event['secSkill'] != null) {
-			$content[3][] = "\n";
-		}
-		foreach($event['secSkill'] as $skill) {
-			$content[3][] = $skill['level'].' '.$skill['skill'];
-		}
-
-		if(!empty($event['artifacts'])) {
-			$content[4][] = implode('<br />', $event['artifacts']);
-		}
-		if(!empty($event['spells'])) {
-			$content[5][] = implode('<br />', $event['spells']);
-		}
-
-		if(!empty($event['stack'])) {
-			$content[6][] = $this->h3mapscan->PrintStackIncrease($event['stack']);
-		}
-
-		for($i = 1; $i <= 6; $i++) {
-			if(empty($content[$i])) {
-				$content[$i][] = EMPTY_DATA;
-			}
-		}
+		$content = $this->h3mapscan->CreateRewardContents($event);
 
 		echo '<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$evento['objname'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$evento['pos']->GetCoords().'</td>
-			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['availableFor']).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$event['humanActivate'].'/'.$event['computerActivate'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['availableFor']).'</td>
+			<td class="ac" style="width:120px;">'.implode(', ', $event['difficulty']).'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$event['removeAfterVisit'].'</td>
 			<td class="smalltext1 nowrap" nowrap="nowrap">'.$stack.'</td>
 			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-right:none;">'.implode('<br />', $content[1]).'</td>

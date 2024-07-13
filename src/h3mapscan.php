@@ -1637,7 +1637,7 @@ class H3MAPSCAN {
 
 					$this->br->SkipBytes(8);
 
-					//event has some extras
+					//event object
 					if($obj['id'] == OBJECTS::EVENT) {
 						$event['availableFor'] = $this->br->ReadUint8();
 						$event['computerActivate'] = $this->br->ReadUint8();
@@ -1646,58 +1646,70 @@ class H3MAPSCAN {
 
 						$this->br->SkipBytes(4);
 
-						if($this->hota_subrev >= $this::HOTA_SUBREV3) {
-							$event['humanActivate'] = $this->br->ReadUint8();
+						$event['humanActivate'] = $this->br->ReadUint8();
+
+						if($event['humanActivate'] == 1 && $event['computerActivate'] == 1) {
+							$event['humanOrAi'] = 'Human / AI';
 						}
-						else {
-							$event['humanActivate'] = 1;
+						else if($event['humanActivate'] == 1) {
+							$event['humanOrAi'] = 'Human';
 						}
-						if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-							$event['move_bonus_type'] = $this->br->ReadUint32();
-							$event['move_bonus_value'] = $this->br->ReadUint32();
-
-							switch($event['move_bonus_type']) {
-								case 0:
-									if($event['move_bonus_value'] > 0) {
-										$event['move_bonus_type_name'] = 'Give';
-									}
-									break;
-
-								case 1:
-									$event['move_bonus_type_name'] = 'Take';
-									break;
-
-								case 2:
-									$event['move_bonus_type_name'] = 'Nullify';
-									break;
-
-								case 3:
-									$event['move_bonus_type_name'] = 'Set';
-									break;
-
-								case 4:
-									$event['move_bonus_type_name'] = 'Replenish';
-									break;
-							}
-						}
-						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
-							$event['difficulty'] = $this->br->ReadUint32();
+						else if($event['computerActivate'] == 1) {
+							$event['humanOrAi'] = 'AI';
 						}
 					}
 					else { //pandora
-						$event['availableFor'] = HNONE;
-						$event['computerActivate'] = 1;
-						$event['removeAfterVisit'] = '';
-						$event['humanActivate'] = 1;
-						if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-							$event['humanActivate'] = $this->br->ReadUint8();
-							$event['move_bonus_type'] = $this->br->ReadUint32();
-							$event['move_bonus_value'] = $this->br->ReadUint32();
-						}
-						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
-							$event['difficulty'] = $this->br->ReadUint32();
+						$this->br->SkipBytes(1);
+					}
+
+					//movement
+					$event['move_bonus_type'] = $this->br->ReadUint32();
+					$event['move_bonus_value'] = $this->br->ReadUint32();
+					switch($event['move_bonus_type']) {
+						case 0:
+							if($event['move_bonus_value'] > 0) {
+								$event['move_bonus_type_name'] = 'Give';
+							}
+							break;
+
+						case 1:
+							$event['move_bonus_type_name'] = 'Take';
+							break;
+
+						case 2:
+							$event['move_bonus_type_name'] = 'Nullify';
+							break;
+
+						case 3:
+							$event['move_bonus_type_name'] = 'Set';
+							break;
+
+						case 4:
+							$event['move_bonus_type_name'] = 'Replenish';
+							break;
+					}
+
+					//difficulty
+					$event['difficulty'] = $this->br->ReadUint32();
+					$difficultyMap = [
+						1 => 'Easy',
+						2 => 'Normal',
+						4 => 'Hard',
+						8 => 'Expert',
+						16 => 'Impossible',
+					];
+					$selectedDifficulties = [];
+					foreach ($difficultyMap as $bit => $name) {
+						if ($event['difficulty'] & $bit) {
+							$selectedDifficulties[] = $name;
 						}
 					}
+					if (empty($selectedDifficulties)) {
+						$selectedDifficulties[] = 'None';
+					}
+
+					$event['difficulty'] = [];
+					$event['difficulty'] = $selectedDifficulties;
 
 					$obj['data'] = $event;
 
@@ -2373,6 +2385,97 @@ class H3MAPSCAN {
 				'count' => 0
 			];
 		}
+	}
+
+	public function CreateRewardContents($event) {
+		$content = [];
+		$content[1] = [];
+		$content[2] = [];
+		$content[3] = [];
+		$content[4] = [];
+		$content[5] = [];
+		$content[6] = [];
+
+		if($event['gainedExp'] > 0) {
+			$content[1][] = '+'.comma($event['gainedExp']).' XP';
+		}
+		if($event['manaDiff'] != 0) {
+			$sign = $event['manaDiff'] > 0 ? '+' : '';
+			$content[1][] = $sign.comma($event['manaDiff']).' Mana';
+		}
+		if($event['moraleDiff'] != 0) {
+			$sign = $event['moraleDiff'] > 0 ? '+' : '';
+			$content[1][] = $sign.comma($event['moraleDiff']).' Morale';
+		}
+		if($event['luckDiff'] != 0) {
+			$sign = $event['luckDiff'] > 0 ? '+' : '';
+			$content[1][] = $sign.comma($event['luckDiff']).' Luck';
+		}
+		if(($event['move_bonus_type'] == 0 && $event['move_bonus_value'] > 0) || $event['move_bonus_type'] != 0) {
+			if($event['move_bonus_type'] != 1 && $event['move_bonus_value'] > 0) {
+				$sign = '+';
+			}
+			else if($event['move_bonus_type'] == 1) {
+				$sign = '-';
+			}
+			else {
+				$sign = '';
+			}
+			switch($event['move_bonus_type']) {
+				case 0:  // Give
+				case 4:  // Replenish
+					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points ('.$event['move_bonus_type_name'].')';
+					break;
+
+				case 1:  // Take
+					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points';
+					break;
+
+				case 2:  // Nullify
+					$content[1][] = $event['move_bonus_type_name'].' Movement Points';
+					break;
+
+				case 3:  // Set
+					$content[1][] = $event['move_bonus_type_name'].' Movement Points to '.comma($event['move_bonus_value']);
+					break;
+			}
+		}
+
+		foreach($event['resources'] as $rid => $amount) {
+			$sign = $amount > 0 ? '+' : '';
+			$content[2][] = $sign.comma($amount).' '.$this->GetResourceById($rid);
+		}
+
+		foreach($event['priSkill'] as $k => $ps) {
+			if($ps > 0) {
+				$content[3][] = '+'.$ps.' '.$this->GetPriskillById($k);
+			}
+		}
+		if($content[3] != null && $event['secSkill'] != null) {
+			$content[3][] = "\n";
+		}
+		foreach($event['secSkill'] as $skill) {
+			$content[3][] = $skill['level'].' '.$skill['skill'];
+		}
+
+		if(!empty($event['artifacts'])) {
+			$content[4][] = implode('<br />', $event['artifacts']);
+		}
+		if(!empty($event['spells'])) {
+			$content[5][] = implode('<br />', $event['spells']);
+		}
+
+		if(!empty($event['stack'])) {
+			$content[6][] = $this->PrintStackIncrease($event['stack']);
+		}
+
+		// for($i = 1; $i <= 6; $i++) {
+		// 	if(empty($content[$i])) {
+		// 		$content[$i][] = EMPTY_DATA;
+		// 	}
+		// }
+
+		return $content;
 	}
 
 	private function ReadTown() {
@@ -3251,11 +3354,16 @@ class H3MAPSCAN {
 	public function PlayerColors($playermask, $withtext = false) {
 		$colors = '';
 		$playermask &= $this->playerMask; //consider only allowed players
+		$p = 0;
 		for($i = 0; $i < PLAYERSNUM; $i++) {
 			if(($playermask & (1 << $i)) != 0) {
+				$p++;
 				$colors .= '<span class="color'.($i + 1).'">&nbsp;</span>&nbsp;';
 				if($withtext) {
 					$colors .= FromArray($i, $this->CS->PlayersColors).'<br />';
+				}
+				else if($p == 4) {
+					$colors .= '<br />';
 				}
 			}
 		}
