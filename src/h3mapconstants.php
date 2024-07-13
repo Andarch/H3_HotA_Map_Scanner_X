@@ -2328,8 +2328,8 @@
 
 		public $Buildings = [
 			//byte 0
-			0 => 'Town hall',
-			1 => 'City hall',
+			0 => 'Town Hall',
+			1 => 'City Hall',
 			2 => 'Capitol',
 			3 => 'Fort',
 			4 => 'Citadel',
@@ -2338,41 +2338,48 @@
 			7 => 'Blacksmith',
 			//byte 1
 			8 => 'Marketplace',
-			9 => 'Resource silo',
-			11 => 'Mages guild 1',
-			12 => 'Mages guild 2',
-			13 => 'Mages guild 3',
-			14 => 'Mages guild 4',
-			15 => 'Mages guild 5',
+			9 => 'Resource Silo',
+			10 => 'Artifact Merchants',
+			11 => 'Mage Guild Level 1',
+			12 => 'Mage Guild Level 2',
+			13 => 'Mage Guild Level 3',
+			14 => 'Mage Guild Level 4',
+			15 => 'Mage Guild Level 5',
 			//byte 2
 			16 => 'Shipyard',
 			17 => 'Grail',
 			18 => 'Special 1',
-			19 => 'Special 2', //?
+			19 => 'Special 2',
 			20 => 'Special 3',
 			21 => 'Special 4',
-			22 => 'Dwelling lvl 1',
-			23 => 'Dwelling lvl 1 upg',
+			22 => 'Dwelling Level 1',
+			23 => 'Dwelling Level 1 Upgrade',
 			//byte 3
-			24 => 'Horde lvl 1',
-			25 => 'Dwelling lvl 2',
-			26 => 'Dwelling lvl 2 upg',
-			27 => 'Horde lvl 2',
-			28 => 'Dwelling lvl 3',
-			29 => 'Dwelling lvl 3 upg',
-			30 => 'Horde lvl 3',
-			31 => 'Dwelling lvl 4',
+			24 => 'Horde Level 1',
+			25 => 'Dwelling Level 2',
+			26 => 'Dwelling Level 2 Upgrade',
+			27 => 'Horde Level 2',
+			28 => 'Dwelling Level 3',
+			29 => 'Dwelling Level 3 Upgrade',
+			30 => 'Horde Level 3',
+			31 => 'Dwelling Level 4',
 			//byte 4
-			32 => 'Dwelling lvl 4 upg',
-			33 => 'Horde lvl 4',
-			34 => 'Dwelling lvl 5',
-			35 => 'Dwelling lvl 5 upg',
-			36 => 'Horde lvl 5',
-			37 => 'Dwelling lvl 6',
-			38 => 'Dwelling lvl 6 upg',
-			39 => 'Dwelling lvl 7',
+			32 => 'Dwelling Level 4 Upgrade',
+			33 => 'Horde Level 4',
+			34 => 'Dwelling Level 5',
+			35 => 'Dwelling Level 5 Upgrade',
+			36 => 'Horde Level 5',
+			37 => 'Dwelling Level 6',
+			38 => 'Dwelling Level 6 Upgrade',
+			39 => 'Dwelling Level 7',
 			//byte 5
-			40 => 'Dwelling lvl 7 upg',
+			40 => 'Dwelling Level 7 Upgrade',
+		];
+
+		public $TownEventHotaSpecial = [
+			2 => 'Dwelling Level 7b',
+			4 => 'Dwelling Level 7b Upgrade',
+			8 => 'Mana Generator',
 		];
 
 		public $MonolithsOne = [

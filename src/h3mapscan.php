@@ -2658,10 +2658,11 @@ class H3MAPSCAN {
 			$this->br->SkipBytes(16);
 
 			if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-				$this->br->ReadInt32(); //add_creature_count7b; //dreadnought bonus
-				$bit_count = $this->br->ReadInt32();
-				if($bit_count > 0) {
-					$this->br->SkipBytes(intval(($bit_count + 7) / 8));
+				$event['hotaLevel7b'] = $this->br->ReadInt32(); //hota_lvl_7b
+				$event['hotaAmount'] = $this->br->ReadInt32(); //hota_amount
+
+				for($i = 0; $i < 6; $i++) {
+					$event['hotaSpecial'][] = $this->br->ReadUint8();
 				}
 			}
 

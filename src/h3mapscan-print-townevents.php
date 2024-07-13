@@ -17,7 +17,7 @@ echo '<table class="bigtable">
 			<th class="nowrap" nowrap="nowrap">First</th>
 			<th class="nowrap" nowrap="nowrap">Period</th>
 			<th class="nowrap" nowrap="nowrap">Resources</th>
-			<th class="nowrap" nowrap="nowrap">Monsters</th>
+			<th class="nowrap" nowrap="nowrap">Creatures</th>
 			<th class="nowrap" nowrap="nowrap">Buildings</th>
 			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
@@ -76,8 +76,8 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		$monsters = [];
 		foreach($event['monsters'] as $lvl => $amount) {
 			if($amount > 0) {
-				$monname = $monlvlprint ? 'Lvl '.($lvl + 1) : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
-				$monsters[] = $monname.' = '.$amount;
+				$monname = $monlvlprint ? 'Level '.($lvl + 1).' Creatures' : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
+				$monsters[] = '+'.$amount.' '.$monname;
 			}
 		}
 
@@ -87,6 +87,14 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				if(($bbyte >> $i) & 0x01) {
 					$bid = $k * 8 + $i;
 					$buildings[] = $this->h3mapscan->GetBuildingById($bid);
+				}
+			}
+		}
+		if($event['hotaSpecial'][5] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial as $bit => $name) {
+				if($event['hotaSpecial'][5] & $bit) {
+					$buildings[] = $name;
 				}
 			}
 		}
