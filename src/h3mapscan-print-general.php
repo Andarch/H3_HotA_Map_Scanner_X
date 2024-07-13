@@ -1,6 +1,10 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
+if(!strcmp($this->h3mapscan->description, '')) {
+	$this->h3mapscan->description = EMPTY_DATA;
+}
+
 echo '<table class="bigtable">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap">File</th>
@@ -46,6 +50,10 @@ echo '<table class="bigtable">
 foreach($this->h3mapscan->players as $k => $player) {
 	$tm = $this->h3mapscan->teams[($k)];
 	$teamNum = $tm + 1;
+
+	if(empty($player['HeroName'])) {
+		$player['HeroName'][] = EMPTY_DATA;
+	}
 
 	echo '<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.($k + 1).'</td>

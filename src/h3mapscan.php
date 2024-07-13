@@ -499,14 +499,14 @@ class H3MAPSCAN {
 			$this->players[$i]['ai'] = $this->yesOrNo($ai);
 
 			//def values
-			$this->players[$i]['HeroAtMain'] = 1;
+			$this->players[$i]['HeroAtMain'] = EMPTY_DATA;
 			$this->players[$i]['GenerateHero'] = 0;
 			$this->players[$i]['HeroFace'] = [];
 			$this->players[$i]['HeroName'] = [];
 			$this->players[$i]['HeroCount'] = 0;
 			$this->players[$i]['townsOwned'] = 0;
 			$this->players[$i]['placeholder'] = OBJECT_INVALID;
-			$this->players[$i]['mainTownFaction'] = '-';
+			$this->players[$i]['mainTownFaction'] = EMPTY_DATA;
 			$this->players[$i]['HasMainTown'] = '';
 
 			$this->players[$i]['behaviour'] = $this->br->ReadUint8();
@@ -3741,7 +3741,7 @@ class MapCoords {
 
 	public function GetCoords() {
 		if($this->x == COOR_INVALID) {
-			return '-';
+			return EMPTY_DATA;
 		}
 		return '['.$this->x.','.$this->y.','.$this->z.']';
 	}
