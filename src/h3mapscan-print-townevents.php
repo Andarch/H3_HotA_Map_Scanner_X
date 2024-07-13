@@ -72,6 +72,9 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				}
 			}
 		}
+		if(empty($eres)) {
+			$eres[] = EMPTY_DATA;
+		}
 
 		$monsters = [];
 		foreach($event['monsters'] as $lvl => $amount) {
@@ -80,6 +83,17 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				$monsters[] = '+'.$amount.' '.$monname;
 			}
 		}
+		if(empty($monsters)) {
+			$monsters[] = EMPTY_DATA;
+		}
+
+		// if(!strcmp($town['affiliation'], 'Random')) {
+		// 	echo 'hotaLevel7b: '.$event['hotaLevel7b'];
+		// 	echo '</br>';
+		// 	echo 'hotaAmount: '.$event['hotaAmount'];
+		// 	echo '</br>';
+		// 	echo 'hotaSpecial: '.implode(', ', $event['hotaSpecial']);
+		// }
 
 		$buildings = [];
 		foreach($event['buildings'] as $k => $bbyte) {
@@ -90,27 +104,91 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				}
 			}
 		}
+		if($event['hotaSpecial'][0] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial1 as $bit => $name) {
+				if($event['hotaSpecial'][0] & $bit) {
+					$buildings[] = $name;
+				}
+			}
+		}
+		if($event['hotaSpecial'][1] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial2 as $bit => $name) {
+				if($event['hotaSpecial'][1] & $bit) {
+					$buildings[] = $name;
+				}
+			}
+		}
+		if($event['hotaSpecial'][2] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial3 as $bit => $name) {
+				if($event['hotaSpecial'][2] & $bit) {
+					$buildings[] = $name;
+				}
+			}
+		}
+		if($event['hotaSpecial'][3] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial4 as $bit => $name) {
+				if($event['hotaSpecial'][3] & $bit) {
+					$buildings[] = $name;
+				}
+			}
+		}
+		if($event['hotaSpecial'][4] > 0) {
+			$selectedSpecials = [];
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial5 as $bit => $name) {
+				if($event['hotaSpecial'][4] & $bit) {
+					$buildings[] = $name;
+				}
+			}
+		}
 		if($event['hotaSpecial'][5] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial as $bit => $name) {
+			foreach($this->h3mapscan->CS->TownEventHotaSpecial6 as $bit => $name) {
 				if($event['hotaSpecial'][5] & $bit) {
 					$buildings[] = $name;
 				}
 			}
+		}
+		if(empty($buildings)) {
+			$buildings[] = EMPTY_DATA;
 		}
 
 		echo '
 				<td class="ac specialcell1">'.($e + 1).'</td>
 				<td>'.$event['name'].'</td>
 				<td>'.$this->h3mapscan->PlayerColors($event['players']).'</td>
-				<td class="ac">'.$event['humanOrAi'].'</td>
-				<td class="ac">'.$first.'</td>
-				<td class="ac">'.$period.'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $buildings).'</td>
-				<td class="smalltext1">'.nl2br($event['message']).'</td>
-			</tr>';
+				<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$first.'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$period.'</td>';
+
+		if($eres[0] == EMPTY_DATA) {
+			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap">'.implode('<br />', $eres).'</td>';
+		} else {
+			echo '<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>';
+		}
+
+		if($monsters[0] == EMPTY_DATA) {
+			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap">'.implode('<br />', $monsters).'</td>';
+		} else {
+			echo '<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>';
+		}
+
+		if($buildings[0] == EMPTY_DATA) {
+			echo '<td class="smalltext1 ac">'.implode(', ', $buildings).'</td>';
+		} else {
+			echo '<td class="smalltext1">'.implode(', ', $buildings).'</td>';
+		}
+
+		if($event['message'] == EMPTY_DATA) {
+			echo '<td class="smalltext1 ac">'.nl2br($event['message']).'</td>';
+		} else {
+			echo '<td class="smalltext1">'.nl2br($event['message']).'</td>';
+		}
+
+		echo '</tr>';
 	}
 
 }

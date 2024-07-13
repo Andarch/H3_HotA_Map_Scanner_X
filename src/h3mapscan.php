@@ -2629,6 +2629,9 @@ class H3MAPSCAN {
 
 			$event['name'] = $this->ReadString();
 			$event['message'] = $this->ReadString();
+			if($event['message'] == '') {
+				$event['message'] = EMPTY_DATA;
+			}
 
 			$event['res'] = $this->ReadResourses();
 

@@ -2376,10 +2376,56 @@
 			40 => 'Dwelling Level 7 Upgrade',
 		];
 
-		public $TownEventHotaSpecial = [
+		public $TownEventHotaSpecial1 = [
+			1 => 'Lighthouse (Castle)',
+			2 => 'Brotherhood of the Sword (Castle)',
+			4 => 'Stables (Castle)',
+			16 => 'Mystic Pond (Rampart)',
+			32 => 'Fountain of Fortune (Rampart)',
+			64 => 'Treasury (Rampart)',
+		];
+
+		public $TownEventHotaSpecial2 = [
+			1 => 'Library (Tower)',
+			2 => 'Wall of Knowledge (Tower)',
+			4 => 'Lookout Tower (Tower)',
+			16 => 'Brimstone Stormclouds (Inferno)',
+			32 => 'Castle Gate (Inferno)',
+			64 => 'Order of Fire (Inferno)',
+		];
+
+		public $TownEventHotaSpecial3 = [
+			1 => 'Cover of Darkness (Necropolis)',
+			2 => 'Necromancy Amplifier (Necropolis)',
+			4 => 'Skeleton Transformer (Necropolis)',
+			16 => 'Mana Vortex (Dungeon)',
+			32 => 'Portal of Summoning (Dungeon)',
+			64 => 'Battle Scholar Academy (Dungeon)',
+		];
+
+		public $TownEventHotaSpecial4 = [
+			1 => 'Escape Tunnel (Stronghold)',
+			2 => 'Freelancer\'s Guild (Stronghold)',
+			4 => 'Ballista Yard (Stronghold)',
+			8 => 'Hall of Valhalla (Stronghold)',
+			16 => 'Cage of Warlords (Fortress)',
+			32 => 'Glyphs of Fear (Fortress)',
+			64 => 'Blood Obelisk (Fortress)',
+		];
+
+		public $TownEventHotaSpecial5 = [
+			1 => 'Magic University (Conflux)',
+			2 => 'Horde Level 7',
+			16 => 'Thieves\' Guild (Cove)',
+			32 => 'Grotto (Cove)',
+			64 => 'Gunpowder Warehouse (Cove)',
+		];
+
+		public $TownEventHotaSpecial6 = [
+			1 => 'Bank (Factory)',
 			2 => 'Dwelling Level 7b',
 			4 => 'Dwelling Level 7b Upgrade',
-			8 => 'Mana Generator',
+			8 => 'Mana Generator (Factory)',
 		];
 
 		public $MonolithsOne = [
