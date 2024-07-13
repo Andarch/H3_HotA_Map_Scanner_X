@@ -32,10 +32,10 @@ require_once 'src/config.php';
 	}
 
 	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
-	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 3px #aaa; }
-	th, td {border: solid 1px #aaa; min-width: 1em; padding: 2px 6px 3px 6px; }
-	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 3px #aaa; border-right: solid 3px #aaa; }
-	td { border-right: solid 3px #aaa; background: #2b2b2b; }
+	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 2px #aaa; }
+	th, td {border: solid 2px #aaa; min-width: 1em; padding: 2px 6px 3px 6px; }
+	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 2px #aaa; border-right: solid 2px #aaa; }
+	td { border-right: solid 2px #aaa; background: #2b2b2b; }
 	.ar { text-align:right; }
 	.ac { text-align:center; }
 	.al { text-align:left; }
@@ -165,7 +165,7 @@ require_once 'src/config.php';
 	.h3DataTable td,
 	.h3DataTable th {
 		padding: 5px !important;
-		border: solid 1px #ddd !important;
+		border: solid 2px #aaa !important;
 		box-sizing: border-box !important;
 	}
 

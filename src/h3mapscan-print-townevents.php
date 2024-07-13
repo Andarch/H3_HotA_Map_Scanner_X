@@ -45,8 +45,10 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 	usort($town['events'], 'SortTownEventsByDate');
 	foreach($town['events'] as $e => $event) {
+		$additionalrow = false;
 		if($e > 0) {
 			echo '<tr>';
+			$additionalrow = true;
 		}
 
 		$first = 'Day '.$event['firstOccurence'];
@@ -156,36 +158,42 @@ foreach($this->h3mapscan->towns_list as $towno) {
 			$buildings[] = EMPTY_DATA;
 		}
 
+		if($additionalrow) {
+			$borderstyle = 'border-top:1px dashed grey;border-bottom:1px dashed grey;';
+		} else {
+			$borderstyle = 'border-bottom:1px dashed grey;';
+		}
+
 		echo '
-				<td class="ac specialcell1">'.($e + 1).'</td>
-				<td>'.$event['name'].'</td>
-				<td>'.$this->h3mapscan->PlayerColors($event['players']).'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$first.'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$period.'</td>';
+				<td class="ac specialcell1" style="'.$borderstyle.'">'.($e + 1).'</td>
+				<td style="'.$borderstyle.'">'.$event['name'].'</td>
+				<td style="'.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
+				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$event['humanOrAi'].'</td>
+				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$first.'</td>
+				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$period.'</td>';
 
 		if($eres[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap">'.implode('<br />', $eres).'</td>';
+			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>';
 		} else {
-			echo '<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>';
+			echo '<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>';
 		}
 
 		if($monsters[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap">'.implode('<br />', $monsters).'</td>';
+			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>';
 		} else {
-			echo '<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>';
+			echo '<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>';
 		}
 
 		if($buildings[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 ac">'.implode(', ', $buildings).'</td>';
+			echo '<td class="smalltext1 ac" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>';
 		} else {
-			echo '<td class="smalltext1">'.implode(', ', $buildings).'</td>';
+			echo '<td class="smalltext1" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>';
 		}
 
 		if($event['message'] == EMPTY_DATA) {
-			echo '<td class="smalltext1 ac">'.nl2br($event['message']).'</td>';
+			echo '<td class="smalltext1 ac" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
 		} else {
-			echo '<td class="smalltext1">'.nl2br($event['message']).'</td>';
+			echo '<td class="smalltext1" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
 		}
 
 		echo '</tr>';
