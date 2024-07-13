@@ -2640,6 +2640,17 @@ class H3MAPSCAN {
 			}
 
 			$event['computerAffected'] = $this->br->ReadUint8();
+
+			if($event['human'] == 1 && $event['computerAffected'] == 1) {
+				$event['humanOrAi'] = 'Human / AI';
+			}
+			else if($event['human'] == 1) {
+				$event['humanOrAi'] = 'Human';
+			}
+			else if($event['computerAffected'] == 1) {
+				$event['humanOrAi'] = 'AI';
+			}
+
 			$event['firstOccurence'] = $this->br->ReadUint16() + 1;
 			$event['nextOccurence'] =	$this->br->ReadUint16();
 

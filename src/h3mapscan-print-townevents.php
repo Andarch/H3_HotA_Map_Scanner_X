@@ -76,7 +76,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				<td class="ac specialcell1">'.($e + 1).'</td>
 				<td>'.$event['name'].'</td>
 				<td>'.$this->h3mapscan->PlayerColors($event['players']).'</td>
-				<td class="ac">'.$event['human'].'/'.$event['computerAffected'].'</td>
+				<td class="ac">'.$event['humanOrAi'].'</td>
 				<td class="ac">'.$event['firstOccurence'].'</td>
 				<td class="ac">'.$event['nextOccurence'].'</td>
 				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $resources).'</td>
