@@ -1642,6 +1642,7 @@ class H3MAPSCAN {
 						$event['availableFor'] = $this->br->ReadUint8();
 						$event['computerActivate'] = $this->br->ReadUint8();
 						$event['removeAfterVisit'] = $this->br->ReadUint8();
+						$event['removeAfterVisit'] = $event['removeAfterVisit'] == 1 ? 'Repeat' : 'Once';
 
 						$this->br->SkipBytes(4);
 
@@ -1654,6 +1655,30 @@ class H3MAPSCAN {
 						if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 							$event['move_bonus_type'] = $this->br->ReadUint32();
 							$event['move_bonus_value'] = $this->br->ReadUint32();
+
+							switch($event['move_bonus_type']) {
+								case 0:
+									if($event['move_bonus_value'] > 0) {
+										$event['move_bonus_type_name'] = 'Give';
+									}
+									break;
+
+								case 1:
+									$event['move_bonus_type_name'] = 'Take';
+									break;
+
+								case 2:
+									$event['move_bonus_type_name'] = 'Nullify';
+									break;
+
+								case 3:
+									$event['move_bonus_type_name'] = 'Set';
+									break;
+
+								case 4:
+									$event['move_bonus_type_name'] = 'Replenish';
+									break;
+							}
 						}
 						if($this->hota_subrev >= $this::HOTA_SUBREV5) {
 							$event['difficulty'] = $this->br->ReadUint32();

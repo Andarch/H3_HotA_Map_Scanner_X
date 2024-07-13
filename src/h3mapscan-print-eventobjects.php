@@ -1,17 +1,17 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-//events, pandora box
+//events
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
 			<th class="nowrap" nowrap="nowrap">Position</th>
-			<th class="nowrap" nowrap="nowrap">Available for</th>
+			<th class="nowrap" nowrap="nowrap">Allowed Players</th>
 			<th class="nowrap" nowrap="nowrap">Human/AI</th>
-			<th class="nowrap" nowrap="nowrap">One Visit</th>
-			<th class="nowrap" nowrap="nowrap">Guards</th>
+			<th class="nowrap" nowrap="nowrap">Repeat</th>
+			<th class="nowrap" nowrap="nowrap">Guardians</th>
 			<th class="nowrap" nowrap="nowrap" colspan="6">Rewards</th>
 			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
@@ -50,6 +50,35 @@ foreach($this->h3mapscan->events_list as $evento) {
 		if($event['luckDiff'] != 0) {
 			$sign = $event['luckDiff'] > 0 ? '+' : '';
 			$content[1][] = $sign.comma($event['luckDiff']).' Luck';
+		}
+		if(($event['move_bonus_type'] == 0 && $event['move_bonus_value'] > 0) || $event['move_bonus_type'] != 0) {
+			if($event['move_bonus_type'] != 1 && $event['move_bonus_value'] > 0) {
+				$sign = '+';
+			}
+			else if($event['move_bonus_type'] == 1) {
+				$sign = '-';
+			}
+			else {
+				$sign = '';
+			}
+			switch($event['move_bonus_type']) {
+				case 0:  // Give
+				case 4:  // Replenish
+					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points ('.$event['move_bonus_type_name'].')';
+					break;
+
+				case 1:  // Take
+					$content[1][] = $sign.comma($event['move_bonus_value']).' Movement Points';
+					break;
+
+				case 2:  // Nullify
+					$content[1][] = $event['move_bonus_type_name'].' Movement Points';
+					break;
+
+				case 3:  // Set
+					$content[1][] = $event['move_bonus_type_name'].' Movement Points to '.comma($event['move_bonus_value']);
+					break;
+			}
 		}
 
 		foreach($event['resources'] as $rid => $amount) {
