@@ -1606,7 +1606,7 @@ class H3MAPSCAN {
 						}
 						else {
 							$spell = $this->GetSpellById($spellid);
-							$scroll = $artname.': '.$spell;
+							$scroll = $artname.' – '.$spell;
 							$event['artifacts'][] = $scroll;
 							if($obj['id'] == OBJECTS::EVENT) {
 								$this->artifacts_list[] = new ListObject($scroll, $obj['pos'], 'Event Object');
@@ -1851,7 +1851,7 @@ class H3MAPSCAN {
 						$spell = $this->GetSpellById($spellid);
 						$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Spell Scroll');
 
-						$artifact['name'] = $obj['objname'].': '.$spell;
+						$artifact['name'] = $obj['objname'].' – '.$spell;
 					}
 					elseif($obj['id'] == OBJECTS::ARTIFACT) {
 						$artifact['name'] = $this->GetArtifactById($obj['subid']); //artid
@@ -3114,6 +3114,17 @@ class H3MAPSCAN {
 				$out .= '<br />';
 			}
 			$out .= $this->GetCreatureById($mon['id']).': '.comma($mon['count']);
+		}
+		return $out;
+	}
+
+	public function PrintStackIncrease($creatures) {
+		$out = '';
+		foreach($creatures as $k => $mon) {
+			if($k > 0) {
+				$out .= '<br />';
+			}
+			$out .= '+'.comma($mon['count']).' '.$this->GetCreatureById($mon['id']);
 		}
 		return $out;
 	}
