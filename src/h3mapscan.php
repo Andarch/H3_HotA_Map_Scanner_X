@@ -1222,7 +1222,8 @@ class H3MAPSCAN {
 				$artifact = $this->GetArtifactById($artid);
 			}
 			$this->artifacts_list[] = new ListObject($artifact, $this->curcoor, $this->curobj);
-			$artifacts[] = $this->GetArtifactPosById($slot).': '.$artifact;
+
+			$artifacts[] = $artifact;
 		}
 	}
 
