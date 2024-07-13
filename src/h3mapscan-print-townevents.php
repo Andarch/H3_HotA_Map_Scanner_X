@@ -5,12 +5,12 @@
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
-			<th class="nowrap" nowrap="nowrap">Town #</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Town Name</th>
 			<th class="nowrap" nowrap="nowrap">Coordinates</th>
 			<th class="nowrap" nowrap="nowrap">Owner</th>
 			<th class="nowrap" nowrap="nowrap">Type</th>
-			<th class="nowrap" nowrap="nowrap">Event #</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Name</th>
 			<th class="nowrap" nowrap="nowrap">Players</th>
 			<th class="nowrap" nowrap="nowrap">Human / AI</th>
@@ -49,9 +49,28 @@ foreach($this->h3mapscan->towns_list as $towno) {
 			echo '<tr>';
 		}
 
-		$resources = [];
-		foreach($event['res'] as $rid => $amount) {
-			$resources[] = $this->h3mapscan->GetResourceById($rid).' = '.$amount;
+		$first = 'Day '.$event['firstOccurence'];
+		$period = '';
+		switch($event['nextOccurence']) {
+			case 0:
+				$period = EMPTY_DATA;
+				break;
+			case 1:
+				$period = 'Every day';
+				break;
+			default:
+				$period = 'Every '.$event['nextOccurence'].' days';
+				break;
+		}
+
+		$eres = [];
+		if(!empty($event['res'])) {
+			foreach($event['res'] as $r => $res) {
+				if($res != 0) {
+					$sign = $res > 0 ? '+' : '';
+					$eres[] = $sign.comma($res).' '.$this->h3mapscan->GetResourceById($r);
+				}
+			}
 		}
 
 		$monsters = [];
@@ -77,9 +96,9 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				<td>'.$event['name'].'</td>
 				<td>'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac">'.$event['humanOrAi'].'</td>
-				<td class="ac">'.$event['firstOccurence'].'</td>
-				<td class="ac">'.$event['nextOccurence'].'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $resources).'</td>
+				<td class="ac">'.$first.'</td>
+				<td class="ac">'.$period.'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
 				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $monsters).'</td>
 				<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $buildings).'</td>
 				<td class="smalltext1">'.nl2br($event['message']).'</td>
