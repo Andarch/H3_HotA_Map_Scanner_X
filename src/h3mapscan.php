@@ -973,7 +973,7 @@ class H3MAPSCAN {
 
 					$hero['defname'] = $this->GetHeroById($i);
 					$hero['name'] = $hero['defname'];
-					$hero['exp'] = 0;
+					$hero['exp'] = null;
 					$hero['sex'] = '';
 					$hero['bio'] = '';
 					$hero['priskills'] = [];
@@ -982,9 +982,11 @@ class H3MAPSCAN {
 					$hero['artifacts'] = [];
 
 					if(!empty($this->customHeroes)) {
-						$heroc = FromArray($hero['id'], $this->customHeroes, false);
-						if(is_array($heroc)) {
-							$hero['name'] = $heroc['name'];
+						if(array_key_exists($hero['id'], $this->customHeroes)) {
+							$heroc = FromArray($hero['id'], $this->customHeroes);
+							if(strcmp($heroc['name'], '')) {
+								$hero['name'] = $heroc['name'];
+							}
 							$hero['mask'] = $heroc['mask'];
 							$hero['face'] = $heroc['face'];
 						}
@@ -993,9 +995,6 @@ class H3MAPSCAN {
 					$hasExp = $this->br->ReadUint8();
 					if($hasExp) {
 						$hero['exp'] = $this->br->ReadUint32();
-					}
-					else {
-						$heroExp = 0;
 					}
 
 					$hasSecSkills = $this->br->ReadUint8();
@@ -1019,7 +1018,7 @@ class H3MAPSCAN {
 
 					// 0xFF is default, 00 male, 01 female
 					$herosex = $this->br->ReadUint8();
-					$hero['sex'] = $herosex == HNONE ? 'Default' : ($herosex ? 'Female' : 'Male');
+					$hero['sex'] = $herosex == HNONE ? '' : ($herosex ? 'Female' : 'Male');
 
 					$hasCustomSpells = $this->br->ReadUint8();
 					if($hasCustomSpells) {
@@ -1033,7 +1032,7 @@ class H3MAPSCAN {
 						}
 					}
 
-					$this->heroesPredefined[] = $hero;
+					$this->heroesPredefined[$hero['id']] = $hero;
 				}
 
 				//extra hota stuff
@@ -3213,7 +3212,7 @@ class H3MAPSCAN {
 		foreach($this->heroesPredefined as $k => $heroP) { //predefined
 			foreach($this->heroes_list as $heroM) { //on map
 				if($heroP['id'] == $heroM['data']['subid']) {
-					$this->heroesPredefined[$k]['name'] .= $heroM['data']['name'];
+					$this->heroesPredefined[$k]['name'] = $heroM['data']['name'];
 					break;
 				}
 			}
