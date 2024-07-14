@@ -973,7 +973,7 @@ class H3MAPSCAN {
 
 					$hero['defname'] = $this->GetHeroById($i);
 					$hero['name'] = $hero['defname'];
-					$hero['exp'] = 0;
+					$hero['xp'] = 0;
 					$hero['sex'] = '';
 					$hero['bio'] = '';
 					$hero['priskills'] = [];
@@ -994,7 +994,7 @@ class H3MAPSCAN {
 
 					$hasExp = $this->br->ReadUint8();
 					if($hasExp) {
-						$hero['exp'] = $this->br->ReadUint32();
+						$hero['xp'] = $this->br->ReadUint32();
 					}
 
 					$hasSecSkills = $this->br->ReadUint8();
@@ -1069,15 +1069,15 @@ class H3MAPSCAN {
 			$hero['name'] = $this->GetHeroById($hero['subid']);
 		}
 
-		$hero['exp'] = 0;
+		$hero['xp'] = 0;
 		if($this->version > $this::AB) {
 			$hasExp = $this->br->ReadUint8();
 			if($hasExp) {
-				$hero['exp'] = $this->br->ReadUint32();
+				$hero['xp'] = $this->br->ReadUint32();
 			}
 		}
 		else {
-			$hero['exp'] = $this->br->ReadUint32();
+			$hero['xp'] = $this->br->ReadUint32();
 		}
 
 		$hasPortrait = $this->br->ReadUint8();

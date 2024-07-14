@@ -45,10 +45,10 @@ foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
 	}
 	$playermask = $this->h3mapscan->playerMask & $herop['mask'];
 
-	if(isset($herop['exp'])) {
-		$herop['exp'] = comma($herop['exp']);
+	if($herop['xp'] > 0) {
+		$herop['xp'] = comma($herop['xp']);
 	} else {
-		$herop['exp'] = '';
+		$herop['xp'] = '';
 	}
 
 	$skills = [];
@@ -60,7 +60,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
 		<td class="rowheader">'.(++$n).'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$herop['name'].'<br /><span style="font-size:0.9em;">('.$herop['defname'].')</span></td>
 		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($playermask).'</td>
-		<td class="ac">'.$herop['exp'].'</td>
+		<td class="ac">'.$herop['xp'].'</td>
 		<td class="ac">'.$herop['sex'].'</td>
 		<td class"smalltext1">'.nl2br($herop['bio']).'</td>
 		<td class"ac smalltext1">'.implode(', ', $herop['priskills']).'</td>
@@ -103,7 +103,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 	}
 	$artifacts = implode('<br />', $hero['data']['artifacts']);
 
-	$level = $this->h3mapscan->GetLevelByExp($hero['data']['exp']);
+	$level = $this->h3mapscan->GetLevelByExp($hero['data']['xp']);
 
 	sort($hero['data']['spells']);
 
@@ -113,7 +113,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 		<td class="ac nowrap" nowrap="nowrap">'.$hero['pos']->GetCoords().'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$color.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$class.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.comma($hero['data']['exp']).' XP<br />Level '.$level.'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.comma($hero['data']['xp']).' XP<br />Level '.$level.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$primary.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap">'.$secondary.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($hero['data']['stack']).'</td>
