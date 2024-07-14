@@ -974,7 +974,7 @@ class H3MAPSCAN {
 					$hero['defname'] = $this->GetHeroById($i);
 					$hero['name'] = $hero['defname'];
 					$hero['xp'] = 0;
-					$hero['sex'] = '';
+					$hero['gender'] = '';
 					$hero['bio'] = '';
 					$hero['priskills'] = [];
 					$hero['skills'] = [];
@@ -1018,7 +1018,7 @@ class H3MAPSCAN {
 
 					// 0xFF is default, 00 male, 01 female
 					$herosex = $this->br->ReadUint8();
-					$hero['sex'] = $herosex == HNONE ? '' : ($herosex ? 'Female' : 'Male');
+					$hero['gender'] = $herosex == HNONE ? '' : ($herosex ? 'Female' : 'Male');
 
 					$hasCustomSpells = $this->br->ReadUint8();
 					if($hasCustomSpells) {
@@ -1118,14 +1118,14 @@ class H3MAPSCAN {
 		}
 
 		$hero['bio'] = '';
-		$hero['sex'] = 'default';
+		$hero['gender'] = 'default';
 		if($this->version > $this::ROE) {
 			$hasCustomBiography = $this->br->ReadUint8();
 			if($hasCustomBiography) {
 				$hero['bio'] = $this->ReadString();
 			}
 			$herosex = $this->br->ReadUint8();
-			$hero['sex'] = $herosex == HNONE ? 'Default' : ($herosex ? 'Female' : 'Male');
+			$hero['gender'] = $herosex == HNONE ? 'Default' : ($herosex ? 'Female' : 'Male');
 		}
 
 		$hero['spells'] = [];

@@ -61,7 +61,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
 		<td class="ac nowrap" nowrap="nowrap">'.$herop['name'].'<br /><span style="font-size:0.9em;">('.$herop['defname'].')</span></td>
 		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($playermask).'</td>
 		<td class="ac">'.$herop['xp'].'</td>
-		<td class="ac">'.$herop['sex'].'</td>
+		<td class="ac">'.$herop['gender'].'</td>
 		<td class"smalltext1">'.nl2br($herop['bio']).'</td>
 		<td class"ac smalltext1">'.implode(', ', $herop['priskills']).'</td>
 		<td class"smalltext1">'.implode('<br />', $skills).'</td>
