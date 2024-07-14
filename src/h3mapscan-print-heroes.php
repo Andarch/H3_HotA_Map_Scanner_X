@@ -53,7 +53,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
 
 	$skills = [];
 	foreach($herop['skills'] as $skill) {
-		$skills[] = $skill[0].': '.$skill[1];
+		$skills[] = $skill[1].' '.$skill[0];
 	}
 
 	echo '<tr>
@@ -99,7 +99,7 @@ foreach($this->h3mapscan->heroes_list as $hero) {
 		if($k > 0) {
 			$secondary .= '<br />';
 		}
-		$secondary .= $skill['skill'].': '.$skill['level'];
+		$secondary .= $skill['level'].' '.$skill['skill'];
 	}
 	$artifacts = implode('<br />', $hero['data']['artifacts']);
 
