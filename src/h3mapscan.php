@@ -3385,9 +3385,12 @@ class H3MAPSCAN {
 		for($i = 0; $i < PLAYERSNUM; $i++) {
 			if(($playermask & (1 << $i)) != 0) {
 				$p++;
-				$colors .= '<span class="color'.($i + 1).'">&nbsp;</span>&nbsp;';
+				$colors .= '<span class="color'.($i + 1).'">&nbsp;</span>';
 				if($withtext) {
 					$colors .= FromArray($i, $this->CS->PlayersColors).'<br />';
+				}
+				else if($p != 4 && $p != 8) {
+					$colors .= '&nbsp;';
 				}
 				else if($p == 4) {
 					$colors .= '<br />';
