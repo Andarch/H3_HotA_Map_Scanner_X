@@ -973,7 +973,7 @@ class H3MAPSCAN {
 
 					$hero['defname'] = $this->GetHeroById($i);
 					$hero['name'] = $hero['defname'];
-					$hero['exp'] = null;
+					$hero['exp'] = 0;
 					$hero['sex'] = '';
 					$hero['bio'] = '';
 					$hero['priskills'] = [];
