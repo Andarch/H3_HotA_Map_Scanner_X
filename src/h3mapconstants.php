@@ -2053,7 +2053,7 @@
 			13 => 'Battle Mage',
 			14 => 'Beastmaster',
 			15 => 'Witch',
-			16 => 'PlanesWalker',
+			16 => 'Planeswalker',
 			17 => 'Elementalist',
 			18 => 'Captain',
 			19 => 'Navigator',
