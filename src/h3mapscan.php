@@ -996,6 +996,11 @@ class H3MAPSCAN {
 					if($hasExp) {
 						$hero['xp'] = $this->br->ReadUint32();
 					}
+					if($hero['xp'] > 0) {
+						$hero['xp'] = comma($hero['xp']);
+					} else {
+						$hero['xp'] = '';
+					}
 
 					$hasSecSkills = $this->br->ReadUint8();
 					if($hasSecSkills) {
@@ -1006,6 +1011,11 @@ class H3MAPSCAN {
 							$hero['skills'][] = $secSkills;
 						}
 					}
+					$skills = [];
+					foreach($hero['skills'] as $skill) {
+						$skills[] = $skill[1].' '.$skill[0];
+					}
+					$hero['skills'] = $skills;
 
 					$this->curobj = 'Hero def: '.$hero['name'];
 					$this->curcoor = new MapCoords();

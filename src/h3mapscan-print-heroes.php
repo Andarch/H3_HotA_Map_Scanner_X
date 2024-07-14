@@ -40,21 +40,7 @@ echo '</br>
 		</tr>';
 
 foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
-	if($herop['mask'] == 0) {
-		continue;
-	}
 	$playermask = $this->h3mapscan->playerMask & $herop['mask'];
-
-	if($herop['xp'] > 0) {
-		$herop['xp'] = comma($herop['xp']);
-	} else {
-		$herop['xp'] = '';
-	}
-
-	$skills = [];
-	foreach($herop['skills'] as $skill) {
-		$skills[] = $skill[1].' '.$skill[0];
-	}
 
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
@@ -64,7 +50,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
 		<td class="ac">'.$herop['gender'].'</td>
 		<td class"smalltext1">'.nl2br($herop['bio']).'</td>
 		<td class"ac smalltext1">'.implode(', ', $herop['priskills']).'</td>
-		<td class"smalltext1">'.implode('<br />', $skills).'</td>
+		<td class"smalltext1">'.implode('<br />', $herop['skills']).'</td>
 		<td class"smalltext1">'.implode(', ', $herop['spells']).'</td>
 		<td class"smalltext1">'.implode('<br />', $herop['artifacts']).'</td>
 	</tr>';
