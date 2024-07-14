@@ -117,6 +117,7 @@ require_once 'src/config.php';
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		font-size: 16px;
 		text-align: center;
+		/* display: none; */
 	}
 
 	.sidebarMain {
@@ -131,6 +132,7 @@ require_once 'src/config.php';
 		overflow: auto;
 		color: #ddd;
 		font-size: 22px;
+		/* display: none; */
 	}
 
 	.sidebarMain a {
