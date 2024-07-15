@@ -40,19 +40,51 @@ echo '</br>
 		</tr>';
 
 foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
-	$playermask = $this->h3mapscan->playerMask & $herop['mask'];
+	$heropf = [];
+	if(
+		$herop['name'] !== $herop['defname'] ||
+		$herop['mask'] < 255 ||
+		$herop['face'] !== $herop['id'] ||
+		$herop['xp'] > 0 ||
+		$herop['gender'] !== '' ||
+		$herop['bio'] !== '' ||
+		!empty($herop['priskills']) ||
+		!empty($herop['skills']) ||
+		!empty($herop['spells']) ||
+		!empty($herop['artifacts'])
+	) {
+		$heropf[$k] = $herop;
+
+		echo 'name: '.$herop['name'].'</br>';
+		echo 'defname: '.$herop['defname'].'</br>';
+		echo 'mask: '.$herop['mask'].'</br>';
+		echo 'face: '.$herop['face'].'</br>';
+		echo 'id: '.$herop['id'].'</br>';
+		echo 'xp: '.$herop['xp'].'</br>';
+		echo 'gender: '.$herop['gender'].'</br>';
+		echo 'bio: '.$herop['bio'].'</br>';
+		echo 'priskills: '.implode(', ', $herop['priskills']).'</br>';
+		echo 'skills: '.implode(', ', $herop['skills']).'</br>';
+		echo 'spells: '.implode(', ', $herop['spells']).'</br>';
+		echo 'artifacts: '.implode(', ', $herop['artifacts']).'</br>';
+		echo '</br>';
+	}
+}
+
+foreach($heropf as $k => $hero) {
+	$playermask = $this->h3mapscan->playerMask & $hero['mask'];
 
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$herop['name'].'<br /><span style="font-size:0.9em;">('.$herop['defname'].')</span></td>
+		<td class="ac nowrap" nowrap="nowrap">'.$hero['name'].'<br /><span style="font-size:0.9em;">('.$hero['defname'].')</span></td>
 		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($playermask).'</td>
-		<td class="ac">'.$herop['xp'].'</td>
-		<td class="ac">'.$herop['gender'].'</td>
-		<td class"smalltext1">'.nl2br($herop['bio']).'</td>
-		<td class"ac smalltext1">'.implode(', ', $herop['priskills']).'</td>
-		<td class"smalltext1">'.implode('<br />', $herop['skills']).'</td>
-		<td class"smalltext1">'.implode(', ', $herop['spells']).'</td>
-		<td class"smalltext1">'.implode('<br />', $herop['artifacts']).'</td>
+		<td class="ac">'.$hero['xp'].'</td>
+		<td class="ac">'.$hero['gender'].'</td>
+		<td class"smalltext1">'.nl2br($hero['bio']).'</td>
+		<td class"ac smalltext1">'.implode(', ', $hero['priskills']).'</td>
+		<td class"smalltext1">'.implode('<br />', $hero['skills']).'</td>
+		<td class"smalltext1">'.implode(', ', $hero['spells']).'</td>
+		<td class"smalltext1">'.implode('<br />', $hero['artifacts']).'</td>
 	</tr>';
 }
 echo '</table>';
