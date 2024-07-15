@@ -1042,7 +1042,19 @@ class H3MAPSCAN {
 						}
 					}
 
-					$this->heroesPredefined[$hero['id']] = $hero;
+					if(
+						$hero['name'] !== $hero['defname'] ||
+						$hero['mask'] < 255 ||
+						$hero['xp'] > 0 ||
+						$hero['gender'] !== '' ||
+						$hero['bio'] !== '' ||
+						!empty($hero['priskills']) ||
+						!empty($hero['skills']) ||
+						!empty($hero['spells']) ||
+						!empty($hero['artifacts'])
+					) {
+						$this->heroesPredefined[$hero['id']] = $hero;
+					}
 				}
 
 				//extra hota stuff
