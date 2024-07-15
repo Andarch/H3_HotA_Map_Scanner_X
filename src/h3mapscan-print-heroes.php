@@ -25,7 +25,7 @@ echo '</table>';
 $n = 0;
 echo '</br>
 	<table class="bigtable">
-		<tr><th class="tableheader2" colspan="10">Predefined Hero Changes</th></tr>
+		<tr><th class="tableheader2" colspan="11">Predefined Hero Changes</th></tr>
 		<tr>
 			<th>#</th>
 			<th>Name</th>
