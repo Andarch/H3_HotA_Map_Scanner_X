@@ -29,6 +29,7 @@ echo '</br>
 		<tr>
 			<th>#</th>
 			<th>Name</th>
+			<th>Map Name</th>
 			<th>Players</th>
 			<th>XP</th>
 			<th>Gender</th>
@@ -39,52 +40,54 @@ echo '</br>
 			<th>Artifacts</th>
 		</tr>';
 
-foreach($this->h3mapscan->heroesPredefined as $k => $herop) {
-	$heropf = [];
+foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
+	$fpHeroes = [];
 	if(
-		$herop['name'] !== $herop['defname'] ||
-		$herop['mask'] < 255 ||
-		$herop['face'] !== $herop['id'] ||
-		$herop['xp'] > 0 ||
-		$herop['gender'] !== '' ||
-		$herop['bio'] !== '' ||
-		!empty($herop['priskills']) ||
-		!empty($herop['skills']) ||
-		!empty($herop['spells']) ||
-		!empty($herop['artifacts'])
+		$pHero['pname'] !== $pHero['defname'] ||
+		$pHero['mask'] < 255 ||
+		$pHero['face'] !== $pHero['id'] ||
+		$pHero['xp'] > 0 ||
+		$pHero['gender'] !== '' ||
+		$pHero['bio'] !== '' ||
+		!empty($pHero['priskills']) ||
+		!empty($pHero['skills']) ||
+		!empty($pHero['spells']) ||
+		!empty($pHero['artifacts'])
 	) {
-		$heropf[$k] = $herop;
+		$fpHeroes[$k] = $pHero;
 
-		echo 'name: '.$herop['name'].'</br>';
-		echo 'defname: '.$herop['defname'].'</br>';
-		echo 'mask: '.$herop['mask'].'</br>';
-		echo 'face: '.$herop['face'].'</br>';
-		echo 'id: '.$herop['id'].'</br>';
-		echo 'xp: '.$herop['xp'].'</br>';
-		echo 'gender: '.$herop['gender'].'</br>';
-		echo 'bio: '.$herop['bio'].'</br>';
-		echo 'priskills: '.implode(', ', $herop['priskills']).'</br>';
-		echo 'skills: '.implode(', ', $herop['skills']).'</br>';
-		echo 'spells: '.implode(', ', $herop['spells']).'</br>';
-		echo 'artifacts: '.implode(', ', $herop['artifacts']).'</br>';
+		echo 'defname: '.$pHero['defname'].'</br>';
+		echo 'pname: '.$pHero['pname'].'</br>';
+		echo 'mname: '.$pHero['mname'].'</br>';
+		echo 'mask: '.$pHero['mask'].'</br>';
+		echo 'face: '.$pHero['face'].'</br>';
+		echo 'id: '.$pHero['id'].'</br>';
+		echo 'xp: '.$pHero['xp'].'</br>';
+		echo 'gender: '.$pHero['gender'].'</br>';
+		echo 'bio: '.$pHero['bio'].'</br>';
+		echo 'priskills: '.implode(', ', $pHero['priskills']).'</br>';
+		echo 'skills: '.implode(', ', $pHero['skills']).'</br>';
+		echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
+		echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
 		echo '</br>';
 	}
 }
 
-foreach($heropf as $k => $hero) {
-	$playermask = $this->h3mapscan->playerMask & $hero['mask'];
+foreach($fpHeroes as $k => $fpHero) {
+	$playermask = $this->h3mapscan->playerMask & $fpHero['mask'];
 
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$hero['name'].'<br /><span style="font-size:0.9em;">('.$hero['defname'].')</span></td>
+		<td class="ac nowrap" nowrap="nowrap">'.$fpHero['pname'].'<br /><span style="font-size:0.9em;">('.$fpHero['defname'].')</span></td>
+		<td class="ac nowrap" nowrap="nowrap">'.$fpHero['mname'].'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($playermask).'</td>
-		<td class="ac">'.$hero['xp'].'</td>
-		<td class="ac">'.$hero['gender'].'</td>
-		<td class"smalltext1">'.nl2br($hero['bio']).'</td>
-		<td class"ac smalltext1">'.implode(', ', $hero['priskills']).'</td>
-		<td class"smalltext1">'.implode('<br />', $hero['skills']).'</td>
-		<td class"smalltext1">'.implode(', ', $hero['spells']).'</td>
-		<td class"smalltext1">'.implode('<br />', $hero['artifacts']).'</td>
+		<td class="ac">'.$fpHero['xp'].'</td>
+		<td class="ac">'.$fpHero['gender'].'</td>
+		<td class"smalltext1">'.nl2br($fpHero['bio']).'</td>
+		<td class"ac smalltext1">'.implode(', ', $fpHero['priskills']).'</td>
+		<td class"smalltext1">'.implode('<br />', $fpHero['skills']).'</td>
+		<td class"smalltext1">'.implode(', ', $fpHero['spells']).'</td>
+		<td class"smalltext1">'.implode('<br />', $fpHero['artifacts']).'</td>
 	</tr>';
 }
 echo '</table>';
@@ -106,52 +109,52 @@ echo '</br><table class="bigtable">
 			<th>Artifacts</th>
 			<th>Spells</th>
 		</tr>';
-foreach($this->h3mapscan->heroes_list as $hero) {
-	$color = $hero['data']['prisoner'] ? 'Prisoner' : $this->h3mapscan->GetPlayerColorById($hero['data']['PlayerColor']);
+foreach($this->h3mapscan->heroes_list as $mHero) {
+	$color = $mHero['data']['prisoner'] ? 'Prisoner' : $this->h3mapscan->GetPlayerColorById($mHero['data']['PlayerColor']);
 
-	$class = $this->h3mapscan->GetHeroClassByHeroId($hero['data']['subid']);
+	$class = $this->h3mapscan->GetHeroClassByHeroId($mHero['data']['subid']);
 
-	$primary = implode(' ', $hero['data']['priskills']);
+	$primary = implode(' ', $mHero['data']['priskills']);
 	$secondary = '';
-	foreach($hero['data']['skills'] as $k => $skill) {
+	foreach($mHero['data']['skills'] as $k => $skill) {
 		if($k > 0) {
 			$secondary .= '<br />';
 		}
 		$secondary .= $skill['level'].' '.$skill['skill'];
 	}
-	$artifacts = implode('<br />', $hero['data']['artifacts']);
+	$artifacts = implode('<br />', $mHero['data']['artifacts']);
 
-	$level = $this->h3mapscan->GetLevelByExp($hero['data']['xp']);
+	$level = $this->h3mapscan->GetLevelByExp($mHero['data']['xp']);
 
-	sort($hero['data']['spells']);
+	sort($mHero['data']['spells']);
 
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$hero['data']['name'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$hero['pos']->GetCoords().'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$mHero['data']['name'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$mHero['pos']->GetCoords().'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$color.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$class.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.comma($hero['data']['xp']).' XP<br />Level '.$level.'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$primary.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap">'.$secondary.'</td>
-		<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($hero['data']['stack']).'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($mHero['data']['stack']).'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap">'.$artifacts.'</td>
-		<td class="smalltext1">'.implode(', ', $hero['data']['spells']).'</td>
+		<td class="smalltext1">'.implode(', ', $mHero['data']['spells']).'</td>
 	</tr>';
 }
 
-foreach($this->h3mapscan->heroes_placeholder as $hero) {
+foreach($this->h3mapscan->heroes_placeholder as $hHero) {
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
-		<td class="nowrap" nowrap="nowrap">'.$hero['name'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$hero['pos']->GetCoords().'</td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($hero['owner']).'</td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetHeroClassByHeroId($hero['heroid']).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$hHero['name'].'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$hHero['pos']->GetCoords().'</td>
+		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($hHero['owner']).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetHeroClassByHeroId($hHero['heroid']).'</td>
 		<td></td>
 		<td></td>
 		<td></td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($hero['stack']).'</td>
-		<td>'.implode('<br />', $hero['artifacts']).'</td>
+		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($hHero['stack']).'</td>
+		<td>'.implode('<br />', $hHero['artifacts']).'</td>
 		<td></td>
 	</tr>';
 }
