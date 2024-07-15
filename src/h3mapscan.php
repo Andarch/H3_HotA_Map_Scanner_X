@@ -970,10 +970,10 @@ class H3MAPSCAN {
 					$pHero['pname'] = '';
 					$pHero['mname'] = '';
 					$pHero['mask'] = 255;
-					$pHero['face'] = 0;
+					$pHero['pface'] = 255;
+					$pHero['mface'] = 255;
 
 					$pHero['defname'] = $this->GetHeroById($i);
-					// $pHero['pname'] = $pHero['defname'];
 					$pHero['xp'] = 0;
 					$pHero['gender'] = '';
 					$pHero['bio'] = '';
@@ -991,7 +991,7 @@ class H3MAPSCAN {
 								$pHero['pname'] = $pHero['defname'];
 							}
 							$pHero['mask'] = $cHero['mask'];
-							$pHero['face'] = $cHero['face'];
+							$pHero['pface'] = $cHero['face'];
 						}
 					}
 
@@ -1066,6 +1066,7 @@ class H3MAPSCAN {
 		$hero['name'] = 'Default';
 		$hero['epx'] = 0;
 		$hero['uid'] = 0;
+		$hero['portrait'] = 0;
 
 		if($this->version > $this::ROE) {
 			$hero['uid'] = $this->br->ReadUint32();
@@ -1096,6 +1097,8 @@ class H3MAPSCAN {
 		$hasPortrait = $this->br->ReadUint8();
 		if($hasPortrait) {
 			$hero['portrait'] = $this->br->ReadUint8();
+		} else {
+			$hero['portrait'] = 255;
 		}
 
 		//is hero in prison
@@ -3226,6 +3229,7 @@ class H3MAPSCAN {
 			foreach($this->heroes_list as $l => $mHero) { //on map
 				if($pHero['id'] == $mHero['data']['subid']) {
 					$this->heroesPredefined[$k]['mname'] = $mHero['data']['name'];
+					$this->heroesPredefined[$k]['mface'] = $mHero['data']['portrait'];
 					if($mHero['data']['name'] === $pHero['defname'] && $pHero['pname'] !== $pHero['defname']) {
 						$this->heroesPredefined[$k]['mname'] = $pHero['pname'];
 						$this->heroes_list[$l]['data']['name'] = $pHero['pname'];

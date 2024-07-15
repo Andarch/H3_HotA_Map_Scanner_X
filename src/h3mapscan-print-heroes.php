@@ -42,10 +42,17 @@ echo '</br>
 
 foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 	$fpHeroes = [];
+	$pfaceChanged = false;
+	$hotafaceid = $pHero['id'] + 7;
+	if($pHero['id'] < 156 && $pHero['pface'] !== 255) {
+		$pfaceChanged = true;
+	} else if($pHero['id'] >= 156 && $pHero['pface'] !== $hotafaceid) {
+		$pfaceChanged = true;
+	}
 	if(
 		$pHero['pname'] !== $pHero['defname'] ||
 		$pHero['mask'] < 255 ||
-		$pHero['face'] !== $pHero['id'] ||
+		$pfaceChanged ||
 		$pHero['xp'] > 0 ||
 		$pHero['gender'] !== '' ||
 		$pHero['bio'] !== '' ||
@@ -56,25 +63,30 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 	) {
 		$fpHeroes[$k] = $pHero;
 
-		echo 'defname: '.$pHero['defname'].'</br>';
-		echo 'pname: '.$pHero['pname'].'</br>';
-		echo 'mname: '.$pHero['mname'].'</br>';
-		echo 'mask: '.$pHero['mask'].'</br>';
-		echo 'face: '.$pHero['face'].'</br>';
-		echo 'id: '.$pHero['id'].'</br>';
-		echo 'xp: '.$pHero['xp'].'</br>';
-		echo 'gender: '.$pHero['gender'].'</br>';
-		echo 'bio: '.$pHero['bio'].'</br>';
-		echo 'priskills: '.implode(', ', $pHero['priskills']).'</br>';
-		echo 'skills: '.implode(', ', $pHero['skills']).'</br>';
-		echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
-		echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
-		echo '</br>';
+		// echo 'defname: '.$pHero['defname'].'</br>';
+		// echo 'pname: '.$pHero['pname'].'</br>';
+		// echo 'mname: '.$pHero['mname'].'</br>';
+		// echo 'mask: '.$pHero['mask'].'</br>';
+		// echo 'pface: '.$pHero['pface'].'</br>';
+		// echo 'mface: '.$pHero['mface'].'</br>';
+		// echo 'id: '.$pHero['id'].'</br>';
+		// echo 'xp: '.$pHero['xp'].'</br>';
+		// echo 'gender: '.$pHero['gender'].'</br>';
+		// echo 'bio: '.$pHero['bio'].'</br>';
+		// echo 'priskills: '.implode(', ', $pHero['priskills']).'</br>';
+		// echo 'skills: '.implode(', ', $pHero['skills']).'</br>';
+		// echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
+		// echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
+		// echo '</br>';
 	}
 }
 
 foreach($fpHeroes as $k => $fpHero) {
-	$playermask = $this->h3mapscan->playerMask & $fpHero['mask'];
+	if($fpHero['mask'] < 255) {
+		$playermask = $this->h3mapscan->playerMask & $fpHero['mask'];
+	} else {
+		$playermask = 0;
+	}
 
 	echo '<tr>
 		<td class="rowheader">'.(++$n).'</td>
