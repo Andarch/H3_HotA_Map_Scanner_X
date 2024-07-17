@@ -1,6 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
+echo '<div class="tables-flex-container">';
+
 //disabled heroes
 $n = 0;
 echo '<table class="bigtable">
@@ -148,6 +150,8 @@ foreach($fpHeroes as $k => $fpHero) {
 	</tr>';
 }
 echo '</table>';
+
+echo '</div>';
 
 //map heroes
 $n = 0;
