@@ -25,10 +25,10 @@ echo '</table>';
 $n = 0;
 echo '</br>
 	<table class="bigtable">
-		<tr><th class="tableheader2" colspan="11">Predefined Hero Changes</th></tr>
+		<tr><th class="tableheader2" colspan="11">Hero Template Changes</th></tr>
 		<tr>
 			<th>#</th>
-			<th colspan="2" class="thsub">Name</br><span class="smalltext3">(Map Name) | (Def Name)</span></th>
+			<th colspan="2" class="thsub">Template Name</br><span class="smalltext3">(Actual Name) | (Def Name)</span></th>
 			<th>Players</th>
 			<th>XP</th>
 			<th>Gender</th>
