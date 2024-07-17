@@ -1040,9 +1040,10 @@ class H3MAPSCAN {
 
 					$hasCustomPrimSkills = $this->br->ReadUint8();
 					if($hasCustomPrimSkills) {
-						for($j = 0; $j < PRIMARY_SKILLS; $j++) {
-							$pHero['priskills'][] = $this->br->ReadUint8();
-						}
+						$pHero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
+						$pHero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
+						$pHero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
+						$pHero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
 					}
 
 					$this->heroesPredefined[$pHero['id']] = $pHero;
@@ -1162,9 +1163,10 @@ class H3MAPSCAN {
 		if($this->version > $this::AB) {
 			$hasCustomPrimSkills = $this->br->ReadUint8();
 			if($hasCustomPrimSkills) {
-				for($j = 0; $j < PRIMARY_SKILLS; $j++) {
-					$hero['priskills'][] = $this->br->ReadUint8();
-				}
+				$hero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
+				$hero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
+				$hero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
+				$hero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
 			}
 		}
 		$this->br->SkipBytes(16);
