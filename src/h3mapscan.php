@@ -968,7 +968,7 @@ class H3MAPSCAN {
 					$pHero = [];
 					$pHero['id'] = $i;
 					$pHero['pname'] = '';
-					$pHero['mname'] = '';
+					$pHero['mname'] = EMPTY_DATA;
 					$pHero['mask'] = 255;
 					$pHero['pface'] = 255;
 					$pHero['mface'] = 255;

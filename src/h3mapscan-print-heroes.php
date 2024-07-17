@@ -16,29 +16,28 @@ echo '<table class="bigtable">
 		</tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
-		<td class="rowheader">'.(++$n).'</td>
-		<td>'.$class.'</td>
-		<td>'.implode(', ', $heroes).'</td>
+		<td class="rowheader" style="padding-top:2px; padding-bottom:2px;">'.(++$n).'</td>
+		<td style="padding-top:2px; padding-bottom:2px;">'.$class.'</td>
+		<td class="smalltext1" style="padding-top:2px; padding-bottom:2px;">'.implode(', ', $heroes).'</td>
 	</tr>';
 }
 echo '</table>';
 
 //predefined hero changes
 $n = 0;
-echo '</br>
-	<table class="bigtable">
+echo '<table class="bigtable">
 		<tr><th class="tableheader2" colspan="11">Hero Template Changes</th></tr>
 		<tr>
 			<th>#</th>
-			<th colspan="2" class="thsub">Template Name</br><span class="smalltext3">(Actual Name) | (Def Name)</span></th>
+			<th colspan="2" class="thsub">Template Name</br><span class="smalltext3">Map Name | Def Name</span></th>
 			<th>Players</th>
 			<th>XP</th>
 			<th>Gender</th>
-			<th>Bio</th>
 			<th>Primary</th>
 			<th>Secondary</th>
-			<th>Spells</th>
 			<th>Artifacts</th>
+			<th>Spells</th>
+			<th>Bio</th>
 		</tr>';
 
 $fpHeroes = [];
@@ -91,7 +90,7 @@ foreach($fpHeroes as $k => $fpHero) {
 	}
 
 	if($fpHero['xp'] > 0) {
-		$xp = comma($fpHero['xp']).' XP';
+		$xp = $fpHero['xp'].' XP';
 	} else {
 		$xp = EMPTY_DATA;
 	}
@@ -127,31 +126,29 @@ foreach($fpHeroes as $k => $fpHero) {
 	}
 
 	if(!empty($fpHero['artifacts'])) {
-		$artifacts = implode(', ', $fpHero['artifacts']);
+		$artifacts = implode('</br>', $fpHero['artifacts']);
 	} else {
 		$artifacts = EMPTY_DATA;
 	}
 
 	echo '<tr>
 		<td class="rowheader" rowspan="2">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;;">'.$fpHero['pname'].'</td>
+		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;">'.$fpHero['pname'].'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$players.'</td>
 		<td class="ac" rowspan="2">'.$xp.'</td>
 		<td class="ac" rowspan="2">'.$gender.'</td>
-		<td class"smalltext1" rowspan="2">'.$bio.'</td>
-		<td class"ac smalltext1" rowspan="2">'.$priskills.'</td>
-		<td class"smalltext1" rowspan="2">'.$skills.'</td>
-		<td class"smalltext1" rowspan="2">'.$spells.'</td>
-		<td class"smalltext1" rowspan="2">'.$artifacts.'</td>
+		<td class"ac smalltext1" rowspan="2" style="font-size:12px !important;">'.$priskills.'</td>
+		<td class"smalltext1" rowspan="2" style="font-size:12px !important;">'.$skills.'</td>
+		<td class"smalltext1" rowspan="2" style="font-size:12px !important;">'.$artifacts.'</td>
+		<td class"smalltext1" rowspan="2" style="font-size:12px !important; max-width:200px;">'.$spells.'</td>
+		<td class"smalltext1" rowspan="2" style="font-size:12px !important; max-width:350px;">'.$bio.'</td>
 	</tr>
 	<tr>
-		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-right:1px dashed grey;">('.$fpHero['mname'].')</td>
-		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-left:1px dashed grey;">('.$fpHero['defname'].')</td>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-right:1px dashed grey;">'.$fpHero['mname'].'</td>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-left:1px dashed grey;">'.$fpHero['defname'].'</td>
 	</tr>';
 }
 echo '</table>';
-
-echo '</div>';
 
 //map heroes
 $n = 0;
@@ -219,3 +216,6 @@ foreach($this->h3mapscan->heroes_placeholder as $hHero) {
 		<td></td>
 	</tr>';
 }
+echo '</table>';
+
+echo '</div>';

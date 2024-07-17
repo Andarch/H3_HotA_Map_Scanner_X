@@ -46,7 +46,6 @@ require_once 'src/config.php';
 
 	.bigtable th { font-size: 15px; }
 	.bigtable td { font-size: 14px; }
-
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
@@ -77,7 +76,7 @@ require_once 'src/config.php';
 
 	.smalltext2 {
 		font-size: 11px !important;
-		color: #888;
+		color: grey;
 		padding: 0.5px 6px 2px 6px;
 	}
 
@@ -90,7 +89,7 @@ require_once 'src/config.php';
 		background: #451713;
 		font-weight: bold;
 		text-align: center;
-		padding-left: 8px;
+		/* padding-left: 8px; */
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
@@ -99,7 +98,7 @@ require_once 'src/config.php';
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		padding-left: 8px;
+		/* padding-left: 8px; */
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
