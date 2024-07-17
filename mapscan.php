@@ -50,7 +50,7 @@ require_once 'src/config.php';
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
-	.thsub { line-height: 13px; padding: 4px 6px; }
+	.thsub { line-height: 14px; padding: 5px 6px; }
 
 	body, table { color: #ddd; }
 
@@ -78,6 +78,7 @@ require_once 'src/config.php';
 	.smalltext2 {
 		font-size: 11px !important;
 		color: #888;
+		padding: 0.5px 6px 2px 6px;
 	}
 
 	.smalltext3 {
