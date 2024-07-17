@@ -3463,8 +3463,12 @@ class H3MAPSCAN {
 	}
 
 	public function GetHeroClassByHeroId($id) {
-		$classid = FromArray($id, $this->CS->HeroesClass);
-		return FromArray($classid, $this->CS->HeroClass);
+		if($id != 255) {
+			$classid = FromArray($id, $this->CS->HeroesClass);
+			return FromArray($classid, $this->CS->HeroClass);
+		} else {
+			return 'Random';
+		}
 	}
 
 	public function GetHeroClassById($id) {

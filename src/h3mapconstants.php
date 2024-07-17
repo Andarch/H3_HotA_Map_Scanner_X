@@ -2059,7 +2059,7 @@
 			19 => 'Navigator',
 			20 => 'Mercenary',
 			21 => 'Artificer',
-			22 => 'Random',
+			255 => 'Random',
 		];
 
 

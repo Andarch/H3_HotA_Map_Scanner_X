@@ -110,7 +110,7 @@ echo '</br><table class="bigtable">
 		<tr><th class="tableheader2" colspan="11">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
-			<th>Heroes</th>
+			<th>Hero</th>
 			<th>Coordinates</th>
 			<th>Owner</th>
 			<th>Class</th>
