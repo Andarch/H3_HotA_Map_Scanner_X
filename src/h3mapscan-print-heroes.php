@@ -83,21 +83,64 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 foreach($fpHeroes as $k => $fpHero) {
 	if($fpHero['mask'] < 255) {
 		$playermask = $this->h3mapscan->playerMask & $fpHero['mask'];
+		$players = $this->h3mapscan->PlayerColors($playermask);
 	} else {
-		$playermask = 0;
+		$players = EMPTY_DATA;
+	}
+
+	if($fpHero['xp'] > 0) {
+		$xp = comma($fpHero['xp']).' XP';
+	} else {
+		$xp = EMPTY_DATA;
+	}
+
+	if($fpHero['gender'] !== '') {
+		$gender = $fpHero['gender'];
+	} else {
+		$gender = EMPTY_DATA;
+	}
+
+	if($fpHero['bio'] !== '') {
+		$bio = nl2br($fpHero['bio']);
+	} else {
+		$bio = EMPTY_DATA;
+	}
+
+	if(!empty($fpHero['priskills'])) {
+		$priskills = implode(', ', $fpHero['priskills']);
+	} else {
+		$priskills = EMPTY_DATA;
+	}
+
+	if(!empty($fpHero['skills'])) {
+		$skills = implode('</br>', $fpHero['skills']);
+	} else {
+		$skills = EMPTY_DATA;
+	}
+
+	if(!empty($fpHero['spells'])) {
+		$spells = implode(', ', $fpHero['spells']);
+	} else {
+		$spells = EMPTY_DATA;
+	}
+
+	if(!empty($fpHero['artifacts'])) {
+		$artifacts = implode(', ', $fpHero['artifacts']);
+	} else {
+		$artifacts = EMPTY_DATA;
 	}
 
 	echo '<tr>
 		<td class="rowheader" rowspan="2">'.(++$n).'</td>
 		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;;">'.$fpHero['pname'].'</td>
-		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->PlayerColors($playermask).'</td>
-		<td class="ac" rowspan="2">'.$fpHero['xp'].'</td>
-		<td class="ac" rowspan="2">'.$fpHero['gender'].'</td>
-		<td class"smalltext1" rowspan="2">'.nl2br($fpHero['bio']).'</td>
-		<td class"ac smalltext1" rowspan="2">'.implode(', ', $fpHero['priskills']).'</td>
-		<td class"smalltext1" rowspan="2">'.implode('<br />', $fpHero['skills']).'</td>
-		<td class"smalltext1" rowspan="2">'.implode(', ', $fpHero['spells']).'</td>
-		<td class"smalltext1" rowspan="2">'.implode('<br />', $fpHero['artifacts']).'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$players.'</td>
+		<td class="ac" rowspan="2">'.$xp.'</td>
+		<td class="ac" rowspan="2">'.$gender.'</td>
+		<td class"smalltext1" rowspan="2">'.$bio.'</td>
+		<td class"ac smalltext1" rowspan="2">'.$priskills.'</td>
+		<td class"smalltext1" rowspan="2">'.$skills.'</td>
+		<td class"smalltext1" rowspan="2">'.$spells.'</td>
+		<td class"smalltext1" rowspan="2">'.$artifacts.'</td>
 	</tr>
 	<tr>
 		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-right:1px dashed grey;">('.$fpHero['mname'].')</td>
