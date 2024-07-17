@@ -471,7 +471,7 @@
 			19 => 'Tactics',
 			20 => 'Artillery',
 			21 => 'Learning',
-			22 => 'Offence',
+			22 => 'Offense',
 			23 => 'Armorer',
 			24 => 'Intelligence',
 			25 => 'Sorcery',

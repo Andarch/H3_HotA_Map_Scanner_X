@@ -49,8 +49,6 @@ require_once 'src/config.php';
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
-	.thsub { line-height: 14px; padding: 5px 6px 4px; }
-
 	body, table { color: #ddd; }
 
 	.content {
@@ -66,8 +64,25 @@ require_once 'src/config.php';
 		text-align: center;
 	}
 
+	.subheader {
+		font-size: 10px !important;
+		color: #8e8963;
+		padding: 1px 6px 1px 6px;
+		background: #5a5855;
+	}
+
 	.specialcell1 {
 		background: #5a5855;
+		font-weight: bold;
+		font-size: 14px !important;
+	}
+
+	.specialcell2 {
+		background: #444;
+		font-weight: bold;
+		font-size: 11px !important;
+		padding: 2px 6px 2px 6px;
+		color: grey;
 	}
 
 	.smalltext1 {
@@ -77,12 +92,18 @@ require_once 'src/config.php';
 	.smalltext2 {
 		font-size: 11px !important;
 		color: grey;
-		padding: 0.5px 6px 2px 6px;
+		padding: 2px 6px 2px 6px;
 	}
 
-	.smalltext3 {
-		font-size: 10px !important;
-		color: #8e8963;
+	.cellfill {
+		--dot-bg: #333;
+		--dot-color: grey;
+		--dot-size: 0.25px;
+		--dot-space: 1px;
+		background:
+			linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+			linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
+			var(--dot-color);
 	}
 
 	.tableheader1 {
