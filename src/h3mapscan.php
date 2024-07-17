@@ -967,7 +967,7 @@ class H3MAPSCAN {
 
 					$pHero = [];
 					$pHero['id'] = $i;
-					$pHero['pname'] = '';
+					$pHero['tname'] = '';
 					$pHero['mname'] = EMPTY_DATA;
 					$pHero['mask'] = 255;
 					$pHero['pface'] = 255;
@@ -986,9 +986,9 @@ class H3MAPSCAN {
 						if(array_key_exists($pHero['id'], $this->customHeroes)) {
 							$cHero = FromArray($pHero['id'], $this->customHeroes);
 							if($cHero['cname'] !== '') {
-								$pHero['pname'] = $cHero['cname'];
+								$pHero['tname'] = $cHero['cname'];
 							} else {
-								$pHero['pname'] = $pHero['defname'];
+								$pHero['tname'] = $pHero['defname'];
 							}
 							$pHero['mask'] = $cHero['mask'];
 							$pHero['pface'] = $cHero['face'];
@@ -3232,9 +3232,9 @@ class H3MAPSCAN {
 				if($pHero['id'] == $mHero['data']['subid']) {
 					$this->heroesPredefined[$k]['mname'] = $mHero['data']['name'];
 					$this->heroesPredefined[$k]['mface'] = $mHero['data']['portrait'];
-					if($mHero['data']['name'] === $pHero['defname'] && $pHero['pname'] !== $pHero['defname']) {
-						$this->heroesPredefined[$k]['mname'] = $pHero['pname'];
-						$this->heroes_list[$l]['data']['name'] = $pHero['pname'];
+					if($mHero['data']['name'] === $pHero['defname'] && $pHero['tname'] !== $pHero['defname']) {
+						$this->heroesPredefined[$k]['mname'] = $pHero['tname'];
+						$this->heroes_list[$l]['data']['name'] = $pHero['tname'];
 					}
 					break;
 				}

@@ -51,7 +51,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		$pfaceChanged = true;
 	}
 	if(
-		$pHero['pname'] !== $pHero['defname'] ||
+		$pHero['tname'] !== $pHero['defname'] ||
 		$pHero['mask'] < 255 ||
 		$pfaceChanged ||
 		$pHero['gender'] !== '' ||
@@ -65,7 +65,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		$fpHeroes[$k] = $pHero;
 
 		// echo 'defname: '.$pHero['defname'].'</br>';
-		// echo 'pname: '.$pHero['pname'].'</br>';
+		// echo 'tname: '.$pHero['tname'].'</br>';
 		// echo 'mname: '.$pHero['mname'].'</br>';
 		// echo 'mask: '.$pHero['mask'].'</br>';
 		// echo 'pface: '.$pHero['pface'].'</br>';
@@ -138,7 +138,7 @@ foreach($fpHeroes as $k => $fpHero) {
 
 	echo '<tr>
 		<td class="rowheader" rowspan="2">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;">'.$fpHero['pname'].'</td>
+		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;">'.$fpHero['tname'].'</td>
 		<td class="ac" rowspan="2">'.$class.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$players.'</td>
 		<td class="ac" rowspan="2">'.$gender.'</td>
@@ -159,10 +159,10 @@ echo '</table>';
 //map heroes
 $n = 0;
 echo '</br><table class="bigtable">
-		<tr><th class="tableheader2" colspan="11">Map Heroes</th></tr>
+		<tr><th class="tableheader2" colspan="12">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
-			<th>Hero</th>
+			<th colspan="2" class="thsub">Map Name</br><span class="smalltext3">Template Name | Def Name</span></th>
 			<th>Coordinates</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -193,17 +193,21 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 	sort($mHero['data']['spells']);
 
 	echo '<tr>
-		<td class="rowheader">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$mHero['data']['name'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$mHero['pos']->GetCoords().'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$color.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$class.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
-		<td class="nowrap smalltext1" nowrap="nowrap">'.$primary.'</td>
-		<td class="smalltext1 nowrap" nowrap="nowrap">'.$secondary.'</td>
-		<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($mHero['data']['stack']).'</td>
-		<td class="smalltext1 nowrap" nowrap="nowrap">'.$artifacts.'</td>
-		<td class="smalltext1">'.implode(', ', $mHero['data']['spells']).'</td>
+		<td class="rowheader" rowspan="2">'.(++$n).'</td>
+		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;">'.$mHero['data']['name'].'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$mHero['pos']->GetCoords().'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$color.'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$class.'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
+		<td class="nowrap smalltext1" nowrap="nowrap" rowspan="2">'.$primary.'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="2">'.$secondary.'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->PrintStack($mHero['data']['stack']).'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="2">'.$artifacts.'</td>
+		<td class="smalltext1" rowspan="2">'.implode(', ', $mHero['data']['spells']).'</td>
+	</tr>
+	<tr>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-right:1px dashed grey;">'.$fpHero['tname'].'</td>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-left:1px dashed grey;">'.$fpHero['defname'].'</td>
 	</tr>';
 }
 
