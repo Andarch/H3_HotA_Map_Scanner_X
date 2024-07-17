@@ -28,8 +28,7 @@ echo '</br>
 		<tr><th class="tableheader2" colspan="11">Predefined Hero Changes</th></tr>
 		<tr>
 			<th>#</th>
-			<th>Name</th>
-			<th>Map Name</th>
+			<th colspan="2" class="thsub">Name</br><span class="smalltext3">(Map Name) | (Def Name)</span></th>
 			<th>Players</th>
 			<th>XP</th>
 			<th>Gender</th>
@@ -49,7 +48,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 	} else if($pHero['id'] >= 156 && $pHero['pface'] !== $hotafaceid) {
 		$pfaceChanged = true;
 	}
-	if(
+	/* if(
 		$pHero['pname'] !== $pHero['defname'] ||
 		$pHero['mask'] < 255 ||
 		$pfaceChanged ||
@@ -60,7 +59,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		!empty($pHero['skills']) ||
 		!empty($pHero['spells']) ||
 		!empty($pHero['artifacts'])
-	) {
+	) { */
 		$fpHeroes[$k] = $pHero;
 
 		// echo 'defname: '.$pHero['defname'].'</br>';
@@ -78,7 +77,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		// echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
 		// echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
 		// echo '</br>';
-	}
+	// }
 }
 
 foreach($fpHeroes as $k => $fpHero) {
@@ -89,17 +88,20 @@ foreach($fpHeroes as $k => $fpHero) {
 	}
 
 	echo '<tr>
-		<td class="rowheader">'.(++$n).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$fpHero['pname'].'<br /><span style="font-size:0.9em;">('.$fpHero['defname'].')</span></td>
-		<td class="ac nowrap" nowrap="nowrap">'.$fpHero['mname'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($playermask).'</td>
-		<td class="ac">'.$fpHero['xp'].'</td>
-		<td class="ac">'.$fpHero['gender'].'</td>
-		<td class"smalltext1">'.nl2br($fpHero['bio']).'</td>
-		<td class"ac smalltext1">'.implode(', ', $fpHero['priskills']).'</td>
-		<td class"smalltext1">'.implode('<br />', $fpHero['skills']).'</td>
-		<td class"smalltext1">'.implode(', ', $fpHero['spells']).'</td>
-		<td class"smalltext1">'.implode('<br />', $fpHero['artifacts']).'</td>
+		<td class="rowheader" rowspan="2">'.(++$n).'</td>
+		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;;">'.$fpHero['pname'].'</td>
+		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->PlayerColors($playermask).'</td>
+		<td class="ac" rowspan="2">'.$fpHero['xp'].'</td>
+		<td class="ac" rowspan="2">'.$fpHero['gender'].'</td>
+		<td class"smalltext1" rowspan="2">'.nl2br($fpHero['bio']).'</td>
+		<td class"ac smalltext1" rowspan="2">'.implode(', ', $fpHero['priskills']).'</td>
+		<td class"smalltext1" rowspan="2">'.implode('<br />', $fpHero['skills']).'</td>
+		<td class"smalltext1" rowspan="2">'.implode(', ', $fpHero['spells']).'</td>
+		<td class"smalltext1" rowspan="2">'.implode('<br />', $fpHero['artifacts']).'</td>
+	</tr>
+	<tr>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-right:1px dashed grey;">('.$fpHero['mname'].')</td>
+		<td class="ac nowrap smalltext2" nowrap="nowrap" style="min-width:60px; border-top:1px dashed grey; border-left:1px dashed grey;">('.$fpHero['defname'].')</td>
 	</tr>';
 }
 echo '</table>';
