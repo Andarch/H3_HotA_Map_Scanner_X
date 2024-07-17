@@ -39,8 +39,8 @@ echo '</br>
 			<th>Artifacts</th>
 		</tr>';
 
+$fpHeroes = [];
 foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
-	$fpHeroes = [];
 	$pfaceChanged = false;
 	$hotafaceid = $pHero['id'] + 7;
 	if($pHero['id'] < 156 && $pHero['pface'] !== 255) {
@@ -48,7 +48,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 	} else if($pHero['id'] >= 156 && $pHero['pface'] !== $hotafaceid) {
 		$pfaceChanged = true;
 	}
-	/* if(
+	if(
 		$pHero['pname'] !== $pHero['defname'] ||
 		$pHero['mask'] < 255 ||
 		$pfaceChanged ||
@@ -59,7 +59,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		!empty($pHero['skills']) ||
 		!empty($pHero['spells']) ||
 		!empty($pHero['artifacts'])
-	) { */
+	) {
 		$fpHeroes[$k] = $pHero;
 
 		// echo 'defname: '.$pHero['defname'].'</br>';
@@ -77,7 +77,7 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		// echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
 		// echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
 		// echo '</br>';
-	// }
+	}
 }
 
 foreach($fpHeroes as $k => $fpHero) {
