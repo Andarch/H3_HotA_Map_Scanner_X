@@ -26,10 +26,11 @@ echo '</table>';
 //predefined hero changes
 $n = 0;
 echo '<table class="bigtable">
-		<tr><th class="tableheader2" colspan="11">Hero Template Changes</th></tr>
+		<tr><th class="tableheader2" colspan="12">Hero Template Changes</th></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2" class="thsub">Template Name</br><span class="smalltext3">Map Name | Def Name</span></th>
+			<th>Class</th>
 			<th>Players</th>
 			<th>Gender</th>
 			<th>XP</th>
@@ -89,6 +90,8 @@ foreach($fpHeroes as $k => $fpHero) {
 		$players = EMPTY_DATA;
 	}
 
+	$class = $this->h3mapscan->GetHeroClassByHeroId($fpHero['id']);
+
 	if($fpHero['gender'] !== '') {
 		$gender = $fpHero['gender'];
 	} else {
@@ -136,6 +139,7 @@ foreach($fpHeroes as $k => $fpHero) {
 	echo '<tr>
 		<td class="rowheader" rowspan="2">'.(++$n).'</td>
 		<td class="ac nowrap" nowrap="nowrap" colspan="2" style="border-bottom:1px dashed grey;">'.$fpHero['pname'].'</td>
+		<td class="ac" rowspan="2">'.$class.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$players.'</td>
 		<td class="ac" rowspan="2">'.$gender.'</td>
 		<td class="ac" rowspan="2">'.$xp.'</br>'.$level.'</td>
