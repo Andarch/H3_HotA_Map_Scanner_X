@@ -27,10 +27,10 @@ require_once 'src/config.php';
 <style>
 	:root {
 		--sidepanel-color: #555;
-		--sidepanel-border-color: #888;
+		--sidepanel-border-color: #999;
 		--sidepanel-border-style: solid;
 		--sidepanel-border-width: 4px;
-		--hrule1-border-color: #888;
+		--hrule1-border-color: #999;
 		--hrule2-border-color: #6e6e6e;
 		--hyperlink-color: #29fff1;
 		--cell-bg: #2b2b2b;
@@ -61,7 +61,7 @@ require_once 'src/config.php';
 
 	body, table { color: #ddd; }
 
-	.hrule1 { border: 4px double var(--hrule1-border-color); margin: 0; }
+	.hrule1 { border: 5px double var(--hrule1-border-color); margin: 0; }
 	.hrule2 { border: 1.25px groove var(--hrule2-border-color); margin: 0; }
 
 	.content {
