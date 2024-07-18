@@ -7,32 +7,35 @@ if(!strcmp($this->h3mapscan->description, '')) {
 
 echo '<table class="bigtable">
 		<tr>
-			<th class="ac nowrap" nowrap="nowrap">File</th>
-			<th class="ac nowrap" nowrap="nowrap">Name</th>
-			<th style="width:600px">Description</th>
+			<th class="ac nowrap" nowrap="nowrap" colspan="2">Map</th>
 			<th class="ac nowrap" nowrap="nowrap">Version</th>
 			<th class="ac nowrap" nowrap="nowrap">Size</th>
 			<th class="ac nowrap" nowrap="nowrap"># of</br>Levels</th>
 			<th class="ac nowrap" nowrap="nowrap">Difficulty</th>
-			<th class="ac nowrap" nowrap="nowrap">Victory Condition</th>
-			<th class="ac nowrap" nowrap="nowrap">Loss Condition</th>
+			<th class="ac nowrap" nowrap="nowrap">Victory</br>Condition</th>
+			<th class="ac nowrap" nowrap="nowrap">Loss</br>Condition</th>
+			<th>Description</th>
 		</tr>
 		<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
-			<td class="smalltext1" style="width:600px">'.nl2br($this->h3mapscan->description).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->versionname.$subrev.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_sizename.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.($this->h3mapscan->underground ? 2 : 1).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_diffname.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->victoryInfo.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->lossInfo.'</td>
+			<td class="ar nowrap specialcell2" nowrap="nowrap">Name</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->versionname.$subrev.'</td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_sizename.'</td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.($this->h3mapscan->underground ? 2 : 1).'</td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_diffname.'</td>
+			<td class="ac" rowspan="2">'.$this->h3mapscan->victoryInfo.'</td>
+			<td class="ac" rowspan="2">'.$this->h3mapscan->lossInfo.'</td>
+			<td class="smalltext1" rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
+		</tr>
+		<tr>
+			<td class="ar nowrap specialcell2" nowrap="nowrap">File</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
 		</tr>
 	</table>';
 
 echo '<table class="bigtable">
 	<tr>
-	<th class="ac nowrap" nowrap="nowrap">#</th>
+		<th class="ac nowrap" nowrap="nowrap">#</th>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
 		<th class="ac nowrap" nowrap="nowrap">Team</th>
 		<th class="ac nowrap" nowrap="nowrap">Human</br>Allowed</th>

@@ -84,7 +84,7 @@ require_once 'src/config.php';
 	}
 
 	.specialcell2 {
-		background: #5a5855;
+		background: #4e4e4e;
 		font-weight: bold;
 		font-size: 13px !important;
 	}
@@ -114,7 +114,7 @@ require_once 'src/config.php';
 	}
 
 	.heronameheader1 {
-		background: #5a5855;
+		background: #4e4e4e;
 		font-weight: bold;
 		font-size: 11px !important;
 		vertical-align: top;
@@ -122,7 +122,7 @@ require_once 'src/config.php';
 	}
 
 	.heronameheader2 {
-		background: #5a5855;
+		background: #4e4e4e;
 		font-weight: bold;
 		font-size: 11px !important;
 		vertical-align: top;
