@@ -39,10 +39,10 @@ echo '<table class="bigtable">
 		<tr>
 			<th class="disabledheroescolumn">Cleric</th>
 			<th class="disabledheroescolumn">Druid</th>
-			<th class="disabledheroescolumn">Warlock</th>
 			<th class="disabledheroescolumn">Wizard</th>
 			<th class="disabledheroescolumn">Heretic</th>
 			<th class="disabledheroescolumn">Necromancer</th>
+			<th class="disabledheroescolumn">Warlock</th>
 			<th class="disabledheroescolumn">Battle Mage</th>
 			<th class="disabledheroescolumn">Witch</th>
 			<th class="disabledheroescolumn">Elementalist</th>

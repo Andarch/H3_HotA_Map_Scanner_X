@@ -116,7 +116,7 @@ require_once 'src/config.php';
 	}
 
 	.disabledheroescolumn {
-		width: 160px;
+		width: 120px;
 	}
 
 	.disabledheroescell {
