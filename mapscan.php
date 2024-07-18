@@ -96,11 +96,23 @@ require_once 'src/config.php';
 			var(--dot-color);
 	}
 
-	.heronameheader {
+	.vat {
+		vertical-align: top;
+	}
+
+	.heronameheader1 {
 		background: #5a5855;
 		font-weight: bold;
 		font-size: 11px !important;
+		vertical-align: top;
 		height: 13px;
+	}
+
+	.heronameheader2 {
+		background: #5a5855;
+		font-weight: bold;
+		font-size: 11px !important;
+		vertical-align: top;
 	}
 
 	.disabledheroescolumn {
