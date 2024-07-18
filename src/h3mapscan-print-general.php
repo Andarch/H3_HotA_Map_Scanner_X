@@ -152,11 +152,11 @@ echo '<table class="bigtable">
 			<th colspan="2">Grail</th>
 		</tr>
 		<tr>
-			<td class="specialcell3 ar">Has Grail</td>
+			<td class="specialcell2 ar">Has Grail</td>
 			<td class="ac">'.($this->h3mapscan->hasGrail ? 'Yes' : 'No').'</td>
 		</tr>
 		<tr>
-			<td class="specialcell3 ar"># of Obelisks</td>
+			<td class="specialcell2 ar"># of Obelisks</td>
 			<td class="ac">'.$this->h3mapscan->obelisksnum.'</td>
 		</tr>
 	</table>';

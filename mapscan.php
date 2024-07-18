@@ -78,14 +78,6 @@ require_once 'src/config.php';
 	}
 
 	.specialcell2 {
-		background: #444;
-		font-weight: bold;
-		font-size: 11px !important;
-		padding: 2px 6px 2px 6px;
-		color: grey;
-	}
-
-	.specialcell3 {
 		background: #5a5855;
 		font-weight: bold;
 		font-size: 14px !important;
@@ -98,18 +90,24 @@ require_once 'src/config.php';
 	.smalltext2 {
 		font-size: 11px !important;
 		color: grey;
-		padding: 2px 6px 2px 6px;
 	}
 
 	.cellfill {
 		--dot-bg: #333;
-		--dot-color: #666;
+		--dot-color: #555;
 		--dot-size: 0.25px;
 		--dot-space: 1px;
 		background:
 			linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 			linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
 			var(--dot-color);
+	}
+
+	.heronameheader {
+		background: #5a5855;
+		font-weight: bold;
+		font-size: 12px !important;
+		height: 14px;
 	}
 
 	.tableheader1 {

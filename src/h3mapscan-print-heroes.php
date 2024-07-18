@@ -122,8 +122,8 @@ foreach($fpHeroes as $k => $fpHero) {
 
 	echo '<tr>
 		<td class="rowheader" rowspan="4">'.(++$n).'</td>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Specs</td>
-		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['tname'].'</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['mname'].'</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$class.'</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$players.'</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$gender.'</td>
@@ -135,11 +135,11 @@ foreach($fpHeroes as $k => $fpHero) {
 		<td class="smalltext1" rowspan="4">'.$bio.'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Object</td>
-		<td class="ac nowrapc smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['mname'].'</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['tname'].'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$fpHero['defname'].'</td>
 	</tr>
 	<tr>
@@ -182,7 +182,7 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 	if(!empty($mHero['data']['priskills'])) {
 		$primary = implode('</br>', $mHero['data']['priskills']);
 	} else {
-		$primary = EMPTY_DATA;
+		$primary = DEFAULT_DATA;
 	}
 
 	$secondary = '';
@@ -194,48 +194,48 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 			$secondary .= $skill['level'].' '.$skill['skill'];
 		}
 	} else {
-		$secondary = EMPTY_DATA;
+		$secondary = DEFAULT_DATA;
 	}
 
 	if(!empty($mHero['data']['stack'])) {
 		$troops = $this->h3mapscan->PrintStack($mHero['data']['stack']);
 	} else {
-		$troops = EMPTY_DATA;
+		$troops = DEFAULT_DATA;
 	}
 
 	if(!empty($mHero['data']['artifacts'])) {
 		$artifacts = implode('</br>', $mHero['data']['artifacts']);
 	} else {
-		$artifacts = EMPTY_DATA;
+		$artifacts = DEFAULT_DATA;
 	}
 
 	if(!empty($mHero['data']['spells'])) {
 		sort($mHero['data']['spells']);
 		$spells = implode(', ', $mHero['data']['spells']);
 	} else {
-		$spells = EMPTY_DATA;
+		$spells = DEFAULT_DATA;
 	}
 
 	echo '<tr>
 		<td class="rowheader" rowspan="4">'.(++$n).'</td>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Identity</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$mHero['data']['mname'].'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$mHero['pos']->GetCoords().'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$color.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$class.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
-		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$primary.'</td>
-		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$secondary.'</td>
+		<td class="ar smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$primary.'</td>
+		<td class="al smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$secondary.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$troops.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$artifacts.'</td>
 		<td class="smalltext1" rowspan="4">'.$spells.'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Object</td>
-		<td class="ac nowrapc smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+		<td class="ar nowrap heronameheader" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mHero['data']['defname'].'</td>
 	</tr>
 	<tr>
