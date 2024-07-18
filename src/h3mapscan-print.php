@@ -2,7 +2,7 @@
 
 //class to print h3mapscan data to html presentation
 class H3MAPSCAN_PRINT {
-    private $h3mapscan;
+	private $h3mapscan;
     public function __construct($h3mapscan, $section) {
         $this->h3mapscan = $h3mapscan;
         $this->PrintMapInfo($section);
@@ -40,17 +40,17 @@ class H3MAPSCAN_PRINT {
 			case 'Quest Gates/Guards':
 				include 'h3mapscan-print-questgates.php';
 				break;
+			case 'Global Events':
+				include 'h3mapscan-print-globalevents.php';
+				break;
 			case 'Town Events':
 				include 'h3mapscan-print-townevents.php';
-				break;
-			case 'Event Objects':
-				include 'h3mapscan-print-eventobjects.php';
 				break;
 			case 'Pandora\'s Boxes':
 				include 'h3mapscan-print-pandoras.php';
 				break;
-			case 'Global Events':
-				include 'h3mapscan-print-globalevents.php';
+			case 'Event Objects':
+				include 'h3mapscan-print-eventobjects.php';
 				break;
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
@@ -71,12 +71,12 @@ class H3MAPSCAN_PRINT {
 		$currentSection = $_GET['section'] ?? '';
 		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Custom Heroes', 'Map Heroes', 'Town Details',
 					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates/Guards', 'Global Events', 'Town Events',
-					 'Event Objects', 'Pandora\'s Boxes', 'Object Count'];
+					 'Pandora\'s Boxes', 'Event Objects', 'Object Count'];
 		$sectionsWithAnchors = [
 			'Custom Heroes' => 'heroes-table-2',
 			'Map Heroes' => 'heroes-table-3',
 		];
-		$sectionsWithHrBelow = [
+		$sectionsWithHr1Below = [
 			'General',
 			'Terrain',
 			'Map Heroes',
@@ -84,20 +84,30 @@ class H3MAPSCAN_PRINT {
 			'Spells',
 			'Quest Gates/Guards',
 			'Town Events',
-			'Pandora\'s Boxes',
+			'Event Objects',
 			'Object Count',
+		];
+		$sectionsWithHr2Below = [
+			'Disabled Heroes',
+			'Custom Heroes',
+			'Artifacts',
+			'Seer\'s Huts',
+			'Global Events',
+			'Pandora\'s Boxes',
 		];
 
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {
 			if($section === 'General') {
-				$sidebar .= '<hr>';
+				$sidebar .= HRULE1;
 			}
 			$selectedClass = $section === $currentSection ? 'selected' : '';
 			$anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
 			$sidebar .= "<a href=\"?{$mapidParam}section={$section}{$anchor}\" class=\"{$selectedClass}\">".ucfirst($section)."</a>";
-			if(in_array($section, $sectionsWithHrBelow)) {
-				$sidebar .= '<hr>';
+			if(in_array($section, $sectionsWithHr1Below)) {
+				$sidebar .= HRULE1;
+			} else if(in_array($section, $sectionsWithHr2Below)) {
+				$sidebar .= HRULE2;
 			}
 		}
 		$sidebar .= '</div><div class="content">';

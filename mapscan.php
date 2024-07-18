@@ -25,6 +25,16 @@ require_once 'src/config.php';
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css">
     <script type="application/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
 <style>
+	:root {
+		--sidepanel-color: #555;
+		--sidepanel-border-color: #666;
+		--sidepanel-border-style: groove;
+		--sidepanel-border-width: 5px;
+		--hrule1-border-color: #888;
+		--hrule2-border-color: #6e6e6e;
+		--hyperlink-color: #29fff1;
+		--cell-bg: #2b2b2b;
+	}
 
 	@font-face {
 		font-family: 'H3Reader';
@@ -35,13 +45,13 @@ require_once 'src/config.php';
 	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 2px #aaa; }
 	th, td {border: solid 2px #aaa; min-width: 1em; padding: 3px 6px; }
 	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 2px #aaa; border-right: solid 2px #aaa; }
-	td { border-right: solid 2px #aaa; background: #2b2b2b; }
-	.ar { text-align:right; }
-	.ac { text-align:center; }
-	.al { text-align:left; }
+	td { border-right: solid 2px #aaa; background: var(--cell-bg); }
+	.ar { text-align: right; }
+	.ac { text-align: center; }
+	.al { text-align: left; }
 	.mc { margin: 1em; }
 
-	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
+	a, a:visited { color: var(--hyperlink-color); text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
 	.bigtable th { font-size: 14px; }
@@ -51,7 +61,8 @@ require_once 'src/config.php';
 
 	body, table { color: #ddd; }
 
-	hr { border: 1.25px solid #aaa; margin: 0; }
+	.hrule1 { border: 4px double var(--hrule1-border-color); margin: 0; }
+	.hrule2 { border: 1.25px groove var(--hrule2-border-color); margin: 0; }
 
 	.content {
 		position: absolute;
@@ -156,43 +167,110 @@ require_once 'src/config.php';
 
 	.sidebarTop {
 		margin: 0;
-		padding: 16px 0px;
+		padding: 0;
 		width: 250px;
-		background-color: #444;
+		background-color: var(--sidepanel-color);
 		position: fixed;
 		left: 0px;
 		top: 0px;
 		height: 50px;
 		overflow: auto;
-		color: #ddd;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		font-size: 16px;
 		text-align: center;
+		border-left: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-right: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-top: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-bottom: 2.5px solid var(--sidepanel-border-color);
+		box-sizing: border-box;
+		overflow: hidden;
 		/* display: none; */
+	}
+
+	.sidebarTopTable {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		border: none;
+		position: relative;
+	}
+
+	.sidebarTopTableCell {
+		margin: 0;
+		padding: 0;
+		width: 50%;
+		border: none;
+		position: relative;
+		font-size: 18px;
+	}
+
+	.sidebarTopTableCell:first-child {
+		border-right: 2px solid var(--sidepanel-border-color);
+	}
+
+	.sidebarTopTableCell:last-child {
+		border-left: 2px solid var(--sidepanel-border-color);
+	}
+
+	.sidebarTopTableCell a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		padding: 9.5px 0;
+		box-sizing: border-box;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-decoration: none;
+		color: #ddd;
+		/* color: var(--cell-bg); */
+		background-color: #3a4d4f;
+	}
+
+	.sidebarTopTableCell a.selected {
+		color: #fcf4ad;
+	}
+
+	.sidebarTopTableCell a.active {
+		color: #fcf4ad;
+	}
+
+	.sidebarTopTableCell a:hover:not(.active) {
+		color: #51442c;
+		background-color: var(--hyperlink-color);
 	}
 
 	.sidebarMain {
 		margin: 0;
 		padding: 0;
 		width: 250px;
-		background-color: #444;
+		background-color: var(--sidepanel-color);
 		position: fixed;
 		left: 0px;
 		top: 50px;
-		height: 100%;
+		height: 1015px;
 		overflow: auto;
 		color: #ddd;
 		font-size: 22px;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
+		border-left: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-right: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-bottom: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		box-sizing: border-box;
 		/* display: none; */
 	}
 
 	.sidebarMain a {
 		display: block;
 		color:  #ddd;
-		padding: 0px 10px 4px 10px;
+		background-color: #444;
+		text-align: center;
+		padding: 3px 0 4px;
 		text-decoration: none;
-		font-weight: bold;
 	}
 
 	.sidebarMain a.selected {
@@ -257,9 +335,16 @@ require_once 'src/config.php';
 </head>
 <body>
 	<div class="sidebarTop">
-		<span style="background-color: #444;">
-			<a href="mapscan.php?scan=1">Scan</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mapindex.php">Map List</a>
-		</span>
+		<table class="sidebarTopTable">
+			<tr>
+				<td class="sidebarTopTableCell">
+					<a href="mapscan.php?scan=1">Scan</a>
+				</td>
+				<td class="sidebarTopTableCell">
+					<a href="mapindex.php">Map List</a>
+				</td>
+			</tr>
+		</table>
 		<br />
 </div>
 <?php
