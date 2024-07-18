@@ -2539,6 +2539,8 @@ class H3MAPSCAN {
 
 		$hasCustomBuildings = $this->br->ReadUint8();
 		if($hasCustomBuildings) {
+			$town['buildingsBuilt'] = [];
+			$town['buildingsDisabled'] = [];
 			for($i = 0; $i < 6; $i++) {
 				$buildings = $this->br->ReadUint8();
 				for ($j = 0; $j < 8; $j++) {

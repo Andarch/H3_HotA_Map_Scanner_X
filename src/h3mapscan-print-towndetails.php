@@ -25,24 +25,37 @@ echo '<table id="townDetailsTable" class="h3DataTable">
 foreach($this->h3mapscan->towns_list as $towno) {
 	$town = $towno['data'];
 
-	// Reset the buildingsBuilt and buildingsDisabled variables
+	if(!empty($town['stack'])) {
+		$garrison = $this->h3mapscan->PrintStack($town['stack']);
+	} else {
+		$garrison = EMPTY_DATA;
+	}
+
+	if(!empty($town['spellsA'])) {
+		$spellsAlways = implode(', ', $town['spellsA']);
+	} else {
+		$spellsAlways = EMPTY_DATA;
+	}
+
+	if(!empty($town['spellsD'])) {
+		$spellsDisabled = implode(', ', $town['spellsD']);
+	} else {
+		$spellsDisabled = EMPTY_DATA;
+	}
+
 	$buildingsBuilt = '';
 	$buildingsDisabled = '';
 
-	if(isset($town['buildingsBuilt'])) {
+	if(!empty($town['buildingsBuilt'])) {
 		$buildingsBuilt = implode(', ', $town['buildingsBuilt']);
+	} else {
+		$buildingsBuilt = EMPTY_DATA;
 	}
 
-	if(isset($town['buildingsDisabled'])) {
+	if(!empty($town['buildingsDisabled'])) {
 		$buildingsDisabled = implode(', ', $town['buildingsDisabled']);
-	}
-
-	if(isset($town['spellsA'])) {
-		$spellsAlways = implode(', ', $town['spellsA']);
-	}
-
-	if(isset($town['spellsD'])) {
-		$spellsDisabled = implode(', ', $town['spellsD']);
+	} else {
+		$buildingsDisabled = EMPTY_DATA;
 	}
 
 	echo '<tr>
@@ -52,7 +65,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 			<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap">'.$this->h3mapscan->PrintStack($town['stack']).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap">'.$garrison.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>
 			<td class="smalltext1">'.$spellsAlways.'</td>
 			<td class="smalltext1">'.$spellsDisabled.'</td>
