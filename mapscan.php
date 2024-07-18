@@ -107,6 +107,11 @@ require_once 'src/config.php';
 		width: 160px;
 	}
 
+	.disabledheroescell {
+		vertical-align: top;
+		text-align: center;
+	}
+
 	.tableheader1 {
 		background: #451713;
 		font-weight: bold;

@@ -5,6 +5,7 @@
 
 //disabled heroes
 $n = 0;
+$sep = '</br>';
 echo '<table class="bigtable">
 		<tr>
 			<th class="tableheader1" colspan="11">Disabled Heroes</th>
@@ -23,17 +24,17 @@ echo '<table class="bigtable">
 			<th class="disabledheroescolumn">Mercenary</th>
 		</tr>
 		<tr>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Knight']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Ranger']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Alchemist']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Demoniac']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Death Knight']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Overlord']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Barbarian']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Beastmaster']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Planeswalker']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Captain']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Mercenary']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Knight']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Ranger']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Alchemist']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Demoniac']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Death Knight']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Overlord']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Barbarian']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Beastmaster']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Planeswalker']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Captain']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Mercenary']).'</td>
 		</tr>
 		<tr>
 			<th class="disabledheroescolumn">Cleric</th>
@@ -49,17 +50,17 @@ echo '<table class="bigtable">
 			<th class="disabledheroescolumn">Artificer</th>
 		</tr>
 		<tr>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Cleric']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Druid']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Wizard']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Heretic']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Necromancer']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Warlock']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Battle Mage']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Witch']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Elementalist']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Navigator']).'</td>
-			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Artificer']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Cleric']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Druid']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Wizard']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Heretic']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Necromancer']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Warlock']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Battle Mage']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Witch']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Elementalist']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Navigator']).'</td>
+			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Artificer']).'</td>
 		</tr>
 	</table>';
 
