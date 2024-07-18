@@ -38,6 +38,7 @@
 	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
 
 	const EMPTY_DATA = '<span style="color: grey;">–</span>';
+	const DEFAULT_DATA = '<span class="smalltext2"><i>Default</i></span>';
 
 
 	class OBJECTCATEGORIES {

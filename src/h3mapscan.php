@@ -2510,7 +2510,7 @@ class H3MAPSCAN {
 		}
 
 		$town['owner'] = $this->br->ReadUint8();
-		$town['player'] = $this->GetPlayerColorById($town['owner']);
+		$town['player'] = $this->GetPlayerColorById($town['owner'], true);
 
 		$hasName = $this->br->ReadUint8();
 		if($hasName) {
@@ -2883,7 +2883,7 @@ class H3MAPSCAN {
 				break;
 			case QUESTMISSION::PLAYER:
 				$quest['Qplayer'] = $this->br->ReadUint8();
-				$quest['Qtext'] = 'Be player: '.$this->GetPlayerColorById($quest['Qplayer']);
+				$quest['Qtext'] = 'Be player: '.$this->GetPlayerColorById($quest['Qplayer'], true);
 				break;
 			case QUESTMISSION::HOTA_EXTRA:
 				if($this->hota_subrev >= $this::HOTA_SUBREV3) {
@@ -3428,12 +3428,17 @@ class H3MAPSCAN {
 		return $colors;
 	}
 
-	public function GetPlayerColorById($id, $withcolor = true) {
-		$color = '';
-		if($withcolor && ($id >= 0 && $id <= 7 || $id == 255)) {
-			$color .= '<span class="color'.($id + 1).'">&nbsp;</span>&nbsp;';
+	public function GetPlayerColorById($id, $withtext = false) {
+		if($id >= 0 && $id <= 7 || $id == 255) {
+			$color = '<span class="color'.($id + 1).'">&nbsp;</span>&nbsp;';
+			if($withtext) {
+				return $color.FromArray($id, $this->CS->PlayersColors);
+			} else {
+				return $color;
+			}
+		} else {
+			return 'Invalid player ID';
 		}
-		return $color.FromArray($id, $this->CS->PlayersColors);
 	}
 
 	private function GetArtifactById($artid) {

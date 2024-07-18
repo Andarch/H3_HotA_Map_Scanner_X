@@ -166,8 +166,8 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 		echo '
 				<td class="ac specialcell1" style="'.$borderstyle.'">'.($e + 1).'</td>
-				<td style="'.$borderstyle.'">'.$event['name'].'</td>
-				<td style="'.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
+				<td class="ac" style="'.$borderstyle.'">'.$event['name'].'</td>
+				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$event['humanOrAi'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$first.'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$period.'</td>';

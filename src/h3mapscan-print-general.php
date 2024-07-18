@@ -57,7 +57,7 @@ foreach($this->h3mapscan->players as $k => $player) {
 
 	echo '<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.($k + 1).'</td>
-			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k).'</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k, true).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$player['ai'].'</td>
@@ -98,7 +98,7 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
 
 	echo '<tr>
 			<td class="rowheader">'.(++$n).'</td>
-			<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player). '</td>
+			<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player, true). '</td>
 			<td class="nowrap" nowrap="nowrap">' . $townCountsList . '</td>
 		</tr>';
 }

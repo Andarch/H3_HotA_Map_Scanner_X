@@ -34,11 +34,11 @@ echo '<table class="bigtable">
 			<th>Players</th>
 			<th>Gender</th>
 			<th>XP</th>
-			<th>Primary</th>
-			<th>Secondary</th>
+			<th>Primary</br>Skills</th>
+			<th>Secondary</br>Skills</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
-			<th>Bio</th>
+			<th>Biography</th>
 		</tr>';
 
 $fpHeroes = [];
@@ -71,7 +71,7 @@ foreach($fpHeroes as $k => $fpHero) {
 		$playermask = $this->h3mapscan->playerMask & $fpHero['mask'];
 		$players = $this->h3mapscan->PlayerColors($playermask);
 	} else {
-		$players = EMPTY_DATA;
+		$players = DEFAULT_DATA;
 	}
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($fpHero['id']);
@@ -79,57 +79,57 @@ foreach($fpHeroes as $k => $fpHero) {
 	if($fpHero['gender'] !== '') {
 		$gender = $fpHero['gender'];
 	} else {
-		$gender = EMPTY_DATA;
+		$gender = DEFAULT_DATA;
 	}
 
 	if($fpHero['xp'] > 0) {
 		$xp = $fpHero['xp'].' XP';
 		$level = 'Level '.$this->h3mapscan->GetLevelByExp($fpHero['xp']);
 	} else {
-		$xp = EMPTY_DATA;
+		$xp = DEFAULT_DATA;
 		$level = '';
 	}
 
 	if(!empty($fpHero['priskills'])) {
 		$priskills = implode('</br>', $fpHero['priskills']);
 	} else {
-		$priskills = EMPTY_DATA;
+		$priskills = DEFAULT_DATA;
 	}
 
 	if(!empty($fpHero['skills'])) {
 		$skills = implode('</br>', $fpHero['skills']);
 	} else {
-		$skills = EMPTY_DATA;
+		$skills = DEFAULT_DATA;
 	}
 
 	if(!empty($fpHero['artifacts'])) {
 		$artifacts = implode('</br>', $fpHero['artifacts']);
 	} else {
-		$artifacts = EMPTY_DATA;
+		$artifacts = DEFAULT_DATA;
 	}
 
 	if(!empty($fpHero['spells'])) {
 		$spells = implode(', ', $fpHero['spells']);
 	} else {
-		$spells = EMPTY_DATA;
+		$spells = DEFAULT_DATA;
 	}
 
 	if($fpHero['bio'] !== '') {
 		$bio = nl2br($fpHero['bio']);
 	} else {
-		$bio = EMPTY_DATA;
+		$bio = DEFAULT_DATA;
 	}
 
 	echo '<tr>
 		<td class="rowheader" rowspan="4">'.(++$n).'</td>
 		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Specs</td>
 		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['tname'].'</td>
-		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$class.'</td>
-		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$players.'</td>
-		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$gender.'</td>
-		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$xp.'</br>'.$level.'</td>
-		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$priskills.'</td>
-		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$skills.'</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$class.'</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$players.'</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$gender.'</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="4">'.$xp.'</br>'.$level.'</td>
+		<td class="ar smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$priskills.'</td>
+		<td class="al smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$skills.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$artifacts.'</td>
 		<td class="smalltext1" rowspan="4" style="max-width:200px;">'.$spells.'</td>
 		<td class="smalltext1" rowspan="4">'.$bio.'</td>
@@ -159,9 +159,9 @@ echo '</br><table class="bigtable">
 			<th>Owner</th>
 			<th>Class</th>
 			<th>XP</th>
-			<th>Primary</th>
-			<th>Secondary</th>
-			<th>Troops</th>
+			<th>Primary</br>Skills</th>
+			<th>Secondary</br>Skills</th>
+			<th>Creatures</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
 		</tr>';
@@ -173,7 +173,7 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 		$mHero['data']['defname'] = EMPTY_DATA;
 	}
 
-	$color = $mHero['data']['prisoner'] ? 'Prisoner' : $this->h3mapscan->GetPlayerColorById($mHero['data']['PlayerColor']);
+	$color = $mHero['data']['prisoner'] ? 'Prisoner' : $this->h3mapscan->GetPlayerColorById($mHero['data']['PlayerColor'], true);
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mHero['data']['subid']);
 

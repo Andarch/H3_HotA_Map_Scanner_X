@@ -42,7 +42,7 @@ foreach($this->h3mapscan->events as $k => $event) {
 		<td class="rowheader nowrap" nowrap="nowrap">'.($k+1).'</td>
 		<td class="nowrap" nowrap="nowrap">'.$event['name'].'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
-		<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
+		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$first.'</td>
 		<td class="ac nowrap" nowrap="nowrap">'.$period.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
