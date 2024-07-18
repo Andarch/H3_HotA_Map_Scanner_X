@@ -63,22 +63,6 @@ foreach($this->h3mapscan->heroesPredefined as $k => $pHero) {
 		$pHero['bio'] !== ''
 	) {
 		$fpHeroes[$k] = $pHero;
-
-		// echo 'defname: '.$pHero['defname'].'</br>';
-		// echo 'tname: '.$pHero['tname'].'</br>';
-		// echo 'mname: '.$pHero['mname'].'</br>';
-		// echo 'mask: '.$pHero['mask'].'</br>';
-		// echo 'pface: '.$pHero['pface'].'</br>';
-		// echo 'mface: '.$pHero['mface'].'</br>';
-		// echo 'id: '.$pHero['id'].'</br>';
-		// echo 'xp: '.$pHero['xp'].'</br>';
-		// echo 'gender: '.$pHero['gender'].'</br>';
-		// echo 'bio: '.$pHero['bio'].'</br>';
-		// echo 'priskills: '.implode(', ', $pHero['priskills']).'</br>';
-		// echo 'skills: '.implode(', ', $pHero['skills']).'</br>';
-		// echo 'spells: '.implode(', ', $pHero['spells']).'</br>';
-		// echo 'artifacts: '.implode(', ', $pHero['artifacts']).'</br>';
-		// echo '</br>';
 	}
 }
 
