@@ -198,17 +198,17 @@ require_once 'src/config.php';
 
 	.sidebarMain a.selected {
 		color: #fcf4ad;
-    	background-color: #7b6742;
+    	background-color: #957d50;
 	}
 
 	.sidebarMain a.active {
-		color: #ddd;
-		background-color: #5e4b00;
+		color: #51442c;
+		background-color: #fcf4ad;
 	}
 
 	.sidebarMain a:hover:not(.active) {
-		background-color: #888;
-		color: #ddd;
+		color: #51442c;
+		background-color: #fcf4ad;
 	}
 
 	.h3DataTable {
