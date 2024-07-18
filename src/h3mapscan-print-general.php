@@ -44,7 +44,7 @@ echo '<table class="bigtable">
 		<th class="ac nowrap" nowrap="nowrap">Allowed</br>Factions</th>
 		<th class="ac nowrap" nowrap="nowrap">Has</br>Main Town</th>
 		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Faction</th>
-		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Coords</th>
+		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Coordinates</th>
 		<th class="ac nowrap" nowrap="nowrap">Generate Hero</br>at Main Town</th>
 		<th class="ac nowrap" nowrap="nowrap">Random Hero</br>on Map</th>
 		<th class="ac nowrap" nowrap="nowrap">Specific Heros</br>on Map</th>
