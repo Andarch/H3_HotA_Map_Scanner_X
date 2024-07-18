@@ -51,6 +51,8 @@ require_once 'src/config.php';
 
 	body, table { color: #ddd; }
 
+	hr { border: 1.25px solid #aaa; margin: 0; }
+
 	.content {
 		position: absolute;
 		left: 250px;
@@ -181,19 +183,22 @@ require_once 'src/config.php';
 		overflow: auto;
 		color: #ddd;
 		font-size: 22px;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
 		/* display: none; */
 	}
 
 	.sidebarMain a {
 		display: block;
-		color:  #ddd;
+		color:  #fcf4ad;
+		background-color: #51442c;
 		padding: 0px 10px 4px 10px;
 		text-decoration: none;
 		font-weight: bold;
 	}
 
 	.sidebarMain a.selected {
-    	background-color: #666;
+		color: #fcf4ad;
+    	background-color: #7b6742;
 	}
 
 	.sidebarMain a.active {

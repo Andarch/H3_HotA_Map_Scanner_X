@@ -66,7 +66,7 @@ echo '<table class="bigtable">
 
 //custom heroes
 $n = 0;
-echo '<table class="bigtable">
+echo '<table id="heroes-table-2" class="bigtable">
 		<tr><th class="tableheader2" colspan="12">Custom Heroes</th></tr>
 		<tr>
 			<th>#</th>
@@ -188,7 +188,7 @@ echo '</table>';
 
 //map heroes
 $n = 0;
-echo '</br><table class="bigtable">
+echo '</br><table id="heroes-table-3" class="bigtable">
 		<tr><th class="tableheader2" colspan="12">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
