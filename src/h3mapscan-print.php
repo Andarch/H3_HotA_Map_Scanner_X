@@ -17,8 +17,8 @@ class H3MAPSCAN_PRINT {
             case 'General':
                 include 'h3mapscan-print-general.php';
                 break;
-			case 'Map/Terrain':
-				include 'h3mapscan-print-map.php';
+			case 'Terrain':
+				include 'h3mapscan-print-terrain.php';
 				break;
 			case 'Disabled Heroes':
 			case 'Custom Heroes':
@@ -69,12 +69,23 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Map/Terrain', 'Disabled Heroes', 'Custom Heroes', 'Map Heroes', 'Town Details',
-					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates/Guards', 'Town Events', 'Event Objects',
-					 'Pandora\'s Boxes', 'Global Events', 'Object Count'];
+		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Custom Heroes', 'Map Heroes', 'Town Details',
+					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates/Guards', 'Global Events', 'Town Events',
+					 'Event Objects', 'Pandora\'s Boxes', 'Object Count'];
 		$sectionsWithAnchors = [
 			'Custom Heroes' => 'heroes-table-2',
 			'Map Heroes' => 'heroes-table-3',
+		];
+		$sectionsWithHrBelow = [
+			'General',
+			'Terrain',
+			'Map Heroes',
+			'Town Details',
+			'Spells',
+			'Quest Gates/Guards',
+			'Town Events',
+			'Pandora\'s Boxes',
+			'Object Count',
 		];
 
 		$sidebar = '<div class="sidebarMain">';
@@ -85,7 +96,9 @@ class H3MAPSCAN_PRINT {
 			$selectedClass = $section === $currentSection ? 'selected' : '';
 			$anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
 			$sidebar .= "<a href=\"?{$mapidParam}section={$section}{$anchor}\" class=\"{$selectedClass}\">".ucfirst($section)."</a>";
-			$sidebar .= '<hr>';
+			if(in_array($section, $sectionsWithHrBelow)) {
+				$sidebar .= '<hr>';
+			}
 		}
 		$sidebar .= '</div><div class="content">';
 

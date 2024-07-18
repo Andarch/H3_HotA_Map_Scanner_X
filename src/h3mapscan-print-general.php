@@ -20,7 +20,7 @@ echo '<table class="bigtable">
 		<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
-			<td style="width:600px">'.nl2br($this->h3mapscan->description).'</td>
+			<td class="smalltext1" style="width:600px">'.nl2br($this->h3mapscan->description).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->versionname.$subrev.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_sizename.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.($this->h3mapscan->underground ? 2 : 1).'</td>
