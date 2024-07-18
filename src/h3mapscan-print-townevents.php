@@ -159,9 +159,9 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		}
 
 		if($additionalrow) {
-			$borderstyle = 'border-top:1px dashed grey;border-bottom:1px dashed grey;';
+			$borderstyle = 'border-top:1px dotted grey;border-bottom:1px dotted grey;';
 		} else {
-			$borderstyle = 'border-bottom:1px dashed grey;';
+			$borderstyle = 'border-bottom:1px dotted grey;';
 		}
 
 		echo '

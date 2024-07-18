@@ -44,8 +44,8 @@ require_once 'src/config.php';
 	a, a:visited { color: #29fff1; text-decoration: none; background-color: transparent }
 	a:hover { text-decoration: underline; }
 
-	.bigtable th { font-size: 15px; }
-	.bigtable td { font-size: 14px; }
+	.bigtable th { font-size: 14px; }
+	.bigtable td { font-size: 13px; }
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
@@ -64,31 +64,24 @@ require_once 'src/config.php';
 		text-align: center;
 	}
 
-	.subheader {
-		font-size: 10px !important;
-		color: #8e8963;
-		padding: 1px 6px 1px 6px;
-		background: #5a5855;
-	}
-
 	.specialcell1 {
 		background: #5a5855;
 		font-weight: bold;
-		font-size: 12px !important;
+		font-size: 11px !important;
 	}
 
 	.specialcell2 {
 		background: #5a5855;
 		font-weight: bold;
-		font-size: 14px !important;
+		font-size: 13px !important;
 	}
 
 	.smalltext1 {
-		font-size: 12px !important;
+		font-size: 11px !important;
 	}
 
 	.smalltext2 {
-		font-size: 11px !important;
+		font-size: 10px !important;
 		color: grey;
 	}
 
@@ -106,15 +99,14 @@ require_once 'src/config.php';
 	.heronameheader {
 		background: #5a5855;
 		font-weight: bold;
-		font-size: 12px !important;
-		height: 14px;
+		font-size: 11px !important;
+		height: 13px;
 	}
 
 	.tableheader1 {
 		background: #451713;
 		font-weight: bold;
 		text-align: center;
-		/* padding-left: 8px; */
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
@@ -123,7 +115,6 @@ require_once 'src/config.php';
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		/* padding-left: 8px; */
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
@@ -197,7 +188,7 @@ require_once 'src/config.php';
 	.h3DataTable {
 		border-collapse: collapse !important;
 		box-sizing: border-box !important;
-		font-size: 14px !important;
+		font-size: 13px !important;
 		margin-bottom: 20px !important;
 	}
 
@@ -224,7 +215,7 @@ require_once 'src/config.php';
 	#allObjectsTable_filter {
 		color: grey !important;
 		margin: 10px 0px !important;
-		font-size: 14px !important;
+		font-size: 13px !important;
 		float: left !important;
 	}
 

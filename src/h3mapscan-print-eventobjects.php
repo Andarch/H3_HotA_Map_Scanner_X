@@ -42,11 +42,11 @@ foreach($this->h3mapscan->events_list as $evento) {
 			<td class="ac nowrap" nowrap="nowrap">'.$event['removeAfterVisit'].'</td>
 			<td class="smalltext1 nowrap" nowrap="nowrap">'.$stack.'</td>
 			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-right:none;">'.implode('<br />', $content[1]).'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-left:1px dashed grey;border-right:none;">'.implode('<br />', $content[2]).'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-left:1px dashed grey;border-right:none;">'.implode('<br />', $content[3]).'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dashed grey;border-right:none;">'.implode('<br />', $content[4]).'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dashed grey;border-right:none;">'.implode('<br />', $content[5]).'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dashed grey;">'.implode('<br />', $content[6]).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-left:1px dotted grey;border-right:none;">'.implode('<br />', $content[2]).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap" style="border-left:1px dotted grey;border-right:none;">'.implode('<br />', $content[3]).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dotted grey;border-right:none;">'.implode('<br />', $content[4]).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dotted grey;border-right:none;">'.implode('<br />', $content[5]).'</td>
+			<td class="smalltext1 nowrap" nowrap="nowrap"" style="border-left:1px dotted grey;">'.implode('<br />', $content[6]).'</td>
 			<td class="smalltext1">'.$msg.'</td>
 		</tr>';
 	}
