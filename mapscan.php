@@ -189,8 +189,7 @@ require_once 'src/config.php';
 
 	.sidebarMain a {
 		display: block;
-		color:  #fcf4ad;
-		background-color: #51442c;
+		color:  #ddd;
 		padding: 0px 10px 4px 10px;
 		text-decoration: none;
 		font-weight: bold;
@@ -198,7 +197,6 @@ require_once 'src/config.php';
 
 	.sidebarMain a.selected {
 		color: #fcf4ad;
-    	background-color: #957d50;
 	}
 
 	.sidebarMain a.active {
