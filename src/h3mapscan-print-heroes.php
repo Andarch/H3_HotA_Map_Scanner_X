@@ -23,13 +23,13 @@ foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 }
 echo '</table>';
 
-//hero template changes
+//custom heroes
 $n = 0;
 echo '<table class="bigtable">
 		<tr><th class="tableheader2" colspan="12">Custom Heroes</th></tr>
 		<tr>
 			<th>#</th>
-			<th colspan="2">Names</th>
+			<th colspan="2">Hero</th>
 			<th>Class</th>
 			<th>Players</th>
 			<th>Gender</th>
@@ -138,8 +138,8 @@ foreach($fpHeroes as $k => $fpHero) {
 
 	echo '<tr>
 		<td class="rowheader" rowspan="4">'.(++$n).'</td>
-		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Identity</td>
-		<td class="al nowrap" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['tname'].'</td>
+		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Specs</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['tname'].'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$class.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$players.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$gender.'</td>
@@ -151,12 +151,12 @@ foreach($fpHeroes as $k => $fpHero) {
 		<td class="smalltext1" rowspan="4">'.$bio.'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map</td>
-		<td class="al nowrap smalltext2" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['mname'].'</td>
+		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Object</td>
+		<td class="ac nowrapc smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['mname'].'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Default</td>
-		<td class="al nowrap smalltext2" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$fpHero['defname'].'</td>
+		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$fpHero['defname'].'</td>
 	</tr>
 	<tr>
 		<td class="cellfill" colspan="2" style="border-top:none;"></td>
@@ -170,7 +170,7 @@ echo '</br><table class="bigtable">
 		<tr><th class="tableheader2" colspan="12">Map Heroes</th></tr>
 		<tr>
 			<th>#</th>
-			<th colspan="2">Names</th>
+			<th colspan="2">Hero</th>
 			<th>Coordinates</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -193,44 +193,69 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mHero['data']['subid']);
 
-	$primary = implode('</br>', $mHero['data']['priskills']);
-	$secondary = '';
-	foreach($mHero['data']['skills'] as $k => $skill) {
-		if($k > 0) {
-			$secondary .= '<br />';
-		}
-		$secondary .= $skill['level'].' '.$skill['skill'];
-	}
-	$artifacts = implode('<br />', $mHero['data']['artifacts']);
-
 	$level = $this->h3mapscan->GetLevelByExp($mHero['data']['xp']);
 
-	sort($mHero['data']['spells']);
+	if(!empty($mHero['data']['priskills'])) {
+		$primary = implode('</br>', $mHero['data']['priskills']);
+	} else {
+		$primary = EMPTY_DATA;
+	}
+
+	$secondary = '';
+	if(!empty($mHero['data']['skills'])) {
+		foreach($mHero['data']['skills'] as $k => $skill) {
+			if($k > 0) {
+				$secondary .= '<br />';
+			}
+			$secondary .= $skill['level'].' '.$skill['skill'];
+		}
+	} else {
+		$secondary = EMPTY_DATA;
+	}
+
+	if(!empty($mHero['data']['stack'])) {
+		$troops = $this->h3mapscan->PrintStack($mHero['data']['stack']);
+	} else {
+		$troops = EMPTY_DATA;
+	}
+
+	if(!empty($mHero['data']['artifacts'])) {
+		$artifacts = implode('</br>', $mHero['data']['artifacts']);
+	} else {
+		$artifacts = EMPTY_DATA;
+	}
+
+	if(!empty($mHero['data']['spells'])) {
+		sort($mHero['data']['spells']);
+		$spells = implode(', ', $mHero['data']['spells']);
+	} else {
+		$spells = EMPTY_DATA;
+	}
 
 	echo '<tr>
 		<td class="rowheader" rowspan="4">'.(++$n).'</td>
 		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Identity</td>
-		<td class="al nowrap" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$mHero['data']['mname'].'</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$mHero['data']['mname'].'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$mHero['pos']->GetCoords().'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$color.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.$class.'</td>
 		<td class="ac nowrap" nowrap="nowrap" rowspan="4">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
 		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$primary.'</td>
 		<td class="ac smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$secondary.'</td>
-		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$this->h3mapscan->PrintStack($mHero['data']['stack']).'</td>
+		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$troops.'</td>
 		<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="4">'.$artifacts.'</td>
-		<td class="smalltext1" rowspan="4">'.implode(', ', $mHero['data']['spells']).'</td>
+		<td class="smalltext1" rowspan="4">'.$spells.'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Template</td>
-		<td class="al nowrap smalltext2" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
+		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Object</td>
+		<td class="ac nowrapc smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
 	</tr>
 	<tr>
-		<td class="ar nowrap specialcell2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Default</td>
-		<td class="al nowrap smalltext2" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mHero['data']['defname'].'</td>
+		<td class="ar nowrap specialcell1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+		<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mHero['data']['defname'].'</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="border-top:none;"></td>
+		<td class="cellfill" colspan="2" style="border-top:none;"></td>
 	</tr>';
 }
 

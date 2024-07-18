@@ -74,7 +74,7 @@ require_once 'src/config.php';
 	.specialcell1 {
 		background: #5a5855;
 		font-weight: bold;
-		font-size: 14px !important;
+		font-size: 12px !important;
 	}
 
 	.specialcell2 {
@@ -83,6 +83,12 @@ require_once 'src/config.php';
 		font-size: 11px !important;
 		padding: 2px 6px 2px 6px;
 		color: grey;
+	}
+
+	.specialcell3 {
+		background: #5a5855;
+		font-weight: bold;
+		font-size: 14px !important;
 	}
 
 	.smalltext1 {
