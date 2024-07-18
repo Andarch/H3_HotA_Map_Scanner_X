@@ -103,6 +103,10 @@ require_once 'src/config.php';
 		height: 13px;
 	}
 
+	.disabledheroescolumn {
+		width: 160px;
+	}
+
 	.tableheader1 {
 		background: #451713;
 		font-weight: bold;

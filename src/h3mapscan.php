@@ -674,6 +674,12 @@ class H3MAPSCAN {
 			$heroes = intval(($limit + 7) / 8);
 		}
 
+		foreach($this->CS->HeroClass as $k => $class) {
+			if(!array_key_exists($class, $this->disabledHeroes) && $k != 255) {
+				$this->disabledHeroes[$class][] = EMPTY_DATA;
+			}
+		}
+
 		for($i = 0; $i < $heroes; $i++) {
 			$byte = $this->br->ReadUint8();
 
@@ -683,10 +689,15 @@ class H3MAPSCAN {
 					break;
 				}
 				if(($byte & (1 << $n)) == 0) {
-					$this->disabledHeroes[$this->GetHeroClassByHeroId($idh)][] = $this->GetHeroById($idh);
+					$heroclass = $this->GetHeroClassByHeroId($idh);
+					if($this->disabledHeroes[$heroclass][0] === EMPTY_DATA) {
+						$this->disabledHeroes[$heroclass] = [];
+					}
+					$this->disabledHeroes[$heroclass][] = $this->GetHeroById($idh);
 				}
 			}
 		}
+		// ksort($this->disabledHeroes);
 
 		if($this->version > $this::ROE) {
 			$placeholders = $this->br->ReadUint32(); //no use

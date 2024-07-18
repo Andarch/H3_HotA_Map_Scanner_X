@@ -7,21 +7,61 @@
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
-			<th class="tableheader1" colspan="3">Disabled Heroes</th>
+			<th class="tableheader1" colspan="11">Disabled Heroes</th>
 		</tr>
 		<tr>
-			<th>#</th>
-			<th>Class</th>
-			<th>Heroes</th>
-		</tr>';
-foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
-	echo '<tr>
-		<td class="rowheader">'.(++$n).'</td>
-		<td>'.$class.'</td>
-		<td>'.implode(', ', $heroes).'</td>
-	</tr>';
-}
-echo '</table>';
+			<th class="disabledheroescolumn">Knight</th>
+			<th class="disabledheroescolumn">Ranger</th>
+			<th class="disabledheroescolumn">Alchemist</th>
+			<th class="disabledheroescolumn">Demoniac</th>
+			<th class="disabledheroescolumn">Death Knight</th>
+			<th class="disabledheroescolumn">Overlord</th>
+			<th class="disabledheroescolumn">Barbarian</th>
+			<th class="disabledheroescolumn">Beastmaster</th>
+			<th class="disabledheroescolumn">Planeswalker</th>
+			<th class="disabledheroescolumn">Captain</th>
+			<th class="disabledheroescolumn">Mercenary</th>
+		</tr>
+		<tr>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Knight']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Ranger']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Alchemist']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Demoniac']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Death Knight']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Overlord']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Barbarian']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Beastmaster']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Planeswalker']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Captain']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Mercenary']).'</td>
+		</tr>
+		<tr>
+			<th class="disabledheroescolumn">Cleric</th>
+			<th class="disabledheroescolumn">Druid</th>
+			<th class="disabledheroescolumn">Warlock</th>
+			<th class="disabledheroescolumn">Wizard</th>
+			<th class="disabledheroescolumn">Heretic</th>
+			<th class="disabledheroescolumn">Necromancer</th>
+			<th class="disabledheroescolumn">Battle Mage</th>
+			<th class="disabledheroescolumn">Witch</th>
+			<th class="disabledheroescolumn">Elementalist</th>
+			<th class="disabledheroescolumn">Navigator</th>
+			<th class="disabledheroescolumn">Artificer</th>
+		</tr>
+		<tr>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Cleric']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Druid']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Wizard']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Heretic']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Necromancer']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Warlock']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Battle Mage']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Witch']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Elementalist']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Navigator']).'</td>
+			<td>'.implode(', ', $this->h3mapscan->disabledHeroes['Artificer']).'</td>
+		</tr>
+	</table>';
 
 //custom heroes
 $n = 0;
