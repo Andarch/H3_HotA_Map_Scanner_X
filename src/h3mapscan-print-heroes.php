@@ -16,9 +16,9 @@ echo '<table class="bigtable">
 		</tr>';
 foreach($this->h3mapscan->disabledHeroes as $class => $heroes) {
 	echo '<tr>
-		<td class="rowheader" style="padding-top:2px; padding-bottom:2px;">'.(++$n).'</td>
-		<td style="padding-top:2px; padding-bottom:2px;">'.$class.'</td>
-		<td class="smalltext1" style="padding-top:2px; padding-bottom:2px;">'.implode(', ', $heroes).'</td>
+		<td class="rowheader">'.(++$n).'</td>
+		<td>'.$class.'</td>
+		<td>'.implode(', ', $heroes).'</td>
 	</tr>';
 }
 echo '</table>';
