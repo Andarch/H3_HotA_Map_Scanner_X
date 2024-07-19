@@ -4,7 +4,7 @@
 //towns list
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
-echo '<table id="townDetailsTable" class="h3DataTable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<th class="nowrap" nowrap="nowrap">#</th>
@@ -60,7 +60,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 	echo '<tr>
 			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
-			<td class="nowrap" nowrap="nowrap">'.$town['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 			<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>

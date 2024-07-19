@@ -20,10 +20,6 @@ require_once 'src/config.php';
     <script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="application/javascript" src="js/jquery-ui.js"></script>
     <script type="application/javascript" src="js/mapread.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-    <script type="application/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css">
-    <script type="application/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
 <style>
 	:root {
 		--sidepanel-color: #555;
@@ -285,40 +281,6 @@ require_once 'src/config.php';
 	.sidebarMain a:hover:not(.active) {
 		color: #51442c;
 		background-color: #fcf4ad;
-	}
-
-	.h3DataTable {
-		border-collapse: collapse !important;
-		box-sizing: border-box !important;
-		font-size: 13px !important;
-		margin-bottom: 20px !important;
-	}
-
-	.h3DataTable td,
-	.h3DataTable th {
-		padding: 5px !important;
-		border: solid 2px #aaa !important;
-		box-sizing: border-box !important;
-	}
-
-	.h3DataTable th {
-		padding: 5px 16px !important;
-	}
-
-	#objectsTable_filter input,
-	#townDetailsTable_filter input,
-	#allObjectsTable_filter input {
-		background-color: #222 !important;
-		color: #ddd !important;
-	}
-
-	#objectsTable_filter,
-	#townDetailsTable_filter,
-	#allObjectsTable_filter {
-		color: grey !important;
-		margin: 10px 0px !important;
-		font-size: 13px !important;
-		float: left !important;
 	}
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* red */
