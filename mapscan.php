@@ -27,7 +27,7 @@ require_once 'src/config.php';
 		--sidepanel-border-style: solid;
 		--sidepanel-border-width: 4px;
 		--hrule1-border-color: #999;
-		--hrule2-border-color: #888;
+		--hrule2-border-color: #777;
 		--hyperlink-color: #29fff1;
 		--cell-bg: #2b2b2b;
 	}
@@ -59,7 +59,7 @@ require_once 'src/config.php';
 
 	body, table { color: #ddd; }
 
-	.hrule1 { border: 5px double var(--hrule1-border-color); margin: 0; }
+	.hrule1 { border: 8px double var(--hrule1-border-color); margin: 0; }
 	.hrule2 { border: 1.25px groove var(--hrule2-border-color); margin: 0; }
 
 	.content {
