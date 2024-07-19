@@ -1033,7 +1033,7 @@ class H3MAPSCAN {
 					}
 					$tHero['skills'] = $skills;
 
-					$this->curobj = 'Hero def: '.$tHero['mname'];
+					$this->curobj = 'Custom Hero: '.$tHero['tname'];
 					$this->curcoor = new MapCoords();
 					$tHero['artifacts'] = $this->LoadArtifactsOfHero();
 
@@ -1202,7 +1202,6 @@ class H3MAPSCAN {
 		if(!$has_artifacts) {
 			return $artifacts;
 		}
-
 
 		for($a = 0; $a < 16; $a++) {
 			$this->LoadArtifactToSlot($artifacts, $a);

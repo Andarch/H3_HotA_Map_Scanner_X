@@ -27,7 +27,7 @@ require_once 'src/config.php';
 		--sidepanel-border-style: solid;
 		--sidepanel-border-width: 4px;
 		--hrule1-border-color: #999;
-		--hrule2-border-color: #6e6e6e;
+		--hrule2-border-color: #888;
 		--hyperlink-color: #29fff1;
 		--cell-bg: #2b2b2b;
 	}
@@ -52,6 +52,8 @@ require_once 'src/config.php';
 
 	.bigtable th { font-size: 14px; }
 	.bigtable td { font-size: 13px; }
+	.smalltable th { font-size: 14px; }
+	.smalltable td { font-size: 11px; }
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
@@ -158,6 +160,18 @@ require_once 'src/config.php';
 	}
 
 	.tables-flex-container .bigtable {
+		margin: 0;
+	}
+
+	.flex-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: start;
+		align-items: start;
+		gap: 2em;
+	}
+
+	.flex-container .smalltable {
 		margin: 0;
 	}
 
