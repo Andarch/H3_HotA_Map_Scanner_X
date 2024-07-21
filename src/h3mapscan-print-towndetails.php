@@ -9,7 +9,7 @@ echo '<table class="bigtable">
 			<tr>
 				<th class="nowrap" nowrap="nowrap">#</th>
 				<th class="nowrap" nowrap="nowrap">Town</br>Name</th>
-				<th class="nowrap" nowrap="nowrap">Coordinates</th>
+				<th class="nowrap" nowrap="nowrap">Position</th>
 				<th class="nowrap" nowrap="nowrap">Owner</th>
 				<th class="nowrap" nowrap="nowrap">Faction</th>
 				<th class="nowrap" nowrap="nowrap"># of</br>Events</th>

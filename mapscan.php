@@ -82,6 +82,14 @@ require_once 'src/config.php';
 		text-align: center;
 	}
 
+	.subheader {
+		color: #fcf4ad;
+		background: #51442c;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+		border-bottom: solid 2px #aaa;
+		border-right: solid 2px #aaa;
+	}
+
 	.specialcell1 {
 		background: #5a5855;
 		font-weight: bold;
@@ -107,6 +115,10 @@ require_once 'src/config.php';
 	.smalltext2 {
 		font-size: 10px !important;
 		color: grey;
+	}
+
+	.redtext {
+		color: red;
 	}
 
 	.mls {

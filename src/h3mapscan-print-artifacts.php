@@ -16,7 +16,7 @@ for ($i = 0; $i < $numTables; $i++) {
 			<tr>
 				<th>#</th>
 				<th>Artifact</th>
-				<th>Coordinates</th>
+				<th>Position</th>
 				<th>Parent</th>
 				<th>Name</th>
 			</tr>';

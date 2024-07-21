@@ -8,7 +8,7 @@ echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
-			<th class="nowrap" nowrap="nowrap">Coordinates</th>
+			<th class="nowrap" nowrap="nowrap">Position</th>
 			<th class="nowrap" nowrap="nowrap">Quest</th>
 			<th>Text Give</th>
 			<th>Text Repeat</th>

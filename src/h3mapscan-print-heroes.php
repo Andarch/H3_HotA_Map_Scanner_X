@@ -198,7 +198,7 @@ echo '<table id="heroes-table-3" class="bigtable">
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
-			<th>Coordinates</th>
+			<th>Position</th>
 			<th>Owner</th>
 			<th>Class</th>
 			<th>XP</th>

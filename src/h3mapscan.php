@@ -2887,7 +2887,7 @@ class H3MAPSCAN {
 		}
 		else {
 			$quest['timeout'] = $limit;
-			$quest['Qrequirement'] .= $limit;
+			$quest['Qrequirement'] .= '</br><span class="redtext">'.$this->ConvertDaysToMonthWeekDay($limit).'</span';
 		}
 		$quest['textFirst'] = $this->ReadString();
 		$quest['textRepeat'] = $this->ReadString();
