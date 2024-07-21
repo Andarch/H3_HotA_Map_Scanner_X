@@ -70,7 +70,9 @@ echo '</div>';
 $n = 0;
 echo '<div class="table-container forcebreak">';
 echo '<table id="heroes-table-2" class="bigtable">
-		<tr><th class="tableheader2" colspan="12">Template Heroes</th></tr>
+		<tr>
+			<th class="tableheader2" colspan="12">Template Heroes</th>
+		</tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
