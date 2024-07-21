@@ -1,10 +1,13 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
+echo '<div class="flex-container">';
+
 if(!strcmp($this->h3mapscan->description, '')) {
 	$this->h3mapscan->description = EMPTY_DATA;
 }
 
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap" colspan="2">Map</th>
@@ -17,7 +20,7 @@ echo '<table class="bigtable">
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td class="ar nowrap specialcell2" nowrap="nowrap">Name</td>
+			<td class="ar nowrap specialcell3" nowrap="nowrap">Name</td>
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->versionname.$subrev.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_sizename.'</td>
@@ -28,11 +31,13 @@ echo '<table class="bigtable">
 			<td class="smalltext1" rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap specialcell2" nowrap="nowrap">File</td>
+			<td class="ar nowrap specialcell3" nowrap="nowrap">File</td>
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
 		</tr>
 	</table>';
+echo '</div>';
 
+echo '<div class="table-container forcebreak">';
 echo '<table class="bigtable">
 	<tr>
 		<th class="ac nowrap" nowrap="nowrap">#</th>
@@ -75,9 +80,9 @@ foreach($this->h3mapscan->players as $k => $player) {
 		</tr>';
 }
 echo '</table>';
+echo '</div>';
 
-echo '<div class="tables-flex-container">';
-
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 <tr>
 	<th>#</th>
@@ -86,7 +91,6 @@ echo '<table class="bigtable">
 </tr>';
 
 $n = 0;
-// Sort the townTypeCounts array by player ID
 ksort($this->h3mapscan->townTypeCounts);
 
 foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
@@ -96,7 +100,6 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
 			$townCountsList .= $affiliation . ': ' . $count . '</br>';
 		}
 
-	// Remove the trailing comma and space
 	$townCountsList = rtrim($townCountsList, ', ');
 
 	echo '<tr>
@@ -107,8 +110,11 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
 }
 
 echo '</table>';
+echo '</div>';
 
 sort($this->h3mapscan->disabledArtifacts);
+
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -121,8 +127,11 @@ foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 	</tr>';
 }
 echo '</table>';
+echo '</div>';
 
 sort($this->h3mapscan->disabledSpells);
+
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -135,8 +144,11 @@ foreach($this->h3mapscan->disabledSpells as $k => $spell) {
 	</tr>';
 }
 echo '</table>';
+echo '</div>';
 
 sort($this->h3mapscan->disabledSkills);
+
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -149,19 +161,22 @@ foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 	</tr>';
 }
 echo '</table>';
+echo '</div>';
 
+echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th colspan="2">Grail</th>
 		</tr>
 		<tr>
-			<td class="specialcell2 ar">Has Grail</td>
+			<td class="specialcell3 ar">Has Grail</td>
 			<td class="ac">'.($this->h3mapscan->hasGrail ? 'Yes' : 'No').'</td>
 		</tr>
 		<tr>
-			<td class="specialcell2 ar"># of Obelisks</td>
+			<td class="specialcell3 ar"># of Obelisks</td>
 			<td class="ac">'.$this->h3mapscan->obelisksnum.'</td>
 		</tr>
 	</table>';
+echo '</div>';
 
 echo '</div>';

@@ -193,7 +193,7 @@ function customSort($a, $b, $customOrder) {
 }
 
 /* START FLEX */
-echo '<div class="tables-flex-container" style="display: flex; flex-wrap: wrap; row-gap: 1em;">';
+echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap: 1em;">';
 
 /* KEYMASTER'S TENTS */
 $n = 0;

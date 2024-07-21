@@ -2574,7 +2574,7 @@
 		];
 
 		public $RewardType = [
-			REWARDTYPE::NOTHING => 'Nothing',
+			REWARDTYPE::NOTHING => EMPTY_DATA,
 			REWARDTYPE::EXPERIENCE => 'Experience',
 			REWARDTYPE::MANA_POINTS => 'Mana points',
 			REWARDTYPE::MORALE_BONUS => 'Morale bonus',

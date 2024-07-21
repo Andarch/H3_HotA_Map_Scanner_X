@@ -1,45 +1,64 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-//seers huts and quest master
-usort($this->h3mapscan->quest_list, 'ListSortByName');
+$textColumnWidth = 'min-width: 300px;';
+
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
 			<th class="nowrap" nowrap="nowrap">Coordinates</th>
-			<th>Quest</th>
-			<th colspan="3">Reward</th>
-			<th class="colw300">Text Give</th>
-			<th class="colw300">Text Repeat</th>
-			<th class="colw300">Text Finished</th>
+			<th class="nowrap" nowrap="nowrap">#</th>
+			<th colspan="2">Quest</th>
+			<th>Reward</th>
+			<th class="thickvertical-left thinvertical-right">Text Give</th>
+			<th class="thinvertical">Text Repeat</th>
+			<th class="thinvertical-left thickvertical-right">Text Finished</th>
 		</tr>';
 
-//$quest['textFirst']
-//$quest['textRepeat']
-//$quest['textDone']
+foreach($this->h3mapscan->seers_huts as $hut) {
+    ksort($hut['quests']);
+    $qcount = count($hut['quests']);
 
-foreach($this->h3mapscan->quest_list as $quest) {
-    if($quest->name == 'Seer\'s Hut')
-    {
-        $questtext = $quest->parent;
-        if($quest->add1 > 0) {
-            $questtext .= $this->h3mapscan->GetMapObjectByUID(MAPOBJECTS::NONE, $quest->add1);
+    echo '<tr>
+            <td rowspan="'.$qcount.'" class="rowheader">'.(++$n).'</td>
+            <td rowspan="'.$qcount.'" class="nowrap" nowrap="nowrap">'.$hut['name'].'</td>
+            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
+
+    foreach($hut['quests'] as $q => $quest) {
+        // $questreward = '';
+
+        $additionalrow = false;
+        if($q > 0) {
+            echo '<tr>';
+            $additionalrow = true;
         }
 
-        echo '<tr>
-            <td class="rowheader">'.(++$n).'</td>
-            <td class="nowrap" nowrap="nowrap">'.$quest->name.'</td>
-            <td class="ac nowrap" nowrap="nowrap">'.$quest->mapcoor->GetCoords().'</td>
-            <td class="smalltext1 nowrap" nowrap="nowrap">'.$questtext.'</td>
-            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->owner.'</td>
-            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->info.'</td>
-            <td class="smalltext1 nowrap" nowrap="nowrap">'.$quest->count.'</td>
-            <td class="smalltext1">'.nl2br($quest->add2[0]).'</td>
-            <td class="smalltext1">'.nl2br($quest->add2[1]).'</td>
-            <td class="smalltext1">'.nl2br($quest->add2[2]).'</td>
-        </tr>';
+        $borderstyle = '';
+        if($additionalrow) {
+            $borderstyle = 'border-top:1px dotted grey;border-bottom:1px dotted grey;';
+        } else {
+            $borderstyle = 'border-bottom:1px dotted grey;';
+        }
+
+        $Qreqstyle = '';
+        if($quest['Qcategory'] === 'Hero Class') {
+            $Qreqstyle = '"';
+        }
+        else {
+            $Qreqstyle = ' nowrap" nowrap="nowrap"';
+        }
+
+        echo '  <td class="ac specialcell1" style="'.$borderstyle.'">'.($q + 1).'</td>';
+        echo '  <td class="smalltext1 ac break-after-comma thickvertical-left thinvertical-right" style="'.$borderstyle.'">'.$quest['Qcategory'].'</td>';
+        echo '  <td class="smalltext1 break-after-comma thinvertical-left thickvertical-right'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
+        echo '  <td class="smalltext1 ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['questreward'].'</td>';
+        echo '  <td class="smalltext1 thickvertical-left thinvertical-right" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textFirst']).'</td>';
+        echo '  <td class="smalltext1 thinvertical" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textRepeat']).'</td>';
+        echo '  <td class="smalltext1 thinvertical-left thickvertical-right" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textDone']).'</td>';
+
+        echo '</tr>';
     }
 }
 

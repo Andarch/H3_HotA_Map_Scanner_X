@@ -2,7 +2,7 @@
 /** @var H3MAPSCAN_PRINT $this */
 
 //seers huts and quest master
-usort($this->h3mapscan->quest_list, 'ListSortByName');
+usort($this->h3mapscan->qg_quests, 'ListSortByName');
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
@@ -15,7 +15,7 @@ echo '<table class="bigtable">
 			<th>Text Finished</th>
 		</tr>';
 
-foreach($this->h3mapscan->quest_list as $quest) {
+foreach($this->h3mapscan->qg_quests as $quest) {
     if($quest->name == 'Quest Guard' || $quest->name == 'Quest Gate')
     {
         $questtext = $quest->parent;

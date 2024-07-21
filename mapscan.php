@@ -30,6 +30,13 @@ require_once 'src/config.php';
 		--hrule2-border-color: #777;
 		--hyperlink-color: #29fff1;
 		--cell-bg: #2b2b2b;
+		--flex-gap: 3em;
+		--table-border-style: solid;
+		--table-border-width: 2px;
+		--table-border-color: #aaa;
+		--thin-border-style: dotted;
+		--thin-border-width: 1px;
+		--thin-border-color: grey;
 	}
 
 	@font-face {
@@ -38,8 +45,8 @@ require_once 'src/config.php';
 	}
 
 	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
-	table { border-collapse: collapse; margin: 0 0 2em 0; border: solid 2px #aaa; }
-	th, td {border: solid 2px #aaa; min-width: 1em; padding: 3px 6px; }
+	table { border-collapse: collapse; margin: 0; border: solid 2px #aaa; }
+	th, td {border: var(--table-border-style) var(--table-border-width) var(--table-border-color); min-width: 1em; padding: 3px 6px; }
 	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 2px #aaa; border-right: solid 2px #aaa; }
 	td { border-right: solid 2px #aaa; background: var(--cell-bg); }
 	.ar { text-align: right; }
@@ -78,10 +85,16 @@ require_once 'src/config.php';
 	.specialcell1 {
 		background: #5a5855;
 		font-weight: bold;
-		font-size: 11px !important;
+		font-size: 12px !important;
 	}
 
 	.specialcell2 {
+		background: #5a5855;
+		font-weight: bold;
+		font-size: 11px !important;
+	}
+
+	.specialcell3 {
 		background: #4e4e4e;
 		font-weight: bold;
 		font-size: 13px !important;
@@ -109,6 +122,32 @@ require_once 'src/config.php';
 
 	.vat {
 		vertical-align: top;
+	}
+
+	.thinvertical {
+		border-left: var(--thin-border-style) var(--thin-border-width) var(--thin-border-color);
+		border-right: var(--thin-border-style) var(--thin-border-width) var(--thin-border-color);
+	}
+
+	.thinvertical-left {
+		border-left: var(--thin-border-style) var(--thin-border-width) var(--thin-border-color);
+	}
+
+	.thinvertical-right {
+		border-right: var(--thin-border-style) var(--thin-border-width) var(--thin-border-color);
+	}
+
+	.thickvertical {
+		border-left: var(--table-border-style) var(--table-border-width) var(--table-border-color);
+		border-right: var(--table-border-style) var(--table-border-width) var(--table-border-color);
+	}
+
+	.thickvertical-left {
+		border-left: var(--table-border-style) var(--table-border-width) var(--table-border-color);
+	}
+
+	.thickvertical-right {
+		border-right: var(--table-border-style) var(--table-border-width) var(--table-border-color);
 	}
 
 	.heronameheader1 {
@@ -151,28 +190,28 @@ require_once 'src/config.php';
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 	}
 
-	.tables-flex-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: start;
-		align-items: start;
-		gap: 2em;
-	}
-
-	.tables-flex-container .bigtable {
-		margin: 0;
-	}
-
 	.flex-container {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: start;
 		align-items: start;
-		gap: 2em;
+		gap: var(--flex-gap);
 	}
 
+	.flex-container .bigtable,
 	.flex-container .smalltable {
 		margin: 0;
+	}
+
+	.table-container {
+		/* flex-basis: calc(33.33% - var(--flex-gap)); */
+	}
+
+	.table-container table {
+		/* width: 100%; */
+	}
+
+	.forcebreak {
+		flex-basis: 100%;
 	}
 
 	.sidebarTop {

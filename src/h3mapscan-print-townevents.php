@@ -37,7 +37,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$rows = $town['eventsnum'];
 
 	echo '<tr>
-		<td class="rowheader" rowspan="'.$rows.'">'.(++$n).'</td>
+		<td rowspan="'.$rows.'" class="rowheader" >'.(++$n).'</td>
 		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
 		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 		<td rowspan="'.$rows.'" class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
@@ -88,14 +88,6 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		if(empty($monsters)) {
 			$monsters[] = EMPTY_DATA;
 		}
-
-		// if(!strcmp($town['affiliation'], 'Random')) {
-		// 	echo 'hotaLevel7b: '.$event['hotaLevel7b'];
-		// 	echo '</br>';
-		// 	echo 'hotaAmount: '.$event['hotaAmount'];
-		// 	echo '</br>';
-		// 	echo 'hotaSpecial: '.implode(', ', $event['hotaSpecial']);
-		// }
 
 		$buildings = [];
 		foreach($event['buildings'] as $k => $bbyte) {
