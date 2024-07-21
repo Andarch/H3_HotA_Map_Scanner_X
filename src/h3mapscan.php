@@ -2725,7 +2725,6 @@ class H3MAPSCAN {
 
 	private function ReadSeerHut() {
 		$hut = [];
-		$numquest = 1;
 		$qi = 0; //quest iterator
 
 		$hut['quests'][0]['taskid'] = QUESTMISSION::NONE;
