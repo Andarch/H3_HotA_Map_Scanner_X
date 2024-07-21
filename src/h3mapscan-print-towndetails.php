@@ -1,7 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-//towns list
+echo '<div class="flex-container">';
+
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
 echo '<table class="bigtable">
@@ -74,3 +75,5 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	</tr>';
 }
 echo '</tbody></table>';
+
+echo '</div>';
