@@ -2780,6 +2780,9 @@ class H3MAPSCAN {
 			case QUESTMISSION::NONE:
 				$quest['Qcategory'] = EMPTY_DATA;
 				$quest['Qrequirement'] = EMPTY_DATA;
+				$quest['textFirst'] = EMPTY_DATA;
+				$quest['textRepeat'] = EMPTY_DATA;
+				$quest['textDone'] = EMPTY_DATA;
 				return $quest;
 			case QUESTMISSION::PRIMARY_STAT:
 				$quest['Qcategory'] = 'Primary Skills';
@@ -2794,7 +2797,7 @@ class H3MAPSCAN {
 				}
 				break;
 			case QUESTMISSION::LEVEL:
-				$quest['Qcategory'] = 'Hero Level';
+				$quest['Qcategory'] = 'Level Minimum';
 				$quest['Qrequirement'] = 'Level '.$this->br->ReadUint32();
 				break;
 			case QUESTMISSION::KILL_HERO:
@@ -2828,7 +2831,7 @@ class H3MAPSCAN {
 				for($x = 0; $x < $typeNumber; $x++) {
 					$monster = $this->GetCreatureById($this->br->ReadUint16());
 					$count = $this->br->ReadUint16();
-					$quest['Qrequirement'] .= ($x > 0 ? '<br />' : '').$monster.': '.$count;
+					$quest['Qrequirement'] .= ($x > 0 ? '<br />' : '').$monster.': '.comma($count);
 				}
 				break;
 			case QUESTMISSION::RESOURCES:
@@ -2836,25 +2839,25 @@ class H3MAPSCAN {
 				for($x = 0; $x < 7; $x++) {
 					$count = $this->br->ReadUint32();
 					if($count > 0) {
-						$resall[] = $this->GetResourceById($x).': '.$count;
+						$resall[] = $this->GetResourceById($x).': '.comma($count);
 					}
 				}
 				$quest['Qrequirement'] = implode('</br>', $resall);
 				break;
 			case QUESTMISSION::HERO:
-				$quest['Qcategory'] = 'Hero';
+				$quest['Qcategory'] = 'Specific Hero';
 				$qHero = $this->br->ReadUint8();
 				$quest['Qrequirement'] = $this->GetHeroById($qHero);
 				break;
 			case QUESTMISSION::PLAYER:
-				$quest['Qcategory'] = 'Player';
+				$quest['Qcategory'] = 'Specific Player';
 				$qPlayer = $this->br->ReadUint8();
 				$quest['Qrequirement'] = $this->GetPlayerColorById($qPlayer, true);
 				break;
 			case QUESTMISSION::HOTA_EXTRA:
 				$hotaquestid = $this->br->ReadUint32();
 				if($hotaquestid == QUESTMISSION::HOTA_CLASS) {
-					$quest['Qcategory'] = 'Hero Class';
+					$quest['Qcategory'] = 'Specific Class';
 					$class_count = $this->br->ReadUint32();
 					if ($class_count > 0) {
 						$class_avail = (int)ceil($class_count / 8);

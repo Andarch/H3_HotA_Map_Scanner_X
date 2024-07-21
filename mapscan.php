@@ -109,6 +109,10 @@ require_once 'src/config.php';
 		color: grey;
 	}
 
+	.mls {
+		line-height: 1.1rem;
+	}
+
 	.cellfill {
 		--dot-bg: #333;
 		--dot-color: #555;

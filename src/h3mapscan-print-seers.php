@@ -23,12 +23,10 @@ foreach($this->h3mapscan->seers_huts as $hut) {
 
     echo '<tr>
             <td rowspan="'.$qcount.'" class="rowheader">'.(++$n).'</td>
-            <td rowspan="'.$qcount.'" class="nowrap" nowrap="nowrap">'.$hut['name'].'</td>
-            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
+            <td rowspan="'.$qcount.'" class="mls ac nowrap" nowrap="nowrap">'.$hut['name'].'</td>
+            <td rowspan="'.$qcount.'" class="mls ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
 
     foreach($hut['quests'] as $q => $quest) {
-        // $questreward = '';
-
         $additionalrow = false;
         if($q > 0) {
             echo '<tr>';
@@ -43,7 +41,7 @@ foreach($this->h3mapscan->seers_huts as $hut) {
         }
 
         $Qreqstyle = '';
-        if($quest['Qcategory'] === 'Hero Class') {
+        if($quest['Qcategory'] === 'Specific Class') {
             $Qreqstyle = '"';
         }
         else {
@@ -51,8 +49,8 @@ foreach($this->h3mapscan->seers_huts as $hut) {
         }
 
         echo '  <td class="ac specialcell1" style="'.$borderstyle.'">'.($q + 1).'</td>';
-        echo '  <td class="smalltext1 ac break-after-comma thickvertical-left thinvertical-right" style="'.$borderstyle.'">'.$quest['Qcategory'].'</td>';
-        echo '  <td class="smalltext1 break-after-comma thinvertical-left thickvertical-right'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
+        echo '  <td class="smalltext1 ac thickvertical-left thinvertical-right nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['Qcategory'].'</td>';
+        echo '  <td class="smalltext1 thinvertical-left thickvertical-right'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
         echo '  <td class="smalltext1 ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['questreward'].'</td>';
         echo '  <td class="smalltext1 thickvertical-left thinvertical-right" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textFirst']).'</td>';
         echo '  <td class="smalltext1 thinvertical" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textRepeat']).'</td>';
