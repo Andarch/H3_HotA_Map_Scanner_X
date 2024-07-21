@@ -34,30 +34,29 @@ foreach($this->h3mapscan->seers_huts as $hut) {
             echo '<tr>';
             $additionalrow = true;
         }
-
         $borderstyle = '';
         if($additionalrow) {
-            $borderstyle = 'border-top:1px dotted grey;border-bottom:1px dotted grey;';
+            $borderstyle = 'style="border-top:1px dotted grey;border-bottom:1px dotted grey;"';
         } else {
-            $borderstyle = 'border-bottom:1px dotted grey;';
+            $borderstyle = 'style="border-bottom:1px dotted grey;"';
         }
 
-        $Qreqstyle = '';
+        $Qreqclass = '';
         if($quest['Qcategory'] === 'Specific Class') {
-            $Qreqstyle = '"';
+            $Qreqclass = '"';
         }
         else {
-            $Qreqstyle = ' nowrap" nowrap="nowrap"';
+            $Qreqclass = ' nowrap" nowrap="nowrap"';
         }
 
-        echo '  <td class="ac specialcell1" style="'.$borderstyle.'">'.($q + 1).'</td>';
-        echo '  <td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['Qcategory'].'</td>';
-        echo '  <td class="'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
-        echo '  <td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['Qdeadline'].'</td>';
-        echo '  <td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['questreward'].'</td>';
-        echo '  <td style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textFirst']).'</td>';
-        echo '  <td style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textRepeat']).'</td>';
-        echo '  <td style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textDone']).'</td>';
+        echo '  <td class="ac specialcell1" '.$borderstyle.'>'.($q + 1).'</td>';
+        echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['Qcategory'].'</td>';
+        echo '  <td class="'.$Qreqclass.' '.$borderstyle.'>'.$quest['Qrequirement'].'</td>';
+        echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['Qdeadline'].'</td>';
+        echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['questreward'].'</td>';
+        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textFirst']).'</td>';
+        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textRepeat']).'</td>';
+        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textDone']).'</td>';
 
         echo '</tr>';
     }
