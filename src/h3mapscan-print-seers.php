@@ -11,8 +11,8 @@ echo '<table class="smalltable">
 			<th class="nowrap" nowrap="nowrap">Position</th>
 			<th>#</th>
 			<th class="thickvertical-left thinvertical-right">Type</th>
-			<th class="thinvertical-left thickvertical-right">Requirement</th>
-			<th>Reward</th>
+			<th class="thinvertical">Requirement</th>
+			<th class="thinvertical-left thickvertical-right">Reward</th>
 			<th class="thickvertical-left thinvertical-right">Text Give</th>
 			<th class="thinvertical">Text Repeat</th>
 			<th class="thinvertical-left thickvertical-right">Text Finished</th>
@@ -51,8 +51,8 @@ foreach($this->h3mapscan->seers_huts as $hut) {
 
         echo '  <td class="ac specialcell1" style="'.$borderstyle.'">'.($q + 1).'</td>';
         echo '  <td class="ac thickvertical-left thinvertical-right nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['Qcategory'].'</td>';
-        echo '  <td class="thinvertical-left thickvertical-right'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
-        echo '  <td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['questreward'].'</td>';
+        echo '  <td class="thinvertical'.$Qreqstyle.' style="'.$borderstyle.'">'.$quest['Qrequirement'].'</td>';
+        echo '  <td class="thinvertical-left thickvertical-right ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$quest['questreward'].'</td>';
         echo '  <td class="thickvertical-left thinvertical-right" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textFirst']).'</td>';
         echo '  <td class="thinvertical" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textRepeat']).'</td>';
         echo '  <td class="thinvertical-left thickvertical-right" style="'.$borderstyle.$textColumnWidth.'">'.nl2br($quest['textDone']).'</td>';
