@@ -200,7 +200,7 @@ $n = 0;
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::KEYMASTERSTENTS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::KEYMASTERSTENTS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -226,7 +226,7 @@ $n = 0;
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BORDERGATES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDERGATES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -252,7 +252,7 @@ $n = 0;
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BORDERGUARDS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDERGUARDS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -285,7 +285,7 @@ uasort($garrisons, function($a, $b) use ($customOrderGarrisons) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GARRISONS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GARRISONS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -317,7 +317,7 @@ uasort($quests, function($a, $b) use ($customOrderQuests) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::QUESTS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::QUESTS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -352,7 +352,7 @@ uasort($transportation, function($a, $b) use ($customOrderTransportation) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRANSPORTATION.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRANSPORTATION.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -396,7 +396,7 @@ uasort($monolithsportalsonewayentrances, function($a, $b) use ($customOrderMonol
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -437,7 +437,7 @@ uasort($monolithsportalsonewayexits, function($a, $b) use ($customOrderMonoliths
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -476,7 +476,7 @@ uasort($monolithsportalstwowaymonoliths, function($a, $b) use ($customOrderMonol
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -521,7 +521,7 @@ uasort($monolithsportalstwowayportals, function($a, $b) use ($customOrderPortals
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -555,7 +555,7 @@ uasort($grail, function($a, $b) use ($customOrderGrail) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GRAIL.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GRAIL.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -594,7 +594,7 @@ uasort($artifacts, function($a, $b) use ($customOrderArtifacts) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -627,7 +627,7 @@ uasort($bonusmana, function($a, $b) use ($customOrderBonusMana) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BONUSMANA.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMANA.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -659,7 +659,7 @@ uasort($bonusmorale, function($a, $b) use ($customOrderBonusMorale) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BONUSMORALE.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMORALE.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -692,7 +692,7 @@ uasort($bonusluck, function($a, $b) use ($customOrderBonusLuck) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BONUSLUCK.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSLUCK.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -725,7 +725,7 @@ uasort($bonusmovement, function($a, $b) use ($customOrderBonusMovement) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BONUSMOVEMENT.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMOVEMENT.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -762,7 +762,7 @@ uasort($heroes, function($a, $b) use ($customOrderHeroes) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::HEROES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HEROES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -786,7 +786,7 @@ $n = 0;
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TOWNS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TOWNS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -823,7 +823,7 @@ uasort($dwellings, function($a, $b) use ($customOrderDwellings) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::DWELLINGS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::DWELLINGS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -847,7 +847,7 @@ $n = 0;
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MONSTERS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONSTERS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -878,7 +878,7 @@ uasort($warmachines, function($a, $b) use ($customOrderWarMachines) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::WARMACHINES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::WARMACHINES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -911,7 +911,7 @@ uasort($trading, function($a, $b) use ($customOrderTrading) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRADING.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRADING.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -961,7 +961,7 @@ uasort($heroupgrades, function($a, $b) use ($customOrderHeroUpgrades) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::HEROUPGRADES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HEROUPGRADES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -996,7 +996,7 @@ uasort($spells, function($a, $b) use ($customOrderSpells) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SPELLS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SPELLS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1041,7 +1041,7 @@ uasort($resources, function($a, $b) use ($customOrderResources) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1084,7 +1084,7 @@ uasort($mines, function($a, $b) use ($customOrderMines) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MINES.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MINES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1127,7 +1127,7 @@ uasort($resourcegenerators, function($a, $b) use ($customOrderResourceGenerators
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCEGENERATORS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCEGENERATORS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1155,7 +1155,7 @@ asort($creaturebanks);
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::CREATUREBANKS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::CREATUREBANKS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1194,7 +1194,7 @@ uasort($scouting, function($a, $b) use ($customOrderScouting) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SCOUTING.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SCOUTING.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1236,7 +1236,7 @@ uasort($magicalterrains, function($a, $b) use ($customOrderMagicalTerrains) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MAGICALTERRAINS.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MAGICALTERRAINS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1267,7 +1267,7 @@ uasort($text, function($a, $b) use ($customOrderText) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TEXT.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TEXT.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>
@@ -1309,7 +1309,7 @@ uasort($other, function($a, $b) use ($customOrderOther) {
 echo '<table class="bigtable">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::OTHER.'</td>
+				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::OTHER.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID-SubID</th>

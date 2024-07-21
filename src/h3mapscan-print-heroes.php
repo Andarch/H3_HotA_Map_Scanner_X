@@ -9,7 +9,7 @@ $sep = '</br>';
 echo '<div class="table-container forcebreak">';
 echo '<table class="bigtable">
 		<tr>
-			<th class="tableheader1" colspan="11">Disabled Heroes</th>
+			<td class="tableheader1" colspan="11">Disabled Heroes</td>
 		</tr>
 		<tr>
 			<th class="disabledheroescolumn">Knight</th>
@@ -71,7 +71,7 @@ $n = 0;
 echo '<div class="table-container forcebreak">';
 echo '<table id="heroes-table-2" class="bigtable">
 		<tr>
-			<th class="tableheader1" colspan="12">Template Heroes</th>
+			<td class="tableheader1" colspan="12">Template Heroes</td>
 		</tr>
 		<tr>
 			<th>#</th>
@@ -196,7 +196,7 @@ echo '</div>';
 $n = 0;
 echo '<div class="table-container">';
 echo '<table id="heroes-table-3" class="bigtable">
-		<tr><th class="tableheader1" colspan="12">Map Heroes</th></tr>
+		<tr><td class="tableheader1" colspan="12">Map Heroes</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
