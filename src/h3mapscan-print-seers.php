@@ -57,11 +57,9 @@ foreach($this->h3mapscan->seers_huts as $hut) {
         echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textFirst']).'</td>';
         echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textRepeat']).'</td>';
         echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textDone']).'</td>';
-
         echo '</tr>';
     }
 }
-
 echo '</table>';
 
 echo '</div>';
