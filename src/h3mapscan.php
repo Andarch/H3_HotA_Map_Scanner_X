@@ -2770,6 +2770,7 @@ class H3MAPSCAN {
 
 		$quest['Qcategory'] = '';
 		$quest['Qrequirement'] = '';
+		$quest['Qdeadline'] = '';
 		$quest['Qarray'] = [];
 		$quest['uid'] = 0;
 		$quest['textFirst'] = '';
@@ -2780,6 +2781,7 @@ class H3MAPSCAN {
 			case QUESTMISSION::NONE:
 				$quest['Qcategory'] = EMPTY_DATA;
 				$quest['Qrequirement'] = EMPTY_DATA;
+				$quest['Qdeadline'] = EMPTY_DATA;
 				$quest['textFirst'] = EMPTY_DATA;
 				$quest['textRepeat'] = EMPTY_DATA;
 				$quest['textDone'] = EMPTY_DATA;
@@ -2884,10 +2886,11 @@ class H3MAPSCAN {
 		$limit = $this->br->ReadUint32();
 		if($limit == HNONE32) {
 			$quest['timeout'] = OBJECT_INVALID;
+			$quest['Qdeadline'] = EMPTY_DATA;
 		}
 		else {
 			$quest['timeout'] = $limit;
-			$quest['Qrequirement'] .= '</br><span class="redtext">'.$this->ConvertDaysToMonthWeekDay($limit).'</span';
+			$quest['Qdeadline'] = $this->ConvertDaysToMonthWeekDay($limit);
 		}
 		$quest['textFirst'] = $this->ReadString();
 		$quest['textRepeat'] = $this->ReadString();
