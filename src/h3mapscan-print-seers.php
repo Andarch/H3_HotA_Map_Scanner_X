@@ -25,8 +25,8 @@ foreach($this->h3mapscan->seers_huts as $hut) {
 
     echo '<tr>
             <td rowspan="'.$qcount.'" class="rowheader">'.(++$n).'</td>
-            <td rowspan="'.$qcount.'" class="mls ac nowrap" nowrap="nowrap">'.$hut['name'].'</td>
-            <td rowspan="'.$qcount.'" class="mls ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
+            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['name'].'</td>
+            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
 
     foreach($hut['quests'] as $q => $quest) {
         $additionalrow = false;
