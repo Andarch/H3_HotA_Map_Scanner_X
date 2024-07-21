@@ -1,8 +1,6 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-$textColumnWidth = 'min-width: 300px;';
-
 $n = 0;
 echo '<table class="smalltable">
 		<tr>
@@ -54,9 +52,9 @@ foreach($this->h3mapscan->seers_huts as $hut) {
         echo '  <td class="'.$Qreqclass.' '.$borderstyle.'>'.$quest['Qrequirement'].'</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['Qdeadline'].'</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['questreward'].'</td>';
-        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textFirst']).'</td>';
-        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textRepeat']).'</td>';
-        echo '  <td '.$borderstyle.$textColumnWidth.'>'.nl2br($quest['textDone']).'</td>';
+        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textFirst']).'</td>';
+        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textRepeat']).'</td>';
+        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textDone']).'</td>';
 
         echo '</tr>';
     }
