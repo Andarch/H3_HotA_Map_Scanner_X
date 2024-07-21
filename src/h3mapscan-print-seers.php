@@ -1,6 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
+echo '<div class="flex-container">';
+
 $n = 0;
 echo '<table class="smalltable">
 		<tr>
@@ -61,3 +63,5 @@ foreach($this->h3mapscan->seers_huts as $hut) {
 }
 
 echo '</table>';
+
+echo '</div>';
