@@ -29,6 +29,14 @@ foreach($this->h3mapscan->seers_huts as $hut) {
             <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
 
     foreach($hut['quests'] as $q => $quest) {
+        $Qreqclass = '';
+        if($quest['Qcategory'] === 'Specific Class') {
+            $Qreqclass = '"';
+        }
+        else {
+            $Qreqclass = ' nowrap" nowrap="nowrap"';
+        }
+
         $additionalrow = false;
         if($q > 0) {
             echo '<tr>';
@@ -39,14 +47,6 @@ foreach($this->h3mapscan->seers_huts as $hut) {
             $borderstyle = 'style="border-top:1px dotted grey;border-bottom:1px dotted grey;"';
         } else {
             $borderstyle = 'style="border-bottom:1px dotted grey;"';
-        }
-
-        $Qreqclass = '';
-        if($quest['Qcategory'] === 'Specific Class') {
-            $Qreqclass = '"';
-        }
-        else {
-            $Qreqclass = ' nowrap" nowrap="nowrap"';
         }
 
         echo '  <td class="ac specialcell1" '.$borderstyle.'>'.($q + 1).'</td>';
