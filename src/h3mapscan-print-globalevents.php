@@ -3,7 +3,6 @@
 
 echo '<div class="flex-container">';
 
-//day events
 usort($this->h3mapscan->events, 'EventSortByDate');
 echo '<table class="bigtable">
 		<tr>

@@ -1,7 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-//towns events list
+echo '<div class="flex-container">';
+
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
@@ -171,3 +172,5 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	}
 }
 echo '</table>';
+
+echo '</div>';

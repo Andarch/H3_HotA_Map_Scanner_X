@@ -1,7 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-//events, pandora box
+echo '<div class="flex-container">';
+
 $n = 0;
 echo '<table class="bigtable">
 		<tr>
@@ -46,3 +47,5 @@ foreach($this->h3mapscan->events_list as $evento) {
 	}
 }
 echo '</table>';
+
+echo '</div>';
