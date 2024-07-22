@@ -638,7 +638,7 @@
 			31 => 'Protection From Fire',
 			32 => 'Protection From Water',
 			33 => 'Protection From Earth',
-			34 => 'Anti Magic',
+			34 => 'Anti-Magic',
 			35 => 'Dispel',
 			36 => 'Magic Mirror',
 			37 => 'Cure',
