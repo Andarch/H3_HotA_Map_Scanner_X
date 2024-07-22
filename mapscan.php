@@ -30,7 +30,7 @@ require_once 'src/config.php';
 		--hrule2-border-color: #777;
 		--hyperlink-color: #29fff1;
 		--cell-bg: #2b2b2b;
-		--flex-gap: 3em;
+		--flex-gap: 2em;
 		--table-border-style: solid;
 		--table-border-width: 2px;
 		--table-border-color: #aaa;
@@ -207,7 +207,7 @@ require_once 'src/config.php';
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		font-size: 18px !important;
+		font-size: 16px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		padding-left: 0.5em;
 	}
@@ -229,7 +229,8 @@ require_once 'src/config.php';
 	}
 
 	.table-container table {
-		/* width: 100%; */
+        /* table-layout: auto; */
+        /* width: auto; */
 	}
 
 	.forcebreak {
@@ -240,7 +241,7 @@ require_once 'src/config.php';
 		margin: 0;
 		padding: 0;
 		width: 250px;
-		background-color: var(--sidepanel-color);
+		background-color: var(--sidespanel-color);
 		position: fixed;
 		left: 0px;
 		top: 0px;
