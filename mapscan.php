@@ -117,6 +117,10 @@ require_once 'src/config.php';
 		color: grey;
 	}
 
+	.normaltext {
+		font-size: 14px !important;
+	}
+
 	.redtext {
 		color: red;
 	}

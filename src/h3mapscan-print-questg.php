@@ -30,8 +30,8 @@ foreach($this->h3mapscan->quest_gates as $qgate) {
     }
     echo '<tr>';
     echo '  <td class="rowheader">'.(++$n).'</td>';
-    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['name'].'</td>';
-    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['pos']->GetCoords().'</td>';
+    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qgate['name'].'</td>';
+    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qgate['pos']->GetCoords().'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['Qcategory'].'</td>';
     echo '  <td class="'.$qgateReqClass.'>'.$qgate['Qrequirement'].'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['Qdeadline'].'</td>';
@@ -69,8 +69,8 @@ foreach($this->h3mapscan->quest_guards as $qguard) {
     }
     echo '<tr>';
     echo '  <td class="rowheader">'.(++$n).'</td>';
-    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['name'].'</td>';
-    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['pos']->GetCoords().'</td>';
+    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qguard['name'].'</td>';
+    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qguard['pos']->GetCoords().'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['Qcategory'].'</td>';
     echo '  <td class="'.$qguardReqClass.'>'.$qguard['Qrequirement'].'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['Qdeadline'].'</td>';
