@@ -197,7 +197,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 
 /* KEYMASTER'S TENTS */
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::KEYMASTERSTENTS.'</td>
@@ -223,7 +223,7 @@ echo '	</tbody>
 
 /* BORDER GATES */
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDERGATES.'</td>
@@ -249,7 +249,7 @@ echo '	</tbody>
 
 /* BORDER GUARDS */
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDERGUARDS.'</td>
@@ -282,7 +282,7 @@ $customOrderGarrisons = [
 uasort($garrisons, function($a, $b) use ($customOrderGarrisons) {
 	return customSort($a, $b, $customOrderGarrisons);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GARRISONS.'</td>
@@ -314,7 +314,7 @@ $customOrderQuests = [
 uasort($quests, function($a, $b) use ($customOrderQuests) {
 	return customSort($a, $b, $customOrderQuests);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::QUESTS.'</td>
@@ -349,7 +349,7 @@ $customOrderTransportation = [
 uasort($transportation, function($a, $b) use ($customOrderTransportation) {
 	return customSort($a, $b, $customOrderTransportation);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRANSPORTATION.'</td>
@@ -394,7 +394,7 @@ $customOrderMonolithsPortalsOneWayEntrances = [
 uasort($monolithsportalsonewayentrances, function($a, $b) use ($customOrderMonolithsPortalsOneWayEntrances) {
 	return customSort($a, $b, $customOrderMonolithsPortalsOneWayEntrances);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYENTRANCES.'</td>
@@ -435,7 +435,7 @@ $customOrderMonolithsPortalsOneWayExits = [
 uasort($monolithsportalsonewayexits, function($a, $b) use ($customOrderMonolithsPortalsOneWayExits) {
 	return customSort($a, $b, $customOrderMonolithsPortalsOneWayExits);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSONEWAYEXITS.'</td>
@@ -474,7 +474,7 @@ $customOrderMonolithsTwoWay = [
 uasort($monolithsportalstwowaymonoliths, function($a, $b) use ($customOrderMonolithsTwoWay) {
 	return customSort($a, $b, $customOrderMonolithsTwoWay);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYMONOLITHS.'</td>
@@ -519,7 +519,7 @@ $customOrderPortalsTwoWay = [
 uasort($monolithsportalstwowayportals, function($a, $b) use ($customOrderPortalsTwoWay) {
 	return customSort($a, $b, $customOrderPortalsTwoWay);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONOLITHSPORTALSTWOWAYPORTALS.'</td>
@@ -554,7 +554,7 @@ $customOrderGrail = [
 uasort($grail, function($a, $b) use ($customOrderGrail) {
     return customSort($a, $b, $customOrderGrail);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GRAIL.'</td>
@@ -593,7 +593,7 @@ $customOrderArtifacts = [
 uasort($artifacts, function($a, $b) use ($customOrderArtifacts) {
     return customSort($a, $b, $customOrderArtifacts);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
@@ -626,7 +626,7 @@ $customOrderBonusMana = [
 uasort($bonusmana, function($a, $b) use ($customOrderBonusMana) {
 	return customSort($a, $b, $customOrderBonusMana);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMANA.'</td>
@@ -658,7 +658,7 @@ $customOrderBonusMorale = [
 uasort($bonusmorale, function($a, $b) use ($customOrderBonusMorale) {
 	return customSort($a, $b, $customOrderBonusMorale);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMORALE.'</td>
@@ -691,7 +691,7 @@ $customOrderBonusLuck = [
 uasort($bonusluck, function($a, $b) use ($customOrderBonusLuck) {
 	return customSort($a, $b, $customOrderBonusLuck);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSLUCK.'</td>
@@ -724,7 +724,7 @@ $customOrderBonusMovement = [
 uasort($bonusmovement, function($a, $b) use ($customOrderBonusMovement) {
 	return customSort($a, $b, $customOrderBonusMovement);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUSMOVEMENT.'</td>
@@ -762,7 +762,7 @@ $customOrderHeroes = [
 uasort($heroes, function($a, $b) use ($customOrderHeroes) {
 	return customSort($a, $b, $customOrderHeroes);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HEROES.'</td>
@@ -786,7 +786,7 @@ echo '	</tbody>
 
 /* TOWNS */
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TOWNS.'</td>
@@ -823,7 +823,7 @@ $customOrderDwellings = [
 uasort($dwellings, function($a, $b) use ($customOrderDwellings) {
 	return customSort($a, $b, $customOrderDwellings);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::DWELLINGS.'</td>
@@ -847,7 +847,7 @@ echo '	</tbody>
 
 /* MONSTERS */
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONSTERS.'</td>
@@ -878,7 +878,7 @@ $customOrderWarMachines = [
 uasort($warmachines, function($a, $b) use ($customOrderWarMachines) {
 	return customSort($a, $b, $customOrderWarMachines);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::WARMACHINES.'</td>
@@ -911,7 +911,7 @@ $customOrderTrading = [
 uasort($trading, function($a, $b) use ($customOrderTrading) {
 	return customSort($a, $b, $customOrderTrading);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRADING.'</td>
@@ -962,7 +962,7 @@ $customOrderHeroUpgrades = [
 uasort($heroupgrades, function($a, $b) use ($customOrderHeroUpgrades) {
 	return customSort($a, $b, $customOrderHeroUpgrades);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HEROUPGRADES.'</td>
@@ -997,7 +997,7 @@ $customOrderSpells = [
 uasort($spells, function($a, $b) use ($customOrderSpells) {
 	return customSort($a, $b, $customOrderSpells);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SPELLS.'</td>
@@ -1042,7 +1042,7 @@ $customOrderResources = [
 uasort($resources, function($a, $b) use ($customOrderResources) {
 	return customSort($a, $b, $customOrderResources);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCES.'</td>
@@ -1085,7 +1085,7 @@ $customOrderMines = [
 uasort($mines, function($a, $b) use ($customOrderMines) {
 	return customSort($a, $b, $customOrderMines);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MINES.'</td>
@@ -1128,7 +1128,7 @@ $customOrderResourceGenerators = [
 uasort($resourcegenerators, function($a, $b) use ($customOrderResourceGenerators) {
 	return customSort($a, $b, $customOrderResourceGenerators);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCEGENERATORS.'</td>
@@ -1157,7 +1157,7 @@ echo '<div class="forcebreak"></div>';
 /* CREATURE BANKS */
 $n = 0;
 asort($creaturebanks);
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::CREATUREBANKS.'</td>
@@ -1196,7 +1196,7 @@ $customOrderScouting = [
 uasort($scouting, function($a, $b) use ($customOrderScouting) {
 	return customSort($a, $b, $customOrderScouting);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SCOUTING.'</td>
@@ -1238,7 +1238,7 @@ $customOrderMagicalTerrains = [
 uasort($magicalterrains, function($a, $b) use ($customOrderMagicalTerrains) {
 	return customSort($a, $b, $customOrderMagicalTerrains);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MAGICALTERRAINS.'</td>
@@ -1269,7 +1269,7 @@ $customOrderText = [
 uasort($text, function($a, $b) use ($customOrderText) {
 	return customSort($a, $b, $customOrderText);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TEXT.'</td>
@@ -1311,7 +1311,7 @@ $customOrderOther = [
 uasort($other, function($a, $b) use ($customOrderOther) {
 	return customSort($a, $b, $customOrderOther);
 });
-echo '<table class="bigtable">
+echo '<table class="smalltable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::OTHER.'</td>
