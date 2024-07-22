@@ -3001,7 +3001,11 @@ class H3MAPSCAN {
 		for($i = 0; $i < $numberOfEvents; $i++) {
 			$event['order'] = $i;
 			$event['name'] = $this->ReadString();
+
 			$event['message'] = $this->ReadString();
+			if($event['message'] == '') {
+				$event['message'] = EMPTY_DATA;
+			}
 
 			$event['resources'] = $this->ReadResourses();
 			$event['players'] = $this->br->ReadUint8();
@@ -3024,16 +3028,9 @@ class H3MAPSCAN {
 			}
 
 			$event['first'] = $this->br->ReadUint16() + 1;
-			$event['interval'] = $this->br->ReadUint16();
+			$event['interval'] = $this->br->ReadUint8();
 
-			$this->br->SkipBytes(16);
-
-			if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-				///skip this, not really useful
-				$this->br->SkipBytes(4);
-				$bitcount = $this->br->ReadUint32();
-				$this->br->SkipBytes(intval(($bitcount + 7) / 8));
-			}
+			$this->br->SkipBytes(31);
 
 			$this->events[] = $event;
 		}

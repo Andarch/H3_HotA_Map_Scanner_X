@@ -1,6 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
+echo '<div class="flex-container">';
+
 //day events
 usort($this->h3mapscan->events, 'EventSortByDate');
 echo '<table class="bigtable">
@@ -50,3 +52,5 @@ foreach($this->h3mapscan->events as $k => $event) {
 	</tr>';
 }
 echo '</table>';
+
+echo '</div>';
