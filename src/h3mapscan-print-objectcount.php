@@ -372,7 +372,8 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div style="flex-basis: 100%; height: 0;"></div>';
+echo '<div class="forcebreak"></div>';
+echo '<div class="forcebreak"></div>';
 
 /* ONE-WAY MONOLITHS/PORTALS – ENTRANCES */
 $n = 0;
@@ -541,7 +542,8 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div style="flex-basis: 100%; height: 0;"></div>';
+echo '<div class="forcebreak"></div>';
+echo '<div class="forcebreak"></div>';
 
 /* GRAIL */
 $n = 0;
@@ -745,7 +747,8 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div style="flex-basis: 100%; height: 0;"></div>';
+echo '<div class="forcebreak"></div>';
+echo '<div class="forcebreak"></div>';
 
 /* HEROES */
 $n = 0;
@@ -931,7 +934,8 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div style="flex-basis: 100%; height: 0;"></div>';
+echo '<div class="forcebreak"></div>';
+echo '<div class="forcebreak"></div>';
 
 /* HERO UPGRADES */
 $n = 0;
@@ -1147,7 +1151,8 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div style="flex-basis: 100%; height: 0;"></div>';
+echo '<div class="forcebreak"></div>';
+echo '<div class="forcebreak"></div>';
 
 /* CREATURE BANKS */
 $n = 0;

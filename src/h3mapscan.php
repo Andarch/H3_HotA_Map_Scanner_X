@@ -3201,7 +3201,7 @@ class H3MAPSCAN {
 
 
 	private function ParseFinish() {
-		//determine, if hero is in castle by tile being blocked
+		//determine if hero is in castle by tile being blocked
 		foreach($this->mapobjects as $k => $mapobjh) {
 			if($mapobjh['object'] == MAPOBJECTS::HERO) {
 				foreach($this->mapobjects as $n => $mapobjl) {
@@ -3292,6 +3292,15 @@ class H3MAPSCAN {
 		foreach($this->quest_guards as &$qguard) {
 			if($qguard['uid'] > 0) {
 				$qguard['Qrequirement'] .= $this->GetMapObjectByUID(MAPOBJECTS::NONE, $qguard['uid']);
+			}
+		}
+
+		// Update object count when zero
+		foreach($this->objects_all as &$objcomboid) {
+			foreach($objcomboid as &$obj) {
+				if($obj['count'] == 0) {
+					$obj['count'] = EMPTY_DATA;
+				}
 			}
 		}
 
