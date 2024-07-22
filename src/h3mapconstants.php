@@ -71,9 +71,6 @@
 			const ONE_WAY_PORTALS = 'One-Way Portals';
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';
-			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
-			const TWO_WAY_PORTALS = 'Two-Way Portals';
-			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
 			const QUESTS = 'Quests';
 			const RESOURCES = 'Resources';
 			const RESOURCE_GENERATORS = 'Resource Generators';
@@ -83,6 +80,9 @@
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
 			const TRANSPORTATION = 'Transportation';
+			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
+			const TWO_WAY_PORTALS = 'Two-Way Portals';
+			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
 			const WAR_MACHINES = 'War Machines';
 			const OTHER = 'Other';
 	}
