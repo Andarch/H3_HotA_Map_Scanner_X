@@ -191,11 +191,12 @@ require_once 'src/config.php';
 	}
 
 	.tableheader1 {
-		background: #451713;
+		background: #3a1345;
 		font-weight: bold;
-		text-align: center;
+		text-align: left;
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
 	}
 
 	.tableheader2 {
@@ -204,6 +205,7 @@ require_once 'src/config.php';
 		text-align: center;
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
 	}
 
 	.flex-container {

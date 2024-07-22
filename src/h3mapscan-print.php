@@ -37,8 +37,9 @@ class H3MAPSCAN_PRINT {
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
 				break;
-			case 'Quest Gates/Guards':
-				include 'h3mapscan-print-questgates.php';
+			case 'Quest Gates':
+			case 'Quest Guards':
+				include 'h3mapscan-print-questg.php';
 				break;
 			case 'Global Events':
 				include 'h3mapscan-print-globalevents.php';
@@ -70,11 +71,12 @@ class H3MAPSCAN_PRINT {
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
 		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Custom Heroes', 'Map Heroes', 'Town Details',
-					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates/Guards', 'Global Events', 'Town Events',
-					 'Pandora\'s Boxes', 'Event Objects', 'Object Count'];
+					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
+					 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count'];
 		$sectionsWithAnchors = [
 			'Custom Heroes' => 'heroes-table-2',
 			'Map Heroes' => 'heroes-table-3',
+			'Quest Guards' => 'quest-guards-table',
 		];
 		$sectionsWithHr1Below = [
 			'General',
@@ -82,7 +84,7 @@ class H3MAPSCAN_PRINT {
 			'Map Heroes',
 			'Town Details',
 			'Spells',
-			'Quest Gates/Guards',
+			'Quest Guards',
 			'Town Events',
 			'Event Objects',
 			'Object Count',
@@ -92,6 +94,7 @@ class H3MAPSCAN_PRINT {
 			'Custom Heroes',
 			'Artifacts',
 			'Seer\'s Huts',
+			'Quest Gates',
 			'Global Events',
 			'Pandora\'s Boxes',
 		];

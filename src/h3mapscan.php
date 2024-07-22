@@ -93,7 +93,8 @@ class H3MAPSCAN {
 	public  $mines_list = [];
 	public  $monsters_list = [];
 	public  $event_list = []; //global events
-	public  $qg_quests = [];
+	public  $quest_gates = [];
+	public  $quest_guards = [];
 	public  $seers_huts = [];
 	public  $events_list = []; //map event, pandora, town event
 	public  $messages_list = []; //signs and bottles
@@ -2077,8 +2078,10 @@ class H3MAPSCAN {
 
 				case OBJECTS::QUEST_GUARD:
 					$quest = $this->ReadQuest();
+					$quest['name'] = 'Quest Guard';
+					$quest['pos'] = $this->curcoor;
 
-					// $this->qg_quests[] = new ListObject('Quest Guard', $this->curcoor, $quest['Qtext'], '', '', '', $quest['uid'], [$quest['textFirst'], $quest['textRepeat'], $quest['textDone']]);
+					$this->quest_guards[] = $quest;
 
 					$obj['data'] = $quest;
 					break;
@@ -2163,7 +2166,11 @@ class H3MAPSCAN {
 					if($this->hota_subrev >= $this::HOTA_SUBREV3) {
 						if($obj['subid'] == 1000) {
 							$quest = $this->ReadQuest();
-							// $this->qg_quests[] = new ListObject('Quest Gate', $this->curcoor, $quest['Qtext'], '', '', '', $quest['uid'], [$quest['textFirst'], $quest['textRepeat'], $quest['textDone']]);
+							$quest['name'] = 'Quest Gate';
+							$quest['pos'] = $this->curcoor;
+
+							$this->quest_gates[] = $quest;
+
 							$obj['data'] = $quest;
 						}
 					}
@@ -2891,9 +2898,19 @@ class H3MAPSCAN {
 			$quest['timeout'] = $limit;
 			$quest['Qdeadline'] = $this->ConvertDaysToMonthWeekDay($limit);
 		}
+
 		$quest['textFirst'] = $this->ReadString();
 		$quest['textRepeat'] = $this->ReadString();
 		$quest['textDone'] = $this->ReadString();
+		if($quest['textFirst'] == '') {
+			$quest['textFirst'] = EMPTY_DATA;
+		}
+		if($quest['textRepeat'] == '') {
+			$quest['textRepeat'] = EMPTY_DATA;
+		}
+		if($quest['textDone'] == '') {
+			$quest['textDone'] = EMPTY_DATA;
+		}
 
 		return $quest;
 	}
@@ -3282,6 +3299,16 @@ class H3MAPSCAN {
 				if($quest['uid'] > 0) {
 					$quest['Qrequirement'] .= $this->GetMapObjectByUID(MAPOBJECTS::NONE, $quest['uid']);
 				}
+			}
+		}
+		foreach($this->quest_gates as &$qgate) {
+			if($qgate['uid'] > 0) {
+				$qgate['Qrequirement'] .= $this->GetMapObjectByUID(MAPOBJECTS::NONE, $qgate['uid']);
+			}
+		}
+		foreach($this->quest_guards as &$qguard) {
+			if($qguard['uid'] > 0) {
+				$qguard['Qrequirement'] .= $this->GetMapObjectByUID(MAPOBJECTS::NONE, $qguard['uid']);
 			}
 		}
 
