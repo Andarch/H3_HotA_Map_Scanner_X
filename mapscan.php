@@ -82,12 +82,11 @@ require_once 'src/config.php';
 		text-align: center;
 	}
 
-	.subheader {
-		color: #fcf4ad;
-		background: #51442c;
-		font-family: 'H3Reader', calibri, arial, sans-serif;
-		border-bottom: solid 2px #aaa;
-		border-right: solid 2px #aaa;
+	.count-column-header {
+		width: 42px;
+		box-sizing: border-box;
+		font-size: 11px;
+		padding-top: 1.5px;
 	}
 
 	.specialcell1 {

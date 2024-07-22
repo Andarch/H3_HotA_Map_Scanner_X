@@ -42,6 +42,8 @@
     const HRULE1 = '<hr class="hrule1">';
     const HRULE2 = '<hr class="hrule2">';
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
+	const ONE_WAY_ENTRANCE_SUBHEADER = '# en';
+	const ONE_WAY_EXIT_SUBHEADER = '# ex';
 
 
 	class OBJECTCATEGORIES {

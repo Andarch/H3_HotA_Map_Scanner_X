@@ -214,7 +214,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 
 // foreach($categories as $category => $objects) {
 // 	$n = 0;
-// 	echo '<table class="smalltable">
+// 	echo '<table class="bigtable">
 // 			<thead>
 // 				<tr>
 // 					<td colspan="3" class="tableheader2">'.$category.'</td>
@@ -222,7 +222,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 // 				<tr>
 // 					<th class="ac nowrap" nowrap="nowrap">ID</th>
 // 					<th class="ac nowrap" nowrap="nowrap">Type</th>
-// 					<th class="ac nowrap" nowrap="nowrap">Count</th>
+// 					<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 // 				</tr>
 // 			</thead>
 // 			<tbody>';
@@ -230,7 +230,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 // 		echo '<tr>
 // 				<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 // 				<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-// 				<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+// 				<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 // 			</tr>';
 // 	}
 // 	echo '	</tbody>
@@ -242,7 +242,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 
 /* KEYMASTER'S TENTS */
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::KEYMASTERS_TENTS.'</td>
@@ -250,7 +250,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -260,7 +260,7 @@ foreach($categories['keymasterstents'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -268,7 +268,7 @@ echo '	</tbody>
 
 /* BORDER GATES */
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDER_GATES.'</td>
@@ -276,7 +276,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -286,7 +286,7 @@ foreach($categories['bordergates'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -294,7 +294,7 @@ echo '	</tbody>
 
 /* BORDER GUARDS */
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BORDER_GUARDS.'</td>
@@ -302,7 +302,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -312,7 +312,7 @@ foreach($categories['borderguards'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -327,7 +327,7 @@ $customOrder = [
 uasort($categories['garrisons'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GARRISONS.'</td>
@@ -335,7 +335,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -343,7 +343,7 @@ foreach($categories['garrisons'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -359,7 +359,7 @@ $customOrder = [
 uasort($categories['quests'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::QUESTS.'</td>
@@ -367,7 +367,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -375,7 +375,7 @@ foreach($categories['quests'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -395,7 +395,7 @@ $customOrder = [
 uasort($categories['transportation'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRANSPORTATION.'</td>
@@ -403,7 +403,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -411,7 +411,7 @@ foreach($categories['transportation'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -424,7 +424,6 @@ echo '<div class="forcebreak"></div>';
 $n = 0;
 $ids = [];
 $colors = ['Blue', 'Pink', 'Orange', 'Yellow', 'Turquoise', 'Violet', 'Chartreuse', 'White'];
-
 $entranceKeys = array_keys($categories['oneWayMonolithEntrances']);
 $exitKeys = array_keys($categories['oneWayMonolithExits']);
 for($i = 0; $i < 8; $i++) {
@@ -432,8 +431,7 @@ for($i = 0; $i < 8; $i++) {
     $id2 = $exitKeys[$i] ?? null;
     $ids[] = $id1.COMBOID_SEPARATOR.$id2;
 }
-
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="4" class="tableheader2">'.OBJECTCATEGORIES::ONE_WAY_MONOLITHS.'</td>
@@ -441,8 +439,8 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap" style="">En.</th>
-				<th class="ac nowrap" nowrap="nowrap" style="">Ex.</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_ENTRANCE_SUBHEADER.'</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_EXIT_SUBHEADER.'</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -450,8 +448,8 @@ for($i = 0; $i < 8; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['oneWayMonolithEntrances'][$entranceKeys[$i]]['count'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['oneWayMonolithExits'][$exitKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithEntrances'][$entranceKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -468,7 +466,7 @@ for($i = 0; $i < 8; $i++) {
 	$id2 = $exitKeys[$i] ?? null;
 	$ids[] = $id1.COMBOID_SEPARATOR.$id2;
 }
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="4" class="tableheader2">'.OBJECTCATEGORIES::ONE_WAY_PORTALS.'</td>
@@ -476,8 +474,8 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap" style="">En.</th>
-				<th class="ac nowrap" nowrap="nowrap" style="">Ex.</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_ENTRANCE_SUBHEADER.'</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_EXIT_SUBHEADER.'</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -485,8 +483,8 @@ for($i = 0; $i < 4; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['oneWayPortalEntrances'][$entranceKeys[$i]]['count'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['oneWayPortalExits'][$exitKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalEntrances'][$entranceKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -496,7 +494,7 @@ echo '	</tbody>
 $n = 0;
 $colors = ['Green', 'Brown', 'Violet', 'Orange', 'Pink', 'Turquoise', 'Yellow', 'Black', 'Blue', 'Red'];
 $keys = array_keys($categories['twoWayMonoliths']);
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TWO_WAY_MONOLITHS.'</td>
@@ -504,7 +502,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -512,7 +510,7 @@ for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['twoWayMonoliths'][$keys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayMonoliths'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -522,7 +520,7 @@ echo '	</tbody>
 $n = 0;
 $colors = ['Green', 'Yellow', 'Red', 'Cyan', 'Chartreuse', 'Turquoise', 'Violet', 'Orange', 'Pink', 'Blue'];
 $keys = array_keys($categories['twoWayPortals']);
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TWO_WAY_PORTALS.'</td>
@@ -530,7 +528,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -538,7 +536,7 @@ for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['twoWayPortals'][$keys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -548,7 +546,7 @@ echo '	</tbody>
 $n = 0;
 $colors = ['White', 'Red', 'Blue', 'Chartreuse', 'Yellow'];
 $keys = array_keys($categories['twoWaySeaPortals']);
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS.'</td>
@@ -556,7 +554,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -564,7 +562,7 @@ for($i = 0; $i < 5; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$categories['twoWaySeaPortals'][$keys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWaySeaPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -582,7 +580,7 @@ $customOrder = [
 uasort($categories['grail'], function($a, $b) use ($customOrder) {
     return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::GRAIL.'</td>
@@ -590,7 +588,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -598,7 +596,7 @@ foreach($categories['grail'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -621,7 +619,7 @@ $customOrder = [
 uasort($categories['artifacts'], function($a, $b) use ($customOrder) {
     return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
@@ -629,7 +627,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -637,7 +635,7 @@ foreach($categories['artifacts'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -654,7 +652,7 @@ $customOrder = [
 uasort($categories['bonusmana'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUS_MANA.'</td>
@@ -662,7 +660,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -670,7 +668,7 @@ foreach($categories['bonusmana'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -686,7 +684,7 @@ $customOrder = [
 uasort($categories['bonusmorale'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUS_MORALE.'</td>
@@ -694,7 +692,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -702,7 +700,7 @@ foreach($categories['bonusmorale'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -719,7 +717,7 @@ $customOrder = [
 uasort($categories['bonusluck'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUS_LUCK.'</td>
@@ -727,7 +725,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -735,7 +733,7 @@ foreach($categories['bonusluck'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -752,7 +750,7 @@ $customOrder = [
 uasort($categories['bonusmovement'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::BONUS_MOVEMENT.'</td>
@@ -760,7 +758,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -768,7 +766,7 @@ foreach($categories['bonusmovement'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -789,7 +787,7 @@ $customOrder = [
 uasort($categories['heroes'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HEROES.'</td>
@@ -797,7 +795,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -805,7 +803,7 @@ foreach($categories['heroes'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -813,7 +811,7 @@ echo '	</tbody>
 
 /* TOWNS */
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TOWNS.'</td>
@@ -821,7 +819,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -829,7 +827,7 @@ foreach($categories['towns'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -850,7 +848,7 @@ $customOrder = [
 uasort($categories['dwellings'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::DWELLINGS.'</td>
@@ -858,7 +856,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -866,7 +864,7 @@ foreach($categories['dwellings'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -874,7 +872,7 @@ echo '	</tbody>
 
 /* MONSTERS */
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MONSTERS.'</td>
@@ -882,7 +880,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -890,7 +888,7 @@ foreach($categories['monsters'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -905,7 +903,7 @@ $customOrder = [
 uasort($categories['warmachines'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::WAR_MACHINES.'</td>
@@ -913,7 +911,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -921,7 +919,7 @@ foreach($categories['warmachines'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -938,7 +936,7 @@ $customOrder = [
 uasort($categories['trading'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TRADING.'</td>
@@ -946,7 +944,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -954,7 +952,7 @@ foreach($categories['trading'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -988,7 +986,7 @@ $customOrder = [
 uasort($categories['heroupgrades'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::HERO_UPGRADES.'</td>
@@ -996,7 +994,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1004,7 +1002,7 @@ foreach($categories['heroupgrades'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1023,7 +1021,7 @@ $customOrder = [
 uasort($categories['spells'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SPELLS.'</td>
@@ -1031,7 +1029,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1039,7 +1037,7 @@ foreach($categories['spells'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1068,7 +1066,7 @@ $customOrder = [
 uasort($categories['resources'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCES.'</td>
@@ -1076,7 +1074,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1084,7 +1082,7 @@ foreach($categories['resources'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1111,7 +1109,7 @@ $customOrder = [
 uasort($categories['mines'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MINES.'</td>
@@ -1119,7 +1117,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1127,7 +1125,7 @@ foreach($categories['mines'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1154,7 +1152,7 @@ $customOrder = [
 uasort($categories['resourcegenerators'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::RESOURCE_GENERATORS.'</td>
@@ -1162,7 +1160,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1170,7 +1168,7 @@ foreach($categories['resourcegenerators'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1182,7 +1180,7 @@ echo '<div class="forcebreak"></div>';
 /* CREATURE BANKS */
 $n = 0;
 asort($creaturebanks);
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::CREATURE_BANKS.'</td>
@@ -1190,7 +1188,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1198,7 +1196,7 @@ foreach($categories['creaturebanks'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1221,7 +1219,7 @@ $customOrder = [
 uasort($categories['scouting'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::SCOUTING.'</td>
@@ -1229,7 +1227,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1237,7 +1235,7 @@ foreach($categories['scouting'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1263,7 +1261,7 @@ $customOrder = [
 uasort($categories['magicalterrains'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::MAGICAL_TERRAINS.'</td>
@@ -1271,7 +1269,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1279,7 +1277,7 @@ foreach($categories['magicalterrains'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1294,7 +1292,7 @@ $customOrder = [
 uasort($categories['text'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::TEXT.'</td>
@@ -1302,7 +1300,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1310,7 +1308,7 @@ foreach($categories['text'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
@@ -1336,7 +1334,7 @@ $customOrder = [
 uasort($categories['other'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
-echo '<table class="smalltable">
+echo '<table class="bigtable">
 		<thead>
 			<tr>
 				<td colspan="3" class="tableheader2">'.OBJECTCATEGORIES::OTHER.'</td>
@@ -1344,7 +1342,7 @@ echo '<table class="smalltable">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="ac nowrap" nowrap="nowrap">Count</th>
+				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1352,7 +1350,7 @@ foreach($categories['other'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ar nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
