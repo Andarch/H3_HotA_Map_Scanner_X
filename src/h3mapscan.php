@@ -2567,20 +2567,6 @@ class H3MAPSCAN {
 					}
 				}
 			}
-			/*
-			$this->br->SkipBytes(7); //not really used right now
-			//$town['max_guild'] = sprintf('%08b ', $this->br->ReadUint8()).'<br />'; //$this->br->ReadUint8(); //mage guilds
-			$mageguilds = $this->br->ReadUint8();
-			$this->br->SkipBytes(4); //not really used right now
-
-			//$town['max_guild'] = $mageguilds;
-			// 0001 0000
-			for ($i = 3; $i < 8; $i++) {
-				if(($mageguilds & (1 << $i)) != 0) {
-					$town['max_guild'] = $i - 3;
-					break;
-				}
-			}*/
 		}
 		// Standard buildings
 		else {

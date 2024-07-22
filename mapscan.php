@@ -118,7 +118,7 @@ require_once 'src/config.php';
 	}
 
 	.normaltext {
-		font-size: 14px !important;
+		font-size: 13px !important;
 	}
 
 	.redtext {

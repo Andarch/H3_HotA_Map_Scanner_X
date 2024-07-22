@@ -162,34 +162,12 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$event['humanOrAi'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$first.'</td>
-				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$period.'</td>';
-
-		if($eres[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>';
-		} else {
-			echo '<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>';
-		}
-
-		if($monsters[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 nowrap ac" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>';
-		} else {
-			echo '<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>';
-		}
-
-		if($buildings[0] == EMPTY_DATA) {
-			echo '<td class="smalltext1 ac" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>';
-		} else {
-			echo '<td class="smalltext1" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>';
-		}
-
-		if($event['message'] == EMPTY_DATA) {
-			echo '<td class="smalltext1 ac" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
-		} else {
-			echo '<td class="smalltext1" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
-		}
-
+				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$period.'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>
+				<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>
+				<td class="smalltext1" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>
+				<td class="smalltext1" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
 		echo '</tr>';
 	}
-
 }
 echo '</table>';
