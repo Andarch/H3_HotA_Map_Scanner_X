@@ -5,7 +5,6 @@ $tableclass = 'smallesttable';
 
 $categories = [
 	$artifacts = [],
-	$artifactGenerators = [],
 	$bonusMana = [],
 	$bonusMorale = [],
 	$bonusLuck = [],
@@ -29,18 +28,22 @@ $categories = [
 	$oneWayPortalEntrances = [],
 	$oneWayPortalExits = [],
 	$otherGateways = [],
+	$otherResources = [],
 	$quests = [],
 	$resources = [],
 	$resourceGenerators = [],
 	$scouting = [],
+	$special = [],
 	$spells = [],
 	$text = [],
 	$towns = [],
 	$trading = [],
 	$transportation = [],
+	$treasures = [],
 	$twoWayMonoliths = [],
 	$twoWayPortals = [],
 	$twoWaySeaPortals = [],
+	$warehouses = [],
 	$warMachines = [],
 	$other = [],
 ];
@@ -49,10 +52,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
 	switch($objcategory) {
 		case OBJECTCATEGORIES::ARTIFACTS:
 			$categories['artifacts'] = $objcomboid;
-			break;
-
-		case OBJECTCATEGORIES::ARTIFACT_GENERATORS:
-			$categories['artifactGenerators'] = $objcomboid;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_MANA:
@@ -147,6 +146,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
 			$categories['otherGateways'] = $objcomboid;
 			break;
 
+		case OBJECTCATEGORIES::OTHER_RESOURCES:
+			$categories['otherResources'] = $objcomboid;
+			break;
+
 		case OBJECTCATEGORIES::QUESTS:
 			$categories['quests'] = $objcomboid;
 			break;
@@ -161,6 +164,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
 
 		case OBJECTCATEGORIES::SCOUTING:
 			$categories['scouting'] = $objcomboid;
+			break;
+
+		case OBJECTCATEGORIES::SPECIAL:
+			$categories['special'] = $objcomboid;
 			break;
 
 		case OBJECTCATEGORIES::SPELLS:
@@ -183,6 +190,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
 			$categories['transportation'] = $objcomboid;
 			break;
 
+		case OBJECTCATEGORIES::TREASURES:
+			$categories['treasures'] = $objcomboid;
+			break;
+
 		case OBJECTCATEGORIES::TWO_WAY_MONOLITHS:
 			$categories['twoWayMonoliths'] = $objcomboid;
 			break;
@@ -193,6 +204,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
 
 		case OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS:
 			$categories['twoWaySeaPortals'] = $objcomboid;
+			break;
+
+		case OBJECTCATEGORIES::WAREHOUSES:
+			$categories['warehouses'] = $objcomboid;
 			break;
 
 		case OBJECTCATEGORIES::WAR_MACHINES:
@@ -239,7 +254,7 @@ echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap
 // 				<tr>
 // 					<th class="ac nowrap" nowrap="nowrap">ID</th>
 // 					<th class="ac nowrap" nowrap="nowrap">Type</th>
-// 					<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+// 					<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 // 				</tr>
 // 			</thead>
 // 			<tbody>';
@@ -277,7 +292,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -296,12 +311,12 @@ $n = 0;
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TOWNS.'</td>
+				<td colspan="7" class="tableheader3">'.OBJECTCATEGORIES::TOWNS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -338,155 +353,11 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
 foreach($categories['creatureGenerators'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* FLEX BREAK */
-echo '<div class="forcebreak"></div>';
-
-/* KEYMASTER'S TENTS */
-$n = 0;
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::KEYMASTERS_TENTS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['keymastersTents'] as $objcomboid => $obj) {
-	$nameParts = explode(' – ', $obj['name']);
-	$color = isset($nameParts[1]) ? $nameParts[1] : $obj['name'];
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* BORDER GATES */
-$n = 0;
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BORDER_GATES.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['borderGates'] as $objcomboid => $obj) {
-	$nameParts = explode(' – ', $obj['name']);
-	$color = isset($nameParts[1]) ? $nameParts[1] : $obj['name'];
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* BORDER GUARDS */
-$n = 0;
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BORDER_GUARDS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['borderGuards'] as $objcomboid => $obj) {
-	$nameParts = explode(' – ', $obj['name']);
-	$color = isset($nameParts[1]) ? $nameParts[1] : $obj['name'];
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$color.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* GARRISONS */
-$n = 0;
-$customOrder = [
-	'Garrison',
-	'Anti-magic Garrison',
-];
-uasort($categories['garrisons'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GARRISONS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['garrisons'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* QUESTS */
-$n = 0;
-$customOrder = [
-	'Quest Gate',
-	'Quest Guard',
-	'Seer\s Hut',
-];
-uasort($categories['quests'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::QUESTS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['quests'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -515,7 +386,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -529,8 +400,524 @@ foreach($categories['transportation'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
+/* WAR MACHINES */
+$n = 0;
+$customOrder = [
+	'War Machine Factory',
+	'Cannon Yard',
+];
+uasort($categories['warMachines'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::WAR_MACHINES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['warMachines'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* TRADING */
+$n = 0;
+$customOrder = [
+	'Trading Post',
+	'Warlock\'s Lab',
+	'Black Market',
+	'Junkman',
+	'Freelancer\'s Guild',
+];
+uasort($categories['trading'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRADING.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['trading'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* SPELLS */
+$n = 0;
+$customOrder = [
+	'Shrine of Magic Incantation',
+	'Shrine of Magic Gesture',
+	'Shrine of Magic Thought',
+	'Shrine of Magic Mystery',
+	'Pyramid',
+	'Spell Scroll',
+];
+uasort($categories['spells'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SPELLS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['spells'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* GARRISONS */
+$n = 0;
+$customOrder = [
+	'Garrison',
+	'Anti-magic Garrison',
+];
+uasort($categories['garrisons'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GARRISONS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['garrisons'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
 /* FLEX BREAK */
 echo '<div class="forcebreak"></div>';
+
+/* GRAIL */
+$n = 0;
+$customOrder = [
+    'Grail',
+    'Obelisk',
+];
+uasort($categories['grail'], function($a, $b) use ($customOrder) {
+    return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GRAIL.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['grail'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* SPECIAL */
+$n = 0;
+$customOrder = [
+    'Pandora\'s Box',
+	'Event Object',
+];
+uasort($categories['special'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SPECIAL.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['special'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* ARTIFACTS */
+$n = 0;
+$customOrder = [
+    'Artifact',
+    'Random Artifact',
+    'Random Treasure Artifact',
+    'Random Minor Artifact',
+    'Random Major Artifact',
+    'Random Relic',
+];
+uasort($categories['artifacts'], function($a, $b) use ($customOrder) {
+    return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['artifacts'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* TREASURES */
+$n = 0;
+$customOrder = [
+	'Treasure Chest',
+	'Sea Chest',
+	'Shipwreck Survivor',
+	'Warrior\'s Tomb',
+	'Wagon',
+	'Corpse',
+	'Grave',
+];
+uasort($categories['treasures'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TREASURES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['treasures'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* RESOURCES */
+$n = 0;
+$customOrder = [
+	'Random Resource',
+	'Wood',
+	'Ore',
+	'Mercury',
+	'Sulfur',
+	'Crystal',
+	'Gems',
+	'Gold',
+];
+uasort($categories['resources'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['resources'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* MINES */
+$n = 0;
+$customOrder = [
+	'Sawmill',
+	'Ore Pit',
+	'Alchemist\'s Lab',
+	'Sulfur Dune',
+	'Crystal Cavern',
+	'Gem Pond',
+	'Gold Mine',
+	'Abandoned Mine',
+];
+uasort($categories['mines'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MINES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['mines'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* WAREHOUSES */
+$n = 0;
+$customOrder = [
+	'Warehouse of Wood',
+	'Warehouse of Ore',
+	'Warehouse of Mercury',
+	'Warehouse of Sulfur',
+	'Warehouse of Crystal',
+	'Warehouse of Gem',
+	'Warehouse of Gold',
+];
+uasort($categories['warehouses'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::WAREHOUSES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['warehouses'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* RESOURCE GENERATORS */
+$n = 0;
+$customOrder = [
+	'Windmill',
+	'Water Wheel',
+	'Mystical Garden',
+	'Derrick',
+	'Prospector',
+];
+uasort($categories['resourceGenerators'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCE_GENERATORS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['resourceGenerators'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* OTHER RESOURCES */
+$n = 0;
+$customOrder = [
+	'Campfire',
+	'Flotsam',
+	'Jetsam',
+	'Sea Barrel',
+	'Lean To',
+];
+uasort($categories['otherResources'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::OTHER_RESOURCES.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['otherResources'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* FLEX BREAK */
+echo '<div class="forcebreak"></div>';
+
+/* KEYMASTER'S TENTS */
+$n = 0;
+$ids = [];
+$colors = ['Light Blue', 'Green', 'Red', 'Dark Blue', 'Brown', 'Purple', 'White', 'Black'];
+$tentKeys = array_keys($categories['keymastersTents']);
+$bGateKeys = array_keys($categories['borderGates']);
+$bGuardKeys = array_keys($categories['borderGuards']);
+for($i = 0; $i < 8; $i++) {
+    $id1 = $tentKeys[$i] ?? null;
+    $id2 = $bGateKeys[$i] ?? null;
+    $id3 = $bGuardKeys[$i] ?? null;
+    $ids[] = $id1.COMBOID_SEPARATOR.$id2.COMBOID_SEPARATOR.$id3;
+}
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="5" class="tableheader3">'.OBJECTCATEGORIES::BORDER.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Color</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Tents</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Border</br>Gates</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Border</br>Guards</th>
+			</tr>
+		</thead>
+		<tbody>';
+for($i = 0; $i < 8; $i++) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['keymastersTents'][$tentKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGates'][$bGateKeys[$i]]['count'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGuards'][$bGuardKeys[$i]]['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+/* QUESTS */
+$n = 0;
+$customOrder = [
+	'Quest Gate',
+	'Quest Guard',
+	'Seer\s Hut',
+];
+uasort($categories['quests'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::QUESTS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['quests'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
 
 /* ONE-WAY MONOLITHS */
 $n = 0;
@@ -551,8 +938,8 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_ENTRANCE_SUBHEADER.'</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_EXIT_SUBHEADER.'</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap"># En</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap"># Ex</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -586,8 +973,8 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_ENTRANCE_SUBHEADER.'</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">'.ONE_WAY_EXIT_SUBHEADER.'</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap"># En</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap"># Ex</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -614,7 +1001,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -640,7 +1027,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -666,7 +1053,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -698,7 +1085,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -714,104 +1101,6 @@ echo '	</tbody>
 
 /* FLEX BREAK */
 echo '<div class="forcebreak"></div>';
-
-/* GRAIL */
-$n = 0;
-$customOrder = [
-    'Grail',
-    'Obelisk',
-];
-uasort($categories['grail'], function($a, $b) use ($customOrder) {
-    return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GRAIL.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['grail'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* ARTIFACTS */
-$n = 0;
-$customOrder = [
-    'Artifact',
-    'Random Artifact',
-    'Random Treasure Artifact',
-    'Random Minor Artifact',
-    'Random Major Artifact',
-    'Random Relic',
-    'Pandora\'s Box',
-];
-uasort($categories['artifacts'], function($a, $b) use ($customOrder) {
-    return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::ARTIFACTS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['artifacts'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* ARTIFACT GENERATORS */
-$n = 0;
-$customOrder = [
-	'Warrior\'s Tomb',
-	'Shipwreck Survivor',
-];
-uasort($categories['artifactGenerators'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::ARTIFACT_GENERATORS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['artifactGenerators'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
 
 /* BONUS – MANA */
 $n = 0;
@@ -832,7 +1121,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -864,7 +1153,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -897,7 +1186,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -930,7 +1219,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -965,7 +1254,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -989,76 +1278,11 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
 foreach($categories['monsters'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* WAR MACHINES */
-$n = 0;
-$customOrder = [
-	'War Machine Factory',
-	'Cannon Yard',
-];
-uasort($categories['warMachines'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::WAR_MACHINES.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['warMachines'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* TRADING */
-$n = 0;
-$customOrder = [
-	'Trading Post',
-	'Warlock\'s Lab',
-    'Black Market',
-	'Junkman',
-	'Freelancer\'s Guild',
-];
-uasort($categories['trading'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRADING.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['trading'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -1105,177 +1329,11 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
 foreach($categories['heroUpgrades'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* SPELLS */
-$n = 0;
-$customOrder = [
-	'Shrine of Magic Incantation',
-	'Shrine of Magic Gesture',
-	'Shrine of Magic Thought',
-	'Shrine of Magic Mystery',
-	'Pyramid',
-	'Spell Scroll',
-];
-uasort($categories['spells'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SPELLS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['spells'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* RESOURCES */
-$n = 0;
-$customOrder = [
-	'Treasure Chest',
-	'Campfire',
-	'Random Resource',
-	'Wood',
-	'Ore',
-	'Mercury',
-	'Sulfur',
-	'Crystal',
-	'Gems',
-	'Gold',
-	'Flotsam',
-	'Jetsam',
-	'Sea Barrel',
-	'Sea Chest',
-	'Corpse',
-	'Grave',
-];
-uasort($categories['resources'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCES.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['resources'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* MINES */
-$n = 0;
-$customOrder = [
-	'Treasure Chest',
-	'Campfire',
-	'Random Resource',
-	'Wood',
-	'Ore',
-	'Mercury',
-	'Sulfur',
-	'Crystal',
-	'Gems',
-	'Gold',
-	'Flotsam',
-	'Jetsam',
-	'Sea Barrel',
-	'Sea Chest',
-];
-uasort($categories['mines'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::MINES.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['mines'] as $objcomboid => $obj) {
-	echo '<tr>
-			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
-		</tr>';
-}
-echo '	</tbody>
-	</table>';
-
-/* RESOURCE GENERATORS */
-$n = 0;
-$customOrder = [
-	'Windmill',
-	'Water Wheel',
-	'Mystical Garden',
-	'Derrick',
-	'Prospector',
-	'Lean To',
-	'Wagon',
-	'Warehouse of Wood',
-	'Warehouse of Ore',
-	'Warehouse of Mercury',
-	'Warehouse of Sulfur',
-	'Warehouse of Crystal',
-	'Warehouse of Gem',
-	'Warehouse of Gold',
-];
-uasort($categories['resourceGenerators'], function($a, $b) use ($customOrder) {
-	return customSort($a, $b, $customOrder);
-});
-echo '<table class="'.$tableclass.'">
-		<thead>
-			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCE_GENERATORS.'</td>
-			</tr>
-			<tr>
-				<th class="ac nowrap" nowrap="nowrap">ID</th>
-				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
-			</tr>
-		</thead>
-		<tbody>';
-foreach($categories['resourceGenerators'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -1299,7 +1357,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1338,7 +1396,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1380,7 +1438,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1411,7 +1469,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -1428,7 +1486,8 @@ echo '	</tbody>
 /* OTHER */
 $n = 0;
 $customOrder = [
-	'Event Object',
+	'Den of Thieves',
+	'Snactuary',
 ];
 uasort($categories['other'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1441,7 +1500,7 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Type</th>
-				<th class="count-column-header ac nowrap" nowrap="nowrap">#</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
 			</tr>
 		</thead>
 		<tbody>';

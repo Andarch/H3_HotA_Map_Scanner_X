@@ -46,6 +46,7 @@ require_once 'src/config.php';
 		--thin-border-color: grey;
 		--gold: #fcf4ad;
 		--brown: #51442c;
+		--cell-bg: #282828;
 	}
 
 	@font-face {
@@ -97,7 +98,7 @@ require_once 'src/config.php';
 	}
 
 	td {
-		background: #2b2b2b;
+		background: var(--cell-bg);
 	}
 
 	.bigtable th { font-size: 14px; }
@@ -132,9 +133,17 @@ require_once 'src/config.php';
 		text-align: center;
 	}
 
-	.count-column-header {
+	.count-column-header1 {
 		width: 40px;
 		box-sizing: border-box;
+	}
+
+	.count-column-header2 {
+		width: 40px;
+		box-sizing: border-box;
+		font-size: 9px !important;
+		padding: 0;
+		line-height: 10px;
 	}
 
 	.specialcell1 {
