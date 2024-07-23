@@ -34,26 +34,34 @@ require_once 'src/config.php';
 		--sidebar-border-style: solid;
 		--sidebar-border-width: 4px;
 		--sidebar-top-height: 60px;
+
 		--hrule1-border-color: #999;
 		--hrule1-border-thickness: 8px;
 		--hrule1-border-style: double;
+
 		--hrule2-border-color: #777;
 		--hrule2-border-thickness: 1.25px;
 		--hrule2-border-style: groove;
+
 		--hyperlink-color: #29fff1;
-		--flex-gap: 2em;
+		--cell-bg: #282828;
+
 		--table-border-style: solid;
 		--table-border-width-column: 2px;
 		--table-border-width-row: 2px;
 		--table-border-width-outer: 2px;
 		--table-border-color: #aaa;
+
 		--thin-border-style: dotted;
 		--thin-border-width: 1px;
 		--thin-border-color: grey;
+
 		--gold: #fcf4ad;
 		--brown: #51442c;
-		--cell-bg: #282828;
+
 		--count-column-header-width: 30px;
+
+		--flex-gap: 2em;
 	}
 
 	@font-face {
@@ -135,8 +143,8 @@ require_once 'src/config.php';
 	.content {
 		position: absolute;
 		left: 250px;
-		margin: 2em;
-		padding-bottom: 2em;
+		margin: var(--flex-gap);
+		padding-bottom: var(--flex-gap);
 	}
 
 	.rowheader {

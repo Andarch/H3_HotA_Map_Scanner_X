@@ -50,174 +50,174 @@ $categories = [
 	$other = [],
 ];
 
-foreach($this->h3mapscan->objects_all as $objcategory => $objcomboid) {
+foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 	switch($objcategory) {
 		case OBJECTCATEGORIES::ARTIFACTS:
-			$categories['artifacts'] = $objcomboid;
+			$categories['artifacts'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_MANA:
-			$categories['bonusMana'] = $objcomboid;
+			$categories['bonusMana'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_MORALE:
-			$categories['bonusMorale'] = $objcomboid;
+			$categories['bonusMorale'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_LUCK:
-			$categories['bonusLuck'] = $objcomboid;
+			$categories['bonusLuck'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_MOVEMENT:
-			$categories['bonusMovement'] = $objcomboid;
+			$categories['bonusMovement'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BONUS_MIXED:
-			$categories['bonusMixed'] = $objcomboid;
+			$categories['bonusMixed'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BORDER_GATES:
-			$categories['borderGates'] = $objcomboid;
+			$categories['borderGates'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BORDER_GUARDS:
-			$categories['borderGuards'] = $objcomboid;
+			$categories['borderGuards'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::CREATURE_BANKS:
-			$categories['creatureBanks'] = $objcomboid;
+			$categories['creatureBanks'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::CREATURE_CONVERSION:
-			$categories['creatureConversion'] = $objcomboid;
+			$categories['creatureConversion'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::CREATURE_GENERATORS:
-			$categories['creatureGenerators'] = $objcomboid;
+			$categories['creatureGenerators'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::GARRISONS:
-			$categories['garrisons'] = $objcomboid;
+			$categories['garrisons'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::GRAIL:
-			$categories['grail'] = $objcomboid;
+			$categories['grail'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::HEROES:
-			$categories['heroes'] = $objcomboid;
+			$categories['heroes'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::HERO_UPGRADES:
-			$categories['heroUpgrades'] = $objcomboid;
+			$categories['heroUpgrades'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::KEYMASTERS_TENTS:
-			$categories['keymastersTents'] = $objcomboid;
+			$categories['keymastersTents'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::MAGICAL_TERRAINS:
-			$categories['magicalTerrains'] = $objcomboid;
+			$categories['magicalTerrains'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::MINES:
-			$categories['mines'] = $objcomboid;
+			$categories['mines'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::MONSTERS:
-			$categories['monsters'] = $objcomboid;
+			$categories['monsters'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES:
-			$categories['oneWayMonolithEntrances'] = $objcomboid;
+			$categories['oneWayMonolithEntrances'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::ONE_WAY_MONOLITH_EXITS:
-			$categories['oneWayMonolithExits'] = $objcomboid;
+			$categories['oneWayMonolithExits'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::ONE_WAY_PORTAL_ENTRANCES:
-			$categories['oneWayPortalEntrances'] = $objcomboid;
+			$categories['oneWayPortalEntrances'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS:
-			$categories['oneWayPortalExits'] = $objcomboid;
+			$categories['oneWayPortalExits'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::OTHER_GATEWAYS:
-			$categories['otherGateways'] = $objcomboid;
+			$categories['otherGateways'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::OTHER_RESOURCES:
-			$categories['otherResources'] = $objcomboid;
+			$categories['otherResources'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::QUESTS:
-			$categories['quests'] = $objcomboid;
+			$categories['quests'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::RESOURCES:
-			$categories['resources'] = $objcomboid;
+			$categories['resources'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::RESOURCE_GENERATORS:
-			$categories['resourceGenerators'] = $objcomboid;
+			$categories['resourceGenerators'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::SCOUTING:
-			$categories['scouting'] = $objcomboid;
+			$categories['scouting'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::SPECIAL:
-			$categories['special'] = $objcomboid;
+			$categories['special'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::SPELLS:
-			$categories['spells'] = $objcomboid;
+			$categories['spells'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TEXT:
-			$categories['text'] = $objcomboid;
+			$categories['text'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TOWNS:
-			$categories['towns'] = $objcomboid;
+			$categories['towns'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TRADING:
-			$categories['trading'] = $objcomboid;
+			$categories['trading'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TRANSPORTATION:
-			$categories['transportation'] = $objcomboid;
+			$categories['transportation'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TREASURES:
-			$categories['treasures'] = $objcomboid;
+			$categories['treasures'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TWO_WAY_MONOLITHS:
-			$categories['twoWayMonoliths'] = $objcomboid;
+			$categories['twoWayMonoliths'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TWO_WAY_PORTALS:
-			$categories['twoWayPortals'] = $objcomboid;
+			$categories['twoWayPortals'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS:
-			$categories['twoWaySeaPortals'] = $objcomboid;
+			$categories['twoWaySeaPortals'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::WAREHOUSES:
-			$categories['warehouses'] = $objcomboid;
+			$categories['warehouses'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::WAR_MACHINES:
-			$categories['warMachines'] = $objcomboid;
+			$categories['warMachines'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::OTHER:
-			$categories['other'] = $objcomboid;
+			$categories['other'] = $obj;
 			break;
 	}
 }
@@ -1358,7 +1358,7 @@ echo '	</tbody>
 
 /* CREATURE BANKS */
 $n = 0;
-asort($creatureBanks);
+asort($categories['creatureBanks']);
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
@@ -1473,7 +1473,7 @@ $n = 0;
 $customOrder = [
 	'Magic Plains',
 	'Cursed Ground',
-	'Rockland',
+	'Rocklands',
 	'Fiery Fields',
 	'Lucid Pools',
 	'Magic Clouds',
