@@ -82,7 +82,10 @@ require_once 'src/config.php';
 	}
 
 	th, td {
-		border: var(--table-border-style) var(--table-border-width) var(--table-border-color);
+		border-top: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
+		border-bottom: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
+		border-right: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
+		border-left: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
 		min-width: 1em;
 		padding: 3px 6px;
 	}
