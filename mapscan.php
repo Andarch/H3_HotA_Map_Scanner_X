@@ -143,7 +143,7 @@ require_once 'src/config.php';
 		box-sizing: border-box;
 		font-size: 9px !important;
 		padding: 0;
-		line-height: 10px;
+		line-height: 9px;
 	}
 
 	.specialcell1 {
