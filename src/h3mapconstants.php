@@ -1595,7 +1595,7 @@
 			'62-0' => ['name' => 'Prison', 'category' => OBJECTCATEGORIES::HEROES],
 			'62-1' => ['name' => 'Hero Camp', 'category' => OBJECTCATEGORIES::HEROES],
 			'63-0' => ['name' => 'Pyramid', 'category' => OBJECTCATEGORIES::SPELLS],
-			// '63-51' => ['name' => 'Pyramid', 'category' => OBJECTCATEGORIES::SPELLS], // Aeten Nomere
+			'63-51' => ['name' => 'Pyramid', 'category' => null], // Aeten Nomere
 			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
 			'65-0' => ['name' => 'Random Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'66-0' => ['name' => 'Random Treasure Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
