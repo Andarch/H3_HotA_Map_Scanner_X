@@ -21,6 +21,12 @@ require_once 'src/config.php';
     <script type="application/javascript" src="js/jquery-ui.js"></script>
     <script type="application/javascript" src="js/mapread.js"></script>
 <style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
 	:root {
 		--sidebar-color: #555;
 		--sidebar-width: 250px;
@@ -47,6 +53,7 @@ require_once 'src/config.php';
 		--gold: #fcf4ad;
 		--brown: #51442c;
 		--cell-bg: #282828;
+		--count-column-header-width: 30px;
 	}
 
 	@font-face {
@@ -87,7 +94,6 @@ require_once 'src/config.php';
 		border-bottom: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
 		border-right: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
 		border-left: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
-		min-width: 1em;
 		padding: 3px 6px;
 	}
 
@@ -101,12 +107,18 @@ require_once 'src/config.php';
 		background: var(--cell-bg);
 	}
 
+	.bigtable th, .bigtable td, .smalltable th, .smalltable td { min-width: 1em; }
+
 	.bigtable th { font-size: 14px; }
 	.bigtable td { font-size: 13px; }
+
 	.smalltable th { font-size: 14px; }
 	.smalltable td { font-size: 11px; }
-	.smallesttable th { font-size: 12px; }
-	.smallesttable td { font-size: 11px; }
+
+	.smallesttable th, .smallesttable td { padding: 1px 3px; }
+	.smallesttable th { font-size: 9.5px; }
+	.smallesttable td { font-size: 10px; }
+
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
@@ -134,16 +146,18 @@ require_once 'src/config.php';
 	}
 
 	.count-column-header1 {
-		width: 40px;
+		width: var(--count-column-header-width);
 		box-sizing: border-box;
 	}
 
 	.count-column-header2 {
-		width: 40px;
-		box-sizing: border-box;
-		font-size: 9px !important;
-		padding: 0;
-		line-height: 9px;
+		width: var(--count-column-header-width);
+		/* font-size: 8px !important; */
+	}
+
+	.count-column-header3 {
+		width: var(--count-column-header-width);
+		/* font-size: 8px !important; */
 	}
 
 	.specialcell1 {
@@ -272,7 +286,7 @@ require_once 'src/config.php';
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		font-size: 14px !important;
+		font-size: 11px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		padding-left: 0.5em;
 	}

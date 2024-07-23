@@ -2,6 +2,8 @@
 /** @var H3MAPSCAN_PRINT $this */
 
 $tableclass = 'smallesttable';
+$rowHeaderOneWayEntrances = 'Entr';
+$rowHeaderOneWayExits = 'Exit';
 
 $categories = [
 	$artifacts = [],
@@ -869,9 +871,9 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Tents</th>
-				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Border</br>Gates</th>
-				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Border</br>Guards</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Tent</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Gate</th>
+				<th class="count-column-header2 ac nowrap" nowrap="nowrap">Grd</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -938,8 +940,8 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header1 ac nowrap" nowrap="nowrap">En.</th>
-				<th class="count-column-header1 ac nowrap" nowrap="nowrap">Ex.</th>
+				<th class="count-column-header3 ac nowrap" nowrap="nowrap">'.$rowHeaderOneWayEntrances.'</th>
+				<th class="count-column-header3 ac nowrap" nowrap="nowrap">'.$rowHeaderOneWayExits.'</th>
 			</tr>
 		</thead>
 		<tbody>';
@@ -973,8 +975,8 @@ echo '<table class="'.$tableclass.'">
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
 				<th class="ac nowrap" nowrap="nowrap">Color</th>
-				<th class="count-column-header1 ac nowrap" nowrap="nowrap">En.</th>
-				<th class="count-column-header1 ac nowrap" nowrap="nowrap">Ex.</th>
+				<th class="count-column-header3 ac nowrap" nowrap="nowrap">'.$rowHeaderOneWayEntrances.'</th>
+				<th class="count-column-header3 ac nowrap" nowrap="nowrap">'.$rowHeaderOneWayExits.'</th>
 			</tr>
 		</thead>
 		<tbody>';
