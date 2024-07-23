@@ -281,7 +281,8 @@ require_once 'src/config.php';
 		display: flex;
 		flex-wrap: wrap;
 		align-items: start;
-		gap: var(--flex-gap);
+		column-gap: var(--flex-gap) !important;
+		row-gap: calc(var(--flex-gap) / 2) !important;
 	}
 
 	.flex-container .bigtable,

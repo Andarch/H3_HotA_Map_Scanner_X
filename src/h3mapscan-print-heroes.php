@@ -6,7 +6,6 @@ echo '<div class="flex-container">';
 //disabled heroes
 $n = 0;
 $sep = '</br>';
-echo '<div class="table-container forcebreak">';
 echo '<table class="bigtable">
 		<tr>
 			<td class="tableheader1" colspan="11">Disabled Heroes</td>
@@ -64,11 +63,11 @@ echo '<table class="bigtable">
 			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Artificer']).'</td>
 		</tr>
 	</table>';
-echo '</div>';
+
+echo '<div class="forcebreak"></div>';
 
 //template heroes
 $n = 0;
-echo '<div class="table-container forcebreak">';
 echo '<table id="heroes-table-2" class="bigtable">
 		<tr>
 			<td class="tableheader1" colspan="12">Template Heroes</td>
@@ -190,11 +189,11 @@ foreach($fpHeroes as $k => $fpHero) {
 		</tr>';
 }
 echo '</table>';
-echo '</div>';
+
+echo '<div class="forcebreak"></div>';
 
 //map heroes
 $n = 0;
-echo '<div class="table-container">';
 echo '<table id="heroes-table-3" class="bigtable">
 		<tr><td class="tableheader1" colspan="12">Map Heroes</td></tr>
 		<tr>
@@ -286,6 +285,5 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 }
 
 echo '</table>';
-echo '</div>';
 
 echo '</div>';

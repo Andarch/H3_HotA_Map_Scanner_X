@@ -3,9 +3,9 @@
 
 echo '<div class="flex-container">';
 
-echo '<div class="table-container forcebreak">';
 echo EOL.DisplayMap($this->h3mapscan->mapimage, $this->h3mapscan->underground);
-echo '</div>';
+
+echo '<div class="forcebreak"></div>';
 
 $totalsize1 = $this->h3mapscan->map_size * $this->h3mapscan->map_size;
 $totalsize2 = $totalsize1 * ($this->h3mapscan->underground + 1);
@@ -25,7 +25,6 @@ for ($i = 0; $i < 3; $i++) {
 	$n = 0;
 	arsort($this->h3mapscan->terrainRate[$i]);
 
-	echo '<div class="table-container">';
 	echo '<table class="bigtable">
 			<tr>
 				<td colspan="3" class="tableheader2">'.$title.'</td>
@@ -43,7 +42,6 @@ for ($i = 0; $i < 3; $i++) {
 			</tr>';
 	}
 	echo '</table>';
-	echo '</div>';
 }
 
 echo '</div>';

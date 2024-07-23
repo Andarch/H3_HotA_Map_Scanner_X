@@ -4,10 +4,8 @@
 echo '<div class="flex-container">';
 
 if(!strcmp($this->h3mapscan->description, '')) {
-	$this->h3mapscan->description = EMPTY_DATA;
-}
+	$this->h3mapscan->description = EMPTY_DATA;}
 
-echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap" colspan="2">Map</th>
@@ -35,9 +33,9 @@ echo '<table class="bigtable">
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
 		</tr>
 	</table>';
-echo '</div>';
 
-echo '<div class="table-container forcebreak">';
+echo '<div class="forcebreak"></div>';
+
 echo '<table class="bigtable">
 	<tr>
 		<th class="ac nowrap" nowrap="nowrap">#</th>
@@ -80,9 +78,9 @@ foreach($this->h3mapscan->players as $k => $player) {
 		</tr>';
 }
 echo '</table>';
-echo '</div>';
 
-echo '<div class="table-container">';
+echo '<div class="forcebreak"></div>';
+
 echo '<table class="bigtable">
 <tr>
 	<th>#</th>
@@ -110,11 +108,9 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
 }
 
 echo '</table>';
-echo '</div>';
 
 sort($this->h3mapscan->disabledArtifacts);
 
-echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -127,11 +123,9 @@ foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 	</tr>';
 }
 echo '</table>';
-echo '</div>';
 
 sort($this->h3mapscan->disabledSpells);
 
-echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -144,11 +138,9 @@ foreach($this->h3mapscan->disabledSpells as $k => $spell) {
 	</tr>';
 }
 echo '</table>';
-echo '</div>';
 
 sort($this->h3mapscan->disabledSkills);
 
-echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th>#</th>
@@ -161,9 +153,7 @@ foreach($this->h3mapscan->disabledSkills as $k => $spell) {
 	</tr>';
 }
 echo '</table>';
-echo '</div>';
 
-echo '<div class="table-container">';
 echo '<table class="bigtable">
 		<tr>
 			<th colspan="2">Grail</th>
@@ -177,6 +167,5 @@ echo '<table class="bigtable">
 			<td class="ac">'.$this->h3mapscan->obelisksnum.'</td>
 		</tr>
 	</table>';
-echo '</div>';
 
 echo '</div>';
