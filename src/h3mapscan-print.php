@@ -102,7 +102,7 @@ class H3MAPSCAN_PRINT {
 		$sidebar = '<div class="sidebarMain">';
 		foreach ($sections as $section) {
 			if($section === 'General') {
-				$sidebar .= HRULE1;
+				// $sidebar .= HRULE1;
 			}
 			$selectedClass = $section === $currentSection ? 'selected' : '';
 			$anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
