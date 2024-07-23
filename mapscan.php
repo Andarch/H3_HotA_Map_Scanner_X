@@ -22,21 +22,30 @@ require_once 'src/config.php';
     <script type="application/javascript" src="js/mapread.js"></script>
 <style>
 	:root {
-		--sidepanel-color: #555;
-		--sidepanel-border-color: #999;
-		--sidepanel-border-style: solid;
-		--sidepanel-border-width: 4px;
+		--sidebar-color: #555;
+		--sidebar-width: 250px;
+		--sidebar-border-color: #aaa;
+		--sidebar-border-style: solid;
+		--sidebar-border-width: 4px;
+		--sidebar-top-height: 60px;
 		--hrule1-border-color: #999;
+		--hrule1-border-thickness: 8px;
+		--hrule1-border-style: double;
 		--hrule2-border-color: #777;
+		--hrule2-border-thickness: 1.25px;
+		--hrule2-border-style: groove;
 		--hyperlink-color: #29fff1;
-		--cell-bg: #2b2b2b;
 		--flex-gap: 2em;
 		--table-border-style: solid;
-		--table-border-width: 2px;
+		--table-border-width-column: 2px;
+		--table-border-width-row: 2px;
+		--table-border-width-outer: 2px;
 		--table-border-color: #aaa;
 		--thin-border-style: dotted;
 		--thin-border-width: 1px;
 		--thin-border-color: grey;
+		--gold: #fcf4ad;
+		--brown: #51442c;
 	}
 
 	@font-face {
@@ -44,30 +53,68 @@ require_once 'src/config.php';
 		src: url('fonts/H3Reader.woff') format('woff');
 	}
 
-	body { background: #333; font-family: calibri, arial, sans-serif; margin: 0;}
-	table { border-collapse: collapse; margin: 0; border: solid 2px #aaa; }
-	th, td {border: var(--table-border-style) var(--table-border-width) var(--table-border-color); min-width: 1em; padding: 3px 6px; }
-	th { color: #fcf4ad; background: #51442c; font-family: 'H3Reader', calibri, arial, sans-serif; border-bottom: solid 2px #aaa; border-right: solid 2px #aaa; }
-	td { border-right: solid 2px #aaa; background: var(--cell-bg); }
 	.ar { text-align: right; }
 	.ac { text-align: center; }
 	.al { text-align: left; }
 	.mc { margin: 1em; }
 
-	a, a:visited { color: var(--hyperlink-color); text-decoration: none; background-color: transparent }
-	a:hover { text-decoration: underline; }
+	body {
+		color: #ddd;
+		background: #333;
+		font-family: calibri, arial, sans-serif;
+		margin: 0;
+	}
+
+	a, a:visited {
+		color: var(--hyperlink-color);
+		text-decoration: none;
+		background-color: transparent;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	table {
+		border-collapse: collapse;
+		margin: 0;
+		border: var(--table-border-style) var(--table-border-width-outer) var(--table-border-color);
+	}
+
+	th, td {
+		border: var(--table-border-style) var(--table-border-width) var(--table-border-color);
+		min-width: 1em;
+		padding: 3px 6px;
+	}
+
+	th {
+		color: var(--gold);
+		background: var(--brown);
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+	}
+
+	td {
+		background: #2b2b2b;
+	}
 
 	.bigtable th { font-size: 14px; }
 	.bigtable td { font-size: 13px; }
 	.smalltable th { font-size: 14px; }
 	.smalltable td { font-size: 11px; }
+	.smallesttable th { font-size: 12px; }
+	.smallesttable td { font-size: 11px; }
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
 
-	body, table { color: #ddd; }
+	.hrule1 {
+		border: var(--hrule1-border-thickness) var(--hrule1-border-style) var(--hrule1-border-color);
+		margin: 0;
+	}
 
-	.hrule1 { border: 8px double var(--hrule1-border-color); margin: 0; }
-	.hrule2 { border: 1.25px groove var(--hrule2-border-color); margin: 0; }
+	.hrule2 {
+		border: var(--hrule2-border-thickness) var(--hrule2-border-style) var(--hrule2-border-color);
+		margin: 0;
+	}
 
 	.content {
 		position: absolute;
@@ -83,10 +130,8 @@ require_once 'src/config.php';
 	}
 
 	.count-column-header {
-		width: 42px;
+		width: 40px;
 		box-sizing: border-box;
-		font-size: 11px;
-		padding-top: 1.5px;
 	}
 
 	.specialcell1 {
@@ -124,8 +169,8 @@ require_once 'src/config.php';
 		color: red;
 	}
 
-	.mls {
-		line-height: 1.1rem;
+	.greytext {
+		color: grey;
 	}
 
 	.cellfill {
@@ -211,6 +256,15 @@ require_once 'src/config.php';
 		padding-left: 0.5em;
 	}
 
+	.tableheader3 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: center;
+		font-size: 14px !important;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
+	}
+
 	.flex-container {
 		display: flex;
 		flex-wrap: wrap;
@@ -219,17 +273,9 @@ require_once 'src/config.php';
 	}
 
 	.flex-container .bigtable,
-	.flex-container .smalltable {
+	.flex-container .smalltable,
+	.flex-container .smallesttable {
 		margin: 0;
-	}
-
-	.table-container {
-		/* flex-basis: calc(33.33% - var(--flex-gap)); */
-	}
-
-	.table-container table {
-        /* table-layout: auto; */
-        /* width: auto; */
 	}
 
 	.forcebreak {
@@ -239,32 +285,29 @@ require_once 'src/config.php';
 	.sidebarTop {
 		margin: 0;
 		padding: 0;
-		width: 250px;
+		width: var(--sidebar-width);
 		background-color: var(--sidespanel-color);
 		position: fixed;
 		left: 0px;
 		top: 0px;
-		height: 30px;
-		overflow: auto;
+		height: var(--sidebar-top-height);
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		font-size: 16px;
 		text-align: center;
-		border-left: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
-		border-right: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
-		border-top: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
-		/* border-bottom: 2.5px solid var(--sidepanel-border-color); */
+		border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
+		border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
+		border-top: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		box-sizing: border-box;
-		overflow: hidden;
-		/* display: none; */
 	}
 
 	.sidebarTopTable {
 		margin: 0;
 		padding: 0;
 		width: 100%;
-		height: 100%;
+		height: calc(var(--sidebar-top-height) - (4 * var(--hrule1-border-thickness)) - var(--sidebar-border-width));
 		border: none;
 		position: relative;
+		border-collapse: separate;
 	}
 
 	.sidebarTopTableCell {
@@ -273,15 +316,7 @@ require_once 'src/config.php';
 		width: 50%;
 		border: none;
 		position: relative;
-		font-size: 18px;
-	}
-
-	.sidebarTopTableCell:first-child {
-		border-right: 2px solid var(--sidepanel-border-color);
-	}
-
-	.sidebarTopTableCell:last-child {
-		border-left: 2px solid var(--sidepanel-border-color);
+		font-size: 16px;
 	}
 
 	.sidebarTopTableCell a {
@@ -289,48 +324,40 @@ require_once 'src/config.php';
 		width: 100%;
 		height: 100%;
 		text-align: center;
-		padding: 1px 0;
-		box-sizing: border-box;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
 		text-decoration: none;
 		color: #ddd;
-		/* color: var(--cell-bg); */
 		background-color: #3a4d4f;
 	}
 
 	.sidebarTopTableCell a.selected {
-		color: #fcf4ad;
+		color: var(--gold);
 	}
 
 	.sidebarTopTableCell a.active {
-		color: #fcf4ad;
+		color: var(--gold);
 	}
 
 	.sidebarTopTableCell a:hover:not(.active) {
-		color: #51442c;
+		color: var(--brown);
 		background-color: var(--hyperlink-color);
 	}
 
 	.sidebarMain {
 		margin: 0;
 		padding: 0;
-		width: 250px;
-		background-color: var(--sidepanel-color);
+		width: var(--sidebar-width);
+		background-color: var(--sidebar-color);
 		position: fixed;
 		left: 0px;
-		top: 30px;
-		height: 1035px;
+		top: var(--sidebar-top-height);
+		height: 1005px;
 		overflow: auto;
 		color: #ddd;
 		font-size: 22px;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
-		border-left: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
-		border-right: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
-		border-bottom: var(--sidepanel-border-width) var(--sidepanel-border-style) var(--sidepanel-border-color);
+		border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
+		border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
+		border-bottom: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		box-sizing: border-box;
 		/* display: none; */
 	}
@@ -345,17 +372,17 @@ require_once 'src/config.php';
 	}
 
 	.sidebarMain a.selected {
-		color: #fcf4ad;
+		color: var(--gold);
 	}
 
 	.sidebarMain a.active {
-		color: #51442c;
-		background-color: #fcf4ad;
+		color: var(--brown);
+		background-color: var(--gold);
 	}
 
-	.sidebarMain a:hover:not(.active) {
-		color: #51442c;
-		background-color: #fcf4ad;
+	.sidebarMain a:hover {
+		color: var(--brown);
+		background-color: var(--gold);
 	}
 
 	.color1 { background: #ff0000; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* red */
@@ -372,6 +399,7 @@ require_once 'src/config.php';
 </head>
 <body>
 	<div class="sidebarTop">
+		<hr class="hrule1">
 		<table class="sidebarTopTable">
 			<tr>
 				<td class="sidebarTopTableCell">
@@ -382,15 +410,13 @@ require_once 'src/config.php';
 				</td>
 			</tr>
 		</table>
-		<br />
+		<hr class="hrule1">
 </div>
 <?php
 
 require_once 'src/h3mapscan.php';
 require_once 'src/h3mapconstants.php';
 require_once 'src/mapsupport.php';
-
-
 
 $mapok = false;
 $buildmap = true;
