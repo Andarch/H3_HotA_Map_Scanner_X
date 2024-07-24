@@ -125,7 +125,7 @@ require_once 'src/config.php';
 
 	.smallesttable th, .smallesttable td { padding: 1px 3px; }
 	.smallesttable th { font-size: 9.5px; }
-	.smallesttable td { font-size: 10px; }
+	.smallesttable td { font-size: 11px; }
 
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
@@ -175,7 +175,7 @@ require_once 'src/config.php';
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		font-size: 9px !important;
+		font-size: 10px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		padding-left: 0.5em;
 	}
