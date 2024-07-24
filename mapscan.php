@@ -61,7 +61,7 @@ require_once 'src/config.php';
 
 		--count-column-header-width: 30px;
 
-		--flex-gap: 2em;
+		--flex-gap: 1.5em;
 	}
 
 	@font-face {
@@ -151,6 +151,33 @@ require_once 'src/config.php';
 		background: #595142;
 		font-weight: bold;
 		text-align: center;
+	}
+
+	.tableheader1 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: left;
+		font-size: 18px !important;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
+	}
+
+	.tableheader2 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: center;
+		font-size: 16px !important;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
+	}
+
+	.tableheader3 {
+		background: #3a1345;
+		font-weight: bold;
+		text-align: center;
+		font-size: 9px !important;
+		font-family: 'H3Reader', calibri, arial, sans-serif;
+		padding-left: 0.5em;
 	}
 
 	.count-column-header1 {
@@ -270,33 +297,6 @@ require_once 'src/config.php';
 	.disabledheroescell {
 		vertical-align: top;
 		text-align: center;
-	}
-
-	.tableheader1 {
-		background: #3a1345;
-		font-weight: bold;
-		text-align: left;
-		font-size: 18px !important;
-		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
-	}
-
-	.tableheader2 {
-		background: #3a1345;
-		font-weight: bold;
-		text-align: center;
-		font-size: 16px !important;
-		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
-	}
-
-	.tableheader3 {
-		background: #3a1345;
-		font-weight: bold;
-		text-align: center;
-		font-size: 11px !important;
-		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
 	}
 
 	.flex-container {
