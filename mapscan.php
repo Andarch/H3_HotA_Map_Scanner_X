@@ -29,7 +29,7 @@ require_once 'src/config.php';
 
 	:root {
 		--sidebar-color: #555;
-		--sidebar-width: 250px;
+		--sidebar-width: 200px;
 		--sidebar-border-color: #aaa;
 		--sidebar-border-style: solid;
 		--sidebar-border-width: 4px;
@@ -143,7 +143,7 @@ require_once 'src/config.php';
 
 	.content {
 		position: absolute;
-		left: 250px;
+		left: var(--sidebar-width);
 		margin: var(--flex-gap);
 		padding-bottom: var(--flex-gap);
 	}
@@ -328,8 +328,8 @@ require_once 'src/config.php';
 		top: 0px;
 		height: var(--sidebar-top-height);
 		font-family: 'H3Reader', calibri, arial, sans-serif;
-		font-size: 16px;
 		text-align: center;
+		font-size: 16px;
 		border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		border-top: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
@@ -352,7 +352,6 @@ require_once 'src/config.php';
 		width: 50%;
 		border: none;
 		position: relative;
-		font-size: 16px;
 	}
 
 	.sidebarTopTableCell a {
@@ -389,7 +388,7 @@ require_once 'src/config.php';
 		height: 1005px;
 		overflow: auto;
 		color: #ddd;
-		font-size: 22px;
+		font-size: 20px;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
