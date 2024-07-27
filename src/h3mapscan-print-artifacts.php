@@ -40,6 +40,10 @@ for ($i = 0; $i < $numTables; $i++) {
 	echo '</tbody>';
 	echo '</table>';
 	echo '</div>';
+
+	if(($i > 0) && ($i % 4 == 3)) {
+		echo '<div class="forcebreak"></div>';
+	}
 }
 
 echo '</div>';
