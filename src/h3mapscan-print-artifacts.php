@@ -12,14 +12,17 @@ echo '<div class="flex-container">';
 $n = 0;
 for ($i = 0; $i < $numTables; $i++) {
     echo '<div class="table-container">';
-	echo '<table class="bigtable">
-			<tr>
-				<th>#</th>
-				<th>Artifact</th>
-				<th>Position</th>
-				<th>Parent</th>
-				<th>Name</th>
-			</tr>';
+	echo '<table class="smalltable artifacts-table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Artifact</th>
+					<th>Position</th>
+					<th>Parent</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>';
 
 	for ($j = 0; $j < $itemsPerTable; $j++) {
 		$n = $i * $itemsPerTable + $j;
@@ -34,6 +37,7 @@ for ($i = 0; $i < $numTables; $i++) {
 				</tr>';
 	}
 
+	echo '</tbody>';
 	echo '</table>';
 	echo '</div>';
 }

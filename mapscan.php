@@ -102,7 +102,6 @@ require_once 'src/config.php';
 		border-bottom: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
 		border-right: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
 		border-left: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
-		padding: 3px 6px;
 	}
 
 	th {
@@ -116,6 +115,8 @@ require_once 'src/config.php';
 	}
 
 	.bigtable th, .bigtable td, .smalltable th, .smalltable td { min-width: 1em; }
+	.bigtable th, .bigtable td { padding: 3px 6px; }
+	.smalltable th, .smalltable td { padding: 3px 3px; }
 
 	.bigtable th { font-size: 14px; }
 	.bigtable td { font-size: 13px; }
@@ -142,10 +143,10 @@ require_once 'src/config.php';
 	}
 
 	.content {
-		position: absolute;
+		position: relative;
 		left: var(--sidebar-width);
 		margin: var(--flex-gap);
-		padding-bottom: var(--flex-gap);
+		width: calc(100% - var(--sidebar-width) - (var(--flex-gap) * 2));
 	}
 
 	.rowheader {
@@ -305,13 +306,51 @@ require_once 'src/config.php';
 		flex-wrap: wrap;
 		align-items: start;
 		column-gap: var(--flex-gap) !important;
-		row-gap: calc(var(--flex-gap) / 2) !important;
+		row-gap: var(--flex-gap) !important;
+		width: 100%;
 	}
 
-	.flex-container .bigtable,
-	.flex-container .smalltable,
-	.flex-container .smallesttable {
-		margin: 0;
+	.table-container {
+		flex-basis: calc(25% - var(--flex-gap));
+		width: calc(25% - (var(--flex-gap)));
+		flex-grow: 1;
+		max-width: calc(25% - var(--flex-gap));
+	}
+
+	.artifacts-table,
+	.spells-table {
+		width: 100%;
+		table-layout: auto;
+	}
+
+	.artifacts-table td:first-child,
+	.artifacts-table th:first-child,
+	.spells-table td:first-child,
+	.spells-table th:first-child {
+		width: 32px !important;
+	}
+
+	.artifacts-table td:nth-child(2) {
+		width: 162px;
+	}
+
+	.spells-table td:nth-child(2) {
+		width: 132px;
+	}
+
+	.artifacts-table td:nth-child(3),
+	.spells-table td:nth-child(3) {
+		width: 74px !important;
+	}
+
+	.artifacts-table td:nth-child(4),
+	.spells-table td:nth-child(4) {
+		width: 78px !important;
+	}
+
+	.artifacts-table td:last-child,
+	.spells-table td:last-child {
+		/* width: 76px !important; */
 	}
 
 	.forcebreak {
