@@ -91,19 +91,19 @@ echo '<table class="bigtable">
 $n = 0;
 ksort($this->h3mapscan->townTypeCounts);
 
-foreach ($this->h3mapscan->townTypeCounts as $player => $townCounts) {
-		ksort($townCounts);
-		$townCountsList = '';
-		foreach ($townCounts as $affiliation => $count) {
-			$townCountsList .= $affiliation . ': ' . $count . '</br>';
+foreach ($this->h3mapscan->townTypeCounts as $player => $towns) {
+		ksort($towns);
+		$townsList = '';
+		foreach ($towns as $affiliationKey => $town) {
+			$townsList .= $town['affiliation'].': '.$town['count'].'</br>';
 		}
 
-	$townCountsList = rtrim($townCountsList, ', ');
+	$townsList = rtrim($townsList, ', ');
 
 	echo '<tr>
 			<td class="rowheader">'.(++$n).'</td>
-			<td class="nowrap" nowrap="nowrap"> ' .$this->h3mapscan->GetPlayerColorById($player, true). '</td>
-			<td class="nowrap" nowrap="nowrap">' . $townCountsList . '</td>
+			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($player, true).'</td>
+			<td class="nowrap" nowrap="nowrap">'. $townsList . '</td>
 		</tr>';
 }
 

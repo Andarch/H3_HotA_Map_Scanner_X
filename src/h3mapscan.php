@@ -1947,7 +1947,7 @@ class H3MAPSCAN {
 						$this->players[$tileowner]['townsOwned']++;
 					}
 
-					$affiliation = ($obj['id'] == OBJECTS::TOWN) ? $this->GetTownById($obj['subid']) : 'Random';
+					$affiliation = ($obj['id'] == OBJECTS::TOWN) ? $this->GetTownById($obj['subid']) : 'Random Town';
 					$obj['data']['affiliation'] = $affiliation;
 
 					// Update the count of the town type for the owner.
@@ -2702,18 +2702,20 @@ class H3MAPSCAN {
 	}
 
 	private function UpdateTownTypeCount($owner, $affiliation) {
+		$affiliationKey = array_search($affiliation, $this->CS->Affiliation);
+
 		// Initialize the count for the owner if it doesn't exist.
 		if (!isset($this->townTypeCounts[$owner])) {
 			$this->townTypeCounts[$owner] = [];
 		}
 
 		// Initialize the count for the town type if it doesn't exist.
-		if (!isset($this->townTypeCounts[$owner][$affiliation])) {
-			$this->townTypeCounts[$owner][$affiliation] = 0;
+		if (!isset($this->townTypeCounts[$owner][$affiliationKey])) {
+			$this->townTypeCounts[$owner][$affiliationKey] = ['affiliation' => $affiliation, 'count' => 0];
 		}
 
 		// Increment the count for the town type.
-		$this->townTypeCounts[$owner][$affiliation]++;
+		$this->townTypeCounts[$owner][$affiliationKey]['count']++;
 	}
 
 	private function ReadSeerHut() {
@@ -2818,7 +2820,7 @@ class H3MAPSCAN {
 					$quest['Qrequirement'] .= $artifact.'</br>';
 				}
 				break;
-			case QUESTMISSION::ARMY:
+			case QUESTMISSION::ARMY_UPGRADES:
 				$quest['Qcategory'] = 'Bring Creatures';
 				$quest['Qrequirement'] = '';
 				$typeNumber = $this->br->ReadUint8();
