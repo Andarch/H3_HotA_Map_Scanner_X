@@ -348,11 +348,6 @@ require_once 'src/config.php';
 		width: 78px !important;
 	}
 
-	.artifacts-table td:last-child,
-	.spells-table td:last-child {
-		/* width: 76px !important; */
-	}
-
 	.forcebreak {
 		flex-basis: 100%;
 	}
