@@ -42,6 +42,8 @@ foreach($this->h3mapscan->quest_gates as $qgate) {
 }
 echo '</table>';
 
+echo '<div class="forcebreak"></div>';
+
 // Quest Guards
 $n = 0;
 echo '<table id="quest-guards-table" class="smalltable">
