@@ -2820,7 +2820,7 @@ class H3MAPSCAN {
 					$quest['Qrequirement'] .= $artifact.'</br>';
 				}
 				break;
-			case QUESTMISSION::ARMY_UPGRADES:
+			case QUESTMISSION::ARMY:
 				$quest['Qcategory'] = 'Bring Creatures';
 				$quest['Qrequirement'] = '';
 				$typeNumber = $this->br->ReadUint8();

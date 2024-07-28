@@ -46,50 +46,49 @@
 	class OBJECTCATEGORIES {
 			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
-			const BONUS_LUCK = 'Bonus – Luck';
-			const BONUS_MANA = 'Bonus – Mana';
-			const BONUS_MIXED = 'Bonus – Mixed';
-			const BONUS_MORALE = 'Bonus – Morale';
-			const BONUS_MOVEMENT = 'Bonus – Movement';
-			const BONUS_XP = 'Bonus – XP';
-			const BORDER = 'Keymaster\'s Tents & Border Gates/Guards';
-			const BORDER_GATES = 'Border Gates';
-			const BORDER_GUARDS = 'Border Guards';
+			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_AND_BORDER
+			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_AND_BORDER
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
 			const CREATURE_BANKS_CREATURES = 'Creature Banks – Creatures';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
-			const GARRISONS = 'Garrisons';
+			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
+			const GRAIL = 'Grail';
 			const HEROES = 'Heroes';
-			const HERO_UPGRADES = 'Hero Upgrades';
-			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';
+			const KEYMASTERS_AND_BORDER = 'Keymaster\'s Tents & Border Gates/Guards';
+			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_AND_BORDER
+			const LUCK_BONUS = 'Luck Bonus';
 			const MAGICAL_TERRAINS = 'Magical Terrains';
-			const MINES = 'Mines';
+			const MANA_BONUS = 'Mana Bonus';
+			const MIXED_BONUS = 'Mixed Bonus';
 			const MONSTERS = 'Monsters';
+			const MORALE_BONUS = 'Morale Bonus';
+			const MOVEMENT_BONUS = 'Movement Bonus';
 			const ONE_WAY_MONOLITHS = 'One-Way Monoliths';
-			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';
-			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';
+			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
+			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
 			const ONE_WAY_PORTALS = 'One-Way Portals';
-			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';
-			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';
-			const OTHER_GATEWAYS = 'Other Gateways';
-			const OTHER_RESOURCES = 'Other Resources';
-			const QUESTS = 'Quests';
-			const RESOURCES = 'Resources';
-			const RESOURCE_GENERATORS = 'Resource Generators';
+			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
+			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
+			const OTHER = 'Other';
+			const PRIMARY_SKILLS = 'Primary Skills';
+			const RESOURCES_GENERATORS = 'Resources – Generators';
+			const RESOURCES_MAIN = 'Resources – Main';
+			const RESOURCES_MINES = 'Resources – Mines';
+			const RESOURCES_OTHER = 'Resources – Other';
+			const RESOURCES_WAREHOUSES = 'Resources – Warehouses';
 			const SCOUTING = 'Scouting';
+			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SPECIAL = 'Special';
 			const SPELLS = 'Spells';
-			const TEXT = 'Text';
 			const TOWNS = 'Towns';
-			const TRADING = 'Trading';
-			const TRAVEL = 'Travel';
+			const TRADING_AND_INFORMATION = 'Trading & Information';
+			const TRANSIT = 'Transit';
 			const TREASURES = 'Treasures';
 			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
 			const TWO_WAY_PORTALS = 'Two-Way Portals';
 			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
-			const WAREHOUSES = 'Warehouses';
-			const OTHER = 'Other';
+			const XP_BONUS = 'XP Bonus';
 	}
 
 	//constants classes
@@ -210,7 +209,7 @@
 		const ARTIFACT = 5;
 		const PANDORAS_BOX = 6;
 		const BLACK_MARKET = 7;
-		const TRAVEL = 8;
+		const TRANSPORTATION = 8;
 		const BORDER_GUARD = 9;
 		const KEYMASTER = 10;
 		const BUOY = 11;
@@ -344,7 +343,7 @@
 		const ROCKLANDS = 231;
 	}
 
-	class TRAVEL {
+	class TRANSPORTATION {
 		const BOAT0 = 0;
 		const BOAT1 = 1;
 		const BOAT2 = 2;
@@ -430,7 +429,7 @@
 		const KILL_HERO = 3;
 		const KILL_CREATURE = 4;
 		const ART = 5;
-		const ARMY_UPGRADES = 6;
+		const ARMY = 6;
 		const RESOURCES = 7;
 		const HERO = 8;
 		const PLAYER = 9;
@@ -1455,13 +1454,13 @@
 		];
 
 		public $ObjectEx = [
-			'2-0' => ['name' => 'Altar of Sacrifice', 'category' => OBJECTCATEGORIES::OTHER],
-			'4-0' => ['name' => 'Arena', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'2-0' => ['name' => 'Altar of Sacrifice', 'category' => OBJECTCATEGORIES::XP_BONUS],
+			'4-0' => ['name' => 'Arena', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL],
-			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING],
-			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRAVEL],
-			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRAVEL],
+			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRANSIT],
 			'9-0' => ['name' => 'Border Guard – Light Blue', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-1' => ['name' => 'Border Guard – Green', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-2' => ['name' => 'Border Guard – Red', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
@@ -1478,12 +1477,12 @@
 			'10-5' => ['name' => 'Keymaster\'s Tent – Purple', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'10-6' => ['name' => 'Keymaster\'s Tent – White', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'10-7' => ['name' => 'Keymaster\'s Tent – Black', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
-			'11-0' => ['name' => 'Buoy', 'category' => OBJECTCATEGORIES::BONUS_MORALE],
-			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::OTHER_RESOURCES],
+			'11-0' => ['name' => 'Buoy', 'category' => OBJECTCATEGORIES::MORALE_BONUS],
+			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::RESOURCES_OTHER],
 			'13-0' => ['name' => 'Cartographer – Water', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::BONUS_LUCK],
+			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK_BONUS],
 			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-1' => ['name' => 'Dwarven Treasury', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
@@ -1515,27 +1514,27 @@
 			'20-1' => ['name' => 'Golem Factory', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			CURSED_GROUND_COMBOID => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
 			'22-0' => ['name' => 'Corpse', 'category' => OBJECTCATEGORIES::TREASURES],
-			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'24-0' => ['name' => 'Derelict Ship', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'25-0' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'27-0' => ['name' => 'Eye of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::BONUS_LUCK],
-			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::OTHER_RESOURCES],
-			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::BONUS_LUCK],
-			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
-			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS],
-			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS],
+			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::LUCK_BONUS],
+			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::RESOURCES_OTHER],
+			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK_BONUS],
+			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
+			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
+			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
+			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::GRAIL],
 			'37-0' => ['name' => 'Hut of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
-			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::OTHER_RESOURCES],
-			'41-0' => ['name' => 'Library of Enlightenment', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'42-0' => ['name' => 'Lighthouse', 'category' => OBJECTCATEGORIES::BONUS_MOVEMENT],
+			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
+			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::RESOURCES_OTHER],
+			'41-0' => ['name' => 'Library of Enlightenment', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
+			'42-0' => ['name' => 'Lighthouse', 'category' => OBJECTCATEGORIES::MOVEMENT_BONUS],
 			'43-0' => ['name' => 'Monolith – Blue One-Way Entrance', 'category' => OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES],
 			'43-1' => ['name' => 'Monolith – Pink One-Way Entrance', 'category' => OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES],
 			'43-2' => ['name' => 'Monolith – Orange One-Way Entrance', 'category' => OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES],
@@ -1586,33 +1585,33 @@
 			'45-23' => ['name' => 'Sea Portal – Chartreuse Two-Way', 'category' => OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS],
 			'45-24' => ['name' => 'Sea Portal – Yellow Two-Way', 'category' => OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS],
 			MAGIC_PLAINS_COMBOID => ['name' => 'Magic Plains', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
-			'47-X' => ['name' => 'School of Magic', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'48-0' => ['name' => 'Magic Spring', 'category' => OBJECTCATEGORIES::BONUS_MANA],
-			'49-0' => ['name' => 'Magic Well', 'category' => OBJECTCATEGORIES::BONUS_MANA],
-			'51-0' => ['name' => 'Mercenary Camp', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'52-0' => ['name' => 'Mermaid', 'category' => OBJECTCATEGORIES::BONUS_LUCK],
-			'53-0' => ['name' => 'Sawmill', 'category' => OBJECTCATEGORIES::MINES],
-			'53-1' => ['name' => 'Alchemist\'s Lab', 'category' => OBJECTCATEGORIES::MINES],
-			'53-2' => ['name' => 'Ore Pit', 'category' => OBJECTCATEGORIES::MINES],
-			'53-3' => ['name' => 'Sulfur Dune', 'category' => OBJECTCATEGORIES::MINES],
-			'53-4' => ['name' => 'Crystal Cavern', 'category' => OBJECTCATEGORIES::MINES],
-			'53-5' => ['name' => 'Gem Pond', 'category' => OBJECTCATEGORIES::MINES],
-			'53-6' => ['name' => 'Gold Mine', 'category' => OBJECTCATEGORIES::MINES],
-			ABANDONED_MINE_COMBOID => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
+			'47-X' => ['name' => 'School of Magic', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
+			'48-0' => ['name' => 'Magic Spring', 'category' => OBJECTCATEGORIES::MANA_BONUS],
+			'49-0' => ['name' => 'Magic Well', 'category' => OBJECTCATEGORIES::MANA_BONUS],
+			'51-0' => ['name' => 'Mercenary Camp', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
+			'52-0' => ['name' => 'Mermaid', 'category' => OBJECTCATEGORIES::LUCK_BONUS],
+			'53-0' => ['name' => 'Sawmill', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-1' => ['name' => 'Alchemist\'s Lab', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-2' => ['name' => 'Ore Pit', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-3' => ['name' => 'Sulfur Dune', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-4' => ['name' => 'Crystal Cavern', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-5' => ['name' => 'Gem Pond', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			'53-6' => ['name' => 'Gold Mine', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			ABANDONED_MINE_COMBOID => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
 			'54-X' => ['name' => 'Monster', 'category' => OBJECTCATEGORIES::MONSTERS],
-			'55-0' => ['name' => 'Mystical Garden', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
-			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::SPECIAL],
+			'55-0' => ['name' => 'Mystical Garden', 'category' => OBJECTCATEGORIES::RESOURCES_GENERATORS],
+			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
+			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::GRAIL],
 			'58-0' => ['name' => 'Redwood Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'58-1' => ['name' => 'Observation Tower', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::TEXT],
+			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
 			'60-0' => ['name' => 'Pillar of Fire', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'61-0' => ['name' => 'Star Axis', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'61-0' => ['name' => 'Star Axis', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'62-0' => ['name' => 'Prison', 'category' => OBJECTCATEGORIES::HEROES],
 			'62-1' => ['name' => 'Hero Camp', 'category' => OBJECTCATEGORIES::HEROES],
 			'63-0' => ['name' => 'Pyramid', 'category' => OBJECTCATEGORIES::SPELLS],
 			'63-51' => ['name' => 'Pyramid', 'category' => null], // Aeten Nomere
-			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
+			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
 			'65-0' => ['name' => 'Random Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'66-0' => ['name' => 'Random Treasure Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'67-0' => ['name' => 'Random Minor Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
@@ -1624,36 +1623,36 @@
 			'73-0' => ['name' => 'Random Monster 2', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'74-0' => ['name' => 'Random Monster 3', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'75-0' => ['name' => 'Random Monster 4', 'category' => OBJECTCATEGORIES::MONSTERS],
-			'76-0' => ['name' => 'Random Resource', 'category' => OBJECTCATEGORIES::RESOURCES],
+			'76-0' => ['name' => 'Random Resource', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
 			'77-0' => ['name' => 'Random Town', 'category' => OBJECTCATEGORIES::TOWNS],
 			'78-0' => ['name' => 'Refugee Camp', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'79-0' => ['name' => 'Wood', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-1' => ['name' => 'Mercury', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-2' => ['name' => 'Ore', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-3' => ['name' => 'Sulfur', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES],
+			'79-0' => ['name' => 'Wood', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-1' => ['name' => 'Mercury', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-2' => ['name' => 'Ore', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-3' => ['name' => 'Sulfur', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
+			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES_MAIN],
 			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::OTHER],
-			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
-			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::QUESTS],
+			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::TREASURES],
-			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::TRAVEL],
-			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::TRAVEL],
+			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::TRANSIT],
 			'88-0' => ['name' => 'Shrine of Magic Incantation', 'category' => OBJECTCATEGORIES::SPELLS],
 			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
 			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
-			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::TEXT],
-			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::OTHER],
+			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::XP_BONUS],
 			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPELLS],
-			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::BONUS_MOVEMENT],
+			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::MOVEMENT_BONUS],
 			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::HEROES],
-			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::BONUS_MORALE],
-			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::OTHER],
+			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::MORALE_BONUS],
+			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
 			'98-0' => ['name' => 'Castle', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-1' => ['name' => 'Rampart', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-2' => ['name' => 'Tower', 'category' => OBJECTCATEGORIES::TOWNS],
@@ -1665,52 +1664,52 @@
 			'98-8' => ['name' => 'Conflux', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-9' => ['name' => 'Cove', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-10' => ['name' => 'Factory', 'category' => OBJECTCATEGORIES::TOWNS],
-			TRADING_POST_COMBOID => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
-			'100-0' => ['name' => 'Learning Stone', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			TRADING_POST_COMBOID => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'100-0' => ['name' => 'Learning Stone', 'category' => OBJECTCATEGORIES::XP_BONUS],
 			'101-0' => ['name' => 'Treasure Chest', 'category' => OBJECTCATEGORIES::TREASURES],
-			'102-0' => ['name' => 'Tree of Knowledge', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
-			'104-0' => ['name' => 'University', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'102-0' => ['name' => 'Tree of Knowledge', 'category' => OBJECTCATEGORIES::XP_BONUS],
+			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'104-0' => ['name' => 'University', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'105-0' => ['name' => 'Wagon', 'category' => OBJECTCATEGORIES::TREASURES],
 			'106-0' => ['name' => 'War Machine Factory', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'106-1' => ['name' => 'Cannon Yard', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'107-0' => ['name' => 'School of War', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'107-0' => ['name' => 'School of War', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'108-0' => ['name' => 'Warrior\'s Tomb', 'category' => OBJECTCATEGORIES::TREASURES],
-			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
-			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
-			'112-0' => ['name' => 'Windmill', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'113-0' => ['name' => 'Witch Hut', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCES_GENERATORS],
+			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
+			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'112-0' => ['name' => 'Windmill', 'category' => OBJECTCATEGORIES::RESOURCES_GENERATORS],
+			'113-0' => ['name' => 'Witch Hut', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'141-0' => ['name' => 'Cracked Ice', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
 			'141-1' => ['name' => 'Dunes', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
 			'141-2' => ['name' => 'Fields of Glory', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
-			'142-0' => ['name' => 'Warehouse of Wood', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-1' => ['name' => 'Warehouse of Mercury', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-2' => ['name' => 'Warehouse of Ore', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-3' => ['name' => 'Warehouse of Sulfur', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-4' => ['name' => 'Warehouse of Crystal', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-5' => ['name' => 'Warehouse of Gem', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'142-6' => ['name' => 'Warehouse of Gold', 'category' => OBJECTCATEGORIES::WAREHOUSES],
-			'144-0' => ['name' => 'Temple of Loyalty', 'category' => OBJECTCATEGORIES::BONUS_MORALE],
+			'142-0' => ['name' => 'Warehouse of Wood', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-1' => ['name' => 'Warehouse of Mercury', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-2' => ['name' => 'Warehouse of Ore', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-3' => ['name' => 'Warehouse of Sulfur', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-4' => ['name' => 'Warehouse of Crystal', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-5' => ['name' => 'Warehouse of Gem', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'142-6' => ['name' => 'Warehouse of Gold', 'category' => OBJECTCATEGORIES::RESOURCES_WAREHOUSES],
+			'144-0' => ['name' => 'Temple of Loyalty', 'category' => OBJECTCATEGORIES::MORALE_BONUS],
 			'144-1' => ['name' => 'Skeleton Transformer', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'144-2' => ['name' => 'Colosseum of the Magi', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'144-3' => ['name' => 'Watering Place', 'category' => OBJECTCATEGORIES::BONUS_MOVEMENT],
-			'144-4' => ['name' => 'Mineral Spring', 'category' => OBJECTCATEGORIES::BONUS_MIXED],
-			'144-5' => ['name' => 'Hermit\'s Shack', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'144-6' => ['name' => 'Gazebo', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
-			'144-7' => ['name' => 'Junkman', 'category' => OBJECTCATEGORIES::TRADING],
-			'144-8' => ['name' => 'Derrick', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'144-9' => ['name' => 'Warlock\'s Lab', 'category' => OBJECTCATEGORIES::TRADING],
-			'144-10' => ['name' => 'Prospector', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'144-11' => ['name' => 'Trailblazer', 'category' => OBJECTCATEGORIES::BONUS_MOVEMENT],
+			'144-2' => ['name' => 'Colosseum of the Magi', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
+			'144-3' => ['name' => 'Watering Place', 'category' => OBJECTCATEGORIES::MOVEMENT_BONUS],
+			'144-4' => ['name' => 'Mineral Spring', 'category' => OBJECTCATEGORIES::MIXED_BONUS],
+			'144-5' => ['name' => 'Hermit\'s Shack', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
+			'144-6' => ['name' => 'Gazebo', 'category' => OBJECTCATEGORIES::XP_BONUS],
+			'144-7' => ['name' => 'Junkman', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'144-8' => ['name' => 'Derrick', 'category' => OBJECTCATEGORIES::RESOURCES_GENERATORS],
+			'144-9' => ['name' => 'Warlock\'s Lab', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'144-10' => ['name' => 'Prospector', 'category' => OBJECTCATEGORIES::RESOURCES_GENERATORS],
+			'144-11' => ['name' => 'Trailblazer', 'category' => OBJECTCATEGORIES::MOVEMENT_BONUS],
 			'145-0' => ['name' => 'Ancient Lamp', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::OTHER_RESOURCES],
-			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::OTHER_RESOURCES],
-			'145-3' => ['name' => 'Vial of Mana', 'category' => OBJECTCATEGORIES::BONUS_MANA],
-			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::HERO_UPGRADES],
+			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::RESOURCES_OTHER],
+			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::RESOURCES_OTHER],
+			'145-3' => ['name' => 'Vial of Mana', 'category' => OBJECTCATEGORIES::MANA_BONUS],
+			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'146-2' => ['name' => 'Altar of Mana', 'category' => OBJECTCATEGORIES::BONUS_MANA],
-			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
+			'146-2' => ['name' => 'Altar of Mana', 'category' => OBJECTCATEGORIES::MANA_BONUS],
+			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::TRANSIT],
 			'146-4' => ['name' => 'Ancient Altar', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'162-0' => ['name' => 'Random Monster 5', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'163-0' => ['name' => 'Random Monster 6', 'category' => OBJECTCATEGORIES::MONSTERS],
@@ -1723,18 +1722,18 @@
 			'212-5' => ['name' => 'Border Gate – Purple', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-6' => ['name' => 'Border Gate – White', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-7' => ['name' => 'Border Gate – Black', 'category' => OBJECTCATEGORIES::BORDER_GATES],
-			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::QUESTS],
+			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::TREASURES],
-			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING],
-			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::QUESTS],
+			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
+			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS],
-			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS],
-			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
-			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
-			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
+			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::RESOURCES_MINES],
+			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING_AND_INFORMATION],
 			'222-0' => ['name' => 'Clover Field', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
 			// '223-0' => ['name' => 'Cursed Ground', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
 			'224-0' => ['name' => 'Evil Fog', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS],
@@ -2622,7 +2621,7 @@
 			QUESTMISSION::KILL_HERO => 'Kill hero',
 			QUESTMISSION::KILL_CREATURE => 'Kill creature',
 			QUESTMISSION::ART => 'Artifact',
-			QUESTMISSION::ARMY_UPGRADES => 'Army',
+			QUESTMISSION::ARMY => 'Army',
 			QUESTMISSION::RESOURCES => 'Resources',
 			QUESTMISSION::HERO => 'Hero',
 			QUESTMISSION::PLAYER => 'Player',
