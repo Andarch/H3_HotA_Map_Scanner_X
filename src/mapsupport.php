@@ -1,5 +1,22 @@
 <?php
 
+function customSort($a, $b, $customOrder) {
+    $posA = array_search($a['name'], $customOrder);
+    $posB = array_search($b['name'], $customOrder);
+    if ($posA !== false && $posB !== false) {
+        return $posA - $posB;
+    }
+
+    if ($posA !== false) {
+        return -1;
+    }
+    if ($posB !== false) {
+        return 1;
+    }
+
+    return 0;
+}
+
 function FromArray($key, $array, $def = '?') {
 	if(!is_array($array)) {
 		return $def;

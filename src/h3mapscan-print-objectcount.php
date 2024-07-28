@@ -216,32 +216,7 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 		case OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS:
 			$categories['twoWaySeaPortals'] = $obj;
 			break;
-
-		case OBJECTCATEGORIES::XP_BONUS:
-			$categories['xpBonus'] = $obj;
-			break;
 	}
-}
-
-function customSort($a, $b, $customOrder) {
-    $posA = array_search($a['name'], $customOrder);
-    $posB = array_search($b['name'], $customOrder);
-
-    // If both elements are found in the custom order array
-    if ($posA !== false && $posB !== false) {
-        return $posA - $posB;
-    }
-
-    // If only one element is found, it should come first
-    if ($posA !== false) {
-        return -1;
-    }
-    if ($posB !== false) {
-        return 1;
-    }
-
-    // If neither element is found, keep their original order
-    return 0;
 }
 
 /* START FLEX */
