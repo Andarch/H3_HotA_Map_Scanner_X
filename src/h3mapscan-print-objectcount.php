@@ -6,8 +6,6 @@ $tableclass = 'smallesttable';
 $categories = [
 	$armyUpgrades = [],
 	$artifacts = [],
-	$barriers = [],
-	$bonusXP = [],
 	$borderGates = [],
 	$borderGuards = [],
 	$creatureBanksArtifacts = [],
@@ -15,6 +13,8 @@ $categories = [
 	$creatureBanksElite = [],
 	$creatureBanksResources = [],
 	$dwellings = [],
+	$evasion = [],
+	$garrisonsAndQuestGatesGuards = [],
 	$heroes = [],
 	$information = [],
 	$keymastersTents = [],
@@ -37,7 +37,6 @@ $categories = [
 	$resourceGenerators = [],
 	$scouting = [],
 	$secondarySkills = [],
-	$shelter = [],
 	$special = [],
 	$spells = [],
 	$towns = [],
@@ -60,10 +59,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::ARTIFACTS:
 			$categories['artifacts'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::BARRIERS:
-			$categories['barriers'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BORDER_GATES:
@@ -92,6 +87,14 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::DWELLINGS:
 			$categories['dwellings'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::EVASION:
+			$categories['evasion'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS:
+			$categories['garrisonsAndQuestGatesGuards'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::HEROES:
@@ -180,10 +183,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::SECONDARY_SKILLS:
 			$categories['secondarySkills'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::SHELTER:
-			$categories['shelter'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::SPECIAL:
@@ -344,7 +343,7 @@ foreach($categories['travel'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Barriers
+// Garrisons & Quest Gates/Guards
 $n = 0;
 $customOrder = [
 	'Garrison',
@@ -352,13 +351,13 @@ $customOrder = [
 	'Quest Gate',
 	'Quest Guard',
 ];
-uasort($categories['barriers'], function($a, $b) use ($customOrder) {
+uasort($categories['garrisonsAndQuestGatesGuards'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BARRIERS.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -367,7 +366,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['barriers'] as $objcomboid => $obj) {
+foreach($categories['garrisonsAndQuestGatesGuards'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -377,7 +376,7 @@ foreach($categories['barriers'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Keymasters / Border
+// Keymaster's Tents & Border Gates/Guards
 $n = 0;
 $ids = [];
 $colors = ['Light Blue', 'Green', 'Red', 'Dark Blue', 'Brown', 'Purple', 'White', 'Black'];
@@ -393,7 +392,7 @@ for($i = 0; $i < 8; $i++) {
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="5" class="tableheader3">'.OBJECTCATEGORIES::KEYMASTERS_BORDER.'</td>
+				<td colspan="5" class="tableheader3">'.OBJECTCATEGORIES::KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1484,19 +1483,19 @@ foreach($categories['scouting'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Shelter
+// Evasion
 $n = 0;
 $customOrder = [
 	'Cover of Darkness',
 	'Sanctuary',
 ];
-uasort($categories['shelter'], function($a, $b) use ($customOrder) {
+uasort($categories['evasion'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::SHELTER.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::EVASION.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1505,7 +1504,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['shelter'] as $objcomboid => $obj) {
+foreach($categories['evasion'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>

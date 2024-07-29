@@ -46,18 +46,20 @@
 	class OBJECTCATEGORIES {
 			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
-			const BARRIERS = 'Barriers';
-			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_BORDER
-			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_BORDER
+			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
+			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
+			const CARTOGRAPHERS = 'Cartographers';
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
 			const CREATURE_BANKS_CREATURES = 'Creature Banks – Creatures';
 			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
+			const EVASION = 'Evasion';
+			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
 			const HEROES = 'Heroes';
 			const INFORMATION = 'Information';
-			const KEYMASTERS_BORDER = 'Keymasters/Border';
-			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_BORDER
+			const KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS = 'Keymaster\'s Tents & Border Gates/Guards';
+			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const LUCK = 'Luck';
 			const MAGICAL_TERRAINS_SPELLS = 'Magical Terrains – Spells';
 			const MAGICAL_TERRAINS_BONUSES = 'Magical Terrains – Bonuses';
@@ -79,7 +81,6 @@
 			const RESOURCE_GENERATORS = 'Resource Generators';
 			const SCOUTING = 'Scouting';
 			const SECONDARY_SKILLS = 'Secondary Skills';
-			const SHELTER = 'Shelter';
 			const SPECIAL = 'Special';
 			const SPELLS = 'Spells';
 			const TOWNS = 'Towns';
@@ -1485,7 +1486,7 @@
 			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK],
-			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::SHELTER],
+			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::EVASION],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-1' => ['name' => 'Dwarven Treasury', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-2' => ['name' => 'Griffin Conservatory', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
@@ -1526,8 +1527,8 @@
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK],
 			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
-			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::BARRIERS],
-			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::BARRIERS],
+			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
@@ -1635,7 +1636,7 @@
 			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::SHELTER],
+			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::EVASION],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],
@@ -1724,15 +1725,15 @@
 			'212-5' => ['name' => 'Border Gate – Purple', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-6' => ['name' => 'Border Gate – White', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-7' => ['name' => 'Border Gate – Black', 'category' => OBJECTCATEGORIES::BORDER_GATES],
-			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::BARRIERS],
+			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::TREASURES],
 			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING],
-			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::BARRIERS],
+			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::BARRIERS],
-			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::BARRIERS],
+			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],
