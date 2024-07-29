@@ -1,0 +1,259 @@
+{
+	"files": [
+		{
+			"path": "src/h3mapscan-print-objectcount.php",
+			"bookmarks": [
+				{
+					"line": 3,
+					"column": 15,
+					"label": ""
+				},
+				{
+					"line": 52,
+					"column": 19,
+					"label": ""
+				},
+				{
+					"line": 233,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 236,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 277,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 310,
+					"column": 5,
+					"label": ""
+				},
+				{
+					"line": 345,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 378,
+					"column": 19,
+					"label": ""
+				},
+				{
+					"line": 417,
+					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 452,
+					"column": 15,
+					"label": ""
+				},
+				{
+					"line": 487,
+					"column": 12,
+					"label": ""
+				},
+				{
+					"line": 513,
+					"column": 12,
+					"label": ""
+				},
+				{
+					"line": 539,
+					"column": 16,
+					"label": ""
+				},
+				{
+					"line": 565,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 568,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 606,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 643,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 680,
+					"column": 11,
+					"label": ""
+				},
+				{
+					"line": 716,
+					"column": 15,
+					"label": ""
+				},
+				{
+					"line": 750,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 783,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 818,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 851,
+					"column": 5,
+					"label": ""
+				},
+				{
+					"line": 883,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 916,
+					"column": 10,
+					"label": ""
+				},
+				{
+					"line": 919,
+					"column": 12,
+					"label": ""
+				},
+				{
+					"line": 944,
+					"column": 15,
+					"label": ""
+				},
+				{
+					"line": 969,
+					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 994,
+					"column": 10,
+					"label": ""
+				},
+				{
+					"line": 1026,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 1064,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 1097,
+					"column": 5,
+					"label": ""
+				},
+				{
+					"line": 1131,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 1165,
+					"column": 10,
+					"label": ""
+				},
+				{
+					"line": 1199,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 1232,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 1235,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 1269,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 1304,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 1339,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 1376,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 1413,
+					"column": 9,
+					"label": ""
+				},
+				{
+					"line": 1447,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 1485,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 1516,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 1551,
+					"column": 31,
+					"label": ""
+				},
+				{
+					"line": 1587,
+					"column": 7,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "src/h3mapconstants.php",
+			"bookmarks": [
+				{
+					"line": 45,
+					"column": 25,
+					"label": ""
+				},
+				{
+					"line": 1458,
+					"column": 11,
+					"label": ""
+				}
+			]
+		}
+	]
+}

@@ -6,5 +6,5 @@
 *.h3c
 .vs/
 /vendor/
-.vscode/*
-!.vscode/bookmarks.json
+/.vscode/*
+!/.vscode/bookmarks.json
