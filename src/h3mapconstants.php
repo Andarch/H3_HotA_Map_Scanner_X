@@ -50,8 +50,8 @@
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_BORDER
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
 			const CREATURE_BANKS_CREATURES = 'Creature Banks – Creatures';
+			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
-			const CREATURE_BANKS_SPECIAL = 'Creature Banks – Special';
 			const DWELLINGS = 'Dwellings';
 			const FORTIFICATIONS = 'Fortifications';
 			const HEROES = 'Heroes';
@@ -1498,7 +1498,7 @@
 			// '16-9' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			// '16-10' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'16-21' => ['name' => 'Beholders\' Sanctuary', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
-			'16-22' => ['name' => 'Temple of the Sea', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_SPECIAL],
+			'16-22' => ['name' => 'Temple of the Sea', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'16-23' => ['name' => 'Pirate Cavern', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
 			'16-24' => ['name' => 'Mansion', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'16-25' => ['name' => 'Spit', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
@@ -1518,7 +1518,7 @@
 			'22-0' => ['name' => 'Corpse', 'category' => OBJECTCATEGORIES::TREASURES],
 			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'24-0' => ['name' => 'Derelict Ship', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
-			'25-0' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_SPECIAL],
+			'25-0' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
 			'27-0' => ['name' => 'Eye of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::LUCK],
@@ -1712,7 +1712,7 @@
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'146-2' => ['name' => 'Altar of Mana', 'category' => OBJECTCATEGORIES::MANA],
 			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::TRANSIT],
-			'146-4' => ['name' => 'Ancient Altar', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_SPECIAL],
+			'146-4' => ['name' => 'Ancient Altar', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'162-0' => ['name' => 'Random Monster 5', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'163-0' => ['name' => 'Random Monster 6', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'164-0' => ['name' => 'Random Monster 7', 'category' => OBJECTCATEGORIES::MONSTERS],

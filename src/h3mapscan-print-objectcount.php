@@ -11,8 +11,8 @@ $categories = [
 	$borderGuards = [],
 	$creatureBanksArtifacts = [],
 	$creatureBanksCreatures = [],
+	$creatureBanksElite = [],
 	$creatureBanksResources = [],
-	$creatureBanksSpecial = [],
 	$dwellings = [],
 	$fortifications = [],
 	$heroes = [],
@@ -78,12 +78,12 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['creatureBanksCreatures'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES:
-			$categories['creatureBanksResources'] = $obj;
+		case OBJECTCATEGORIES::CREATURE_BANKS_ELITE:
+			$categories['creatureBanksElite'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::CREATURE_BANKS_SPECIAL:
-			$categories['creatureBanksSpecial'] = $obj;
+		case OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES:
+			$categories['creatureBanksResources'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::DWELLINGS:
@@ -1124,20 +1124,20 @@ foreach($categories['information'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Creature Banks – Special
+// Creature Banks – Elite
 $n = 0;
 $customOrder = [
 	'Dragon Utopia',
 	'Temple of the Sea',
 	'Ancient Altar',
 ];
-uasort($categories['creatureBanksSpecial'], function($a, $b) use ($customOrder) {
+uasort($categories['creatureBanksElite'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::CREATURE_BANKS_SPECIAL.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::CREATURE_BANKS_ELITE.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1146,7 +1146,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['creatureBanksSpecial'] as $objcomboid => $obj) {
+foreach($categories['creatureBanksElite'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
