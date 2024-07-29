@@ -54,7 +54,6 @@
 			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
-			const EVASION = 'Evasion';
 			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
 			const HEROES = 'Heroes';
 			const INFORMATION = 'Information';
@@ -77,6 +76,7 @@
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
 			const PRIMARY_SKILLS = 'Primary Skills';
+			const REFUGE = 'Refuge';
 			const RESOURCES = 'Resources';
 			const RESOURCE_GENERATORS = 'Resource Generators';
 			const SCOUTING = 'Scouting';
@@ -1486,7 +1486,7 @@
 			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK],
-			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::EVASION],
+			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::REFUGE],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-1' => ['name' => 'Dwarven Treasury', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-2' => ['name' => 'Griffin Conservatory', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
@@ -1636,7 +1636,7 @@
 			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::EVASION],
+			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::REFUGE],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],

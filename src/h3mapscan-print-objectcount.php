@@ -13,7 +13,6 @@ $categories = [
 	$creatureBanksElite = [],
 	$creatureBanksResources = [],
 	$dwellings = [],
-	$evasion = [],
 	$garrisonsAndQuestGatesGuards = [],
 	$heroes = [],
 	$information = [],
@@ -33,6 +32,7 @@ $categories = [
 	$oneWayPortalEntrances = [],
 	$oneWayPortalExits = [],
 	$primarySkills = [],
+	$refuge = [],
 	$resources = [],
 	$resourceGenerators = [],
 	$scouting = [],
@@ -87,10 +87,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::DWELLINGS:
 			$categories['dwellings'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::EVASION:
-			$categories['evasion'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS:
@@ -167,6 +163,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::PRIMARY_SKILLS:
 			$categories['primarySkills'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::REFUGE:
+			$categories['refuge'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::RESOURCES:
@@ -1483,19 +1483,19 @@ foreach($categories['scouting'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Evasion
+// Refuge
 $n = 0;
 $customOrder = [
 	'Cover of Darkness',
 	'Sanctuary',
 ];
-uasort($categories['evasion'], function($a, $b) use ($customOrder) {
+uasort($categories['refuge'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::EVASION.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::REFUGE.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1504,7 +1504,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['evasion'] as $objcomboid => $obj) {
+foreach($categories['refuge'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
