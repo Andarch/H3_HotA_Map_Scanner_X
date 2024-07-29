@@ -1237,11 +1237,12 @@ echo '<div class="forcebreak"></div>';
 // Special Objects
 $n = 0;
 $customOrder = [
-	'Event Object',
-	'Pandora\'s Box',
-	'Seer\'s Hut',
-	'Obelisk',
 	'Grail',
+	'Obelisk',
+	'Spell Scroll',
+	'Seer\'s Hut',
+	'Pandora\'s Box',
+	'Event Object',
 ];
 uasort($categories['specialObjects'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1276,7 +1277,6 @@ $customOrder = [
 	'Shrine of Magic Thought',
 	'Shrine of Magic Mystery',
 	'Pyramid',
-	'Spell Scroll',
 ];
 uasort($categories['spells'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);

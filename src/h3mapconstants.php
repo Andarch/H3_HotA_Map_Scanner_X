@@ -1650,7 +1650,7 @@
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
 			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::INFORMATION],
 			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::XP],
-			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPELLS],
+			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
 			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::INFORMATION],
 			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::MORALE],
