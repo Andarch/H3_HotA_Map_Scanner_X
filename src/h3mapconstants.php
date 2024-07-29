@@ -80,7 +80,7 @@
 			const SCOUTING = 'Scouting';
 			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SHELTER = 'Shelter';
-			const SPECIAL_OBJECTS = 'Special Objects';
+			const SPECIAL = 'Special';
 			const SPELLS = 'Spells';
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
@@ -1459,7 +1459,7 @@
 			'2-0' => ['name' => 'Altar of Sacrifice', 'category' => OBJECTCATEGORIES::XP],
 			'4-0' => ['name' => 'Arena', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
-			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING],
 			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSIT],
 			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRANSIT],
@@ -1519,7 +1519,7 @@
 			'23-0' => ['name' => 'Marletto Tower', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'24-0' => ['name' => 'Derelict Ship', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'25-0' => ['name' => 'Dragon Utopia', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
-			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'27-0' => ['name' => 'Eye of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::LUCK],
 			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
@@ -1531,7 +1531,7 @@
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'37-0' => ['name' => 'Hut of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
 			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
@@ -1603,7 +1603,7 @@
 			'54-X' => ['name' => 'Monster', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'55-0' => ['name' => 'Mystical Garden', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
-			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'58-0' => ['name' => 'Redwood Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'58-1' => ['name' => 'Observation Tower', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::INFORMATION],
@@ -1638,7 +1638,7 @@
 			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::SHELTER],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
-			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::TREASURES],
@@ -1650,7 +1650,7 @@
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
 			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::INFORMATION],
 			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::XP],
-			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPECIAL_OBJECTS],
+			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPELLS],
 			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::INFORMATION],
 			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::MORALE],
