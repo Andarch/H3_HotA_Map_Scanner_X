@@ -6,6 +6,7 @@ $tableclass = 'smallesttable';
 $categories = [
 	$armyUpgrades = [],
 	$artifacts = [],
+	$barriers = [],
 	$bonusXP = [],
 	$borderGates = [],
 	$borderGuards = [],
@@ -14,7 +15,6 @@ $categories = [
 	$creatureBanksElite = [],
 	$creatureBanksResources = [],
 	$dwellings = [],
-	$fortifications = [],
 	$heroes = [],
 	$information = [],
 	$keymastersTents = [],
@@ -42,7 +42,7 @@ $categories = [
 	$spells = [],
 	$towns = [],
 	$trading = [],
-	$transit = [],
+	$travel = [],
 	$treasures = [],
 	$twoWayMonoliths = [],
 	$twoWayPortals = [],
@@ -60,6 +60,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::ARTIFACTS:
 			$categories['artifacts'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::BARRIERS:
+			$categories['barriers'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BORDER_GATES:
@@ -88,10 +92,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::DWELLINGS:
 			$categories['dwellings'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::FORTIFICATIONS:
-			$categories['fortifications'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::HEROES:
@@ -202,8 +202,8 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['trading'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::TRANSIT:
-			$categories['transit'] = $obj;
+		case OBJECTCATEGORIES::TRAVEL:
+			$categories['travel'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::TREASURES:
@@ -309,7 +309,7 @@ foreach($categories['heroes'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Transit
+// Travel
 $n = 0;
 $customOrder = [
 	'Shipyard',
@@ -319,13 +319,13 @@ $customOrder = [
 	'Subterranean Gate',
 	'Town Gate',
 ];
-uasort($categories['transit'], function($a, $b) use ($customOrder) {
+uasort($categories['travel'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRANSIT.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRAVEL.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -334,7 +334,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['transit'] as $objcomboid => $obj) {
+foreach($categories['travel'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -344,7 +344,7 @@ foreach($categories['transit'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Fortifications
+// Barriers
 $n = 0;
 $customOrder = [
 	'Garrison',
@@ -352,13 +352,13 @@ $customOrder = [
 	'Quest Gate',
 	'Quest Guard',
 ];
-uasort($categories['fortifications'], function($a, $b) use ($customOrder) {
+uasort($categories['barriers'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::FORTIFICATIONS.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BARRIERS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -367,7 +367,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['fortifications'] as $objcomboid => $obj) {
+foreach($categories['barriers'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>

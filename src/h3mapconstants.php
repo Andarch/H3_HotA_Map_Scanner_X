@@ -46,6 +46,7 @@
 	class OBJECTCATEGORIES {
 			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
+			const BARRIERS = 'Barriers';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_BORDER
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_BORDER
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
@@ -53,7 +54,6 @@
 			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
-			const FORTIFICATIONS = 'Fortifications';
 			const HEROES = 'Heroes';
 			const INFORMATION = 'Information';
 			const KEYMASTERS_BORDER = 'Keymasters/Border';
@@ -84,7 +84,7 @@
 			const SPELLS = 'Spells';
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
-			const TRANSIT = 'Transit';
+			const TRAVEL = 'Travel';
 			const TREASURES = 'Treasures';
 			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
 			const TWO_WAY_PORTALS = 'Two-Way Portals';
@@ -1461,8 +1461,8 @@
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING],
-			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRANSIT],
-			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::TRAVEL],
+			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::TRAVEL],
 			'9-0' => ['name' => 'Border Guard – Light Blue', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-1' => ['name' => 'Border Guard – Green', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-2' => ['name' => 'Border Guard – Red', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
@@ -1526,8 +1526,8 @@
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK],
 			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
-			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
-			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
+			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::BARRIERS],
+			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::BARRIERS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
@@ -1642,8 +1642,8 @@
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::TREASURES],
-			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::TRANSIT],
-			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::TRAVEL],
+			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::TRAVEL],
 			'88-0' => ['name' => 'Shrine of Magic Incantation', 'category' => OBJECTCATEGORIES::SPELLS],
 			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
 			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
@@ -1670,7 +1670,7 @@
 			'100-0' => ['name' => 'Learning Stone', 'category' => OBJECTCATEGORIES::XP],
 			'101-0' => ['name' => 'Treasure Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'102-0' => ['name' => 'Tree of Knowledge', 'category' => OBJECTCATEGORIES::XP],
-			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::TRAVEL],
 			'104-0' => ['name' => 'University', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'105-0' => ['name' => 'Wagon', 'category' => OBJECTCATEGORIES::TREASURES],
 			'106-0' => ['name' => 'War Machine Factory', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
@@ -1711,7 +1711,7 @@
 			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'146-2' => ['name' => 'Altar of Mana', 'category' => OBJECTCATEGORIES::MANA],
-			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::TRANSIT],
+			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::TRAVEL],
 			'146-4' => ['name' => 'Ancient Altar', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'162-0' => ['name' => 'Random Monster 5', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'163-0' => ['name' => 'Random Monster 6', 'category' => OBJECTCATEGORIES::MONSTERS],
@@ -1724,15 +1724,15 @@
 			'212-5' => ['name' => 'Border Gate – Purple', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-6' => ['name' => 'Border Gate – White', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-7' => ['name' => 'Border Gate – Black', 'category' => OBJECTCATEGORIES::BORDER_GATES],
-			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
+			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::BARRIERS],
 			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::TREASURES],
 			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING],
-			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
+			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::BARRIERS],
 			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
-			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::FORTIFICATIONS],
+			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::BARRIERS],
+			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::BARRIERS],
 			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],

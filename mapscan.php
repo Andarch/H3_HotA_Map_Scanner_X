@@ -59,7 +59,7 @@ require_once 'src/config.php';
 		--gold: #fcf4ad;
 		--brown: #51442c;
 
-		--count-column-header-width: 30px;
+		--count-column-header-width: 32.04px;
 
 		--flex-gap: 1.5em;
 	}
@@ -125,9 +125,9 @@ require_once 'src/config.php';
 	.smalltable td { font-size: 11px; }
 
 	.smallesttable th, .smallesttable td { padding: 1px 3px; }
-	.smallesttable th { font-size: 9.5px; }
-	.smallesttable td:first-child { font-size: 10px; }
-	.smallesttable td:not(td:first-child) { font-size: 11px; }
+	.smallesttable th { font-size: 10px; }
+	.smallesttable td:first-child { font-size: 11px; }
+	.smallesttable td:not(td:first-child) { font-size: 12px; }
 
 	.colw100 { width: 100px; }
 	.colA { width: 30%; }
