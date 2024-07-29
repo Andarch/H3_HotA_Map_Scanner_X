@@ -46,6 +46,7 @@
 	class OBJECTCATEGORIES {
 			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
+			const BONUS_COMBOS = 'Bonus Combos';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const CARTOGRAPHERS = 'Cartographers';
@@ -56,7 +57,6 @@
 			const DWELLINGS = 'Dwellings';
 			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
 			const HEROES = 'Heroes';
-			const INFORMATION = 'Information';
 			const KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS = 'Keymaster\'s Tents & Border Gates/Guards';
 			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const LUCK = 'Luck';
@@ -64,11 +64,9 @@
 			const MAGICAL_TERRAINS_BONUSES = 'Magical Terrains – Bonuses';
 			const MANA = 'Mana';
 			const MINES = 'Mines';
-			const MULTI_RESOURCES = 'Multi-Resources';
 			const MONSTERS = 'Monsters';
 			const MORALE = 'Morale';
 			const MOVEMENT = 'Movement';
-			const MULTI_BONUS = 'Multi-Bonus';
 			const ONE_WAY_MONOLITHS = 'One-Way Monoliths';
 			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
 			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
@@ -76,13 +74,14 @@
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
 			const PRIMARY_SKILLS = 'Primary Skills';
-			const REFUGE = 'Refuge';
 			const RESOURCES = 'Resources';
+			const RESOURCE_COMBOS = 'Resource Combos';
 			const RESOURCE_GENERATORS = 'Resource Generators';
 			const SCOUTING = 'Scouting';
 			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SPECIAL = 'Special';
 			const SPELLS = 'Spells';
+			const STRATEGY_AND_INFORMATION = 'Strategy & Information';
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
 			const TRAVEL = 'Travel';
@@ -1481,12 +1480,12 @@
 			'10-6' => ['name' => 'Keymaster\'s Tent – White', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'10-7' => ['name' => 'Keymaster\'s Tent – Black', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'11-0' => ['name' => 'Buoy', 'category' => OBJECTCATEGORIES::MORALE],
-			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
-			'13-0' => ['name' => 'Cartographer – Water', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::SCOUTING],
+			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'13-0' => ['name' => 'Cartographer – Sea', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
+			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
+			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
 			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK],
-			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::REFUGE],
+			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-1' => ['name' => 'Dwarven Treasury', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-2' => ['name' => 'Griffin Conservatory', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
@@ -1523,9 +1522,9 @@
 			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'27-0' => ['name' => 'Eye of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::LUCK],
-			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
+			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK],
-			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
+			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
@@ -1534,8 +1533,8 @@
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'37-0' => ['name' => 'Hut of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
-			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
+			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
+			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
 			'41-0' => ['name' => 'Library of Enlightenment', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'42-0' => ['name' => 'Lighthouse', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'43-0' => ['name' => 'Monolith – Blue One-Way Entrance', 'category' => OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES],
@@ -1603,18 +1602,18 @@
 			ABANDONED_MINE_COMBOID => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			'54-X' => ['name' => 'Monster', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'55-0' => ['name' => 'Mystical Garden', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
+			'56-0' => ['name' => 'Oasis', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'58-0' => ['name' => 'Redwood Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'58-1' => ['name' => 'Observation Tower', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::INFORMATION],
+			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'60-0' => ['name' => 'Pillar of Fire', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'61-0' => ['name' => 'Star Axis', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'62-0' => ['name' => 'Prison', 'category' => OBJECTCATEGORIES::HEROES],
 			'62-1' => ['name' => 'Hero Camp', 'category' => OBJECTCATEGORIES::HEROES],
 			'63-0' => ['name' => 'Pyramid', 'category' => OBJECTCATEGORIES::SPELLS],
 			'63-51' => ['name' => 'Pyramid', 'category' => null],  // Aeten Nomere
-			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
+			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'65-0' => ['name' => 'Random Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'66-0' => ['name' => 'Random Treasure Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'67-0' => ['name' => 'Random Minor Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
@@ -1636,7 +1635,7 @@
 			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES],
 			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::REFUGE],
+			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],
@@ -1649,13 +1648,13 @@
 			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
 			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
-			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::INFORMATION],
+			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::XP],
 			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPELLS],
 			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::MOVEMENT],
-			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::INFORMATION],
+			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::MORALE],
-			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::INFORMATION],
+			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'98-0' => ['name' => 'Castle', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-1' => ['name' => 'Rampart', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-2' => ['name' => 'Tower', 'category' => OBJECTCATEGORIES::TOWNS],
@@ -1679,7 +1678,7 @@
 			'107-0' => ['name' => 'School of War', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'108-0' => ['name' => 'Warrior\'s Tomb', 'category' => OBJECTCATEGORIES::TREASURES],
 			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
-			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
+			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS],
 			'112-0' => ['name' => 'Windmill', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'113-0' => ['name' => 'Witch Hut', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
@@ -1697,7 +1696,7 @@
 			'144-1' => ['name' => 'Skeleton Transformer', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'144-2' => ['name' => 'Colosseum of the Magi', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'144-3' => ['name' => 'Watering Place', 'category' => OBJECTCATEGORIES::MOVEMENT],
-			'144-4' => ['name' => 'Mineral Spring', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
+			'144-4' => ['name' => 'Mineral Spring', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'144-5' => ['name' => 'Hermit\'s Shack', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'144-6' => ['name' => 'Gazebo', 'category' => OBJECTCATEGORIES::XP],
 			'144-7' => ['name' => 'Junkman', 'category' => OBJECTCATEGORIES::TRADING],
@@ -1706,8 +1705,8 @@
 			'144-10' => ['name' => 'Prospector', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'144-11' => ['name' => 'Trailblazer', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'145-0' => ['name' => 'Ancient Lamp', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
-			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::MULTI_RESOURCES],
+			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
 			'145-3' => ['name' => 'Vial of Mana', 'category' => OBJECTCATEGORIES::MANA],
 			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
