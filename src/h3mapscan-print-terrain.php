@@ -19,7 +19,7 @@ for ($i = 0; $i < 3; $i++) {
 		$title = 'Underground';
 	}
 	else {
-		$title = 'Both';
+		$title = 'Total';
 	}
 
 	$n = 0;
