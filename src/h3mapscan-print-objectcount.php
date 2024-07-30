@@ -8,10 +8,6 @@ $categories = [];
 /* SORT BY CATEGORY */
 foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 	switch($objcategory) {
-		case OBJECTCATEGORIES::ARMY_UPGRADES:
-			$categories['armyUpgrades'] = $obj;
-			break;
-
 		case OBJECTCATEGORIES::ARTIFACTS:
 			$categories['artifacts'] = $obj;
 			break;
@@ -178,6 +174,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::WAREHOUSES:
 			$categories['warehouses'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES:
+			$categories['armyUpgrades'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::XP:
@@ -665,7 +665,7 @@ foreach($categories['garrisonsAndQuestGatesGuards'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Army Upgrades
+// War Machines & Upgrades
 $n = 0;
 $customOrder = [
 	'War Machine Factory',
@@ -680,7 +680,7 @@ uasort($categories['armyUpgrades'], function($a, $b) use ($customOrder) {
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::ARMY_UPGRADES.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>

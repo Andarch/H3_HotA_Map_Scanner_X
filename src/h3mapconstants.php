@@ -44,7 +44,6 @@
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
 
 	class OBJECTCATEGORIES {
-			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
@@ -91,6 +90,7 @@
 			const TWO_WAY_PORTALS = 'Two-Way Portals';
 			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
 			const WAREHOUSES = 'Warehouses';  // Combined into MINES_AND_WAREHOUSES
+			const WAR_MACHINES_AND_UPGRADES = 'War Machines & Upgrades';
 			const XP = 'XP';
 	}
 
@@ -1530,8 +1530,8 @@
 			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
-			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
+			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
+			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
 			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'37-0' => ['name' => 'Hut of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
@@ -1674,8 +1674,8 @@
 			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::OTHER_TELEPORTERS],
 			'104-0' => ['name' => 'University', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'105-0' => ['name' => 'Wagon', 'category' => OBJECTCATEGORIES::TREASURES],
-			'106-0' => ['name' => 'War Machine Factory', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
-			'106-1' => ['name' => 'Cannon Yard', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
+			'106-0' => ['name' => 'War Machine Factory', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
+			'106-1' => ['name' => 'Cannon Yard', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
 			'107-0' => ['name' => 'School of War', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS_2],
 			'108-0' => ['name' => 'Warrior\'s Tomb', 'category' => OBJECTCATEGORIES::TREASURES],
 			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
@@ -1694,7 +1694,7 @@
 			'142-5' => ['name' => 'Warehouse of Gem', 'category' => OBJECTCATEGORIES::WAREHOUSES],
 			'142-6' => ['name' => 'Warehouse of Gold', 'category' => OBJECTCATEGORIES::WAREHOUSES],
 			'144-0' => ['name' => 'Temple of Loyalty', 'category' => OBJECTCATEGORIES::MORALE],
-			'144-1' => ['name' => 'Skeleton Transformer', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
+			'144-1' => ['name' => 'Skeleton Transformer', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
 			'144-2' => ['name' => 'Colosseum of the Magi', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS_2],
 			'144-3' => ['name' => 'Watering Place', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'144-4' => ['name' => 'Mineral Spring', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
