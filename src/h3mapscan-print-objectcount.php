@@ -31,9 +31,9 @@ $categories = [
 	$oneWayPortalEntrances = [],
 	$oneWayPortalExits = [],
 	$primarySkills = [],
-	$resources = [],
-	$resourceCombos = [],
+	$randomResources = [],
 	$resourceGenerators = [],
+	$resourcePiles = [],
 	$scouting = [],
 	$secondarySkills = [],
 	$special = [],
@@ -161,16 +161,16 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['primarySkills'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::RESOURCES:
-			$categories['resources'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::RESOURCE_COMBOS:
-			$categories['resourceCombos'] = $obj;
+		case OBJECTCATEGORIES::RANDOM_RESOURCES:
+			$categories['randomResources'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::RESOURCE_GENERATORS:
 			$categories['resourceGenerators'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::RESOURCE_PILES:
+			$categories['resourcePiles'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::SCOUTING:
@@ -1376,7 +1376,7 @@ foreach($categories['treasures'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Resources
+// Resource Piles
 $n = 0;
 $customOrder = [
 	'Random Resource',
@@ -1388,13 +1388,13 @@ $customOrder = [
 	'Gems',
 	'Gold',
 ];
-uasort($categories['resources'], function($a, $b) use ($customOrder) {
+uasort($categories['resourcePiles'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCES.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCE_PILES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1403,7 +1403,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['resources'] as $objcomboid => $obj) {
+foreach($categories['resourcePiles'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -1413,7 +1413,7 @@ foreach($categories['resources'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Resource Combos
+// Random Resources
 $n = 0;
 $customOrder = [
 	'Campfire',
@@ -1422,13 +1422,13 @@ $customOrder = [
 	'Sea Barrel',
 	'Lean To',
 ];
-uasort($categories['resourceCombos'], function($a, $b) use ($customOrder) {
+uasort($categories['randomResources'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RESOURCE_COMBOS.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::RANDOM_RESOURCES.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -1437,7 +1437,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['resourceCombos'] as $objcomboid => $obj) {
+foreach($categories['randomResources'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>

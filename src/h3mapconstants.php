@@ -74,9 +74,9 @@
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
 			const PRIMARY_SKILLS = 'Primary Skills';
-			const RESOURCES = 'Resources';
-			const RESOURCE_COMBOS = 'Resource Combos';
+			const RANDOM_RESOURCES = 'Random Resources';
 			const RESOURCE_GENERATORS = 'Resource Generators';
+			const RESOURCE_PILES = 'Resource Piles';
 			const SCOUTING = 'Scouting';
 			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SPECIAL = 'Special';
