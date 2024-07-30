@@ -236,9 +236,13 @@ require_once 'src/config.php';
 		color: grey;
 	}
 
+	.solidcell {
+		background: #777;
+	}
+
 	.cellfill {
-		--dot-bg: #333;
-		--dot-color: #909090;
+		--dot-bg: #282828;
+		--dot-color: #aaa;
 		--dot-size: 0.25px;
 		--dot-space: 1px;
 		background:
