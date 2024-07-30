@@ -41,9 +41,9 @@ for ($i = 0; $i < $numTables; $i++) {
 	echo '</table>';
 	echo '</div>';
 
-	if(($i > 0) && ($i % 4 == 3)) {
-		echo '<div class="forcebreak"></div>';
-	}
+	/* if(($i > 0) && ($i % 4 == 3)) {
+		echo FLEX_BREAK;
+	} */
 }
 
 echo '</div>';

@@ -313,14 +313,19 @@ require_once 'src/config.php';
 		flex-wrap: wrap;
 		align-items: start;
 		column-gap: var(--flex-gap) !important;
-		row-gap: calc(var(--flex-gap) / 2) !important;
+		row-gap: var(--flex-gap) !important;
 		width: 100%;
 	}
 
-	.table-container {
-		flex-basis: calc(25% - var(--flex-gap));
-		width: calc(25% - (var(--flex-gap)));
+	.flex-break {
 		flex-grow: 1;
+		flex-basis: 0;
+	}
+
+	.table-container {
+		flex-grow: 1;
+		flex-basis: calc(25% - var(--flex-gap));
+		/* max-width: calc(25% - var(--flex-gap)); */
 	}
 
 	.artifacts-table,
@@ -352,10 +357,6 @@ require_once 'src/config.php';
 	.artifacts-table td:nth-child(4),
 	.spells-table td:nth-child(4) {
 		width: 78px !important;
-	}
-
-	.forcebreak {
-		flex-basis: 100%;
 	}
 
 	.sidebarTop {
