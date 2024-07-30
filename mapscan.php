@@ -321,7 +321,6 @@ require_once 'src/config.php';
 		flex-basis: calc(25% - var(--flex-gap));
 		width: calc(25% - (var(--flex-gap)));
 		flex-grow: 1;
-		max-width: calc(25% - var(--flex-gap));
 	}
 
 	.artifacts-table,
