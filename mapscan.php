@@ -161,25 +161,28 @@ require_once 'src/config.php';
 		text-align: left;
 		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
+		padding-left: 0.5em !important;
+		padding-right: 0.5em !important;
 	}
 
 	.tableheader2 {
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		font-size: 16px !important;
+		font-size: 18px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
+		padding-left: 0.5em !important;
+		padding-right: 0.5em !important;
 	}
 
 	.tableheader3 {
 		background: #3a1345;
 		font-weight: bold;
 		text-align: center;
-		font-size: 11px !important;
+		font-size: 10px !important;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
-		padding-left: 0.5em;
+		/* padding-left: 0.5em !important; */
+		/* padding-right: 0.5em !important; */
 	}
 
 	.count-column-header1 {
