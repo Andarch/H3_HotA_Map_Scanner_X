@@ -48,7 +48,6 @@
 			const ARTIFACTS = 'Artifacts';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
-			const CARTOGRAPHERS = 'Cartographers';
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
 			const CREATURE_BANKS_CREATURES = 'Creature Banks – Creatures';
 			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
@@ -1483,9 +1482,9 @@
 			'10-7' => ['name' => 'Keymaster\'s Tent – Black', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'11-0' => ['name' => 'Buoy', 'category' => OBJECTCATEGORIES::MORALE],
 			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::RESOURCES_2],
-			'13-0' => ['name' => 'Cartographer – Sea', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
-			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
-			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
+			'13-0' => ['name' => 'Sea Cartographer', 'category' => OBJECTCATEGORIES::SCOUTING],
+			'13-1' => ['name' => 'Land Cartographer', 'category' => OBJECTCATEGORIES::SCOUTING],
+			'13-2' => ['name' => 'Subterranean Cartographer', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK],
 			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
@@ -1503,14 +1502,14 @@
 			'16-22' => ['name' => 'Temple of the Sea', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'16-23' => ['name' => 'Pirate Cavern', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
 			'16-24' => ['name' => 'Mansion', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
-			'16-25' => ['name' => 'Spit', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
+			'16-25' => ['name' => 'Spit', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-26' => ['name' => 'Red Tower', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
 			'16-27' => ['name' => 'Black Tower', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'16-28' => ['name' => 'Ivory Tower', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
 			'16-29' => ['name' => 'Churchyard', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'16-30' => ['name' => 'Experimental Shop', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
 			'16-31' => ['name' => 'Wolf Raider Picket', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
-			'16-32' => ['name' => 'Ruins', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
+			'16-32' => ['name' => 'Ruins', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'17-X' => ['name' => 'Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			// '18-0' => ['name' => 'Dwellings 2', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			// '19-0' => ['name' => 'Dwellings 3', 'category' => OBJECTCATEGORIES::DWELLINGS],
