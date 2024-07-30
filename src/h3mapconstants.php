@@ -29,7 +29,7 @@
 	const HNONE16 = 0xffff; //general heroes NONE value, 16 bit
 	const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
-	const COMBOID_SEPARATOR = '<span style="color: grey;"> | </span>';
+	const COMBOID_SEPARATOR = '<span style="color:grey;"> | </span>';
 	const ABANDONED_MINE_COMBOID = '53-7'.COMBOID_SEPARATOR.'220-X';
 	const CURSED_GROUND_COMBOID = '21-0'.COMBOID_SEPARATOR.'223-0';
 	const GARRISON_COMBOID = '33-0'.COMBOID_SEPARATOR.'219-0';
@@ -37,7 +37,7 @@
 	const MAGIC_PLAINS_COMBOID = '46-0'.COMBOID_SEPARATOR.'230-0';
 	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
 
-	const EMPTY_DATA = '<span style="color: grey;">–</span>';
+	const EMPTY_DATA = '<span style="color:grey;">–</span>';
 	const DEFAULT_DATA = '<span class="smalltext2"><i>Default</i></span>';
     const HRULE1 = '<hr class="hrule1">';
     const HRULE2 = '<hr class="hrule2">';
@@ -63,7 +63,8 @@
 			const MAGICAL_TERRAINS_SPELLS = 'Magical Terrains – Spells';
 			const MAGICAL_TERRAINS_BONUSES = 'Magical Terrains – Bonuses';
 			const MANA = 'Mana';
-			const MINES = 'Mines';
+			const MINES = 'Mines';  // Combined into MINES_AND_WAREHOUSES
+			const MINES_AND_WAREHOUSES = 'Mines & Warehouses';
 			const MONSTERS = 'Monsters';
 			const MORALE = 'Morale';
 			const MOVEMENT = 'Movement';
@@ -74,9 +75,9 @@
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
 			const PRIMARY_SKILLS = 'Primary Skills';
-			const RANDOM_RESOURCES = 'Random Resources';
 			const RESOURCE_GENERATORS = 'Resource Generators';
 			const RESOURCE_PILES = 'Resource Piles';
+			const RESOURCE_SALVAGE = 'Resource Salvage';
 			const SCOUTING = 'Scouting';
 			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SPECIAL = 'Special';
@@ -89,7 +90,7 @@
 			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
 			const TWO_WAY_PORTALS = 'Two-Way Portals';
 			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
-			const WAREHOUSES = 'Warehouses';
+			const WAREHOUSES = 'Warehouses';  // Combined into MINES_AND_WAREHOUSES
 			const XP = 'XP';
 	}
 
@@ -530,7 +531,7 @@
 			8 => 'Conflux',
 			9 => 'Cove',
 			10 => 'Factory',
-			255 => 'Random Town',
+			255 => 'Random',
 		];
 
 		public $AiTactic = [
@@ -1480,7 +1481,7 @@
 			'10-6' => ['name' => 'Keymaster\'s Tent – White', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'10-7' => ['name' => 'Keymaster\'s Tent – Black', 'category' => OBJECTCATEGORIES::KEYMASTERS_TENTS],
 			'11-0' => ['name' => 'Buoy', 'category' => OBJECTCATEGORIES::MORALE],
-			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'12-0' => ['name' => 'Campfire', 'category' => OBJECTCATEGORIES::RESOURCE_SALVAGE],
 			'13-0' => ['name' => 'Cartographer – Sea', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
 			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
 			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
@@ -1522,7 +1523,7 @@
 			'26-0' => ['name' => 'Event Object', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'27-0' => ['name' => 'Eye of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'28-0' => ['name' => 'Faerie Ring', 'category' => OBJECTCATEGORIES::LUCK],
-			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'29-0' => ['name' => 'Flotsam', 'category' => OBJECTCATEGORIES::RESOURCE_SALVAGE],
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK],
 			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
@@ -1534,7 +1535,7 @@
 			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'37-0' => ['name' => 'Hut of the Magi', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'38-0' => ['name' => 'Idol of Fortune', 'category' => OBJECTCATEGORIES::BONUS_COMBOS],
-			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'39-0' => ['name' => 'Lean To', 'category' => OBJECTCATEGORIES::RESOURCE_SALVAGE],
 			'41-0' => ['name' => 'Library of Enlightenment', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS],
 			'42-0' => ['name' => 'Lighthouse', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'43-0' => ['name' => 'Monolith – Blue One-Way Entrance', 'category' => OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES],
@@ -1625,16 +1626,16 @@
 			'73-0' => ['name' => 'Random Monster 2', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'74-0' => ['name' => 'Random Monster 3', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'75-0' => ['name' => 'Random Monster 4', 'category' => OBJECTCATEGORIES::MONSTERS],
-			'76-0' => ['name' => 'Random Resource', 'category' => OBJECTCATEGORIES::RESOURCES],
+			'76-0' => ['name' => 'Random Resource', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
 			'77-0' => ['name' => 'Random Town', 'category' => OBJECTCATEGORIES::TOWNS],
 			'78-0' => ['name' => 'Refugee Camp', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'79-0' => ['name' => 'Wood', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-1' => ['name' => 'Mercury', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-2' => ['name' => 'Ore', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-3' => ['name' => 'Sulfur', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES],
-			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES],
+			'79-0' => ['name' => 'Wood', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-1' => ['name' => 'Mercury', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-2' => ['name' => 'Ore', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-3' => ['name' => 'Sulfur', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
+			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCE_PILES],
 			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
@@ -1705,8 +1706,8 @@
 			'144-10' => ['name' => 'Prospector', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'144-11' => ['name' => 'Trailblazer', 'category' => OBJECTCATEGORIES::MOVEMENT],
 			'145-0' => ['name' => 'Ancient Lamp', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
-			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::RESOURCE_COMBOS],
+			'145-1' => ['name' => 'Sea Barrel', 'category' => OBJECTCATEGORIES::RESOURCE_SALVAGE],
+			'145-2' => ['name' => 'Jetsam', 'category' => OBJECTCATEGORIES::RESOURCE_SALVAGE],
 			'145-3' => ['name' => 'Vial of Mana', 'category' => OBJECTCATEGORIES::MANA],
 			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],

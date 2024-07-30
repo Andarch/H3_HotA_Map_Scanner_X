@@ -1947,7 +1947,7 @@ class H3MAPSCAN {
 						$this->players[$tileowner]['townsOwned']++;
 					}
 
-					$affiliation = ($obj['id'] == OBJECTS::TOWN) ? $this->GetTownById($obj['subid']) : 'Random Town';
+					$affiliation = ($obj['id'] == OBJECTS::TOWN) ? $this->GetTownById($obj['subid']) : 'Random';
 					$obj['data']['affiliation'] = $affiliation;
 
 					// Update the count of the town type for the owner.

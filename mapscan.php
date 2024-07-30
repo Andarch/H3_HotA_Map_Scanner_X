@@ -238,7 +238,7 @@ require_once 'src/config.php';
 
 	.cellfill {
 		--dot-bg: #333;
-		--dot-color: #555;
+		--dot-color: #909090;
 		--dot-size: 0.25px;
 		--dot-space: 1px;
 		background:
