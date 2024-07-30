@@ -230,6 +230,11 @@
 				},
 				{
 					"line": 1549,
+					"column": 10,
+					"label": ""
+				},
+				{
+					"line": 1552,
 					"column": 7,
 					"label": ""
 				}
@@ -239,7 +244,12 @@
 			"path": "src/h3mapconstants.php",
 			"bookmarks": [
 				{
-					"line": 1458,
+					"line": 46,
+					"column": 21,
+					"label": ""
+				},
+				{
+					"line": 1459,
 					"column": 11,
 					"label": ""
 				}

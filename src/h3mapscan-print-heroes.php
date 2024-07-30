@@ -64,7 +64,7 @@ echo '<table class="bigtable">
 		</tr>
 	</table>';
 
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 //template heroes
 $n = 0;
@@ -190,7 +190,7 @@ foreach($fpHeroes as $k => $fpHero) {
 }
 echo '</table>';
 
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 //map heroes
 $n = 0;

@@ -42,6 +42,7 @@
     const HRULE1 = '<hr class="hrule1">';
     const HRULE2 = '<hr class="hrule2">';
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
+	const FLEX_BREAK = '<div class="flex-break"></div>';
 
 	class OBJECTCATEGORIES {
 			const ARTIFACTS = 'Artifacts';

@@ -525,7 +525,7 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 // Mines & Warehouses
 $n = 0;
@@ -841,7 +841,7 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 // Boats & Airships
 $n = 0;
@@ -1177,7 +1177,7 @@ echo '	</tbody>
 	</table>';
 
 /* FLEX BREAK */
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 // Special
 $n = 0;
@@ -1546,6 +1546,9 @@ foreach($categories['magicalTerrainsBonuses'] as $objcomboid => $obj) {
 }
 echo '	</tbody>
 	</table>';
+
+/* FLEX BREAK */
+echo FLEX_BREAK;
 
 /* END FLEX */
 echo '</div>';

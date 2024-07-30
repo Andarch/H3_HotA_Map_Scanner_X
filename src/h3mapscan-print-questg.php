@@ -42,7 +42,7 @@ foreach($this->h3mapscan->quest_gates as $qgate) {
 }
 echo '</table>';
 
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 // Quest Guards
 $n = 0;

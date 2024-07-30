@@ -5,7 +5,7 @@ echo '<div class="flex-container">';
 
 echo EOL.DisplayMap($this->h3mapscan->mapimage, $this->h3mapscan->underground);
 
-echo '<div class="forcebreak"></div>';
+echo FLEX_BREAK;
 
 $totalsize1 = $this->h3mapscan->map_size * $this->h3mapscan->map_size;
 $totalsize2 = $totalsize1 * ($this->h3mapscan->underground + 1);
