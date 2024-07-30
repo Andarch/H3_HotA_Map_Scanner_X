@@ -145,8 +145,8 @@ require_once 'src/config.php';
 	.content {
 		position: relative;
 		left: var(--sidebar-width);
-		margin: var(--flex-gap);
-		width: calc(100% - var(--sidebar-width) - (var(--flex-gap) * 2));
+		padding: var(--flex-gap);
+		width: calc(100% - var(--sidebar-width));
 	}
 
 	.rowheader {
