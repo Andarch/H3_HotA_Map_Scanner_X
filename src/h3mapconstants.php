@@ -46,7 +46,6 @@
 	class OBJECTCATEGORIES {
 			const ARMY_UPGRADES = 'Army Upgrades';
 			const ARTIFACTS = 'Artifacts';
-			const BOATS_AND_AIRSHIPS = 'Boats & Airships';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const CARTOGRAPHERS = 'Cartographers';
@@ -56,7 +55,7 @@
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
 			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
-			const HEROES = 'Heroes';
+			const HEROES_AND_INFO = 'Heroes & Info';
 			const KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS = 'Keymaster\'s Tents & Border Gates/Guards';
 			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const LUCK = 'Luck';
@@ -69,6 +68,7 @@
 			const MORALE = 'Morale';
 			const MOVEMENT = 'Movement';
 			const MULTI_BONUS = 'Multi-Bonus';
+			const NAVIGATION = 'Navigation';
 			const ONE_WAY_MONOLITHS = 'One-Way Monoliths';
 			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
 			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
@@ -85,7 +85,6 @@
 			const SECONDARY_SKILLS = 'Secondary Skills';
 			const SPECIAL = 'Special';
 			const SPELLS = 'Spells';
-			const STRATEGY_AND_INFORMATION = 'Strategy & Information';
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
 			const TREASURES = 'Treasures';
@@ -1464,8 +1463,8 @@
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING],
-			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
-			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
+			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::NAVIGATION],
+			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::NAVIGATION],
 			'9-0' => ['name' => 'Border Guard – Light Blue', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-1' => ['name' => 'Border Guard – Green', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-2' => ['name' => 'Border Guard – Red', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
@@ -1488,7 +1487,7 @@
 			'13-1' => ['name' => 'Cartographer – Land', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
 			'13-2' => ['name' => 'Cartographer – Subterranean', 'category' => OBJECTCATEGORIES::CARTOGRAPHERS],
 			'14-0' => ['name' => 'Swan Pond', 'category' => OBJECTCATEGORIES::LUCK],
-			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'15-0' => ['name' => 'Cover of Darkness', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'16-0' => ['name' => 'Cyclops Stockpile', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-1' => ['name' => 'Dwarven Treasury', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES],
 			'16-2' => ['name' => 'Griffin Conservatory', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_CREATURES],
@@ -1531,7 +1530,7 @@
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS_1],
 			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
 			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
-			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES],
+			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::ARMY_UPGRADES],
 			'36-0' => ['name' => 'Grail', 'category' => OBJECTCATEGORIES::SPECIAL],
@@ -1609,11 +1608,11 @@
 			'57-0' => ['name' => 'Obelisk', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'58-0' => ['name' => 'Redwood Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'58-1' => ['name' => 'Observation Tower', 'category' => OBJECTCATEGORIES::SCOUTING],
-			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'59-0' => ['name' => 'Ocean Bottle', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'60-0' => ['name' => 'Pillar of Fire', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'61-0' => ['name' => 'Star Axis', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS_1],
-			'62-0' => ['name' => 'Prison', 'category' => OBJECTCATEGORIES::HEROES],
-			'62-1' => ['name' => 'Hero Camp', 'category' => OBJECTCATEGORIES::HEROES],
+			'62-0' => ['name' => 'Prison', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
+			'62-1' => ['name' => 'Hero Camp', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'63-0' => ['name' => 'Pyramid', 'category' => OBJECTCATEGORIES::SPELLS],
 			'63-51' => ['name' => 'Pyramid', 'category' => null],  // Aeten Nomere
 			'64-0' => ['name' => 'Rally Flag', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
@@ -1622,7 +1621,7 @@
 			'67-0' => ['name' => 'Random Minor Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'68-0' => ['name' => 'Random Major Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'69-0' => ['name' => 'Random Relic', 'category' => OBJECTCATEGORIES::ARTIFACTS],
-			'70-0' => ['name' => 'Random Hero', 'category' => OBJECTCATEGORIES::HEROES],
+			'70-0' => ['name' => 'Random Hero', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'71-0' => ['name' => 'Random Monster', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'72-0' => ['name' => 'Random Monster 1', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'73-0' => ['name' => 'Random Monster 2', 'category' => OBJECTCATEGORIES::MONSTERS],
@@ -1638,26 +1637,26 @@
 			'79-4' => ['name' => 'Crystal', 'category' => OBJECTCATEGORIES::RESOURCES_1],
 			'79-5' => ['name' => 'Gems', 'category' => OBJECTCATEGORIES::RESOURCES_1],
 			'79-6' => ['name' => 'Gold', 'category' => OBJECTCATEGORIES::RESOURCES_1],
-			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'80-0' => ['name' => 'Sanctuary', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'81-0' => ['name' => 'Scholar', 'category' => OBJECTCATEGORIES::TREASURES],
 			'82-0' => ['name' => 'Sea Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'83-X' => ['name' => 'Seer\'s Hut', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::TREASURES],
-			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
-			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
+			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::NAVIGATION],
+			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::NAVIGATION],
 			'88-0' => ['name' => 'Shrine of Magic Incantation', 'category' => OBJECTCATEGORIES::SPELLS],
 			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
 			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],
 			'90-0' => ['name' => 'Shrine of Magic Thought', 'category' => OBJECTCATEGORIES::SPELLS],
-			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'91-0' => ['name' => 'Sign', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'92-0' => ['name' => 'Sirens', 'category' => OBJECTCATEGORIES::XP],
 			'93-0' => ['name' => 'Spell Scroll', 'category' => OBJECTCATEGORIES::SPELLS],
 			'94-0' => ['name' => 'Stables', 'category' => OBJECTCATEGORIES::MOVEMENT],
-			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'95-0' => ['name' => 'Tavern', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'96-0' => ['name' => 'Temple', 'category' => OBJECTCATEGORIES::MORALE],
-			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::STRATEGY_AND_INFORMATION],
+			'97-0' => ['name' => 'Den of Thieves', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'98-0' => ['name' => 'Castle', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-1' => ['name' => 'Rampart', 'category' => OBJECTCATEGORIES::TOWNS],
 			'98-2' => ['name' => 'Tower', 'category' => OBJECTCATEGORIES::TOWNS],
