@@ -73,7 +73,7 @@
 			const ONE_WAY_PORTALS = 'One-Way Portals';
 			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
 			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
-			const OTHER_TELEPORTERS = 'Other Teleporters';
+			const OTHER_GATEWAYS = 'Other Gateways';
 			const PRIMARY_SKILLS_1 = 'Primary Skills 1';
 			const PRIMARY_SKILLS_2 = 'Primary Skills 2';
 			const RESOURCES_1 = 'Resources 1';
@@ -1671,7 +1671,7 @@
 			'100-0' => ['name' => 'Learning Stone', 'category' => OBJECTCATEGORIES::XP],
 			'101-0' => ['name' => 'Treasure Chest', 'category' => OBJECTCATEGORIES::TREASURES],
 			'102-0' => ['name' => 'Tree of Knowledge', 'category' => OBJECTCATEGORIES::XP],
-			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::OTHER_TELEPORTERS],
+			'103-0' => ['name' => 'Subterranean Gate', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
 			'104-0' => ['name' => 'University', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'105-0' => ['name' => 'Wagon', 'category' => OBJECTCATEGORIES::TREASURES],
 			'106-0' => ['name' => 'War Machine Factory', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
@@ -1680,7 +1680,7 @@
 			'108-0' => ['name' => 'Warrior\'s Tomb', 'category' => OBJECTCATEGORIES::TREASURES],
 			'109-0' => ['name' => 'Water Wheel', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'110-0' => ['name' => 'Watering Hole', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
-			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::OTHER_TELEPORTERS],
+			'111-0' => ['name' => 'Whirlpool', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
 			'112-0' => ['name' => 'Windmill', 'category' => OBJECTCATEGORIES::RESOURCE_GENERATORS],
 			'113-0' => ['name' => 'Witch Hut', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'141-0' => ['name' => 'Cracked Ice', 'category' => OBJECTCATEGORIES::MAGICAL_TERRAINS_BONUSES],
@@ -1712,7 +1712,7 @@
 			'146-0' => ['name' => 'Seafaring Academy', 'category' => OBJECTCATEGORIES::SECONDARY_SKILLS],
 			'146-1' => ['name' => 'Observatory', 'category' => OBJECTCATEGORIES::SCOUTING],
 			'146-2' => ['name' => 'Altar of Mana', 'category' => OBJECTCATEGORIES::MANA],
-			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::OTHER_TELEPORTERS],
+			'146-3' => ['name' => 'Town Gate', 'category' => OBJECTCATEGORIES::OTHER_GATEWAYS],
 			'146-4' => ['name' => 'Ancient Altar', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ELITE],
 			'162-0' => ['name' => 'Random Monster 5', 'category' => OBJECTCATEGORIES::MONSTERS],
 			'163-0' => ['name' => 'Random Monster 6', 'category' => OBJECTCATEGORIES::MONSTERS],

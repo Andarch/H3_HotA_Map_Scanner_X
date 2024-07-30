@@ -108,8 +108,8 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['oneWayPortalExits'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::OTHER_TELEPORTERS:
-			$categories['otherTeleporters'] = $obj;
+		case OBJECTCATEGORIES::OTHER_GATEWAYS:
+			$categories['otherGateways'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::PRIMARY_SKILLS_1:
@@ -177,7 +177,7 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			break;
 
 		case OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES:
-			$categories['armyUpgrades'] = $obj;
+			$categories['warMachinesAndUpgrades'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::XP:
@@ -492,20 +492,20 @@ for($i = 0; $i < 5; $i++) {
 echo '	</tbody>
 	</table>';
 
-// Other Teleporters
+// Other Gateways
 $n = 0;
 $customOrder = [
 	'Subterranean Gate',
 	'Town Gate',
 	'Whirlpool',
 ];
-uasort($categories['otherTeleporters'], function($a, $b) use ($customOrder) {
+uasort($categories['otherGateways'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::OTHER_TELEPORTERS.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::OTHER_GATEWAYS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -514,7 +514,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['otherTeleporters'] as $objcomboid => $obj) {
+foreach($categories['otherGateways'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
@@ -674,7 +674,7 @@ $customOrder = [
 	'Hill Fort – HotA',
 	'Skeleton Transformer',
 ];
-uasort($categories['armyUpgrades'], function($a, $b) use ($customOrder) {
+uasort($categories['warMachinesAndUpgrades'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
@@ -689,7 +689,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['armyUpgrades'] as $objcomboid => $obj) {
+foreach($categories['warMachinesAndUpgrades'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
