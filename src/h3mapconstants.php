@@ -45,6 +45,7 @@
 
 	class OBJECTCATEGORIES {
 			const ARTIFACTS = 'Artifacts';
+			const BOATS_AND_AIRSHIPS = 'Boats & Airships';
 			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
@@ -66,7 +67,6 @@
 			const MORALE = 'Morale';
 			const MOVEMENT = 'Movement';
 			const MULTI_BONUS = 'Multi-Bonus';
-			const NAVIGATION = 'Navigation';
 			const ONE_WAY_MONOLITHS = 'One-Way Monoliths';
 			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
 			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
@@ -1462,8 +1462,8 @@
 			'5-X' => ['name' => 'Artifact', 'category' => OBJECTCATEGORIES::ARTIFACTS],
 			'6-0' => ['name' => 'Pandora\'s Box', 'category' => OBJECTCATEGORIES::SPECIAL],
 			'7-0' => ['name' => 'Black Market', 'category' => OBJECTCATEGORIES::TRADING],
-			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::NAVIGATION],
-			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::NAVIGATION],
+			'8-X' => ['name' => 'Boat', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
+			'8-100' => ['name' => 'Airship', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
 			'9-0' => ['name' => 'Border Guard – Light Blue', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-1' => ['name' => 'Border Guard – Green', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
 			'9-2' => ['name' => 'Border Guard – Red', 'category' => OBJECTCATEGORIES::BORDER_GUARDS],
@@ -1643,8 +1643,8 @@
 			'84-0' => ['name' => 'Crypt', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'85-0' => ['name' => 'Shipwreck', 'category' => OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS],
 			'86-0' => ['name' => 'Shipwreck Survivor', 'category' => OBJECTCATEGORIES::TREASURES],
-			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::NAVIGATION],
-			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::NAVIGATION],
+			'87-0' => ['name' => 'Shipyard', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
+			'87-1' => ['name' => 'Airship Yard', 'category' => OBJECTCATEGORIES::BOATS_AND_AIRSHIPS],
 			'88-0' => ['name' => 'Shrine of Magic Incantation', 'category' => OBJECTCATEGORIES::SPELLS],
 			'88-3' => ['name' => 'Shrine of Magic Mystery', 'category' => OBJECTCATEGORIES::SPELLS],
 			'89-0' => ['name' => 'Shrine of Magic Gesture', 'category' => OBJECTCATEGORIES::SPELLS],

@@ -12,6 +12,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['artifacts'] = $obj;
 			break;
 
+		case OBJECTCATEGORIES::BOATS_AND_AIRSHIPS:
+			$categories['boatsAndAirships'] = $obj;
+			break;
+
 		case OBJECTCATEGORIES::BORDER_GATES:
 			$categories['borderGates'] = $obj;
 			break;
@@ -86,10 +90,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::MULTI_BONUS:
 			$categories['multiBonus'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::NAVIGATION:
-			$categories['navigation'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES:
@@ -843,7 +843,7 @@ echo '	</tbody>
 /* FLEX BREAK */
 echo '<div class="forcebreak"></div>';
 
-// Navigation
+// Boats & Airships
 $n = 0;
 $customOrder = [
 	'Shipyard',
@@ -851,13 +851,13 @@ $customOrder = [
 	'Airship Yard',
 	'Airship',
 ];
-uasort($categories['navigation'], function($a, $b) use ($customOrder) {
+uasort($categories['boatsAndAirships'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::NAVIGATION.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BOATS_AND_AIRSHIPS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -866,7 +866,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['navigation'] as $objcomboid => $obj) {
+foreach($categories['boatsAndAirships'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
