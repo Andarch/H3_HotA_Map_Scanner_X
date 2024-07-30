@@ -28,8 +28,8 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['creatureBanksCreatures'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::CREATURE_BANKS_ELITE:
-			$categories['creatureBanksElite'] = $obj;
+		case OBJECTCATEGORIES::CREATURE_BANKS_RELICS:
+			$categories['creatureBanksRelics'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES:
@@ -740,13 +740,13 @@ $customOrder = [
 	'Temple of the Sea',
 	'Ancient Altar',
 ];
-uasort($categories['creatureBanksElite'], function($a, $b) use ($customOrder) {
+uasort($categories['creatureBanksRelics'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::CREATURE_BANKS_ELITE.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::CREATURE_BANKS_RELICS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -755,7 +755,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['creatureBanksElite'] as $objcomboid => $obj) {
+foreach($categories['creatureBanksRelics'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
