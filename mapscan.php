@@ -126,7 +126,7 @@ require_once 'src/config.php';
 
 	.smallesttable th, .smallesttable td { padding: 1px 3px; }
 	.smallesttable th { font-size: 10px; }
-	.smallesttable td:first-child { font-size: 10px; }
+	.smallesttable td:first-child { font-size: 9px; }
 	.smallesttable td:not(td:first-child) { font-size: 12px; }
 
 	.colw100 { width: 100px; }

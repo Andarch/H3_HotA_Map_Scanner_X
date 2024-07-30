@@ -30,6 +30,7 @@ $categories = [
 	$oneWayMonolithExits = [],
 	$oneWayPortalEntrances = [],
 	$oneWayPortalExits = [],
+	$otherTeleporters = [],
 	$primarySkills = [],
 	$resourceGenerators = [],
 	$resourcePiles = [],
@@ -155,6 +156,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS:
 			$categories['oneWayPortalExits'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::OTHER_TELEPORTERS:
+			$categories['otherTeleporters'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::PRIMARY_SKILLS:
@@ -317,8 +322,6 @@ $customOrder = [
 	'Boat',
 	'Airship Yard',
 	'Airship',
-	'Subterranean Gate',
-	'Town Gate',
 ];
 uasort($categories['travel'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -541,7 +544,7 @@ echo '	</tbody>
 
 // Two-Way Sea Portals
 $n = 0;
-$colors = ['White', 'Red', 'Blue', 'Chartreuse', 'Yellow', 'Whirlpool'];
+$colors = ['White', 'Red', 'Blue', 'Chartreuse', 'Yellow'];
 $keys = array_keys($categories['twoWaySeaPortals']);
 echo '<table class="'.$tableclass.'">
 		<thead>
@@ -555,11 +558,43 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-for($i = 0; $i < 6; $i++) {
+for($i = 0; $i < 5; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
 			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWaySeaPortals'][$keys[$i]]['count'].'</td>
+		</tr>';
+}
+echo '	</tbody>
+	</table>';
+
+// Other Teleporters
+$n = 0;
+$customOrder = [
+	'Subterranean Gate',
+	'Town Gate',
+	'Whirlpool',
+];
+uasort($categories['otherTeleporters'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
+});
+echo '<table class="'.$tableclass.'">
+		<thead>
+			<tr>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::OTHER_TELEPORTERS.'</td>
+			</tr>
+			<tr>
+				<th class="ac nowrap" nowrap="nowrap">ID</th>
+				<th class="ac nowrap" nowrap="nowrap">Type</th>
+				<th class="count-column-header1 ac nowrap" nowrap="nowrap">#</th>
+			</tr>
+		</thead>
+		<tbody>';
+foreach($categories['otherTeleporters'] as $objcomboid => $obj) {
+	echo '<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
+			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
 		</tr>';
 }
 echo '	</tbody>
