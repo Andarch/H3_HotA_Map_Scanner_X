@@ -6,6 +6,7 @@ $tableclass = 'smallesttable';
 $categories = [
 	$armyUpgrades = [],
 	$artifacts = [],
+	$boatsAndAirships = [],
 	$borderGates = [],
 	$borderGuards = [],
 	$cartographers = [],
@@ -42,7 +43,6 @@ $categories = [
 	$strategyAndInformation = [],
 	$towns = [],
 	$trading = [],
-	$travel = [],
 	$treasures = [],
 	$twoWayMonoliths = [],
 	$twoWayPortals = [],
@@ -60,6 +60,10 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 
 		case OBJECTCATEGORIES::ARTIFACTS:
 			$categories['artifacts'] = $obj;
+			break;
+
+		case OBJECTCATEGORIES::BOATS_AND_AIRSHIPS:
+			$categories['boatsAndAirships'] = $obj;
 			break;
 
 		case OBJECTCATEGORIES::BORDER_GATES:
@@ -206,10 +210,6 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 			$categories['trading'] = $obj;
 			break;
 
-		case OBJECTCATEGORIES::TRAVEL:
-			$categories['travel'] = $obj;
-			break;
-
 		case OBJECTCATEGORIES::TREASURES:
 			$categories['treasures'] = $obj;
 			break;
@@ -315,7 +315,7 @@ foreach($categories['heroes'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-// Travel
+// Boats & Airships
 $n = 0;
 $customOrder = [
 	'Shipyard',
@@ -323,13 +323,13 @@ $customOrder = [
 	'Airship Yard',
 	'Airship',
 ];
-uasort($categories['travel'], function($a, $b) use ($customOrder) {
+uasort($categories['boatsAndAirships'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.$tableclass.'">
 		<thead>
 			<tr>
-				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::TRAVEL.'</td>
+				<td colspan="3" class="tableheader3">'.OBJECTCATEGORIES::BOATS_AND_AIRSHIPS.'</td>
 			</tr>
 			<tr>
 				<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -338,7 +338,7 @@ echo '<table class="'.$tableclass.'">
 			</tr>
 		</thead>
 		<tbody>';
-foreach($categories['travel'] as $objcomboid => $obj) {
+foreach($categories['boatsAndAirships'] as $objcomboid => $obj) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
 			<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
