@@ -187,7 +187,7 @@ foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
 }
 
 /* START FLEX */
-echo '<div class="flex-container" style="display: flex; flex-wrap: wrap; row-gap: 1em;">';
+echo '<div class="flex-container">';
 
 // Towns
 $n = 0;
