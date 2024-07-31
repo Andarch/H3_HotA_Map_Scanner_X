@@ -3,15 +3,13 @@
 
 usort($this->h3mapscan->artifacts_list, 'ListSortByName');
 
-$itemsPerTable = 40;
+$maxItems = 40;
 $totalItems = count($this->h3mapscan->artifacts_list);
-$numTables = ceil($totalItems / $itemsPerTable);
+$numTables = ceil($totalItems / $maxItems);
 
 echo '<div class="flex-container">';
 
-$n = 0;
 for ($i = 0; $i < $numTables; $i++) {
-    echo '<div class="table-container">';
 	echo '<table class="smalltable artifacts-table">
 			<thead>
 				<tr>
@@ -23,10 +21,9 @@ for ($i = 0; $i < $numTables; $i++) {
 				</tr>
 			</thead>
 			<tbody>';
-
-	for ($j = 0; $j < $itemsPerTable; $j++) {
-		$n = $i * $itemsPerTable + $j;
-		if ($n >= $totalItems) break;
+	for ($j = 0; $j < $maxItems; $j++) {
+		$n = $i * $maxItems + $j;
+		if ($n == $totalItems) break;
 		$art = $this->h3mapscan->artifacts_list[$n];
 		echo '<tr>
 				<td class="rowheader">'.(++$n).'</td>
@@ -36,14 +33,8 @@ for ($i = 0; $i < $numTables; $i++) {
 				<td class="nowrap" nowrap="nowrap">'.$art->add1.'</td>
 				</tr>';
 	}
-
 	echo '</tbody>';
 	echo '</table>';
-	echo '</div>';
-
-	/* if(($i > 0) && ($i % 4 == 3)) {
-		echo FLEX_BREAK;
-	} */
 }
 
 echo '</div>';

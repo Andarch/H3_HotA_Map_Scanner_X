@@ -29,7 +29,7 @@ require_once 'src/config.php';
 
 	:root {
 		--sidebar-color: #555;
-		--sidebar-width: 200px;
+		--sidebar-width: 250px;
 		--sidebar-border-color: #aaa;
 		--sidebar-border-style: solid;
 		--sidebar-border-width: 4px;
@@ -322,15 +322,11 @@ require_once 'src/config.php';
 		flex-basis: 0;
 	}
 
-	.table-container {
-		flex-grow: 1;
-		flex-basis: calc(25% - var(--flex-gap));
-		/* max-width: calc(25% - var(--flex-gap)); */
-	}
-
 	.artifacts-table,
 	.spells-table {
-		width: 100%;
+		flex-grow: 1;
+		flex-basis: calc(25% - var(--flex-gap));
+		max-width: 452.21px;
 		table-layout: auto;
 	}
 
@@ -429,7 +425,7 @@ require_once 'src/config.php';
 		height: 1005px;
 		overflow: auto;
 		color: #ddd;
-		font-size: 20px;
+		font-size: 22px;
 		font-family: 'H3Reader', calibri, arial, sans-serif;
 		border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 		border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
