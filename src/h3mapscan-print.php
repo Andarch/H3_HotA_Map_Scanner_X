@@ -113,7 +113,7 @@ class H3MAPSCAN_PRINT {
 				$sidebar .= HRULE2;
 			}
 		}
-		$sidebar .= '</div><div class="content">';
+		$sidebar .= '</div><div class="content-container">';
 
 		return $sidebar;
 	}

@@ -3,6 +3,8 @@
 
 echo '<div class="flex-container">';
 
+echo '<div class="flex-row-container">';
+
 if(!strcmp($this->h3mapscan->description, '')) {
 	$this->h3mapscan->description = EMPTY_DATA;}
 
@@ -35,6 +37,10 @@ echo '<table class="bigtable">
 	</table>';
 
 // echo PRINT_BREAK;
+echo '</div>';
+
+echo '<div class="flex-row-container">';
+// echo '<div class="flex-container">';
 
 echo '<table class="bigtable">
 	<tr>
@@ -80,6 +86,9 @@ foreach($this->h3mapscan->players as $k => $player) {
 echo '</table>';
 
 // echo PRINT_BREAK;
+echo '</div>';
+echo '<div class="flex-row-container">';
+// echo '<div class="flex-container">';
 
 echo '<table class="bigtable">
 <tr>
@@ -168,4 +177,5 @@ echo '<table class="bigtable">
 		</tr>
 	</table>';
 
+echo '</div>';
 echo '</div>';

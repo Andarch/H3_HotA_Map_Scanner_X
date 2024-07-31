@@ -392,7 +392,7 @@ class H3MAPSCAN {
 		}
 
 		if($this->CheckVersion() == false) {
-			throw new Exception('<div class="content">Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')</div>');
+			throw new Exception('<div class="content-container">Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')</div>');
 		}
 
 		$this->hero_any_onmap = $this->br->ReadUint8(); //hero presence
@@ -1351,7 +1351,7 @@ class H3MAPSCAN {
 			$img = imagecreate($this->map_size, $this->map_size); //map by size
 
 			if(!$img) {
-				throw new Exception('<div class="content">Image Creation problem</div>');
+				throw new Exception('<div class="content-container">Image Creation problem</div>');
 			}
 
 			$imgmap = imagecreate($this::IMGSIZE, $this::IMGSIZE); //resized to constant size for all map sizes
@@ -1565,7 +1565,7 @@ class H3MAPSCAN {
 			$this->br->SkipBytes(5);
 
 			if($obj['id'] < 0) {
-				throw new Exception('<div class="content">Invalid object ID '.$obj['id'].' - '.$this->GetObjectNameById($obj['id'])."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
+				throw new Exception('<div class="content-container">Invalid object ID '.$obj['id'].' - '.$this->GetObjectNameById($obj['id'])."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 			}
 
 		// ======= GET OBJECT DATA
