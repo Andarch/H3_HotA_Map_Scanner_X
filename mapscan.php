@@ -313,13 +313,13 @@ require_once 'src/config.php';
 		flex-wrap: wrap;
 		align-items: start;
 		column-gap: var(--flex-gap) !important;
-		row-gap: var(--flex-gap) !important;
+		row-gap: calc(var(--flex-gap) / 2) !important;
 		width: 100%;
 	}
 
 	.flex-break {
 		flex-grow: 1;
-		flex-basis: 0;
+		flex-basis: 100%;
 	}
 
 	.artifacts-table,
