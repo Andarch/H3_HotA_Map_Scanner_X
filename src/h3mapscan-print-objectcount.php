@@ -270,13 +270,13 @@ echo '	</tbody>
 // Monsters
 $n = 0;
 $customOrder = [
-	'Random Monster 1',
-	'Random Monster 2',
-	'Random Monster 3',
-	'Random Monster 4',
-	'Random Monster 5',
-	'Random Monster 6',
-	'Random Monster 7',
+	'Random Monster L1',
+	'Random Monster L2',
+	'Random Monster L3',
+	'Random Monster L4',
+	'Random Monster L5',
+	'Random Monster L6',
+	'Random Monster L7',
 	'Random Monster',
 	'Monster',
 ];
