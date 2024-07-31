@@ -348,7 +348,7 @@ class H3MAPSCAN {
 			$this->ParseFinish();
 
 			$section = isset($_GET['section']) ? $_GET['section'] : 'general';
-			$h3map_print = new H3MAPSCAN_PRINT($this, $section);
+			new H3MAPSCAN_PRINT($this, $section);
 		}
 
 		if($this->save) {
