@@ -38,7 +38,7 @@ for ($i = 0; $i < $numTables; $i++) {
 
 	$remainder = $i % 4;
 	if(($i > 0) && ($remainder == 3)) {
-		echo FLEX_BREAK;
+		// echo PRINT_BREAK;
 	}
 }
 

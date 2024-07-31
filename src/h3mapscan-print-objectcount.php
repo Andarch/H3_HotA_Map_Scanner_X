@@ -524,8 +524,8 @@ foreach($categories['otherGateways'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-/* FLEX BREAK */
-echo FLEX_BREAK;
+/* BREAK */
+echo PRINT_BREAK;
 
 // Mines & Warehouses
 $n = 0;
@@ -840,8 +840,8 @@ foreach($categories['creatureBanksCreatures'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-/* FLEX BREAK */
-echo FLEX_BREAK;
+/* BREAK */
+echo PRINT_BREAK;
 
 // Boats & Airships
 $n = 0;
@@ -1176,8 +1176,8 @@ foreach($categories['luck'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-/* FLEX BREAK */
-echo FLEX_BREAK;
+/* BREAK */
+echo PRINT_BREAK;
 
 // Special
 $n = 0;
@@ -1547,8 +1547,8 @@ foreach($categories['magicalTerrainsBonuses'] as $objcomboid => $obj) {
 echo '	</tbody>
 	</table>';
 
-/* FLEX BREAK */
-echo FLEX_BREAK;
+/* BREAK */
+echo PRINT_BREAK;
 
 /* END FLEX */
 echo '</div>';

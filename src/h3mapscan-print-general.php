@@ -34,7 +34,7 @@ echo '<table class="bigtable">
 		</tr>
 	</table>';
 
-echo FLEX_BREAK;
+// echo PRINT_BREAK;
 
 echo '<table class="bigtable">
 	<tr>
@@ -79,7 +79,7 @@ foreach($this->h3mapscan->players as $k => $player) {
 }
 echo '</table>';
 
-echo FLEX_BREAK;
+// echo PRINT_BREAK;
 
 echo '<table class="bigtable">
 <tr>
