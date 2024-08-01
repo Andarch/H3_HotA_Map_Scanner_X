@@ -392,7 +392,8 @@ class H3MAPSCAN {
 		}
 
 		if($this->CheckVersion() == false) {
-			throw new Exception('<div class="content-container">Unknown version='.$this->version.', subrev='.$this->hota_subrev.'. Possibly a campagn file or not a map ('.$this->mapfile.')</div>');
+			throw new Exception('<div class="content-container">Unknown version='.$this->version.', subrev='.$this->hota_subrev.
+								'. Possibly a campaign file or not a map ('.$this->mapfile.')</div>');
 		}
 
 		$this->hero_any_onmap = $this->br->ReadUint8(); //hero presence
