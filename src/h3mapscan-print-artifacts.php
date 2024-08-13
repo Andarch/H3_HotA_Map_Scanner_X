@@ -10,7 +10,7 @@ $numTables = ceil($totalItems / $maxItems);
 echo '<div class="flex-container">';
 
 for ($i = 0; $i < $numTables; $i++) {
-	echo '<table class="smalltable artifacts-table">
+	echo '<table class="table-large artifacts-table">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -26,7 +26,7 @@ for ($i = 0; $i < $numTables; $i++) {
 		if ($n == $totalItems) break;
 		$art = $this->h3mapscan->artifacts_list[$n];
 		echo '<tr>
-				<td class="rowheader">'.(++$n).'</td>
+				<td class="table__row-header--default">'.(++$n).'</td>
 				<td class="nowrap" nowrap="nowrap">'.$art->name.'</td>
 				<td class="ac nowrap" nowrap="nowrap">'.$art->mapcoor->GetCoords().'</td>
 				<td class="ar nowrap" nowrap="nowrap">'.$art->parent.'</td>

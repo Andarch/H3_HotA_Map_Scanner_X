@@ -1,11 +1,9 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo '<div class="flex-container">';
-
 usort($this->h3mapscan->towns_list, 'SortTownsByName');
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="table-large">
 		<thead>
 			<tr>
 				<th class="nowrap" nowrap="nowrap">#</th>
@@ -60,20 +58,18 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	}
 
 	echo '<tr>
-			<td class="rowheader nowrap" nowrap="nowrap">'.(++$n).'</td>
+			<td class="table__row-header--default nowrap" nowrap="nowrap">'.(++$n).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 			<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap">'.$garrison.'</td>
+			<td class="small-text nowrap" nowrap="nowrap">'.$garrison.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>
-			<td class="smalltext1">'.$spellsAlways.'</td>
-			<td class="smalltext1">'.$spellsDisabled.'</td>
-			<td class="smalltext1">'.$buildingsBuilt.'</td>
-			<td class="smalltext1">'.$buildingsDisabled.'</td>
+			<td class="small-text">'.$spellsAlways.'</td>
+			<td class="small-text">'.$spellsDisabled.'</td>
+			<td class="small-text">'.$buildingsBuilt.'</td>
+			<td class="small-text">'.$buildingsDisabled.'</td>
 	</tr>';
 }
 echo '</tbody></table>';
-
-echo '</div>';

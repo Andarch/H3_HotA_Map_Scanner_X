@@ -1,0 +1,111 @@
+/* RESETS */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* CUSTOM FONTS */
+@font-face {
+	font-family: 'H3Reader';
+	src: url('../fonts/H3Reader.woff') format('woff');
+}
+
+/* GLOBAL VARIABLES */
+:root {
+	--color-brown: #51442c;
+	--color-gold: #fcf4ad;
+	--color-lightblue: #29fff1;
+	--color-mineshaft: #282828;
+	--color-purple: #3a1345;
+
+	--color-background-body: #333;
+	--color-background-heading: var(--color-brown);
+	--color-background-row-header-default: #595142;
+	--color-background-row-header-alternate: #4e4e4e;
+
+	--color-foreground-body: #ddd;
+	--color-foreground-heading: var(--color-gold);
+
+	--font-family-body: calibri, arial, sans-serif;
+	--font-family-heading: 'H3Reader', var(--font-family-body);
+
+	--font-size-body: 13px;
+	--font-size-heading: 14px;
+
+	--grid-gap: 1.5em;
+
+	--sidebar-width: 250px;
+	--sidebar-top-height: 60px;
+	--sidebar-color: #555;
+
+	--sidebar-border-width: 4px;
+	--sidebar-border-color: #aaa;
+	--sidebar-border-style: solid;
+
+	--hrule1-border-color: #999;
+	--hrule1-border-thickness: 8px;
+	--hrule1-border-style: double;
+
+	--hrule2-border-color: #777;
+	--hrule2-border-thickness: 1.25px;
+	--hrule2-border-style: groove;
+
+	--table-border-style: solid;
+	--table-border-width-column: 2px;
+	--table-border-width-row: 2px;
+	--table-border-width-outer: 2px;
+	--table-border-color: #aaa;
+
+	--thin-border-style: dotted;
+	--thin-border-width: 1px;
+	--thin-border-color: grey;
+
+	--table-small__fixed-width-column: 34.04px;
+}
+
+/* DEFAULT STYLES */
+html {
+	font-size: 13px;
+}
+
+body {
+	font-family: calibri, arial, sans-serif;
+	background-color: var(--color-background-body);
+	color: var(--color-foreground-body);
+}
+
+a, a:visited {
+	color: var(--color-lightblue);
+	text-decoration: none;
+	background-color: transparent;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+	border: var(--table-border-style) var(--table-border-width-outer) var(--table-border-color);
+}
+
+th {
+	font-family: var(--font-family-heading);
+}
+
+th:not(.table__title-bar--large) {
+	background: var(--color-background-heading);
+	color: var(--color-foreground-heading);
+}
+
+td {
+	background: var(--color-mineshaft);
+}
+
+th, td {
+	border-top: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
+	border-bottom: var(--table-border-style) var(--table-border-width-row) var(--table-border-color);
+	border-right: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
+	border-left: var(--table-border-style) var(--table-border-width-column) var(--table-border-color);
+}

@@ -4,7 +4,7 @@
 echo '<div class="flex-container">';
 
 $n = 0;
-echo '<table class="bigtable">
+echo '<table class="table-large">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Town Name</th>
@@ -38,7 +38,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$rows = $town['eventsnum'];
 
 	echo '<tr>
-		<td rowspan="'.$rows.'" class="rowheader" >'.(++$n).'</td>
+		<td rowspan="'.$rows.'" class="table__row-header--default" >'.(++$n).'</td>
 		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
 		<td rowspan="'.$rows.'" class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
 		<td rowspan="'.$rows.'" class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
@@ -158,16 +158,16 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		}
 
 		echo '
-				<td class="ac specialcell1" style="'.$borderstyle.'">'.($e + 1).'</td>
+				<td class="ac table__nested-row-header" style="'.$borderstyle.'">'.($e + 1).'</td>
 				<td class="ac" style="'.$borderstyle.'">'.$event['name'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$event['humanOrAi'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$first.'</td>
 				<td class="ac nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.$period.'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>
-				<td class="smalltext1 nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>
-				<td class="smalltext1" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>
-				<td class="smalltext1" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
+				<td class="small-text nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $eres).'</td>
+				<td class="small-text nowrap" nowrap="nowrap" style="'.$borderstyle.'">'.implode('<br />', $monsters).'</td>
+				<td class="small-text" style="'.$borderstyle.'">'.implode(', ', $buildings).'</td>
+				<td class="small-text" style="'.$borderstyle.'">'.nl2br($event['message']).'</td>';
 		echo '</tr>';
 	}
 }

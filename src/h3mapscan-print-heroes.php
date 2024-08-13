@@ -1,76 +1,72 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo '<div class="flex-container">';
-
 //disabled heroes
 $n = 0;
 $sep = '</br>';
-echo '<table class="bigtable">
+echo '<table class="table-large">
 		<tr>
-			<td class="tableheader1" colspan="11">Disabled Heroes</td>
+			<th class="table__title-bar--large" colspan="11">Disabled Heroes</td>
 		</tr>
 		<tr>
-			<th class="disabledheroescolumn">Knight</th>
-			<th class="disabledheroescolumn">Ranger</th>
-			<th class="disabledheroescolumn">Alchemist</th>
-			<th class="disabledheroescolumn">Demoniac</th>
-			<th class="disabledheroescolumn">Death Knight</th>
-			<th class="disabledheroescolumn">Overlord</th>
-			<th class="disabledheroescolumn">Barbarian</th>
-			<th class="disabledheroescolumn">Beastmaster</th>
-			<th class="disabledheroescolumn">Planeswalker</th>
-			<th class="disabledheroescolumn">Captain</th>
-			<th class="disabledheroescolumn">Mercenary</th>
+			<th class="disabled-heroes-column">Knight</th>
+			<th class="disabled-heroes-column">Ranger</th>
+			<th class="disabled-heroes-column">Alchemist</th>
+			<th class="disabled-heroes-column">Demoniac</th>
+			<th class="disabled-heroes-column">Death Knight</th>
+			<th class="disabled-heroes-column">Overlord</th>
+			<th class="disabled-heroes-column">Barbarian</th>
+			<th class="disabled-heroes-column">Beastmaster</th>
+			<th class="disabled-heroes-column">Planeswalker</th>
+			<th class="disabled-heroes-column">Captain</th>
+			<th class="disabled-heroes-column">Mercenary</th>
 		</tr>
 		<tr>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Knight']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Ranger']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Alchemist']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Demoniac']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Death Knight']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Overlord']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Barbarian']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Beastmaster']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Planeswalker']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Captain']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Mercenary']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Knight']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Ranger']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Alchemist']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Demoniac']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Death Knight']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Overlord']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Barbarian']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Beastmaster']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Planeswalker']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Captain']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Mercenary']).'</td>
 		</tr>
 		<tr>
-			<th class="disabledheroescolumn">Cleric</th>
-			<th class="disabledheroescolumn">Druid</th>
-			<th class="disabledheroescolumn">Wizard</th>
-			<th class="disabledheroescolumn">Heretic</th>
-			<th class="disabledheroescolumn">Necromancer</th>
-			<th class="disabledheroescolumn">Warlock</th>
-			<th class="disabledheroescolumn">Battle Mage</th>
-			<th class="disabledheroescolumn">Witch</th>
-			<th class="disabledheroescolumn">Elementalist</th>
-			<th class="disabledheroescolumn">Navigator</th>
-			<th class="disabledheroescolumn">Artificer</th>
+			<th class="disabled-heroes-column">Cleric</th>
+			<th class="disabled-heroes-column">Druid</th>
+			<th class="disabled-heroes-column">Wizard</th>
+			<th class="disabled-heroes-column">Heretic</th>
+			<th class="disabled-heroes-column">Necromancer</th>
+			<th class="disabled-heroes-column">Warlock</th>
+			<th class="disabled-heroes-column">Battle Mage</th>
+			<th class="disabled-heroes-column">Witch</th>
+			<th class="disabled-heroes-column">Elementalist</th>
+			<th class="disabled-heroes-column">Navigator</th>
+			<th class="disabled-heroes-column">Artificer</th>
 		</tr>
 		<tr>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Cleric']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Druid']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Wizard']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Heretic']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Necromancer']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Warlock']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Battle Mage']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Witch']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Elementalist']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Navigator']).'</td>
-			<td class="disabledheroescell">'.implode($sep, $this->h3mapscan->disabledHeroes['Artificer']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Cleric']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Druid']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Wizard']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Heretic']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Necromancer']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Warlock']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Battle Mage']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Witch']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Elementalist']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Navigator']).'</td>
+			<td class="disabled-heroes-cell">'.implode($sep, $this->h3mapscan->disabledHeroes['Artificer']).'</td>
 		</tr>
 	</table>';
 
-echo PRINT_BREAK;
-
 //template heroes
 $n = 0;
-echo '<table id="heroes-table-2" class="bigtable">
+echo '<table id="heroes-table-2" class="table-large">
 		<tr>
-			<td class="tableheader1" colspan="12">Template Heroes</td>
+			<th class="table__title-bar--large" colspan="12">Template Heroes</td>
 		</tr>
 		<tr>
 			<th>#</th>
@@ -166,36 +162,34 @@ foreach($fpHeroes as $k => $fpHero) {
 	}
 
 	echo '<tr>
-			<td class="rowheader" rowspan="3">'.(++$n).'</td>
-			<td class="ar nowrap heronameheader1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['mname'].'</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="3">'.$class.'</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="3">'.$players.'</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="3">'.$gender.'</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" rowspan="3">'.$xp.'</br>'.$level.'</td>
-			<td class="ar smalltext1 nowrap" nowrap="nowrap" rowspan="3">'.$priskills.'</td>
-			<td class="al smalltext1" rowspan="3" style="max-width:500px;">'.$skills.'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="3">'.$artifacts.'</td>
-			<td class="smalltext1" rowspan="3" style="max-width:500px;">'.$spells.'</td>
-			<td class="smalltext1" rowspan="3" style="max-width:500px;">'.$bio.'</td>
+			<td class="table__row-header--default" rowspan="3">'.(++$n).'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
+			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$fpHero['mname'].'</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$class.'</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$players.'</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$gender.'</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$xp.'</br>'.$level.'</td>
+			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">'.$priskills.'</td>
+			<td class="al small-text" rowspan="3" style="max-width:500px;">'.$skills.'</td>
+			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">'.$artifacts.'</td>
+			<td class="small-text" rowspan="3" style="max-width:500px;">'.$spells.'</td>
+			<td class="small-text" rowspan="3" style="max-width:500px;">'.$bio.'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap heronameheader1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
-			<td class="ac nowrap smalltext1 vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['tname'].'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
+			<td class="ac nowrap small-text vat fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$fpHero['tname'].'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap heronameheader2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
-			<td class="ac nowrap smalltext1 vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$fpHero['defname'].'</td>
+			<td class="ar nowrap hero-name-row-header" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+			<td class="ac nowrap small-text vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$fpHero['defname'].'</td>
 		</tr>';
 }
 echo '</table>';
 
-echo PRINT_BREAK;
-
 //map heroes
 $n = 0;
-echo '<table id="heroes-table-3" class="bigtable">
-		<tr><td class="tableheader1" colspan="12">Map Heroes</td></tr>
+echo '<table id="heroes-table-3" class="table-large">
+		<tr><th class="table__title-bar--large" colspan="12">Map Heroes</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
@@ -261,29 +255,27 @@ foreach($this->h3mapscan->heroes_list as $mHero) {
 	}
 
 	echo '<tr>
-			<td class="rowheader" rowspan="3">'.(++$n).'</td>
-			<td class="ar nowrap heronameheader1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
-			<td class="ac nowrap smalltext1" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$mHero['data']['mname'].'</td>
+			<td class="table__row-header--default" rowspan="3">'.(++$n).'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
+			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$mHero['data']['mname'].'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">'.$mHero['pos']->GetCoords().'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">'.$color.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">'.$class.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">'.comma($mHero['data']['xp']).' XP<br />Level '.$level.'</td>
-			<td class="ar smalltext1 nowrap" nowrap="nowrap" rowspan="3">'.$primary.'</td>
-			<td class="al smalltext1" rowspan="3" style="max-width:500px;">'.$secondary.'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="3">'.$troops.'</td>
-			<td class="smalltext1 nowrap" nowrap="nowrap" rowspan="3">'.$artifacts.'</td>
-			<td class="smalltext1" rowspan="3" style="max-width:500px;">'.$spells.'</td>
+			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">'.$primary.'</td>
+			<td class="al small-text" rowspan="3" style="max-width:500px;">'.$secondary.'</td>
+			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">'.$troops.'</td>
+			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">'.$artifacts.'</td>
+			<td class="small-text" rowspan="3" style="max-width:500px;">'.$spells.'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap heronameheader1" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
-			<td class="ac nowrap smalltext1 vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
+			<td class="ac nowrap small-text vat fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mHero['data']['tname'].'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap heronameheader2" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
-			<td class="ac nowrap smalltext1 vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mHero['data']['defname'].'</td>
+			<td class="ar nowrap hero-name-row-header" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+			<td class="ac nowrap small-text vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mHero['data']['defname'].'</td>
 		</tr>';
 }
 
 echo '</table>';
-
-echo '</div>';

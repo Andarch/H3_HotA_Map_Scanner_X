@@ -18,27 +18,31 @@ require_once 'src/config.php';
 <head>
 	<title>H3 HotA Map Scanner X</title>
 	<link rel="shortcut icon" href="images/hotaicon.png" type="image/x-icon" />
-	<link rel="stylesheet" href="css/styles.css" type="text/css" />
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
 	<script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="application/javascript" src="js/jquery-ui.js"></script>
 	<script type="application/javascript" src="js/mapread.js"></script>
 </head>
 
 <body>
-	<div class="sidebarTop">
-		<hr class="hrule1">
-		<table class="sidebarTopTable">
-			<tr>
-				<td class="sidebarTopTableCell">
-					<a href="mapscan.php?scan=1">Scan</a>
-				</td>
-				<td class="sidebarTopTableCell">
-					<a href="mapindex.php">Map List</a>
-				</td>
-			</tr>
-		</table>
-		<hr class="hrule1">
-	</div>
+	<div class="grid-container">
+		<div class="sidebarTop">
+			<hr class="hrule1">
+			<table class="sidebarTopTable">
+				<tr>
+					<td class="sidebarTopTableCell">
+						<a href="mapscan.php?scan=1">Scan</a>
+					</td>
+					<td class="sidebarTopTableCell">
+						<a href="mapindex.php">Map List</a>
+					</td>
+				</tr>
+			</table>
+			<hr class="hrule1">
+		</div>
 
 <?php
 

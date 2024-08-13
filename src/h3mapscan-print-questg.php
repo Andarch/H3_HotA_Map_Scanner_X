@@ -1,13 +1,11 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo '<div class="flex-container">';
-
 // Quest Gates
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="table-large">
 		<tr>
-            <td class="tableheader1" colspan="9">Quest Gates</td>
+            <th class="table__title-bar--large" colspan="9">Quest Gates</td>
         </tr>
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
@@ -29,26 +27,24 @@ foreach($this->h3mapscan->quest_gates as $qgate) {
         $qgateReqClass = ' nowrap" nowrap="nowrap"';
     }
     echo '<tr>';
-    echo '  <td class="rowheader">'.(++$n).'</td>';
-    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qgate['name'].'</td>';
-    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qgate['pos']->GetCoords().'</td>';
+    echo '  <td class="table__row-header--default">'.(++$n).'</td>';
+    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['name'].'</td>';
+    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['pos']->GetCoords().'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['Qcategory'].'</td>';
     echo '  <td class="'.$qgateReqClass.'>'.$qgate['Qrequirement'].'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qgate['Qdeadline'].'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textFirst']).'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textRepeat']).'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textDone']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textFirst']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textRepeat']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qgate['textDone']).'</td>';
     echo '</tr>';
 }
 echo '</table>';
 
-echo PRINT_BREAK;
-
 // Quest Guards
 $n = 0;
-echo '<table id="quest-guards-table" class="smalltable">
+echo '<table id="quest-guards-table" class="table-large">
 		<tr>
-            <td class="tableheader1" colspan="9">Quest Guards</td>
+            <th class="table__title-bar--large" colspan="9">Quest Guards</td>
         </tr>
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
@@ -70,17 +66,15 @@ foreach($this->h3mapscan->quest_guards as $qguard) {
         $qguardReqClass = ' nowrap" nowrap="nowrap"';
     }
     echo '<tr>';
-    echo '  <td class="rowheader">'.(++$n).'</td>';
-    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qguard['name'].'</td>';
-    echo '  <td class="normaltext ac nowrap" nowrap="nowrap">'.$qguard['pos']->GetCoords().'</td>';
+    echo '  <td class="table__row-header--default">'.(++$n).'</td>';
+    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['name'].'</td>';
+    echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['pos']->GetCoords().'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['Qcategory'].'</td>';
     echo '  <td class="'.$qguardReqClass.'>'.$qguard['Qrequirement'].'</td>';
     echo '  <td class="ac nowrap" nowrap="nowrap">'.$qguard['Qdeadline'].'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textFirst']).'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textRepeat']).'</td>';
-    echo '  <td style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textDone']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textFirst']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textRepeat']).'</td>';
+    echo '  <td class="small-text" style="'.TEXT_COLUMN_WIDTH.'">'.nl2br($qguard['textDone']).'</td>';
     echo '</tr>';
 }
 echo '</table>';
-
-echo '</div>';

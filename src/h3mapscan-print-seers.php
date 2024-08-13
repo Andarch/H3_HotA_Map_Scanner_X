@@ -1,10 +1,8 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo '<div class="flex-container">';
-
 $n = 0;
-echo '<table class="smalltable">
+echo '<table class="table-large">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
@@ -24,9 +22,9 @@ foreach($this->h3mapscan->seers_huts as $hut) {
     $qcount = count($hut['quests']);
 
     echo '<tr>
-            <td rowspan="'.$qcount.'" class="rowheader">'.(++$n).'</td>
-            <td rowspan="'.$qcount.'" class="normaltext ac nowrap" nowrap="nowrap">'.$hut['name'].'</td>
-            <td rowspan="'.$qcount.'" class="normaltext ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
+            <td rowspan="'.$qcount.'" class="table__row-header--default">'.(++$n).'</td>
+            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['name'].'</td>
+            <td rowspan="'.$qcount.'" class="ac nowrap" nowrap="nowrap">'.$hut['pos']->GetCoords().'</td>';
 
     foreach($hut['quests'] as $q => $quest) {
         $Qreqclass = '';
@@ -49,17 +47,15 @@ foreach($this->h3mapscan->seers_huts as $hut) {
             $borderstyle = 'style="border-bottom:1px dotted grey;"';
         }
 
-        echo '  <td class="ac specialcell1" '.$borderstyle.'>'.($q + 1).'</td>';
+        echo '  <td class="ac table__nested-row-header" '.$borderstyle.'>'.($q + 1).'</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['Qcategory'].'</td>';
         echo '  <td class="'.$Qreqclass.' '.$borderstyle.'>'.$quest['Qrequirement'].'</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['Qdeadline'].'</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'>'.$quest['questreward'].'</td>';
-        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textFirst']).'</td>';
-        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textRepeat']).'</td>';
-        echo '  <td '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textDone']).'</td>';
+        echo '  <td class="small-text" '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textFirst']).'</td>';
+        echo '  <td class="small-text" '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textRepeat']).'</td>';
+        echo '  <td class="small-text" '.$borderstyle.TEXT_COLUMN_WIDTH.'>'.nl2br($quest['textDone']).'</td>';
         echo '</tr>';
     }
 }
 echo '</table>';
-
-echo '</div>';

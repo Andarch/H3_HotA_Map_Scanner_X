@@ -38,11 +38,10 @@
 	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
 
 	const EMPTY_DATA = '<span style="color:grey;">–</span>';
-	const DEFAULT_DATA = '<span class="smalltext2"><i>Default</i></span>';
+	const DEFAULT_DATA = '<span class="tiny-grey-text"><i>Default</i></span>';
     const HRULE1 = '<hr class="hrule1">';
     const HRULE2 = '<hr class="hrule2">';
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
-	const PRINT_BREAK = '<div class="flex-break"></div>';
 
 	class OBJECTCATEGORIES {
 			const ARTIFACTS = 'Artifacts';

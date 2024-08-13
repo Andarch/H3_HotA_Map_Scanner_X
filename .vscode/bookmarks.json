@@ -70,7 +70,7 @@
 				},
 				{
 					"line": 526,
-					"column": 13,
+					"column": 8,
 					"label": ""
 				},
 				{
@@ -79,163 +79,153 @@
 					"label": ""
 				},
 				{
-					"line": 597,
+					"line": 602,
 					"column": 8,
 					"label": ""
 				},
 				{
-					"line": 634,
+					"line": 639,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 667,
+					"line": 672,
 					"column": 13,
 					"label": ""
 				},
 				{
-					"line": 701,
+					"line": 706,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 735,
+					"line": 740,
 					"column": 23,
 					"label": ""
 				},
 				{
-					"line": 767,
+					"line": 772,
 					"column": 24,
 					"label": ""
 				},
 				{
-					"line": 792,
+					"line": 797,
 					"column": 25,
 					"label": ""
 				},
 				{
-					"line": 817,
+					"line": 822,
 					"column": 25,
-					"label": ""
-				},
-				{
-					"line": 842,
-					"column": 12,
 					"label": ""
 				},
 				{
 					"line": 845,
-					"column": 10,
+					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 878,
+					"line": 848,
+					"column": 8,
+					"label": ""
+				},
+				{
+					"line": 889,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 911,
+					"line": 922,
 					"column": 20,
 					"label": ""
 				},
 				{
-					"line": 945,
+					"line": 956,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 978,
+					"line": 989,
 					"column": 5,
 					"label": ""
 				},
 				{
-					"line": 1012,
+					"line": 1023,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 1045,
+					"line": 1056,
 					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 1080,
+					"line": 1091,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 1113,
+					"line": 1124,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 1145,
+					"line": 1156,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 1178,
+					"line": 1189,
 					"column": 16,
 					"label": ""
 				},
 				{
-					"line": 1181,
+					"line": 1192,
 					"column": 10,
 					"label": ""
 				},
 				{
-					"line": 1216,
+					"line": 1227,
 					"column": 9,
 					"label": ""
 				},
 				{
-					"line": 1260,
+					"line": 1271,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 1295,
+					"line": 1306,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 1332,
+					"line": 1343,
 					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 1371,
+					"line": 1382,
 					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 1405,
+					"line": 1416,
 					"column": 22,
 					"label": ""
 				},
 				{
-					"line": 1439,
+					"line": 1450,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 1478,
+					"line": 1489,
 					"column": 28,
 					"label": ""
 				},
 				{
-					"line": 1513,
+					"line": 1524,
 					"column": 29,
-					"label": ""
-				},
-				{
-					"line": 1549,
-					"column": 16,
-					"label": ""
-				},
-				{
-					"line": 1552,
-					"column": 14,
 					"label": ""
 				}
 			]
@@ -244,13 +234,58 @@
 			"path": "src/h3mapconstants.php",
 			"bookmarks": [
 				{
-					"line": 46,
+					"line": 45,
 					"column": 21,
 					"label": ""
 				},
 				{
-					"line": 1459,
+					"line": 1458,
 					"column": 11,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "css/base.css",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 7,
+					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 13,
+					"column": 13,
+					"label": ""
+				},
+				{
+					"line": 66,
+					"column": 13,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "css/main.css",
+			"bookmarks": [
+				{
+					"line": 0,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 4,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 160,
+					"column": 10,
 					"label": ""
 				}
 			]
