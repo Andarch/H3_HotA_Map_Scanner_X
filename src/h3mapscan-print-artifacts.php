@@ -35,11 +35,6 @@ for ($i = 0; $i < $numTables; $i++) {
 	}
 	echo '</tbody>';
 	echo '</table>';
-
-	$remainder = $i % 4;
-	if(($i > 0) && ($remainder == 3)) {
-		// echo PRINT_BREAK;
-	}
 }
 
 echo '</div>';
