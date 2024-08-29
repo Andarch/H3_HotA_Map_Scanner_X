@@ -46,17 +46,17 @@
 	class OBJECTCATEGORIES {
 			const ARTIFACTS = 'Artifacts';
 			const BOATS_AND_AIRSHIPS = 'Boats & Airships';
-			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
-			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
+			const BORDER_GATES = 'Border Gates';  // Combined into KEYMASTERS_BORDER
+			const BORDER_GUARDS = 'Border Guards';  // Combined into KEYMASTERS_BORDER
 			const CREATURE_BANKS_ARTIFACTS = 'Creature Banks – Artifacts';
 			const CREATURE_BANKS_CREATURES = 'Creature Banks – Creatures';
 			const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 			const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 			const DWELLINGS = 'Dwellings';
-			const GARRISONS_AND_QUEST_GATES_GUARDS = 'Garrisons & Quest Gates/Guards';
+			const GARRISONS_QUESTS = 'Garrisons / Quests';
 			const HEROES_AND_INFO = 'Heroes & Info';
-			const KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS = 'Keymaster\'s Tents & Border Gates/Guards';
-			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS
+			const KEYMASTERS_BORDER = 'Keymasters / Border';
+			const KEYMASTERS_TENTS = 'Keymaster\'s Tents';  // Combined into KEYMASTERS_BORDER
 			const LUCK = 'Luck';
 			const MAGICAL_TERRAINS_SPELLS = 'Magical Terrains – Spells';
 			const MAGICAL_TERRAINS_BONUSES = 'Magical Terrains – Bonuses';
@@ -67,12 +67,12 @@
 			const MORALE = 'Morale';
 			const MOVEMENT = 'Movement';
 			const MULTI_BONUS = 'Multi-Bonus';
-			const ONE_WAY_MONOLITHS = 'One-Way Monoliths';
-			const ONE_WAY_MONOLITH_ENTRANCES = 'One-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
-			const ONE_WAY_MONOLITH_EXITS = 'One-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
-			const ONE_WAY_PORTALS = 'One-Way Portals';
-			const ONE_WAY_PORTAL_ENTRANCES = 'One-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
-			const ONE_WAY_PORTAL_EXITS = 'One-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
+			const ONE_WAY_MONOLITHS = '1-Way Monoliths';
+			const ONE_WAY_MONOLITH_ENTRANCES = '1-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
+			const ONE_WAY_MONOLITH_EXITS = '1-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
+			const ONE_WAY_PORTALS = '1-Way Portals';
+			const ONE_WAY_PORTAL_ENTRANCES = '1-Way Portal Entrances';  // Combined into ONE_WAY_PORTALS
+			const ONE_WAY_PORTAL_EXITS = '1-Way Portal Exits';  // Combined into ONE_WAY_PORTALS
 			const OTHER_GATEWAYS = 'Other Gateways';
 			const PRIMARY_SKILLS_1 = 'Primary Skills 1';
 			const PRIMARY_SKILLS_2 = 'Primary Skills 2';
@@ -86,9 +86,9 @@
 			const TOWNS = 'Towns';
 			const TRADING = 'Trading';
 			const TREASURES = 'Treasures';
-			const TWO_WAY_MONOLITHS = 'Two-Way Monoliths';
-			const TWO_WAY_PORTALS = 'Two-Way Portals';
-			const TWO_WAY_SEA_PORTALS = 'Two-Way Sea Portals';
+			const TWO_WAY_MONOLITHS = '2-Way Monoliths';
+			const TWO_WAY_PORTALS = '2-Way Portals';
+			const TWO_WAY_SEA_PORTALS = '2-Way Sea Portals';
 			const WAREHOUSES = 'Warehouses';  // Combined into MINES_AND_WAREHOUSES
 			const WAR_MACHINES_AND_UPGRADES = 'War Machines & Upgrades';
 			const XP = 'XP';
@@ -1527,8 +1527,8 @@
 			'30-0' => ['name' => 'Fountain of Fortune', 'category' => OBJECTCATEGORIES::LUCK],
 			'31-0' => ['name' => 'Fountain of Youth', 'category' => OBJECTCATEGORIES::MULTI_BONUS],
 			'32-0' => ['name' => 'Garden of Revelation', 'category' => OBJECTCATEGORIES::PRIMARY_SKILLS_1],
-			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
-			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			GARRISON_COMBOID => ['name' => 'Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
+			AMGARRISON_COMBOID => ['name' => 'Anti-magic Garrison', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
 			'34-X' => ['name' => 'Hero', 'category' => OBJECTCATEGORIES::HEROES_AND_INFO],
 			'35-0' => ['name' => 'Hill Fort – Original', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
 			'35-1' => ['name' => 'Hill Fort – HotA', 'category' => OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES],
@@ -1725,15 +1725,15 @@
 			'212-5' => ['name' => 'Border Gate – Purple', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-6' => ['name' => 'Border Gate – White', 'category' => OBJECTCATEGORIES::BORDER_GATES],
 			'212-7' => ['name' => 'Border Gate – Black', 'category' => OBJECTCATEGORIES::BORDER_GATES],
-			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			'212-1000' => ['name' => 'Quest Gate', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
 			'212-1001' => ['name' => 'Grave', 'category' => OBJECTCATEGORIES::TREASURES],
 			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJECTCATEGORIES::TRADING],
-			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			'215-0' => ['name' => 'Quest Guard', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
 			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJECTCATEGORIES::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJECTCATEGORIES::DWELLINGS],
-			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
-			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS],
+			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
+			// '219-1' => ['name' => 'Garrison – Anti-magic', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],
 			// '220-X' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '220-7' => ['name' => 'Abandoned Mine', 'category' => OBJECTCATEGORIES::MINES],
 			// '221-0' => ['name' => 'Trading Post', 'category' => OBJECTCATEGORIES::TRADING],

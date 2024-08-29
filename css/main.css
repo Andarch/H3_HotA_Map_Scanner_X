@@ -162,9 +162,7 @@
 
 .table__title-bar--small {
 	background: var(--color-purple);
-	font-weight: bold;
-	text-align: center;
-	font-size: 12px !important;
+	font-size: 11px !important;
 }
 
 .table__row-header--default {

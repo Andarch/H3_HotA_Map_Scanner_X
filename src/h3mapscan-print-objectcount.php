@@ -21,7 +21,7 @@ DisplayObjCountTable($table);
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $categories['monsters'], OBJECTCATEGORIES::MONSTERS, $this->OBJCCS->Monsters, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
-// Keymaster's Tents & Border Gates/Guards
+// Keymasters / Border
 $tentKeys = array_keys($categories['keymastersTents']);
 $bGateKeys = array_keys($categories['borderGates']);
 $bGuardKeys = array_keys($categories['borderGuards']);
@@ -32,10 +32,10 @@ for ($i = 0; $i < 8; $i++) {
 	$id3 = $bGuardKeys[$i] ?? null;
 	$ids[] = $id1 . COMBOID_SEPARATOR . $id2 . COMBOID_SEPARATOR . $id3;
 }
-$table = new OC_Table(OC_TABLETYPE::BORDER, null, OBJECTCATEGORIES::KEYMASTERS_TENTS_AND_BORDER_GATES_GUARDS, null, $this->OBJCCS->Border, 8, $ids, OC_FLEXTYPE::NONE, $categories['keymastersTents'], $tentKeys, $categories['borderGates'], $bGateKeys, $categories['borderGuards'], $bGuardKeys);
+$table = new OC_Table(OC_TABLETYPE::BORDER, null, OBJECTCATEGORIES::KEYMASTERS_BORDER, null, $this->OBJCCS->KeymastersBorder, 8, $ids, OC_FLEXTYPE::NONE, $categories['keymastersTents'], $tentKeys, $categories['borderGates'], $bGateKeys, $categories['borderGuards'], $bGuardKeys);
 DisplayObjCountTable($table);
 
-// One-Way Monoliths
+// 1-Way Monoliths
 $entranceKeys = array_keys($categories['oneWayMonolithEntrances']);
 $exitKeys = array_keys($categories['oneWayMonolithExits']);
 $ids = [];
@@ -47,7 +47,7 @@ for($i = 0; $i < 8; $i++) {
 $table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJECTCATEGORIES::ONE_WAY_MONOLITHS, null, $this->OBJCCS->OneWayMonoliths, 8, $ids, OC_FLEXTYPE::NONE, $categories['oneWayMonolithEntrances'], $entranceKeys, $categories['oneWayMonolithExits'], $exitKeys);
 DisplayObjCountTable($table);
 
-// One-Way Portals
+// 1-Way Portals
 $entranceKeys = array_keys($categories['oneWayPortalEntrances']);
 $exitKeys = array_keys($categories['oneWayPortalExits']);
 $ids = [];
@@ -59,17 +59,17 @@ for($i = 0; $i < 4; $i++) {
 $table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJECTCATEGORIES::ONE_WAY_PORTALS, null, $this->OBJCCS->OneWayPortals, 4, $ids, OC_FLEXTYPE::NONE, $categories['oneWayPortalEntrances'], $entranceKeys, $categories['oneWayPortalExits'], $exitKeys);
 DisplayObjCountTable($table);
 
-// Two-Way Monoliths
+// 2-Way Monoliths
 $keys = array_keys($categories['twoWayMonoliths']);
 $table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $categories['twoWayMonoliths'], OBJECTCATEGORIES::TWO_WAY_MONOLITHS, null, $this->OBJCCS->TwoWayMonoliths, 10, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
 
-// Two-Way Portals
+// 2-Way Portals
 $keys = array_keys($categories['twoWayPortals']);
 $table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $categories['twoWayPortals'], OBJECTCATEGORIES::TWO_WAY_PORTALS, null, $this->OBJCCS->TwoWayPortals, 10, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
 
-// Two-Way Sea Portals
+// 2-Way Sea Portals
 $keys = array_keys($categories['twoWaySeaPortals']);
 $table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $categories['twoWaySeaPortals'], OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS, null, $this->OBJCCS->TwoWaySeaPortals, 5, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
@@ -97,8 +97,8 @@ DisplayObjCountTable($table);
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $categories['dwellings'], OBJECTCATEGORIES::DWELLINGS, $this->OBJCCS->Dwellings, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
-// Garrisons & Quest Gates/Guards
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $categories['garrisonsAndQuestGatesGuards'], OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS, $this->OBJCCS->GarrisonsAndQuestGatesGuards, null, null, null, OC_FLEXTYPE::NONE);
+// Garrisons / Quests
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $categories['garrisonsQuests'], OBJECTCATEGORIES::GARRISONS_QUESTS, $this->OBJCCS->GarrisonsQuests, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // War Machines & Upgrades
@@ -223,7 +223,7 @@ function SortIntoCategories($objectsall)
 			OBJECTCATEGORIES::CREATURE_BANKS_ELITE => $categories['creatureBanksElite'] = $obj,
 			OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES => $categories['creatureBanksResources'] = $obj,
 			OBJECTCATEGORIES::DWELLINGS => $categories['dwellings'] = $obj,
-			OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS => $categories['garrisonsAndQuestGatesGuards'] = $obj,
+			OBJECTCATEGORIES::GARRISONS_QUESTS => $categories['garrisonsQuests'] = $obj,
 			OBJECTCATEGORIES::HEROES_AND_INFO => $categories['heroesAndInfo'] = $obj,
 			OBJECTCATEGORIES::KEYMASTERS_TENTS => $categories['keymastersTents'] = $obj,
 			OBJECTCATEGORIES::LUCK => $categories['luck'] = $obj,
@@ -283,7 +283,7 @@ function DisplayObjCountTable($table) {
 	echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 			<thead>
 				<tr>
-					<td colspan="'.OBJCOUNT_COLSPAN.'" class="table__title-bar--small">'.$table->categoryConstant.'</td>
+					<th colspan="'.OBJCOUNT_COLSPAN.'" class="table__title-bar--small">'.$table->categoryConstant.'</td>
 				</tr>';
 
 	// Print rest of table based on table type

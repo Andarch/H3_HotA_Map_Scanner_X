@@ -107,7 +107,7 @@
             'Monster',
         ];
 
-        public $Border = [
+        public $KeymastersBorder = [
             'Light Blue',
             'Green',
             'Red',
@@ -219,7 +219,7 @@
             'Ancient Lamp',
         ];
 
-        public $GarrisonsAndQuestGatesGuards = [
+        public $GarrisonsQuests = [
             'Garrison',
             'Anti-magic Garrison',
             'Quest Gate',

@@ -17,7 +17,7 @@
 	--color-gold: #fcf4ad;
 	--color-lightblue: #29fff1;
 	--color-mineshaft: #282828;
-	--color-purple: #3a1345;
+	--color-purple: #451342;
 
 	--color-background-body: #333;
 	--color-background-heading: var(--color-brown);
@@ -94,7 +94,7 @@ th {
 	font-family: var(--font-family-heading);
 }
 
-th:not(.table__title-bar--large) {
+th:not(.table__title-bar--large):not(.table__title-bar--small) {
 	background: var(--color-background-heading);
 	color: var(--color-foreground-heading);
 }
