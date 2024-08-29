@@ -4,65 +4,70 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
-$this->OBJCCS = new ObjectCountConstants();
-$categories = [];
+$this->OBJCCS = new OC_Constants();
+$categories = SortIntoCategories($this->h3mapscan->objects_all);
 
-/* SORT INTO CATEGORIES */
-foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
-	match($objcategory) {
-		OBJECTCATEGORIES::ARTIFACTS => $categories['artifacts'] = $obj,
-		OBJECTCATEGORIES::BOATS_AND_AIRSHIPS => $categories['boatsAndAirships'] = $obj,
-		OBJECTCATEGORIES::BORDER_GATES => $categories['borderGates'] = $obj,
-		OBJECTCATEGORIES::BORDER_GUARDS => $categories['borderGuards'] = $obj,
-		OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS => $categories['creatureBanksArtifacts'] = $obj,
-		OBJECTCATEGORIES::CREATURE_BANKS_CREATURES => $categories['creatureBanksCreatures'] = $obj,
-		OBJECTCATEGORIES::CREATURE_BANKS_RELICS => $categories['creatureBanksRelics'] = $obj,
-		OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES => $categories['creatureBanksResources'] = $obj,
-		OBJECTCATEGORIES::DWELLINGS => $categories['dwellings'] = $obj,
-		OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS => $categories['garrisonsAndQuestGatesGuards'] = $obj,
-		OBJECTCATEGORIES::HEROES_AND_INFO => $categories['heroes'] = $obj,
-		OBJECTCATEGORIES::KEYMASTERS_TENTS => $categories['keymastersTents'] = $obj,
-		OBJECTCATEGORIES::LUCK => $categories['luck'] = $obj,
-		OBJECTCATEGORIES::MAGICAL_TERRAINS_BONUSES => $categories['magicalTerrainsBonuses'] = $obj,
-		OBJECTCATEGORIES::MAGICAL_TERRAINS_SPELLS => $categories['magicalTerrainsSpells'] = $obj,
-		OBJECTCATEGORIES::MANA => $categories['mana'] = $obj,
-		OBJECTCATEGORIES::MINES => $categories['mines'] = $obj,
-		OBJECTCATEGORIES::MONSTERS => $categories['monsters'] = $obj,
-		OBJECTCATEGORIES::MORALE => $categories['morale'] = $obj,
-		OBJECTCATEGORIES::MOVEMENT => $categories['movement'] = $obj,
-		OBJECTCATEGORIES::MULTI_BONUS => $categories['multiBonus'] = $obj,
-		OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES => $categories['oneWayMonolithEntrances'] = $obj,
-		OBJECTCATEGORIES::ONE_WAY_MONOLITH_EXITS => $categories['oneWayMonolithExits'] = $obj,
-		OBJECTCATEGORIES::ONE_WAY_PORTAL_ENTRANCES => $categories['oneWayPortalEntrances'] = $obj,
-		OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS => $categories['oneWayPortalExits'] = $obj,
-		OBJECTCATEGORIES::OTHER_GATEWAYS => $categories['otherGateways'] = $obj,
-		OBJECTCATEGORIES::PRIMARY_SKILLS_1 => $categories['primarySkills1'] = $obj,
-		OBJECTCATEGORIES::PRIMARY_SKILLS_2 => $categories['primarySkills2'] = $obj,
-		OBJECTCATEGORIES::RESOURCES_1 => $categories['resources1'] = $obj,
-		OBJECTCATEGORIES::RESOURCES_2 => $categories['resources2'] = $obj,
-		OBJECTCATEGORIES::RESOURCE_GENERATORS => $categories['resourceGenerators'] = $obj,
-		OBJECTCATEGORIES::SCOUTING => $categories['scouting'] = $obj,
-		OBJECTCATEGORIES::SECONDARY_SKILLS => $categories['secondarySkills'] = $obj,
-		OBJECTCATEGORIES::SPECIAL => $categories['special'] = $obj,
-		OBJECTCATEGORIES::SPELLS => $categories['spells'] = $obj,
-		OBJECTCATEGORIES::TOWNS => $categories['towns'] = $obj,
-		OBJECTCATEGORIES::TRADING => $categories['trading'] = $obj,
-		OBJECTCATEGORIES::TREASURES => $categories['treasures'] = $obj,
-		OBJECTCATEGORIES::TWO_WAY_MONOLITHS => $categories['twoWayMonoliths'] = $obj,
-		OBJECTCATEGORIES::TWO_WAY_PORTALS => $categories['twoWayPortals'] = $obj,
-		OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS => $categories['twoWaySeaPortals'] = $obj,
-		OBJECTCATEGORIES::WAREHOUSES => $categories['warehouses'] = $obj,
-		OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES => $categories['warMachinesAndUpgrades'] = $obj,
-		OBJECTCATEGORIES::XP => $categories['xp'] = $obj,
-		default => [],
-	};
+function SortIntoCategories($objectsall) {
+	foreach($objectsall as $objcategory => $obj) {
+		match($objcategory) {
+			OBJECTCATEGORIES::ARTIFACTS => $categories['artifacts'] = $obj,
+			OBJECTCATEGORIES::BOATS_AND_AIRSHIPS => $categories['boatsAndAirships'] = $obj,
+			OBJECTCATEGORIES::BORDER_GATES => $categories['borderGates'] = $obj,
+			OBJECTCATEGORIES::BORDER_GUARDS => $categories['borderGuards'] = $obj,
+			OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS => $categories['creatureBanksArtifacts'] = $obj,
+			OBJECTCATEGORIES::CREATURE_BANKS_CREATURES => $categories['creatureBanksCreatures'] = $obj,
+			OBJECTCATEGORIES::CREATURE_BANKS_RELICS => $categories['creatureBanksRelics'] = $obj,
+			OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES => $categories['creatureBanksResources'] = $obj,
+			OBJECTCATEGORIES::DWELLINGS => $categories['dwellings'] = $obj,
+			OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS => $categories['garrisonsAndQuestGatesGuards'] = $obj,
+			OBJECTCATEGORIES::HEROES_AND_INFO => $categories['heroes'] = $obj,
+			OBJECTCATEGORIES::KEYMASTERS_TENTS => $categories['keymastersTents'] = $obj,
+			OBJECTCATEGORIES::LUCK => $categories['luck'] = $obj,
+			OBJECTCATEGORIES::MAGICAL_TERRAINS_BONUSES => $categories['magicalTerrainsBonuses'] = $obj,
+			OBJECTCATEGORIES::MAGICAL_TERRAINS_SPELLS => $categories['magicalTerrainsSpells'] = $obj,
+			OBJECTCATEGORIES::MANA => $categories['mana'] = $obj,
+			OBJECTCATEGORIES::MINES => $categories['mines'] = $obj,
+			OBJECTCATEGORIES::MONSTERS => $categories['monsters'] = $obj,
+			OBJECTCATEGORIES::MORALE => $categories['morale'] = $obj,
+			OBJECTCATEGORIES::MOVEMENT => $categories['movement'] = $obj,
+			OBJECTCATEGORIES::MULTI_BONUS => $categories['multiBonus'] = $obj,
+			OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES => $categories['oneWayMonolithEntrances'] = $obj,
+			OBJECTCATEGORIES::ONE_WAY_MONOLITH_EXITS => $categories['oneWayMonolithExits'] = $obj,
+			OBJECTCATEGORIES::ONE_WAY_PORTAL_ENTRANCES => $categories['oneWayPortalEntrances'] = $obj,
+			OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS => $categories['oneWayPortalExits'] = $obj,
+			OBJECTCATEGORIES::OTHER_GATEWAYS => $categories['otherGateways'] = $obj,
+			OBJECTCATEGORIES::PRIMARY_SKILLS_1 => $categories['primarySkills1'] = $obj,
+			OBJECTCATEGORIES::PRIMARY_SKILLS_2 => $categories['primarySkills2'] = $obj,
+			OBJECTCATEGORIES::RESOURCES_1 => $categories['resources1'] = $obj,
+			OBJECTCATEGORIES::RESOURCES_2 => $categories['resources2'] = $obj,
+			OBJECTCATEGORIES::RESOURCE_GENERATORS => $categories['resourceGenerators'] = $obj,
+			OBJECTCATEGORIES::SCOUTING => $categories['scouting'] = $obj,
+			OBJECTCATEGORIES::SECONDARY_SKILLS => $categories['secondarySkills'] = $obj,
+			OBJECTCATEGORIES::SPECIAL => $categories['special'] = $obj,
+			OBJECTCATEGORIES::SPELLS => $categories['spells'] = $obj,
+			OBJECTCATEGORIES::TOWNS => $categories['towns'] = $obj,
+			OBJECTCATEGORIES::TRADING => $categories['trading'] = $obj,
+			OBJECTCATEGORIES::TREASURES => $categories['treasures'] = $obj,
+			OBJECTCATEGORIES::TWO_WAY_MONOLITHS => $categories['twoWayMonoliths'] = $obj,
+			OBJECTCATEGORIES::TWO_WAY_PORTALS => $categories['twoWayPortals'] = $obj,
+			OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS => $categories['twoWaySeaPortals'] = $obj,
+			OBJECTCATEGORIES::WAREHOUSES => $categories['warehouses'] = $obj,
+			OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES => $categories['warMachinesAndUpgrades'] = $obj,
+			OBJECTCATEGORIES::XP => $categories['xp'] = $obj,
+			default => [],
+		};
+	}
+	return $categories;
+}
+
+function DisplayObjCountTable() {
+
 }
 
 /* START FLEX */
 echo '<div class="flex-container">';
 
 // Towns
-$n = 0;
 $customOrder = $this->OBJCCS->Towns;
 uasort($categories['towns'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -90,7 +95,6 @@ echo '	</tbody>
 	</table>';
 
 // Heroes & Info
-$n = 0;
 $customOrder = $this->OBJCCS->HeroesAndInfo;
 uasort($categories['heroes'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -118,7 +122,6 @@ echo '	</tbody>
 	</table>';
 
 // Monsters
-$n = 0;
 $customOrder = $this->OBJCCS->Monsters;
 uasort($categories['monsters'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -146,9 +149,8 @@ echo '	</tbody>
 	</table>';
 
 // Keymaster's Tents & Border Gates/Guards
-$n = 0;
 $ids = [];
-$colors = $this->OBJCCS->KeymastersTents;
+$customOrder = $this->OBJCCS->KeymastersTents;
 $tentKeys = array_keys($categories['keymastersTents']);
 $bGateKeys = array_keys($categories['borderGates']);
 $bGuardKeys = array_keys($categories['borderGuards']);
@@ -175,7 +177,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 8; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['keymastersTents'][$tentKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGates'][$bGateKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGuards'][$bGuardKeys[$i]]['count'].'</td>
@@ -185,9 +187,8 @@ echo '	</tbody>
 	</table>';
 
 // One-Way Monoliths
-$n = 0;
 $ids = [];
-$colors = $this->OBJCCS->OneWayMonoliths;
+$customOrder = $this->OBJCCS->OneWayMonoliths;
 $entranceKeys = array_keys($categories['oneWayMonolithEntrances']);
 $exitKeys = array_keys($categories['oneWayMonolithExits']);
 for($i = 0; $i < 8; $i++) {
@@ -211,7 +212,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 8; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithEntrances'][$entranceKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
@@ -220,9 +221,8 @@ echo '	</tbody>
 	</table>';
 
 // One-Way Portals
-$n = 0;
 $ids = [];
-$colors = $this->OBJCCS->OneWayPortals;
+$customOrder = $this->OBJCCS->OneWayPortals;
 $entranceKeys = array_keys($categories['oneWayPortalEntrances']);
 $exitKeys = array_keys($categories['oneWayPortalExits']);
 for($i = 0; $i < 8; $i++) {
@@ -246,7 +246,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 4; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalEntrances'][$entranceKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
@@ -255,8 +255,7 @@ echo '	</tbody>
 	</table>';
 
 // Two-Way Monoliths
-$n = 0;
-$colors = $this->OBJCCS->TwoWayMonoliths;
+$customOrder = $this->OBJCCS->TwoWayMonoliths;
 $keys = array_keys($categories['twoWayMonoliths']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -273,7 +272,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayMonoliths'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -281,8 +280,7 @@ echo '	</tbody>
 	</table>';
 
 // Two-Way Portals
-$n = 0;
-$colors = $this->OBJCCS->TwoWayPortals;
+$customOrder = $this->OBJCCS->TwoWayPortals;
 $keys = array_keys($categories['twoWayPortals']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -299,7 +297,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -307,8 +305,7 @@ echo '	</tbody>
 	</table>';
 
 // Two-Way Sea Portals
-$n = 0;
-$colors = $this->OBJCCS->TwoWaySeaPortals;
+$customOrder = $this->OBJCCS->TwoWaySeaPortals;
 $keys = array_keys($categories['twoWaySeaPortals']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -325,7 +322,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 5; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$customOrder[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWaySeaPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -333,7 +330,6 @@ echo '	</tbody>
 	</table>';
 
 // Other Gateways
-$n = 0;
 $customOrder = $this->OBJCCS->OtherGateways;
 uasort($categories['otherGateways'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -367,7 +363,6 @@ echo '</div class="flex-container">';
 echo '<div class="flex-container">';
 
 // Mines & Warehouses
-$n = 0;
 $customOrder = $this->OBJCCS->MinesAndWarehouses;
 uasort($categories['mines'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -426,7 +421,6 @@ echo '	</tbody>
 	</table>';
 
 // Dwellings
-$n = 0;
 $customOrder = $this->OBJCCS->Dwellings;
 uasort($categories['dwellings'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -454,7 +448,6 @@ echo '	</tbody>
 	</table>';
 
 // Garrisons & Quest Gates/Guards
-$n = 0;
 $customOrder = $this->OBJCCS->GarrisonsAndQuestGatesGuards;
 uasort($categories['garrisonsAndQuestGatesGuards'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -482,7 +475,6 @@ echo '	</tbody>
 	</table>';
 
 // War Machines & Upgrades
-$n = 0;
 $customOrder = $this->OBJCCS->WarMachinesAndUpgrades;
 uasort($categories['warMachinesAndUpgrades'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -510,7 +502,6 @@ echo '	</tbody>
 	</table>';
 
 // Trading
-$n = 0;
 $customOrder = $this->OBJCCS->Trading;
 uasort($categories['trading'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -538,7 +529,6 @@ echo '	</tbody>
 	</table>';
 
 // Creature Banks – Elite
-$n = 0;
 $customOrder = $this->OBJCCS->CreatureBanksElite;
 uasort($categories['creatureBanksRelics'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -566,7 +556,6 @@ echo '	</tbody>
 	</table>';
 
 // Creature Banks – Artifacts
-$n = 0;
 asort($categories['creatureBanksArtifacts']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -591,7 +580,6 @@ echo '	</tbody>
 	</table>';
 
 // Creature Banks – Resources
-$n = 0;
 asort($categories['creatureBanksResources']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -616,7 +604,6 @@ echo '	</tbody>
 	</table>';
 
 // Creature Banks – Creatures
-$n = 0;
 asort($categories['creatureBanksCreatures']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -647,7 +634,6 @@ echo '</div class="flex-container">';
 echo '<div class="flex-container">';
 
 // Boats & Airships
-$n = 0;
 $customOrder = $this->OBJCCS->BoatsAndAirships;
 uasort($categories['boatsAndAirships'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -675,7 +661,6 @@ echo '	</tbody>
 	</table>';
 
 // Primary Skills 1
-$n = 0;
 $customOrder = $this->OBJCCS->PrimarySkills1;
 uasort($categories['primarySkills1'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -703,7 +688,6 @@ echo '	</tbody>
 	</table>';
 
 // Primary Skills 2
-$n = 0;
 $customOrder = $this->OBJCCS->PrimarySkills2;
 uasort($categories['primarySkills2'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -731,7 +715,6 @@ echo '	</tbody>
 	</table>';
 
 // Secondary Skills
-$n = 0;
 $customOrder = $this->OBJCCS->SecondarySkills;
 uasort($categories['secondarySkills'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -759,7 +742,6 @@ echo '	</tbody>
 	</table>';
 
 // XP
-$n = 0;
 $customOrder = $this->OBJCCS->XP;
 uasort($categories['xp'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -787,7 +769,6 @@ echo '	</tbody>
 	</table>';
 
 // Mana
-$n = 0;
 $customOrder = $this->OBJCCS->Mana;
 uasort($categories['mana'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -815,7 +796,6 @@ echo '	</tbody>
 	</table>';
 
 // Multi-Bonus
-$n = 0;
 $customOrder = $this->OBJCCS->MultiBonus;
 uasort($categories['multiBonus'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -843,7 +823,6 @@ echo '	</tbody>
 	</table>';
 
 // Movement
-$n = 0;
 $customOrder = $this->OBJCCS->Movement;
 uasort($categories['movement'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -871,7 +850,6 @@ echo '	</tbody>
 	</table>';
 
 // Morale
-$n = 0;
 $customOrder = $this->OBJCCS->Morale;
 uasort($categories['morale'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -899,7 +877,6 @@ echo '	</tbody>
 	</table>';
 
 // Luck
-$n = 0;
 $customOrder = $this->OBJCCS->Luck;
 uasort($categories['luck'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -933,7 +910,6 @@ echo '</div class="flex-container">';
 echo '<div class="flex-container">';
 
 // Special
-$n = 0;
 $customOrder = $this->OBJCCS->Special;
 uasort($categories['special'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -961,7 +937,6 @@ echo '	</tbody>
 	</table>';
 
 // Spells
-$n = 0;
 $customOrder = $this->OBJCCS->Spells;
 uasort($categories['spells'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -998,7 +973,6 @@ echo '	</tbody>
 	</table>';
 
 // Artifacts
-$n = 0;
 $customOrder = $this->OBJCCS->Artifacts;
 uasort($categories['artifacts'], function($a, $b) use ($customOrder) {
     return customSort($a, $b, $customOrder);
@@ -1026,7 +1000,6 @@ echo '	</tbody>
 	</table>';
 
 // Treasures
-$n = 0;
 $customOrder = $this->OBJCCS->Treasures;
 uasort($categories['treasures'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1054,7 +1027,6 @@ echo '	</tbody>
 	</table>';
 
 // Resources 1
-$n = 0;
 $customOrder = $this->OBJCCS->Resources1;
 uasort($categories['resources1'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1084,7 +1056,6 @@ echo '	</tbody>
 	</table>';
 
 // Resources 2
-$n = 0;
 $customOrder = $this->OBJCCS->Resources2;
 uasort($categories['resources2'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1112,7 +1083,6 @@ echo '	</tbody>
 	</table>';
 
 // Resource Generators
-$n = 0;
 $customOrder = $this->OBJCCS->ResourceGenerators;
 uasort($categories['resourceGenerators'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1140,7 +1110,6 @@ echo '	</tbody>
 	</table>';
 
 // Scouting
-$n = 0;
 $customOrder = $this->OBJCCS->Scouting;
 uasort($categories['scouting'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1168,7 +1137,6 @@ echo '	</tbody>
 	</table>';
 
 // Magical Terrains – Spells
-$n = 0;
 $customOrder = $this->OBJCCS->MagicalTerrainsSpells;
 uasort($categories['magicalTerrainsSpells'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);
@@ -1196,7 +1164,6 @@ echo '	</tbody>
 	</table>';
 
 // Magical Terrains – Bonuses
-$n = 0;
 $customOrder = $this->OBJCCS->MagicalTerrainsBonuses;
 uasort($categories['magicalTerrainsBonuses'], function($a, $b) use ($customOrder) {
 	return customSort($a, $b, $customOrder);

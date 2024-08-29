@@ -1,8 +1,48 @@
 <?php
 
     const OBJCOUNT_TABLECLASS = 'table-small';
+    const START_FLEX = '<div class="flex-container">';
+    const END_FLEX = '</div>';
 
-    class ObjectCountConstants {
+    class OC_TABLETYPE {
+        const NORMAL = 1;
+        const BORDER = 2;
+        const ONE_WAY_MONOLITH_PORTAL = 3;
+        const TWO_WAY_MONOLITH_PORTAL = 4;
+        const MINE_WAREHOUSE = 5;
+    }
+
+    class OC_FLEXTYPE {
+        const NONE = 0;
+        const START = 1;
+        const END = 2;
+    }
+
+    class OC_Table {
+        public $tableType;
+        public $category;
+        public $customOrder;
+        public $flexType;
+        public $owner;
+        public $count;
+        public $info;
+        public $add1; //additional info 1
+        public $add2; //additional info 2
+
+        public function __construct(
+            $tableType = OC_TABLETYPE::NORMAL,
+            $category,
+            $customOrder = [],
+            $flexType = OC_FLEXTYPE::NONE
+        ) {
+            $this->tableType = $tableType;
+            $this->category = $category;
+            $this->customOrder[] = $customOrder;
+            $this->flexType = $flexType;
+        }
+    }
+
+    class OC_Constants {
 
 		public $Towns = [
             'Random Town',
