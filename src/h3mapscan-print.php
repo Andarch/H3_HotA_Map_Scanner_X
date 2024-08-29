@@ -2,11 +2,15 @@
 
 //class to print h3mapscan data to html presentation
 class H3MAPSCAN_PRINT {
+
 	private $h3mapscan;
     public function __construct($h3mapscan, $section) {
         $this->h3mapscan = $h3mapscan;
         $this->PrintMapInfo($section);
     }
+
+	public $OBJCCS;
+
     private function PrintMapInfo($section) {
         $subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
         $print = $this->generateSidebar();

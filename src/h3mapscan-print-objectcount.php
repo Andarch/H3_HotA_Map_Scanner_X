@@ -4,6 +4,7 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
+$this->OBJCCS = new ObjectCountConstants();
 $categories = [];
 
 /* SORT INTO CATEGORIES */
@@ -62,22 +63,9 @@ echo '<div class="flex-container">';
 
 // Towns
 $n = 0;
-$customOrderTowns = [
-	'Random Town',
-	'Castle',
-	'Rampart',
-	'Tower',
-	'Inferno',
-	'Necropolis',
-	'Dungeon',
-	'Stronghold',
-	'Fortress',
-	'Conflux',
-	'Cove',
-	'Factory',
-];
-uasort($categories['towns'], function($a, $b) use ($customOrderTowns) {
-	return customSort($a, $b, $customOrderTowns);
+$customOrder = $this->OBJCCS->Towns;
+uasort($categories['towns'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -103,18 +91,9 @@ echo '	</tbody>
 
 // Heroes & Info
 $n = 0;
-$customOrderHeroesAndInfo = [
-	'Random Hero',
-	'Hero',
-	'Prison',
-	'Hero Camp',
-	'Tavern',
-	'Den of Thieves',
-	'Sign',
-	'Ocean Bottle',
-];
-uasort($categories['heroes'], function($a, $b) use ($customOrderHeroesAndInfo) {
-	return customSort($a, $b, $customOrderHeroesAndInfo);
+$customOrder = $this->OBJCCS->HeroesAndInfo;
+uasort($categories['heroes'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -140,19 +119,9 @@ echo '	</tbody>
 
 // Monsters
 $n = 0;
-$customOrderMonsters = [
-	'Random Monster L1',
-	'Random Monster L2',
-	'Random Monster L3',
-	'Random Monster L4',
-	'Random Monster L5',
-	'Random Monster L6',
-	'Random Monster L7',
-	'Random Monster',
-	'Monster',
-];
-uasort($categories['monsters'], function($a, $b) use ($customOrderMonsters) {
-	return customSort($a, $b, $customOrderMonsters);
+$customOrder = $this->OBJCCS->Monsters;
+uasort($categories['monsters'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -179,7 +148,7 @@ echo '	</tbody>
 // Keymaster's Tents & Border Gates/Guards
 $n = 0;
 $ids = [];
-$colorsTents = ['Light Blue', 'Green', 'Red', 'Dark Blue', 'Brown', 'Purple', 'White', 'Black'];
+$colors = $this->OBJCCS->KeymastersTents;
 $tentKeys = array_keys($categories['keymastersTents']);
 $bGateKeys = array_keys($categories['borderGates']);
 $bGuardKeys = array_keys($categories['borderGuards']);
@@ -206,7 +175,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 8; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsTents[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['keymastersTents'][$tentKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGates'][$bGateKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['borderGuards'][$bGuardKeys[$i]]['count'].'</td>
@@ -218,7 +187,7 @@ echo '	</tbody>
 // One-Way Monoliths
 $n = 0;
 $ids = [];
-$colorsOneWayMonoliths = ['Blue', 'Pink', 'Orange', 'Yellow', 'Turquoise', 'Violet', 'Chartreuse', 'White'];
+$colors = $this->OBJCCS->OneWayMonoliths;
 $entranceKeys = array_keys($categories['oneWayMonolithEntrances']);
 $exitKeys = array_keys($categories['oneWayMonolithExits']);
 for($i = 0; $i < 8; $i++) {
@@ -242,7 +211,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 8; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsOneWayMonoliths[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithEntrances'][$entranceKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayMonolithExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
@@ -253,7 +222,7 @@ echo '	</tbody>
 // One-Way Portals
 $n = 0;
 $ids = [];
-$colorsOneWayPortals = ['Purple', 'Orange', 'Red', 'Cyan'];
+$colors = $this->OBJCCS->OneWayPortals;
 $entranceKeys = array_keys($categories['oneWayPortalEntrances']);
 $exitKeys = array_keys($categories['oneWayPortalExits']);
 for($i = 0; $i < 8; $i++) {
@@ -277,7 +246,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 4; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$ids[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsOneWayPortals[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalEntrances'][$entranceKeys[$i]]['count'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['oneWayPortalExits'][$exitKeys[$i]]['count'].'</td>
 		</tr>';
@@ -287,7 +256,7 @@ echo '	</tbody>
 
 // Two-Way Monoliths
 $n = 0;
-$colorsTwoWayMonoliths = ['Green', 'Brown', 'Violet', 'Orange', 'Pink', 'Turquoise', 'Yellow', 'Black', 'Blue', 'Red'];
+$colors = $this->OBJCCS->TwoWayMonoliths;
 $keys = array_keys($categories['twoWayMonoliths']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -304,7 +273,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsTwoWayMonoliths[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayMonoliths'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -313,7 +282,7 @@ echo '	</tbody>
 
 // Two-Way Portals
 $n = 0;
-$colorsTwoWayPortals = ['Green', 'Yellow', 'Red', 'Cyan', 'Chartreuse', 'Turquoise', 'Violet', 'Orange', 'Pink', 'Blue'];
+$colors = $this->OBJCCS->TwoWayPortals;
 $keys = array_keys($categories['twoWayPortals']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -330,7 +299,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 10; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsTwoWayPortals[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWayPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -339,7 +308,7 @@ echo '	</tbody>
 
 // Two-Way Sea Portals
 $n = 0;
-$colorsTwoWaySeaPortals = ['White', 'Red', 'Blue', 'Chartreuse', 'Yellow'];
+$colors = $this->OBJCCS->TwoWaySeaPortals;
 $keys = array_keys($categories['twoWaySeaPortals']);
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -356,7 +325,7 @@ echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 for($i = 0; $i < 5; $i++) {
 	echo '<tr>
 			<td class="ac nowrap" nowrap="nowrap">'.$keys[$i].'</td>
-			<td class="nowrap" nowrap="nowrap">'.$colorsTwoWaySeaPortals[$i].'</td>
+			<td class="nowrap" nowrap="nowrap">'.$colors[$i].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$categories['twoWaySeaPortals'][$keys[$i]]['count'].'</td>
 		</tr>';
 }
@@ -365,13 +334,9 @@ echo '	</tbody>
 
 // Other Gateways
 $n = 0;
-$customOrderOtherGateways = [
-	'Subterranean Gate',
-	'Town Gate',
-	'Whirlpool',
-];
-uasort($categories['otherGateways'], function($a, $b) use ($customOrderOtherGateways) {
-	return customSort($a, $b, $customOrderOtherGateways);
+$customOrder = $this->OBJCCS->OtherGateways;
+uasort($categories['otherGateways'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -403,18 +368,9 @@ echo '<div class="flex-container">';
 
 // Mines & Warehouses
 $n = 0;
-$customOrderMines = [
-	'Sawmill',
-	'Ore Pit',
-	'Alchemist\'s Lab',
-	'Sulfur Dune',
-	'Crystal Cavern',
-	'Gem Pond',
-	'Gold Mine',
-	'Abandoned Mine',
-];
-uasort($categories['mines'], function($a, $b) use ($customOrderMines) {
-	return customSort($a, $b, $customOrderMines);
+$customOrder = $this->OBJCCS->MinesAndWarehouses;
+uasort($categories['mines'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 $customOrderWarehouses = [
 	'Warehouse of Wood',
@@ -425,8 +381,8 @@ $customOrderWarehouses = [
 	'Warehouse of Gem',
 	'Warehouse of Gold',
 ];
-uasort($categories['warehouses'], function($a, $b) use ($customOrderWarehouses) {
-	return customSort($a, $b, $customOrderWarehouses);
+uasort($categories['warehouses'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 $ids = [];
 $types = ['Wood', 'Ore', 'Mercury', 'Sulfur', 'Crystal', 'Gems', 'Gold', 'Abandoned'];
@@ -471,18 +427,9 @@ echo '	</tbody>
 
 // Dwellings
 $n = 0;
-$customOrderDwellings = [
-	'Random Dwelling – Level',
-	'Random Dwelling – Faction',
-	'Random Dwelling',
-	'Dwelling',
-	'Golem Factory',
-	'Elemental Conflux',
-	'Refugee Camp',
-	'Ancient Lamp',
-];
-uasort($categories['dwellings'], function($a, $b) use ($customOrderDwellings) {
-	return customSort($a, $b, $customOrderDwellings);
+$customOrder = $this->OBJCCS->Dwellings;
+uasort($categories['dwellings'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -508,14 +455,9 @@ echo '	</tbody>
 
 // Garrisons & Quest Gates/Guards
 $n = 0;
-$customOrderGarrisonsAndQuestGatesGuards = [
-	'Garrison',
-	'Anti-magic Garrison',
-	'Quest Gate',
-	'Quest Guard',
-];
-uasort($categories['garrisonsAndQuestGatesGuards'], function($a, $b) use ($customOrderGarrisonsAndQuestGatesGuards) {
-	return customSort($a, $b, $customOrderGarrisonsAndQuestGatesGuards);
+$customOrder = $this->OBJCCS->GarrisonsAndQuestGatesGuards;
+uasort($categories['garrisonsAndQuestGatesGuards'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -541,15 +483,9 @@ echo '	</tbody>
 
 // War Machines & Upgrades
 $n = 0;
-$customOrderWarMachinesAndUpgrades = [
-	'War Machine Factory',
-	'Cannon Yard',
-	'Hill Fort – Original',
-	'Hill Fort – HotA',
-	'Skeleton Transformer',
-];
-uasort($categories['warMachinesAndUpgrades'], function($a, $b) use ($customOrderWarMachinesAndUpgrades) {
-	return customSort($a, $b, $customOrderWarMachinesAndUpgrades);
+$customOrder = $this->OBJCCS->WarMachinesAndUpgrades;
+uasort($categories['warMachinesAndUpgrades'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -575,15 +511,9 @@ echo '	</tbody>
 
 // Trading
 $n = 0;
-$customOrderTrading = [
-	'Trading Post',
-	'Warlock\'s Lab',
-	'Black Market',
-	'Junkman',
-	'Freelancer\'s Guild',
-];
-uasort($categories['trading'], function($a, $b) use ($customOrderTrading) {
-	return customSort($a, $b, $customOrderTrading);
+$customOrder = $this->OBJCCS->Trading;
+uasort($categories['trading'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -609,13 +539,9 @@ echo '	</tbody>
 
 // Creature Banks – Elite
 $n = 0;
-$customOrderCreatureBanksElite = [
-	'Dragon Utopia',
-	'Temple of the Sea',
-	'Ancient Altar',
-];
-uasort($categories['creatureBanksRelics'], function($a, $b) use ($customOrderCreatureBanksElite) {
-	return customSort($a, $b, $customOrderCreatureBanksElite);
+$customOrder = $this->OBJCCS->CreatureBanksElite;
+uasort($categories['creatureBanksRelics'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -722,14 +648,9 @@ echo '<div class="flex-container">';
 
 // Boats & Airships
 $n = 0;
-$customOrderBoatsAndAirships = [
-	'Shipyard',
-	'Boat',
-	'Airship Yard',
-	'Airship',
-];
-uasort($categories['boatsAndAirships'], function($a, $b) use ($customOrderBoatsAndAirships) {
-	return customSort($a, $b, $customOrderBoatsAndAirships);
+$customOrder = $this->OBJCCS->BoatsAndAirships;
+uasort($categories['boatsAndAirships'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -755,14 +676,9 @@ echo '	</tbody>
 
 // Primary Skills 1
 $n = 0;
-$customOrderPrimarySkills1 = [
-	'Mercenary Camp',
-	'Marletto Tower',
-	'Star Axis',
-	'Garden of Revelation',
-];
-uasort($categories['primarySkills1'], function($a, $b) use ($customOrderPrimarySkills1) {
-	return customSort($a, $b, $customOrderPrimarySkills1);
+$customOrder = $this->OBJCCS->PrimarySkills1;
+uasort($categories['primarySkills1'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -788,15 +704,9 @@ echo '	</tbody>
 
 // Primary Skills 2
 $n = 0;
-$customOrderPrimarySkills2 = [
-	'School of War',
-	'School of Magic',
-	'Arena',
-	'Colosseum of the Magi',
-	'Library of Enlightenment',
-];
-uasort($categories['primarySkills2'], function($a, $b) use ($customOrderPrimarySkills2) {
-	return customSort($a, $b, $customOrderPrimarySkills2);
+$customOrder = $this->OBJCCS->PrimarySkills2;
+uasort($categories['primarySkills2'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -822,14 +732,9 @@ echo '	</tbody>
 
 // Secondary Skills
 $n = 0;
-$customOrderSecondarySkills = [
-	'Witch Hut',
-	'Hermit\'s Shack',
-	'University',
-	'Seafaring Academy',
-];
-uasort($categories['secondarySkills'], function($a, $b) use ($customOrderSecondarySkills) {
-	return customSort($a, $b, $customOrderSecondarySkills);
+$customOrder = $this->OBJCCS->SecondarySkills;
+uasort($categories['secondarySkills'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -855,15 +760,9 @@ echo '	</tbody>
 
 // XP
 $n = 0;
-$customOrderXP = [
-	'Learning Stone',
-	'Gazebo',
-	'Tree of Knowledge',
-	'Altar of Sacrifice',
-	'Sirens',
-];
-uasort($categories['xp'], function($a, $b) use ($customOrderXP) {
-	return customSort($a, $b, $customOrderXP);
+$customOrder = $this->OBJCCS->XP;
+uasort($categories['xp'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -889,14 +788,9 @@ echo '	</tbody>
 
 // Mana
 $n = 0;
-$customOrderMana = [
-	'Magic Well',
-	'Magic Spring',
-	'Vial of Mana',
-	'Altar of Mana',
-];
-uasort($categories['mana'], function($a, $b) use ($customOrderMana) {
-	return customSort($a, $b, $customOrderMana);
+$customOrder = $this->OBJCCS->Mana;
+uasort($categories['mana'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -922,16 +816,9 @@ echo '	</tbody>
 
 // Multi-Bonus
 $n = 0;
-$customOrderMultiBonus = [
-	'Rally Flag',
-	'Idol of Fortune',
-	'Fountain of Youth',
-	'Mineral Spring',
-	'Oasis',
-	'Watering Hole',
-];
-uasort($categories['multiBonus'], function($a, $b) use ($customOrderMultiBonus) {
-	return customSort($a, $b, $customOrderMultiBonus);
+$customOrder = $this->OBJCCS->MultiBonus;
+uasort($categories['multiBonus'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -957,14 +844,9 @@ echo '	</tbody>
 
 // Movement
 $n = 0;
-$customOrderMovement = [
-	'Stables',
-	'Trailblazer',
-	'Watering Place',
-	'Lighthouse',
-];
-uasort($categories['movement'], function($a, $b) use ($customOrderMovement) {
-	return customSort($a, $b, $customOrderMovement);
+$customOrder = $this->OBJCCS->Movement;
+uasort($categories['movement'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -990,13 +872,9 @@ echo '	</tbody>
 
 // Morale
 $n = 0;
-$customOrderMorale = [
-	'Temple',
-	'Buoy',
-	'Temple of Loyalty',
-];
-uasort($categories['morale'], function($a, $b) use ($customOrderMorale) {
-	return customSort($a, $b, $customOrderMorale);
+$customOrder = $this->OBJCCS->Morale;
+uasort($categories['morale'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1022,14 +900,9 @@ echo '	</tbody>
 
 // Luck
 $n = 0;
-$customOrderLuck = [
-	'Faerie Ring',
-	'Fountain of Fortune',
-	'Swan Pond',
-	'Mermaid',
-];
-uasort($categories['luck'], function($a, $b) use ($customOrderLuck) {
-	return customSort($a, $b, $customOrderLuck);
+$customOrder = $this->OBJCCS->Luck;
+uasort($categories['luck'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1061,16 +934,9 @@ echo '<div class="flex-container">';
 
 // Special
 $n = 0;
-$customOrderSpecial = [
-	'Grail',
-	'Obelisk',
-	'Sanctuary',
-	'Seer\'s Hut',
-	'Pandora\'s Box',
-	'Event Object',
-];
-uasort($categories['special'], function($a, $b) use ($customOrderSpecial) {
-	return customSort($a, $b, $customOrderSpecial);
+$customOrder = $this->OBJCCS->Special;
+uasort($categories['special'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1096,16 +962,9 @@ echo '	</tbody>
 
 // Spells
 $n = 0;
-$customOrderSpells = [
-	'Shrine of Magic Incantation',
-	'Shrine of Magic Gesture',
-	'Shrine of Magic Thought',
-	'Shrine of Magic Mystery',
-	'Pyramid',
-	'Spell Scroll',
-];
-uasort($categories['spells'], function($a, $b) use ($customOrderSpells) {
-	return customSort($a, $b, $customOrderSpells);
+$customOrder = $this->OBJCCS->Spells;
+uasort($categories['spells'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 $names = [
 	'Shrine – Incantation',
@@ -1140,16 +999,9 @@ echo '	</tbody>
 
 // Artifacts
 $n = 0;
-$customOrderArtifacts = [
-    'Random Treasure Artifact',
-    'Random Minor Artifact',
-    'Random Major Artifact',
-    'Random Relic',
-    'Random Artifact',
-    'Artifact',
-];
-uasort($categories['artifacts'], function($a, $b) use ($customOrderArtifacts) {
-    return customSort($a, $b, $customOrderArtifacts);
+$customOrder = $this->OBJCCS->Artifacts;
+uasort($categories['artifacts'], function($a, $b) use ($customOrder) {
+    return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1175,18 +1027,9 @@ echo '	</tbody>
 
 // Treasures
 $n = 0;
-$customOrderTreasures = [
-	'Treasure Chest',
-	'Scholar',
-	'Sea Chest',
-	'Shipwreck Survivor',
-	'Warrior\'s Tomb',
-	'Wagon',
-	'Corpse',
-	'Grave',
-];
-uasort($categories['treasures'], function($a, $b) use ($customOrderTreasures) {
-	return customSort($a, $b, $customOrderTreasures);
+$customOrder = $this->OBJCCS->Treasures;
+uasort($categories['treasures'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1212,18 +1055,9 @@ echo '	</tbody>
 
 // Resources 1
 $n = 0;
-$customOrderResources1 = [
-	'Random Resource',
-	'Wood',
-	'Ore',
-	'Mercury',
-	'Sulfur',
-	'Crystal',
-	'Gems',
-	'Gold',
-];
-uasort($categories['resources1'], function($a, $b) use ($customOrderResources1) {
-	return customSort($a, $b, $customOrderResources1);
+$customOrder = $this->OBJCCS->Resources1;
+uasort($categories['resources1'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 $randomResourceComboId = '76-0';
 $categories['resources1'][$randomResourceComboId]['name'] = 'Random';
@@ -1251,15 +1085,9 @@ echo '	</tbody>
 
 // Resources 2
 $n = 0;
-$customOrderResources2 = [
-	'Campfire',
-	'Flotsam',
-	'Jetsam',
-	'Sea Barrel',
-	'Lean To',
-];
-uasort($categories['resources2'], function($a, $b) use ($customOrderResources2) {
-	return customSort($a, $b, $customOrderResources2);
+$customOrder = $this->OBJCCS->Resources2;
+uasort($categories['resources2'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1285,15 +1113,9 @@ echo '	</tbody>
 
 // Resource Generators
 $n = 0;
-$customOrderResourceGenerators = [
-	'Windmill',
-	'Water Wheel',
-	'Mystical Garden',
-	'Derrick',
-	'Prospector',
-];
-uasort($categories['resourceGenerators'], function($a, $b) use ($customOrderResourceGenerators) {
-	return customSort($a, $b, $customOrderResourceGenerators);
+$customOrder = $this->OBJCCS->ResourceGenerators;
+uasort($categories['resourceGenerators'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1319,20 +1141,9 @@ echo '	</tbody>
 
 // Scouting
 $n = 0;
-$customOrderScouting = [
-	'Redwood Observatory',
-	'Pillar of Fire',
-	'Observation Tower',
-	'Observatory',
-	'Hut of the Magi',
-	'Eye of the Magi',
-	'Cover of Darkness',
-	'Land Cartographer',
-	'Subterranean Cartographer',
-	'Sea Cartographer',
-];
-uasort($categories['scouting'], function($a, $b) use ($customOrderScouting) {
-	return customSort($a, $b, $customOrderScouting);
+$customOrder = $this->OBJCCS->Scouting;
+uasort($categories['scouting'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1358,16 +1169,9 @@ echo '	</tbody>
 
 // Magical Terrains – Spells
 $n = 0;
-$customOrderMagicalTerrainsSpells = [
-	'Magic Plains',
-	'Cursed Ground',
-	'Rocklands',
-	'Fiery Fields',
-	'Lucid Pools',
-	'Magic Clouds',
-];
-uasort($categories['magicalTerrainsSpells'], function($a, $b) use ($customOrderMagicalTerrainsSpells) {
-	return customSort($a, $b, $customOrderMagicalTerrainsSpells);
+$customOrder = $this->OBJCCS->MagicalTerrainsSpells;
+uasort($categories['magicalTerrainsSpells'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
@@ -1393,17 +1197,9 @@ echo '	</tbody>
 
 // Magical Terrains – Bonuses
 $n = 0;
-$customOrderMagicalTerrainsBonuses = [
-	'Holy Ground',
-	'Evil Fog',
-	'Clover Field',
-	'Cracked Ice',
-	'Dunes',
-	'Fields of Glory',
-	'Favorable Winds',
-];
-uasort($categories['magicalTerrainsBonuses'], function($a, $b) use ($customOrderMagicalTerrainsBonuses) {
-	return customSort($a, $b, $customOrderMagicalTerrainsBonuses);
+$customOrder = $this->OBJCCS->MagicalTerrainsBonuses;
+uasort($categories['magicalTerrainsBonuses'], function($a, $b) use ($customOrder) {
+	return customSort($a, $b, $customOrder);
 });
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">
 		<thead>
