@@ -259,14 +259,21 @@
 }
 
 .cell-greyed-out {
-	--dot-bg: #282828;
-	--dot-color: #aaa;
-	--dot-size: 0.25px;
-	--dot-space: 1px;
-	background:
-		linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-		var(--dot-color);
+	background: none !important;
+	border-right: none !important;
+	border-bottom: none !important;
+}
+
+/* Ensure the right and bottom borders are removed for the last cell */
+.cell-greyed-out:last-child {
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+/* Ensure the right and bottom borders are removed for the last row */
+.cell-greyed-out:last-of-type {
+    border-right: none !important;
+    border-bottom: none !important;
 }
 
 .thin-vertical-border {

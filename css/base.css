@@ -87,7 +87,7 @@ a:hover {
 
 table {
 	border-collapse: collapse;
-	border: var(--table-border-style) var(--table-border-width-outer) var(--table-border-color);
+	/* border: var(--table-border-style) var(--table-border-width-outer) var(--table-border-color); */
 }
 
 th {
