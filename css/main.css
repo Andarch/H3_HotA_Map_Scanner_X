@@ -238,6 +238,15 @@
 	vertical-align: top;
 }
 
+.obj-count-inactive {
+	color: #707070;
+}
+
+.obj-count-active {
+	background: #474640;
+	color: white;
+}
+
 /* UTILITIES */
 
 .small-text {

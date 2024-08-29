@@ -288,7 +288,6 @@ function DisplayObjCountTable($table) {
 
 	// Print rest of table based on table type
 	switch ($table->tableType) {
-
 		case OC_TABLETYPE::NORMAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -296,14 +295,18 @@ function DisplayObjCountTable($table) {
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			foreach ($table->category as $objcomboid => $obj) {
+				if($obj['count'] === EMPTY_DATA) {
+					$classSuffix = ' obj-count-inactive';
+				} else {
+					$classSuffix = ' obj-count-active';
+				}
 				echo '<tr>
-						<td class="ac nowrap" nowrap="nowrap">'.$objcomboid.'</td>
-						<td class="nowrap" nowrap="nowrap">'.$obj['name'].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$obj['count'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$objcomboid.'</td>
+						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$obj['name'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$obj['count'].'</td>
 					</tr>';
 			}
 			break;
-
 		case OC_TABLETYPE::BORDER:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -313,16 +316,41 @@ function DisplayObjCountTable($table) {
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Grd</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
+				$tentCount = $table->special1[$table->special2[$i]]['count'];
+				$borderGateCount = $table->special3[$table->special4[$i]]['count'];
+				$borderGuardCount = $table->special5[$table->special6[$i]]['count'];
+				if($tentCount === EMPTY_DATA && $borderGateCount === EMPTY_DATA && $borderGuardCount === EMPTY_DATA) {
+					$classSuffix = ' obj-count-inactive';
+					$classSuffixTents = ' obj-count-inactive';
+					$classSuffixBorderGates = ' obj-count-inactive';
+					$classSuffixBorderGuards = ' obj-count-inactive';
+				} else {
+					$classSuffix = ' obj-count-active';
+					if($tentCount === EMPTY_DATA) {
+						$classSuffixTents = ' obj-count-inactive';
+					} else {
+						$classSuffixTents = ' obj-count-active';
+					}
+					if($borderGateCount === EMPTY_DATA) {
+						$classSuffixBorderGates = ' obj-count-inactive';
+					} else {
+						$classSuffixBorderGates = ' obj-count-active';
+					}
+					if($borderGuardCount === EMPTY_DATA) {
+						$classSuffixBorderGuards = ' obj-count-inactive';
+					} else {
+						$classSuffixBorderGuards = ' obj-count-active';
+					}
+				}
 				echo '<tr>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special1[$table->special2[$i]]['count'].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special3[$table->special4[$i]]['count'].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special5[$table->special6[$i]]['count'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
+						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
+						<td class="ac nowrap'.$classSuffixTents.'" nowrap="nowrap">'.$tentCount.'</td>
+						<td class="ac nowrap'.$classSuffixBorderGates.'" nowrap="nowrap">'.$borderGateCount.'</td>
+						<td class="ac nowrap'.$classSuffixBorderGuards.'" nowrap="nowrap">'.$borderGuardCount.'</td>
 					</tr>';
 			}
 			break;
-
 		case OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -331,15 +359,33 @@ function DisplayObjCountTable($table) {
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Exit</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
+				$entranceCount = $table->special1[$table->special2[$i]]['count'];
+				$exitCount = $table->special3[$table->special4[$i]]['count'];
+				if($entranceCount === EMPTY_DATA && $exitCount === EMPTY_DATA) {
+					$classSuffix = ' obj-count-inactive';
+					$classSuffixEntrances = ' obj-count-inactive';
+					$classSuffixExits = ' obj-count-inactive';
+				} else {
+					$classSuffix = ' obj-count-active';
+					if($entranceCount === EMPTY_DATA) {
+						$classSuffixEntrances = ' obj-count-inactive';
+					} else {
+						$classSuffixEntrances = ' obj-count-active';
+					}
+					if($exitCount === EMPTY_DATA) {
+						$classSuffixExits = ' obj-count-inactive';
+					} else {
+						$classSuffixExits = ' obj-count-active';
+					}
+				}
 				echo '<tr>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special1[$table->special2[$i]]['count'].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special3[$table->special4[$i]]['count'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
+						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
+						<td class="ac nowrap'.$classSuffixEntrances.'" nowrap="nowrap">'.$entranceCount.'</td>
+						<td class="ac nowrap'.$classSuffixExits.'" nowrap="nowrap">'.$exitCount.'</td>
 					</tr>';
 			}
 			break;
-
 		case OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -347,14 +393,19 @@ function DisplayObjCountTable($table) {
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
+				$count = $table->category[$table->special1[$i]]['count'];
+				if($count === EMPTY_DATA) {
+					$classSuffix = ' obj-count-inactive';
+				} else {
+					$classSuffix = ' obj-count-active';
+				}
 				echo '<tr>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special1[$i].'</td>
-						<td class="nowrap" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->category[$table->special1[$i]]['count'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->special1[$i].'</td>
+						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$count.'</td>
 					</tr>';
 			}
 			break;
-
 		case OC_TABLETYPE::MINE_WAREHOUSE:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -363,16 +414,35 @@ function DisplayObjCountTable($table) {
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">WH</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
+				$mineCount = $table->special2[$table->special3[$i]]['count'];
+				$warehouseCount = $table->special5[$table->special6[$i]]['count'];
+				if($mineCount === EMPTY_DATA && ($warehouseCount === EMPTY_DATA || $warehouseCount === '')) {
+					$classSuffix = ' obj-count-inactive';
+					$classSuffixMines = ' obj-count-inactive';
+					$classSuffixWarehouses = ' obj-count-inactive';
+				} else {
+					$classSuffix = ' obj-count-active';
+					if($mineCount === EMPTY_DATA) {
+						$classSuffixMines = ' obj-count-inactive';
+					} else {
+						$classSuffixMines = ' obj-count-active';
+					}
+					if($warehouseCount === EMPTY_DATA) {
+						$classSuffixWarehouses = ' obj-count-inactive';
+					} else {
+						$classSuffixWarehouses = ' obj-count-active';
+					}
+				}
 				if($i < $table->typeCount - 1) {
 					$whCellClass = 'ac nowrap';
 				} else {
 					$whCellClass = 'cell-greyed-out ac nowrap';
 				}
 				echo '<tr>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap" nowrap="nowrap">'.$table->special2[$table->special3[$i]]['count'].'</td>
-						<td class="'.$whCellClass.'" nowrap="nowrap">'.$table->special5[$table->special6[$i]]['count'].'</td>
+						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
+						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
+						<td class="ac nowrap'.$classSuffixMines.'" nowrap="nowrap">'.$mineCount.'</td>
+						<td class="'.$whCellClass.$classSuffixWarehouses.'" nowrap="nowrap">'.$warehouseCount.'</td>
 					</tr>';
 			}
 			break;
