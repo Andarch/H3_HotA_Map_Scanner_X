@@ -23,11 +23,6 @@
         public $category;
         public $customOrder;
         public $flexType;
-        public $owner;
-        public $count;
-        public $info;
-        public $add1; //additional info 1
-        public $add2; //additional info 2
 
         public function __construct(
             $tableType = OC_TABLETYPE::NORMAL,
