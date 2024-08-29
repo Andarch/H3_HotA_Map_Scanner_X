@@ -3,6 +3,7 @@
     const OBJCOUNT_TABLECLASS = 'table-small';
     const START_FLEX = '<div class="flex-container">';
     const END_FLEX = '</div>';
+    const OBJCOUNT_COLSPAN = '100';
 
     class OC_TABLETYPE {
         const NORMAL = 1;
@@ -21,19 +22,48 @@
     class OC_Table {
         public $tableType;
         public $category;
+        public $categoryConstant;
         public $customOrder;
+        public $types;
+        public $ids;
         public $flexType;
+        public $special1;
+        public $special2;
+        public $special3;
+        public $special4;
+        public $special5;
+        public $special6;
 
         public function __construct(
-            $tableType = OC_TABLETYPE::NORMAL,
-            $category,
+            $tableType = null,
+            $category = null,
+            $categoryConstant = null,
             $customOrder = [],
-            $flexType = OC_FLEXTYPE::NONE
+            $types = [],
+            $typeCount = null,
+            $ids = [],
+            $flexType = OC_FLEXTYPE::NONE,
+            $special1 = null,
+            $special2 = null,
+            $special3 = null,
+            $special4 = null,
+            $special5 = null,
+            $special6 = null
         ) {
             $this->tableType = $tableType;
             $this->category = $category;
-            $this->customOrder[] = $customOrder;
+            $this->categoryConstant = $categoryConstant;
+            $this->customOrder = $customOrder;
+            $this->types = $types;
+            $this->typeCount = $typeCount;
+            $this->ids = $ids;
             $this->flexType = $flexType;
+            $this->special1 = $special1;
+            $this->special2 = $special2;
+            $this->special3 = $special3;
+            $this->special4 = $special4;
+            $this->special5 = $special5;
+            $this->special6 = $special6;
         }
     }
 
@@ -77,7 +107,7 @@
             'Monster',
         ];
 
-        public $KeymastersTents = [
+        public $Border = [
             'Light Blue',
             'Green',
             'Red',
@@ -146,7 +176,7 @@
             'Whirlpool',
         ];
 
-        public $MinesAndWarehouses = [
+        public $Mines = [
             'Sawmill',
             'Ore Pit',
             'Alchemist\'s Lab',
@@ -155,6 +185,27 @@
             'Gem Pond',
             'Gold Mine',
             'Abandoned Mine',
+        ];
+
+        public $Warehouses = [
+            'Warehouse of Wood',
+            'Warehouse of Ore',
+            'Warehouse of Mercury',
+            'Warehouse of Sulfur',
+            'Warehouse of Crystal',
+            'Warehouse of Gem',
+            'Warehouse of Gold',
+        ];
+
+        public $ResourceTypes = [
+            'Wood',
+            'Ore',
+            'Mercury',
+            'Sulfur',
+            'Crystal',
+            'Gems',
+            'Gold',
+            'Abandoned'
         ];
 
         public $Dwellings = [
