@@ -7,183 +7,53 @@ $categories = [];
 
 /* SORT BY CATEGORY */
 foreach($this->h3mapscan->objects_all as $objcategory => $obj) {
-	switch($objcategory) {
-		case OBJECTCATEGORIES::ARTIFACTS:
-			$categories['artifacts'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::BOATS_AND_AIRSHIPS:
-			$categories['boatsAndAirships'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::BORDER_GATES:
-			$categories['borderGates'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::BORDER_GUARDS:
-			$categories['borderGuards'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS:
-			$categories['creatureBanksArtifacts'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::CREATURE_BANKS_CREATURES:
-			$categories['creatureBanksCreatures'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::CREATURE_BANKS_RELICS:
-			$categories['creatureBanksRelics'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES:
-			$categories['creatureBanksResources'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::DWELLINGS:
-			$categories['dwellings'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS:
-			$categories['garrisonsAndQuestGatesGuards'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::HEROES_AND_INFO:
-			$categories['heroes'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::KEYMASTERS_TENTS:
-			$categories['keymastersTents'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::LUCK:
-			$categories['luck'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MAGICAL_TERRAINS_BONUSES:
-			$categories['magicalTerrainsBonuses'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MAGICAL_TERRAINS_SPELLS:
-			$categories['magicalTerrainsSpells'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MANA:
-			$categories['mana'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MINES:
-			$categories['mines'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MONSTERS:
-			$categories['monsters'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MORALE:
-			$categories['morale'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MOVEMENT:
-			$categories['movement'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::MULTI_BONUS:
-			$categories['multiBonus'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES:
-			$categories['oneWayMonolithEntrances'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::ONE_WAY_MONOLITH_EXITS:
-			$categories['oneWayMonolithExits'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::ONE_WAY_PORTAL_ENTRANCES:
-			$categories['oneWayPortalEntrances'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS:
-			$categories['oneWayPortalExits'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::OTHER_GATEWAYS:
-			$categories['otherGateways'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::PRIMARY_SKILLS_1:
-			$categories['primarySkills1'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::PRIMARY_SKILLS_2:
-			$categories['primarySkills2'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::RESOURCES_1:
-			$categories['resources1'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::RESOURCES_2:
-			$categories['resources2'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::RESOURCE_GENERATORS:
-			$categories['resourceGenerators'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::SCOUTING:
-			$categories['scouting'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::SECONDARY_SKILLS:
-			$categories['secondarySkills'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::SPECIAL:
-			$categories['special'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::SPELLS:
-			$categories['spells'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TOWNS:
-			$categories['towns'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TRADING:
-			$categories['trading'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TREASURES:
-			$categories['treasures'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TWO_WAY_MONOLITHS:
-			$categories['twoWayMonoliths'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TWO_WAY_PORTALS:
-			$categories['twoWayPortals'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS:
-			$categories['twoWaySeaPortals'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::WAREHOUSES:
-			$categories['warehouses'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES:
-			$categories['warMachinesAndUpgrades'] = $obj;
-			break;
-
-		case OBJECTCATEGORIES::XP:
-			$categories['xp'] = $obj;
-			break;
-	}
+	match($objcategory) {
+		OBJECTCATEGORIES::ARTIFACTS => $categories['artifacts'] = $obj,
+		OBJECTCATEGORIES::BOATS_AND_AIRSHIPS => $categories['boatsAndAirships'] = $obj,
+		OBJECTCATEGORIES::BORDER_GATES => $categories['borderGates'] = $obj,
+		OBJECTCATEGORIES::BORDER_GUARDS => $categories['borderGuards'] = $obj,
+		OBJECTCATEGORIES::CREATURE_BANKS_ARTIFACTS => $categories['creatureBanksArtifacts'] = $obj,
+		OBJECTCATEGORIES::CREATURE_BANKS_CREATURES => $categories['creatureBanksCreatures'] = $obj,
+		OBJECTCATEGORIES::CREATURE_BANKS_RELICS => $categories['creatureBanksRelics'] = $obj,
+		OBJECTCATEGORIES::CREATURE_BANKS_RESOURCES => $categories['creatureBanksResources'] = $obj,
+		OBJECTCATEGORIES::DWELLINGS => $categories['dwellings'] = $obj,
+		OBJECTCATEGORIES::GARRISONS_AND_QUEST_GATES_GUARDS => $categories['garrisonsAndQuestGatesGuards'] = $obj,
+		OBJECTCATEGORIES::HEROES_AND_INFO => $categories['heroes'] = $obj,
+		OBJECTCATEGORIES::KEYMASTERS_TENTS => $categories['keymastersTents'] = $obj,
+		OBJECTCATEGORIES::LUCK => $categories['luck'] = $obj,
+		OBJECTCATEGORIES::MAGICAL_TERRAINS_BONUSES => $categories['magicalTerrainsBonuses'] = $obj,
+		OBJECTCATEGORIES::MAGICAL_TERRAINS_SPELLS => $categories['magicalTerrainsSpells'] = $obj,
+		OBJECTCATEGORIES::MANA => $categories['mana'] = $obj,
+		OBJECTCATEGORIES::MINES => $categories['mines'] = $obj,
+		OBJECTCATEGORIES::MONSTERS => $categories['monsters'] = $obj,
+		OBJECTCATEGORIES::MORALE => $categories['morale'] = $obj,
+		OBJECTCATEGORIES::MOVEMENT => $categories['movement'] = $obj,
+		OBJECTCATEGORIES::MULTI_BONUS => $categories['multiBonus'] = $obj,
+		OBJECTCATEGORIES::ONE_WAY_MONOLITH_ENTRANCES => $categories['oneWayMonolithEntrances'] = $obj,
+		OBJECTCATEGORIES::ONE_WAY_MONOLITH_EXITS => $categories['oneWayMonolithExits'] = $obj,
+		OBJECTCATEGORIES::ONE_WAY_PORTAL_ENTRANCES => $categories['oneWayPortalEntrances'] = $obj,
+		OBJECTCATEGORIES::ONE_WAY_PORTAL_EXITS => $categories['oneWayPortalExits'] = $obj,
+		OBJECTCATEGORIES::OTHER_GATEWAYS => $categories['otherGateways'] = $obj,
+		OBJECTCATEGORIES::PRIMARY_SKILLS_1 => $categories['primarySkills1'] = $obj,
+		OBJECTCATEGORIES::PRIMARY_SKILLS_2 => $categories['primarySkills2'] = $obj,
+		OBJECTCATEGORIES::RESOURCES_1 => $categories['resources1'] = $obj,
+		OBJECTCATEGORIES::RESOURCES_2 => $categories['resources2'] = $obj,
+		OBJECTCATEGORIES::RESOURCE_GENERATORS => $categories['resourceGenerators'] = $obj,
+		OBJECTCATEGORIES::SCOUTING => $categories['scouting'] = $obj,
+		OBJECTCATEGORIES::SECONDARY_SKILLS => $categories['secondarySkills'] = $obj,
+		OBJECTCATEGORIES::SPECIAL => $categories['special'] = $obj,
+		OBJECTCATEGORIES::SPELLS => $categories['spells'] = $obj,
+		OBJECTCATEGORIES::TOWNS => $categories['towns'] = $obj,
+		OBJECTCATEGORIES::TRADING => $categories['trading'] = $obj,
+		OBJECTCATEGORIES::TREASURES => $categories['treasures'] = $obj,
+		OBJECTCATEGORIES::TWO_WAY_MONOLITHS => $categories['twoWayMonoliths'] = $obj,
+		OBJECTCATEGORIES::TWO_WAY_PORTALS => $categories['twoWayPortals'] = $obj,
+		OBJECTCATEGORIES::TWO_WAY_SEA_PORTALS => $categories['twoWaySeaPortals'] = $obj,
+		OBJECTCATEGORIES::WAREHOUSES => $categories['warehouses'] = $obj,
+		OBJECTCATEGORIES::WAR_MACHINES_AND_UPGRADES => $categories['warMachinesAndUpgrades'] = $obj,
+		OBJECTCATEGORIES::XP => $categories['xp'] = $obj,
+		default => [],
+	};
 }
 
 /* START FLEX */
