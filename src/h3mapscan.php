@@ -77,7 +77,7 @@ class H3MAPSCAN {
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
 	private $customHeroes = [];
-	public  $heroesPredefined = [];
+	public  $templateHeroes = [];
 
 	//HOTA extras
 	private $hota_arena = 0;
@@ -446,7 +446,7 @@ class H3MAPSCAN {
 		$this->Rumors();
 
 		// Heroes Params
-		$this->ReadPredefinedHeroes();
+		$this->ReadTemplateHeroes();
 
 		// Map
 		$this->ReadTerrain();
@@ -959,7 +959,7 @@ class H3MAPSCAN {
 	}
 
 	//another block for changed heroes in editor
-	private function ReadPredefinedHeroes() {
+	private function ReadTemplateHeroes() {
 
 		$limit = HEROES_QUANTITY;
 		if($this->isHOTA) {
@@ -979,46 +979,46 @@ class H3MAPSCAN {
 						continue;
 					}
 
-					$tHero = [];
-					$tHero['id'] = $i;
-					$tHero['tname'] = '';
-					$tHero['mname'] = EMPTY_DATA;
-					$tHero['mask'] = 255;
-					$tHero['pface'] = 255;
-					$tHero['mface'] = 255;
+					$templateHero = [];
+					$templateHero['id'] = $i;
+					$templateHero['templateHeroName'] = '';
+					$templateHero['mapHeroName'] = EMPTY_DATA;
+					$templateHero['mask'] = 255;
+					$templateHero['pface'] = 255;
+					$templateHero['mface'] = 255;
 
-					$tHero['defname'] = $this->GetHeroById($i);
-					$tHero['xp'] = 0;
-					$tHero['gender'] = '';
-					$tHero['bio'] = '';
-					$tHero['priskills'] = [];
-					$tHero['skills'] = [];
-					$tHero['spells'] = [];
-					$tHero['artifacts'] = [];
+					$templateHero['defName'] = $this->GetHeroById($i);
+					$templateHero['xp'] = 0;
+					$templateHero['gender'] = '';
+					$templateHero['bio'] = '';
+					$templateHero['priskills'] = [];
+					$templateHero['skills'] = [];
+					$templateHero['spells'] = [];
+					$templateHero['artifacts'] = [];
 
 					if(!empty($this->customHeroes)) {
-						if(array_key_exists($tHero['id'], $this->customHeroes)) {
-							$cHero = FromArray($tHero['id'], $this->customHeroes);
+						if(array_key_exists($templateHero['id'], $this->customHeroes)) {
+							$cHero = FromArray($templateHero['id'], $this->customHeroes);
 							if($cHero['cname'] !== '') {
-								$tHero['tname'] = $cHero['cname'];
+								$templateHero['templateHeroName'] = $cHero['cname'];
 							}
-							$tHero['mask'] = $cHero['mask'];
-							$tHero['pface'] = $cHero['face'];
+							$templateHero['mask'] = $cHero['mask'];
+							$templateHero['pface'] = $cHero['face'];
 						}
 					}
 
-					if($tHero['tname'] === '') {
-						$tHero['tname'] = $tHero['defname'];
+					if($templateHero['templateHeroName'] === '') {
+						$templateHero['templateHeroName'] = $templateHero['defName'];
 					}
 
 					$hasExp = $this->br->ReadUint8();
 					if($hasExp) {
-						$tHero['xp'] = $this->br->ReadUint32();
+						$templateHero['xp'] = $this->br->ReadUint32();
 					}
-					if($tHero['xp'] > 0) {
-						$tHero['xp'] = comma($tHero['xp']);
+					if($templateHero['xp'] > 0) {
+						$templateHero['xp'] = comma($templateHero['xp']);
 					} else {
-						$tHero['xp'] = '';
+						$templateHero['xp'] = '';
 					}
 
 					$hasSecSkills = $this->br->ReadUint8();
@@ -1027,43 +1027,43 @@ class H3MAPSCAN {
 						for($j = 0; $j < $howMany; $j++) {
 							$secSkills[0] = $this->GetSecskillById($this->br->ReadUint8());
 							$secSkills[1] = $this->GetSecskillLevelById($this->br->ReadUint8());
-							$tHero['skills'][] = $secSkills;
+							$templateHero['skills'][] = $secSkills;
 						}
 					}
 					$skills = [];
-					foreach($tHero['skills'] as $skill) {
+					foreach($templateHero['skills'] as $skill) {
 						$skills[] = $skill[1].' '.$skill[0];
 					}
-					$tHero['skills'] = $skills;
+					$templateHero['skills'] = $skills;
 
 					$this->curobjtype = 'Template Hero';
-					$this->curobjname = $tHero['tname'];
+					$this->curobjname = $templateHero['templateHeroName'];
 					$this->curcoor = new MapCoords();
-					$tHero['artifacts'] = $this->LoadArtifactsOfHero();
+					$templateHero['artifacts'] = $this->LoadArtifactsOfHero();
 
 					$hasCustomBio = $this->br->ReadUint8();
 					if($hasCustomBio) {
-						$tHero['bio'] = $this->ReadString();
+						$templateHero['bio'] = $this->ReadString();
 					}
 
 					// 0xFF is default, 00 male, 01 female
 					$pHerosex = $this->br->ReadUint8();
-					$tHero['gender'] = $pHerosex == HNONE ? '' : ($pHerosex ? 'Female' : 'Male');
+					$templateHero['gender'] = $pHerosex == HNONE ? '' : ($pHerosex ? 'Female' : 'Male');
 
 					$hasCustomSpells = $this->br->ReadUint8();
 					if($hasCustomSpells) {
-						$tHero['spells'] = $this->ReadSpells();
+						$templateHero['spells'] = $this->ReadSpells();
 					}
 
 					$hasCustomPrimSkills = $this->br->ReadUint8();
 					if($hasCustomPrimSkills) {
-						$tHero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
-						$tHero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
-						$tHero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
-						$tHero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
+						$templateHero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
+						$templateHero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
+						$templateHero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
+						$templateHero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
 					}
 
-					$this->heroesPredefined[$tHero['id']] = $tHero;
+					$this->templateHeroes[$templateHero['id']] = $templateHero;
 				}
 
 				//extra hota stuff
@@ -1080,98 +1080,98 @@ class H3MAPSCAN {
 	}
 
 	private function ReadHero() {
-		$mHero = [];
-		$mHero['mname'] = '';
-		$mHero['tname'] = '';
-		$mHero['defname'] = '';
-		$mHero['epx'] = 0;
-		$mHero['uid'] = 0;
-		$mHero['portrait'] = 0;
+		$mapHero = [];
+		$mapHero['mapHeroName'] = '';
+		$mapHero['templateHeroName'] = '';
+		$mapHero['defName'] = '';
+		$mapHero['epx'] = 0;
+		$mapHero['uid'] = 0;
+		$mapHero['portrait'] = 0;
 
 		if($this->version > $this::ROE) {
-			$mHero['uid'] = $this->br->ReadUint32();
+			$mapHero['uid'] = $this->br->ReadUint32();
 		}
 
-		$mHero['PlayerColor'] = $this->br->ReadUint8();
-		$mHero['subid'] = $this->br->ReadUint8();
+		$mapHero['PlayerColor'] = $this->br->ReadUint8();
+		$mapHero['subid'] = $this->br->ReadUint8();
 
 		$hasName = $this->br->ReadUint8();
 		if($hasName) {
-			$mHero['mname'] = $this->ReadString();
+			$mapHero['mapHeroName'] = $this->ReadString();
 		}
 		else {
-			$mHero['mname'] = $this->GetHeroById($mHero['subid']);
+			$mapHero['mapHeroName'] = $this->GetHeroById($mapHero['subid']);
 		}
 
-		$mHero['xp'] = 0;
+		$mapHero['xp'] = 0;
 		if($this->version > $this::AB) {
 			$hasExp = $this->br->ReadUint8();
 			if($hasExp) {
-				$mHero['xp'] = $this->br->ReadUint32();
+				$mapHero['xp'] = $this->br->ReadUint32();
 			}
 		}
 		else {
-			$mHero['xp'] = $this->br->ReadUint32();
+			$mapHero['xp'] = $this->br->ReadUint32();
 		}
 
 		$hasPortrait = $this->br->ReadUint8();
 		if($hasPortrait) {
-			$mHero['portrait'] = $this->br->ReadUint8();
+			$mapHero['portrait'] = $this->br->ReadUint8();
 		} else {
-			$mHero['portrait'] = 255;
+			$mapHero['portrait'] = 255;
 		}
 
 		//is hero in prison
-		$mHero['prisoner'] = ($this->curobjtype == OBJECTS::PRISON);
+		$mapHero['prisoner'] = ($this->curobjtype == OBJECTS::PRISON);
 
-		$mHero['skills'] = [];
+		$mapHero['skills'] = [];
 
 		$hasSecSkills = $this->br->ReadUint8();
 		if($hasSecSkills) {
 			$howMany = $this->br->ReadUint32();
 			for($yy = 0; $yy < $howMany; $yy++) {
-				$mHero['skills'][] = [
+				$mapHero['skills'][] = [
 					'skill' => $this->GetSecskillById($this->br->ReadUint8()),
 					'level' => $this->GetSecskillLevelById($this->br->ReadUint8()),
 				];
 			}
 		}
 
-		$mHero['stack'] = [];
+		$mapHero['stack'] = [];
 		$hasGarison = $this->br->ReadUint8();
 		if($hasGarison) {
-			$mHero['stack'] = $this->ReadCreatureSet(7);
+			$mapHero['stack'] = $this->ReadCreatureSet(7);
 		}
-		$mHero['formation'] = $this->br->ReadUint8();
+		$mapHero['formation'] = $this->br->ReadUint8();
 
 		$this->curobjtype = 'Hero';
-		$this->curobjname = $mHero['mname'];
+		$this->curobjname = $mapHero['mapHeroName'];
 
-		$mHero['artifacts'] = $this->LoadArtifactsOfHero();
+		$mapHero['artifacts'] = $this->LoadArtifactsOfHero();
 
-		$mHero['patrol'] = $this->br->ReadUint8();
-		if($mHero['patrol'] == HNONE) {
-			$mHero['patrol'] = 0;
+		$mapHero['patrol'] = $this->br->ReadUint8();
+		if($mapHero['patrol'] == HNONE) {
+			$mapHero['patrol'] = 0;
 		}
 
-		$mHero['bio'] = '';
-		$mHero['gender'] = 'default';
+		$mapHero['bio'] = '';
+		$mapHero['gender'] = 'default';
 		if($this->version > $this::ROE) {
 			$hasCustomBiography = $this->br->ReadUint8();
 			if($hasCustomBiography) {
-				$mHero['bio'] = $this->ReadString();
+				$mapHero['bio'] = $this->ReadString();
 			}
 			$herosex = $this->br->ReadUint8();
-			$mHero['gender'] = $herosex == HNONE ? 'Default' : ($herosex ? 'Female' : 'Male');
+			$mapHero['gender'] = $herosex == HNONE ? 'Default' : ($herosex ? 'Female' : 'Male');
 		}
 
-		$mHero['spells'] = [];
+		$mapHero['spells'] = [];
 
 		// Spells
 		if($this->version > $this::AB) {
 			$hasCustomSpells = $this->br->ReadUint8();
 			if($hasCustomSpells) {
-				$mHero['spells'] = $this->ReadSpells();
+				$mapHero['spells'] = $this->ReadSpells();
 			}
 		}
 		else if($this->isAB) {
@@ -1179,14 +1179,14 @@ class H3MAPSCAN {
 			$buff = $this->br->ReadUint8();
 		}
 
-		$mHero['priskills'] = [];
+		$mapHero['priskills'] = [];
 		if($this->version > $this::AB) {
 			$hasCustomPrimSkills = $this->br->ReadUint8();
 			if($hasCustomPrimSkills) {
-				$mHero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
-				$mHero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
-				$mHero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
-				$mHero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
+				$mapHero['priskills'][] = 'Attack: '.$this->br->ReadUint8();
+				$mapHero['priskills'][] = 'Defense: '.$this->br->ReadUint8();
+				$mapHero['priskills'][] = 'Spell Power: '.$this->br->ReadUint8();
+				$mapHero['priskills'][] = 'Knowledge: '.$this->br->ReadUint8();
 			}
 		}
 		$this->br->SkipBytes(16);
@@ -1196,7 +1196,7 @@ class H3MAPSCAN {
 			$this->br->SkipBytes(6); //not really useful stuff for now
 		}
 
-		return $mHero;
+		return $mapHero;
 }
 
 	private function LoadArtifactsOfHero() {
@@ -1749,7 +1749,7 @@ class H3MAPSCAN {
 						'object' => MAPOBJECTS::HERO,
 						'objid' => $obj['id'],
 						'pos' => $obj['pos'],
-						'name' => $obj['data']['mname'],
+						'name' => $obj['data']['mapHeroName'],
 						'owner' => $tileowner,
 						'type' => $obj['subid'],
 						'uid' => $obj['data']['uid']
@@ -2532,6 +2532,7 @@ class H3MAPSCAN {
 		$town['max_guild'] = '';
 
 		$hasCustomBuildings = $this->br->ReadUint8();
+		$town['hasCustomBuildings'] = $hasCustomBuildings;
 		if($hasCustomBuildings) {
 			$town['buildingsBuilt'] = [];
 			$town['buildingsDisabled'] = [];
@@ -2571,10 +2572,10 @@ class H3MAPSCAN {
 		}
 		// Standard buildings
 		else {
-			$town['fort'] = 'no';
+			$town['hasFort'] = false;
 			$hasFort = $this->br->ReadUint8();
 			if($hasFort) {
-				$town['fort'] = 'yes';
+				$town['hasFort'] = true;
 			}
 		}
 
@@ -3222,16 +3223,16 @@ class H3MAPSCAN {
 		}
 
 		//update hero names from map to predefined array
-		foreach($this->heroesPredefined as $k => $tHero) { //predefined
-			foreach($this->heroes_list as $l => $mHero) { //on map
-				if($tHero['id'] == $mHero['data']['subid']) {
-					$this->heroesPredefined[$k]['mname'] = $mHero['data']['mname'];
-					$this->heroesPredefined[$k]['mface'] = $mHero['data']['portrait'];
-					$this->heroes_list[$l]['data']['tname'] = $tHero['tname'];
-					$this->heroes_list[$l]['data']['defname'] = $tHero['defname'];
-					if($mHero['data']['mname'] === $tHero['defname'] && $tHero['tname'] !== $tHero['defname']) {
-						$this->heroesPredefined[$k]['mname'] = $tHero['tname'];
-						$this->heroes_list[$l]['data']['mname'] = $tHero['tname'];
+		foreach($this->templateHeroes as $k => $templateHero) { //predefined
+			foreach($this->heroes_list as $l => $mapHero) { //on map
+				if($templateHero['id'] == $mapHero['data']['subid']) {
+					$this->templateHeroes[$k]['mapHeroName'] = $mapHero['data']['mapHeroName'];
+					$this->templateHeroes[$k]['mface'] = $mapHero['data']['portrait'];
+					$this->heroes_list[$l]['data']['templateHeroName'] = $templateHero['templateHeroName'];
+					$this->heroes_list[$l]['data']['defName'] = $templateHero['defName'];
+					if($mapHero['data']['mapHeroName'] === $templateHero['defName'] && $templateHero['templateHeroName'] !== $templateHero['defName']) {
+						$this->templateHeroes[$k]['mapHeroName'] = $templateHero['templateHeroName'];
+						$this->heroes_list[$l]['data']['mapHeroName'] = $templateHero['templateHeroName'];
 					}
 					break;
 				}

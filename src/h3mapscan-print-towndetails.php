@@ -45,16 +45,22 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$buildingsBuilt = '';
 	$buildingsDisabled = '';
 
-	if(!empty($town['buildingsBuilt'])) {
-		$buildingsBuilt = implode(', ', $town['buildingsBuilt']);
+	if($town['hasCustomBuildings']) {
+		if(!empty($town['buildingsBuilt'])) {
+			$buildingsBuilt = implode(', ', $town['buildingsBuilt']);
+		} else {
+			$buildingsBuilt = EMPTY_DATA;
+		}
+
+		if(!empty($town['buildingsDisabled'])) {
+			$buildingsDisabled = implode(', ', $town['buildingsDisabled']);
+		} else {
+			$buildingsDisabled = EMPTY_DATA;
+		}
+	} else if($town['hasFort']) {
+		$buildingsBuilt = 'Fort';
 	} else {
 		$buildingsBuilt = EMPTY_DATA;
-	}
-
-	if(!empty($town['buildingsDisabled'])) {
-		$buildingsDisabled = implode(', ', $town['buildingsDisabled']);
-	} else {
-		$buildingsDisabled = EMPTY_DATA;
 	}
 
 	echo '<tr>

@@ -25,7 +25,7 @@ class H3MAPSCAN_PRINT {
 				include 'h3mapscan-print-terrain.php';
 				break;
 			case 'Disabled Heroes':
-			case 'Custom Heroes':
+			case 'Template Heroes':
 			case 'Map Heroes':
 				include 'h3mapscan-print-heroes.php';
 				break;
@@ -75,11 +75,11 @@ class H3MAPSCAN_PRINT {
 		$mapid = $_GET['mapid'] ?? '';
 		$mapidParam = $mapid ? "mapid=$mapid&" : '';
 		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Custom Heroes', 'Map Heroes', 'Town Details',
+		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
 					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
 					 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count'];
 		$sectionsWithAnchors = [
-			'Custom Heroes' => 'heroes-table-2',
+			'Template Heroes' => 'heroes-table-2',
 			'Map Heroes' => 'heroes-table-3',
 			'Quest Guards' => 'quest-guards-table',
 		];
@@ -96,7 +96,7 @@ class H3MAPSCAN_PRINT {
 		];
 		$sectionsWithHr2Below = [
 			'Disabled Heroes',
-			'Custom Heroes',
+			'Template Heroes',
 			'Artifacts',
 			'Seer\'s Huts',
 			'Quest Gates',

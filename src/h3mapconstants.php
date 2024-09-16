@@ -2408,6 +2408,13 @@
 			39 => 'Dwelling Level 7',
 			//byte 5
 			40 => 'Dwelling Level 7 Upgrade',
+			41 => '41',
+			42 => '42',
+			43 => '43',
+			44 => '44',
+			45 => '45',
+			46 => '46',
+			47 => '47',
 		];
 
 		public $TownEventHotaSpecial1 = [
