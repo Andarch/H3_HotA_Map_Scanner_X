@@ -5,6 +5,6 @@
 		'mq.host' => 'localhost',
 		'mq.user' => 'root',
 		'mq.pass' => '',
-		'mq.db'   => 'heroes3mapscan',
+		'mq.db'   => 'heroesdb',
 		'mq.port' => '3306',
 	);

@@ -125,7 +125,7 @@ else {
 		$loss = array_key_exists($res['loss'], $LOSS) ? $LOSS[$res['loss']] : '?';
 
 		echo $maphead.'<tr>
-			<td><a href="mapscan.php?mapid='.$res['idm'].'">'.$name.'</a></td>
+			<td><a href="index.php?mapid='.$res['idm'].'">'.$name.'</a></td>
 			<td>'.$res['version'].'</td>
 			<td>'.$res['sizename'].'</td>
 			<td>'.$levels.'</td>

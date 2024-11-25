@@ -34,7 +34,7 @@ require_once 'src/config.php';
 			<table class="sidebarTopTable">
 				<tr>
 					<td class="sidebarTopTableCell">
-						<a href="mapscan.php?scan=1">Scan</a>
+						<a href="index.php?scan=1">Scan</a>
 					</td>
 					<td class="sidebarTopTableCell">
 						<a href="mapindex.php">Map List</a>

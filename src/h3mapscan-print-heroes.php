@@ -163,8 +163,10 @@ foreach($templateHeroesPrint as $k => $templateHeroPrint) {
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">'.(++$n).'</td>
-			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
-			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">'.$templateHeroPrint['mapHeroName'].'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
+			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
+			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
+			style="border-bottom:1px dotted grey; border-left:none;">'.$templateHeroPrint['mapHeroName'].'</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$class.'</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$players.'</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$gender.'</td>
@@ -176,12 +178,16 @@ foreach($templateHeroesPrint as $k => $templateHeroPrint) {
 			<td class="small-text" rowspan="3" style="max-width:500px;">'.$bio.'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
-			<td class="ac nowrap small-text vat fixed-height-row" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$templateHeroPrint['templateHeroName'].'</td>
+			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
+			style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Template</td>
+			<td class="ac nowrap small-text vat fixed-height-row" nowrap="nowrap"
+			style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$templateHeroPrint['templateHeroName'].'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap hero-name-row-header" nowrap="nowrap" style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
-			<td class="ac nowrap small-text vat" nowrap="nowrap" style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$templateHeroPrint['defName'].'</td>
+			<td class="ar nowrap hero-name-row-header" nowrap="nowrap"
+			style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Def</td>
+			<td class="ac nowrap small-text vat" nowrap="nowrap"
+			style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$templateHeroPrint['defName'].'</td>
 		</tr>';
 }
 echo '</table>';
@@ -272,13 +278,13 @@ foreach($this->h3mapscan->heroes_list as $mapHero) {
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
-				style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Map Specs</td>
+				style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Template</td>
 			<td class="ac nowrap small-text vat fixed-height-row" nowrap="nowrap"
 				style="border-top:1px dotted grey; border-left:none; border-bottom:none;">'.$mapHero['data']['templateHeroName'].'</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header" nowrap="nowrap"
-			style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Identity</td>
+			style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Def</td>
 			<td class="ac nowrap small-text vat" nowrap="nowrap"
 			style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mapHero['data']['defName'].'</td>
 		</tr>';

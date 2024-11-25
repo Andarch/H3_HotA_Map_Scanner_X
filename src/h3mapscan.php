@@ -985,7 +985,7 @@ class H3MAPSCAN {
 					$templateHero['mapHeroName'] = EMPTY_DATA;
 					$templateHero['mask'] = 255;
 					$templateHero['pface'] = 255;
-					$templateHero['mface'] = 255;
+					$templateHero['mapHeroFace'] = 255;
 
 					$templateHero['defName'] = $this->GetHeroById($i);
 					$templateHero['xp'] = 0;
@@ -3227,7 +3227,7 @@ class H3MAPSCAN {
 			foreach($this->heroes_list as $l => $mapHero) { //on map
 				if($templateHero['id'] == $mapHero['data']['subid']) {
 					$this->templateHeroes[$k]['mapHeroName'] = $mapHero['data']['mapHeroName'];
-					$this->templateHeroes[$k]['mface'] = $mapHero['data']['portrait'];
+					$this->templateHeroes[$k]['mapHeroFace'] = $mapHero['data']['portrait'];
 					$this->heroes_list[$l]['data']['templateHeroName'] = $templateHero['templateHeroName'];
 					$this->heroes_list[$l]['data']['defName'] = $templateHero['defName'];
 					if($mapHero['data']['mapHeroName'] === $templateHero['defName'] && $templateHero['templateHeroName'] !== $templateHero['defName']) {
