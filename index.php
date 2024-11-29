@@ -42,7 +42,7 @@ require_once 'src/config.php';
 						<a href="index.php?scan=1">Scan</a>
 					</td>
 					<td class="sidebarTopTableCell">
-						<a href="mapindex.php">Map List</a>
+						<a href="maplist.php">Map List</a>
 					</td>
 				</tr>
 			</table>
@@ -119,7 +119,7 @@ elseif($scan) {
 		}
 
 		if($displayed == 0) {
-			echo 'There are no maps to proccess in map folder. You can go to <a href="mapindex.php">Map List</a><br /><br />';
+			echo 'There are no maps to proccess in map folder. You can go to <a href="maplist.php">Map List</a><br /><br />';
 		}
 		else {
 			echo '<a href="saveall" id="mapread" onclick="return false;">Read and save all maps</a><br />';

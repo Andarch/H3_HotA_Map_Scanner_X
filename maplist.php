@@ -38,7 +38,7 @@ $mapsearch = expost('map', exget('map', ''));
 	<a href="?c=stat">Map Stat</a>
 </p>
 
-<form method="post" action="mapindex.php">
+<form method="post" action="maplist.php">
 	<input type="text" name="map" value="<?php echo $mapsearch; ?>" />
 	<input type="submit" name="ok" value="Search" />
 </form>
