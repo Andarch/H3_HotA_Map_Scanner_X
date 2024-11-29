@@ -18,20 +18,15 @@ require_once 'src/config.php';
 <head>
 	<title>H3 HotA Map Scanner X</title>
 	<link rel="shortcut icon" href="images/hotaicon.png" type="image/x-icon" />
+	<link rel="stylesheet" href="css/main.css">
     <?php
     // Detect if running on localhost
     $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-
-    // Include different CSS based on the environment
+    // Include dev CSS based on the environment
     if ($isLocalhost) {
-        echo '<link rel="stylesheet" href="css/main_dev.css">';
-    } else {
-        echo '<link rel="stylesheet" href="css/main.css">';
+        echo '<link rel="stylesheet" href="css/dev.css">';
     }
     ?>
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
 	<script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="application/javascript" src="js/jquery-ui.js"></script>
 	<script type="application/javascript" src="js/mapread.js"></script>

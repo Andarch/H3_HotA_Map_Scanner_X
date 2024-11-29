@@ -16,24 +16,20 @@ $mapsearch = expost('map', exget('map', ''));
 <head>
 	<title>H3 HotA Map Scanner X</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+	<link rel="stylesheet" href="css/main.css">
+    <?php
+    // Detect if running on localhost
+    $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+    // Include dev CSS based on the environment
+    if ($isLocalhost) {
+        echo '<link rel="stylesheet" href="css/dev.css">';
+    }
+    ?>
 <style>
-	* {background: #333; font-family: calibri, arial, sans-serif; }
-	table {border-collapse:collapse; margin: 1em; border: solid 1px #000;}
-	th { background: #005663;}
-	th, td {border: solid 1px #000; min-width: 1em; padding: 1px 5px; }
-	.ar { text-align:right; }
-	.ac { text-align:center; }
-	.al { text-align:left; }
-	.mc { margin: 0px auto; }
-
 	a, a:visited { color: #e6b800; text-decoration: none; }
 	a:hover { text-decoration: underline; }
-
-	.smalltable {font-size: 14px;}
 	.smalltable1 { width: 75%;  margin: 1em auto;}
 	img { width: 256px; margin: 0px auto;}
-
-	body, table { color: #ddd; }
 </style>
 </head>
 <body>
