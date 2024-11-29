@@ -22,4 +22,4 @@
 	//folder with cached map info
 	// DEFINE('MAPDIRINFO', './mapsinfo/');
 
-	require_once './src/access.php';
+	//require_once './src/access.php';

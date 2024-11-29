@@ -10,6 +10,29 @@ header('Content-Type: text/html; charset=utf-8');
 require_once 'src/mi.php';
 require_once 'src/config.php';
 
+// Detect if running on localhost
+$isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+
+//mysql access
+if ($isLocalhost) {
+	global $_cfg;
+		$_cfg = array(
+		'mq.host' => 'localhost',
+		'mq.user' => 'root',
+		'mq.pass' => '',
+		'mq.db'   => 'heroesdb',
+		'mq.port' => '3306',
+	);
+} else {
+	global $_cfg;
+		$_cfg = array(
+		'mq.host' => 'sql311.infinityfree.com',
+		'mq.user' => 'if0_37786384',
+		'mq.pass' => 'Alamar85',
+		'mq.db'   => 'if0_37786384_h3db',
+		'mq.port' => '3306',
+	);
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -18,7 +41,14 @@ require_once 'src/config.php';
 <head>
 	<title>H3 HotA Map Scanner X</title>
 	<link rel="shortcut icon" href="images/hotaicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="css/main.css">
+    <?php
+    // Include different CSS based on the environment
+    if ($isLocalhost) {
+        echo '<link rel="stylesheet" href="css/main_dev.css">';
+    } else {
+        echo '<link rel="stylesheet" href="css/main.css">';
+    }
+    ?>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
