@@ -98,10 +98,10 @@ usort($flatObjectCounts, function($a, $b) {
 
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">';
 echo '<tr>
-        <th class="table__title-bar--small">ID</th>
-        <th class="table__title-bar--small">Type</th>';
-foreach (array_keys($zoneColors) as $zone) {
-    echo '<th class="table__title-bar--small" style="width:50.29px;">'.$zone.'</th>';
+        <th class="table__title-bar--small2">ID</th>
+        <th class="table__title-bar--small2">Type</th>';
+for ($n=0; $n < 8; $n++) {
+    echo '<th class="table__title-bar--small2" style="width:34.04px; padding:2.5px 3px 1.5px 5px;">'.$this->h3mapscan->GetPlayerColorById($n).'</th>';
 }
 echo '</tr>';
 
