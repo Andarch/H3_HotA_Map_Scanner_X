@@ -1556,7 +1556,7 @@ class H3MAPSCAN {
 
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
 
-					if(!array_key_exists($obj['id'], $this->CS->OmittedTerrains)) {
+					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
 						$index = count($this->objects_zones);
 						$this->objects_zones[$index] = [
 							'comboid' => $objcomboid,

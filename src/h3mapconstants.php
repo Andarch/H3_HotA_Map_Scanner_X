@@ -1844,7 +1844,8 @@
 			214 => 'Hero Placeholder',
 		];
 
-		public $OmittedTerrains = [
+		public $OmittedZoneObjects = [
+			8 => 'Boat',
 			21 => 'Cursed Ground',
 			46 => 'Magic Plains',
 			141 => 'HotA Ground',
