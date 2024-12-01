@@ -71,7 +71,7 @@ class H3MAPSCAN {
 	private $objTemplates = [];
 	public  $objectsNum = 0;
 	private $objects = [];
-	public  $objects_unique = [];
+	public  $objects_zones = [];
 	public  $objects_all = [];
 
 	private $freeHeroes = [];
@@ -1551,8 +1551,19 @@ class H3MAPSCAN {
 
 					$objcategory = $obj['objcategory'];
 					$objcomboid = $obj['comboid'];
+					$objname = $obj['objname'];
+					$objpos = $obj['pos'];
 
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
+
+					if(!array_key_exists($obj['id'], $this->CS->OmittedTerrains)) {
+						$index = count($this->objects_zones);
+						$this->objects_zones[$index] = [
+							'comboid' => $objcomboid,
+							'name' => $objname,
+							'pos' => $objpos,
+						];
+					}
 				}
 			}
 			else {

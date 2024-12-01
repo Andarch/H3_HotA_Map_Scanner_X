@@ -1844,6 +1844,22 @@
 			214 => 'Hero Placeholder',
 		];
 
+		public $OmittedTerrains = [
+			21 => 'Cursed Ground',
+			46 => 'Magic Plains',
+			141 => 'HotA Ground',
+			222 => 'Clover Field',
+			223 => 'Cursed Ground',
+			224 => 'Evil Fog',
+			225 => 'Favourable Winds',
+			226 => 'Fiery Fields',
+			227 => 'Holy Ground',
+			228 => 'Lucid Pools',
+			229 => 'Magic Clouds',
+			230 => 'Magic Plains',
+			231 => 'Rocklands',
+		];
+
 		public $Mines = [
 			0 => 'Sawmill',
 			1 => 'Alchemist\'s Lab',
