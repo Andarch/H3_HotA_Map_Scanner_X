@@ -71,8 +71,9 @@ class H3MAPSCAN {
 	private $objTemplates = [];
 	public  $objectsNum = 0;
 	private $objects = [];
-	public  $objects_zones = [];
 	public  $objects_all = [];
+	public  $objects_per_zone = [];
+	public  $objects_zones = [];
 
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
@@ -1557,6 +1558,14 @@ class H3MAPSCAN {
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
 
 					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
+						$index = count($this->objects_per_zone[$objcategory]);
+						$this->objects_per_zone[$objcategory] = [
+							$index,
+							'comboid' => $objcomboid,
+							'name' => $objname,
+							'pos' => $objpos,
+						];
+
 						$index = count($this->objects_zones);
 						$this->objects_zones[$index] = [
 							'comboid' => $objcomboid,
@@ -2419,6 +2428,17 @@ class H3MAPSCAN {
 				$this->objects_all[$category] = [];
 			}
 			$this->objects_all[$category][$comboid] = [
+				'name' => $details['name'],
+				'count' => 0
+			];
+		}
+
+		foreach ($this->CS->ObjectEx as $comboid => $details) {
+			$category = $details['category'];
+			if (!isset($this->objects_per_zone[$category])) {
+				$this->objects_per_zone[$category] = [];
+			}
+			$this->objects_per_zone[$category][$comboid] = [
 				'name' => $details['name'],
 				'count' => 0
 			];
