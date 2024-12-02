@@ -4,21 +4,21 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
-$this->OBJCCS = new OC_Constants();
 $obj_all = $this->h3mapscan->objects_all;
+$obj_names = new OC_Constants();
 
 /* MAIN */
 
 // Towns
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $this->OBJCCS->Towns, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $obj_names->Towns, null, null, null, OC_FLEXTYPE::START);
 DisplayObjCountTable($table);
 
 // Heroes & Info
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::HEROES_AND_INFO], OBJ_CATEGORY::HEROES_AND_INFO, $this->OBJCCS->HeroesAndInfo, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::HEROES_AND_INFO], OBJ_CATEGORY::HEROES_AND_INFO, $obj_names->HeroesAndInfo, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Monsters
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MONSTERS], OBJ_CATEGORY::MONSTERS, $this->OBJCCS->Monsters, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MONSTERS], OBJ_CATEGORY::MONSTERS, $obj_names->Monsters, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Keymasters / Border
@@ -32,7 +32,7 @@ for ($i = 0; $i < 8; $i++) {
 	$id3 = $bGuardKeys[$i] ?? null;
 	$ids[] = $id1 . COMBOID_SEPARATOR . $id2 . COMBOID_SEPARATOR . $id3;
 }
-$table = new OC_Table(OC_TABLETYPE::BORDER, null, OBJ_CATEGORY::KEYMASTERS_BORDER, null, $this->OBJCCS->KeymastersBorder, 8, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::KEYMASTERS_TENTS], $tentKeys, $obj_all[OBJ_CATEGORY::BORDER_GATES], $bGateKeys, $obj_all[OBJ_CATEGORY::BORDER_GUARDS], $bGuardKeys);
+$table = new OC_Table(OC_TABLETYPE::BORDER, null, OBJ_CATEGORY::KEYMASTERS_BORDER, null, $obj_names->KeymastersBorder, 8, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::KEYMASTERS_TENTS], $tentKeys, $obj_all[OBJ_CATEGORY::BORDER_GATES], $bGateKeys, $obj_all[OBJ_CATEGORY::BORDER_GUARDS], $bGuardKeys);
 DisplayObjCountTable($table);
 
 // 1-Way Monoliths
@@ -44,7 +44,7 @@ for($i = 0; $i < 8; $i++) {
 	$id2 = $exitKeys[$i] ?? null;
 	$ids[] = $id1.COMBOID_SEPARATOR.$id2;
 }
-$table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJ_CATEGORY::ONE_WAY_MONOLITHS, null, $this->OBJCCS->OneWayMonoliths, 8, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES], $entranceKeys, $obj_all[OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS], $exitKeys);
+$table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJ_CATEGORY::ONE_WAY_MONOLITHS, null, $obj_names->OneWayMonoliths, 8, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES], $entranceKeys, $obj_all[OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS], $exitKeys);
 DisplayObjCountTable($table);
 
 // 1-Way Portals
@@ -56,26 +56,26 @@ for($i = 0; $i < 4; $i++) {
 	$id2 = $exitKeys[$i] ?? null;
 	$ids[] = $id1.COMBOID_SEPARATOR.$id2;
 }
-$table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJ_CATEGORY::ONE_WAY_PORTALS, null, $this->OBJCCS->OneWayPortals, 4, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES], $entranceKeys, $obj_all[OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS], $exitKeys);
+$table = new OC_Table(OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL, null, OBJ_CATEGORY::ONE_WAY_PORTALS, null, $obj_names->OneWayPortals, 4, $ids, OC_FLEXTYPE::NONE, $obj_all[OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES], $entranceKeys, $obj_all[OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS], $exitKeys);
 DisplayObjCountTable($table);
 
 // 2-Way Monoliths
 $keys = array_keys($obj_all[OBJ_CATEGORY::TWO_WAY_MONOLITHS]);
-$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_MONOLITHS], OBJ_CATEGORY::TWO_WAY_MONOLITHS, null, $this->OBJCCS->TwoWayMonoliths, 10, null, OC_FLEXTYPE::NONE, $keys);
+$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_MONOLITHS], OBJ_CATEGORY::TWO_WAY_MONOLITHS, null, $obj_names->TwoWayMonoliths, 10, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
 
 // 2-Way Portals
 $keys = array_keys($obj_all[OBJ_CATEGORY::TWO_WAY_PORTALS]);
-$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_PORTALS], OBJ_CATEGORY::TWO_WAY_PORTALS, null, $this->OBJCCS->TwoWayPortals, 10, null, OC_FLEXTYPE::NONE, $keys);
+$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_PORTALS], OBJ_CATEGORY::TWO_WAY_PORTALS, null, $obj_names->TwoWayPortals, 10, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
 
 // 2-Way Sea Portals
 $keys = array_keys($obj_all[OBJ_CATEGORY::TWO_WAY_SEA_PORTALS]);
-$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_SEA_PORTALS], OBJ_CATEGORY::TWO_WAY_SEA_PORTALS, null, $this->OBJCCS->TwoWaySeaPortals, 5, null, OC_FLEXTYPE::NONE, $keys);
+$table = new OC_Table(OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL, $obj_all[OBJ_CATEGORY::TWO_WAY_SEA_PORTALS], OBJ_CATEGORY::TWO_WAY_SEA_PORTALS, null, $obj_names->TwoWaySeaPortals, 5, null, OC_FLEXTYPE::NONE, $keys);
 DisplayObjCountTable($table);
 
 // Other Gateways
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::OTHER_GATEWAYS], OBJ_CATEGORY::OTHER_GATEWAYS, $this->OBJCCS->OtherGateways, null, null, null, OC_FLEXTYPE::END);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::OTHER_GATEWAYS], OBJ_CATEGORY::OTHER_GATEWAYS, $obj_names->OtherGateways, null, null, null, OC_FLEXTYPE::END);
 DisplayObjCountTable($table);
 
 // Mines & Warehouses
@@ -90,27 +90,27 @@ for($i = 0; $i < 7; $i++) {
 	$ids[] = $id1.COMBOID_SEPARATOR.$id2;
 }
 $ids[] = $mineKeys[7];
-$table = new OC_Table(OC_TABLETYPE::MINE_WAREHOUSE, null, OBJ_CATEGORY::MINES_AND_WAREHOUSES, null, $this->OBJCCS->ResourceTypes, 8, $ids, OC_FLEXTYPE::START, $this->OBJCCS->Mines, $obj_all[OBJ_CATEGORY::MINES], $mineKeys, $this->OBJCCS->Warehouses, $obj_all[OBJ_CATEGORY::WAREHOUSES], $warehouseKeys);
+$table = new OC_Table(OC_TABLETYPE::MINE_WAREHOUSE, null, OBJ_CATEGORY::MINES_AND_WAREHOUSES, null, $obj_names->ResourceTypes, 8, $ids, OC_FLEXTYPE::START, $obj_names->Mines, $obj_all[OBJ_CATEGORY::MINES], $mineKeys, $obj_names->Warehouses, $obj_all[OBJ_CATEGORY::WAREHOUSES], $warehouseKeys);
 DisplayObjCountTable($table);
 
 // Dwellings
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::DWELLINGS], OBJ_CATEGORY::DWELLINGS, $this->OBJCCS->Dwellings, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::DWELLINGS], OBJ_CATEGORY::DWELLINGS, $obj_names->Dwellings, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Garrisons / Quests
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::GARRISONS_QUESTS], OBJ_CATEGORY::GARRISONS_QUESTS, $this->OBJCCS->GarrisonsQuests, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::GARRISONS_QUESTS], OBJ_CATEGORY::GARRISONS_QUESTS, $obj_names->GarrisonsQuests, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // War Machines & Upgrades
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES], OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES, $this->OBJCCS->WarMachinesAndUpgrades, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES], OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES, $obj_names->WarMachinesAndUpgrades, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Trading
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TRADING], OBJ_CATEGORY::TRADING, $this->OBJCCS->Trading, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TRADING], OBJ_CATEGORY::TRADING, $obj_names->Trading, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Creature Banks – Elite
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::CREATURE_BANKS_ELITE], OBJ_CATEGORY::CREATURE_BANKS_ELITE, $this->OBJCCS->CreatureBanksElite, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::CREATURE_BANKS_ELITE], OBJ_CATEGORY::CREATURE_BANKS_ELITE, $obj_names->CreatureBanksElite, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Creature Banks – Artifacts
@@ -129,83 +129,83 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::CREATURE_BANK
 DisplayObjCountTable($table);
 
 // Boats & Airships
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::BOATS_AND_AIRSHIPS], OBJ_CATEGORY::BOATS_AND_AIRSHIPS, $this->OBJCCS->BoatsAndAirships, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::BOATS_AND_AIRSHIPS], OBJ_CATEGORY::BOATS_AND_AIRSHIPS, $obj_names->BoatsAndAirships, null, null, null, OC_FLEXTYPE::START);
 DisplayObjCountTable($table);
 
 // Primary Skills 1
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::PRIMARY_SKILLS_1], OBJ_CATEGORY::PRIMARY_SKILLS_1, $this->OBJCCS->PrimarySkills1, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::PRIMARY_SKILLS_1], OBJ_CATEGORY::PRIMARY_SKILLS_1, $obj_names->PrimarySkills1, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Primary Skills 2
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::PRIMARY_SKILLS_2], OBJ_CATEGORY::PRIMARY_SKILLS_2, $this->OBJCCS->PrimarySkills2, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::PRIMARY_SKILLS_2], OBJ_CATEGORY::PRIMARY_SKILLS_2, $obj_names->PrimarySkills2, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Secondary Skills
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SECONDARY_SKILLS], OBJ_CATEGORY::SECONDARY_SKILLS, $this->OBJCCS->SecondarySkills, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SECONDARY_SKILLS], OBJ_CATEGORY::SECONDARY_SKILLS, $obj_names->SecondarySkills, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // XP
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::XP], OBJ_CATEGORY::XP, $this->OBJCCS->XP, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::XP], OBJ_CATEGORY::XP, $obj_names->XP, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Mana
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MANA], OBJ_CATEGORY::MANA, $this->OBJCCS->Mana, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MANA], OBJ_CATEGORY::MANA, $obj_names->Mana, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Multi-Bonus
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MULTI_BONUS], OBJ_CATEGORY::MULTI_BONUS, $this->OBJCCS->MultiBonus, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MULTI_BONUS], OBJ_CATEGORY::MULTI_BONUS, $obj_names->MultiBonus, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Movement
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MOVEMENT], OBJ_CATEGORY::MOVEMENT, $this->OBJCCS->Movement, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MOVEMENT], OBJ_CATEGORY::MOVEMENT, $obj_names->Movement, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Morale
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MORALE], OBJ_CATEGORY::MORALE, $this->OBJCCS->Morale, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MORALE], OBJ_CATEGORY::MORALE, $obj_names->Morale, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Luck
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::LUCK], OBJ_CATEGORY::LUCK, $this->OBJCCS->Luck, null, null, null, OC_FLEXTYPE::END);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::LUCK], OBJ_CATEGORY::LUCK, $obj_names->Luck, null, null, null, OC_FLEXTYPE::END);
 DisplayObjCountTable($table);
 
 // Special
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SPECIAL], OBJ_CATEGORY::SPECIAL, $this->OBJCCS->Special, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SPECIAL], OBJ_CATEGORY::SPECIAL, $obj_names->Special, null, null, null, OC_FLEXTYPE::START);
 DisplayObjCountTable($table);
 
 // Spells
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SPELLS], OBJ_CATEGORY::SPELLS, $this->OBJCCS->Spells, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SPELLS], OBJ_CATEGORY::SPELLS, $obj_names->Spells, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Artifacts
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::ARTIFACTS], OBJ_CATEGORY::ARTIFACTS, $this->OBJCCS->Artifacts, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::ARTIFACTS], OBJ_CATEGORY::ARTIFACTS, $obj_names->Artifacts, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Treasures
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TREASURES], OBJ_CATEGORY::TREASURES, $this->OBJCCS->Treasures, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::TREASURES], OBJ_CATEGORY::TREASURES, $obj_names->Treasures, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Resources 1
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCES_1], OBJ_CATEGORY::RESOURCES_1, $this->OBJCCS->Resources1, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCES_1], OBJ_CATEGORY::RESOURCES_1, $obj_names->Resources1, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Resources 2
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCES_2], OBJ_CATEGORY::RESOURCES_2, $this->OBJCCS->Resources2, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCES_2], OBJ_CATEGORY::RESOURCES_2, $obj_names->Resources2, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Resource Generators
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCE_GENERATORS], OBJ_CATEGORY::RESOURCE_GENERATORS, $this->OBJCCS->ResourceGenerators, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::RESOURCE_GENERATORS], OBJ_CATEGORY::RESOURCE_GENERATORS, $obj_names->ResourceGenerators, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Scouting
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SCOUTING], OBJ_CATEGORY::SCOUTING, $this->OBJCCS->Scouting, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::SCOUTING], OBJ_CATEGORY::SCOUTING, $obj_names->Scouting, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Magical Terrains – Spells
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS], OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS, $this->OBJCCS->MagicalTerrainsSpells, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS], OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS, $obj_names->MagicalTerrainsSpells, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountTable($table);
 
 // Magical Terrains – Bonuses
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $this->OBJCCS->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::END);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_all[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $obj_names->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::END);
 DisplayObjCountTable($table);
 
 /* END MAIN */
