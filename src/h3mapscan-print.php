@@ -63,9 +63,6 @@ class H3MAPSCAN_PRINT {
 			case 'Objects per Zone':
 				include 'h3mapscan-print-objectsperzone.php';
 				break;
-			case 'Object Zones Test':
-				include 'h3mapscan-print-objectcountzones.php';
-				break;
             default:
                 include 'h3mapscan-print-general.php';
                 break;
@@ -83,7 +80,7 @@ class H3MAPSCAN_PRINT {
 		$currentSection = $_GET['section'] ?? '';
 		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
 					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
-					 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count', 'Objects per Zone', 'Object Zones Test'];
+					 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count', 'Objects per Zone'];
 		$sectionsWithAnchors = [
 			'Template Heroes' => 'heroes-table-2',
 			'Map Heroes' => 'heroes-table-3',
@@ -98,7 +95,7 @@ class H3MAPSCAN_PRINT {
 			'Quest Guards',
 			'Town Events',
 			'Event Objects',
-			'Object Zones Test',
+			'Objects per Zone',
 		];
 		$sectionsWithHr2Below = [
 			'Disabled Heroes',
@@ -109,7 +106,6 @@ class H3MAPSCAN_PRINT {
 			'Global Events',
 			'Pandora\'s Boxes',
 			'Object Count',
-			'Objects per Zone',
 		];
 
 		$sidebar = '<div class="sidebarMain">';

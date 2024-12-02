@@ -165,20 +165,6 @@
 	font-size: 11px !important;
 }
 
-.table__title-bar--small2a {
-	background: black;
-}
-
-.table__title-bar--small2b {
-	width: var(--table-small__fixed-width-column);
-}
-
-.table__title-bar--small2c {
-	background: var(--table-divider-color) !important;
-	width: calc(var(--table-small__fixed-width-column) * 0.25);
-	border-bottom: none !important;
-}
-
 .table__row-header--default {
 	background: var(--color-background-row-header-default);
 	font-weight: bold;
@@ -272,10 +258,39 @@
 	color: grey;
 }
 
+.no-color-text {
+	top: -0.5px !important;
+	left: 1px !important;
+}
+
+.th-player-color {
+	background: black;
+	font-family: calibri, arial, sans-serif;
+	font-size: 9px;
+	width: var(--table-small__fixed-width-column);
+}
+
+.th-divider {
+	background: var(--table-divider-color) !important;
+	width: calc(var(--table-small__fixed-width-column) * 0.25);
+	border-bottom: none !important;
+}
+
 .cell-hidden {
 	background: none !important;
 	border-right: none !important;
 	border-bottom: none !important;
+}
+
+.cell-greyed-out {
+	background: var(--table-divider-color) !important;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+
+.cell-greyed-out-last {
+	background: var(--table-divider-color) !important;
+	border-top: none !important;
 }
 
 /* Ensure the right and bottom borders are removed for the last cell */
@@ -288,17 +303,6 @@
 .cell-hidden:last-of-type {
     border-right: none !important;
     border-bottom: none !important;
-}
-
-.cell-blacked-out {
-	background: var(--table-divider-color) !important;
-	border-top: none !important;
-	border-bottom: none !important;
-}
-
-.cell-blacked-out-last {
-	background: var(--table-divider-color) !important;
-	border-top: none !important;
 }
 
 .thin-vertical-border {

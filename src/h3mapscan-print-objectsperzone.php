@@ -4,6 +4,7 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
+$h3mapscan =  $this->h3mapscan;
 $obj_per_zone = $this->h3mapscan->objects_per_zone;
 $sortOrder = new OC_Sort_Order();
 $zoneColors = [
@@ -25,7 +26,7 @@ $undergroundColors = loadImageColors(MAPDIR . $baseFilename . '_u.png');
 
 // Towns
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::START);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors);
+DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 /*
 // Heroes & Info
@@ -258,7 +259,7 @@ function getZoneByColor($color, $zoneColors) {
     return null;
 }
 
-function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors) {
+function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan) {
 
 	// Flex start if applicable
 	if ($table->flexType === OC_FLEXTYPE::START) {
@@ -280,10 +281,10 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 					<th class="table__title-bar--small2">ID</th>
 					<th class="table__title-bar--small2">Type</th>';
 			for ($n=0; $n < 7; $n++) {
-				echo '<th class="table__title-bar--small2b player'.($n+1).'"></th>';
+				echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById($n+1).'</th>';
 			}
-			echo '<th class="table__title-bar--small2c"></th>';
-			echo '<th class="table__title-bar--small2b player8"></th>';
+			echo '<th class="th-divider"></th>';
+			echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(0).'</th>';
 			echo '</tr>';
 
 			//echo '<pre>';
@@ -373,9 +374,9 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 				foreach (array_keys($zoneColors) as $zone) {
 					if ($zone == 'Red') {
 						if (!$isLastIteration) {
-							echo '<td class="cell-blacked-out"></td>';
+							echo '<td class="cell-greyed-out"></td>';
 						} else {
-							echo '<td class="cell-blacked-out-last"></td>';
+							echo '<td class="cell-greyed-out-last"></td>';
 						}
 					}
 					$count = $obj['zones'][$zone] == 0 ? EMPTY_DATA : $obj['zones'][$zone];
