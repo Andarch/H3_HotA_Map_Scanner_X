@@ -1,8 +1,8 @@
 <?php
 
 function customSort($a, $b, $customOrder) {
-    $posA = array_search($a['name'], $customOrder);
-    $posB = array_search($b['name'], $customOrder);
+    $posA = array_search($a, $customOrder);
+    $posB = array_search($b, $customOrder);
     if ($posA !== false && $posB !== false) {
         return $posA - $posB;
     }

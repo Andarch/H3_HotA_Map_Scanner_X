@@ -62,6 +62,7 @@
 	--thin-border-color: grey;
 
 	--table-small__fixed-width-column: 34.04px;
+	--table-divider-color: var(--color-mineshaft);
 }
 
 /* DEFAULT STYLES */

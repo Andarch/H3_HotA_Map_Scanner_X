@@ -1558,9 +1558,8 @@ class H3MAPSCAN {
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
 
 					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
-						$index = count($this->objects_per_zone[$objcategory]);
-						$this->objects_per_zone[$objcategory] = [
-							$index,
+						//$index = count($this->objects_per_zone[$objcategory]);
+						$this->objects_per_zone[$objcategory][] = [
 							'comboid' => $objcomboid,
 							'name' => $objname,
 							'pos' => $objpos,
@@ -2432,7 +2431,7 @@ class H3MAPSCAN {
 				'count' => 0
 			];
 		}
-
+		/*
 		foreach ($this->CS->ObjectEx as $comboid => $details) {
 			$category = $details['category'];
 			if (!isset($this->objects_per_zone[$category])) {
@@ -2443,6 +2442,7 @@ class H3MAPSCAN {
 				'count' => 0
 			];
 		}
+		*/
 	}
 
 	public function CreateRewardContents($event) {
