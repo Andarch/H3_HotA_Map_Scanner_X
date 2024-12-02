@@ -161,7 +161,12 @@
 }
 
 .table__title-bar--small {
-	background: var(--color-purple);
+	background: var(--color-purple) !important;
+	font-size: 11px !important;
+}
+
+.table__title-bar--small2 {
+	background: black !important;
 	font-size: 11px !important;
 }
 

@@ -248,6 +248,36 @@
             'Ancient Altar',
         ];
 
+        public $CreatureBanksArtifacts = [
+            'Beholders\' Sanctuary',
+            'Black Tower',
+            'Churchyard',
+            'Crypt',
+            'Derelict Ship',
+            'Mansion',
+            'Shipwreck',
+        ];
+
+        public $CreatureBanksResources = [
+            'Cyclops Stockpile',
+            'Dwarven Treasury',
+            'Imp Cache',
+            'Medusa Stores',
+            'Naga Bank',
+            'Ruins',
+            'Spit',
+        ];
+
+        public $CreatureBanksCreatures = [
+            'Dragon Fly Hive',
+            'Experimental Shop',
+            'Griffin Conservatory',
+            'Ivory Tower',
+            'Pirate Cavern',
+            'Red Tower',
+            'Wolf Raider Picket',
+        ];
+
         public $BoatsAndAirships = [
             'Shipyard',
             'Boat',

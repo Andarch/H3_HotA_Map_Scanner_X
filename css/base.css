@@ -95,7 +95,7 @@ th {
 	font-family: var(--font-family-heading);
 }
 
-th:not(.table__title-bar--large):not(.table__title-bar--small):not(.th-player-color) {
+th:not(.table__title-bar--large):not(.table__title-bar--small):not(.table__title-bar--small2):not(.th-player-color) {
 	background: var(--color-background-heading);
 	color: var(--color-foreground-heading);
 }

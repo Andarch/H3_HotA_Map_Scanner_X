@@ -73,8 +73,6 @@ class H3MAPSCAN {
 	private $objects = [];
 	public  $objects_all = [];
 	public  $objects_per_zone = [];
-	public  $objects_zones = [];
-
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
 	private $customHeroes = [];
@@ -1521,7 +1519,7 @@ class H3MAPSCAN {
 
 	private function ReadObjects() {
 
-		$this->InitializeAllObjectsCount();
+		$this->InitializeObjectsCountArrays();
 
 		$this->objectsNum = $this->br->ReadUint32();
 
@@ -1558,15 +1556,7 @@ class H3MAPSCAN {
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
 
 					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
-						//$index = count($this->objects_per_zone[$objcategory]);
 						$this->objects_per_zone[$objcategory][] = [
-							'comboid' => $objcomboid,
-							'name' => $objname,
-							'pos' => $objpos,
-						];
-
-						$index = count($this->objects_zones);
-						$this->objects_zones[$index] = [
 							'comboid' => $objcomboid,
 							'name' => $objname,
 							'pos' => $objpos,
@@ -2420,7 +2410,7 @@ class H3MAPSCAN {
 		}
 	}
 
-	private function InitializeAllObjectsCount() {
+	private function InitializeObjectsCountArrays() {
 		foreach ($this->CS->ObjectEx as $comboid => $details) {
 			$category = $details['category'];
 			if (!isset($this->objects_all[$category])) {
@@ -2431,18 +2421,14 @@ class H3MAPSCAN {
 				'count' => 0
 			];
 		}
-		/*
-		foreach ($this->CS->ObjectEx as $comboid => $details) {
-			$category = $details['category'];
+
+		$reflection = new ReflectionClass('OBJ_CATEGORY');
+		$categories = $reflection->getConstants();
+		foreach ($categories as $category) {
 			if (!isset($this->objects_per_zone[$category])) {
 				$this->objects_per_zone[$category] = [];
 			}
-			$this->objects_per_zone[$category][$comboid] = [
-				'name' => $details['name'],
-				'count' => 0
-			];
 		}
-		*/
 	}
 
 	public function CreateRewardContents($event) {
