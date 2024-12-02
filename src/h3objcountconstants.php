@@ -67,7 +67,7 @@
         }
     }
 
-    class OC_Constants {
+    class OC_Sort_Order {
 
 		public $Towns = [
             'Random Town',
