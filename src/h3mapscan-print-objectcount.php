@@ -237,8 +237,8 @@ function DisplayObjCountTable($table) {
 
 		case OC_TABLETYPE::NORMAL:
 			echo '<tr>
-					<th class="ac nowrap table__title-bar--small2" nowrap="nowrap">ID</th>
-					<th class="ac nowrap table__title-bar--small2" nowrap="nowrap">Type</th>
+					<th class="ac nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap" nowrap="nowrap">Type</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			foreach ($table->objects as $objcomboid => $obj) {
@@ -257,8 +257,8 @@ function DisplayObjCountTable($table) {
 
 		case OC_TABLETYPE::BORDER:
 			echo '<tr>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">ID</th>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">Color</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Tent</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Gate</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Grd</th>
@@ -302,8 +302,8 @@ function DisplayObjCountTable($table) {
 
 		case OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL:
 			echo '<tr>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">ID</th>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">Color</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Entr</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Exit</th>
 				</tr></thead><tbody>';
@@ -338,8 +338,8 @@ function DisplayObjCountTable($table) {
 
 		case OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL:
 			echo '<tr>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">ID</th>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">Color</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
@@ -359,8 +359,8 @@ function DisplayObjCountTable($table) {
 
 		case OC_TABLETYPE::MINE_WAREHOUSE:
 			echo '<tr>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">ID</th>
-					<th class="ac nowrap nowrap table__title-bar--small2" nowrap="nowrap">Type</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
+					<th class="ac nowrap nowrap" nowrap="nowrap">Type</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Mine</th>
 					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">WH</th>
 				</tr></thead><tbody>';
