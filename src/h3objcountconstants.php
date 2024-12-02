@@ -21,8 +21,8 @@
 
     class OC_Table {
         public $tableType;
+        public $objects;
         public $category;
-        public $categoryConstant;
         public $customOrder;
         public $types;
         public $ids;
@@ -36,8 +36,8 @@
 
         public function __construct(
             $tableType = null,
+            $objects = null,
             $category = null,
-            $categoryConstant = null,
             $customOrder = [],
             $types = [],
             $typeCount = null,
@@ -51,8 +51,8 @@
             $special6 = null
         ) {
             $this->tableType = $tableType;
+            $this->objects = $objects;
             $this->category = $category;
-            $this->categoryConstant = $categoryConstant;
             $this->customOrder = $customOrder;
             $this->types = $types;
             $this->typeCount = $typeCount;
