@@ -234,6 +234,7 @@ function DisplayObjCountTable($table) {
 
 	// Print rest of table based on table type
 	switch ($table->tableType) {
+
 		case OC_TABLETYPE::NORMAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -253,6 +254,7 @@ function DisplayObjCountTable($table) {
 					</tr>';
 			}
 			break;
+
 		case OC_TABLETYPE::BORDER:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -297,6 +299,7 @@ function DisplayObjCountTable($table) {
 					</tr>';
 			}
 			break;
+
 		case OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -332,6 +335,7 @@ function DisplayObjCountTable($table) {
 					</tr>';
 			}
 			break;
+
 		case OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
@@ -352,6 +356,7 @@ function DisplayObjCountTable($table) {
 					</tr>';
 			}
 			break;
+
 		case OC_TABLETYPE::MINE_WAREHOUSE:
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
