@@ -13,7 +13,7 @@
 .sidebarTop {
 	grid-area: sidebarTop;
 	width: var(--sidebar-width);
-	background-color: var(--sidespanel-color);
+	background-color: var(--sidebar-color);
 	position: fixed;
 	left: 0px;
 	top: 0px;

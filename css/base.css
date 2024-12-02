@@ -68,12 +68,13 @@
 /* DEFAULT STYLES */
 html {
 	font-size: 13px;
+	background-color: var(--color-background-body);
 }
 
 body {
 	font-family: calibri, arial, sans-serif;
-	background-color: var(--color-background-body);
 	color: var(--color-foreground-body);
+	background: none;
 }
 
 a, a:visited {
