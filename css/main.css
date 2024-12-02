@@ -175,8 +175,8 @@
 }
 
 .table__title-bar--small2c {
-	background: black !important;
-	width: calc(34.04px * 1.5);
+	background: var(--color-mineshaft) !important;
+	width: calc(34.04px * 1);
 	border-bottom: none !important;
 }
 
@@ -292,13 +292,13 @@
 }
 
 .cell-blacked-out {
-	background: black !important;
+	background: var(--color-mineshaft) !important;
 	border-top: none !important;
 	border-bottom: none !important;
 }
 
 .cell-blacked-out-last {
-	background: black !important;
+	background: var(--color-mineshaft) !important;
 	border-top: none !important;
 }
 
