@@ -436,7 +436,7 @@ function DisplayObjCountTable($table) {
 				if($i < $table->typeCount - 1) {
 					$whCellClass = 'ac nowrap';
 				} else {
-					$whCellClass = 'cell-greyed-out ac nowrap';
+					$whCellClass = 'cell-hidden ac nowrap';
 				}
 				echo '<tr>
 						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>

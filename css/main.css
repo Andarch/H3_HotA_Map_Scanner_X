@@ -165,9 +165,19 @@
 	font-size: 11px !important;
 }
 
-.table__title-bar--small2 {
+.table__title-bar--small2a {
 	background: black;
 	font-size: 11px !important;
+}
+
+.table__title-bar--small2b {
+	width: 34.04px;
+}
+
+.table__title-bar--small2c {
+	background: black !important;
+	width: calc(34.04px * 1.5);
+	border-bottom: none !important;
 }
 
 .table__row-header--default {
@@ -263,22 +273,33 @@
 	color: grey;
 }
 
-.cell-greyed-out {
+.cell-hidden {
 	background: none !important;
 	border-right: none !important;
 	border-bottom: none !important;
 }
 
 /* Ensure the right and bottom borders are removed for the last cell */
-.cell-greyed-out:last-child {
+.cell-hidden:last-child {
     border-right: none !important;
     border-bottom: none !important;
 }
 
 /* Ensure the right and bottom borders are removed for the last row */
-.cell-greyed-out:last-of-type {
+.cell-hidden:last-of-type {
     border-right: none !important;
     border-bottom: none !important;
+}
+
+.cell-blacked-out {
+	background: black !important;
+	border-top: none !important;
+	border-bottom: none !important;
+}
+
+.cell-blacked-out-last {
+	background: black !important;
+	border-top: none !important;
 }
 
 .thin-vertical-border {
@@ -323,3 +344,21 @@
 .color7 { background: #089ca5; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* teal */
 .color8 { background: #c67b8c; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* pink */
 .color256 { background: #848484; padding: 0px 6px; border-radius:3px; font-size: 9px; position: relative; top: -1.5px; } /* neutral */
+
+.player8 { background: #ff0000; } /* red */
+.player1 { background: #3152ff; } /* blue */
+.player2 { background: #9c7352; } /* tan */
+.player3 { background: #429429; } /* green */
+.player4 { background: #ff8400; } /* orange */
+.player5 { background: #8c29a5; } /* purple */
+.player6 { background: #089ca5; } /* teal */
+.player7 { background: #c67b8c; } /* pink */
+
+.player-dark8 { background: #6a2e2e; font-weight: bold;} /* red */
+.player-dark1 { background: #2e3867; font-weight: bold;} /* blue */
+.player-dark2 { background: #56483b; font-weight: bold;} /* tan */
+.player-dark3 { background: #3f5139; font-weight: bold;} /* green */
+.player-dark4 { background: #6b4114; font-weight: bold; } /* orange */
+.player-dark5 { background: #4e3952; font-weight: bold; } /* purple */
+.player-dark6 { background: #2e4c4e; font-weight: bold; } /* teal */
+.player-dark7 { background: #583a41; font-weight: bold; } /* pink */

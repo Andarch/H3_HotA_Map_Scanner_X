@@ -4,14 +4,14 @@
 require_once 'src/h3objcountconstants.php';
 
 $zoneColors = [
-    'Red' => [255, 0, 0],
     'Blue' => [49, 82, 255],
     'Tan' => [156, 115, 82],
     'Green' => [66, 148, 41],
     'Orange' => [255, 132, 0],
     'Purple' => [140, 41, 165],
     'Teal' => [8, 156, 165],
-    'Pink' => [198, 123, 140]
+    'Pink' => [198, 123, 140],
+    'Red' => [255, 0, 0],
 ];
 
 function loadImageColors($filename) {
@@ -98,21 +98,40 @@ usort($flatObjectCounts, function($a, $b) {
 
 echo '<table class="'.OBJCOUNT_TABLECLASS.'">';
 echo '<tr>
-        <th class="table__title-bar--small2">ID</th>
-        <th class="table__title-bar--small2">Type</th>';
-for ($n=0; $n < 8; $n++) {
-    echo '<th class="table__title-bar--small2" style="width:34.04px; padding:2.5px 3px 1.5px 5px;">'.$this->h3mapscan->GetPlayerColorById($n).'</th>';
+        <th class="table__title-bar--small2a">ID</th>
+        <th class="table__title-bar--small2a">Type</th>';
+for ($n=0; $n < 7; $n++) {
+    echo '<th class="table__title-bar--small2b player'.($n+1).'"></th>';
 }
+echo '<th class="table__title-bar--small2c"></th>';
+echo '<th class="table__title-bar--small2b player8"></th>';
 echo '</tr>';
+
+// Count the total number of elements in the array
+$totalCount = count($flatObjectCounts);
+$currentCount = 0;
 
 // Generate the table rows from the sorted flat list
 foreach ($flatObjectCounts as $data) {
+    $currentCount++;
+    $isLastIteration = ($currentCount === $totalCount);
+
     echo '<tr>';
     echo '<td class="ac nowrap">'.$data['comboid'].'</td>';
     echo '<td class="nowrap">'.$data['name'].'</td>';
+
+    $n=0;
     foreach (array_keys($zoneColors) as $zoneHeader) {
+        if ($zoneHeader == 'Red') {
+            if (!$isLastIteration) {
+                echo '<td class="cell-blacked-out"></td>';
+            } else {
+                echo '<td class="cell-blacked-out-last"></td>';
+            }
+        }
         $count = $data['zones'][$zoneHeader] == 0 ? EMPTY_DATA : $data['zones'][$zoneHeader];
-        echo '<td class="ac nowrap">'.$count.'</td>';
+        echo '<td class="ac nowrap player-dark'.($n+1).'">'.$count.'</td>';
+        $n++;
     }
     echo '</tr>';
 }
