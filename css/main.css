@@ -229,14 +229,14 @@
 }
 
 .map-image-bg {
-	width: 384px;
-	height: 384px;
+	width: 384px !important;
+	height: 384px !important;
 	opacity: 0.2;
 }
 
 .map-image-overlay {
-	width: 384px;
-	height: 384px;
+	width: 384px !important;
+	height: 384px !important;
     position: absolute;
     top: 2.5px;
     left: 4px;
