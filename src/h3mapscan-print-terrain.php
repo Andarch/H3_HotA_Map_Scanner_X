@@ -1,7 +1,7 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo EOL.DisplayMap($this->h3mapscan->mapimage, $this->h3mapscan->underground);
+echo DisplayMap($this->h3mapscan->mapimage, $this->h3mapscan->underground);
 
 echo '<div class="flex-container">';
 

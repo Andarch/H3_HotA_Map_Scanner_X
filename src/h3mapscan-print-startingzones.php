@@ -5,7 +5,10 @@ require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
 $h3mapscan =  $this->h3mapscan;
-$obj_per_zone = $this->h3mapscan->objects_per_zone;
+$mapimage = $h3mapscan->mapimage;
+$underground = $h3mapscan->underground;
+$zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
+$obj_per_zone = $h3mapscan->objects_per_zone;
 $sortOrder = new OC_Sort_Order();
 $zoneColors = [
     'Blue' => [49, 82, 255],
@@ -20,9 +23,23 @@ $zoneColors = [
 
 /* MAIN */
 
-$baseFilename = pathinfo($this->h3mapscan->mapfile, PATHINFO_FILENAME);
-$groundColors = loadImageColors(MAPDIR . $baseFilename . '_g.png');
-$undergroundColors = loadImageColors(MAPDIR . $baseFilename . '_u.png');
+// Images table
+$imgmapnameg = MAPDIRIMG.$mapimage.'_g.png';
+$imgmapnameu = MAPDIRIMG.$mapimage.'_u.png';
+$imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g.png';
+$imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u.png';
+$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'" class="map-image-bg" /><img src="'.$imgzonesg.'" class="map-image-overlay" />' : 'Map Ground';
+$output = '<table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
+if($underground) {
+	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'" class="map-image-bg" /><img src="'.$imgzonesu.'" class="map-image-overlay" />' : 'Map Underground';
+	$output .= '<td class="map-image-container">'.$imguground.'</td>';
+}
+$output .= '</tr></table>';
+echo $output;
+
+// Scan zone images
+$groundColors = loadImageColors(MAPDIR.$zonesImageBaseFilename.'_g.png');
+$undergroundColors = loadImageColors(MAPDIR.$zonesImageBaseFilename.'_u.png');
 
 // Towns
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::START);

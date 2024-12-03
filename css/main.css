@@ -223,6 +223,27 @@
 	font-size: 12px;
 }
 
+.map-image-container {
+    position: relative;
+	background: black;
+}
+
+.map-image-bg {
+	width: 384px;
+	height: 384px;
+	opacity: 0.2;
+}
+
+.map-image-overlay {
+	width: 384px;
+	height: 384px;
+    position: absolute;
+    top: 2.5px;
+    left: 4px;
+	mix-blend-mode: lighten;
+	opacity: 0.7;
+}
+
 .table-small__count-column-header {
 	width: var(--table-small__fixed-width-column);
 }
