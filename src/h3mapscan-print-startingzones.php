@@ -138,7 +138,7 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::CREATURE
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Boats & Airships
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::BOATS_AND_AIRSHIPS], OBJ_CATEGORY::BOATS_AND_AIRSHIPS, $sortOrder->BoatsAndAirships, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::BOATS_AND_AIRSHIPS], OBJ_CATEGORY::BOATS_AND_AIRSHIPS, $sortOrder->BoatsAndAirships, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Primary Skills 1
@@ -174,11 +174,11 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::MORALE],
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Luck
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::LUCK], OBJ_CATEGORY::LUCK, $sortOrder->Luck, null, null, null, OC_FLEXTYPE::END);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::LUCK], OBJ_CATEGORY::LUCK, $sortOrder->Luck, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Special
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::SPECIAL], OBJ_CATEGORY::SPECIAL, $sortOrder->Special, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::SPECIAL], OBJ_CATEGORY::SPECIAL, $sortOrder->Special, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Spells
@@ -206,7 +206,7 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::RESOURCE
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Scouting
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::SCOUTING], OBJ_CATEGORY::SCOUTING, $sortOrder->Scouting, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $obj_per_zone[OBJ_CATEGORY::SCOUTING], OBJ_CATEGORY::SCOUTING, $sortOrder->Scouting, null, null, null, OC_FLEXTYPE::END);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 /* END MAIN */
