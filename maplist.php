@@ -1,47 +1,45 @@
 <?php
-// Prevent caching
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
 header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');
+
+header('Content-Type: text/html; charset=utf-8');
 
 require_once 'src/mi.php';
 require_once 'src/config.php';
 require_once 'src/h3mapindexconst.php';
 
 $mapsearch = expost('map', exget('map', ''));
+$timestamp = time();
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="cz" xml:lang="cz">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
 	<title>H3 HotA Map Scanner X</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="shortcut icon" href="images/hotaicon.png?t=<?= $timestamp ?>" type="image/x-icon" />
+	<link rel="stylesheet" href="css/style.css?v=<?= $timestamp ?>">
+
     <?php
-    // Detect if running on localhost
     $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-    // Include dev CSS based on the environment
     if ($isLocalhost) {
-        echo '<link rel="stylesheet" href="css/dev.css">';
+		echo '<link rel="stylesheet" href="css/local.css?v='.$timestamp.'">';
     }
     ?>
-<style>
-	a, a:visited { color: #e6b800; text-decoration: none; }
-	a:hover { text-decoration: underline; }
-	.smalltable1 { width: 75%;  margin: 1em auto;}
-	img { width: 256px; margin: 0px auto;}
-</style>
 </head>
-<body>
-<p>
-	<a href="?c=list">Map List</a><br />
-	<a href="?c=stat">Map Stat</a>
-</p>
 
-<form method="post" action="maplist.php">
-	<input type="text" name="map" value="<?php echo $mapsearch; ?>" />
-	<input type="submit" name="ok" value="Search" />
-</form>
+<body>
+	<p>
+		<a href="?c=list">Map List</a><br />
+		<a href="?c=stat">Map Stat</a>
+	</p>
+
+	<form method="post" action="maplist.php">
+		<input type="text" name="map" value="<?php echo $mapsearch; ?>" />
+		<input type="submit" name="ok" value="Search" />
+	</form>
 <?php
 
 $cmd = exget('c', 'list');
@@ -86,9 +84,7 @@ else {
 
 	echo $links;
 
-
-
-	echo '<table class="smalltable1">';
+	echo '<table class="table-map-list">';
 
 	$maphead = '<tr>
 			<th>Name</th>
