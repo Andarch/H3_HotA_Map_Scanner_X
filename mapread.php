@@ -1,5 +1,4 @@
 <?php
-// Prevent caching
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
@@ -16,7 +15,6 @@ require_once './src/mapsupport.php';
 $mapname = expost('map', '');
 $num = expost('num', 0);
 
-
 $mapfile = MAPDIR.$mapname;
 
 if(!file_exists($mapfile)) {
@@ -27,7 +25,7 @@ echo '<br /><br />'.$num.' '.$mapname.'<br />';
 
 $tm = new TimeMeasure();
 //H3M_SAVEMAPDB | H3M_BUILDMAP
-$map = new H3MAPSCAN($mapfile, H3M_SAVEMAPDB | H3M_BASICONLY);
+$map = new H3MAPSCAN($mapfile, H3M_SAVEMAPDB | H3M_BASICONLY | H3M_BUILDMAP);
 $map->ReadMap();
 
 if(!$map->readok) {
