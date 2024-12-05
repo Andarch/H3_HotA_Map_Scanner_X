@@ -1,5 +1,4 @@
 <?php
-// Prevent caching
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
@@ -19,14 +18,12 @@ $timestamp = time();
 <head>
 	<title>H3 HotA Map Scanner X</title>
 	<link rel="shortcut icon" href="images/hotaicon.png?t=<?= $timestamp ?>" type="image/x-icon" />
-	<link rel="stylesheet" href="css/main.css?v=<?= $timestamp ?>">
+	<link rel="stylesheet" href="css/style.css?v=<?= $timestamp ?>">
 
     <?php
-    // Detect if running on localhost
     $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-    // Include dev CSS based on the environment
     if ($isLocalhost) {
-		echo '<link rel="stylesheet" href="css/dev.css?v='.$timestamp.'">';
+		echo '<link rel="stylesheet" href="css/local.css?v='.$timestamp.'">';
     }
     ?>
 
