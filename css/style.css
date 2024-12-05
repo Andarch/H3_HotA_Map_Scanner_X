@@ -36,7 +36,8 @@
 	--grid-gap: 1.5em;
 
 	--sidebar-width: calc(100vw - 90%);
-	--sidebar-top-height: 60px;
+	--sidebar-top-height: calc(var(--sidebar-top-table-height) + (4 * var(--hrule1-border-thickness)) + var(--sidebar-border-width));
+	--sidebar-top-table-height: 2vh;
 	--sidebar-main-height: calc(100vh - var(--sidebar-top-height));
 	--sidebar-color: #555;
 
@@ -45,7 +46,7 @@
 	--sidebar-border-style: solid;
 
 	--hrule1-border-color: #999;
-	--hrule1-border-thickness: 8px;
+	--hrule1-border-thickness: 0.8vh;
 	--hrule1-border-style: double;
 
 	--hrule2-border-color: #777;
@@ -127,10 +128,10 @@ th, td {
 	position: fixed;
 	left: 0px;
 	top: 0px;
-	height: var(--sidebar-top-height);
+	height: 100%;
 	font-family: var(--font-family-heading);
 	text-align: center;
-	font-size: 16px;
+	font-size: 100%;
 	border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 	border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 	border-top: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
@@ -139,7 +140,7 @@ th, td {
 
 .sidebarTopTable {
 	width: 100%;
-	height: calc(var(--sidebar-top-height) - (4 * var(--hrule1-border-thickness)) - var(--sidebar-border-width));
+	height: var(--sidebar-top-table-height);
 	border: none;
 	position: relative;
 	border-collapse: separate;
@@ -183,7 +184,7 @@ th, td {
 	top: var(--sidebar-top-height);
 	height: var(--sidebar-main-height);
 	color: var(--color-foreground-body);
-	font-size: 22px;
+	font-size: 2vh;
 	font-family: var(--font-family-heading);
 	border-left: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
 	border-right: var(--sidebar-border-width) var(--sidebar-border-style) var(--sidebar-border-color);
