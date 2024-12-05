@@ -71,7 +71,7 @@
 	position: fixed;
 	left: 0px;
 	top: var(--sidebar-top-height);
-	height: 1005px;
+	height: var(--sidebar-main-height);
 	color: var(--color-foreground-body);
 	font-size: 22px;
 	font-family: var(--font-family-heading);

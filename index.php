@@ -10,6 +10,7 @@ header('Content-Type: text/html; charset=utf-8');
 require_once 'src/mi.php';
 require_once 'src/config.php';
 
+$timestamp = time();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -17,19 +18,21 @@ require_once 'src/config.php';
 
 <head>
 	<title>H3 HotA Map Scanner X</title>
-	<link rel="shortcut icon" href="images/hotaicon.png" type="image/x-icon" />
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="shortcut icon" href="images/hotaicon.png?t=<?= $timestamp ?>" type="image/x-icon" />
+	<link rel="stylesheet" href="css/main.css?v=<?= $timestamp ?>">
+
     <?php
     // Detect if running on localhost
     $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
     // Include dev CSS based on the environment
     if ($isLocalhost) {
-        echo '<link rel="stylesheet" href="css/dev.css">';
+		echo '<link rel="stylesheet" href="css/dev.css?v='.$timestamp.'">';
     }
     ?>
-	<script type="application/javascript" src="js/jquery-2.1.3.min.js"></script>
-	<script type="application/javascript" src="js/jquery-ui.js"></script>
-	<script type="application/javascript" src="js/mapread.js"></script>
+
+	<script type="application/javascript" src="js/jquery-2.1.3.min.js?t=<?= $timestamp ?>"></script>
+	<script type="application/javascript" src="js/jquery-ui.js?t=<?= $timestamp ?>"></script>
+	<script type="application/javascript" src="js/mapread.js?t=<?= $timestamp ?>"></script>
 </head>
 
 <body>

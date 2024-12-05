@@ -102,6 +102,8 @@ else {
 			<th>Loss</th>
 		</tr>';
 
+	$timestamp = time();
+
 	$sql = "SELECT m.idm, m.mapfile, m.mapname, m.mapdesc, m.version, m.size, m.sizename, m.levels, m.diff,
 			m.playersnum, m.playhuman, m.teamnum, m.victory, m.loss, m.filechanged, m.mapimage
 		FROM heroes3_maps AS m $where
@@ -110,8 +112,8 @@ else {
 	$query = mq($sql);
 	while($res = mfa($query)) {
 
-		$imgg = '<img src="'.MAPDIRIMG.$res['mapimage'].'_g.png" alt="ground" title="ground" />';
-		$imgu = $res['levels'] ? '<img src="'.MAPDIRIMG.$res['mapimage'].'_u.png" alt="ground" title="underground" />' : '';
+		$imgg = '<img src="'.MAPDIRIMG.$res['mapimage'].'_g.png?t='.$timestamp.'" />';
+		$imgu = $res['levels'] ? '<img src="'.MAPDIRIMG.$res['mapimage'].'_u.png?t='.$timestamp.'" />' : '';
 
 		$name = $res['mapname'] != '' ? $res['mapname'] : $res['mapfile'];
 

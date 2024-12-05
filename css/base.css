@@ -37,6 +37,7 @@
 
 	--sidebar-width: 250px;
 	--sidebar-top-height: 60px;
+	--sidebar-main-height: calc(100vh - var(--sidebar-top-height));
 	--sidebar-color: #555;
 
 	--sidebar-border-width: 4px;

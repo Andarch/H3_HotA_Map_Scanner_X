@@ -45,13 +45,14 @@ for ($i = 0; $i < 3; $i++) {
 echo '</div>';
 
 function DisplayMap($mapimage, $underground) {
+	$timestamp = time();
 	$imgmapnameg = MAPDIRIMG.$mapimage.'_g.png';
 	$imgmapnameu = MAPDIRIMG.$mapimage.'_u.png';
 
-	$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'" alt="ground" title="ground" />' : 'Map Ground';
+	$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" />' : 'Map Ground';
 	$output = '<table class="table-large"><th>Ground</th><th>Underground</th><tr><td>'.$imgground.'</td>';
 	if($underground) {
-		$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'" alt="ground" title="ground" />' : 'Map Underground';
+		$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" />' : 'Map Underground';
 		$output .= '<td>'.$imguground.'</td>';
 	}
 	$output .= '</tr></table>';
