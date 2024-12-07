@@ -21,6 +21,7 @@
 
 	--color-background-body: #2d2d2d;
 	--color-background-heading: var(--color-brown);
+	--color-background-ui: #555;
 	--color-background-row-header-default: #595142;
 	--color-background-row-header-alternate: #4e4e4e;
 
@@ -33,31 +34,24 @@
 	--font-size-body: 13px;
 	--font-size-heading: 14px;
 
-	--grid-gap: 1.5em;
+	--flex-gap: 1.5em;
 
-	/* --header-height: 5vh; */
 	--header-height: 60px;
 
 	--nav-width: 21.95vh;
 	--nav-min-width: 150px;
-	--nav-top-table-border-spacing: 2px;
-	--nav-color: #555;
 
 	--nav-border-width: 4px;
 	--nav-border-color: #aaa;
 	--nav-border-style: solid;
 
 	--hrule1-border-color: #999;
-	/* --hrule1-border-thickness: 0.8vh; */
 	--hrule1-border-thickness: 8px;
-	/* --hrule1-border-thickness: clamp(5.145px, calc(5.145px + 0.035 * (var(--nav-width) - var(--nav-min-width))), 8px); */
 	--hrule1a-border-thickness: 8px;
 	--hrule1-border-style: double;
 
 	--hrule2-border-color: #777;
-	/* --hrule2-border-thickness: 0.2vh; */
 	--hrule2-border-thickness: 2px;
-	/* --hrule2-border-thickness: clamp(2px, calc(2px + 0.017 * (var(--nav-width) - var(--nav-min-width))), 3px); */
 	--hrule2-border-style: groove;
 
 	--table-border-style: solid;
@@ -76,11 +70,11 @@
 
 /* BASE STYLES */
 html {
-	font-size: 13px;
+	font-size: var(--font-size-body);
 }
 
 body {
-	font-family: calibri, arial, sans-serif;
+	font-family: var(--font-family-body);
 	color: var(--color-foreground-body);
 	background-color: var(--color-background-body);
 }
@@ -134,7 +128,7 @@ th, td {
     left: var(--nav-width);
     width: calc(100% - var(--nav-width));
     height: var(--header-height);
-	background-color: var(--nav-color);
+	background-color: var(--color-background-ui);
 }
 
 .nav {
@@ -143,18 +137,13 @@ th, td {
 	min-height: 684px;
 	width: var(--nav-width);
 	min-width: var(--nav-min-width);
-	background-color: var(--nav-color);
+	background-color: var(--color-background-ui);
 	border: var(--nav-border-width) var(--nav-border-style) var(--nav-border-color);
 	font-family: var(--font-family-heading);
 	text-align: center;
 }
 
-/* .nav hr {
-	flex-shrink: 0;
-} */
-
 .nav-top {
-	/* font-size: 100%; */
 	overflow: hidden;
 	line-height: 1;
 	height: calc(var(--header-height) - var(--nav-border-width));
@@ -162,18 +151,15 @@ th, td {
 
 .nav-top table {
 	width: 100%;
-	/* height: calc(100% - (var(--hrule1-border-thickness) * 4)); */
 	height: calc(100% - (var(--hrule1a-border-thickness) * 4));
 	border: none;
 	border-collapse: separate;
-	border-spacing: var(--nav-top-table-border-spacing);
+	border-spacing: 2px;
 	table-layout: fixed;
 }
 
 .nav-top td {
-	/* width: auto; */
 	border: none;
-	/* background-color: #3a4d4f; */
 }
 
 .nav-top td a {
@@ -206,7 +192,6 @@ th, td {
 	min-height: 142px;
     display: flex;
     flex-direction: column;
-    /* align-items: stretch; */
 	color: var(--color-foreground-body);
 	overflow: hidden;
 }
@@ -216,11 +201,9 @@ th, td {
 	flex: 1;
     justify-content: center;
     align-items: center;
-	/* height: auto; */
 	color:  var(--color-foreground-body);
 	text-decoration: none;
 	background-color: #444;
-	/* font-size: 2.25vh; */
     font-size: clamp(15.5px, calc(15.5px + 0.077335 * (var(--nav-width) - var(--nav-min-width))), 22px);
 	padding: 0;
 }
@@ -241,7 +224,7 @@ th, td {
 
 .content {
 	grid-area: content;
-	padding: var(--grid-gap);
+	padding: var(--flex-gap);
 	padding-bottom: 0;
 	overflow: hidden;
 }
@@ -250,13 +233,13 @@ th, td {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: start;
-	column-gap: var(--grid-gap) !important;
+	column-gap: var(--flex-gap) !important;
 }
 
 .artifacts-table,
 .spells-table {
 	flex-grow: 1;
-	flex-basis: calc(25% - var(--grid-gap));
+	flex-basis: calc(25% - var(--flex-gap));
 	max-width: 457.838px;
 	table-layout: auto;
 }
@@ -334,7 +317,7 @@ th, td {
 
 .table-large,
 .table-small {
-	margin-bottom: var(--grid-gap);
+	margin-bottom: var(--flex-gap);
 }
 
 .table-large th {
@@ -434,7 +417,7 @@ th, td {
 
 .th-player-color {
 	background: black;
-	font-family: calibri, arial, sans-serif;
+	font-family: var(--font-family-body);
 	font-size: 9px;
 	width: var(--table-small__fixed-width-column);
 }
@@ -491,17 +474,14 @@ th, td {
 
 .hrule1 {
 	border: var(--hrule1-border-thickness) var(--hrule1-border-style) var(--hrule1-border-color);
-	/* margin: 0; */
 }
 
 .hrule1a {
 	border: var(--hrule1a-border-thickness) var(--hrule1-border-style) var(--hrule1-border-color);
-	/* margin: 0; */
 }
 
 .hrule2 {
 	border: var(--hrule2-border-thickness) var(--hrule2-border-style) var(--hrule2-border-color);
-	/* margin: 0; */
 }
 
 .debug {
