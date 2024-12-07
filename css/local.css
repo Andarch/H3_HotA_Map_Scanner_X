@@ -1,6 +1,6 @@
 /* BACKGROUND FOR LOCAL ENVIRONMENT */
-html {
-	background: #222;
+body {
+	background-color: #222;
 	background-image: radial-gradient(#444 2px, transparent 0);
 	background-size: 6px 6px;
 	background-attachment: fixed;

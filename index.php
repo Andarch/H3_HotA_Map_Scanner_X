@@ -33,23 +33,15 @@ $timestamp = time();
 </head>
 
 <body>
-	<div class="grid-container">
-		<div class="sidebarTop">
-			<hr class="hrule1">
-			<table class="sidebarTopTable">
-				<tr>
-					<td class="sidebarTopTableCell">
-						<a href="index.php?scan=1">Scan</a>
-					</td>
-					<td class="sidebarTopTableCell">
-						<a href="maplist.php">Map List</a>
-					</td>
-				</tr>
-			</table>
-			<hr class="hrule1">
-		</div>
+<div class="grid-container">
+    <div class="header">
+    </div>
 
 <?php
+
+require_once 'src/nav.php';
+
+generateNav();
 
 require_once 'src/h3mapscan.php';
 require_once 'src/h3mapconstants.php';
@@ -58,25 +50,25 @@ require_once 'src/mapsupport.php';
 $mapok = false;
 $buildmap = true;
 $mapfiledb = false;
-$mapid = intval(exget('mapid', 0));
+$mapID = intval(exget('mapID', 0));
 
 $scan = exget('scan');
 
 $mapcode = exget('mapcode');
 $disp = '';
 
-if($mapid) {
+if($mapID) {
 	if(exget('del')) {
-		$sql = "DELETE FROM heroes3_maps WHERE idm = $mapid";
+		$sql = "DELETE FROM heroes3_maps WHERE idm = $mapID";
 		mq($sql);
 	}
 	else {
-		$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapid";
+		$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapID";
 		$mapfiledb = mgr($sql);
 	}
 }
 elseif($scan) {
-	echo '<div class="content-container">';
+	echo '<div class="content">';
 
 	$scan = new ScanSubDir();
 	$scan->SetFilter(array('h3m'));

@@ -24,7 +24,7 @@ echo '<table class="table-large">
 			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_diffname.'</td>
 			<td class="ac" rowspan="2">'.$this->h3mapscan->victoryInfo.'</td>
 			<td class="ac" rowspan="2">'.$this->h3mapscan->lossInfo.'</td>
-			<td class="small-text" rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
+			<td rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap table__row-header--alternate" nowrap="nowrap">File</td>
@@ -34,11 +34,9 @@ echo '<table class="table-large">
 
 echo '<table class="table-large">
 	<tr>
-		<th class="ac nowrap" nowrap="nowrap">#</th>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
 		<th class="ac nowrap" nowrap="nowrap">Team</th>
-		<th class="ac nowrap" nowrap="nowrap">Human</br>Allowed</th>
-		<th class="ac nowrap" nowrap="nowrap">AI</br>Allowed</th>
+		<th class="ac nowrap" nowrap="nowrap">Player</br>Type</th>
 		<th class="ac nowrap" nowrap="nowrap">AI</br>Behaviour</th>
 		<th class="ac nowrap" nowrap="nowrap">Allowed</br>Factions</th>
 		<th class="ac nowrap" nowrap="nowrap">Has</br>Main Town</th>
@@ -53,16 +51,24 @@ foreach($this->h3mapscan->players as $k => $player) {
 	$tm = $this->h3mapscan->teams[($k)];
 	$teamNum = $tm + 1;
 
+	if($player['human'] == "Yes" && $player['ai'] == "Yes") {
+		$allowedPlayers = 'Human / AI';
+	} else if ($player['human'] == "Yes") {
+		$allowedPlayers = 'Human';
+	} else if ($player['ai'] == "Yes") {
+		$allowedPlayers = 'AI';
+	} else {
+		$allowedPlayers = EMPTY_DATA;
+	}
+
 	if(empty($player['HeroName'])) {
 		$player['HeroName'][] = EMPTY_DATA;
 	}
 
 	echo '<tr>
-			<td class="table__row-header--default nowrap" nowrap="nowrap">'.($k + 1).'</td>
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->GetPlayerColorById($k, true).'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$teamNum.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$player['human'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$player['ai'].'</td>
+			<td class="ac nowrap" nowrap="nowrap">'.$allowedPlayers.'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->GetBehaviour($player['behaviour']).'</td>
 			<td class="nowrap" nowrap="nowrap">'.$player['towns_allowed'].'</td>
 			<td class="ac nowrap" nowrap="nowrap">'.$player['HasMainTown'].'</td>

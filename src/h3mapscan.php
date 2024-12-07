@@ -121,7 +121,7 @@ class H3MAPSCAN {
 	public $mapimage; //mapfile name for DB
 	private $mapfileinfo;
 	private $md5hash = '';
-	public  $mapid = 0;
+	public  $mapID = 0;
 	public  $camid = 0;
 
 	public  $players = [];
@@ -284,8 +284,8 @@ class H3MAPSCAN {
 			FROM_UNIXTIME(".$this->filectime."), FROM_UNIXTIME(".$this->filemtime."), ".$this->filesizeC.", ".$this->filesizeU.", '".$mapimage."', '".$this->md5hash."')";
 
 		if(mq($sql)) {
-			$this->mapid = mii();
-			//$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapid}') WHERE idm={$this->mapid}";
+			$this->mapID = mii();
+			//$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapID}') WHERE idm={$this->mapID}";
 			//mq($sql);
 		}
 	}
@@ -391,7 +391,7 @@ class H3MAPSCAN {
 		}
 
 		if($this->CheckVersion() == false) {
-			throw new Exception('<div class="content-container">Unknown version='.$this->version.', subrev='.$this->hota_subrev.
+			throw new Exception('<div class="content">Unknown version='.$this->version.', subrev='.$this->hota_subrev.
 								'. Possibly a campaign file or not a map ('.$this->mapfile.')</div>');
 		}
 
@@ -1330,9 +1330,9 @@ class H3MAPSCAN {
 	public function BuildMap() {
 		if($this->buildMapImage) {
 			//image path and filenames
-			//if($this->mapid) {
-			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_g.png'; //ground
-			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_u.png'; //underground
+			//if($this->mapID) {
+			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapID.'_g.png'; //ground
+			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapID.'_u.png'; //underground
 			//}
 			//else {
 				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g.png'; //ground
@@ -1351,7 +1351,7 @@ class H3MAPSCAN {
 			$img = imagecreate($this->map_size, $this->map_size); //map by size
 
 			if(!$img) {
-				throw new Exception('<div class="content-container">Image Creation problem</div>');
+				throw new Exception('<div class="content">Image Creation problem</div>');
 			}
 
 			$imgmap = imagecreate($this::IMGSIZE, $this::IMGSIZE); //resized to constant size for all map sizes
@@ -1575,7 +1575,7 @@ class H3MAPSCAN {
 			$this->br->SkipBytes(5);
 
 			if($obj['id'] < 0) {
-				throw new Exception('<div class="content-container">Invalid object ID '.$obj['id'].' - '.$this->GetObjectNameById($obj['id'])."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
+				throw new Exception('<div class="content">Invalid object ID '.$obj['id'].' - '.$this->GetObjectNameById($obj['id'])."  $x, $y, $z. Possibly a read error (".$this->mapfile.')</div');
 			}
 
 		// ======= GET OBJECT DATA

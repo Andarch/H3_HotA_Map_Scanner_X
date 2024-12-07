@@ -1,6 +1,5 @@
 <?php
 
-//class to print h3mapscan data to html presentation
 class H3MAPSCAN_PRINT {
 
 	public $h3mapscan;
@@ -13,10 +12,11 @@ class H3MAPSCAN_PRINT {
 
     private function PrintMapInfo($section) {
         $subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
-        $print = $this->generateSidebar();
+        // $print = $this->generateNavMain();
         $section = $_GET['section'] ?? 'general';
 
         ob_start(); // Start output buffering
+		echo("<div class=\"content\">");
         switch ($section) {
             case 'General':
                 include 'h3mapscan-print-general.php';
@@ -67,64 +67,62 @@ class H3MAPSCAN_PRINT {
                 include 'h3mapscan-print-general.php';
                 break;
         }
-        $print .= ob_get_clean(); // End output buffering and append the output to $print
-        $print .= '</div>';
-        $print .= '</div>';
-
+		echo("</div></div>");
+        $print = ob_get_clean(); // End output buffering and append the output to $print
         echo $print;
     }
 
-    private function generateSidebar() {
-		$mapid = $_GET['mapid'] ?? '';
-		$mapidParam = $mapid ? "mapid=$mapid&" : '';
-		$currentSection = $_GET['section'] ?? '';
-		$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
-					 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
-					 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count', 'Starting Zones'];
-		$sectionsWithAnchors = [
-			'Template Heroes' => 'heroes-table-2',
-			'Map Heroes' => 'heroes-table-3',
-			'Quest Guards' => 'quest-guards-table',
-		];
-		$sectionsWithHr1Below = [
-			'General',
-			'Terrain',
-			'Map Heroes',
-			'Town Details',
-			'Spells',
-			'Quest Guards',
-			'Town Events',
-			'Event Objects',
-			'Starting Zones',
-		];
-		$sectionsWithHr2Below = [
-			'Disabled Heroes',
-			'Template Heroes',
-			'Artifacts',
-			'Seer\'s Huts',
-			'Quest Gates',
-			'Global Events',
-			'Pandora\'s Boxes',
-			'Object Count',
-		];
+    // private function generateNavMain() {
+	// 	$mapID = $_GET['mapID'] ?? '';
+	// 	$mapQueryString = $mapID ? "mapID=$mapID&" : '';
+	// 	$currentSection = $_GET['section'] ?? '';
+	// 	$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
+	// 				 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
+	// 				 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count', 'Starting Zones'];
+	// 	$sectionsWithAnchors = [
+	// 		'Template Heroes' => 'heroes-table-2',
+	// 		'Map Heroes' => 'heroes-table-3',
+	// 		'Quest Guards' => 'quest-guards-table',
+	// 	];
+	// 	$sectionsWithHr1Below = [
+	// 		'General',
+	// 		'Terrain',
+	// 		'Map Heroes',
+	// 		'Town Details',
+	// 		'Spells',
+	// 		'Quest Guards',
+	// 		'Town Events',
+	// 		'Event Objects',
+	// 		'Starting Zones',
+	// 	];
+	// 	$sectionsWithHr2Below = [
+	// 		'Disabled Heroes',
+	// 		'Template Heroes',
+	// 		'Artifacts',
+	// 		'Seer\'s Huts',
+	// 		'Quest Gates',
+	// 		'Global Events',
+	// 		'Pandora\'s Boxes',
+	// 		'Object Count',
+	// 	];
 
-		$sidebar = '<div class="sidebarMain">';
-		foreach ($sections as $section) {
-			if($section === 'General') {
-				// $sidebar .= HRULE1;
-			}
-			$selectedClass = $section === $currentSection ? 'selected' : '';
-			$anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
-			$sidebar .= "<a href=\"?{$mapidParam}section={$section}{$anchor}\" class=\"{$selectedClass}\">".ucfirst($section)."</a>";
-			if(in_array($section, $sectionsWithHr1Below)) {
-				$sidebar .= HRULE1;
-			} else if(in_array($section, $sectionsWithHr2Below)) {
-				$sidebar .= HRULE2;
-			}
-		}
-		$sidebar .= '</div>
-					<div class="content-container">';
+	// 	$navMain = '<div class="nav-main">';
+	// 	foreach ($sections as $section) {
+	// 		if($section === 'General') {
+	// 			// $navMain .= HRULE1;
+	// 		}
+	// 		$selectedClass = $section === $currentSection ? 'selected' : '';
+	// 		$anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
+	// 		$navMain .= "<a href=\"?{$mapQueryString}section={$section}{$anchor}\" class=\"{$selectedClass}\">".ucfirst($section)."</a>";
+	// 		if(in_array($section, $sectionsWithHr1Below)) {
+	// 			$navMain .= HRULE1;
+	// 		} else if(in_array($section, $sectionsWithHr2Below)) {
+	// 			$navMain .= HRULE2;
+	// 		}
+	// 	}
+	// 	$navMain .= '</div>
+	// 				<div class="content">';
 
-		return $sidebar;
-	}
+	// 	return $navMain;
+	// }
 }
