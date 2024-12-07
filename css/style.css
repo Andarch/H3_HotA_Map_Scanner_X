@@ -38,8 +38,10 @@
 
 	--header-height: 60px;
 
-	--nav-width: 21.95vh;
+	--nav-max-width: 21.95vh;
 	--nav-min-width: 150px;
+	--nav-width: clamp(var(--nav-min-width), var(--nav-max-width), var(--nav-max-width));
+	--nav-width-diff: calc(var(--nav-width) - var(--nav-min-width));
 
 	--nav-border-width: 4px;
 	--nav-border-color: #aaa;
@@ -125,7 +127,7 @@ th, td {
 	grid-area: header;
     position: fixed;
     top: 0;
-    left: var(--nav-width);
+	right: 0;
     width: calc(100% - var(--nav-width));
     height: var(--header-height);
 	background-color: var(--color-background-ui);
@@ -136,7 +138,6 @@ th, td {
 	height: 100vh;
 	min-height: 684px;
 	width: var(--nav-width);
-	min-width: var(--nav-min-width);
 	background-color: var(--color-background-ui);
 	border: var(--nav-border-width) var(--nav-border-style) var(--nav-border-color);
 	font-family: var(--font-family-heading);
@@ -171,7 +172,7 @@ th, td {
 	text-decoration: none;
 	color: var(--color-foreground-body);
 	background-color: #3a4d4f;
-    font-size: clamp(11px, calc(11px + 0.023795 * (var(--nav-width) - var(--nav-min-width))), 13px);
+    font-size: clamp(11px, calc(11px + 0.023795 * var(--nav-width-diff)), 13px);
 }
 
 .nav-top td a.selected {
@@ -204,7 +205,7 @@ th, td {
 	color:  var(--color-foreground-body);
 	text-decoration: none;
 	background-color: #444;
-    font-size: clamp(15.5px, calc(15.5px + 0.077335 * (var(--nav-width) - var(--nav-min-width))), 22px);
+    font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav-width-diff)), 22px);
 	padding: 0;
 }
 
