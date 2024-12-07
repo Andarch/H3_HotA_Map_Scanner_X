@@ -34,7 +34,7 @@ $timestamp = time();
 
 <body>
 <div class="grid-container">
-    <div class="header">
+    <div class="site-header">
     </div>
 
 <?php

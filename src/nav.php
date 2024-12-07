@@ -1,6 +1,6 @@
 <?php
 
-const HRULE1 = '<hr class="hrule1">';
+const HRULE1 = '<hr class="hr-thick">';
 const HRULE2 = '<hr class="hrule2">';
 
 function generateNav() {
@@ -24,7 +24,7 @@ function generateNavTop() {
     ?>
 
         <div class="nav-top">
-            <hr class="hrule1a">
+            <hr class="hr-thick">
             <table>
                 <tr>
                     <td>
@@ -35,7 +35,7 @@ function generateNavTop() {
                     </td>
                 </tr>
             </table>
-            <hr class="hrule1a">
+            <hr class="hr-thick">
         </div>
 
     <?php

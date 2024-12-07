@@ -16,7 +16,7 @@ echo '<table class="table-large">
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td class="ar nowrap table__row-header--alternate" nowrap="nowrap">Name</td>
+			<td class="ar nowrap table__row-header--alt" nowrap="nowrap">Name</td>
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->versionname.$subrev.'</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_sizename.'</td>
@@ -27,7 +27,7 @@ echo '<table class="table-large">
 			<td rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
 		</tr>
 		<tr>
-			<td class="ar nowrap table__row-header--alternate" nowrap="nowrap">File</td>
+			<td class="ar nowrap table__row-header--alt" nowrap="nowrap">File</td>
 			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
 		</tr>
 	</table>';
@@ -161,11 +161,11 @@ echo '<table class="table-large">
 			<th colspan="2">Grail</th>
 		</tr>
 		<tr>
-			<td class="table__row-header--alternate ar">Has Grail</td>
+			<td class="table__row-header--alt ar">Has Grail</td>
 			<td class="ac">'.($this->h3mapscan->hasGrail ? 'Yes' : 'No').'</td>
 		</tr>
 		<tr>
-			<td class="table__row-header--alternate ar"># of Obelisks</td>
+			<td class="table__row-header--alt ar"># of Obelisks</td>
 			<td class="ac">'.$this->h3mapscan->obelisksnum.'</td>
 		</tr>
 	</table>';
