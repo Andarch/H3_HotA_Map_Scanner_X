@@ -18,15 +18,16 @@
 	--color-lightblue: #29fff1;
 	--color-mineshaft: #282828;
 	--color-purple: #381651;
+	--color-mediumgrey: #505050;
+	--color-lightgrey: #aaaaaa;
 
-	--color-background-body: #2d2d2d;
-	--color-background-heading: var(--color-brown);
-	--color-background-ui: #555;
-	--color-background-row-header-default: #595142;
-	--color-background-row-header-alternate: #4e4e4e;
+	--color-bg-body: #2d2d2d;
+	--color-fg-body: #ddd;
+	--color-bg-heading: var(--color-brown);
+	--color-fg-heading: var(--color-gold);
+	--color-bg-row-header-default: #595142;
+	--color-bg-row-header-alternate: var(--color-mediumgrey);
 
-	--color-foreground-body: #ddd;
-	--color-foreground-heading: var(--color-gold);
 
 	--font-family-body: calibri, arial, sans-serif;
 	--font-family-heading: 'H3Reader', var(--font-family-body);
@@ -44,7 +45,7 @@
 	--nav-width-diff: calc(var(--nav-width) - var(--nav-min-width));
 
 	--nav-border-width: 4px;
-	--nav-border-color: #aaa;
+	--nav-border-color: var(--color-lightgrey);
 	--nav-border-style: solid;
 
 	--hrule1-border-color: #999;
@@ -60,7 +61,7 @@
 	--table-border-width-column: 2px;
 	--table-border-width-row: 2px;
 	--table-border-width-outer: 2px;
-	--table-border-color: #aaa;
+	--table-border-color: var(--color-lightgrey);
 
 	--thin-border-style: dotted;
 	--thin-border-width: 1px;
@@ -77,8 +78,8 @@ html {
 
 body {
 	font-family: var(--font-family-body);
-	color: var(--color-foreground-body);
-	background-color: var(--color-background-body);
+	color: var(--color-fg-body);
+	background-color: var(--color-bg-body);
 }
 
 a, a:visited {
@@ -100,8 +101,8 @@ th {
 }
 
 th:not(.table__title-bar--large):not(.table__title-bar--small):not(.table__title-bar--small2):not(.th-player-color) {
-	background: var(--color-background-heading);
-	color: var(--color-foreground-heading);
+	background: var(--color-bg-heading);
+	color: var(--color-fg-heading);
 }
 
 td {
@@ -130,7 +131,9 @@ th, td {
 	right: 0;
     width: calc(100% - var(--nav-width));
     height: var(--header-height);
-	background-color: var(--color-background-ui);
+	background-color: var(--color-brown);
+	border: var(--nav-border-width) var(--nav-border-style) var(--nav-border-color);
+	border-left: none;
 }
 
 .nav {
@@ -138,7 +141,7 @@ th, td {
 	height: 100vh;
 	min-height: 684px;
 	width: var(--nav-width);
-	background-color: var(--color-background-ui);
+	background-color: #555;
 	border: var(--nav-border-width) var(--nav-border-style) var(--nav-border-color);
 	font-family: var(--font-family-heading);
 	text-align: center;
@@ -170,7 +173,7 @@ th, td {
 	height: 100%;
 	text-align: center;
 	text-decoration: none;
-	color: var(--color-foreground-body);
+	color: var(--color-fg-body);
 	background-color: #3a4d4f;
     font-size: clamp(11px, calc(11px + 0.023795 * var(--nav-width-diff)), 13px);
 }
@@ -193,7 +196,7 @@ th, td {
 	min-height: 142px;
     display: flex;
     flex-direction: column;
-	color: var(--color-foreground-body);
+	color: var(--color-fg-body);
 	overflow: hidden;
 }
 
@@ -202,9 +205,9 @@ th, td {
 	flex: 1;
     justify-content: center;
     align-items: center;
-	color:  var(--color-foreground-body);
+	color:  var(--color-fg-body);
 	text-decoration: none;
-	background-color: #444;
+	background-color: var(--color-mediumgrey);
     font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav-width-diff)), 22px);
 	padding: 0;
 }
@@ -299,19 +302,19 @@ th, td {
 }
 
 .table__row-header--default {
-	background: var(--color-background-row-header-default);
+	background: var(--color-bg-row-header-default);
 	font-weight: bold;
 	text-align: center;
 }
 
 .table__row-header--alternate {
-	background: var(--color-background-row-header-alternate);
+	background: var(--color-bg-row-header-alternate);
 	font-weight: bold;
 	text-align: left;
 }
 
 .table__nested-row-header {
-	background: var(--color-background-row-header-alternate);
+	background: var(--color-bg-row-header-alternate);
 	font-weight: bold;
 	font-size: 12px !important;
 }
@@ -386,7 +389,7 @@ th, td {
 }
 
 .hero-name-row-header {
-	background: var(--color-background-row-header-alternate);
+	background: var(--color-bg-row-header-alternate);
 	font-weight: bold;
 	font-size: 11px !important;
 	vertical-align: top;
