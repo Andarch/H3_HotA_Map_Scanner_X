@@ -235,7 +235,7 @@ function sanity_string($string) {
 	return $newstring == '' ? $string : $newstring;
 }
 
-function h3mmakeFP($mapID, $terrate, $return = false) {
+function h3mmakeFP($mapid, $terrate, $return = false) {
 	$bytefp = '';
 
 	foreach($terrate as $z => $rate) {
@@ -253,7 +253,7 @@ function h3mmakeFP($mapID, $terrate, $return = false) {
 	}
 
 	$bytefp = mes($bytefp);
-	$sql = "INSERT INTO heroes_mapfp (idm, fp) VALUES ($mapID, '$bytefp')";
+	$sql = "INSERT INTO heroes_mapfp (idm, fp) VALUES ($mapid, '$bytefp')";
 	mq($sql);
 }
 

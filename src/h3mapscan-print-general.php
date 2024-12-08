@@ -1,37 +1,6 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-if(!strcmp($this->h3mapscan->description, '')) {
-	$this->h3mapscan->description = EMPTY_DATA;}
-
-echo '<table class="table-large">
-		<tr>
-			<th class="ac nowrap" nowrap="nowrap" colspan="2">Map</th>
-			<th class="ac nowrap" nowrap="nowrap">Version</th>
-			<th class="ac nowrap" nowrap="nowrap">Size</th>
-			<th class="ac nowrap" nowrap="nowrap"># of</br>Levels</th>
-			<th class="ac nowrap" nowrap="nowrap">Difficulty</th>
-			<th class="ac nowrap" nowrap="nowrap">Victory</br>Condition</th>
-			<th class="ac nowrap" nowrap="nowrap">Loss</br>Condition</th>
-			<th>Description</th>
-		</tr>
-		<tr>
-			<td class="ar nowrap table__row-header--alt" nowrap="nowrap">Name</td>
-			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->map_name.'</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->versionname.$subrev.'</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_sizename.'</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.($this->h3mapscan->underground ? 2 : 1).'</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="2">'.$this->h3mapscan->map_diffname.'</td>
-			<td class="ac" rowspan="2">'.$this->h3mapscan->victoryInfo.'</td>
-			<td class="ac" rowspan="2">'.$this->h3mapscan->lossInfo.'</td>
-			<td rowspan="2">'.nl2br($this->h3mapscan->description).'</td>
-		</tr>
-		<tr>
-			<td class="ar nowrap table__row-header--alt" nowrap="nowrap">File</td>
-			<td class="nowrap" nowrap="nowrap">'.$this->h3mapscan->mapfile.'</td>
-		</tr>
-	</table>';
-
 echo '<table class="table-large">
 	<tr>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
@@ -110,6 +79,33 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $towns) {
 }
 
 echo '</table>';
+
+echo '<table class="table-large">
+		<tr>
+			<th class="ac nowrap" nowrap="nowrap">Difficulty</th>
+		</tr>
+		<tr>
+			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->map_diffname.'</td>
+		</tr>
+	</table>';
+
+echo '<table class="table-large">
+		<tr>
+			<th class="ac nowrap" nowrap="nowrap">Victory</br>Condition</th>
+		</tr>
+		<tr>
+			<td class="ac">'.$this->h3mapscan->victoryInfo.'</td>
+		</tr>
+	</table>';
+
+echo '<table class="table-large">
+		<tr>
+			<th class="ac nowrap" nowrap="nowrap">Loss</br>Condition</th>
+		</tr>
+		<tr>
+			<td class="ac">'.$this->h3mapscan->lossInfo.'</td>
+		</tr>
+	</table>';
 
 sort($this->h3mapscan->disabledArtifacts);
 

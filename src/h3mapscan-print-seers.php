@@ -35,16 +35,23 @@ foreach($this->h3mapscan->seers_huts as $hut) {
             $Qreqclass = ' nowrap" nowrap="nowrap"';
         }
 
-        $additionalrow = false;
-        if($q > 0) {
+        $additionalRow = false;
+        $lastAdditionalRow = false;
+        if($qcount > 1 && $q > 0) {
             echo '<tr>';
-            $additionalrow = true;
+            if($q < $qcount - 1) {
+                $additionalRow = true;
+            } else {
+                $lastAdditionalRow = true;
+            }
         }
         $borderstyle = '';
-        if($additionalrow) {
-            $borderstyle = 'style="border-top:1px dotted grey;border-bottom:1px dotted grey;"';
-        } else {
-            $borderstyle = 'style="border-bottom:1px dotted grey;"';
+        if($qcount > 1 && $q == 0) {
+            $borderstyle = 'style="border-bottom: 1px dotted grey;"';
+        } else if($additionalRow) {
+            $borderstyle = 'style="border-top: 1px dotted grey; border-bottom: 1px dotted grey;"';
+        } else if($lastAdditionalRow) {
+            $borderstyle = 'style="border-top: 1px dotted grey;"';
         }
 
         echo '  <td class="ac table__nested-row-header" '.$borderstyle.'>'.($q + 1).'</td>';

@@ -73,8 +73,8 @@ class H3MAPSCAN_PRINT {
     }
 
     // private function generateNavMain() {
-	// 	$mapID = $_GET['mapID'] ?? '';
-	// 	$mapQueryString = $mapID ? "mapID=$mapID&" : '';
+	// 	$mapid = $_GET['mapid'] ?? '';
+	// 	$mapQueryString = $mapid ? "mapid=$mapid&" : '';
 	// 	$currentSection = $_GET['section'] ?? '';
 	// 	$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
 	// 				 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',

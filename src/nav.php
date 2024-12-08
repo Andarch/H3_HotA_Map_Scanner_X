@@ -40,8 +40,8 @@ function generateNavTop() {
 }
 
 function generateNavMain() {
-    $mapID = $_GET['mapID'] ?? '';
-    $mapQueryString = $mapID ? "mapID=$mapID&" : '';
+    $mapid = $_GET['mapid'] ?? '';
+    $mapQueryString = $mapid ? "mapid=$mapid&" : '';
     $currentSection = $_GET['section'] ?? '';
     $sections = [
         'General',

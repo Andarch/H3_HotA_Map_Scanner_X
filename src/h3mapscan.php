@@ -121,7 +121,7 @@ class H3MAPSCAN {
 	public $mapimage; //mapfile name for DB
 	private $mapfileinfo;
 	private $md5hash = '';
-	public  $mapID = 0;
+	public  $mapid = 0;
 	public  $camid = 0;
 
 	public  $players = [];
@@ -284,8 +284,8 @@ class H3MAPSCAN {
 			FROM_UNIXTIME(".$this->filectime."), FROM_UNIXTIME(".$this->filemtime."), ".$this->filesizeC.", ".$this->filesizeU.", '".$mapimage."', '".$this->md5hash."')";
 
 		if(mq($sql)) {
-			$this->mapID = mii();
-			//$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapID}') WHERE idm={$this->mapID}";
+			$this->mapid = mii();
+			//$sql = "UPDATE heroes3_maps SET mapimage=CONCAT(mapimage, '_', '{$this->mapid}') WHERE idm={$this->mapid}";
 			//mq($sql);
 		}
 	}
@@ -297,10 +297,14 @@ class H3MAPSCAN {
 	public function MapHeaderInfo() {
 		//$this->ParseFinish();
 		$subrev = ($this->version == $this::HOTA) ? ' '.$this->hota_subrev : '';
+		$timestamp = new DateTime("@$this->filemtime");
+		$timestamp->setTimezone(new DateTimeZone('America/Chicago'));
+		$dateTime = $timestamp->format('n/j/Y g:i A');
 		$headerInfo = [
+			'mapname' => $this->map_name,
 			'mapfile' => $this->mapfile,
 			'version' => $this->versionname.$subrev,
-			'mapname' => $this->map_name,
+			'filetime' => $dateTime,
 			'mapdesc' => nl2br($this->description),
 			'mapsize' => $this->map_sizename,
 			'levels' => ($this->underground + 1),
@@ -311,7 +315,6 @@ class H3MAPSCAN {
 			'loss' => $this->lossInfo,
 			'filesizeC' => $this->filesizeC,
 			'filesizeU' => $this->filesizeU,
-			'filetime' => $this->filemtime,
 			'md5hash' => $this->md5hash,
 		];
 		return $headerInfo;
@@ -1330,9 +1333,9 @@ class H3MAPSCAN {
 	public function BuildMap() {
 		if($this->buildMapImage) {
 			//image path and filenames
-			//if($this->mapID) {
-			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapID.'_g.png'; //ground
-			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapID.'_u.png'; //underground
+			//if($this->mapid) {
+			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_g.png'; //ground
+			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_u.png'; //underground
 			//}
 			//else {
 				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g.png'; //ground

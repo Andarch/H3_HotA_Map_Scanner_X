@@ -10,6 +10,8 @@ header('Content-Type: text/html; charset=utf-8');
 require_once 'src/mi.php';
 require_once 'src/config.php';
 
+const EMPTY_DATA = '<span style="color:grey;">–</span>';
+
 $timestamp = time();
 ?>
 
@@ -39,8 +41,6 @@ $timestamp = time();
 <?php
 
 require_once 'src/header.php';
-generateHeader();
-
 require_once 'src/nav.php';
 generateNav();
 
@@ -51,24 +51,26 @@ require_once 'src/mapsupport.php';
 $mapok = false;
 $buildmap = true;
 $mapfiledb = false;
-$mapID = intval(exget('mapID', 0));
+$mapid = exget('mapid', 0);
 
 $scan = exget('scan');
 
 $mapcode = exget('mapcode');
 $disp = '';
 
-if($mapID) {
+if($mapid) {
 	if(exget('del')) {
-		$sql = "DELETE FROM heroes3_maps WHERE idm = $mapID";
+		$sql = "DELETE FROM heroes3_maps WHERE idm = $mapid";
 		mq($sql);
 	}
 	else {
-		$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapID";
+		$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapid";
 		$mapfiledb = mgr($sql);
 	}
 }
 elseif($scan) {
+	generateHeader();
+
 	echo '<div class="content">';
 
 	$scan = new ScanSubDir();
@@ -129,20 +131,26 @@ elseif($scan) {
 
 	echo '</div>';
 }
+else {
+	generateHeader();
+}
 
 if($mapfiledb) {
 	$mapfile = MAPDIR.$mapfiledb;
 	$mapok = true;
 }
 elseif($mapcode) {
-	$mapok = true;
 	$mapfile = MAPDIR.base64_decode($mapcode);
+	$mapok = true;
 }
 
 //read some maps only
 if($mapok) {
-	echo $disp;
-	$tm = new TimeMeasure();
+	if($disp) {
+		echo $disp;
+	}
+
+	// $tm = new TimeMeasure();
 
 	/*
 	H3M_WEBMODE
@@ -157,6 +165,9 @@ if($mapok) {
 
 	$map = new H3MAPSCAN($mapfile, H3M_WEBMODE | H3M_PRINTINFO | H3M_BUILDMAP); // | H3M_BUILDMAP | H3M_SAVEMAPDB | H3M_MAPHTMCACHE
 	$map->ReadMap();
+
+	$headerInfo = $map->MapHeaderInfo();
+	generateHeader($headerInfo);
 
 	//$tm->Measure('End');
 	//$tm->showTimes();

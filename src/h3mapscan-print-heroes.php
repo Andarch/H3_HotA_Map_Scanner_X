@@ -284,9 +284,9 @@ foreach($this->h3mapscan->heroes_list as $mapHero) {
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header" nowrap="nowrap"
-			style="border-top:1px dotted grey; border-right:none; border-bottom:1px dotted grey;">Def</td>
+			style="border-top:1px dotted grey; border-right:none;">Def</td>
 			<td class="ac nowrap small-text vat" nowrap="nowrap"
-			style="border-top:1px dotted grey; border-left:none; border-bottom:1px dotted grey;">'.$mapHero['data']['defName'].'</td>
+			style="border-top:1px dotted grey; border-left:none;">'.$mapHero['data']['defName'].'</td>
 		</tr>';
 }
 
