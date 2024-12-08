@@ -9,10 +9,8 @@ function generateNav() {
     <div class="nav">
 
     <?php
-
     generateNavTop();
     generateNavMain();
-
     ?>
 
     </div>

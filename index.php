@@ -1,4 +1,5 @@
 <?php
+
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 header('Cache-Control: post-check=0, pre-check=0', false);
 header('Pragma: no-cache');
@@ -33,14 +34,14 @@ $timestamp = time();
 </head>
 
 <body>
-<div class="grid-container">
-    <div class="site-header">
-    </div>
+	<div class="grid-container">
 
 <?php
 
-require_once 'src/nav.php';
+require_once 'src/header.php';
+generateHeader();
 
+require_once 'src/nav.php';
 generateNav();
 
 require_once 'src/h3mapscan.php';
