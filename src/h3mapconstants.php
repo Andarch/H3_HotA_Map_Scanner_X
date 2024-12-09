@@ -1726,7 +1726,7 @@
 			'212-1001' => ['name' => 'Grave', 'category' => OBJ_CATEGORY::TREASURES],
 			'213-0' => ['name' => 'Freelancer\'s Guild', 'category' => OBJ_CATEGORY::TRADING],
 			'215-0' => ['name' => 'Quest Guard', 'category' => OBJ_CATEGORY::GARRISONS_QUESTS],
-			'216-0' => ['name' => 'Random Dwelling', 'category' => OBJ_CATEGORY::DWELLINGS],
+			'216-0' => ['name' => 'Random Dwelling – All', 'category' => OBJ_CATEGORY::DWELLINGS],
 			'217-X' => ['name' => 'Random Dwelling – Level', 'category' => OBJ_CATEGORY::DWELLINGS],
 			'218-X' => ['name' => 'Random Dwelling – Faction', 'category' => OBJ_CATEGORY::DWELLINGS],
 			// '219-0' => ['name' => 'Garrison – Normal', 'category' => OBJECTCATEGORIES::GARRISONS_QUESTS],

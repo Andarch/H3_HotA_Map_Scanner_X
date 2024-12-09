@@ -72,7 +72,7 @@ class H3MAPSCAN {
 	public  $objectsNum = 0;
 	private $objects = [];
 	public  $objects_all = [];
-	public  $objects_per_zone = [];
+	public  $objectsPerZone = [];
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
 	private $customHeroes = [];
@@ -1559,7 +1559,7 @@ class H3MAPSCAN {
 					$this->objects_all[$objcategory][$objcomboid]['count']++;
 
 					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
-						$this->objects_per_zone[$objcategory][] = [
+						$this->objectsPerZone[$objcategory][] = [
 							'comboid' => $objcomboid,
 							'name' => $objname,
 							'pos' => $objpos,
@@ -2428,8 +2428,8 @@ class H3MAPSCAN {
 		$reflection = new ReflectionClass('OBJ_CATEGORY');
 		$categories = $reflection->getConstants();
 		foreach ($categories as $category) {
-			if (!isset($this->objects_per_zone[$category])) {
-				$this->objects_per_zone[$category] = [];
+			if (!isset($this->objectsPerZone[$category])) {
+				$this->objectsPerZone[$category] = [];
 			}
 		}
 	}
@@ -3259,7 +3259,7 @@ class H3MAPSCAN {
 			}
 		}
 
-		//update victory and loss condition details
+		//update victory condition details
 		switch($this->victoryCond['type']) {
 			case VICTORY::UPGRADETOWN:
 				$name = $this->GetMapObjectByPos(MAPOBJECTS::TOWN, $this->victoryCond['coor']);
@@ -3289,6 +3289,7 @@ class H3MAPSCAN {
 				break;
 		}
 
+		//update loss condition details
 		switch($this->lossCond['type']) {
 			case LOSS::TOWN:
 				$name = $this->GetMapObjectByPos(MAPOBJECTS::TOWN, $this->lossCond['coor']);
@@ -3328,6 +3329,13 @@ class H3MAPSCAN {
 			}
 		}
 
+		// Unset empty obj-per-zone arrays
+		// foreach($this->objectsPerZone as $category => $objects) {
+		// 	if (empty($category)) {
+		// 		echo $category;
+		// 		unset($$this->objectsPerZone[$category]);
+		// 	}
+		// }
 	}
 
 	public function PrintStack($creatures) {
@@ -3545,7 +3553,12 @@ class H3MAPSCAN {
 		return $objname;
 	}
 
+	// public $realsubid = 0; //Debug
+
 	public function GetComboId($id, $subid) {
+
+		// $this->realsubid = $subid; //Debug
+
 		switch($id) {
 			case 5:
 			case 17:
