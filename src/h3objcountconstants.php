@@ -229,7 +229,7 @@
             'Level 7',
         ];
 
-        public $NeutralDwellings1to4 = [
+        public $NeutralDwellings1 = [
             'Hovel',
             'Boar Glen',
             'Rogue Cavern',
@@ -240,7 +240,7 @@
             'Wineyard',
         ];
 
-        public $NeutralDwellings5to7 = [
+        public $NeutralDwellings2 = [
             'Troll Bridge',
             'Ziggurat',
             'Enchanter\'s Hollow',

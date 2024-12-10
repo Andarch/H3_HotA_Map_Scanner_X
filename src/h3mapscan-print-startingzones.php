@@ -126,6 +126,22 @@ DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors,
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::DWELLINGS], OBJ_CATEGORY::DWELLINGS, $sortOrder->Dwellings, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
+// Dwellings by Level
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::DWELLINGS_BY_LEVEL], OBJ_CATEGORY::DWELLINGS_BY_LEVEL, $sortOrder->DwellingsByLevel, null, null, null, OC_FLEXTYPE::NONE);
+DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+
+// Neutral Dwellings 1
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::NEUTRAL_DWELLINGS_1], OBJ_CATEGORY::NEUTRAL_DWELLINGS_1, $sortOrder->NeutralDwellings1, null, null, null, OC_FLEXTYPE::NONE);
+DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+
+// Neutral Dwellings 2
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::NEUTRAL_DWELLINGS_2], OBJ_CATEGORY::NEUTRAL_DWELLINGS_2, $sortOrder->NeutralDwellings2, null, null, null, OC_FLEXTYPE::NONE);
+DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+
+// Other Dwellings
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::OTHER_DWELLINGS], OBJ_CATEGORY::OTHER_DWELLINGS, $sortOrder->OtherDwellings, null, null, null, OC_FLEXTYPE::NONE);
+DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+
 // Garrisons / Quests
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::GARRISONS_QUESTS], OBJ_CATEGORY::GARRISONS_QUESTS, $sortOrder->GarrisonsQuests, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
