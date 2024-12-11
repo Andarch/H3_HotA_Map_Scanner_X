@@ -71,8 +71,8 @@ class H3MAPSCAN {
 	private $objTemplates = [];
 	public  $objectsNum = 0;
 	private $objects = [];
-	public  $objects_all = [];
-	public  $objectsPerZone = [];
+	public  $objectCountAll = [];
+	public  $objectCountPlayers = [];
 	private $freeHeroes = [];
 	public  $disabledHeroes = [];
 	private $customHeroes = [];
@@ -133,6 +133,7 @@ class H3MAPSCAN {
 	public $obelisksnum = 0;
 
 	public  $CS; //heroes constants class
+	public $OCDW;
 	private $SC; //String Convert
 
 	//mode switches
@@ -366,6 +367,8 @@ class H3MAPSCAN {
 
 		$this->br->ResetPos();
 		$this->CS = new HeroesConstants();
+		require_once 'src/h3objcountconstants.php';
+		$this->OCDW = new OC_Dwellings();
 		//$this->SC = new StringConvert();
 
 		$this->version = $this->br->ReadUint32();
@@ -1546,7 +1549,8 @@ class H3MAPSCAN {
 				$obj['id'] = $this->objTemplates[$obj['defnum']]->id;
 				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
-				if(!array_key_exists($obj['id'], $this->CS->OmittedObjects)) {
+				if(!array_key_exists($obj['id'], $this->CS->OmittedObjectsAll)) {
+					// Object count - all
 					$obj['comboid'] =  $this->GetComboId($obj['id'], $obj['subid']);
 					$obj['objcategory'] = FromArray('category', $this->CS->ObjectEx[$obj['comboid']]);
 					$obj['objname'] = FromArray('name', $this->CS->ObjectEx[$obj['comboid']]);
@@ -1556,13 +1560,38 @@ class H3MAPSCAN {
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
 
-					$this->objects_all[$objcategory][$objcomboid]['count']++;
+					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
-					if(!array_key_exists($obj['id'], $this->CS->OmittedZoneObjects)) {
-						$this->objectsPerZone[$objcategory][] = [
+					// Object count - players
+					if(!array_key_exists($obj['id'], $this->CS->OmittedObjectsPlayers)) {
+						$creaturelevel = null;
+						if($objcomboid == "17-X") {
+							$truecomboid = $obj['id'].'-'.$obj['subid'];
+							$foundIn = '';
+							if (isset($this->OCDW->Faction[$truecomboid])) {
+								$creaturelevel = $this->OCDW->Faction[$truecomboid]['level'];
+								$foundIn = 'Faction';
+							}
+							elseif (isset($this->OCDW->Neutral[$truecomboid])) {
+								$creaturelevel = $this->OCDW->Neutral[$truecomboid]['level'];
+								$foundIn = 'Neutral';
+							}
+							if ($foundIn === 'Faction') {
+								$objcategory = OBJ_CATEGORY::DWELLINGS_BY_LEVEL;
+							} elseif ($foundIn === 'Neutral') {
+								if ($creaturelevel >= 1 && $creaturelevel <= 4) {
+									$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_1;
+								} elseif ($creaturelevel >= 5 && $creaturelevel <= 7) {
+									$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_2;
+								}
+							}
+							$objname = 'Level '.$creaturelevel;
+						}
+						$this->objectCountPlayers[$objcategory][] = [
 							'comboid' => $objcomboid,
 							'name' => $objname,
 							'pos' => $objpos,
+							'creaturelevel' => $creaturelevel,
 						];
 					}
 				}
@@ -2416,10 +2445,10 @@ class H3MAPSCAN {
 	private function InitializeObjectsCountArrays() {
 		foreach ($this->CS->ObjectEx as $comboid => $details) {
 			$category = $details['category'];
-			if (!isset($this->objects_all[$category])) {
-				$this->objects_all[$category] = [];
+			if (!isset($this->objectCountAll[$category])) {
+				$this->objectCountAll[$category] = [];
 			}
-			$this->objects_all[$category][$comboid] = [
+			$this->objectCountAll[$category][$comboid] = [
 				'name' => $details['name'],
 				'count' => 0
 			];
@@ -2428,8 +2457,8 @@ class H3MAPSCAN {
 		$reflection = new ReflectionClass('OBJ_CATEGORY');
 		$categories = $reflection->getConstants();
 		foreach ($categories as $category) {
-			if (!isset($this->objectsPerZone[$category])) {
-				$this->objectsPerZone[$category] = [];
+			if (!isset($this->objectCountPlayers[$category])) {
+				$this->objectCountPlayers[$category] = [];
 			}
 		}
 	}
@@ -3321,7 +3350,7 @@ class H3MAPSCAN {
 		}
 
 		// Update object count when zero
-		foreach($this->objects_all as &$objcomboid) {
+		foreach($this->objectCountAll as &$objcomboid) {
 			foreach($objcomboid as &$obj) {
 				if($obj['count'] == 0) {
 					$obj['count'] = EMPTY_DATA;
@@ -3494,7 +3523,7 @@ class H3MAPSCAN {
 		if($this->isHOTA && $artid >= HOTA_ARTIFACTS_IDS) {
 			return FromArray($artid, $this->CS->ArtefactsHota);
 		}
-		return FromArray($artid, $this->CS->Artefacts);
+		return FromArray($artid, $this->CS->Artifacts);
 	}
 
 	private function GetArtifactPosById($artid) {

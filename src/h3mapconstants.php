@@ -1750,7 +1750,7 @@
 			'231-0' => ['name' => 'Rocklands', 'category' => OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS],
 		];
 
-		public $OmittedObjects = [
+		public $OmittedObjectsAll = [
 			3 => 'Anchor Point',
 			114 => 'Brush',
 			115 => 'Bush',
@@ -1845,7 +1845,7 @@
 			214 => 'Hero Placeholder',
 		];
 
-		public $OmittedZoneObjects = [
+		public $OmittedObjectsPlayers = [
 			8 => 'Boat',
 			21 => 'Cursed Ground',
 			46 => 'Magic Plains',
@@ -1885,7 +1885,7 @@
 			254 => 'Mercury, Sulfur, Crystal and Gems',
 		];
 
-		public $Artefacts = [
+		public $Artifacts = [
 			0 => 'Spell Book',
 			1 => 'Spell Scroll',
 			2 => 'Grail',

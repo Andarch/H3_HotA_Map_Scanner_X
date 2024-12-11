@@ -4,7 +4,7 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
-$obj_all = $this->h3mapscan->objects_all;
+$obj_all = $this->h3mapscan->objectCountAll;
 $sortOrder = new OC_Sort_Order();
 
 /* MAIN */

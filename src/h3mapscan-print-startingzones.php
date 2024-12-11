@@ -8,8 +8,9 @@ $h3mapscan =  $this->h3mapscan;
 $mapimage = $h3mapscan->mapimage;
 $underground = $h3mapscan->underground;
 $zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
-$objPerZone = $h3mapscan->objectsPerZone;
+$objPerZone = $h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
+$ocDwellings = new OC_Dwellings();
 $zoneColors = [
     'Blue' => [49, 82, 255],
     'Tan' => [156, 115, 82],
@@ -278,6 +279,129 @@ function getZoneByColor($color, $zoneColors) {
 
 function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan) {
 
+	// Debug start
+	//vd($table);
+	// Debug end
+
+	// Initialize
+	$objCountPlayers = [];
+	$flatObjCountPlayers = [];
+	$heroesCS = new HeroesConstants();
+
+	// Sort objects into appropriate player zone/color based on coordinates
+	foreach ($table->objects as $obj) {
+		$objcomboid = $obj['comboid'];
+		$x = $obj['pos']->x;
+		$y = $obj['pos']->y;
+		$z = $obj['pos']->z;
+		$color = null;
+
+		// Check if object is in a player zone
+		if ($z == 0 && $groundColors) {
+			$color = $groundColors[$x][$y];
+		} elseif ($z == 1 && $undergroundColors) {
+			$color = $undergroundColors[$x][$y];
+		}
+
+		// Get player zone and add object to array
+		if ($color) {
+			$zone = getZoneByColor($color, $zoneColors);
+			if ($zone) {
+				if (!isset($objCountPlayers[$objcomboid])) {
+					$objCountPlayers[$objcomboid] = [
+						'name' =>  $obj['name'],
+						'zones' => array_fill_keys(array_keys($zoneColors), 0)
+					];
+				}
+				$objCountPlayers[$objcomboid]['zones'][$zone] += 1;
+			}
+		}
+	}
+
+	// Modify certain object names
+	foreach ($heroesCS->ObjectEx as $comboid => $details) {
+		switch ($table->category) {
+			case OBJ_CATEGORY::KEYMASTERS_TENTS:
+				$prefix = "Keymaster's Tent – ";
+				$name = str_replace($prefix, '', $details['name']);
+				break;
+			case OBJ_CATEGORY::BORDER_GATES:
+				$prefix = "Border Gate – ";
+				$name = str_replace($prefix, '', $details['name']);
+				break;
+			case OBJ_CATEGORY::BORDER_GUARDS:
+				$prefix = "Border Guard – ";
+				$name = str_replace($prefix, '', $details['name']);
+				break;
+			case OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES:
+				$prefix = "Monolith – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " One-Way Entrance";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS:
+				$prefix = "Monolith – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " One-Way Exit";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES:
+				$prefix = "Portal – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " One-Way Entrance";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS:
+				$prefix = "Portal – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " One-Way Exit";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::TWO_WAY_MONOLITHS:
+				$prefix = "Monolith – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " Two-Way";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::TWO_WAY_PORTALS:
+				$prefix = "Portal – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " Two-Way";
+				$name = str_replace($suffix, '', $name);
+				break;
+			case OBJ_CATEGORY::TWO_WAY_SEA_PORTALS:
+				$prefix = "Sea Portal – ";
+				$name = str_replace($prefix, '', $details['name']);
+				$suffix = " Two-Way";
+				$name = str_replace($suffix, '', $name);
+				break;
+			default:
+				$name = $details['name'];
+				break;
+		}
+
+		// Initialize the flat list with custom-order objects
+		if (in_array($name, $table->customOrder)) {
+			$flatObjCountPlayers[$comboid] = [
+				'name' => $name,
+				'zones' => array_fill_keys(array_keys($zoneColors), 0)
+			];
+		}
+	}
+
+	// Add objects to the flat list
+	foreach ($objCountPlayers as $comboid => $obj) {
+		$flatObjCountPlayers[$comboid]['zones'] = $obj['zones'];
+	}
+
+	// Sort the flat list by object name
+	if (!empty($table->customOrder)) {
+		$order = $table->customOrder;
+		uasort($flatObjCountPlayers, function ($a, $b) use ($table, $order) {
+			return customSort($a['name'], $b['name'], $order);
+		});
+	}
+
 	// Flex start if applicable
 	if ($table->flexType === OC_FLEXTYPE::START) {
 		echo START_FLEX;
@@ -290,333 +414,67 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 					<th colspan="'.OBJCOUNT_COLSPAN.'" class="table__title-bar--small2">'.$table->category.'</td>
 				</tr>';
 
-	// Print rest of table based on table type
-	switch ($table->tableType) {
+	// Print table header
+	echo '<tr>
+			<th>ID</th>
+			<th>Type</th>';
+	for ($n=0; $n < 7; $n++) {
+		echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById($n+1).'</th>';
+	}
+	echo '<th class="th-divider"></th>';
+	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(0).'</th>';
+	echo '</tr>';
 
-		case OC_TABLETYPE::NORMAL:
-			echo '<tr>
-					<th>ID</th>
-					<th>Type</th>';
-			for ($n=0; $n < 7; $n++) {
-				echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById($n+1).'</th>';
-			}
-			echo '<th class="th-divider"></th>';
-			echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(0).'</th>';
-			echo '</tr>';
+	// Generate the table rows from the sorted flat list
+	$totalCount = count($flatObjCountPlayers);
+	$currentCount = 0;
+	foreach ($flatObjCountPlayers as $comboid => $obj) {
+		$currentCount++;
+		$isLastIteration = ($currentCount === $totalCount);
 
-			//echo '<pre>';
-			//print_r($table->objects);
-			//echo '</pre>';
+		$rowTotal = 0;
+		foreach (array_keys($zoneColors) as $zone) {
+			$count = $obj['zones'][$zone];
+			$rowTotal += $count;
+		}
 
-			$objectCounts = [];
+		if($rowTotal == 0) {
+			$classSuffix = ' obj-count-inactive';
+		} else {
+			$classSuffix = ' obj-count-active';
+		}
 
-			foreach ($table->objects as $obj) {
-				$objcomboid = $obj['comboid'];
-				$x = $obj['pos']->x;
-				$y = $obj['pos']->y;
-				$z = $obj['pos']->z;
-				$color = null;
+		echo '<tr>';
+		echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$comboid.'</td>';
+		echo '<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$obj['name'].'</td>';
 
-				if ($z == 0 && $groundColors) {
-					$color = $groundColors[$x][$y];
-				} elseif ($z == 1 && $undergroundColors) {
-					$color = $undergroundColors[$x][$y];
-				}
-
-				if ($color) {
-					$zone = getZoneByColor($color, $zoneColors);
-					if ($zone) {
-						if (!isset($objectCounts[$objcomboid])) {
-							$objectCounts[$objcomboid] = [
-								'name' =>  $obj['name'],
-								'zones' => array_fill_keys(array_keys($zoneColors), 0)
-							];
-						}
-						$objectCounts[$objcomboid]['zones'][$zone] += 1;
-					}
+		$n=0;
+		foreach (array_keys($zoneColors) as $zone) {
+			if ($zone == 'Red') {
+				if (!$isLastIteration) {
+					echo '<td class="cell-greyed-out"></td>';
+				} else {
+					echo '<td class="cell-greyed-out-last"></td>';
 				}
 			}
-
-			$flatObjectCounts = [];
-			$heroesCS = new HeroesConstants();
-
-			// Initialize the flat list with custom order objects
-			foreach ($heroesCS->ObjectEx as $comboid => $details) {
-				switch ($table->category) {
-					case OBJ_CATEGORY::KEYMASTERS_TENTS:
-						$prefix = "Keymaster's Tent – ";
-						$name = str_replace($prefix, '', $details['name']);
-						break;
-					case OBJ_CATEGORY::BORDER_GATES:
-						$prefix = "Border Gate – ";
-						$name = str_replace($prefix, '', $details['name']);
-						break;
-					case OBJ_CATEGORY::BORDER_GUARDS:
-						$prefix = "Border Guard – ";
-						$name = str_replace($prefix, '', $details['name']);
-						break;
-					case OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES:
-						$prefix = "Monolith – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " One-Way Entrance";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS:
-						$prefix = "Monolith – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " One-Way Exit";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES:
-						$prefix = "Portal – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " One-Way Entrance";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS:
-						$prefix = "Portal – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " One-Way Exit";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::TWO_WAY_MONOLITHS:
-						$prefix = "Monolith – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " Two-Way";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::TWO_WAY_PORTALS:
-						$prefix = "Portal – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " Two-Way";
-						$name = str_replace($suffix, '', $name);
-						break;
-					case OBJ_CATEGORY::TWO_WAY_SEA_PORTALS:
-						$prefix = "Sea Portal – ";
-						$name = str_replace($prefix, '', $details['name']);
-						$suffix = " Two-Way";
-						$name = str_replace($suffix, '', $name);
-						break;
-					default:
-						$name = $details['name'];
-						break;
-				}
-				if (in_array($name, $table->customOrder)) {
-					$flatObjectCounts[$comboid] = [
-						'name' => $name,
-						'zones' => array_fill_keys(array_keys($zoneColors), 0)
-					];
-				}
-			}
-
-			foreach ($objectCounts as $comboid => $obj) {
-				$flatObjectCounts[$comboid]['zones'] = $obj['zones'];
-			}
-
-			// Sort the flat list by object name
-			if (!empty($table->customOrder)) {
-				$order = $table->customOrder;
-				uasort($flatObjectCounts, function ($a, $b) use ($table, $order) {
-					return customSort($a['name'], $b['name'], $order);
-				});
-			}
-
-			// Count the total number of elements in the array
-			$totalCount = count($flatObjectCounts);
-			$currentCount = 0;
-
-			// Generate the table rows from the sorted flat list
-			foreach ($flatObjectCounts as $comboid => $obj) {
-				$currentCount++;
-				$isLastIteration = ($currentCount === $totalCount);
-
-				$rowTotal = 0;
-				foreach (array_keys($zoneColors) as $zone) {
-					$count = $obj['zones'][$zone];
-					$rowTotal += $count;
-				}
-
+			$count = $obj['zones'][$zone] == 0 ? EMPTY_DATA : $obj['zones'][$zone];
+			if($count == EMPTY_DATA) {
 				if($rowTotal == 0) {
 					$classSuffix = ' obj-count-inactive';
 				} else {
 					$classSuffix = ' obj-count-active';
 				}
-
-				echo '<tr>';
-				echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$comboid.'</td>';
-				echo '<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$obj['name'].'</td>';
-
-				$n=0;
-				foreach (array_keys($zoneColors) as $zone) {
-					if ($zone == 'Red') {
-						if (!$isLastIteration) {
-							echo '<td class="cell-greyed-out"></td>';
-						} else {
-							echo '<td class="cell-greyed-out-last"></td>';
-						}
-					}
-					$count = $obj['zones'][$zone] == 0 ? EMPTY_DATA : $obj['zones'][$zone];
-					if($count == EMPTY_DATA) {
-						if($rowTotal == 0) {
-							$classSuffix = ' obj-count-inactive';
-						} else {
-							$classSuffix = ' obj-count-active';
-						}
-					} else {
-						$classSuffix = ' player-dark'.($n+1);
-					}
-					$classSuffix = ' player-dark'.($n+1);
-					echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$count.'</td>';
-					$n++;
-				}
-				echo '</tr>';
+			} else {
+				$classSuffix = ' player-dark'.($n+1);
 			}
-
-		/*
-		case OC_TABLETYPE::BORDER:
-			echo '<tr>
-					<th class="ac nowrap" nowrap="nowrap">ID</th>
-					<th class="ac nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Tent</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Gate</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Grd</th>
-				</tr></thead><tbody>';
-			for($i = 0; $i < $table->typeCount; $i++) {
-				$tentCount = $table->special1[$table->special2[$i]]['count'];
-				$borderGateCount = $table->special3[$table->special4[$i]]['count'];
-				$borderGuardCount = $table->special5[$table->special6[$i]]['count'];
-				if($tentCount === EMPTY_DATA && $borderGateCount === EMPTY_DATA && $borderGuardCount === EMPTY_DATA) {
-					$classSuffix = ' obj-count-inactive';
-					$classSuffixTents = ' obj-count-inactive';
-					$classSuffixBorderGates = ' obj-count-inactive';
-					$classSuffixBorderGuards = ' obj-count-inactive';
-				} else {
-					$classSuffix = ' obj-count-active';
-					if($tentCount === EMPTY_DATA) {
-						$classSuffixTents = ' obj-count-inactive';
-					} else {
-						$classSuffixTents = ' obj-count-active';
-					}
-					if($borderGateCount === EMPTY_DATA) {
-						$classSuffixBorderGates = ' obj-count-inactive';
-					} else {
-						$classSuffixBorderGates = ' obj-count-active';
-					}
-					if($borderGuardCount === EMPTY_DATA) {
-						$classSuffixBorderGuards = ' obj-count-inactive';
-					} else {
-						$classSuffixBorderGuards = ' obj-count-active';
-					}
-				}
-				echo '<tr>
-						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap'.$classSuffixTents.'" nowrap="nowrap">'.$tentCount.'</td>
-						<td class="ac nowrap'.$classSuffixBorderGates.'" nowrap="nowrap">'.$borderGateCount.'</td>
-						<td class="ac nowrap'.$classSuffixBorderGuards.'" nowrap="nowrap">'.$borderGuardCount.'</td>
-					</tr>';
-			}
-			break;
-
-		case OC_TABLETYPE::ONE_WAY_MONOLITH_PORTAL:
-			echo '<tr>
-					<th class="ac nowrap" nowrap="nowrap">ID</th>
-					<th class="ac nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Entr</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Exit</th>
-				</tr></thead><tbody>';
-			for($i = 0; $i < $table->typeCount; $i++) {
-				$entranceCount = $table->special1[$table->special2[$i]]['count'];
-				$exitCount = $table->special3[$table->special4[$i]]['count'];
-				if($entranceCount === EMPTY_DATA && $exitCount === EMPTY_DATA) {
-					$classSuffix = ' obj-count-inactive';
-					$classSuffixEntrances = ' obj-count-inactive';
-					$classSuffixExits = ' obj-count-inactive';
-				} else {
-					$classSuffix = ' obj-count-active';
-					if($entranceCount === EMPTY_DATA) {
-						$classSuffixEntrances = ' obj-count-inactive';
-					} else {
-						$classSuffixEntrances = ' obj-count-active';
-					}
-					if($exitCount === EMPTY_DATA) {
-						$classSuffixExits = ' obj-count-inactive';
-					} else {
-						$classSuffixExits = ' obj-count-active';
-					}
-				}
-				echo '<tr>
-						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap'.$classSuffixEntrances.'" nowrap="nowrap">'.$entranceCount.'</td>
-						<td class="ac nowrap'.$classSuffixExits.'" nowrap="nowrap">'.$exitCount.'</td>
-					</tr>';
-			}
-			break;
-
-		case OC_TABLETYPE::TWO_WAY_MONOLITH_PORTAL:
-			echo '<tr>
-					<th class="ac nowrap" nowrap="nowrap">ID</th>
-					<th class="ac nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
-				</tr></thead><tbody>';
-			for($i = 0; $i < $table->typeCount; $i++) {
-				$count = $table->objects[$table->special1[$i]]['count'];
-				if($count === EMPTY_DATA) {
-					$classSuffix = ' obj-count-inactive';
-				} else {
-					$classSuffix = ' obj-count-active';
-				}
-				echo '<tr>
-						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->special1[$i].'</td>
-						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$count.'</td>
-					</tr>';
-			}
-			break;
-
-		case OC_TABLETYPE::MINE_WAREHOUSE:
-			echo '<tr>
-					<th class="ac nowrap" nowrap="nowrap">ID</th>
-					<th class="ac nowrap" nowrap="nowrap">Type</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Mine</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">WH</th>
-				</tr></thead><tbody>';
-			for($i = 0; $i < $table->typeCount; $i++) {
-				$mineCount = $table->special2[$table->special3[$i]]['count'];
-				$warehouseCount = $table->special5[$table->special6[$i]]['count'];
-				if($mineCount === EMPTY_DATA && ($warehouseCount === EMPTY_DATA || $warehouseCount === '')) {
-					$classSuffix = ' obj-count-inactive';
-					$classSuffixMines = ' obj-count-inactive';
-					$classSuffixWarehouses = ' obj-count-inactive';
-				} else {
-					$classSuffix = ' obj-count-active';
-					if($mineCount === EMPTY_DATA) {
-						$classSuffixMines = ' obj-count-inactive';
-					} else {
-						$classSuffixMines = ' obj-count-active';
-					}
-					if($warehouseCount === EMPTY_DATA) {
-						$classSuffixWarehouses = ' obj-count-inactive';
-					} else {
-						$classSuffixWarehouses = ' obj-count-active';
-					}
-				}
-				if($i < $table->typeCount - 1) {
-					$whCellClass = 'ac nowrap';
-				} else {
-					$whCellClass = 'cell-hidden ac nowrap';
-				}
-				echo '<tr>
-						<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->ids[$i].'</td>
-						<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$table->types[$i].'</td>
-						<td class="ac nowrap'.$classSuffixMines.'" nowrap="nowrap">'.$mineCount.'</td>
-						<td class="'.$whCellClass.$classSuffixWarehouses.'" nowrap="nowrap">'.$warehouseCount.'</td>
-					</tr>';
-			}
-			break;
-		*/
+			$classSuffix = ' player-dark'.($n+1);
+			echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$count.'</td>';
+			$n++;
+		}
+		echo '</tr>';
 	}
+
+    // End table
 	echo '</tbody></table>';
 
 	// Flex end if applicable
