@@ -133,6 +133,7 @@ elseif($scan) {
 }
 else {
 	generateHeader();
+	echo '<div class="content">';
 }
 
 if($mapfiledb) {
@@ -163,8 +164,12 @@ if($mapok) {
 	H3M_SPECIALACCESS
 	*/
 
+	echo '<div class="content">';
+
 	$map = new H3MAPSCAN($mapfile, H3M_WEBMODE | H3M_PRINTINFO | H3M_BUILDMAP); // | H3M_BUILDMAP | H3M_SAVEMAPDB | H3M_MAPHTMCACHE
 	$map->ReadMap();
+
+	echo '</div>';
 
 	$headerInfo = $map->MapHeaderInfo();
 	generateHeader($headerInfo);

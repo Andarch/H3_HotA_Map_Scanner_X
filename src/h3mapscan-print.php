@@ -16,7 +16,6 @@ class H3MAPSCAN_PRINT {
         $section = $_GET['section'] ?? 'general';
 
         ob_start(); // Start output buffering
-		echo("<div class=\"content\">");
         switch ($section) {
             case 'General':
                 include 'h3mapscan-print-general.php';
