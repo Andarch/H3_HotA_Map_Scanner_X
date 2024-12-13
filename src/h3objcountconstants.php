@@ -579,6 +579,16 @@ class OC_Dwellings {
         '17-110' => ['level' => 7, 'name' => 'Gantry'],
     ];
 
+    public $FactionFlat = [
+        'Level 1' => ['level' => 1, 'comboid' => '17-X'],
+        'Level 2' => ['level' => 2, 'comboid' => '17-X'],
+        'Level 3' => ['level' => 3, 'comboid' => '17-X'],
+        'Level 4' => ['level' => 4, 'comboid' => '17-X'],
+        'Level 5' => ['level' => 5, 'comboid' => '17-X'],
+        'Level 6' => ['level' => 6, 'comboid' => '17-X'],
+        'Level 7' => ['level' => 7, 'comboid' => '17-X'],
+    ];
+
     public $Neutral = [
         '17-74'  => ['level' => 1, 'name' => 'Hovel'],
         '17-75'  => ['level' => 2, 'name' => 'Boar Glen'],

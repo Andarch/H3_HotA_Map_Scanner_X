@@ -10,7 +10,6 @@ $underground = $h3mapscan->underground;
 $zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
 $objPerZone = $h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
-$ocDwellings = new OC_Dwellings();
 $zoneColors = [
     'Blue' => [49, 82, 255],
     'Tan' => [156, 115, 82],
@@ -23,22 +22,6 @@ $zoneColors = [
 ];
 
 /* MAIN */
-
-// Debug start
-// $objAll = $h3mapscan->objects_all;
-// $realsubid = $h3mapscan->realsubid;
-// foreach($objAll as $objects) {
-// 	foreach($objects as $comboid => $obj) {
-// 		$ids = explode('-', $comboid);
-// 		$id = $ids[0];
-// 		$newcomboid = $id.'-'.$realsubid;
-// 		if($obj['count'] != EMPTY_DATA) {
-// 			echo $obj['name'].' '.$newcomboid.'</br>';
-// 		}
-// 	}
-// }
-// echo '</br>';
-// Debug end
 
 // Images table
 $timestamp = time();
@@ -121,10 +104,6 @@ DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors,
 
 // Warehouses
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::WAREHOUSES], OBJ_CATEGORY::WAREHOUSES, $sortOrder->Warehouses, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
-
-// Dwellings
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::DWELLINGS], OBJ_CATEGORY::DWELLINGS, $sortOrder->Dwellings, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Dwellings by Level
@@ -277,20 +256,101 @@ function getZoneByColor($color, $zoneColors) {
     return null;
 }
 
+function ProcessObject($category, $name, $comboid) {
+	$isFactionDwelling = false;
+	$objn = '';
+	switch ($category) {
+		case OBJ_CATEGORY::KEYMASTERS_TENTS:
+			$prefix = 'Keymaster\'s Tent – ';
+			$objn = str_replace($prefix, '', $name);
+			break;
+		case OBJ_CATEGORY::BORDER_GATES:
+			$prefix = 'Border Gate – ';
+			$objn = str_replace($prefix, '', $name);
+			break;
+		case OBJ_CATEGORY::BORDER_GUARDS:
+			$prefix = 'Border Guard – ';
+			$objn = str_replace($prefix, '', $name);
+			break;
+		case OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES:
+			$prefix = 'Monolith – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' One-Way Entrance';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS:
+			$prefix = 'Monolith – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' One-Way Exit';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES:
+			$prefix = 'Portal – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' One-Way Entrance';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS:
+			$prefix = 'Portal – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' One-Way Exit';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::TWO_WAY_MONOLITHS:
+			$prefix = 'Monolith – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' Two-Way';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::TWO_WAY_PORTALS:
+			$prefix = 'Portal – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' Two-Way';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::TWO_WAY_SEA_PORTALS:
+			$prefix = 'Sea Portal – ';
+			$objn = str_replace($prefix, '', $name);
+			$suffix = ' Two-Way';
+			$objn = str_replace($suffix, '', $objn);
+			break;
+		case OBJ_CATEGORY::DWELLINGS:
+			$isFactionDwelling = $comboid == '17-X' ? true : false;
+			$objn = $isFactionDwelling ? null : $name;
+			break;
+		default:
+			$objn = $name;
+			break;
+	}
+	return [$objn, $isFactionDwelling];
+}
+
 function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan) {
-
-	// Debug start
-	//vd($table);
-	// Debug end
-
-	// Initialize
 	$objCountPlayers = [];
-	$flatObjCountPlayers = [];
-	$heroesCS = new HeroesConstants();
+	$objProcessResult = [];
+
+	// Set arrays for certain categories
+	$specialCategories = [
+		OBJ_CATEGORY::KEYMASTERS_TENTS,
+		OBJ_CATEGORY::BORDER_GATES,
+		OBJ_CATEGORY::BORDER_GUARDS,
+		OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES,
+		OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS,
+		OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES,
+		OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS,
+		OBJ_CATEGORY::TWO_WAY_MONOLITHS,
+		OBJ_CATEGORY::TWO_WAY_PORTALS,
+		OBJ_CATEGORY::TWO_WAY_SEA_PORTALS
+	];
+	$neutralDwellingCategories = [
+		OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
+		OBJ_CATEGORY::NEUTRAL_DWELLINGS_2
+	];
 
 	// Sort objects into appropriate player zone/color based on coordinates
 	foreach ($table->objects as $obj) {
-		$objcomboid = $obj['comboid'];
+		$objcomboid = in_array($table->category, $neutralDwellingCategories) ? $obj['truecomboid'] : $obj['comboid'];
+		$objname = $obj['name'];
 		$x = $obj['pos']->x;
 		$y = $obj['pos']->y;
 		$z = $obj['pos']->z;
@@ -304,101 +364,113 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 		}
 
 		// Get player zone and add object to array
-		if ($color) {
-			$zone = getZoneByColor($color, $zoneColors);
-			if ($zone) {
-				if (!isset($objCountPlayers[$objcomboid])) {
-					$objCountPlayers[$objcomboid] = [
-						'name' =>  $obj['name'],
-						'zones' => array_fill_keys(array_keys($zoneColors), 0)
-					];
-				}
-				$objCountPlayers[$objcomboid]['zones'][$zone] += 1;
-			}
-		}
+        if ($color) {
+            $zone = getZoneByColor($color, $zoneColors);
+            if ($zone) {
+                if ($table->category == OBJ_CATEGORY::DWELLINGS_BY_LEVEL) {
+                    if (!isset($objCountPlayers[$objname])) {
+                        $objCountPlayers[$objname] = [
+                            'comboid' => $objcomboid,
+                            'zones' => array_fill_keys(array_keys($zoneColors), 0)
+                        ];
+                    }
+                    $objCountPlayers[$objname]['zones'][$zone]++;
+                } else {
+                    if (!isset($objCountPlayers[$objcomboid])) {
+						$objProcessResult = ProcessObject($table->category, $objname, $objcomboid);
+						$processedName = $objProcessResult[0];
+                        $objCountPlayers[$objcomboid] = [
+                            'name' => $processedName,
+                            'zones' => array_fill_keys(array_keys($zoneColors), 0)
+                        ];
+                    }
+                    $objCountPlayers[$objcomboid]['zones'][$zone]++;
+                }
+            }
+        }
 	}
 
-	// Modify certain object names
+	$heroesCS = new HeroesConstants();
+	$flatObjCountPlayers = [];
 	foreach ($heroesCS->ObjectEx as $comboid => $details) {
-		switch ($table->category) {
-			case OBJ_CATEGORY::KEYMASTERS_TENTS:
-				$prefix = "Keymaster's Tent – ";
-				$name = str_replace($prefix, '', $details['name']);
-				break;
-			case OBJ_CATEGORY::BORDER_GATES:
-				$prefix = "Border Gate – ";
-				$name = str_replace($prefix, '', $details['name']);
-				break;
-			case OBJ_CATEGORY::BORDER_GUARDS:
-				$prefix = "Border Guard – ";
-				$name = str_replace($prefix, '', $details['name']);
-				break;
-			case OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES:
-				$prefix = "Monolith – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " One-Way Entrance";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS:
-				$prefix = "Monolith – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " One-Way Exit";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES:
-				$prefix = "Portal – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " One-Way Entrance";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS:
-				$prefix = "Portal – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " One-Way Exit";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::TWO_WAY_MONOLITHS:
-				$prefix = "Monolith – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " Two-Way";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::TWO_WAY_PORTALS:
-				$prefix = "Portal – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " Two-Way";
-				$name = str_replace($suffix, '', $name);
-				break;
-			case OBJ_CATEGORY::TWO_WAY_SEA_PORTALS:
-				$prefix = "Sea Portal – ";
-				$name = str_replace($prefix, '', $details['name']);
-				$suffix = " Two-Way";
-				$name = str_replace($suffix, '', $name);
-				break;
-			default:
-				$name = $details['name'];
-				break;
+		$objProcessResult = ProcessObject($table->category, $details['name'], $comboid);
+		$objn = $objProcessResult[0];
+		$isFactionDwelling = $objProcessResult[1];
+
+		if ($isFactionDwelling) {
+			continue;
 		}
 
-		// Initialize the flat list with custom-order objects
-		if (in_array($name, $table->customOrder)) {
+		// Initialize the flat list with most custom-order objects
+		if (in_array($objn, $table->customOrder)) {
 			$flatObjCountPlayers[$comboid] = [
-				'name' => $name,
+				'name' => $objn,
 				'zones' => array_fill_keys(array_keys($zoneColors), 0)
 			];
 		}
 	}
 
-	// Add objects to the flat list
-	foreach ($objCountPlayers as $comboid => $obj) {
-		$flatObjCountPlayers[$comboid]['zones'] = $obj['zones'];
-	}
+    // Initialize the flat list with dwelling objects
+    if (in_array($table->category, [
+        OBJ_CATEGORY::DWELLINGS_BY_LEVEL,
+        OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
+        OBJ_CATEGORY::NEUTRAL_DWELLINGS_2,
+        OBJ_CATEGORY::OTHER_DWELLINGS
+    ])) {
+        $ocDwellings = new OC_Dwellings();
+		switch ($table->category) {
+			case OBJ_CATEGORY::DWELLINGS_BY_LEVEL:
+				foreach ($ocDwellings->FactionFlat as $name => $details) {
+					if (in_array($name, $table->customOrder)) {
+						if (!isset($flatObjCountPlayers[$name])) {
+							$flatObjCountPlayers[$name] = [
+								'comboid' => $details['comboid'],
+								'zones' => array_fill_keys(array_keys($zoneColors), 0)
+							];
+						}
+					}
+				}
+				break;
+			case OBJ_CATEGORY::NEUTRAL_DWELLINGS_1:
+			case OBJ_CATEGORY::NEUTRAL_DWELLINGS_2:
+				foreach ($ocDwellings->Neutral as $comboid => $details) {
+					if (in_array($details['name'], $table->customOrder)) {
+						if (!isset($flatObjCountPlayers[$comboid])) {
+							$flatObjCountPlayers[$comboid] = [
+								'name' => $details['name'],
+								'zones' => array_fill_keys(array_keys($zoneColors), 0)
+							];
+						}
+					}
+				}
+				break;
+		}
+    }
+
+    // Add objects to the flat list
+    foreach ($objCountPlayers as $key => $obj) {
+        if ($table->category == OBJ_CATEGORY::DWELLINGS_BY_LEVEL) {
+            $flatObjCountPlayers[$key] = [
+                'comboid' => $obj['comboid'],
+                'zones' => $obj['zones']
+            ];
+        } else {
+            $flatObjCountPlayers[$key] = [
+                'name' => $obj['name'],
+                'zones' => $obj['zones']
+            ];
+        }
+    }
 
 	// Sort the flat list by object name
 	if (!empty($table->customOrder)) {
 		$order = $table->customOrder;
-		uasort($flatObjCountPlayers, function ($a, $b) use ($table, $order) {
-			return customSort($a['name'], $b['name'], $order);
+		uasort($flatObjCountPlayers, function ($a, $b) use ($order) {
+			if (array_key_exists('name', $a) && array_key_exists('name', $b)) {
+				return customSort($a['name'], $b['name'], $order);
+			} else if (array_key_exists('comboid', $a) && array_key_exists('comboid', $b)) {
+				return customSort($a, $b, $order);
+			}
 		});
 	}
 
@@ -428,7 +500,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 	// Generate the table rows from the sorted flat list
 	$totalCount = count($flatObjCountPlayers);
 	$currentCount = 0;
-	foreach ($flatObjCountPlayers as $comboid => $obj) {
+	foreach ($flatObjCountPlayers as $k => $obj) {
 		$currentCount++;
 		$isLastIteration = ($currentCount === $totalCount);
 
@@ -444,9 +516,16 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 			$classSuffix = ' obj-count-active';
 		}
 
+		if(array_key_exists('name', $obj)) {
+			$v = $obj['name'];
+		} else {
+			$v = $k;
+			$k = $obj['comboid'];
+		}
+
 		echo '<tr>';
-		echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$comboid.'</td>';
-		echo '<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$obj['name'].'</td>';
+		echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$k.'</td>';
+		echo '<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$v.'</td>';
 
 		$n=0;
 		foreach (array_keys($zoneColors) as $zone) {
