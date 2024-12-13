@@ -107,7 +107,7 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::WAREHOUSES
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Dwellings by Level
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::DWELLINGS_BY_LEVEL], OBJ_CATEGORY::DWELLINGS_BY_LEVEL, $sortOrder->DwellingsByLevel, null, null, null, OC_FLEXTYPE::NONE);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL], OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL, $sortOrder->DwellingsByLevel, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Neutral Dwellings 1
@@ -367,7 +367,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
         if ($color) {
             $zone = getZoneByColor($color, $zoneColors);
             if ($zone) {
-                if ($table->category == OBJ_CATEGORY::DWELLINGS_BY_LEVEL) {
+                if ($table->category == OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL) {
                     if (!isset($objCountPlayers[$objname])) {
                         $objCountPlayers[$objname] = [
                             'comboid' => $objcomboid,
@@ -412,14 +412,14 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 
     // Initialize the flat list with dwelling objects
     if (in_array($table->category, [
-        OBJ_CATEGORY::DWELLINGS_BY_LEVEL,
+        OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL,
         OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
         OBJ_CATEGORY::NEUTRAL_DWELLINGS_2,
         OBJ_CATEGORY::OTHER_DWELLINGS
     ])) {
         $ocDwellings = new OC_Dwellings();
 		switch ($table->category) {
-			case OBJ_CATEGORY::DWELLINGS_BY_LEVEL:
+			case OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL:
 				foreach ($ocDwellings->FactionFlat as $name => $details) {
 					if (in_array($name, $table->customOrder)) {
 						if (!isset($flatObjCountPlayers[$name])) {
@@ -449,7 +449,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 
     // Add objects to the flat list
     foreach ($objCountPlayers as $key => $obj) {
-        if ($table->category == OBJ_CATEGORY::DWELLINGS_BY_LEVEL) {
+        if ($table->category == OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL) {
             $flatObjCountPlayers[$key] = [
                 'comboid' => $obj['comboid'],
                 'zones' => $obj['zones']

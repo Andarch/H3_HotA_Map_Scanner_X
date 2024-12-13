@@ -2442,7 +2442,7 @@ class H3MAPSCAN {
 			if(in_array($objcomboid, $ids)) {
 				if (isset($this->OCDW->Faction[$truecomboid])) {
 					$creaturelevel = $this->OCDW->Faction[$truecomboid]['level'];
-					$objcategory = OBJ_CATEGORY::DWELLINGS_BY_LEVEL;
+					$objcategory = OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL;
 					$objname = 'Level '.$creaturelevel;
 				} elseif (isset($this->OCDW->Neutral[$truecomboid])) {
 					$creaturelevel = $this->OCDW->Neutral[$truecomboid]['level'];

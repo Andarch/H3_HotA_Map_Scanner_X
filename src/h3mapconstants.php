@@ -50,7 +50,7 @@
 		const CREATURE_BANKS_ELITE = 'Creature Banks – Elite';
 		const CREATURE_BANKS_RESOURCES = 'Creature Banks – Resources';
 		const DWELLINGS = 'Dwellings';
-		const DWELLINGS_BY_LEVEL = 'Dwellings by Level';
+		const FACTION_DWELLINGS_BY_LEVEL = 'Faction Dwellings by Level';
 		const GARRISONS_QUESTS = 'Garrisons / Quests';
 		const HEROES_AND_INFO = 'Heroes & Info';
 		const KEYMASTERS_BORDER = 'Keymasters / Border';
@@ -65,8 +65,8 @@
 		const MORALE = 'Morale';
 		const MOVEMENT = 'Movement';
 		const MULTI_BONUS = 'Multi-Bonus';
-		const NEUTRAL_DWELLINGS_1 = 'Neutral Dwellings 1';
-		const NEUTRAL_DWELLINGS_2 = 'Neutral Dwellings 2';
+		const NEUTRAL_DWELLINGS_1 = 'Neutral Dwellings – Level 1-4';
+		const NEUTRAL_DWELLINGS_2 = 'Neutral Dwellings – Level 5-7';
 		const ONE_WAY_MONOLITHS = '1-Way Monoliths';
 		const ONE_WAY_MONOLITH_ENTRANCES = '1-Way Monolith Entrances';  // Combined into ONE_WAY_MONOLITHS
 		const ONE_WAY_MONOLITH_EXITS = '1-Way Monolith Exits';  // Combined into ONE_WAY_MONOLITHS
