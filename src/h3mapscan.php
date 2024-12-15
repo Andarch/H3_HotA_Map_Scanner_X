@@ -2435,37 +2435,35 @@ class H3MAPSCAN {
 	}
 
 	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos) {
-		if(!array_key_exists($objid, $this->CS->OmittedObjectsPlayers)) {
-			$truecomboid = $objid.'-'.$objsubid;
-			$creaturelevel = null;
-			$ids = ['17-X', '20-1'];
-			if(in_array($objcomboid, $ids)) {
-				if (isset($this->OCDW->Faction[$truecomboid])) {
-					$creaturelevel = $this->OCDW->Faction[$truecomboid]['level'];
-					$objcategory = OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL;
-					$objname = 'Level '.$creaturelevel;
-				} elseif (isset($this->OCDW->Neutral[$truecomboid])) {
-					$creaturelevel = $this->OCDW->Neutral[$truecomboid]['level'];
-					$objname = $this->OCDW->Neutral[$truecomboid]['name'];
-					if ($creaturelevel >= 1 && $creaturelevel <= 4) {
-						$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_1;
-					} elseif ($creaturelevel >= 5 && $creaturelevel <= 7) {
-						$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_2;
-					}
+		$truecomboid = $objid.'-'.$objsubid;
+		$creaturelevel = null;
+		$ids = ['17-X', '20-1'];
+		if(in_array($objcomboid, $ids)) {
+			if (isset($this->OCDW->Faction[$truecomboid])) {
+				$creaturelevel = $this->OCDW->Faction[$truecomboid]['level'];
+				$objcategory = OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL;
+				$objname = 'Level '.$creaturelevel;
+			} elseif (isset($this->OCDW->Neutral[$truecomboid])) {
+				$creaturelevel = $this->OCDW->Neutral[$truecomboid]['level'];
+				$objname = $this->OCDW->Neutral[$truecomboid]['name'];
+				if ($creaturelevel >= 1 && $creaturelevel <= 4) {
+					$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_1;
+				} elseif ($creaturelevel >= 5 && $creaturelevel <= 7) {
+					$objcategory = OBJ_CATEGORY::NEUTRAL_DWELLINGS_2;
 				}
 			}
-			$other = ['217-X', '218-X', '216-X', '20-0', '78-0', '145-0'];
-			if(in_array($objcomboid, $other)) {
-				$objcategory = OBJ_CATEGORY::OTHER_DWELLINGS;
-			}
-			$this->objectCountPlayers[$objcategory][] = [
-				'comboid' => $objcomboid,
-				'truecomboid' => $truecomboid,
-				'name' => $objname,
-				'pos' => $objpos,
-				'creaturelevel' => $creaturelevel,
-			];
 		}
+		$other = ['217-X', '218-X', '216-X', '20-0', '78-0', '145-0'];
+		if(in_array($objcomboid, $other)) {
+			$objcategory = OBJ_CATEGORY::OTHER_DWELLINGS;
+		}
+		$this->objectCountPlayers[$objcategory][] = [
+			'comboid' => $objcomboid,
+			'truecomboid' => $truecomboid,
+			'name' => $objname,
+			'pos' => $objpos,
+			'creaturelevel' => $creaturelevel,
+		];
 	}
 
 	public function CreateRewardContents($event) {

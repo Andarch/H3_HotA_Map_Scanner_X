@@ -60,7 +60,7 @@ function generateNavMain() {
         'Pandora\'s Boxes',
         'Event Objects',
         'Object Count',
-        'Starting Zones'
+        'Object Zones'
     ];
     $sectionsWithAnchors = [
         'Template Heroes' => 'heroes-table-2',
@@ -76,7 +76,7 @@ function generateNavMain() {
         'Quest Guards',
         'Town Events',
         'Event Objects',
-        'Starting Zones',
+        'Object Zones',
     ];
     $sectionsWithHr2Below = [
         'Disabled Heroes',

@@ -31,7 +31,7 @@
 	--color__th-fg: var(--color-gold);
 	--color__tr-header-bg--primary: var(--color-palebrown);
 	--color__tr-header-bg--secondary: var(--color-mediumgrey);
-	--color__table-divider: var(--color-mineshaft);
+	--color__table-divider: var(--color-black);
 	--color__site-header-bg: var(--color-mineshaft);
 	--color__site-header-label-bg: var(--color-brown);
 	--color__site-header-label-fg: var(--color-gold);
@@ -71,7 +71,8 @@
 	--table__border-width--thin: 1px;
 	--table__border-color--thin: grey;
 
-	--table-small__fixed-column-width: 34.04px;
+	--table-small__fixed-column-width: 34.1px;
+	--table-small__total-column-width-factor: 1.5;
 
 	--flex-gap: 1.5em;
 }
@@ -406,9 +407,9 @@ th, td {
 	font-size: 10px;
 }
 
-.table-small th,
+.table-small th:not(.th-player-color),
 .table-small td {
-	padding: 2px 4px;
+	padding: 1.5px 4px 2px;
 }
 
 .table-small td:first-child {
@@ -440,8 +441,15 @@ th, td {
 	opacity: 0.7;
 }
 
-.table-small__count-column-header {
-	width: var(--table-small__fixed-column-width);
+.table-small__column-header--normal {
+	width: var(--table-small__fixed-column-width) !important;
+}
+
+.table-small__column-header--total {
+	width: calc(var(--table-small__fixed-column-width) * var(--table-small__total-column-width-factor)) !important;
+	font-size: 11px !important;
+	padding-top: 1px !important;
+	padding-bottom: 1px !important;
 }
 
 .disabled-heroes-column {
@@ -469,6 +477,16 @@ th, td {
 	color: white;
 }
 
+.obj-count-total {
+	background: #474640;
+	color: white;
+	font-size: 15px !important;
+	font-weight: bold;
+	padding: 0px 4px 0.25px !important;
+	line-height: 1px;
+	width: calc(var(--table-small__fixed-column-width) * var(--table-small__total-column-width-factor)) !important;
+}
+
 /* UTILITIES */
 .small-text {
 	font-size: 11px !important;
@@ -489,11 +507,12 @@ th, td {
 	font-family: var(--font-family--default);
 	font-size: 9px;
 	width: var(--table-small__fixed-column-width);
+	padding: 2px 4px 1.5px !important;
 }
 
-.th-divider {
+.table-small__divider {
 	background: var(--color__table-divider) !important;
-	width: calc(var(--table-small__fixed-column-width) * 0.25);
+	width: calc(var(--table-small__fixed-column-width) * 0.35);
 	border-bottom: none !important;
 }
 
@@ -586,3 +605,4 @@ th, td {
 .player-dark5 { background: #503456; font-weight: bold; } /* purple */
 .player-dark6 { background: #2e4c4e; font-weight: bold; } /* teal */
 .player-dark7 { background: #5f394b; font-weight: bold; } /* pink */
+.player-dark9 { background: #484848; font-weight: bold; } /* neutral */

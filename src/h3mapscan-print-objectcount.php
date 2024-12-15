@@ -239,7 +239,7 @@ function DisplayObjCountTable($table) {
 			echo '<tr>
 					<th class="ac nowrap" nowrap="nowrap">ID</th>
 					<th class="ac nowrap" nowrap="nowrap">Type</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			foreach ($table->objects as $objcomboid => $obj) {
 				if($obj['count'] === EMPTY_DATA) {
@@ -259,9 +259,9 @@ function DisplayObjCountTable($table) {
 			echo '<tr>
 					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
 					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Tent</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Gate</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Grd</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Tent</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Gate</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Grd</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
 				$tentCount = $table->special1[$table->special2[$i]]['count'];
@@ -304,8 +304,8 @@ function DisplayObjCountTable($table) {
 			echo '<tr>
 					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
 					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Entr</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Exit</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Entr</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Exit</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
 				$entranceCount = $table->special1[$table->special2[$i]]['count'];
@@ -340,7 +340,7 @@ function DisplayObjCountTable($table) {
 			echo '<tr>
 					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
 					<th class="ac nowrap nowrap" nowrap="nowrap">Color</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">#</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">#</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
 				$count = $table->objects[$table->special1[$i]]['count'];
@@ -361,8 +361,8 @@ function DisplayObjCountTable($table) {
 			echo '<tr>
 					<th class="ac nowrap nowrap" nowrap="nowrap">ID</th>
 					<th class="ac nowrap nowrap" nowrap="nowrap">Type</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">Mine</th>
-					<th class="table-small__count-column-header ac nowrap" nowrap="nowrap">WH</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">Mine</th>
+					<th class="table-small__column-header--normal ac nowrap" nowrap="nowrap">WH</th>
 				</tr></thead><tbody>';
 			for($i = 0; $i < $table->typeCount; $i++) {
 				$mineCount = $table->special2[$table->special3[$i]]['count'];
