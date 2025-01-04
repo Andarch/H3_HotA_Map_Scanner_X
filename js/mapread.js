@@ -22,7 +22,7 @@ $(document).ready(function() {
 				data: { map: maplist[0], num: i },
 				cache: false,
 				success: function(html) {
-					$("#mapreadstate").html(i + "/" + maplist.length + " : " + html);
+					// $("#mapreadstate").html(i + "/" + maplist.length + " : " + html);
 
 					if(html.indexOf('**') == -1) {
 						$("#maplist").html($("#maplist").html() + html);
@@ -34,6 +34,9 @@ $(document).ready(function() {
 					processItem();
 				}
 			});
+		}
+		else {
+			$("#maplist").html($("#maplist").html() + "</br></br>Finished.");
 		}
 	}
 });

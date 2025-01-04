@@ -22,7 +22,7 @@ if(!file_exists($mapfile)) {
 	exit;
 }
 
-echo '<br /><br />'.$num.' '.$mapname.'<br />';
+echo '<br />'.$num.' '.$mapname;
 
 // $tm = new TimeMeasure();
 //H3M_SAVEMAPDB | H3M_BUILDMAP

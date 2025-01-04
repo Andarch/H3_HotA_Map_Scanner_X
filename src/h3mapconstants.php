@@ -40,9 +40,11 @@
 	const DEFAULT_DATA = '<span class="tiny-grey-text"><i>Default</i></span>';
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
 
-	if (!defined('EMPTY_DATA')) {
-		require_once 'index.php';
-	}
+	const EMPTY_DATA = '<span style="color:grey;">–</span>';
+
+	// if (!defined('EMPTY_DATA')) {
+	// 	require_once 'index.php';
+	// }
 
 	class OBJ_CATEGORY {
 		const ARTIFACTS = 'Artifacts';

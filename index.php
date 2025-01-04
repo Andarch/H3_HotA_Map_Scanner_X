@@ -10,7 +10,7 @@ header('Content-Type: text/html; charset=utf-8');
 require_once 'src/mi.php';
 require_once 'src/config.php';
 
-const EMPTY_DATA = '<span style="color:grey;">–</span>';
+// const EMPTY_DATA = '<span style="color:grey;">–</span>';
 
 $timestamp = time();
 ?>
@@ -122,7 +122,7 @@ elseif($scan) {
 			if(!exget('nl', 0)) {
 				echo '<p>'.$maplist.'</p>';
 			}
-			echo '<p id="mapreadstate"></p>';
+			// echo '<br /><p id="mapreadstate"></p>';
 			echo '<p id="maplist"></p>';
 			echo '<script type="text/javascript">'.EOL.'var maplist = ['.EOL.TAB.'"'.implode('",'.EOL.TAB.'"', $maplistjs).'"'.EOL.']'.EOL.'</script>';
 		}
