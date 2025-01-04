@@ -26,6 +26,7 @@ class H3MAPSCAN {
 	const HOTA_SUBREV4 = 4;
 	const HOTA_SUBREV5 = 5;
 	const HOTA_SUBREV6 = 6;
+	const HOTA_SUBREV7 = 7;
 
 	//variables to simplify version checks
 	private $isROE   = false;
@@ -257,7 +258,7 @@ class H3MAPSCAN {
 
 	//return true on valid version, false otherwise
 	private function CheckVersion() {
-		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV6));
+		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV7));
 	}
 
 	private function SaveMap() {
