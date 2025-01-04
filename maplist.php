@@ -69,7 +69,7 @@ else {
 	global $LOSS;
 
 
-	$limit = 20; //maps per page
+	$limit = 50; //maps per page
 	$start = intval(exget('start', 0));
 	$offset = $start * $limit;
 
@@ -86,21 +86,17 @@ else {
 
 	echo '<table class="table-map-list">';
 
-	$maphead = '<tr>
+	echo '<tr>
 			<th>Name</th>
 			<th>Version</th>
 			<th>Size</th>
-			<th>Levels</th>
-			<th>Players</th>
-			<th>Human</th>
-			<th>Teams</th>
-			<th>Victory</th>
-			<th>Loss</th>
+			<th>Ground</th>
+			<th>Underground</th>
 		</tr>';
 
 	$timestamp = time();
 
-	$sql = "SELECT m.idm, m.mapfile, m.mapname, m.mapdesc, m.version, m.size, m.sizename, m.levels, m.diff,
+	$sql = "SELECT m.idm, m.mapfile, m.mapname, m.mapdesc, m.version, m.subversion, m.size, m.sizename, m.levels, m.diff,
 			m.playersnum, m.playhuman, m.teamnum, m.victory, m.loss, m.filechanged, m.mapimage
 		FROM heroes3_maps AS m $where
 		ORDER BY m.mapname ASC
@@ -118,25 +114,15 @@ else {
 		$victory = array_key_exists($res['victory'], $VICTORY) ? $VICTORY[$res['victory']] : '?';
 		$loss = array_key_exists($res['loss'], $LOSS) ? $LOSS[$res['loss']] : '?';
 
-		echo $maphead.'<tr>
-			<td><a href="index.php?mapid='.$res['idm'].'">'.$name.'</a></td>
-			<td>'.$res['version'].'</td>
-			<td>'.$res['sizename'].'</td>
-			<td>'.$levels.'</td>
-			<td>'.$res['playersnum'].'</td>
-			<td>'.$res['playhuman'].'</td>
-			<td>'.$res['teamnum'].'</td>
-			<td>'.$victory.'</td>
-			<td>'.$loss.'</td>
+		echo '<tr>
+			<td class="ac" style="vertical-align: bottom; border-bottom: none; font-size: 22px;"><a href="index.php?mapid='.$res['idm'].'">'.$name.'</a></td>
+			<td rowspan="2" class="ac">'.$res['version'].' '.$res['subversion'].'</td>
+			<td rowspan="2" class="ac">'.$res['sizename'].'</td>
+			<td rowspan="2" class="ac" style="padding: 0;">'.$imgg.'</td>
+			<td rowspan="2" class="ac" style="padding: 0;">'.$imgu.'</td>
 		</tr>
 		<tr>
-			<td>'.$res['mapfile'].'</td>
-			<td colspan="8">'.nl2br($res['mapdesc']).'</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td colspan="4" class="ac">'.$imgg.'</td>
-			<td colspan="4" class="ac">'.$imgu.'</td>
+			<td class="ac" style="vertical-align: top; border-top: none;">'.$res['mapfile'].'</td>
 		</tr>';
 	}
 

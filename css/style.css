@@ -338,12 +338,22 @@ th, td {
 }
 
 .table-map-list {
-	width: 75%;
+	table-layout: auto;
 	margin: 1em auto;
+	font-size: 16px;
+}
+
+.table-map-list a {
+	font-weight: bold;
+}
+
+.table-map-list td,
+.table-map-list th {
+	padding: 4px 8px;
 }
 
 .table-map-list td img {
-	width: 256px;
+	width: 192px;
 	margin: 0px auto;
 }
 
