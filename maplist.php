@@ -234,7 +234,7 @@ function more_links($div, $start, $total, $llink) {
 	for($i = $posts; $i > 0; $i--){
 		$link = $posts - $i + 1;
 		if($start == $link - 1) {
-			$out .= '<span>'.$link.'</span>';
+			$out .= '<span style="font-weight: bold; background: #aaa; color: black; padding: 2px;">'.$link.'</span>';
 		}
 		else {
 			$out .= '<a href="?'.$llink.'&amp;start='.($link - 1).'">'.$link.'</a>';
