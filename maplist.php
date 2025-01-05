@@ -31,6 +31,7 @@ $timestamp = time();
 </head>
 
 <body>
+	<!--
 	<p>
 		<a href="?c=list">Map List</a><br />
 		<a href="?c=stat">Map Stat</a>
@@ -40,6 +41,7 @@ $timestamp = time();
 		<input type="text" name="map" value="<?php echo $mapsearch; ?>" />
 		<input type="submit" name="ok" value="Search" />
 	</form>
+	-->
 <?php
 
 $cmd = exget('c', 'list');
@@ -78,7 +80,8 @@ else {
 		$where";
 	$total = mgr($sqlt);
 
-	echo 'Found: '.$total.'<br /><br />';
+	// echo 'Found: '.$total.'<br /><br />';
+	echo '</br>';
 
 	$links = more_links($limit, $start, $total, $llink);
 
