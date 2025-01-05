@@ -66,7 +66,6 @@ class H3MAPSCAN_PRINT {
                 include 'h3mapscan-print-general.php';
                 break;
         }
-		echo("</div></div>");
         $print = ob_get_clean(); // End output buffering and append the output to $print
         echo $print;
     }

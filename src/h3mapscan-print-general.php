@@ -122,6 +122,21 @@ foreach($this->h3mapscan->disabledArtifacts as $k => $art) {
 }
 echo '</table>';
 
+sort($this->h3mapscan->disabledComboArtifacts);
+
+echo '<table class="table-large">
+		<tr>
+			<th>#</th>
+			<th>Disabled Assemble/Disassemble</th>
+		</tr>';
+foreach($this->h3mapscan->disabledComboArtifacts as $k => $artc) {
+	echo '<tr>
+		<td class="table__row-header--default">'.($k+1).'</td>
+		<td>'.$artc.'</td>
+	</tr>';
+}
+echo '</table>';
+
 sort($this->h3mapscan->disabledSpells);
 
 echo '<table class="table-large">

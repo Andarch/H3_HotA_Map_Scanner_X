@@ -45,7 +45,8 @@ class H3MAPSCAN {
 	public  $underground = 0;
 	private $map_diff = -1;     //difficulty
 	public  $map_diffname = ''; //difficulty name
-	private $hero_any_onmap = 0;
+	private $any_hero_onmap = 0;
+	public  $tavern_allows_defeated_heroes = 0;
 	public  $hero_levelcap = 0;
 	public  $teamscount;
 	public  $teams = [];
@@ -61,6 +62,7 @@ class H3MAPSCAN {
 
 	private $allowedArtifacts = [];
 	public  $disabledArtifacts = [];
+	public  $disabledComboArtifacts = [];
 	private $allowedSpells = [];
 	private $disabledSpellsId = [];
 	public  $disabledSpells = [];
@@ -78,6 +80,8 @@ class H3MAPSCAN {
 	public  $disabledHeroes = [];
 	private $customHeroes = [];
 	public  $templateHeroes = [];
+
+	public $previousObj = [];
 
 	//HOTA extras
 	private $hota_arena = 0;
@@ -402,7 +406,12 @@ class H3MAPSCAN {
 								'. Possibly a campaign file or not a map ('.$this->mapfile.')</div>');
 		}
 
-		$this->hero_any_onmap = $this->br->ReadUint8(); //hero presence
+		if($this->hota_subrev >= $this::HOTA_SUBREV7) {
+			$this->tavern_allows_defeated_heroes = $this->br->ReadUint8();
+		}
+
+		$this->any_hero_onmap = $this->br->ReadUint8(); //hero presence
+
 		$this->map_size = $this->br->ReadUint32();
 		$this->underground = $this->br->ReadUint8();
 		$this->map_name = $this->ReadString();
@@ -743,7 +752,16 @@ class H3MAPSCAN {
 			$art_combinated = $this->br->ReadUint32();
 			if($art_combinated > 0) {
 				$art_comb_num = (int)ceil($art_combinated / 8);
-				$this->br->SkipBytes($art_comb_num); //skip, not in scanner
+				// $this->br->SkipBytes($art_comb_num);
+				for($i = 0; $i < $art_comb_num; $i++) {
+					$byte = $this->br->ReadUint8();
+					for($n = 0; $n < 8; $n++) {
+						if(($byte & (1 << $n)) == 0) {
+							$ida = $i * 8 + $n;
+							$this->disabledComboArtifacts[] = $this->GetComboArtifactById($ida);
+						}
+					}
+				}
 			}
 
 			if($this->hota_subrev >= $this::HOTA_SUBREV3) {
@@ -778,7 +796,7 @@ class H3MAPSCAN {
 					//if(!$this->isWOG && $ida > 140) {
 					//	break;
 					//}
-					$this->disabledArtifacts[] = $this->GetArtifactById($ida).' '.$ida;
+					$this->disabledArtifacts[] = $this->GetArtifactById($ida);
 				}
 			}
 		}
@@ -1563,6 +1581,24 @@ class H3MAPSCAN {
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
 
+					//DEBUG
+					// if($obj['id'] == OBJECTS::TOWN) {
+					// 	$obj['pos']->x -=2;
+					// }
+					// echo 'VALID</br>';
+					// echo $obj['pos']->GetCoords().'</br>';
+					// echo 'defnum: '.$obj['defnum'].'</br>';
+					// echo $obj['comboid'].'</br>';
+					// echo $obj['objname'].'</br>';
+					// $this->previousObj['pos'] = $obj['pos'];
+					// $this->previousObj['defnum'] = $obj['defnum'];
+					// $this->previousObj['comboid'] = $obj['comboid'];
+					// $this->previousObj['objname'] = $obj['objname'];
+					// if($obj['id'] == OBJECTS::TOWN) {
+					// 	$obj['pos']->x +=2;
+					// }
+					//END DEBUG
+
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
 					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos);
@@ -1571,7 +1607,27 @@ class H3MAPSCAN {
 			else {
 				$obj['id'] = OBJECT_INVALID;
 				$obj['subid'] = OBJECT_INVALID;
+
+				//DEBUG
+				// echo 'INVALID</br>';
+				// echo $obj['pos']->GetCoords().'</br>';
+				// echo 'defnum: '.$obj['defnum'].'</br>';
+				// echo $obj['id'].'-'.$obj['subid'].'</br>';
+				// echo '</br>';
+
+				// echo 'PREVIOUS OBJ</br>';
+				// echo $this->previousObj['pos']->GetCoords().'</br>';
+				// echo 'defnum: '.$this->previousObj['defnum'].'</br>';
+				// echo $this->previousObj['comboid'].'</br>';
+				// echo $this->previousObj['objname'].'</br>';
+				//END DEBUG
 			}
+
+			//DEBUG
+			// if(array_key_exists($obj['defnum'], $this->objTemplates) && !array_key_exists($obj['id'], $this->CS->OmittedObjectsAll) && $obj['id'] != OBJECTS::TOWN && $obj['id'] != OBJECT_INVALID) {
+			// 	echo '</br>';
+			// }
+			//END DEBUG
 
 			$this->curobjtype = $obj['id'];
 			$this->curobjname = EMPTY_DATA;
@@ -2724,9 +2780,18 @@ class H3MAPSCAN {
 			}
 
 			$event['firstOccurence'] = $this->br->ReadUint16() + 1;
-			$event['nextOccurence'] =	$this->br->ReadUint16();
+			$event['nextOccurence'] = $this->br->ReadUint16();
+
+			//DEBUG
+			// echo 'firstOccurence: '.($event['firstOccurence'] - 1).'</br>';
+			// echo 'interval: '.$event['nextOccurence'].'</br>';
+			//END DEBUG
 
 			$this->br->SkipBytes(16);
+
+			if($this->hota_subrev >= $this::HOTA_SUBREV7) {
+				$difficulties = $this->br->ReadUint32();
+			}
 
 			if($this->hota_subrev >= $this::HOTA_SUBREV4) {
 				$event['hotaLevel7b'] = $this->br->ReadInt32(); //hota_lvl_7b
@@ -2735,6 +2800,10 @@ class H3MAPSCAN {
 				for($i = 0; $i < 6; $i++) {
 					$event['hotaSpecial'][] = $this->br->ReadUint8();
 				}
+			}
+
+			if($this->hota_subrev >= $this::HOTA_SUBREV7) {
+				$allowNeutralTowns = $this->br->ReadUint8();
 			}
 
 			for($i = 0; $i < 6; $i++) {
@@ -3073,7 +3142,13 @@ class H3MAPSCAN {
 			$event['first'] = $this->br->ReadUint16() + 1;
 			$event['interval'] = $this->br->ReadUint8();
 
-			$this->br->SkipBytes(31);
+			$trash = $this->hota_subrev <= $this::HOTA_SUBREV6 ? 31 : 17;
+
+			$this->br->SkipBytes($trash);
+
+			if($this->hota_subrev >= $this::HOTA_SUBREV7) {
+				$difficulties = $this->br->ReadUint32();
+			}
 
 			$this->events[] = $event;
 		}
@@ -3517,9 +3592,13 @@ class H3MAPSCAN {
 
 	private function GetArtifactById($artid) {
 		if($this->isHOTA && $artid >= HOTA_ARTIFACTS_IDS) {
-			return FromArray($artid, $this->CS->ArtefactsHota);
+			return FromArray($artid, $this->CS->ArtifactsHota);
 		}
 		return FromArray($artid, $this->CS->Artifacts);
+	}
+
+	private function GetComboArtifactById($artid) {
+		return FromArray($artid, $this->CS->ArtifactsCombo);
 	}
 
 	private function GetArtifactPosById($artid) {

@@ -2068,7 +2068,7 @@
 		];
 
 		//HOTA
-		public $ArtefactsHota = [
+		public $ArtifactsHota = [
 			141 => 'Diplomat\'s Cloak',
 			142 => 'Pendant of Reflection',
 			143 => 'Ironfist of the Ogre',
@@ -2093,6 +2093,25 @@
 			164 => 'Plate of Dying Light',
 			165 => 'Sleepkeeper',
 		];
+		public $ArtifactsCombo = [
+			0 => 'Angelic Alliance',
+			1 => 'Cloak of the Undead King',
+			2 => 'Elixir of Life',
+			3 => 'Armor of the Damned',
+			4 => 'Statue of Legion',
+			5 => 'Power of the Dragon Father',
+			6 => 'Titan\'s Thunder',
+			7 => 'Admiral\'s Hat',
+			8 => 'Bow of the Sharpshooter',
+			9 => 'Wizard\'s Well',
+			10 => 'Ring of the Magi',
+			11 => 'Cornucopia',
+			12 => 'Diplomat\'s Cloak',
+			13 => 'Pendant of Reflection',
+			14 => 'Golden Goose',
+			15 => 'Ironfist of the Ogre',
+		];
+
 
 		public $HeroClass = [
 			0 => 'Knight',

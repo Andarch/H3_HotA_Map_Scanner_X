@@ -8,7 +8,7 @@ function generateHeader($headerInfo = null) {
         $date = $headerInfo['filetime'];
         $size = $headerInfo['mapsize'];
         $layers = $headerInfo['levels'];
-        $description = preg_replace('/(<br\s*\/?>\s*)+/', '<br>', $headerInfo['mapdesc']);
+        $description = preg_replace('/(<br\s*\/?>\s*)+/', ' ', $headerInfo['mapdesc']);
     }
     else {
         $name = EMPTY_DATA;
@@ -31,8 +31,6 @@ function generateHeader($headerInfo = null) {
                     <td><?php echo $version; ?></td>
                     <td>Size</td>
                     <td class="ac"><?php echo $size; ?></td>
-                    <td rowspan="2">Description</td>
-                    <td rowspan="2"><?php echo $description; ?></td>
                 </tr>
                 <tr>
                     <td>File</td>
@@ -41,6 +39,14 @@ function generateHeader($headerInfo = null) {
                     <td><?php echo $date; ?></td>
                     <td>Layers</td>
                     <td class="ac"><?php echo $layers; ?></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Description</td>
+                    <td><?php echo $description; ?></td>
                 </tr>
             </tbody>
         </table>
