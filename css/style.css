@@ -25,7 +25,8 @@
 	--color-palebrown: #595142;
 	--color-paleteal: #3a4d4f;
 
-	--color__body-bg: #2d2d2d;
+	--color__body-bg1: #222;
+	--color__body-bg2: #444;
 	--color__body-fg: #ddd;
 	--color__th-bg: var(--color-brown);
 	--color__th-fg: var(--color-gold);
@@ -85,7 +86,10 @@ html {
 body {
 	font-family: var(--font-family--default);
 	color: var(--color__body-fg);
-	background-color: var(--color__body-bg);
+	background-color: var(--color__body-bg1);
+	background-image: radial-gradient(var(--color__body-bg2) 2px, transparent 0);
+	background-size: 6px 6px;
+	background-attachment: fixed;
 }
 
 a, a:visited {

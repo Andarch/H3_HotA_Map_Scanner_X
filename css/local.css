@@ -1,7 +1,7 @@
 /* BACKGROUND FOR LOCAL ENVIRONMENT */
 body {
-	background-color: #222;
-	background-image: radial-gradient(#444 2px, transparent 0);
+	background-color: #261e1e;
+	background-image: radial-gradient(#433434 2px, transparent 0);
 	background-size: 6px 6px;
 	background-attachment: fixed;
 }

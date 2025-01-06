@@ -756,7 +756,7 @@ class H3MAPSCAN {
 				for($i = 0; $i < $art_comb_num; $i++) {
 					$byte = $this->br->ReadUint8();
 					for($n = 0; $n < 8; $n++) {
-						if(($byte & (1 << $n)) == 0) {
+						if(($byte & (1 << $n)) != 0) {
 							$ida = $i * 8 + $n;
 							$this->disabledComboArtifacts[] = $this->GetComboArtifactById($ida);
 						}
