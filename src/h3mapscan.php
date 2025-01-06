@@ -46,7 +46,7 @@ class H3MAPSCAN {
 	private $map_diff = -1;     //difficulty
 	public  $map_diffname = ''; //difficulty name
 	private $any_hero_onmap = 0;
-	public  $tavern_allows_defeated_heroes = 0;
+	public  $can_hire_defeated_heroes = 0;
 	public  $hero_levelcap = 0;
 	public  $teamscount;
 	public  $teams = [];
@@ -407,7 +407,7 @@ class H3MAPSCAN {
 		}
 
 		if($this->hota_subrev >= $this::HOTA_SUBREV7) {
-			$this->tavern_allows_defeated_heroes = $this->br->ReadUint8();
+			$this->can_hire_defeated_heroes = $this->br->ReadUint8();
 		}
 
 		$this->any_hero_onmap = $this->br->ReadUint8(); //hero presence
