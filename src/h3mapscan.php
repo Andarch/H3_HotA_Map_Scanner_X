@@ -3140,9 +3140,9 @@ class H3MAPSCAN {
 			}
 
 			$event['first'] = $this->br->ReadUint16() + 1;
-			$event['interval'] = $this->br->ReadUint8();
+			$event['interval'] = $this->br->ReadUint16();
 
-			$trash = $this->hota_subrev <= $this::HOTA_SUBREV6 ? 31 : 17;
+			$trash = $this->hota_subrev <= $this::HOTA_SUBREV6 ? 30 : 16;
 
 			$this->br->SkipBytes($trash);
 
