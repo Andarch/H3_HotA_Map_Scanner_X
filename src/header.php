@@ -9,6 +9,9 @@ function generateHeader($headerInfo = null) {
         $size = $headerInfo['mapsize'];
         $layers = $headerInfo['levels'];
         $description = preg_replace('/(<br\s*\/?>\s*)+/', ' ', $headerInfo['mapdesc']);
+        if($description == '') {
+            $description = EMPTY_DATA;
+        }
     }
     else {
         $name = EMPTY_DATA;
