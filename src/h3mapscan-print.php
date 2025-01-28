@@ -59,8 +59,11 @@ class H3MAPSCAN_PRINT {
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
 				break;
-			case 'Object Zones':
+			case 'Objects by Zone':
 				include 'h3mapscan-print-objectzones.php';
+				break;
+			case 'Unused Portraits':
+				include 'h3mapscan-print-unusedportraits.php';
 				break;
             default:
                 include 'h3mapscan-print-general.php';
