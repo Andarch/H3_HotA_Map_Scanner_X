@@ -1581,23 +1581,12 @@ class H3MAPSCAN {
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
 
-					//DEBUG
-					// if($obj['id'] == OBJECTS::TOWN) {
-					// 	$obj['pos']->x -=2;
+					// DEBUG
+					// if($obj['id'] == OBJECTS::SEER_HUT) {
+					// 	echo $obj['pos']->GetCoords();
+					// 	echo '</br>';
 					// }
-					// echo 'VALID</br>';
-					// echo $obj['pos']->GetCoords().'</br>';
-					// echo 'defnum: '.$obj['defnum'].'</br>';
-					// echo $obj['comboid'].'</br>';
-					// echo $obj['objname'].'</br>';
-					// $this->previousObj['pos'] = $obj['pos'];
-					// $this->previousObj['defnum'] = $obj['defnum'];
-					// $this->previousObj['comboid'] = $obj['comboid'];
-					// $this->previousObj['objname'] = $obj['objname'];
-					// if($obj['id'] == OBJECTS::TOWN) {
-					// 	$obj['pos']->x +=2;
-					// }
-					//END DEBUG
+					// END DEBUG
 
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
@@ -2997,6 +2986,24 @@ class H3MAPSCAN {
 					$quest['Qcategory'] = 'Return After';
 					$qReturnAfter = $this->br->ReadUint32();
 					$quest['Qrequirement'] = $this->ConvertDaysToMonthWeekDay($qReturnAfter);
+				}
+				elseif($hotaquestid == QUESTMISSION::HOTA_DIFFICULTY) {
+					$quest['Qcategory'] = 'Specific Difficulty';
+					$qDiffculty = $this->br->ReadUint32();
+					$difficultyMap = [
+						1 => 'Easy',
+						2 => 'Normal',
+						4 => 'Hard',
+						8 => 'Expert',
+						16 => 'Impossible',
+					];
+					$selectedDifficulties = [];
+					foreach ($difficultyMap as $bit => $name) {
+						if ($qDiffculty & $bit) {
+							$selectedDifficulties[] = $name;
+						}
+					};
+					$quest['Qrequirement'] = implode(', ', $selectedDifficulties);
 				}
 				break;
 		}

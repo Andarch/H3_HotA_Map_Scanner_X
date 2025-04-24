@@ -447,6 +447,7 @@
 		const HOTA_EXTRA = 10;
 		const HOTA_CLASS = 0;
 		const HOTA_NOTBEFORE = 1;
+		const HOTA_DIFFICULTY = 2;
 	};
 
 	//constants class with items names
