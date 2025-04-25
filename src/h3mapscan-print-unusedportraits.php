@@ -3,5 +3,3 @@
 
 $timestamp = time();
 echo '<img src="images/unusedportraits.png?t='.$timestamp.'" />';
-
-echo '</div>';
