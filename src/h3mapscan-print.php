@@ -62,6 +62,9 @@ class H3MAPSCAN_PRINT {
 			case 'Objects by Zone':
 				include 'h3mapscan-print-objectzones.php';
 				break;
+			case 'Minimap':
+				include 'h3mapscan-print-minimap.php';
+				break;
 			case 'Unused Portraits':
 				include 'h3mapscan-print-unusedportraits.php';
 				break;
