@@ -42,7 +42,7 @@ $timestamp = time();
 
 require_once 'src/header.php';
 require_once 'src/nav.php';
-generateNav();
+// generateNav();
 
 require_once 'src/h3mapscan.php';
 require_once 'src/h3mapconstants.php';
@@ -77,7 +77,6 @@ elseif($scan) {
 	$scan->SetFilter(array('h3m'));
 	$scan->scansubdirs(MAPDIR);
 	$files = $scan->GetFiles();
-
 
 	if(!empty($files)) {
 		echo 'Maps in folder which are not saved and scanned yet<br /><br />';
@@ -132,8 +131,9 @@ elseif($scan) {
 	echo '</div>';
 }
 else {
+	generateNav(null);
 	generateHeader();
-	echo '<div class="content">';
+	echo '<div class="content"></div>';
 }
 
 if($mapfiledb) {
@@ -170,6 +170,8 @@ if($mapok) {
 	$map->ReadMap();
 
 	echo '</div>';
+
+	generateNav($map);
 
 	$headerInfo = $map->MapHeaderInfo();
 	generateHeader($headerInfo);

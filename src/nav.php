@@ -3,14 +3,14 @@
 const HRULE1 = '<hr class="hr-thick">';
 const HRULE2 = '<hr class="hrule2">';
 
-function generateNav() {
+function generateNav($map) {
     ?>
 
     <div class="nav">
 
     <?php
     generateNavTop();
-    generateNavMain();
+    generateNavMain($map);
     ?>
 
     </div>
@@ -39,10 +39,11 @@ function generateNavTop() {
     <?php
 }
 
-function generateNavMain() {
+function generateNavMain($map) {
     $mapid = $_GET['mapid'] ?? '';
     $mapQueryString = $mapid ? "mapid=$mapid&" : '';
     $currentSection = $_GET['section'] ?? '';
+
     $sections = [
         'General',
         'Terrain',
@@ -60,14 +61,14 @@ function generateNavMain() {
         'Pandora\'s Boxes',
         'Event Objects',
         'Object Count',
-        'Objects by Zone',
-        'Unused Portraits',
     ];
+
     $sectionsWithAnchors = [
         'Template Heroes' => 'heroes-table-2',
         'Map Heroes' => 'heroes-table-3',
         'Quest Guards' => 'quest-guards-table',
     ];
+
     $sectionsWithHr1Below = [
         'General',
         'Terrain',
@@ -77,9 +78,9 @@ function generateNavMain() {
         'Quest Guards',
         'Town Events',
         'Event Objects',
-        'Objects by Zone',
-        'Unused Portraits',
+        'Object Count',
     ];
+
     $sectionsWithHr2Below = [
         'Disabled Heroes',
         'Template Heroes',
@@ -88,8 +89,22 @@ function generateNavMain() {
         'Quest Gates',
         'Global Events',
         'Pandora\'s Boxes',
-        'Object Count',
     ];
+
+    if($map && $map->map_name === '(C) TBD (Allies)') {
+        $key = array_search('Object Count', $sectionsWithHr1Below);
+        array_splice($sectionsWithHr1Below, $key, 1);
+        $sectionsWithHr2Below[] = 'Object Count';
+
+        $sections[] = 'Objects by Zone';
+        $sectionsWithHr2Below[] = 'Objects by Zone';
+
+        $sections[] = 'Minimap';
+        $sectionsWithHr1Below[] = 'Minimap';
+
+        $sections[] = 'Unused Portraits';
+        $sectionsWithHr1Below[] = 'Unused Portraits';
+    }
 
     $navMain = '<div class="nav-main">';
     foreach ($sections as $section) {
