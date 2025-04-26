@@ -69,6 +69,7 @@ if($mapid) {
 	}
 }
 elseif($scan) {
+	generateNav(null);
 	generateHeader();
 
 	echo '<div class="content">';
