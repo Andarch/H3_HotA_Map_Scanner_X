@@ -187,6 +187,11 @@
 		const TERRAINNUM = 12;
 	}
 
+	class IMAGETYPE {
+		const NORMAL = 1;
+		const PASSABILITY = 2;
+	}
+
 	class VICTORY {
 		const ARTIFACT = 0;
 		const ACCCREATURES = 1;

@@ -91,7 +91,7 @@ function generateNavMain($map) {
         'Pandora\'s Boxes',
     ];
 
-    if($map && $map->map_name === '(C) TBD (Allies)') {
+    if($map && $map->map_name == '(C) TBD (Allies)') {
         $key = array_search('Object Count', $sectionsWithHr1Below);
         array_splice($sectionsWithHr1Below, $key, 1);
         $sectionsWithHr2Below[] = 'Object Count';

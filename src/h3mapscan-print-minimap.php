@@ -26,19 +26,20 @@ $zoneColors = [
 /* MAIN */
 
 // Images table
-$timestamp = '?t='.time();
-// $timestamp = '';
+$timestamp = '?t='.microtime(true);
 $imgmapnameg = MAPDIRIMG.$mapimage.'_g.png';
 $imgmapnameu = MAPDIRIMG.$mapimage.'_u.png';
 $imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g.png';
 $imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u.png';
-$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.$timestamp.'" class="map-image-bg" /><img src="'.$imgzonesg.$timestamp.'" class="map-image-overlay" />' : 'Map Ground';
+
+$imgground = '<img src="'.$imgmapnameg.$timestamp.'" class="map-image-bg" /><img src="'.$imgzonesg.$timestamp.'" class="map-image-overlay" />';
 $output = '<div class="minimap-container">';
 $output .= '<div class="minimap-ground"><table class="table-small table-minimap"><th>Ground</th><tr><td class="map-image-container">'.$imgground.'</td></tr></table></div>';
 if($underground) {
-	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.$timestamp.'" class="map-image-bg" /><img src="'.$imgzonesu.$timestamp.'" class="map-image-overlay" />' : 'Map Underground';
+	$imguground = '<img src="'.$imgmapnameu.$timestamp.'" class="map-image-bg" /><img src="'.$imgzonesu.$timestamp.'" class="map-image-overlay" />';
 	$output .= '<div class="minimap-underground"><table class="table-small table-minimap"><th>Underground</th><tr><td class="map-image-container">'.$imguground.'</td></tr></table></div>';
 }
+
 $output .= '<div class="minimap-controls"></div>';
 $output .= '</div></br>';
 echo $output;

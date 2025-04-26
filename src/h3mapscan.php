@@ -363,8 +363,9 @@ class H3MAPSCAN {
 			$this->SaveMap();
 		}
 
-	// if(!$this->webmode && !$this->basiconly) {
-			$this->BuildMap();
+		$this->BuildMap(IMAGETYPE::NORMAL);
+		// if($this->map_name == '(C) TBD (Allies)') {
+		// 	$this->BuildMap(IMAGETYPE::PASSABILITY);
 		// }
 	}
 
@@ -1352,113 +1353,114 @@ class H3MAPSCAN {
 		return $this->terrainRate;
 	}
 
-	public function BuildMap() {
-		if($this->buildMapImage) {
-			//image path and filenames
-			//if($this->mapid) {
-			//	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_g.png'; //ground
-			//	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_'.$this->mapid.'_u.png'; //underground
-			//}
-			//else {
-				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g.png'; //ground
-				$imgmapnameu = MAPDIRIMG.$this->mapimage.'_u.png'; //underground
-			//}
+	public function BuildMap($imagetype) {
+		$img = imagecreate($this->map_size, $this->map_size); //map by size
+		$imgmap = imagecreate($this::IMGSIZE, $this::IMGSIZE); //resized to constant size for all map sizes
 
-			//images already exists
-			//if(file_exists($imgmapnameg) && ($this->underground == 0 || file_exists($imgmapnameu))) {
-				//return;
-			//}
+		switch($imagetype) {
+			case IMAGETYPE::NORMAL:
+				$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g.png';
+				$imgmapnameu = MAPDIRIMG.$this->mapimage.'_u.png';
+				$imgcolors = [
+					//terrain
+					TERRAIN::DIRT       => imagecolorallocate($img, 0x52, 0x39, 0x08),
+					TERRAIN::SAND       => imagecolorallocate($img, 0xde, 0xce, 0x8c),
+					TERRAIN::GRASS      => imagecolorallocate($img, 0x00, 0x42, 0x00),
+					TERRAIN::SNOW       => imagecolorallocate($img, 0xb5, 0xc6, 0xc6),
+					TERRAIN::SWAMP      => imagecolorallocate($img, 0x4a, 0x84, 0x6b),
+					TERRAIN::ROUGH      => imagecolorallocate($img, 0x84, 0x73, 0x31),
+					TERRAIN::SUBTERAIN  => imagecolorallocate($img, 0x84, 0x31, 0x00),
+					TERRAIN::LAVA       => imagecolorallocate($img, 0x4a, 0x4a, 0x4a),
+					TERRAIN::WATER      => imagecolorallocate($img, 0x08, 0x52, 0x94),
+					TERRAIN::ROCK       => imagecolorallocate($img, 0x00, 0x00, 0x00),
+					TERRAIN::HIGHLANDS  => imagecolorallocate($img, 0x29, 0x73, 0x18),
+					TERRAIN::WASTELAND  => imagecolorallocate($img, 0xbd, 0x5a, 0x08),
+					//terrain, blocked tiles
+					TERRAIN::BDIRT      => imagecolorallocate($img, 0x39, 0x29, 0x08),
+					TERRAIN::BSAND      => imagecolorallocate($img, 0xa5, 0x9c, 0x6b),
+					TERRAIN::BGRASS     => imagecolorallocate($img, 0x00, 0x31, 0x00),
+					TERRAIN::BSNOW      => imagecolorallocate($img, 0x8c, 0x9c, 0x9c),
+					TERRAIN::BSWAMP     => imagecolorallocate($img, 0x21, 0x5a, 0x42),
+					TERRAIN::BROUGH     => imagecolorallocate($img, 0x63, 0x52, 0x21),
+					TERRAIN::BSUBTERAIN => imagecolorallocate($img, 0x5a, 0x08, 0x00),
+					TERRAIN::BLAVA      => imagecolorallocate($img, 0x29, 0x29, 0x29),
+					TERRAIN::BWATER     => imagecolorallocate($img, 0x00, 0x29, 0x6b),
+					TERRAIN::BROCK      => imagecolorallocate($img, 0x00, 0x00, 0x00),
+					TERRAIN::BHIGHLANDS => imagecolorallocate($img, 0x21, 0x52, 0x10),
+					TERRAIN::BWASTELAND => imagecolorallocate($img, 0x9c, 0x42, 0x08),
+					//player colors
+					TERRAIN::RED        => imagecolorallocate($img, 0xff, 0x00, 0x00),
+					TERRAIN::BLUE       => imagecolorallocate($img, 0x31, 0x52, 0xff),
+					TERRAIN::TAN        => imagecolorallocate($img, 0x9c, 0x73, 0x52),
+					TERRAIN::GREEN      => imagecolorallocate($img, 0x42, 0x94, 0x29),
+					TERRAIN::ORANGE     => imagecolorallocate($img, 0xff, 0x84, 0x00),
+					TERRAIN::PURPLE     => imagecolorallocate($img, 0x8c, 0x29, 0xa5),
+					TERRAIN::TEAL       => imagecolorallocate($img, 0x08, 0x9c, 0xa5),
+					TERRAIN::PINK       => imagecolorallocate($img, 0xc6, 0x7b, 0x8c),
+					TERRAIN::NEUTRAL    => imagecolorallocate($img, 0x84, 0x84, 0x84),
+				];
+				break;
 
-			if(!is_writable(MAPDIRIMG)) {
-				return;
-			}
-
-			$img = imagecreate($this->map_size, $this->map_size); //map by size
-
-			if(!$img) {
-				throw new Exception('<div class="content">Image Creation problem</div>');
-			}
-
-			$imgmap = imagecreate($this::IMGSIZE, $this::IMGSIZE); //resized to constant size for all map sizes
-			/* From web
-				First byte - surface codes: (RGB colors on the map)
-				ID   Terrain         WEB desc   Real map   Real map blocked    Players
-				00 - Dirt            (50 3F 0F) #52 39 08  #39 29 08           #FF 00 00 Red
-				01 - Sand            (DF CF 8F) #DE CE 8C  #A5 9C 6B           #31 52 FF Blue
-				02 - Grass           (00 40 00) #00 42 00  #00 31 00           #9C 73 52 Tan
-				03 - Snow            (B0 C0 C0) #B5 C6 C6  #8C 9C 9C           #42 94 29 Green
-				04 - Swamp           (4F 80 6F) #4A 84 6B  #21 5A 42           #FF 84 00 Orange
-				05 - Rough           (80 70 30) #84 73 31  #63 52 21           #8C 29 A5 Purple
-				06 - Subterranean    (00 80 30) #84 31 00  #39 29 08           #08 9C A5 Teal
-				07 - Lava            (4F 4F 4F) #4A 4A 4A  #29 29 29           #C6 7B 8C Pink
-				08 - Water           (0F 50 90) #08 52 94  #00 29 6B           #84 84 84 Neutral
-				09 - Rock            (00 00 00) #00 00 00
-				10 - highlands                  #29 73 18  #21 52 10
-				11 - wasteland                  #BD 5A 08  #9C 42 08
-			*/
-
-			$imgcolors = [
-				//terrain
-				TERRAIN::DIRT       => imagecolorallocate($img, 0x52, 0x39, 0x08),
-				TERRAIN::SAND       => imagecolorallocate($img, 0xde, 0xce, 0x8c),
-				TERRAIN::GRASS      => imagecolorallocate($img, 0x00, 0x42, 0x00),
-				TERRAIN::SNOW       => imagecolorallocate($img, 0xb5, 0xc6, 0xc6),
-				TERRAIN::SWAMP      => imagecolorallocate($img, 0x4a, 0x84, 0x6b),
-				TERRAIN::ROUGH      => imagecolorallocate($img, 0x84, 0x73, 0x31),
-				TERRAIN::SUBTERAIN  => imagecolorallocate($img, 0x84, 0x31, 0x00),
-				TERRAIN::LAVA       => imagecolorallocate($img, 0x4a, 0x4a, 0x4a),
-				TERRAIN::WATER      => imagecolorallocate($img, 0x08, 0x52, 0x94),
-				TERRAIN::ROCK       => imagecolorallocate($img, 0x00, 0x00, 0x00),
-				TERRAIN::HIGHLANDS  => imagecolorallocate($img, 0x29, 0x73, 0x18),
-				TERRAIN::WASTELAND  => imagecolorallocate($img, 0xbd, 0x5a, 0x08),
-				//terrain, blocked tiles
-				TERRAIN::BDIRT      => imagecolorallocate($img, 0x39, 0x29, 0x08),
-				TERRAIN::BSAND      => imagecolorallocate($img, 0xa5, 0x9c, 0x6b),
-				TERRAIN::BGRASS     => imagecolorallocate($img, 0x00, 0x31, 0x00),
-				TERRAIN::BSNOW      => imagecolorallocate($img, 0x8c, 0x9c, 0x9c),
-				TERRAIN::BSWAMP     => imagecolorallocate($img, 0x21, 0x5a, 0x42),
-				TERRAIN::BROUGH     => imagecolorallocate($img, 0x63, 0x52, 0x21),
-				TERRAIN::BSUBTERAIN => imagecolorallocate($img, 0x5a, 0x08, 0x00),
-				TERRAIN::BLAVA      => imagecolorallocate($img, 0x29, 0x29, 0x29),
-				TERRAIN::BWATER     => imagecolorallocate($img, 0x00, 0x29, 0x6b),
-				TERRAIN::BROCK      => imagecolorallocate($img, 0x00, 0x00, 0x00),
-				TERRAIN::BHIGHLANDS => imagecolorallocate($img, 0x21, 0x52, 0x10),
-				TERRAIN::BWASTELAND => imagecolorallocate($img, 0x9c, 0x42, 0x08),
-				//player colors
-				TERRAIN::RED        => imagecolorallocate($img, 0xff, 0x00, 0x00),
-				TERRAIN::BLUE       => imagecolorallocate($img, 0x31, 0x52, 0xff),
-				TERRAIN::TAN        => imagecolorallocate($img, 0x9c, 0x73, 0x52),
-				TERRAIN::GREEN      => imagecolorallocate($img, 0x42, 0x94, 0x29),
-				TERRAIN::ORANGE     => imagecolorallocate($img, 0xff, 0x84, 0x00),
-				TERRAIN::PURPLE     => imagecolorallocate($img, 0x8c, 0x29, 0xa5),
-				TERRAIN::TEAL       => imagecolorallocate($img, 0x08, 0x9c, 0xa5),
-				TERRAIN::PINK       => imagecolorallocate($img, 0xc6, 0x7b, 0x8c),
-				TERRAIN::NEUTRAL    => imagecolorallocate($img, 0x84, 0x84, 0x84),
-				//special coloring
-				TERRAIN::NONE       => imagecolorallocate($img, 0xff, 0xff, 0xff),
-				TERRAIN::MINE       => imagecolorallocate($img, 0xff, 0x00, 0xcc),
-				TERRAIN::ARTIFACT   => imagecolorallocate($img, 0x33, 0xff, 0xff),
-				TERRAIN::MONSTER    => imagecolorallocate($img, 0x33, 0xff, 0x00),
-				TERRAIN::ANY        => imagecolorallocate($img, 0xff, 0xff, 0x00),
-			];
-
-			// Map
-			foreach($this->terrain as $level => $row) {
-				foreach($row as $x => $col) {
-					foreach($col as $y => $cell) {
-						$color = $imgcolors[$this->GetCellSurface($cell)];
-						imagesetpixel($img, $y, $x, $color);
-					}
-				}
-
-				$imgmapname = $level == 0 ? $imgmapnameg : $imgmapnameu;
-				imagecopyresized($imgmap, $img, 0, 0, 0, 0, $this::IMGSIZE, $this::IMGSIZE, $this->map_size, $this->map_size);
-				imagepng($imgmap, $imgmapname);
-			}
-
-			imagedestroy($img);
-			imagedestroy($imgmap);
+			// case IMAGETYPE::PASSABILITY:
+			// 	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g_pass.png';
+			// 	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_u_pass.png';
+			// 	$imgcolors = [
+			// 		//terrain
+			// 		TERRAIN::DIRT       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::SAND       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::GRASS      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::SNOW       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::SWAMP      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::ROUGH      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::SUBTERAIN  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::LAVA       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::WATER      => imagecolorallocate($img, 0x4b, 0x56, 0x5e),
+			// 		TERRAIN::ROCK       => imagecolorallocate($img, 0x00, 0x00, 0x00),
+			// 		TERRAIN::HIGHLANDS  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		TERRAIN::WASTELAND  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
+			// 		//terrain, blocked tiles
+			// 		TERRAIN::BDIRT      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BSAND      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BGRASS     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BSNOW      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BSWAMP     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BROUGH     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BSUBTERAIN => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BLAVA      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BWATER     => imagecolorallocate($img, 0x3c, 0x45, 0x4d),
+			// 		TERRAIN::BROCK      => imagecolorallocate($img, 0x00, 0x00, 0x00),
+			// 		TERRAIN::BHIGHLANDS => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		TERRAIN::BWASTELAND => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
+			// 		//player colors
+			// 		TERRAIN::RED        => imagecolorallocate($img, 0xff, 0x00, 0x00),
+			// 		TERRAIN::BLUE       => imagecolorallocate($img, 0x31, 0x52, 0xff),
+			// 		TERRAIN::TAN        => imagecolorallocate($img, 0x9c, 0x73, 0x52),
+			// 		TERRAIN::GREEN      => imagecolorallocate($img, 0x42, 0x94, 0x29),
+			// 		TERRAIN::ORANGE     => imagecolorallocate($img, 0xff, 0x84, 0x00),
+			// 		TERRAIN::PURPLE     => imagecolorallocate($img, 0x8c, 0x29, 0xa5),
+			// 		TERRAIN::TEAL       => imagecolorallocate($img, 0x08, 0x9c, 0xa5),
+			// 		TERRAIN::PINK       => imagecolorallocate($img, 0xc6, 0x7b, 0x8c),
+			// 		TERRAIN::NEUTRAL    => imagecolorallocate($img, 0x84, 0x84, 0x84),
+			// 	];
+			// 	break;
 		}
+
+		// Map
+		foreach($this->terrain as $level => $row) {
+			foreach($row as $x => $col) {
+				foreach($col as $y => $cell) {
+					$color = $imgcolors[$this->GetCellSurface($cell)];
+					imagesetpixel($img, $y, $x, $color);
+				}
+			}
+
+			$imgmapname = $level == 0 ? $imgmapnameg : $imgmapnameu;
+			imagecopyresized($imgmap, $img, 0, 0, 0, 0, $this::IMGSIZE, $this::IMGSIZE, $this->map_size, $this->map_size);
+			imagepng($imgmap, $imgmapname);
+		}
+
+		imagedestroy($img);
+		imagedestroy($imgmap);
 	}
 
 	private function GetCellSurface($cell) {

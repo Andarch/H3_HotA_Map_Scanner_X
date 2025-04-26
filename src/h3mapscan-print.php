@@ -15,7 +15,7 @@ class H3MAPSCAN_PRINT {
         // $print = $this->generateNavMain();
         $section = $_GET['section'] ?? 'general';
 
-        ob_start(); // Start output buffering
+        // ob_start(); // Start output buffering
         switch ($section) {
             case 'General':
                 include 'h3mapscan-print-general.php';
@@ -72,8 +72,8 @@ class H3MAPSCAN_PRINT {
                 include 'h3mapscan-print-general.php';
                 break;
         }
-        $print = ob_get_clean(); // End output buffering and append the output to $print
-        echo $print;
+        // $print = ob_get_clean(); // End output buffering and append the output to $print
+        // echo $print;
     }
 
     // private function generateNavMain() {
