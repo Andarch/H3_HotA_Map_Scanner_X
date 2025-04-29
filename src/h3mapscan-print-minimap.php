@@ -375,6 +375,10 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 		$z = $obj['pos']->z;
 		$color = null;
 
+		if ($table->category == OBJ_CATEGORY::TWO_WAY_PORTALS) {
+			$x = $x - 1;
+		}
+
 		// Adjust position of objects that are out of bounds
 		$mapsizeArray = explode('x', $h3mapscan->map_size);
 		$mapsizeInt = $mapsizeArray[0];
