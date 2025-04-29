@@ -77,6 +77,7 @@
 
 	--flex-gap: 1.5em;
 
+	--minimap__size--old: 384px;
 	--minimap__size: 100%;
 }
 
@@ -483,6 +484,20 @@ th, td {
     position: relative;
 	background: black;
 	width: 100%;
+}
+
+.map-image-bg-old {
+	width: var(--minimap__size--old) !important;
+	opacity: 0.2;
+}
+
+.map-image-overlay-old {
+	width: var(--minimap__size--old) !important;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+	mix-blend-mode: lighten;
+	opacity: 0.7;
 }
 
 .map-image-bg {
