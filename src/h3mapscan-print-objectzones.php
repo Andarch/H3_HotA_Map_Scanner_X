@@ -5,7 +5,7 @@ require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
 $h3mapscan =  $this->h3mapscan;
-$mapimage = $h3mapscan->mapimage;
+// $mapimage = $h3mapscan->mapimage;
 $underground = $h3mapscan->underground;
 $zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
 $objPerZone = $h3mapscan->objectCountPlayers;
@@ -27,22 +27,22 @@ $zoneColors = [
 
 // Images table
 $timestamp = time();
-$imgmapnameg = MAPDIRIMG.$mapimage.'_g.png';
-$imgmapnameu = MAPDIRIMG.$mapimage.'_u.png';
-$imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g.png';
-$imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u.png';
-$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" class="map-image-bg-old" /><img src="'.$imgzonesg.'?t='.$timestamp.'" class="map-image-overlay-old" />' : 'Map Ground';
+$imgmapnameg = MAPDIR.$zonesImageBaseFilename.'_g.png';
+$imgmapnameu = MAPDIR.$zonesImageBaseFilename.'_u.png';
+$imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g2.png';
+$imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u2.png';
+$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" class="map-image-bg-old" />' : 'Map Ground';
 $output = '<table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
 if($underground) {
-	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" class="map-image-bg-old" /><img src="'.$imgzonesu.'?t='.$timestamp.'" class="map-image-overlay-old" />' : 'Map Underground';
+	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" class="map-image-bg-old" />' : 'Map Underground';
 	$output .= '<td class="map-image-container">'.$imguground.'</td>';
 }
 $output .= '</tr></table>';
 echo $output;
 
 // Scan zone overlays
-$groundColors = loadImageColors(MAPDIR.$zonesImageBaseFilename.'_g.png');
-$undergroundColors = loadImageColors(MAPDIR.$zonesImageBaseFilename.'_u.png');
+$groundColors = loadImageColors($imgzonesg);
+$undergroundColors = loadImageColors($imgzonesu);
 
 // Towns
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::START);
