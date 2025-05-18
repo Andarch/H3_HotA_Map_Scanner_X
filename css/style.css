@@ -461,7 +461,8 @@ th, td {
 	display: grid;
 	grid-template-areas: "ground controls underground";
 	grid-template-rows: 968px;
-	grid-template-columns: 1fr 600px 1fr;
+	/* grid-template-columns: 1fr 600px 1fr; */
+	grid-template-columns: 1fr 0.1fr 1fr;
 }
 
 .minimap-ground {
