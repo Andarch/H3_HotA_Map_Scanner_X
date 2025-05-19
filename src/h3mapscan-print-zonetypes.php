@@ -14,24 +14,24 @@ $output = '<div class="minimap-container">';
 
 $output .= '
 	<div class="minimap-ground">
-		<table class="table-small table-minimap">
+		<table class="table-minimap">
 			<tr>
 				<th>Ground</th>
 			</tr>
 			<tr>
-				<td class="map-image-container"><img src="'.$imgGround.'" class="map-image-bg" /></td>
+				<td><img src="'.$imgGround.'" /></td>
 			</tr>
 		</table>
 	</div>';
 if($hasUnderground) {
 	$output .= '
 		<div class="minimap-underground">
-			<table class="table-small table-minimap">
+			<table class="table-minimap">
 				<tr>
 					<th>Underground</th>
 				</tr>
 				<tr>
-					<td class="map-image-container"><img src="'.$imgUnderground.'" class="map-image-bg" /></td>
+					<td><img src="'.$imgUnderground.'" /></td>
 				</tr>
 			</table>
 		</div>';
