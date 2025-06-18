@@ -27,6 +27,7 @@ class H3MAPSCAN {
 	const HOTA_SUBREV5 = 5;
 	const HOTA_SUBREV6 = 6;
 	const HOTA_SUBREV7 = 7;
+	const HOTA_SUBREV8 = 8;
 
 	//variables to simplify version checks
 	private $isROE   = false;
@@ -38,6 +39,12 @@ class H3MAPSCAN {
 	public  $version = '';
 	public  $versionname = '';
 	public  $hota_subrev = 0;
+
+	public $hotaMajorVersion = 0;
+	public $hotaMinorVersion = 0;
+	public $hotaPatchVersion = 0;
+	public $hotaVersionLocked = 0;
+
 	public  $map_name = '';
 	public  $description = '';
 	private $author = '';
@@ -262,7 +269,7 @@ class H3MAPSCAN {
 
 	//return true on valid version, false otherwise
 	private function CheckVersion() {
-		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV7));
+		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV8));
 	}
 
 	private function SaveMap() {
@@ -310,6 +317,9 @@ class H3MAPSCAN {
 			'mapname' => $this->map_name,
 			'mapfile' => $this->mapfile,
 			'version' => $this->versionname.$subrev,
+			'vmajor' => $this->hotaMajorVersion,
+			'vminor' => $this->hotaMinorVersion,
+			'vpatch' => $this->hotaPatchVersion,
 			'filetime' => $dateTime,
 			'mapdesc' => nl2br($this->description),
 			'mapsize' => $this->map_sizename,
@@ -381,6 +391,11 @@ class H3MAPSCAN {
 
 		if($this->version == $this::HOTA) {
 			$this->hota_subrev = $this->br->ReadUint32();
+			if($this->hota_subrev >= $this::HOTA_SUBREV8) {
+				$this->hotaMajorVersion = $this->br->ReadUint32();
+				$this->hotaMinorVersion = $this->br->ReadUint32();
+				$this->hotaPatchVersion = $this->br->ReadUint32();
+			}
 			if($this->hota_subrev >= $this::HOTA_SUBREV1) {
 				$mirror = $this->br->ReadUint8();
 				$this->hota_arena = $this->br->ReadUint8(); //arena
@@ -409,6 +424,10 @@ class H3MAPSCAN {
 
 		if($this->hota_subrev >= $this::HOTA_SUBREV7) {
 			$this->can_hire_defeated_heroes = $this->br->ReadUint8();
+		}
+
+		if($this->hota_subrev >= $this::HOTA_SUBREV8) {
+			$this->hotaVersionLocked = $this->br->ReadUint8();
 		}
 
 		$this->any_hero_onmap = $this->br->ReadUint8(); //hero presence

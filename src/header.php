@@ -5,6 +5,9 @@ function generateHeader($headerInfo = null) {
         $name = $headerInfo['mapname'];
         $file = $headerInfo['mapfile'];
         $version = $headerInfo['version'];
+        $versionMajor = $headerInfo['vmajor'];
+        $versionMinor = $headerInfo['vminor'];
+        $versionPatch = $headerInfo['vpatch'];
         $date = $headerInfo['filetime'];
         $size = $headerInfo['mapsize'];
         $layers = $headerInfo['levels'];
@@ -31,7 +34,16 @@ function generateHeader($headerInfo = null) {
                     <td>Name</td>
                     <td><?php echo $name; ?></td>
                     <td>Version</td>
-                    <td><?php echo $version; ?></td>
+                    <td>
+                        <?php
+                        if($versionMajor != 0) {
+                            echo 'HotA v'.$versionMajor.'.'.$versionMinor.'.'.$versionPatch.' (mv='.substr($version, 5).')';
+                        }
+                        else {
+                            echo $version;
+                        }
+                        ?></td>
+
                     <td>Size</td>
                     <td class="ac"><?php echo $size; ?></td>
                 </tr>
