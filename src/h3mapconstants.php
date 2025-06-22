@@ -459,15 +459,16 @@
 	class HeroesConstants {
 
 		public $PlayersColors = [
-			0 => 'Red',
-			1 => 'Blue',
-			2 => 'Tan',
-			3 => 'Green',
-			4 => 'Orange',
-			5 => 'Purple',
-			6 => 'Teal',
-			7 => 'Pink',
-			0xff => 'Neutral'
+			  0 => 'Red',
+			  1 => 'Blue',
+			  2 => 'Tan',
+			  3 => 'Green',
+			  4 => 'Orange',
+			  5 => 'Purple',
+			  6 => 'Teal',
+			  7 => 'Pink',
+			255 => 'Neutral',
+			999 => 'Super'
 		];
 
 		public $PrimarySkill = [

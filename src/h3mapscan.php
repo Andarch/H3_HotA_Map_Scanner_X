@@ -3605,7 +3605,7 @@ class H3MAPSCAN {
 	}
 
 	public function GetPlayerColorById($id, $withtext = false) {
-		if($id >= 0 && $id <= 7 || $id == 255) {
+		if($id >= 0 && $id <= 7 || $id == 255 || $id == 999) {
 			if($withtext) {
 				$color = '<span class="color'.($id + 1).'">&nbsp;</span>&nbsp;';
 				return $color.FromArray($id, $this->CS->PlayersColors);

@@ -11,15 +11,24 @@ $zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
 $objPerZone = $h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
 $zoneColors = [
-    'Blue' => [49, 82, 255],
-    'Tan' => [156, 115, 82],
-    'Green' => [66, 148, 41],
-    'Orange' => [255, 132, 0],
-    'Purple' => [140, 41, 165],
-    'Teal' => [8, 156, 165],
-    'Pink' => [198, 123, 140],
-    'Red' => [255, 0, 0],
+    // 'Blue' => [49, 82, 255],
+    // 'Tan' => [156, 115, 82],
+    // 'Green' => [66, 148, 41],
+    // 'Orange' => [255, 132, 0],
+    // 'Purple' => [140, 41, 165],
+    // 'Teal' => [8, 156, 165],
+    // 'Pink' => [198, 123, 140],
+    // 'Red' => [255, 0, 0],
+    'Blue' => [89, 110, 184],
+    'Tan' => [129, 108, 88],
+    'Green' => [71, 109, 54],
+    'Orange' => [179, 129, 76],
+    'Purple' => [109, 59, 120],
+    'Teal' => [50, 112, 116],
+    'Pink' => [171, 129, 140],
+    'Red' => [179, 76, 76],
     'Neutral' => 'Neutral',
+    'Super' => [179, 170, 76],
     'Total' => 'Total',
 ];
 
@@ -534,6 +543,8 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(255).'</th>';
 	echo '<th class="table-small__divider"></th>';
+	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(999).'</th>';
+	echo '<th class="table-small__divider"></th>';
 	echo '<th class="table-small__column-header--total">Total</th>';
 	echo '</tr>';
 
@@ -574,7 +585,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 		foreach (array_keys($zoneColors) as $zone) {
 			$currentZoneCount++;
 			$isTotal = ($currentZoneCount == $totalZoneCount);
-			if ($zone == 'Red' || $zone == 'Neutral' || $zone == 'Total') {
+			if ($zone == 'Red' || $zone == 'Neutral' || $zone == 'Super' ||  $zone == 'Total') {
 				if (!$isBottomRow) {
 					echo '<td class="cell-greyed-out"></td>';
 				} else {
