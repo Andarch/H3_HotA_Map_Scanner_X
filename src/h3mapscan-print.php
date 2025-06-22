@@ -60,7 +60,7 @@ class H3MAPSCAN_PRINT {
 				include 'h3mapscan-print-objectcount.php';
 				break;
 			case 'Objects by Zone':
-				include 'h3mapscan-print-objectzones.php';
+				include 'h3mapscan-print-objectsbyzone.php';
 				break;
 			case 'Minimap':
 				include 'h3mapscan-print-minimap.php';
