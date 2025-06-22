@@ -34,6 +34,8 @@ $zoneColors = [
 
 /* MAIN */
 
+echo '<div class="obz-container">';
+
 // Images table
 $timestamp = time();
 $imgmapnameg = MAPDIR.$zonesImageBaseFilename.'_g.png';
@@ -41,20 +43,22 @@ $imgmapnameu = MAPDIR.$zonesImageBaseFilename.'_u.png';
 $imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g2.png';
 $imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u2.png';
 $imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" class="map-image-bg-old" />' : 'Map Ground';
-$output = '<table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
+$output = '<div class="obz-map-images-container"><table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
 if($underground) {
 	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" class="map-image-bg-old" />' : 'Map Underground';
 	$output .= '<td class="map-image-container">'.$imguground.'</td>';
 }
-$output .= '</tr></table>';
+$output .= '</tr></table></div>';
 echo $output;
+
+echo '<div class="obz-tables-container">';
 
 // Scan zone overlays
 $groundColors = loadImageColors($imgzonesg);
 $undergroundColors = loadImageColors($imgzonesu);
 
 // Towns
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::START);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Heroes & Info
@@ -238,8 +242,10 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TE
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Magical Terrains – Bonuses
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $sortOrder->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::END);
+$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $sortOrder->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::NONE);
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+
+echo '</div></div>';
 
 /* END MAIN */
 
@@ -520,9 +526,9 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 	}
 
 	// Flex start if applicable
-	if ($table->flexType === OC_FLEXTYPE::START) {
-		echo START_FLEX;
-	}
+	// if ($table->flexType === OC_FLEXTYPE::START) {
+	// 	echo START_FLEX;
+	// }
 
 	// Print table category title
 	echo '<table class="'.OBJCOUNT_TABLECLASS.'">
@@ -616,7 +622,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 	echo '</tbody></table>';
 
 	// Flex end if applicable
-	if ($table->flexType === OC_FLEXTYPE::END) {
-		echo END_FLEX;
-	}
+	// if ($table->flexType === OC_FLEXTYPE::END) {
+	// 	echo END_FLEX;
+	// }
 }
