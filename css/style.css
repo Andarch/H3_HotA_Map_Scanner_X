@@ -408,10 +408,7 @@ th, td {
 
 .artifacts-table,
 .spells-table {
-	flex-grow: 1;
-	flex-basis: calc(25% - var(--flex-gap));
-	max-width: 457.838px;
-	table-layout: auto;
+	table-layout: fixed;
 }
 
 .artifacts-table td:first-child,
@@ -421,22 +418,11 @@ th, td {
 	width: 32px !important;
 }
 
-.artifacts-table td:nth-child(2) {
-	width: 162px;
-}
-
-.spells-table td:nth-child(2) {
-	width: 132px;
-}
-
-.artifacts-table td:nth-child(3),
-.spells-table td:nth-child(3) {
-	width: 74px !important;
-}
-
-.artifacts-table td:nth-child(4),
-.spells-table td:nth-child(4) {
-	width: 78px !important;
+.artifacts-table td:not(first-child),
+.artifacts-table th:not(first-child),
+.spells-table td:not(first-child),
+.spells-table th:not(first-child) {
+	width: 150px !important;
 }
 
 .table-map-list {

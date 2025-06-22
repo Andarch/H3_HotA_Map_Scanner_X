@@ -2114,6 +2114,10 @@ class H3MAPSCAN {
 					$shrine['spellid'] = $this->br->ReadUint8();
 					$this->br->SkipBytes(3);
 					$obj['data'] = $shrine;
+					if($shrine['spellid'] != 255) {
+						$spellname = $this->GetSpellById($shrine['spellid']);
+						$this->spells_list[] = new ListObject($spellname, $this->curcoor, 'Spell Shrine', OWNERNONE, 0, '');
+					}
 					break;
 
 				case OBJECTS::GRAIL:
@@ -2711,7 +2715,7 @@ class H3MAPSCAN {
 						}
 						$spell = $this->GetSpellById($spellid);
 						$town['spellsA'][] = $spell;
-						$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Town', OWNERNONE, 0, '', $this->curobjname);
+						$this->spells_list[] = new ListObject($spell, $this->curcoor, 'Town', OWNERNONE, 0, '', $town['name']);
 					}
 				}
 			}
@@ -3231,11 +3235,12 @@ class H3MAPSCAN {
 	}
 
 	private function ReadPyramid() {
-		$contents = $this->br->ReadInt32();
 		$spellid = $this->br->ReadInt32();
+		$this->br->SkipBytes(4);
 
 		if($spellid != HOTA_RANDOM) {
-			$this->spells_list[] = new ListObject($this->GetSpellById($spellid), $this->curcoor, 'Pyramid', OWNERNONE, 0, '', $this->curobjname);
+			$spellname = $this->GetSpellById($spellid);
+			$this->spells_list[] = new ListObject($spellname, $this->curcoor, 'Pyramid', OWNERNONE, 0, '', $this->curobjname);
 		}
 	}
 

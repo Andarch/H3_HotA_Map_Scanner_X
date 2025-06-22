@@ -1,40 +1,82 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-usort($this->h3mapscan->spells_list, 'ListSortByName');
+// Group spells by name, collecting heroes and towns separately
+$spellGroups = [];
 
-$maxItems = 40;
-$totalItems = count($this->h3mapscan->spells_list);
-$numTables = ceil($totalItems / $maxItems);
+foreach ($this->h3mapscan->spells_list as $spl) {
+    if (!isset($spellGroups[$spl->name])) {
+        $spellGroups[$spl->name] = [
+            'spellname' => $spl->name,
+            'spellobjs' => [],
+            'towns' => [],
+            'heroes' => []
+        ];
+    }
+    
+	if ($spl->parent === 'Spell Scroll' || $spl->parent === 'Pyramid' || $spl->parent === 'Spell Shrine') {
+    	$location = $spl->parent . ' ' . $spl->mapcoor->GetCoords();
+        $spellGroups[$spl->name]['spellobjs'][] = $location;
+    } else if ($spl->parent === 'Town') {		
+    	$location = $spl->add1 . ' ' . $spl->mapcoor->GetCoords();
+        $spellGroups[$spl->name]['towns'][] = $location;
+    } else if ($spl->parent === 'Hero') {
+    	$location = $spl->add1 . ' ' . $spl->mapcoor->GetCoords();
+        $spellGroups[$spl->name]['heroes'][] = $location;
+    }
+}
+
+// Create consolidated array
+$consolidatedData = [];
+
+foreach ($spellGroups as $group) {
+    sort($group['spellobjs']);
+    sort($group['towns']);
+    sort($group['heroes']);
+    
+    $spellobjsText = count($group['spellobjs']) > 0 ? implode('</br>', $group['spellobjs']) : '<span class="tiny-grey-text">None</span>';
+    $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : '<span class="tiny-grey-text">None</span>';
+    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : '<span class="tiny-grey-text">None</span>';
+    
+    $consolidatedData[] = [
+        'name' => $group['spellname'],
+        'spellobjs' => $spellobjsText,
+        'towns' => $townsText,
+        'heroes' => $heroesText
+    ];
+}
+
+// Sort by spell name
+usort($consolidatedData, function($a, $b) {
+    return strcmp($a['name'], $b['name']);
+});
+
+$totalItems = count($consolidatedData);
 
 echo '<div class="flex-container">';
 
-for ($i = 0; $i < $numTables; $i++) {
-	echo '<table class="table-large spells-table">
+echo '<table class="table-large spells-table">
 			<thead>
 				<tr>
 					<th>#</th>
 					<th>Spell</th>
-					<th>Position</th>
-					<th>Parent</th>
-					<th>Name</th>
+					<th>Spell Objects</th>
+					<th>Towns</th>
+					<th>Heroes</th>
 				</tr>
 			</thead>
 			<tbody>';
-	for ($j = 0; $j < $maxItems; $j++) {
-		$n = $i * $maxItems + $j;
-		if ($n >= $totalItems) break;
-		$spl = $this->h3mapscan->spells_list[$n];
-		echo '<tr>
-				<td class="table__row-header--default">'.(++$n).'</td>
-				<td class="nowrap" nowrap="nowrap">'.$spl->name.'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$spl->mapcoor->GetCoords().'</td>
-				<td class="ar nowrap" nowrap="nowrap">'.$spl->parent.'</td>
-				<td class="nowrap" nowrap="nowrap">'.$spl->add1.'</td>
-				</tr>';
-	}
-	echo '</tbody>';
-	echo '</table>';
+for ($n = 0; $n < $totalItems; $n++) {
+	$spl = $consolidatedData[$n];
+	echo '<tr>
+			<td class="table__row-header--default">'.($n + 1).'</td>
+			<td class="nowrap" nowrap="nowrap">'.$spl['name'].'</td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['spellobjs'].'</span></td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['towns'].'</span></td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['heroes'].'</span></td>
+			</tr>';
 }
+echo '</tbody>';
+echo '</table>';
 
 echo '</div>';
