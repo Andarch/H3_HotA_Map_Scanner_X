@@ -20,6 +20,9 @@ function generateHeader($headerInfo = null) {
         $name = EMPTY_DATA;
         $file = EMPTY_DATA;
         $version = EMPTY_DATA;
+        $versionMajor = EMPTY_DATA;
+        $versionMinor = EMPTY_DATA;
+        $versionPatch = EMPTY_DATA;
         $date = EMPTY_DATA;
         $size = EMPTY_DATA;
         $layers = EMPTY_DATA;
@@ -36,7 +39,7 @@ function generateHeader($headerInfo = null) {
                     <td>Version</td>
                     <td>
                         <?php
-                        if($versionMajor != 0) {
+                        if($versionMajor != EMPTY_DATA && $versionMajor != 0) {
                             echo 'HotA v'.$versionMajor.'.'.$versionMinor.'.'.$versionPatch.' (mv='.substr($version, 5).')';
                         }
                         else {
