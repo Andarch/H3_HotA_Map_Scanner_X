@@ -1877,7 +1877,7 @@ class H3MAPSCAN {
 
 						if($artid != HNONE16) {
 							$artifact = $this->GetArtifactById($artid);
-							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Creature', OWNERNONE, 0, '', $monster['name']);
+							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Monster', OWNERNONE, 0, '', $monster['name']);
 						}
 					}
 					$monster['neverFlees'] = $this->br->ReadUint8();

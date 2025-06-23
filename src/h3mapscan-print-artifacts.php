@@ -3,49 +3,62 @@
 
 $artifactGroups = [];
 
-foreach ($this->h3mapscan->artifacts_list as $spl) {
-    if (!isset($artifactGroups[$spl->name])) {
-        $artifactGroups[$spl->name] = [
-            'artifactname' => $spl->name,
-            'spellobjs' => [],
-            'towns' => [],
-            'heroes' => []
-        ];
-    }
-    
-	if ($spl->parent === 'Spell Scroll' || $spl->parent === 'Pyramid' || $spl->parent === 'Spell Shrine') {
-    	$location = $spl->parent . ' ' . $spl->mapcoor->GetCoords();
-        $spellGroups[$spl->name]['spellobjs'][] = $location;
-    } else if ($spl->parent === 'Town') {		
-    	$location = $spl->add1 . ' ' . $spl->mapcoor->GetCoords();
-        $spellGroups[$spl->name]['towns'][] = $location;
-    } else if ($spl->parent === 'Hero') {
-    	$location = $spl->add1 . ' ' . $spl->mapcoor->GetCoords();
-        $spellGroups[$spl->name]['heroes'][] = $location;
-    }
+foreach ($this->h3mapscan->artifacts_list as $art) {
+	if(
+		substr($art->name, 0, 6) != 'Random'
+		&& $art->name != 'Spell Book'
+		&& $art->name != 'Ammo Cart'
+		&& $art->name != 'Ballista'
+		&& $art->name != 'Cannon'
+		&& $art->name != 'First Aid Tent') {
+		if (!isset($artifactGroups[$art->name])) {
+			$artifactGroups[$art->name] = [
+				'artifactname' => $art->name,
+				'mapobjs' => [],
+				'miscmapobjs' => [],
+				'heroes' => []
+			];
+		}
+		
+		if ($art->parent === 'Map') {
+			$location = 'Artifact ' . $art->mapcoor->GetCoords();
+			$artifactGroups[$art->name]['mapobjs'][] = $location;
+		} else if ($art->parent != 'Hero') {
+			if($art->parent == 'Monster') {
+				$name = $art->add1;
+			} else {
+				$name = $art->parent;
+			}
+			$location = $name . ' ' . $art->mapcoor->GetCoords();
+			$artifactGroups[$art->name]['miscmapobjs'][] = $location;
+		} else if ($art->parent === 'Hero') {
+			$location = $art->add1 . ' ' . $art->mapcoor->GetCoords();
+			$artifactGroups[$art->name]['heroes'][] = $location;
+		}
+	}
 }
 
 // Create consolidated array
 $consolidatedData = [];
 
-foreach ($spellGroups as $group) {
-    sort($group['spellobjs']);
-    sort($group['towns']);
+foreach ($artifactGroups as $group) {
+    sort($group['mapobjs']);
+    sort($group['miscmapobjs']);
     sort($group['heroes']);
     
-    $spellobjsText = count($group['spellobjs']) > 0 ? implode('</br>', $group['spellobjs']) : '<span class="tiny-grey-italics">None</span>';
-    $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : '<span class="tiny-grey-italics">None</span>';
+    $mapobjsText = count($group['mapobjs']) > 0 ? implode('</br>', $group['mapobjs']) : '<span class="tiny-grey-italics">None</span>';
+    $miscmapobjsText = count($group['miscmapobjs']) > 0 ? implode('</br>', $group['miscmapobjs']) : '<span class="tiny-grey-italics">None</span>';
     $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : '<span class="tiny-grey-italics">None</span>';
     
     $consolidatedData[] = [
-        'name' => $group['spellname'],
-        'spellobjs' => $spellobjsText,
-        'towns' => $townsText,
+        'name' => $group['artifactname'],
+        'mapobjs' => $mapobjsText,
+        'miscmapobjs' => $miscmapobjsText,
         'heroes' => $heroesText
     ];
 }
 
-// Sort by spell name
+// Sort by artifact name
 usort($consolidatedData, function($a, $b) {
     return strcmp($a['name'], $b['name']);
 });
@@ -54,25 +67,25 @@ $totalItems = count($consolidatedData);
 
 echo '<div class="flex-container">';
 
-echo '<table class="table-large spells-table">
+echo '<table class="table-large artifacts-table">
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Spell</th>
+					<th>Artifact</th>
+					<th>Map Objects</th>
 					<th>Misc. Map Objects</th>
-					<th>Towns</th>
 					<th>Heroes</th>
 				</tr>
 			</thead>
 			<tbody>';
 for ($n = 0; $n < $totalItems; $n++) {
-	$spl = $consolidatedData[$n];
+	$art = $consolidatedData[$n];
 	echo '<tr>
 			<td class="table__row-header--default">'.($n + 1).'</td>
-			<td class="nowrap" nowrap="nowrap">'.$spl['name'].'</td>
-			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['spellobjs'].'</span></td>
-			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['towns'].'</span></td>
-			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['heroes'].'</span></td>
+			<td class="nowrap" nowrap="nowrap">'.$art['name'].'</td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$art['mapobjs'].'</span></td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$art['miscmapobjs'].'</span></td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$art['heroes'].'</span></td>
 			</tr>';
 }
 echo '</tbody>';
