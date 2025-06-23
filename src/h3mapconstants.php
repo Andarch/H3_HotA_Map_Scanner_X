@@ -37,7 +37,7 @@
 	const MAGIC_PLAINS_COMBOID = '46-0'.COMBOID_SEPARATOR.'230-0';
 	const TRADING_POST_COMBOID = '99-0'.COMBOID_SEPARATOR.'221-0';
 
-	const DEFAULT_DATA = '<span class="tiny-grey-text"><i>Default</i></span>';
+	const DEFAULT_DATA = '<span class="tiny-grey-italics">Default</span>';
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
 
 	const EMPTY_DATA = '<span style="color:grey;">–</span>';

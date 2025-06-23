@@ -644,8 +644,9 @@ th, td {
 	font-size: 11px !important;
 }
 
-.tiny-grey-text {
+.tiny-grey-italics {
 	font-size: 10px !important;
+	font-style: italic !important;
 	color: grey;
 }
 

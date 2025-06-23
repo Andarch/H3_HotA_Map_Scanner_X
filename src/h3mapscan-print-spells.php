@@ -34,9 +34,9 @@ foreach ($spellGroups as $group) {
     sort($group['towns']);
     sort($group['heroes']);
     
-    $spellobjsText = count($group['spellobjs']) > 0 ? implode('</br>', $group['spellobjs']) : '<span class="tiny-grey-text">None</span>';
-    $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : '<span class="tiny-grey-text">None</span>';
-    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : '<span class="tiny-grey-text">None</span>';
+    $spellobjsText = count($group['spellobjs']) > 0 ? implode('</br>', $group['spellobjs']) : '<span class="tiny-grey-italics">None</span>';
+    $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : '<span class="tiny-grey-italics">None</span>';
+    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : '<span class="tiny-grey-italics">None</span>';
     
     $consolidatedData[] = [
         'name' => $group['spellname'],
@@ -60,7 +60,7 @@ echo '<table class="table-large spells-table">
 				<tr>
 					<th>#</th>
 					<th>Spell</th>
-					<th>Spell Objects</th>
+					<th>Misc. Map Objects</th>
 					<th>Towns</th>
 					<th>Heroes</th>
 				</tr>
