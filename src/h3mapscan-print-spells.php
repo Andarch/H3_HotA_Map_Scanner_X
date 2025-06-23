@@ -1,14 +1,13 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-// Group spells by name, collecting heroes and towns separately
 $spellGroups = [];
 
 foreach ($this->h3mapscan->spells_list as $spl) {
     if (!isset($spellGroups[$spl->name])) {
         $spellGroups[$spl->name] = [
             'spellname' => $spl->name,
-            'spellobjs' => [],
+            'miscmapobjs' => [],
             'towns' => [],
             'heroes' => []
         ];
@@ -16,7 +15,7 @@ foreach ($this->h3mapscan->spells_list as $spl) {
     
 	if ($spl->parent === 'Spell Scroll' || $spl->parent === 'Pyramid' || $spl->parent === 'Spell Shrine') {
     	$location = $spl->parent . ' ' . $spl->mapcoor->GetCoords();
-        $spellGroups[$spl->name]['spellobjs'][] = $location;
+        $spellGroups[$spl->name]['miscmapobjs'][] = $location;
     } else if ($spl->parent === 'Town') {		
     	$location = $spl->add1 . ' ' . $spl->mapcoor->GetCoords();
         $spellGroups[$spl->name]['towns'][] = $location;
@@ -30,17 +29,17 @@ foreach ($this->h3mapscan->spells_list as $spl) {
 $consolidatedData = [];
 
 foreach ($spellGroups as $group) {
-    sort($group['spellobjs']);
+    sort($group['miscmapobjs']);
     sort($group['towns']);
     sort($group['heroes']);
     
-    $spellobjsText = count($group['spellobjs']) > 0 ? implode('</br>', $group['spellobjs']) : '<span class="tiny-grey-italics">None</span>';
+    $miscmapobjsText = count($group['miscmapobjs']) > 0 ? implode('</br>', $group['miscmapobjs']) : '<span class="tiny-grey-italics">None</span>';
     $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : '<span class="tiny-grey-italics">None</span>';
     $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : '<span class="tiny-grey-italics">None</span>';
     
     $consolidatedData[] = [
         'name' => $group['spellname'],
-        'spellobjs' => $spellobjsText,
+        'miscmapobjs' => $miscmapobjsText,
         'towns' => $townsText,
         'heroes' => $heroesText
     ];
@@ -71,7 +70,7 @@ for ($n = 0; $n < $totalItems; $n++) {
 	echo '<tr>
 			<td class="table__row-header--default">'.($n + 1).'</td>
 			<td class="nowrap" nowrap="nowrap">'.$spl['name'].'</td>
-			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['spellobjs'].'</span></td>
+			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['miscmapobjs'].'</span></td>
 			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['towns'].'</span></td>
 			<td class="nowrap" nowrap="nowrap"><span class="small-text">'.$spl['heroes'].'</span></td>
 			</tr>';
