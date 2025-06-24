@@ -3,8 +3,6 @@
 
 require_once 'src/h3artconstants.php';
 
-$disabledArtifacts = $this->h3mapscan->disabledArtifacts;
-
 // Group by location
 $artifactLocations = [];
 foreach (ARTIFACT_INFO as $artid => $artdata) {
@@ -68,21 +66,18 @@ usort($consolidatedData, function($a, $b) {
 
 // Split by group
 $artifactGroups = [];
-$artifactGroups['Disabled Relics'] = [];
+$artifactGroups['Disabled Relic'] = [];
 $artifactGroups['Disabled Major'] = [];
 $artifactGroups['Disabled Minor'] = [];
 $artifactGroups['Disabled Treasure'] = [];
-$artifactGroups['Enabled Relics'] = [];
+$artifactGroups['Enabled Relic'] = [];
 $artifactGroups['Enabled Major'] = [];
 $artifactGroups['Enabled Minor'] = [];
 $artifactGroups['Enabled Treasure'] = [];
 
 foreach ($consolidatedData as $art) {
-	$prefix = in_array($art['name'], $disabledArtifacts) ? 'Disabled' : 'Enabled';
+	$prefix = in_array($art['name'], $this->h3mapscan->disabledArtifacts) ? 'Disabled' : 'Enabled';
 	$groupKey = $prefix . ' ' . $art['category'];
-	if ($art['category'] === 'Relic') {
-		$groupKey = $prefix . ' Relics';
-	}
 	$artifactGroups[$groupKey][] = $art;
 }
 
