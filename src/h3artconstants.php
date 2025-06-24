@@ -1,6 +1,6 @@
 <?php
 
-$artifact_info = [
+const ARTIFACT_INFO = [
 	7 => ['name' => 'Centaur Axe', 'category' => 'Treasure'],
 	8 => ['name' => 'Blackshard of the Dead Knight', 'category' => 'Minor'],
 	9 => ['name' => 'Greater Gnoll\'s Flail', 'category' => 'Minor'],

@@ -7,7 +7,7 @@ $disabledArtifacts = $this->h3mapscan->disabledArtifacts;
 
 // Group by location
 $artifactLocations = [];
-foreach ($artifact_info as $artid => $artdata) {
+foreach (ARTIFACT_INFO as $artid => $artdata) {
 	$artname = $artdata['name'];
 	if (!isset($artifactLocations[$artname])) {
 		$artifactLocations[$artname] = [
