@@ -6,7 +6,7 @@ echo '<table class="table-large">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Object</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">Coords</th>
 			<th>#</th>
 			<th>Type</th>
 			<th>Requirement</th>

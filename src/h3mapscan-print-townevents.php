@@ -8,7 +8,7 @@ echo '<table class="table-large">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Town Name</th>
-			<th class="nowrap" nowrap="nowrap">Position</th>
+			<th class="nowrap" nowrap="nowrap">Coords</th>
 			<th class="nowrap" nowrap="nowrap">Owner</th>
 			<th class="nowrap" nowrap="nowrap">Type</th>
 			<th class="nowrap" nowrap="nowrap">#</th>

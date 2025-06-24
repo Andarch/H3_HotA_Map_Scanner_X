@@ -89,13 +89,13 @@ foreach($spellGroups as $groupName => $spells) {
 	for ($n = 0; $n < count($spells); $n++) {
 		$spl = $spells[$n];
 		$townsClass = $spl['towns'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
-		$miscmapobjsClass = $spl['miscmapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
+		$otherobjsClass = $spl['miscmapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$heroesClass = $spl['heroes'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$splClass = $spl['towns'] == EMPTY_DATA && $spl['miscmapobjs'] == EMPTY_DATA && $spl['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
 		echo '<tr>
 				<td class="ac nowrap'.$splClass.'" nowrap="nowrap">'.$spl['id'].'</td>
 				<td class="nowrap'.$splClass.'" nowrap="nowrap">'.$spl['name'].'</td>
-				<td class="nowrap'.$miscmapobjsClass.'" nowrap="nowrap">'.$spl['miscmapobjs'].'</td>
+				<td class="nowrap'.$otherobjsClass.'" nowrap="nowrap">'.$spl['miscmapobjs'].'</td>
 				<td class="nowrap'.$townsClass.'" nowrap="nowrap">'.$spl['towns'].'</td>
 				<td class="nowrap'.$heroesClass.'" nowrap="nowrap">'.$spl['heroes'].'</td>
 			</tr>';

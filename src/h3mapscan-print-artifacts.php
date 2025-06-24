@@ -12,15 +12,15 @@ foreach (ARTIFACT_INFO as $artid => $artdata) {
 			'artifactname' => $artname,
 			'artifactid' => $artid,
 			'category' => $artdata['category'],
-			'mapobjs' => [],
-			'miscmapobjs' => [],
+			'artobjs' => [],
+			'otherobjs' => [],
 			'heroes' => []
 		];
 	}
 	foreach ($this->h3mapscan->artifacts_list as $mapartifact) {
 		if($mapartifact->name == $artname) {
 			if ($mapartifact->parent === 'Map') {
-				$artifactLocations[$mapartifact->name]['mapobjs'][] = 'Artifact ' . $mapartifact->mapcoor->GetCoords();
+				$artifactLocations[$mapartifact->name]['artobjs'][] = 'Artifact ' . $mapartifact->mapcoor->GetCoords();
 			} else if ($mapartifact->parent != 'Hero') {
 				if($mapartifact->parent == 'Monster') {
 					$name = $mapartifact->add1;
@@ -28,7 +28,7 @@ foreach (ARTIFACT_INFO as $artid => $artdata) {
 					$name = $mapartifact->parent;
 				}
 				$location = $name . ' ' . $mapartifact->mapcoor->GetCoords();
-				$artifactLocations[$mapartifact->name]['miscmapobjs'][] = $location;
+				$artifactLocations[$mapartifact->name]['otherobjs'][] = $location;
 			} else if ($mapartifact->parent === 'Hero') {
 				$location = $mapartifact->add1 . ' ' . $mapartifact->mapcoor->GetCoords();
 				$artifactLocations[$mapartifact->name]['heroes'][] = $location;
@@ -41,20 +41,20 @@ foreach (ARTIFACT_INFO as $artid => $artdata) {
 $consolidatedData = [];
 
 foreach ($artifactLocations as $group) {
-    sort($group['mapobjs']);
-    sort($group['miscmapobjs']);
+    sort($group['artobjs']);
+    sort($group['otherobjs']);
     sort($group['heroes']);
     
-    $mapobjsText = count($group['mapobjs']) > 0 ? implode('</br>', $group['mapobjs']) : EMPTY_DATA;
-    $miscmapobjsText = count($group['miscmapobjs']) > 0 ? implode('</br>', $group['miscmapobjs']) : EMPTY_DATA;
+    $mapobjsText = count($group['artobjs']) > 0 ? implode('</br>', $group['artobjs']) : EMPTY_DATA;
+    $miscmapobjsText = count($group['otherobjs']) > 0 ? implode('</br>', $group['otherobjs']) : EMPTY_DATA;
     $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : EMPTY_DATA;
     
     $consolidatedData[] = [
         'name' => $group['artifactname'],
 		'id' => '5-'.$group['artifactid'],
 		'category' => $group['category'],
-        'mapobjs' => $mapobjsText,
-        'miscmapobjs' => $miscmapobjsText,
+        'artobjs' => $mapobjsText,
+        'otherobjs' => $miscmapobjsText,
         'heroes' => $heroesText
     ];
 }
@@ -93,24 +93,24 @@ foreach($artifactGroups as $groupName => $artifacts) {
 					</tr>
 					<tr>
 						<th>ID</th>
-						<th>Artifact</th>
-						<th>Map Objects</th>
-						<th>Misc. Map Objects</th>
+						<th>Name</th>
+						<th>Artifact Objects</th>
+						<th>Other Objects</th>
 						<th>Heroes</th>
 					</tr>
 				</thead>
 				<tbody>';
 	for ($n = 0; $n < count($artifacts); $n++) {
 		$art = $artifacts[$n];
-		$mapobjsClass = $art['mapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
-		$miscmapobjsClass = $art['miscmapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
+		$artobjsClass = $art['artobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
+		$otherobjsClass = $art['otherobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$heroesClass = $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
-		$artClass = $art['mapobjs'] == EMPTY_DATA && $art['miscmapobjs'] == EMPTY_DATA && $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
+		$artClass = $art['artobjs'] == EMPTY_DATA && $art['otherobjs'] == EMPTY_DATA && $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
 		echo '<tr>
 				<td class="ac nowrap'.$artClass.'" nowrap="nowrap">'.$art['id'].'</td>
 				<td class="nowrap'.$artClass.'" nowrap="nowrap">'.$art['name'].'</td>
-				<td class="nowrap'.$mapobjsClass.'" nowrap="nowrap">'.$art['mapobjs'].'</td>
-				<td class="nowrap'.$miscmapobjsClass.'" nowrap="nowrap">'.$art['miscmapobjs'].'</td>
+				<td class="nowrap'.$artobjsClass.'" nowrap="nowrap">'.$art['artobjs'].'</td>
+				<td class="nowrap'.$otherobjsClass.'" nowrap="nowrap">'.$art['otherobjs'].'</td>
 				<td class="nowrap'.$heroesClass.'" nowrap="nowrap">'.$art['heroes'].'</td>
 			</tr>';
 	}	
