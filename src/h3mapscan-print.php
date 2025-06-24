@@ -28,8 +28,14 @@ class H3MAPSCAN_PRINT {
 			case 'Map Heroes':
 				include 'h3mapscan-print-heroes.php';
 				break;
-			case 'Town Details':
-				include 'h3mapscan-print-towndetails.php';
+			case 'Global Events':
+				include 'h3mapscan-print-globalevents.php';
+				break;
+			case 'Town Events':
+				include 'h3mapscan-print-townevents.php';
+				break;
+			case 'Towns':
+				include 'h3mapscan-print-towns.php';
 				break;
 			case 'Artifacts':
 				include 'h3mapscan-print-artifacts.php';
@@ -43,12 +49,6 @@ class H3MAPSCAN_PRINT {
 			case 'Quest Gates':
 			case 'Quest Guards':
 				include 'h3mapscan-print-questg.php';
-				break;
-			case 'Global Events':
-				include 'h3mapscan-print-globalevents.php';
-				break;
-			case 'Town Events':
-				include 'h3mapscan-print-townevents.php';
 				break;
 			case 'Pandora\'s Boxes':
 				include 'h3mapscan-print-pandoras.php';
@@ -80,7 +80,7 @@ class H3MAPSCAN_PRINT {
 	// 	$mapid = $_GET['mapid'] ?? '';
 	// 	$mapQueryString = $mapid ? "mapid=$mapid&" : '';
 	// 	$currentSection = $_GET['section'] ?? '';
-	// 	$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Town Details',
+	// 	$sections = ['General', 'Terrain', 'Disabled Heroes', 'Template Heroes', 'Map Heroes', 'Towns',
 	// 				 'Artifacts', 'Spells', 'Seer\'s Huts', 'Quest Gates', 'Quest Guards', 'Global Events',
 	// 				 'Town Events', 'Pandora\'s Boxes', 'Event Objects', 'Object Count', 'Object Zones'];
 	// 	$sectionsWithAnchors = [
@@ -92,7 +92,7 @@ class H3MAPSCAN_PRINT {
 	// 		'General',
 	// 		'Terrain',
 	// 		'Map Heroes',
-	// 		'Town Details',
+	// 		'Towns',
 	// 		'Spells',
 	// 		'Quest Guards',
 	// 		'Town Events',
