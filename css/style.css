@@ -117,7 +117,7 @@ th {
 	font-family: var(--font-family--special);
 }
 
-th:not(.table__title-bar--large):not(.table__title-bar--small):not(.table__title-bar--small2):not(.th-player-color) {
+th:not(.table__title-bar--large):not(.table__title-bar--small):not(.table__title-bar--small2):not(.table__title-bar--small3):not(.th-player-color) {
 	background: var(--color__th-bg);
 	color: var(--color__th-fg);
 }
@@ -411,6 +411,7 @@ th, td {
 .artifacts-table-container,
 .spells-table-container {
 	overflow-y: auto;
+	overflow-x: hidden;
 	scrollbar-color: var(--color__scrollbar);
 }
 
@@ -519,6 +520,11 @@ th, td {
 
 .table__title-bar--small2 {
 	background: black !important;
+	font-size: 11px !important;
+}
+
+.table__title-bar--small3 {
+	background: rgb(92, 0, 0) !important;
 	font-size: 11px !important;
 }
 
