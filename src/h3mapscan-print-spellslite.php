@@ -72,7 +72,7 @@ echo '<div class="flex-container">';
 
 foreach($spellGroups as $groupName => $spells) {
 	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
-	echo '<div class="spells-table-container"><table class="table-small spells-table">
+	echo '<div class="spells-lite-table-container"><table class="table-small spells-lite-table">
 				<thead>
 					<tr>
 						<th class="'.$headerClass.'" colspan="5">'.$groupName.'</th>

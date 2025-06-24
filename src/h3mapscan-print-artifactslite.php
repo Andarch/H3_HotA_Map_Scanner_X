@@ -86,7 +86,7 @@ echo START_FLEX;
 
 foreach($artifactGroups as $groupName => $artifacts) {
 	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
-	echo '<div class="artifacts-table-container"><table class="table-small artifacts-table">
+	echo '<div class="artifacts-lite-table-container"><table class="table-small artifacts-lite-table">
 				<thead>
 					<tr>
 						<th class="'.$headerClass.'" colspan="5">'.$groupName.'</th>
