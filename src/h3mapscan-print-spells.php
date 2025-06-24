@@ -71,7 +71,7 @@ foreach ($consolidatedData as $spl) {
 echo '<div class="flex-container">';
 
 foreach($spellGroups as $groupName => $spells) {
-	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small2' : 'table__title-bar--small';	
+	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
 	echo '<div class="spells-table-container"><table class="table-small spells-table">
 				<thead>
 					<tr>

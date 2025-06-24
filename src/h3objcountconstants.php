@@ -1,8 +1,6 @@
 <?php
 
     const OBJCOUNT_TABLECLASS = 'table-small';
-    const START_FLEX = '<div class="flex-container">';
-    const END_FLEX = '</div>';
     const OBJCOUNT_COLSPAN = '100';
 
     class OC_TABLETYPE {

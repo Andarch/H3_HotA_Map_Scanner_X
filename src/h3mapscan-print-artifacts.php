@@ -82,7 +82,7 @@ foreach ($consolidatedData as $art) {
 }
 
 // Print
-echo '<div class="flex-container">';
+echo START_FLEX;
 
 foreach($artifactGroups as $groupName => $artifacts) {
 	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
@@ -115,7 +115,12 @@ foreach($artifactGroups as $groupName => $artifacts) {
 			</tr>';
 	}	
 	echo '</tbody>';
-	echo '</table></div>';	
+	echo '</table></div>';
+	if($groupName == 'Disabled Treasure') {
+		echo END_FLEX;
+		echo START_FLEX;
+	}
+	if($groupName == 'Enabled Treasure') {
+		echo END_FLEX;
+	}
 }
-
-echo '</div>';

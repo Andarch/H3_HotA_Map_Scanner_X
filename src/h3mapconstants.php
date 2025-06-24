@@ -41,6 +41,9 @@
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
 
 	const EMPTY_DATA = '<span style="color:grey;">–</span>';
+	
+    const START_FLEX = '<div class="flex-container">';
+    const END_FLEX = '</div>';
 
 	// if (!defined('EMPTY_DATA')) {
 	// 	require_once 'index.php';
