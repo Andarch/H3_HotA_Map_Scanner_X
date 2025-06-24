@@ -2,174 +2,176 @@
 /** @var H3MAPSCAN_PRINT $this */
 
 $artifacts_all = [
-	7 => 'Centaur Axe',
-	8 => 'Blackshard of the Dead Knight',
-	9 => 'Greater Gnoll\'s Flail',
-	10 => 'Ogre\'s Club of Havoc',
-	11 => 'Sword of Hellfire',
-	12 => 'Titan\'s Gladius',
-	13 => 'Shield of the Dwarven Lords',
-	14 => 'Shield of the Yawning Dead',
-	15 => 'Buckler of the Gnoll King',
-	16 => 'Targ of the Rampaging Ogre',
-	17 => 'Shield of the Damned',
-	18 => 'Sentinel\'s Shield',
-	19 => 'Helm of the Alabaster Unicorn',
-	20 => 'Skull Helmet',
-	21 => 'Helm of Chaos',
-	22 => 'Crown of the Supreme Magi',
-	23 => 'Hellstorm Helmet',
-	24 => 'Thunder Helmet',
-	25 => 'Breastplate of Petrified Wood',
-	26 => 'Rib Cage',
-	27 => 'Scales of the Greater Basilisk',
-	28 => 'Tunic of the Cyclops King',
-	29 => 'Breastplate of Brimstone',
-	30 => 'Titan\'s Cuirass',
-	31 => 'Armor of Wonder',
-	32 => 'Sandals of the Saint',
-	33 => 'Celestial Necklace of Bliss',
-	34 => 'Lion\'s Shield of Courage',
-	35 => 'Sword of Judgement',
-	36 => 'Helm of Heavenly Enlightenment',
-	37 => 'Quiet Eye of the Dragon',
-	38 => 'Red Dragon Flame Tongue',
-	39 => 'Dragon Scale Shield',
-	40 => 'Dragon Scale Armor',
-	41 => 'Dragonbone Greaves',
-	42 => 'Dragon Wing Tabard',
-	43 => 'Necklace of Dragonteeth',
-	44 => 'Crown of Dragontooth',
-	45 => 'Still Eye of the Dragon',
-	46 => 'Clover of Fortune',
-	47 => 'Cards of Prophecy',
-	48 => 'Ladybird of Luck',
-	49 => 'Badge of Courage',
-	50 => 'Crest of Valor',
-	51 => 'Glyph of Gallantry',
-	52 => 'Speculum',
-	53 => 'Spyglass',
-	54 => 'Amulet of the Undertaker',
-	55 => 'Vampire\'s Cowl',
-	56 => 'Dead Man\'s Boots',
-	57 => 'Garniture of Interference',
-	58 => 'Surcoat of Counterpoise',
-	59 => 'Boots of Polarity',
-	60 => 'Bow of Elven Cherrywood',
-	61 => 'Bowstring of the Unicorn\'s Mane',
-	62 => 'Angel Feather Arrows',
-	63 => 'Bird of Perception',
-	64 => 'Stoic Watchman',
-	65 => 'Emblem of Cognizance',
-	66 => 'Statesman\'s Medal',
-	67 => 'Diplomat\'s Ring',
-	68 => 'Ambassador\'s Sash',
-	69 => 'Ring of the Wayfarer',
-	70 => 'Equestrian\'s Gloves',
-	71 => 'Necklace of Ocean Guidance',
-	72 => 'Angel Wings',
-	73 => 'Charm of Mana',
-	74 => 'Talisman of Mana',
-	75 => 'Mystic Orb of Mana',
-	76 => 'Collar of Conjuring',
-	77 => 'Ring of Conjuring',
-	78 => 'Cape of Conjuring',
-	79 => 'Orb of the Firmament',
-	80 => 'Orb of Silt',
-	81 => 'Orb of Tempestuous Fire',
-	82 => 'Orb of Driving Rain',
-	83 => 'Recanter\'s Cloak',
-	84 => 'Spirit of Oppression',
-	85 => 'Hourglass of the Evil Hour',
-	86 => 'Tome of Fire Magic',
-	87 => 'Tome of Air Magic',
-	88 => 'Tome of Water Magic',
-	89 => 'Tome of Earth Magic',
-	90 => 'Boots of Levitation',
-	91 => 'Golden Bow',
-	92 => 'Sphere of Permanence',
-	93 => 'Orb of Vulnerability',
-	94 => 'Ring of Vitality',
-	95 => 'Ring of Life',
-	96 => 'Vial of Lifeblood',
-	97 => 'Necklace of Swiftness',
-	98 => 'Boots of Speed',
-	99 => 'Cape of Velocity',
-	100 => 'Pendant of Dispassion',
-	101 => 'Pendant of Second Sight',
-	102 => 'Pendant of Holiness',
-	103 => 'Pendant of Life',
-	104 => 'Pendant of Death',
-	105 => 'Pendant of Free Will',
-	106 => 'Pendant of Negativity',
-	107 => 'Pendant of Total Recall',
-	108 => 'Pendant of Courage',
-	109 => 'Everflowing Crystal Cloak',
-	110 => 'Ring of Infinite Gems',
-	111 => 'Everpouring Vial of Mercury',
-	112 => 'Inexhaustible Cart of Ore',
-	113 => 'Eversmoking Ring of Sulfur',
-	114 => 'Inexhaustible Cart of Lumber',
-	115 => 'Endless Sack of Gold',
-	116 => 'Endless Bag of Gold',
-	117 => 'Endless Purse of Gold',
-	118 => 'Legs of Legion',
-	119 => 'Loins of Legion',
-	120 => 'Torso of Legion',
-	121 => 'Arms of Legion',
-	122 => 'Head of Legion',
-	123 => 'Sea Captain\'s Hat',
-	124 => 'Spellbinder\'s Hat',
-	125 => 'Shackles of War',
-	126 => 'Orb of Inhibition',
-	127 => 'Vial of Dragon Blood',
-	128 => 'Armageddon\'s Blade',
-	129 => 'Angelic Alliance',
-	130 => 'Cloak of the Undead King',
-	131 => 'Elixir of Life',
-	132 => 'Armor of the Damned',
-	133 => 'Statue of Legion',
-	134 => 'Power of the Dragon Father',
-	135 => 'Titan\'s Thunder',
-	136 => 'Admiral\'s Hat',
-	137 => 'Bow of the Sharpshooter',
-	138 => 'Wizard\'s Well',
-	139 => 'Ring of the Magi',
-	140 => 'Cornucopia',
-	141 => 'Diplomat\'s Cloak',
-	142 => 'Pendant of Reflection',
-	143 => 'Ironfist of the Ogre',
-	146 => 'Cannon',
-	147 => 'Trident of Dominion',
-	148 => 'Shield of Naval Glory',
-	149 => 'Royal Armor of Nix',
-	150 => 'Crown of the Five Seas',
-	151 => 'Wayfarer\'s Boots',
-	152 => 'Runes of Imminency',
-	153 => 'Demon\'s Horseshoe',
-	154 => 'Shaman\'s Puppet',
-	155 => 'Hideous Mask',
-	156 => 'Ring of Suppression',
-	157 => 'Pendant of Downfall',
-	158 => 'Ring of Oblivion',
-	159 => 'Cape of Silence',
-	160 => 'Golden Goose',
-	161 => 'Horn of the Abyss',
-	162 => 'Charm of Eclipse',
-	163 => 'Seal of Sunset',
-	164 => 'Plate of Dying Light',
-	165 => 'Sleepkeeper',
+	7 => ['name' => 'Centaur Axe', 'category' => 'Treasure'],
+	8 => ['name' => 'Blackshard of the Dead Knight', 'category' => 'Minor'],
+	9 => ['name' => 'Greater Gnoll\'s Flail', 'category' => 'Minor'],
+	10 => ['name' => 'Ogre\'s Club of Havoc', 'category' => 'Minor'],
+	11 => ['name' => 'Sword of Hellfire', 'category' => 'Major'],
+	12 => ['name' => 'Titan\'s Gladius', 'category' => 'Relic'],
+	13 => ['name' => 'Shield of the Dwarven Lords', 'category' => 'Treasure'],
+	14 => ['name' => 'Shield of the Yawning Dead', 'category' => 'Minor'],
+	15 => ['name' => 'Buckler of the Gnoll King', 'category' => 'Minor'],
+	16 => ['name' => 'Targ of the Rampaging Ogre', 'category' => 'Minor'],
+	17 => ['name' => 'Shield of the Damned', 'category' => 'Major'],
+	18 => ['name' => 'Sentinel\'s Shield', 'category' => 'Relic'],
+	19 => ['name' => 'Helm of the Alabaster Unicorn', 'category' => 'Treasure'],
+	20 => ['name' => 'Skull Helmet', 'category' => 'Minor'],
+	21 => ['name' => 'Helm of Chaos', 'category' => 'Minor'],
+	22 => ['name' => 'Crown of the Supreme Magi', 'category' => 'Major'],
+	23 => ['name' => 'Hellstorm Helmet', 'category' => 'Major'],
+	24 => ['name' => 'Thunder Helmet', 'category' => 'Relic'],
+	25 => ['name' => 'Breastplate of Petrified Wood', 'category' => 'Treasure'],
+	26 => ['name' => 'Rib Cage', 'category' => 'Minor'],
+	27 => ['name' => 'Scales of the Greater Basilisk', 'category' => 'Minor'],
+	28 => ['name' => 'Tunic of the Cyclops King', 'category' => 'Major'],
+	29 => ['name' => 'Breastplate of Brimstone', 'category' => 'Major'],
+	30 => ['name' => 'Titan\'s Cuirass', 'category' => 'Relic'],
+	31 => ['name' => 'Armor of Wonder', 'category' => 'Relic'],
+	32 => ['name' => 'Sandals of the Saint', 'category' => 'Relic'],
+	33 => ['name' => 'Celestial Necklace of Bliss', 'category' => 'Relic'],
+	34 => ['name' => 'Lion\'s Shield of Courage', 'category' => 'Relic'],
+	35 => ['name' => 'Sword of Judgement', 'category' => 'Relic'],
+	36 => ['name' => 'Helm of Heavenly Enlightenment', 'category' => 'Relic'],
+	37 => ['name' => 'Quiet Eye of the Dragon', 'category' => 'Relic'],
+	38 => ['name' => 'Red Dragon Flame Tongue', 'category' => 'Relic'],
+	39 => ['name' => 'Dragon Scale Shield', 'category' => 'Relic'],
+	40 => ['name' => 'Dragon Scale Armor', 'category' => 'Relic'],
+	41 => ['name' => 'Dragonbone Greaves', 'category' => 'Relic'],
+	42 => ['name' => 'Dragon Wing Tabard', 'category' => 'Relic'],
+	43 => ['name' => 'Necklace of Dragonteeth', 'category' => 'Relic'],
+	44 => ['name' => 'Crown of Dragontooth', 'category' => 'Relic'],
+	45 => ['name' => 'Still Eye of the Dragon', 'category' => 'Relic'],
+	46 => ['name' => 'Clover of Fortune', 'category' => 'Treasure'],
+	47 => ['name' => 'Cards of Prophecy', 'category' => 'Minor'],
+	48 => ['name' => 'Ladybird of Luck', 'category' => 'Major'],
+	49 => ['name' => 'Badge of Courage', 'category' => 'Treasure'],
+	50 => ['name' => 'Crest of Valor', 'category' => 'Minor'],
+	51 => ['name' => 'Glyph of Gallantry', 'category' => 'Major'],
+	52 => ['name' => 'Speculum', 'category' => 'Treasure'],
+	53 => ['name' => 'Spyglass', 'category' => 'Minor'],
+	54 => ['name' => 'Amulet of the Undertaker', 'category' => 'Treasure'],
+	55 => ['name' => 'Vampire\'s Cowl', 'category' => 'Minor'],
+	56 => ['name' => 'Dead Man\'s Boots', 'category' => 'Minor'],
+	57 => ['name' => 'Garniture of Interference', 'category' => 'Minor'],
+	58 => ['name' => 'Surcoat of Counterpoise', 'category' => 'Minor'],
+	59 => ['name' => 'Boots of Polarity', 'category' => 'Minor'],
+	60 => ['name' => 'Bow of Elven Cherrywood', 'category' => 'Treasure'],
+	61 => ['name' => 'Bowstring of the Unicorn\'s Mane', 'category' => 'Minor'],
+	62 => ['name' => 'Angel Feather Arrows', 'category' => 'Major'],
+	63 => ['name' => 'Bird of Perception', 'category' => 'Treasure'],
+	64 => ['name' => 'Stoic Watchman', 'category' => 'Minor'],
+	65 => ['name' => 'Emblem of Cognizance', 'category' => 'Major'],
+	66 => ['name' => 'Statesman\'s Medal', 'category' => 'Treasure'],
+	67 => ['name' => 'Diplomat\'s Ring', 'category' => 'Minor'],
+	68 => ['name' => 'Ambassador\'s Sash', 'category' => 'Major'],
+	69 => ['name' => 'Ring of the Wayfarer', 'category' => 'Treasure'],
+	70 => ['name' => 'Equestrian\'s Gloves', 'category' => 'Minor'],
+	71 => ['name' => 'Necklace of Ocean Guidance', 'category' => 'Major'],
+	72 => ['name' => 'Angel Wings', 'category' => 'Relic'],
+	73 => ['name' => 'Charm of Mana', 'category' => 'Treasure'],
+	74 => ['name' => 'Talisman of Mana', 'category' => 'Minor'],
+	75 => ['name' => 'Mystic Orb of Mana', 'category' => 'Major'],
+	76 => ['name' => 'Collar of Conjuring', 'category' => 'Treasure'],
+	77 => ['name' => 'Ring of Conjuring', 'category' => 'Minor'],
+	78 => ['name' => 'Cape of Conjuring', 'category' => 'Major'],
+	79 => ['name' => 'Orb of the Firmament', 'category' => 'Treasure'],
+	80 => ['name' => 'Orb of Silt', 'category' => 'Treasure'],
+	81 => ['name' => 'Orb of Tempestuous Fire', 'category' => 'Treasure'],
+	82 => ['name' => 'Orb of Driving Rain', 'category' => 'Treasure'],
+	83 => ['name' => 'Recanter\'s Cloak', 'category' => 'Minor'],
+	84 => ['name' => 'Spirit of Oppression', 'category' => 'Minor'],
+	85 => ['name' => 'Hourglass of the Evil Hour', 'category' => 'Major'],
+	86 => ['name' => 'Tome of Fire Magic', 'category' => 'Major'],
+	87 => ['name' => 'Tome of Air Magic', 'category' => 'Major'],
+	88 => ['name' => 'Tome of Water Magic', 'category' => 'Major'],
+	89 => ['name' => 'Tome of Earth Magic', 'category' => 'Major'],
+	90 => ['name' => 'Boots of Levitation', 'category' => 'Minor'],
+	91 => ['name' => 'Golden Bow', 'category' => 'Major'],
+	92 => ['name' => 'Sphere of Permanence', 'category' => 'Major'],
+	93 => ['name' => 'Orb of Vulnerability', 'category' => 'Major'],
+	94 => ['name' => 'Ring of Vitality', 'category' => 'Treasure'],
+	95 => ['name' => 'Ring of Life', 'category' => 'Minor'],
+	96 => ['name' => 'Vial of Lifeblood', 'category' => 'Major'],
+	97 => ['name' => 'Necklace of Swiftness', 'category' => 'Treasure'],
+	98 => ['name' => 'Boots of Speed', 'category' => 'Minor'],
+	99 => ['name' => 'Cape of Velocity', 'category' => 'Major'],
+	100 => ['name' => 'Pendant of Dispassion', 'category' => 'Treasure'],
+	101 => ['name' => 'Pendant of Second Sight', 'category' => 'Treasure'],
+	102 => ['name' => 'Pendant of Holiness', 'category' => 'Treasure'],
+	103 => ['name' => 'Pendant of Life', 'category' => 'Treasure'],
+	104 => ['name' => 'Pendant of Death', 'category' => 'Treasure'],
+	105 => ['name' => 'Pendant of Free Will', 'category' => 'Treasure'],
+	106 => ['name' => 'Pendant of Negativity', 'category' => 'Treasure'],
+	107 => ['name' => 'Pendant of Total Recall', 'category' => 'Treasure'],
+	108 => ['name' => 'Pendant of Courage', 'category' => 'Treasure'],
+	109 => ['name' => 'Everflowing Crystal Cloak', 'category' => 'Minor'],
+	110 => ['name' => 'Ring of Infinite Gems', 'category' => 'Minor'],
+	111 => ['name' => 'Everpouring Vial of Mercury', 'category' => 'Minor'],
+	112 => ['name' => 'Inexhaustible Cart of Ore', 'category' => 'Minor'],
+	113 => ['name' => 'Eversmoking Ring of Sulfur', 'category' => 'Minor'],
+	114 => ['name' => 'Inexhaustible Cart of Lumber', 'category' => 'Minor'],
+	115 => ['name' => 'Endless Sack of Gold', 'category' => 'Major'],
+	116 => ['name' => 'Endless Bag of Gold', 'category' => 'Minor'],
+	117 => ['name' => 'Endless Purse of Gold', 'category' => 'Treasure'],
+	118 => ['name' => 'Legs of Legion', 'category' => 'Minor'],
+	119 => ['name' => 'Loins of Legion', 'category' => 'Minor'],
+	120 => ['name' => 'Torso of Legion', 'category' => 'Minor'],
+	121 => ['name' => 'Arms of Legion', 'category' => 'Minor'],
+	122 => ['name' => 'Head of Legion', 'category' => 'Minor'],
+	123 => ['name' => 'Sea Captain\'s Hat', 'category' => 'Minor'],
+	124 => ['name' => 'Spellbinder\'s Hat', 'category' => 'Major'],
+	125 => ['name' => 'Shackles of War', 'category' => 'Major'],
+	126 => ['name' => 'Orb of Inhibition', 'category' => 'Major'],
+	127 => ['name' => 'Vial of Dragon Blood', 'category' => 'Relic'],
+	128 => ['name' => 'Armageddon\'s Blade', 'category' => 'Relic'],
+	129 => ['name' => 'Angelic Alliance', 'category' => 'Relic'],
+	130 => ['name' => 'Cloak of the Undead King', 'category' => 'Relic'],
+	131 => ['name' => 'Elixir of Life', 'category' => 'Relic'],
+	132 => ['name' => 'Armor of the Damned', 'category' => 'Relic'],
+	133 => ['name' => 'Statue of Legion', 'category' => 'Relic'],
+	134 => ['name' => 'Power of the Dragon Father', 'category' => 'Relic'],
+	135 => ['name' => 'Titan\'s Thunder', 'category' => 'Relic'],
+	136 => ['name' => 'Admiral\'s Hat', 'category' => 'Relic'],
+	137 => ['name' => 'Bow of the Sharpshooter', 'category' => 'Relic'],
+	138 => ['name' => 'Wizard\'s Well', 'category' => 'Relic'],
+	139 => ['name' => 'Ring of the Magi', 'category' => 'Relic'],
+	140 => ['name' => 'Cornucopia', 'category' => 'Relic'],
+	141 => ['name' => 'Diplomat\'s Cloak', 'category' => 'Relic'],
+	142 => ['name' => 'Pendant of Reflection', 'category' => 'Relic'],
+	143 => ['name' => 'Ironfist of the Ogre', 'category' => 'Relic'],
+	146 => ['name' => 'Cannon', 'category' => 'Major'],
+	147 => ['name' => 'Trident of Dominion', 'category' => 'Relic'],
+	148 => ['name' => 'Shield of Naval Glory', 'category' => 'Major'],
+	149 => ['name' => 'Royal Armor of Nix', 'category' => 'Major'],
+	150 => ['name' => 'Crown of the Five Seas', 'category' => 'Relic'],
+	151 => ['name' => 'Wayfarer\'s Boots', 'category' => 'Minor'],
+	152 => ['name' => 'Runes of Imminency', 'category' => 'Minor'],
+	153 => ['name' => 'Demon\'s Horseshoe', 'category' => 'Minor'],
+	154 => ['name' => 'Shaman\'s Puppet', 'category' => 'Minor'],
+	155 => ['name' => 'Hideous Mask', 'category' => 'Major'],
+	156 => ['name' => 'Ring of Suppression', 'category' => 'Minor'],
+	157 => ['name' => 'Pendant of Downfall', 'category' => 'Minor'],
+	158 => ['name' => 'Ring of Oblivion', 'category' => 'Major'],
+	159 => ['name' => 'Cape of Silence', 'category' => 'Major'],
+	160 => ['name' => 'Golden Goose', 'category' => 'Relic'],
+	161 => ['name' => 'Horn of the Abyss', 'category' => 'Relic'],
+	162 => ['name' => 'Charm of Eclipse', 'category' => 'Treasure'],
+	163 => ['name' => 'Seal of Sunset', 'category' => 'Minor'],
+	164 => ['name' => 'Plate of Dying Light', 'category' => 'Major'],
+	165 => ['name' => 'Sleepkeeper', 'category' => 'Relic'],
 ];
 
 $disabledArtifacts = $this->h3mapscan->disabledArtifacts;
 
 // Group by location
 $artifactLocations = [];
-foreach ($artifacts_all as $artid => $artname) {
+foreach ($artifacts_all as $artid => $artdata) {
+	$artname = $artdata['name'];
 	if (!isset($artifactLocations[$artname])) {
 		$artifactLocations[$artname] = [
 			'artifactname' => $artname,
 			'artifactid' => $artid,
+			'category' => $artdata['category'],
 			'mapobjs' => [],
 			'miscmapobjs' => [],
 			'heroes' => []
@@ -197,20 +199,20 @@ foreach ($artifacts_all as $artid => $artname) {
 
 // Create consolidated array
 $consolidatedData = [];
-const NONE = '<span class="obj-count-inactive">None</span>';
 
 foreach ($artifactLocations as $group) {
     sort($group['mapobjs']);
     sort($group['miscmapobjs']);
     sort($group['heroes']);
     
-    $mapobjsText = count($group['mapobjs']) > 0 ? implode('</br>', $group['mapobjs']) : NONE;
-    $miscmapobjsText = count($group['miscmapobjs']) > 0 ? implode('</br>', $group['miscmapobjs']) : NONE;
-    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : NONE;
+    $mapobjsText = count($group['mapobjs']) > 0 ? implode('</br>', $group['mapobjs']) : EMPTY_DATA;
+    $miscmapobjsText = count($group['miscmapobjs']) > 0 ? implode('</br>', $group['miscmapobjs']) : EMPTY_DATA;
+    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : EMPTY_DATA;
     
     $consolidatedData[] = [
         'name' => $group['artifactname'],
 		'id' => '5-'.$group['artifactid'],
+		'category' => $group['category'],
         'mapobjs' => $mapobjsText,
         'miscmapobjs' => $miscmapobjsText,
         'heroes' => $heroesText
@@ -224,29 +226,36 @@ usort($consolidatedData, function($a, $b) {
 
 // Split by group
 $artifactGroups = [];
-$artifactGroups['Disabled Artifacts'] = [];
-$artifactGroups['Enabled Artifacts'] = [];
+$artifactGroups['Disabled Relics'] = [];
+$artifactGroups['Disabled Major'] = [];
+$artifactGroups['Disabled Minor'] = [];
+$artifactGroups['Disabled Treasure'] = [];
+$artifactGroups['Enabled Relics'] = [];
+$artifactGroups['Enabled Major'] = [];
+$artifactGroups['Enabled Minor'] = [];
+$artifactGroups['Enabled Treasure'] = [];
+
 foreach ($consolidatedData as $art) {
-	if (in_array($art['name'], $disabledArtifacts)) {
-		$artifactGroups['Disabled Artifacts'][] = $art;
-	} else {
-		$artifactGroups['Enabled Artifacts'][] = $art;
+	$prefix = in_array($art['name'], $disabledArtifacts) ? 'Disabled' : 'Enabled';
+	$groupKey = $prefix . ' ' . $art['category'];
+	if ($art['category'] === 'Relic') {
+		$groupKey = $prefix . ' Relics';
 	}
+	$artifactGroups[$groupKey][] = $art;
 }
 
 // Print
 echo '<div class="flex-container">';
 
 foreach($artifactGroups as $groupName => $artifacts) {
-
+	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small2' : 'table__title-bar--small';	
 	echo '<table class="table-small artifacts-table">
 				<thead>
 					<tr>
-						<th class="table__title-bar--small" colspan="6">'.$groupName.'</td>
+						<th class="'.$headerClass.'" colspan="5">'.$groupName.'</th>
 					</tr>
 					<tr>
-						<th>#</th>
-						<th style="width: 1px !important;">ID</th>
+						<th>ID</th>
 						<th>Artifact</th>
 						<th>Map Objects</th>
 						<th>Misc. Map Objects</th>
@@ -256,24 +265,20 @@ foreach($artifactGroups as $groupName => $artifacts) {
 				<tbody>';
 	for ($n = 0; $n < count($artifacts); $n++) {
 		$art = $artifacts[$n];
-
-		$mapobjsClass = $art['mapobjs'] == NONE ? ' obj-count-inactive' : ' obj-count-active';	
-		$miscmapobjsClass = $art['miscmapobjs'] == NONE ? ' obj-count-inactive' : ' obj-count-active';
-		$heroesClass = $art['heroes'] == NONE ? ' obj-count-inactive' : ' obj-count-active';
-		$artClass = $art['mapobjs'] == NONE && $art['miscmapobjs'] == NONE && $art['heroes'] == NONE ? ' obj-count-inactive' : ' obj-count-active';
-
+		$mapobjsClass = $art['mapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
+		$miscmapobjsClass = $art['miscmapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
+		$heroesClass = $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
+		$artClass = $art['mapobjs'] == EMPTY_DATA && $art['miscmapobjs'] == EMPTY_DATA && $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
 		echo '<tr>
-				<td class="table__row-header--default">'.($n + 1).'</td>
-				<td class="ac nowrap'.$artClass.'" nowrap="nowrap" style="font-size: 10px; width: 1px !important;">'.$art['id'].'</td>
+				<td class="ac nowrap'.$artClass.'" nowrap="nowrap">'.$art['id'].'</td>
 				<td class="nowrap'.$artClass.'" nowrap="nowrap">'.$art['name'].'</td>
-				<td class="nowrap'.$mapobjsClass.'" nowrap="nowrap"><span class="small-text">'.$art['mapobjs'].'</span></td>
-				<td class="nowrap'.$miscmapobjsClass.'" nowrap="nowrap"><span class="small-text">'.$art['miscmapobjs'].'</span></td>
-				<td class="nowrap'.$heroesClass.'" nowrap="nowrap"><span class="small-text">'.$art['heroes'].'</span></td>
+				<td class="nowrap'.$mapobjsClass.'" nowrap="nowrap">'.$art['mapobjs'].'</td>
+				<td class="nowrap'.$miscmapobjsClass.'" nowrap="nowrap">'.$art['miscmapobjs'].'</td>
+				<td class="nowrap'.$heroesClass.'" nowrap="nowrap">'.$art['heroes'].'</td>
 			</tr>';
-	}
+	}	
 	echo '</tbody>';
-	echo '</table>';
-	
+	echo '</table>';	
 }
 
 echo '</div>';
