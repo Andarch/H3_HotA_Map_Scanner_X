@@ -86,7 +86,7 @@ echo '<div class="flex-container">';
 
 foreach($artifactGroups as $groupName => $artifacts) {
 	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small2' : 'table__title-bar--small';	
-	echo '<table class="table-small artifacts-table">
+	echo '<div class="artifacts-table-container"><table class="table-small artifacts-table">
 				<thead>
 					<tr>
 						<th class="'.$headerClass.'" colspan="5">'.$groupName.'</th>
@@ -115,7 +115,7 @@ foreach($artifactGroups as $groupName => $artifacts) {
 			</tr>';
 	}	
 	echo '</tbody>';
-	echo '</table>';	
+	echo '</table></div>';	
 }
 
 echo '</div>';
