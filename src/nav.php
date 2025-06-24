@@ -47,6 +47,8 @@ function generateNavMain($map) {
     $sections = [
         'General',
         'Terrain',
+        'Artifacts (Lite)',
+        'Spells (Lite)',
         'Disabled Heroes',
         'Template Heroes',
         'Map Heroes',
@@ -72,6 +74,7 @@ function generateNavMain($map) {
     $sectionsWithHr1Below = [
         'General',
         'Terrain',
+        'Spells (Lite)',
         'Map Heroes',
         'Towns',
         'Spells',
@@ -82,6 +85,7 @@ function generateNavMain($map) {
     ];
 
     $sectionsWithHr2Below = [
+        'Artifacts (Lite)',
         'Disabled Heroes',
         'Template Heroes',
         'Artifacts',

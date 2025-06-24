@@ -21,6 +21,12 @@ class H3MAPSCAN_PRINT {
 			case 'Terrain':
 				include 'h3mapscan-print-terrain.php';
 				break;
+			case 'Artifacts (Lite)':
+				include 'h3mapscan-print-artifactslite.php';
+				break;
+			case 'Spells (Lite)':
+				include 'h3mapscan-print-spellslite.php';
+				break;
 			case 'Disabled Heroes':
 			case 'Template Heroes':
 			case 'Map Heroes':
@@ -36,10 +42,10 @@ class H3MAPSCAN_PRINT {
 				include 'h3mapscan-print-towns.php';
 				break;
 			case 'Artifacts':
-				include 'h3mapscan-print-artifactsoverview.php';
+				include 'h3mapscan-print-artifacts.php';
 				break;
 			case 'Spells':
-				include 'h3mapscan-print-spellsoverview.php';
+				include 'h3mapscan-print-spells.php';
 				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
