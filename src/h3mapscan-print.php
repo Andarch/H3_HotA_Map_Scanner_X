@@ -38,10 +38,10 @@ class H3MAPSCAN_PRINT {
 				include 'h3mapscan-print-towns.php';
 				break;
 			case 'Artifacts':
-				include 'h3mapscan-print-artifacts.php';
+				include 'h3mapscan-print-artifactsoverview.php';
 				break;
 			case 'Spells':
-				include 'h3mapscan-print-spells.php';
+				include 'h3mapscan-print-spellsoverview.php';
 				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
