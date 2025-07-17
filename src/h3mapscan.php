@@ -1823,7 +1823,7 @@ class H3MAPSCAN {
 					$tileowner = $obj['data']['PlayerColor'];
 					$this->heroes_list[] = $obj;
 
-					$obj['pos']->x -= 1; //offset for hero in town gate
+					// $obj['pos']->x -= 1; //offset for hero in town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::HERO,
 						'objid' => $obj['id'],
@@ -2035,7 +2035,7 @@ class H3MAPSCAN {
 
 					$this->towns_list[] = $obj;
 
-					$obj['pos']->x -=2; //substract 2, to make position centered to town gate
+					// $obj['pos']->x -=2; //substract 2, to make position centered to town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::TOWN,
 						'objid' => $obj['id'],

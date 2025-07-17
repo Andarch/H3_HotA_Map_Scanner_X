@@ -27,7 +27,7 @@ $zoneColors = [
     'Teal' => [50, 112, 116],
     'Pink' => [171, 129, 140],
     'Red' => [179, 76, 76],
-    'Neutral' => 'Neutral',
+    'Neutral' => [77, 77, 77],
     'Super' => [179, 170, 76],
     'Total' => 'Total',
 ];
@@ -52,6 +52,19 @@ $output .= '</tr></table></div>';
 echo $output;
 
 echo '<div class="obz-tables-container">';
+
+// Create an array containing the coordinates of all towns (combo IDs = 77-0 and 98-0 thru 98-10)
+$townCoords = [];
+foreach ($objPerZone[OBJ_CATEGORY::TOWNS] as $comboid => $obj) {
+	$townCoords[] = $obj['pos']->GetCoords();
+}
+
+// If a Hero object (comboid of 34-X) is at the same position as any coords in $townCoords, remove the Hero from $objPerZone
+foreach ($objPerZone[OBJ_CATEGORY::HEROES_AND_INFO] as $comboid => $obj) {
+	if (in_array($obj['pos']->GetCoords(), $townCoords)) {
+		unset($objPerZone[OBJ_CATEGORY::HEROES_AND_INFO][$comboid]);
+	}
+}
 
 // Scan zone overlays
 $groundColors = loadImageColors($imgzonesg);
@@ -238,12 +251,12 @@ $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::SCOUTING],
 DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Magical Terrains – Spells
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS], OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS, $sortOrder->MagicalTerrainsSpells, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+// $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS], OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS, $sortOrder->MagicalTerrainsSpells, null, null, null, OC_FLEXTYPE::NONE);
+// DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 // Magical Terrains – Bonuses
-$table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $sortOrder->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
+// $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $sortOrder->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::NONE);
+// DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zoneColors, $h3mapscan);
 
 echo '</div></div>';
 
@@ -266,23 +279,56 @@ function loadImageColors($filename) {
             $g = ($rgba >> 8) & 0xFF;
             $b = $rgba & 0xFF;
 
-            if ($alpha == 127) {
-                $colors[$x][$y] = 'Neutral';
-            } else {
+            // if ($alpha == 127) {
+            //     $colors[$x][$y] = 'Neutral';
+            // } else {
                 $colors[$x][$y] = [$r, $g, $b];
-            }
+            // }
         }
     }
     imagedestroy($image);
     return $colors;
 }
 
-function getZoneByColor($color, $zoneColors) {
+function getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $tileColors, $zoneColors) {
+	$color = $tileColors[$x][$y];
+
+	$moreXMinus1ObjIds = [
+		'17-X', '17-100', '17-102', '20-0', '85-0'
+	];
+
+	$horizontalGarrisonObjIds = [
+		'33-0', '33-1'
+	];
+
+	$verticalGarrisonObjIds = [
+		'219-0', '219-1'
+	];
+
+	if($color == [255, 255, 255]) {
+		if(in_array($objcomboid, $moreXMinus1ObjIds)) {
+			$color = $tileColors[$x - 1][$y];
+		} else if(in_array($objtruecomboid, $horizontalGarrisonObjIds)) {
+			$color = $tileColors[$x - 1][$y];
+		} else if(in_array($objtruecomboid, $verticalGarrisonObjIds)) {
+			$color = $tileColors[$x][$y - 1];
+		} else if ($objcomboid == '212-1000') {
+			$color = $tileColors[$x - 1][$y];
+			if($color == [255, 255, 255]) {
+				$color = $tileColors[$x][$y - 1];
+			}
+		} else if ($objcomboid == '31-0') {
+			$color = $tileColors[$x - 1][$y - 1];
+		}
+	}
+
     foreach ($zoneColors as $zone => $zoneColor) {
         if ($color === $zoneColor) {
             return $zone;
         }
     }
+
+	echo 'TEST</br>';
     return null;
 }
 
@@ -377,17 +423,37 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 		OBJ_CATEGORY::NEUTRAL_DWELLINGS_2
 	];
 
+	$xMinus1ObjIds = [
+		'4-0', '15-0',
+		'16-0', '16-1', '16-4', '16-5', '16-6', '16-21', '16-23', '16-24', '16-25', '16-27', '16-29', '16-31', '16-32',
+		'24-0', '25-0', '28-0', '34-X', '41-0',
+		'43-4', '43-5', '43-6', '43-7', '44-4', '44-5', '44-6', '44-7',
+		'45-4', '45-5', '45-6', '45-7', '45-8', '45-13', '45-14', '45-15', '45-16', '45-19', '45-20', '45-21', '45-22', '45-23', '45-24',
+		'51-0',
+		'53-0', '53-1', '53-2', '53-3', '53-4', '53-5', '53-6', ABANDONED_MINE_COMBOID,
+		'54-X', '55-0', '62-0', '62-1', '71-0', '72-0', '73-0', '74-0', '75-0', '83-X', '84-0', '87-0', '92-0', '95-0', '96-0',
+		'102-0', '103-0', '104-0', '106-0', '107-0', '112-0', '113-0',
+		'144-2', '144-5', '144-6', '144-9', '144-10', '145-0', '146-1', '146-3', '146-4',
+		'162-0', '163-0', '164-0', '212-0', '212-1', '212-2', '212-3', '212-4', '212-5', '212-6', '212-7', '213-0'
+	];
+
+	$xMinus2ObjIds = [
+		'16-22', '16-26', '77-0', '98-0', '98-1', '98-2', '98-3', '98-4', '98-5', '98-6', '98-7', '98-8', '98-9', '98-10'
+	];
+
 	// Sort objects into appropriate player zone/color based on coordinates
 	foreach ($table->objects as $obj) {
 		$objcomboid = in_array($table->category, $neutralDwellingCategories) ? $obj['truecomboid'] : $obj['comboid'];
+		$objtruecomboid = $obj['truecomboid'];
 		$objname = $obj['name'];
 		$x = $obj['pos']->x;
 		$y = $obj['pos']->y;
 		$z = $obj['pos']->z;
-		$color = null;
 
-		if ($table->category == OBJ_CATEGORY::TWO_WAY_PORTALS) {
+		if (in_array($objcomboid, $xMinus1ObjIds)) {
 			$x = $x - 1;
+		} else if (in_array($objcomboid, $xMinus2ObjIds)) {
+			$x = $x - 2;
 		}
 
 		// Adjust position of objects that are out of bounds
@@ -402,19 +468,16 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 			$y = $y - $diffY;
 		}
 
-		// Check if object is in a player zone
-		if ($z == 0 && $groundColors) {
-			$color = $groundColors[$x][$y];
-		} elseif ($z == 1 && $undergroundColors) {
-			$color = $undergroundColors[$x][$y];
+		if ($z == 0) {
+			$zone = getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $groundColors, $zoneColors);
+		} elseif ($z == 1) {
+			$zone = getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $undergroundColors, $zoneColors);
 		}
 
-        // Handle neutral zone
-        if ($color == 'Neutral') {
-            $zone = 'Neutral';
-        } else {
-            $zone = getZoneByColor($color, $zoneColors);
-        }
+		// Debug
+		// if($objcomboid == '17-X') {
+		// 	echo $objname.' '.$objcomboid.' ['.$x.', '.$y.', '.$z.'] Zone='.$zone.'<br>';
+		// }
 
 		// Get player zone and add object to array
 		if ($zone) {
@@ -438,6 +501,8 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 				$objCountPlayers[$objcomboid]['zones'][$zone]++;
 				$objCountPlayers[$objcomboid]['zones']['Total']++;
 			}
+		} else {
+			echo 'Error: Zone color not found for '.$objcomboid.' '.$objname.' at ['.$x.', '.$y.', '.$z.']<br>';
 		}
 	}
 
