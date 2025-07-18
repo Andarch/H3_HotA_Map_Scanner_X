@@ -27,8 +27,9 @@ $zoneColors = [
     'Teal' => [50, 112, 116],
     'Pink' => [171, 129, 140],
     'Red' => [179, 76, 76],
-    'Neutral' => [77, 77, 77],
-    'Super' => [179, 170, 76],
+    'Normal Land' => [77, 77, 77],
+    'Normal Water' => [80, 85, 88],
+    'Treasure' => [179, 170, 76],
     'Total' => 'Total',
 ];
 
@@ -278,12 +279,7 @@ function loadImageColors($filename) {
             $r = ($rgba >> 16) & 0xFF;
             $g = ($rgba >> 8) & 0xFF;
             $b = $rgba & 0xFF;
-
-            // if ($alpha == 127) {
-            //     $colors[$x][$y] = 'Neutral';
-            // } else {
-                $colors[$x][$y] = [$r, $g, $b];
-            // }
+			$colors[$x][$y] = [$r, $g, $b];
         }
     }
     imagedestroy($image);
@@ -656,7 +652,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $zo
 		foreach (array_keys($zoneColors) as $zone) {
 			$currentZoneCount++;
 			$isTotal = ($currentZoneCount == $totalZoneCount);
-			if ($zone == 'Red' || $zone == 'Neutral' || $zone == 'Super' ||  $zone == 'Total') {
+			if ($zone == 'Red' || $zone == 'Normal Land' || $zone == 'Normal Water' || $zone == 'Treasure' ||  $zone == 'Total') {
 				if (!$isBottomRow) {
 					echo '<td class="cell-greyed-out"></td>';
 				} else {
