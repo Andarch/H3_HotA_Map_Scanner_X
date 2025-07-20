@@ -103,9 +103,6 @@ function generateNavMain($map) {
         $sections[] = 'Objects by Zone';
         $sectionsWithHr2Below[] = 'Objects by Zone';
 
-        $sections[] = 'Minimap';
-        $sectionsWithHr1Below[] = 'Minimap';
-
         $sections[] = 'Unused Portraits';
         $sectionsWithHr1Below[] = 'Unused Portraits';
     }
