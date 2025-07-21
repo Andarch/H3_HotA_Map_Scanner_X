@@ -46,10 +46,10 @@ $imgmapnameg = MAPDIR.$zonesImageBaseFilename.'_g.png';
 $imgmapnameu = MAPDIR.$zonesImageBaseFilename.'_u.png';
 $imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g2.png';
 $imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u2.png';
-$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" class="map-image-bg" />' : 'Map Ground';
+$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" />' : 'Map Ground';
 $output = '<div class="obz-map-images-container"><table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
 if($underground) {
-	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" class="map-image-bg" />' : 'Map Underground';
+	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" />' : 'Map Underground';
 	$output .= '<td class="map-image-container">'.$imguground.'</td>';
 }
 $output .= '</tr></table></div>';

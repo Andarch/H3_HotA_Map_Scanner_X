@@ -3,7 +3,7 @@
 
 //disabled heroes
 $n = 0;
-$sep = '</br>';
+$sep = '<br />';
 echo '<table class="table-large">
 		<tr>
 			<th class="table__title-bar--large" colspan="11">Disabled Heroes</td>
@@ -75,8 +75,8 @@ echo '<table id="heroes-table-2" class="table-large">
 			<th>Players</th>
 			<th>Gender</th>
 			<th>XP</th>
-			<th>Primary</br>Skills</th>
-			<th>Secondary</br>Skills</th>
+			<th>Primary<br />Skills</th>
+			<th>Secondary<br />Skills</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
 			<th>Biography</th>
@@ -132,7 +132,7 @@ foreach($templateHeroesPrint as $k => $templateHeroPrint) {
 	}
 
 	if(!empty($templateHeroPrint['priskills'])) {
-		$priskills = implode('</br>', $templateHeroPrint['priskills']);
+		$priskills = implode('<br />', $templateHeroPrint['priskills']);
 	} else {
 		$priskills = DEFAULT_DATA;
 	}
@@ -144,7 +144,7 @@ foreach($templateHeroesPrint as $k => $templateHeroPrint) {
 	}
 
 	if(!empty($templateHeroPrint['artifacts'])) {
-		$artifacts = implode('</br>', $templateHeroPrint['artifacts']);
+		$artifacts = implode('<br />', $templateHeroPrint['artifacts']);
 	} else {
 		$artifacts = DEFAULT_DATA;
 	}
@@ -170,7 +170,7 @@ foreach($templateHeroesPrint as $k => $templateHeroPrint) {
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$class.'</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$players.'</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$gender.'</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$xp.'</br>'.$level.'</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">'.$xp.'<br />'.$level.'</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">'.$priskills.'</td>
 			<td class="al small-text" rowspan="3" style="max-width:500px;">'.$skills.'</td>
 			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">'.$artifacts.'</td>
@@ -203,8 +203,8 @@ echo '<table id="heroes-table-3" class="table-large">
 			<th>Owner</th>
 			<th>Class</th>
 			<th>XP</th>
-			<th>Primary</br>Skills</th>
-			<th>Secondary</br>Skills</th>
+			<th>Primary<br />Skills</th>
+			<th>Secondary<br />Skills</th>
 			<th>Creatures</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
@@ -224,7 +224,7 @@ foreach($this->h3mapscan->heroes_list as $mapHero) {
 	$level = $this->h3mapscan->GetLevelByExp($mapHero['data']['xp']);
 
 	if(!empty($mapHero['data']['priskills'])) {
-		$primary = implode('</br>', $mapHero['data']['priskills']);
+		$primary = implode('<br />', $mapHero['data']['priskills']);
 	} else {
 		$primary = DEFAULT_DATA;
 	}
@@ -248,7 +248,7 @@ foreach($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	if(!empty($mapHero['data']['artifacts'])) {
-		$artifacts = implode('</br>', $mapHero['data']['artifacts']);
+		$artifacts = implode('<br />', $mapHero['data']['artifacts']);
 	} else {
 		$artifacts = DEFAULT_DATA;
 	}

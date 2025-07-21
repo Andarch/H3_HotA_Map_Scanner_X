@@ -44,11 +44,11 @@ foreach ($artifactLocations as $group) {
     sort($group['mapobjs1']);
     sort($group['mapobjs2']);
     sort($group['heroes']);
-    
-    $mapobjs1Text = count($group['mapobjs1']) > 0 ? implode('</br>', $group['mapobjs1']) : EMPTY_DATA;
-    $mapobjs2Text = count($group['mapobjs2']) > 0 ? implode('</br>', $group['mapobjs2']) : EMPTY_DATA;
-    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : EMPTY_DATA;
-    
+
+    $mapobjs1Text = count($group['mapobjs1']) > 0 ? implode('<br />', $group['mapobjs1']) : EMPTY_DATA;
+    $mapobjs2Text = count($group['mapobjs2']) > 0 ? implode('<br />', $group['mapobjs2']) : EMPTY_DATA;
+    $heroesText = count($group['heroes']) > 0 ? implode('<br />', $group['heroes']) : EMPTY_DATA;
+
     $consolidatedData[] = [
         'name' => $group['artifactname'],
 		'id' => '5-'.$group['artifactid'],
@@ -85,7 +85,7 @@ foreach ($consolidatedData as $art) {
 echo START_FLEX;
 
 foreach($artifactGroups as $groupName => $artifacts) {
-	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
+	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';
 	echo '<div class="artifacts-lite-table-container"><table class="table-small artifacts-lite-table">
 				<thead>
 					<tr>
@@ -102,7 +102,7 @@ foreach($artifactGroups as $groupName => $artifacts) {
 				<tbody>';
 	for ($n = 0; $n < count($artifacts); $n++) {
 		$art = $artifacts[$n];
-		$mapobjs1Class = $art['mapobjs1'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
+		$mapobjs1Class = $art['mapobjs1'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$mapobjs2Class = $art['mapobjs2'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$heroesClass = $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$artClass = $art['mapobjs1'] == EMPTY_DATA && $art['mapobjs2'] == EMPTY_DATA && $art['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
@@ -113,7 +113,7 @@ foreach($artifactGroups as $groupName => $artifacts) {
 				<td class="nowrap'.$mapobjs2Class.'" nowrap="nowrap">'.$art['mapobjs2'].'</td>
 				<td class="nowrap'.$heroesClass.'" nowrap="nowrap">'.$art['heroes'].'</td>
 			</tr>';
-	}	
+	}
 	echo '</tbody>';
 	echo '</table></div>';
 	if($groupName == 'Disabled Treasure') {

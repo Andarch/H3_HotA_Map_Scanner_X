@@ -5,15 +5,15 @@ echo '<table class="table-large">
 	<tr>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
 		<th class="ac nowrap" nowrap="nowrap">Team</th>
-		<th class="ac nowrap" nowrap="nowrap">Player</br>Type</th>
-		<th class="ac nowrap" nowrap="nowrap">AI</br>Behaviour</th>
-		<th class="ac nowrap" nowrap="nowrap">Allowed</br>Factions</th>
-		<th class="ac nowrap" nowrap="nowrap">Has</br>Main Town</th>
-		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Faction</th>
-		<th class="ac nowrap" nowrap="nowrap">Main Town</br>Position</th>
-		<th class="ac nowrap" nowrap="nowrap">Generate Hero</br>at Main Town</th>
-		<th class="ac nowrap" nowrap="nowrap">Random Hero</br>on Map</th>
-		<th class="ac nowrap" nowrap="nowrap">Specific Heros</br>on Map</th>
+		<th class="ac nowrap" nowrap="nowrap">Player<br />Type</th>
+		<th class="ac nowrap" nowrap="nowrap">AI<br />Behaviour</th>
+		<th class="ac nowrap" nowrap="nowrap">Allowed<br />Factions</th>
+		<th class="ac nowrap" nowrap="nowrap">Has<br />Main Town</th>
+		<th class="ac nowrap" nowrap="nowrap">Main Town<br />Faction</th>
+		<th class="ac nowrap" nowrap="nowrap">Main Town<br />Position</th>
+		<th class="ac nowrap" nowrap="nowrap">Generate Hero<br />at Main Town</th>
+		<th class="ac nowrap" nowrap="nowrap">Random Hero<br />on Map</th>
+		<th class="ac nowrap" nowrap="nowrap">Specific Heros<br />on Map</th>
 	</tr>';
 
 foreach($this->h3mapscan->players as $k => $player) {
@@ -66,7 +66,7 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $towns) {
 		ksort($towns);
 		$townsList = '';
 		foreach ($towns as $affiliationKey => $town) {
-			$townsList .= $town['affiliation'].': '.$town['count'].'</br>';
+			$townsList .= $town['affiliation'].': '.$town['count'].'<br />';
 		}
 
 	$townsList = rtrim($townsList, ', ');
@@ -91,7 +91,7 @@ echo '<table class="table-large">
 
 echo '<table class="table-large">
 		<tr>
-			<th class="ac nowrap" nowrap="nowrap">Victory</br>Condition</th>
+			<th class="ac nowrap" nowrap="nowrap">Victory<br />Condition</th>
 		</tr>
 		<tr>
 			<td class="ac">'.$this->h3mapscan->victoryInfo.'</td>
@@ -100,7 +100,7 @@ echo '<table class="table-large">
 
 echo '<table class="table-large">
 		<tr>
-			<th class="ac nowrap" nowrap="nowrap">Loss</br>Condition</th>
+			<th class="ac nowrap" nowrap="nowrap">Loss<br />Condition</th>
 		</tr>
 		<tr>
 			<td class="ac">'.$this->h3mapscan->lossInfo.'</td>

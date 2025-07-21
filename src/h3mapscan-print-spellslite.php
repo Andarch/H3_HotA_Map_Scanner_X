@@ -38,11 +38,11 @@ foreach ($spellLocations as $group) {
     sort($group['mapobjs']);
     sort($group['towns']);
     sort($group['heroes']);
-    
-    $mapobjsText = count($group['mapobjs']) > 0 ? implode('</br>', $group['mapobjs']) : EMPTY_DATA;
-    $townsText = count($group['towns']) > 0 ? implode('</br>', $group['towns']) : EMPTY_DATA;
-    $heroesText = count($group['heroes']) > 0 ? implode('</br>', $group['heroes']) : EMPTY_DATA;
-    
+
+    $mapobjsText = count($group['mapobjs']) > 0 ? implode('<br />', $group['mapobjs']) : EMPTY_DATA;
+    $townsText = count($group['towns']) > 0 ? implode('<br />', $group['towns']) : EMPTY_DATA;
+    $heroesText = count($group['heroes']) > 0 ? implode('<br />', $group['heroes']) : EMPTY_DATA;
+
     $consolidatedData[] = [
         'name' => $group['spellname'],
 		'id' => $group['spellid'],
@@ -71,7 +71,7 @@ foreach ($consolidatedData as $spl) {
 echo '<div class="flex-container">';
 
 foreach($spellGroups as $groupName => $spells) {
-	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';	
+	$headerClass = strpos($groupName, 'Disabled') === 0 ? 'table__title-bar--small3' : 'table__title-bar--small';
 	echo '<div class="spells-lite-table-container"><table class="table-small spells-lite-table">
 				<thead>
 					<tr>
@@ -88,7 +88,7 @@ foreach($spellGroups as $groupName => $spells) {
 				<tbody>';
 	for ($n = 0; $n < count($spells); $n++) {
 		$spl = $spells[$n];
-		$townsClass = $spl['towns'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';	
+		$townsClass = $spl['towns'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$mapobjsClass = $spl['mapobjs'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$heroesClass = $spl['heroes'] == EMPTY_DATA ? ' obj-count-inactive tiny-grey' : ' obj-count-active';
 		$splClass = $spl['towns'] == EMPTY_DATA && $spl['mapobjs'] == EMPTY_DATA && $spl['heroes'] == EMPTY_DATA ? ' obj-count-inactive' : ' obj-count-active';
@@ -99,9 +99,9 @@ foreach($spellGroups as $groupName => $spells) {
 				<td class="nowrap'.$townsClass.'" nowrap="nowrap">'.$spl['towns'].'</td>
 				<td class="nowrap'.$heroesClass.'" nowrap="nowrap">'.$spl['heroes'].'</td>
 			</tr>';
-	}	
+	}
 	echo '</tbody>';
-	echo '</table></div>';	
+	echo '</table></div>';
 }
 
 echo '</div>';

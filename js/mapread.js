@@ -36,7 +36,7 @@ $(document).ready(function() {
 			});
 		}
 		else {
-			$("#maplist").html($("#maplist").html() + "</br></br>Finished.");
+			$("#maplist").html($("#maplist").html() + "<br /><br />Finished.");
 		}
 	}
 });

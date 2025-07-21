@@ -7,17 +7,17 @@ echo '<table class="table-large">
 		<thead>
 			<tr>
 				<th class="nowrap" nowrap="nowrap">#</th>
-				<th class="nowrap" nowrap="nowrap">Town</br>Name</th>
+				<th class="nowrap" nowrap="nowrap">Town<br />Name</th>
 				<th class="nowrap" nowrap="nowrap">Coords</th>
 				<th class="nowrap" nowrap="nowrap">Owner</th>
 				<th class="nowrap" nowrap="nowrap">Faction</th>
-				<th class="nowrap" nowrap="nowrap"># of</br>Events</th>
+				<th class="nowrap" nowrap="nowrap"># of<br />Events</th>
 				<th class="nowrap" nowrap="nowrap">Garrison</th>
-				<th class="nowrap" nowrap="nowrap">Spell</br>Research</th>
-				<th class="nowrap" nowrap="nowrap">Spells</br>Always</th>
-				<th class="nowrap" nowrap="nowrap">Spells</br>Disabled</th>
-				<th class="nowrap" nowrap="nowrap">Buildings</br>Built</th>
-				<th class="nowrap" nowrap="nowrap">Buildings</br>Disabled</th>
+				<th class="nowrap" nowrap="nowrap">Spell<br />Research</th>
+				<th class="nowrap" nowrap="nowrap">Spells<br />Always</th>
+				<th class="nowrap" nowrap="nowrap">Spells<br />Disabled</th>
+				<th class="nowrap" nowrap="nowrap">Buildings<br />Built</th>
+				<th class="nowrap" nowrap="nowrap">Buildings<br />Disabled</th>
 			</tr>
 		</thead>
     	<tbody>';

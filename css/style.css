@@ -463,7 +463,7 @@ th, td {
 
 .table-map-list {
 	table-layout: auto;
-	margin: 1em auto;
+	margin: var(--flex-gap) auto;
 	font-size: 16px;
 }
 
@@ -477,14 +477,9 @@ th, td {
 }
 
 .table-map-list td img {
-	width: 192px;
-	margin: 0px auto;
-}
-
-.map-image-bg {
-	width: var(--minimap__size) !important;
-	height: var(--minimap__size) !important;
-	image-rendering: pixelated;
+	width: 64px;
+	display: block;
+	margin: 0 auto;
 }
 
 /* COMPONENTS */
