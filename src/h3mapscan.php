@@ -2644,6 +2644,9 @@ class H3MAPSCAN {
 		if($hasName) {
 			$town['name'] = $this->ReadString();
 		}
+		if($town['name'] == '') {
+			$town['name'] = 'Random name';
+		}
 
 		$town['stack'] = [];
 		$hasGarrison = $this->br->ReadUint8();
