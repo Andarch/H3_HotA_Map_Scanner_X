@@ -29,11 +29,11 @@ foreach($this->h3mapscan->towns_list as $towno) {
 		continue;
 	}
 
-	$monlvlprint = false;
-	$monIdOffset = 0;
-	if($towno['id'] == OBJECTS::RANDOM_TOWN) {
-		$monlvlprint = true;
-	}
+	// $monlvlprint = false;
+	// if($towno['id'] == OBJECTS::RANDOM_TOWN) {
+	// 	$monlvlprint = true;
+	// }
+	$monlvlprint = true;
 
 	$ecount = $town['eventsnum'];
 
@@ -86,10 +86,18 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 		$monsters = [];
 		foreach($event['monsters'] as $lvl => $amount) {
-			if($amount > 0) {
-				$monname = $monlvlprint ? 'Level '.($lvl + 1).' Creatures' : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
-				$monsters[] = '+'.$amount.' '.$monname;
+			if(($lvl + 1) == 7 && $event['hotaLevel7b'] > 0) {
+				$monsters[] = 'Level 7a: +'.$amount;
+				break;
 			}
+			if($amount > 0) {
+				// $monname = $monlvlprint ? 'Level '.($lvl + 1).' Creatures' : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
+				// $monsters[] = '+'.$amount.' '.$monname;
+				$monsters[] = 'Level '.($lvl + 1).': +'.$amount;
+			}
+		}
+		if($event['hotaLevel7b'] > 0) {
+			$monsters[] = 'Level 7b: +'.$event['hotaLevel7b'];
 		}
 		if(empty($monsters)) {
 			$monsters[] = EMPTY_DATA;
