@@ -167,7 +167,7 @@ foreach($this->h3mapscan->towns_list as $towno) {
 
 		echo '
 				<td class="ac table__nested-row-header" '.$borderstyle.'">'.($e + 1).'</td>
-				<td class="ac" '.$borderstyle.'">'.$event['name'].'</td>
+				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$event['name'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
 				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$event['humanOrAi'].'</td>
 				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$first.'</td>
