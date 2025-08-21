@@ -1419,49 +1419,6 @@ class H3MAPSCAN {
 					TERRAIN::NEUTRAL    => imagecolorallocate($img, 0x84, 0x84, 0x84),
 				];
 				break;
-
-			// case IMAGETYPE::PASSABILITY:
-			// 	$imgmapnameg = MAPDIRIMG.$this->mapimage.'_g_pass.png';
-			// 	$imgmapnameu = MAPDIRIMG.$this->mapimage.'_u_pass.png';
-			// 	$imgcolors = [
-			// 		//terrain
-			// 		TERRAIN::DIRT       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::SAND       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::GRASS      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::SNOW       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::SWAMP      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::ROUGH      => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::SUBTERAIN  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::LAVA       => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::WATER      => imagecolorallocate($img, 0x4b, 0x56, 0x5e),
-			// 		TERRAIN::ROCK       => imagecolorallocate($img, 0x00, 0x00, 0x00),
-			// 		TERRAIN::HIGHLANDS  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		TERRAIN::WASTELAND  => imagecolorallocate($img, 0x4d, 0x4d, 0x4d),
-			// 		//terrain, blocked tiles
-			// 		TERRAIN::BDIRT      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BSAND      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BGRASS     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BSNOW      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BSWAMP     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BROUGH     => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BSUBTERAIN => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BLAVA      => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BWATER     => imagecolorallocate($img, 0x3c, 0x45, 0x4d),
-			// 		TERRAIN::BROCK      => imagecolorallocate($img, 0x00, 0x00, 0x00),
-			// 		TERRAIN::BHIGHLANDS => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		TERRAIN::BWASTELAND => imagecolorallocate($img, 0x3d, 0x3d, 0x3d),
-			// 		//player colors
-			// 		TERRAIN::RED        => imagecolorallocate($img, 0xff, 0x00, 0x00),
-			// 		TERRAIN::BLUE       => imagecolorallocate($img, 0x31, 0x52, 0xff),
-			// 		TERRAIN::TAN        => imagecolorallocate($img, 0x9c, 0x73, 0x52),
-			// 		TERRAIN::GREEN      => imagecolorallocate($img, 0x42, 0x94, 0x29),
-			// 		TERRAIN::ORANGE     => imagecolorallocate($img, 0xff, 0x84, 0x00),
-			// 		TERRAIN::PURPLE     => imagecolorallocate($img, 0x8c, 0x29, 0xa5),
-			// 		TERRAIN::TEAL       => imagecolorallocate($img, 0x08, 0x9c, 0xa5),
-			// 		TERRAIN::PINK       => imagecolorallocate($img, 0xc6, 0x7b, 0x8c),
-			// 		TERRAIN::NEUTRAL    => imagecolorallocate($img, 0x84, 0x84, 0x84),
-			// 	];
-			// 	break;
 		}
 
 		// Map
