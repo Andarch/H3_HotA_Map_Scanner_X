@@ -47,6 +47,9 @@ class H3MAPSCAN_PRINT {
 			case 'Spells':
 				include 'h3mapscan-print-spells.php';
 				break;
+			case 'Monsters':
+				include 'h3mapscan-print-monsters.php';
+				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
 				break;

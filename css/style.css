@@ -429,8 +429,7 @@ th, td {
 }
 
 .artifacts-table,
-.spells-table,
-.monsters-table {
+.spells-table {
 	flex-grow: 1;
 	flex-basis: calc(25% - var(--flex-gap));
 	max-width: 462.259px;
@@ -440,9 +439,7 @@ th, td {
 .artifacts-table td:first-child,
 .artifacts-table th:first-child,
 .spells-table td:first-child,
-.spells-table th:first-child,
-.monsters-table td:first-child,
-.monsters-table th:first-child {
+.spells-table th:first-child {
 	width: 29.99px !important;
 	font-size: 10px !important;
 }
@@ -455,13 +452,8 @@ th, td {
 	width: 137.42px;
 }
 
-.monsters-table td:nth-child(2) {
-	width: 1px;
-}
-
 .artifacts-table td:nth-child(3),
-.spells-table td:nth-child(3),
-.monsters-table td:nth-child(3) {
+.spells-table td:nth-child(3) {
 	width: 65.64px;
 }
 

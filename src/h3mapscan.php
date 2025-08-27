@@ -1595,7 +1595,7 @@ class H3MAPSCAN {
 					$event['moraleDiff'] = $this->br->ReadInt8();
 					$event['luckDiff'] = $this->br->ReadInt8();
 
-					$event['resources'] = $this->ReadResourses();
+					$event['resources'] = $this->ReadResources();
 
 					$event['priSkill'] = [];
 					$event['secSkill'] = [];
@@ -1784,20 +1784,24 @@ class H3MAPSCAN {
 					$monster['uid'] = OBJECT_INVALID;
 
 					$monster['name'] = ($obj['id'] == OBJECTS::MONSTER) ? $this->GetCreatureById($obj['subid']) : $obj['objname'];
-
+					$monster['pos'] = $obj['pos'];
 					if($this->version > $this::ROE) {
 						$monster['uid'] = $this->br->ReadUint32();
 					}
 
 					$monster['count'] = $this->br->ReadUint16();
 
-					$monster['character'] = $this->GetMonsterCharacter($this->br->ReadUint8());
+					$monster['disposition'] = $this->GetMonsterDisposition($this->br->ReadUint8());
+
+					$monster['message'] = '';
+					$monster['resources'] = [];
+					$monster['artifact'] = '';
 
 					$hasMessage = $this->br->ReadUint8();
-					$artifact = '';
+
 					if($hasMessage) {
 						$monster['message'] = $this->ReadString();
-						$monster['resources'] = $this->ReadResourses();
+						$monster['resources'] = $this->ReadResources();
 
 						if ($this->isROE) {
 							$artid = $this->br->ReadUint8();
@@ -1812,31 +1816,44 @@ class H3MAPSCAN {
 
 						if($artid != HNONE16) {
 							$artifact = $this->GetArtifactById($artid);
+							$monster['artifact'] = $artifact;
 							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Monster', OWNERNONE, 0, '', $monster['name']);
 						}
 					}
-					$monster['neverFlees'] = $this->br->ReadUint8();
-					$monster['notGrowingTeam'] = $this->br->ReadUint8();
+					$monster['neverFlees'] = $this->br->ReadUint8() == 0 ? 'Flees' : 'Never flees';
+					$monster['neverGrows'] = $this->br->ReadUint8() == 0 ? 'Grows' : 'Never grows';
 
 					$this->br->SkipBytes(2);
 
 					if($this->hota_subrev >= $this::HOTA_SUBREV3) {
-						$monster['characterSpec'] = $this->br->ReadUint32(); //precise setup      num of ffffffff
-						$monster['moneyJoin'] = $this->br->ReadUint8();
-						$monster['percentJoin'] = $this->br->ReadUint32();
-						$monster['upgradedStack'] = $this->br->ReadUint32(); //upgraded stack in not upgraded monster 0/1/ffffffff (def)
-						$monster['stacksCount'] = $this->br->ReadUint32(); //stack count       00=one more, ffffffff=def, fdffffff=avg, fdffffff=on less or num
+						$monster['preciseDisposition'] = $this->br->ReadUint32(); //precise setup      num of ffffffff
+						$monster['joinForMoney'] = $this->br->ReadUint8() == 0 ? 'Join for free' : 'Join for money';
+						$monster['joinPercent'] = $this->br->ReadUint32().'%';
+						$upgraded = $this->br->ReadUint32();
+						match($upgraded) {
+							0 => $monster['upgraded'] = 'Not upgraded',
+							1 => $monster['upgraded'] = 'Upgraded',
+							4294967295 => $monster['upgraded'] = 'Default'
+						};
+						$stackcount = $this->br->ReadUint32();
+						match($stackcount) {
+							0 => $monster['stackCount'] = 'One less',
+							4294967293 => $monster['stackCount'] = 'Average',
+							4294967294 => $monster['stackCount'] = 'One less',
+							4294967295 => $monster['stackCount'] = 'Default',
+							default => $monster['stackCount'] = $stackcount
+						};
 					}
 					if($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->br->SkipBytes(5);
-						//$monster_value_is_set = $this->br->ReadUint8();
-						//$monster['monster_value'] = $this->br->ReadInt32();
+						$monster['isValue'] = $this->br->ReadUint8();
+						$monster['value'] = $this->br->ReadInt32();
 					}
 
 					$obj['data'] = $monster;
 
-					$info = $monster['character'].($monster['neverFlees'] ? ', Never fless' : '');
-					$this->monsters_list[] = new ListObject($monster['name'], $this->curcoor, 'Map', $artifact, $monster['count'], $info);
+					// $info = $monster['disposition'].($monster['neverFlees'] ? ', Never flees' : '');
+					// $this->monsters_list[] = new ListObject($monster['name'], $this->curcoor, 'Map', $artifact, $monster['count'], $info);
+					$this->monsters_list[] = $monster;
 
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::MONSTER,
@@ -2708,7 +2725,7 @@ class H3MAPSCAN {
 				$event['message'] = EMPTY_DATA;
 			}
 
-			$event['res'] = $this->ReadResourses();
+			$event['res'] = $this->ReadResources();
 
 			$event['players'] = $this->br->ReadUint8();
 			if($this->version > $this::AB) {
@@ -3088,7 +3105,7 @@ class H3MAPSCAN {
 				$event['message'] = EMPTY_DATA;
 			}
 
-			$event['resources'] = $this->ReadResourses();
+			$event['resources'] = $this->ReadResources();
 			$event['players'] = $this->br->ReadUint8();
 			if($this->version > $this::AB) {
 				$event['humanAble'] = $this->br->ReadUint8();
@@ -3160,7 +3177,7 @@ class H3MAPSCAN {
 		return $stack;
 	}
 
-	private function ReadResourses() {
+	private function ReadResources() {
 		$resources = [];
 		for($i = 0; $i < 7; $i++) {
 			$res = $this->br->ReadInt32();
@@ -3597,7 +3614,7 @@ class H3MAPSCAN {
 		return FromArray($monid, $this->CS->Monster);
 	}
 
-	private function GetMonsterCharacter($charid) {
+	private function GetMonsterDisposition($charid) {
 		return FromArray($charid, $this->CS->monchar);
 	}
 
@@ -3971,7 +3988,12 @@ function EventSortByDate($a, $b) {
 }
 
 function ListSortByName($a, $b) {
-	return strcmp($a->name, $b->name);
+	if(is_array($a) && is_array($b)) {
+		return strcmp($a['name'], $b['name']);
+	}
+	else {
+		return strcmp($a->name, $b->name);
+	}
 }
 
 function SortTownsByName($a, $b) {

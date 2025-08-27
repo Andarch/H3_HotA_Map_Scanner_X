@@ -1011,11 +1011,12 @@
 		];
 
 		public $monchar = [
-			0 => 'Always join', //compliant
-			1 => 'Likely join', //friendly
-			2 => 'May join', //aggressive
-			3 => 'Unlikely to join', //hostile
-			4 => 'Never join', //savage
+			0 => 'Compliant',
+			1 => 'Friendly',
+			2 => 'Aggressive',
+			3 => 'Hostile',
+			4 => 'Savage',
+			5 => 'Precise',
 		];
 
 		public $Objects = [
