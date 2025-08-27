@@ -36,8 +36,8 @@
 	// 	if ($n == $totalItems) break;
 	foreach($this->h3mapscan->monsters_list as $monster) {
 		// $monster = $this->h3mapscan->monsters_list[$n];
-		$count = !$monster['isValue'] ? $monster['count'] : EMPTY_DATA;
-		$value = $monster['isValue'] ? $monster['value'] : EMPTY_DATA;
+		$count = !$monster['isValue'] ? comma($monster['count']) : EMPTY_DATA;
+		$value = $monster['isValue'] ? comma($monster['value']) : EMPTY_DATA;
 		$disposition = $monster['disposition'] !== 'Precise'
 					   ? $monster['disposition']
 					   : 'Precise('.$monster['preciseDisposition'].')';
