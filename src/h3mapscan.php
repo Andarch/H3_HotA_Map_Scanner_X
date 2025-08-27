@@ -1851,8 +1851,6 @@ class H3MAPSCAN {
 
 					$obj['data'] = $monster;
 
-					// $info = $monster['disposition'].($monster['neverFlees'] ? ', Never flees' : '');
-					// $this->monsters_list[] = new ListObject($monster['name'], $this->curcoor, 'Map', $artifact, $monster['count'], $info);
 					$this->monsters_list[] = $monster;
 
 					$this->mapobjects[] = [
