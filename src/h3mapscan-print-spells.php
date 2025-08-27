@@ -10,7 +10,7 @@ $numTables = ceil($totalItems / $maxItems);
 echo '<div class="flex-container">';
 
 for ($i = 0; $i < $numTables; $i++) {
-	echo '<table class="table-large spells-table">
+	echo '<table class="table-small spells-table">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -29,7 +29,7 @@ for ($i = 0; $i < $numTables; $i++) {
 				<td class="table__row-header--default">'.(++$n).'</td>
 				<td class="nowrap" nowrap="nowrap">'.$spl->name.'</td>
 				<td class="ac nowrap" nowrap="nowrap">'.$spl->mapcoor->GetCoords().'</td>
-				<td class="ar nowrap" nowrap="nowrap">'.$spl->parent.'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$spl->parent.'</td>
 				<td class="nowrap" nowrap="nowrap">'.$spl->add1.'</td>
 				</tr>';
 	}

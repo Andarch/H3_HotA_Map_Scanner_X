@@ -568,14 +568,19 @@ class H3MAPSCAN {
 
 			$towns_allowed = [];
 
-			if($towns == HNONE || $towns == HNONE_TOWN) {
-				$towns_allowed[] = 'Random';
-			}
-			elseif($towns != HNULL) {
-				for($n = 0; $n < $maxtowns; $n++) {
-					if(($towns & (1 << $n)) != 0) {
-						$towns_allowed[] = $this->GetTownById($n);
-					}
+			// if($towns == HNONE || $towns == HNONE_TOWN) {
+			// 	$towns_allowed[] = 'Random';
+			// }
+			// elseif($towns != HNULL) {
+			// 	for($n = 0; $n < $maxtowns; $n++) {
+			// 		if(($towns & (1 << $n)) != 0) {
+			// 			$towns_allowed[] = $this->GetTownById($n);
+			// 		}
+			// 	}
+			// }
+			for($n = 0; $n < $maxtowns; $n++) {
+				if(($towns & (1 << $n)) != 0) {
+					$towns_allowed[] = $this->GetTownById($n);
 				}
 			}
 			$this->players[$i]['towns_allowed'] = implode(', ', $towns_allowed);
@@ -1559,13 +1564,6 @@ class H3MAPSCAN {
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
 
-					// DEBUG
-					// if($obj['id'] == OBJECTS::SEER_HUT) {
-					// 	echo $obj['pos']->GetCoords();
-					// 	echo '<br />';
-					// }
-					// END DEBUG
-
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
 					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos);
@@ -1574,27 +1572,7 @@ class H3MAPSCAN {
 			else {
 				$obj['id'] = OBJECT_INVALID;
 				$obj['subid'] = OBJECT_INVALID;
-
-				//DEBUG
-				// echo 'INVALID<br />';
-				// echo $obj['pos']->GetCoords().'<br />';
-				// echo 'defnum: '.$obj['defnum'].'<br />';
-				// echo $obj['id'].'-'.$obj['subid'].'<br />';
-				// echo '<br />';
-
-				// echo 'PREVIOUS OBJ<br />';
-				// echo $this->previousObj['pos']->GetCoords().'<br />';
-				// echo 'defnum: '.$this->previousObj['defnum'].'<br />';
-				// echo $this->previousObj['comboid'].'<br />';
-				// echo $this->previousObj['objname'].'<br />';
-				//END DEBUG
 			}
-
-			//DEBUG
-			// if(array_key_exists($obj['defnum'], $this->objTemplates) && !array_key_exists($obj['id'], $this->CS->OmittedObjectsAll) && $obj['id'] != OBJECTS::TOWN && $obj['id'] != OBJECT_INVALID) {
-			// 	echo '<br />';
-			// }
-			//END DEBUG
 
 			$this->curobjtype = $obj['id'];
 			$this->curobjname = EMPTY_DATA;
@@ -2068,12 +2046,11 @@ class H3MAPSCAN {
 				case OBJECTS::SHRINE_OF_MAGIC_GESTURE:
 				case OBJECTS::SHRINE_OF_MAGIC_THOUGHT:
 					$shrine = [];
-					$shrine['spellid'] = $this->br->ReadUint8();
-					$this->br->SkipBytes(3);
+					$shrine['spellid'] = $this->br->ReadUint32();
 					$obj['data'] = $shrine;
-					if($shrine['spellid'] != 255) {
+					if(!in_array($shrine['spellid'], [HNONE, HNONE32])) {
 						$spellname = $this->GetSpellById($shrine['spellid']);
-						$this->spells_list[] = new ListObject($spellname, $this->curcoor, 'Spell Shrine', OWNERNONE, 0, '');
+						$this->spells_list[] = new ListObject($spellname, $this->curcoor, 'Spell Shrine', OWNERNONE, 0, '', EMPTY_DATA);
 					}
 					break;
 
@@ -3198,9 +3175,8 @@ class H3MAPSCAN {
 		$spellid = $this->br->ReadInt32();
 		$this->br->SkipBytes(4);
 
-		if($spellid != HOTA_RANDOM) {
-			$spellname = $this->GetSpellById($spellid);
-			$this->spells_list[] = new ListObject($spellname, $this->curcoor, 'Pyramid', OWNERNONE, 0, '', $this->curobjname);
+		if(!in_array($spellid, [HNONE, HNONE32])) {
+			$this->spells_list[] = new ListObject($this->GetSpellById($spellid), $this->curcoor, 'Pyramid', OWNERNONE, 0, '', $this->curobjname);
 		}
 	}
 
@@ -3211,7 +3187,7 @@ class H3MAPSCAN {
 		$resource = $this->br->ReadUint8();
 		$this->br->SkipBytes(5);
 
-		if($artifact != HOTA_RANDOM) {
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Grave', OWNERNONE, 0, '', $this->curobjname);
 		}
 	}
@@ -3243,7 +3219,7 @@ class H3MAPSCAN {
 		$resource = $this->GetResourceById($this->br->ReadUint8());
 		$this->br->SkipBytes(5);
 
-		if($artifact != HOTA_RANDOM) {
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Wagon', OWNERNONE, 0, '', $this->curobjname);
 		}
 	}
@@ -3286,16 +3262,28 @@ class H3MAPSCAN {
 	private function ReadSeaChest() {
 		$contents = $this->br->ReadInt32();
 		$artifact = $this->br->ReadInt32();
+
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Sea Chest', OWNERNONE, 0, '', $this->curobjname);
+		}
 	}
 
 	private function ReadShipwreckSurvivor() {
 		$contents = $this->br->ReadInt32();
 		$artifact = $this->br->ReadInt32();
+
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Shipwreck Survivor', OWNERNONE, 0, '', $this->curobjname);
+		}
 	}
 
 	private function ReadTreasureChest() {
 		$contents = $this->br->ReadInt32();
 		$artifact = $this->br->ReadInt32();
+
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Treasure Chest', OWNERNONE, 0, '', $this->curobjname);
+		}
 	}
 
 	private function ReadTreeOfKnowledge() {
@@ -3306,6 +3294,10 @@ class H3MAPSCAN {
 	private function ReadWarriorsTomb() {
 		$contents = $this->br->ReadInt32();
 		$artifact = $this->br->ReadInt32();
+
+		if(!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Warrior\'s Tomb', OWNERNONE, 0, '', $this->curobjname);
+		}
 	}
 
 	private function ReadHotaArtifact($artid) {
@@ -3594,9 +3586,9 @@ class H3MAPSCAN {
 		return FromArray($artid, $this->CS->ArtifactsCombo);
 	}
 
-	private function GetArtifactPosById($artid) {
-		return FromArray($artid, $this->CS->ArtifactPosition);
-	}
+	// private function GetArtifactPosById($artid) {
+	// 	return FromArray($artid, $this->CS->ArtifactPosition);
+	// }
 
 	public function GetCreatureById($monid) {
 		if($this->isHOTA && $monid >= HOTA_MONSTER_IDS) {

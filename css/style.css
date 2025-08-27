@@ -429,36 +429,48 @@ th, td {
 }
 
 .artifacts-table,
-.spells-table {
+.spells-table,
+.monsters-table {
 	flex-grow: 1;
 	flex-basis: calc(25% - var(--flex-gap));
-	max-width: 457.838px;
+	max-width: 462.259px;
 	table-layout: auto;
 }
 
 .artifacts-table td:first-child,
 .artifacts-table th:first-child,
 .spells-table td:first-child,
-.spells-table th:first-child {
-	width: 32px !important;
+.spells-table th:first-child,
+.monsters-table td:first-child,
+.monsters-table th:first-child {
+	width: 29.99px !important;
+	font-size: 10px !important;
 }
 
 .artifacts-table td:nth-child(2) {
-	width: 162px;
+	width: 179.25px;
 }
 
 .spells-table td:nth-child(2) {
-	width: 132px;
+	width: 137.42px;
+}
+
+.monsters-table td:nth-child(2) {
+	width: 1px;
 }
 
 .artifacts-table td:nth-child(3),
-.spells-table td:nth-child(3) {
-	width: 74px !important;
+.spells-table td:nth-child(3),
+.monsters-table td:nth-child(3) {
+	width: 65.64px;
 }
 
-.artifacts-table td:nth-child(4),
+.artifacts-table td:nth-child(4) {
+	width: 102.46px;
+}
+
 .spells-table td:nth-child(4) {
-	width: 78px !important;
+	width: 66.76px;
 }
 
 .table-map-list {

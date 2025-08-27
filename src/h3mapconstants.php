@@ -23,10 +23,11 @@
 	const PLAYERSNUM = 8;
 	const HNULL = 0;
 	const HNONE = 0xff; //general heroes NONE value
-	const HNONE_TOWN = 0x1ff;
+	// const HNONE_TOWN = 0x1ff;
 	const HOTA_MONSTER_IDS = 151; //hota monster start index
 	const HOTA_ARTIFACTS_IDS = 141; //hota artifacts start index
 	const HNONE16 = 0xffff; //general heroes NONE value, 16 bit
+	const HNONE_UNKNOWN = 0x9D30302B;
 	const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
 	const COMBOID_SEPARATOR = '<span style="color:grey;"> | </span>';
@@ -41,7 +42,7 @@
 	const TEXT_COLUMN_WIDTH = 'min-width: 300px;';
 
 	const EMPTY_DATA = '<span style="color:grey;">–</span>';
-	
+
     const START_FLEX = '<div class="flex-container">';
     const END_FLEX = '</div>';
 
@@ -733,6 +734,8 @@
 			80 => 'Acid Breath Defense',
 			81 => 'Acid Breath Damage',
 			82 => 'After Last',
+			255 => 'Random - 1 Byte',
+			4294967295 => 'Random - 4 Bytes'
 		];
 
 		//full defines of obj, monsters, heroes
@@ -2102,6 +2105,10 @@
 			163 => 'Seal of Sunset',
 			164 => 'Plate of Dying Light',
 			165 => 'Sleepkeeper',
+			255 => 'Empty - 1 Byte',
+			65535 => 'Empty - 2 Bytes',
+			2637180971 => 'Empty - Unknown',
+			4294967295 => 'Empty - 4 Bytes',
 		];
 		public $ArtifactsCombo = [
 			0 => 'Angelic Alliance',

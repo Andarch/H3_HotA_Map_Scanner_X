@@ -1,20 +1,20 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-usort($this->h3mapscan->artifacts_list, 'ListSortByName');
+usort($this->h3mapscan->monsters_list, 'ListSortByName');
 
 $maxItems = 40;
-$totalItems = count($this->h3mapscan->artifacts_list);
+$totalItems = count($this->h3mapscan->monsters_list);
 $numTables = ceil($totalItems / $maxItems);
 
 echo '<div class="flex-container">';
 
 for ($i = 0; $i < $numTables; $i++) {
-	echo '<table class="table-small artifacts-table">
+	echo '<table class="table-small monsters-table">
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Artifact</th>
+					<th>Count</th>
 					<th>Position</th>
 					<th>Parent</th>
 					<th>Name</th>
@@ -24,13 +24,13 @@ for ($i = 0; $i < $numTables; $i++) {
 	for ($j = 0; $j < $maxItems; $j++) {
 		$n = $i * $maxItems + $j;
 		if ($n == $totalItems) break;
-		$art = $this->h3mapscan->artifacts_list[$n];
+		$monster = $this->h3mapscan->monsters_list[$n];
 		echo '<tr>
 				<td class="table__row-header--default">'.(++$n).'</td>
-				<td class="nowrap" nowrap="nowrap">'.$art->name.'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$art->mapcoor->GetCoords().'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$art->parent.'</td>
-				<td class="nowrap" nowrap="nowrap">'.$art->add1.'</td>
+				<td class="nowrap" nowrap="nowrap">'.$monster->name.'</td>
+				<td class="ac nowrap" nowrap="nowrap">'.$monster->mapcoor->GetCoords().'</td>
+				<td class="ar nowrap" nowrap="nowrap">'.$monster->parent.'</td>
+				<td class="nowrap" nowrap="nowrap">'.$monster->add1.'</td>
 				</tr>';
 	}
 	echo '</tbody>';
