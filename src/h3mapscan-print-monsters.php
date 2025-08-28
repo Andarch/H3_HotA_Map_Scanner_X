@@ -2,32 +2,41 @@
 /** @var H3MAPSCAN_PRINT $this */
 ?>
 
-<div class="stationary-header-container">
-    <table class="monsters-table stationary-header">
+<div class="table-split-header-container">
+    <table class="table-split-header monsters-table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Type</th>
-                <th>Position</th>
-                <th>Count</th>
-                <th>Value</th>
-                <th class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
-                <th>Disposition</th>
-                <th class="ac nowrap" nowrap="nowrap">Never<br />Flees</th>
-                <th class="ac nowrap" nowrap="nowrap">Join Only<br />for Money</th>
-                <th class="ac nowrap" nowrap="nowrap">Join<br />%</th>
-                <th class="ac nowrap" nowrap="nowrap">Upg.<br />Stack</th>
-                <th class="ac nowrap" nowrap="nowrap">Stack<br />Count</th>
-                <th>Resources</th>
-                <th>Artifact</th>
-                <th>Message</th>
+                <th rowspan="2">#</th>
+                <th rowspan="2">Type</th>
+                <th rowspan="2">Position</th>
+                <th rowspan="2">Count</th>
+                <th rowspan="2">Value</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
+                <th rowspan="2">Disposition</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Never<br />Flees</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join Only<br />for Money</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join<br />%</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Upg.<br />Stack</th>
+                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Stack<br />Count</th>
+                <th colspan="7">Resources</th>
+                <th rowspan="2">Artifact</th>
+                <th rowspan="2">Message</th>
+            </tr>
+            <tr>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Wood</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Mercury</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Ore</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Sulfur</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Crystal</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gems</th>
+                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gold</th>
             </tr>
         </thead>
     </table>
 </div>
 
-<div class="monsters-table-container">
-    <table class="monsters-table table-bottom">
+<div class="table-split-body-container">
+    <table class="table-split-body monsters-table">
         <tbody>
 
             <?php
@@ -50,8 +59,16 @@
                 $resources = [];
                 foreach ($monster["resources"] as $rid => $amount) {
                     $sign = $amount > 0 ? "+" : "";
-                    $resources[] = $sign . comma($amount) . " " . $this->h3mapscan->GetResourceById($rid);
+                    $resources[] = $sign . comma($amount);
                 }
+
+                $wood = empty($resources) ? "" : $resources[0];
+                $mercury = empty($resources) ? "" : $resources[1];
+                $ore = empty($resources) ? "" : $resources[2];
+                $sulfur = empty($resources) ? "" : $resources[3];
+                $crystal = empty($resources) ? "" : $resources[4];
+                $gems = empty($resources) ? "" : $resources[5];
+                $gold = empty($resources) ? "" : $resources[6];
                 ?>
             <tr>
                 <td class="table__row-header--default"><?= ++$n ?></td>
@@ -66,7 +83,13 @@
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["joinPercent"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["upgraded"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["stackCount"] ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= implode("<br />", $resources) ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                <td class="tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
                 <td class="ac"><?= $monster["artifact"] ?></td>
                 <td><?= $monster["message"] ?></td>
             </tr>
