@@ -1820,19 +1820,19 @@ class H3MAPSCAN {
 							$this->artifacts_list[] = new ListObject($artifact, $obj['pos'], 'Monster', OWNERNONE, 0, '', $monster['name']);
 						}
 					}
-					$monster['neverFlees'] = $this->br->ReadUint8() == 0 ? 'Flees' : 'Never flees';
-					$monster['neverGrows'] = $this->br->ReadUint8() == 0 ? 'Grows' : 'Never grows';
+					$monster['neverFlees'] = $this->br->ReadUint8() == 1 ? 'Yes' : EMPTY_DATA;
+					$monster['neverGrows'] = $this->br->ReadUint8() == 1 ? 'Yes' : EMPTY_DATA;
 
 					$this->br->SkipBytes(2);
 
 					if($this->hota_subrev >= $this::HOTA_SUBREV3) {
 						$monster['preciseDisposition'] = $this->br->ReadUint32(); //precise setup      num of ffffffff
-						$monster['joinForMoney'] = $this->br->ReadUint8() == 0 ? 'Join for free' : 'Join for money';
+						$monster['joinForMoney'] = $this->br->ReadUint8() == 1 ? 'Yes' : EMPTY_DATA;
 						$monster['joinPercent'] = $this->br->ReadUint32().'%';
 						$upgraded = $this->br->ReadUint32();
 						match($upgraded) {
-							0 => $monster['upgraded'] = 'Not upgraded',
-							1 => $monster['upgraded'] = 'Upgraded',
+							0 => $monster['upgraded'] = 'No',
+							1 => $monster['upgraded'] = 'Yes',
 							4294967295 => $monster['upgraded'] = 'Default'
 						};
 						$stackcount = $this->br->ReadUint32();

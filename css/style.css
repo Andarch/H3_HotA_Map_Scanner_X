@@ -79,6 +79,8 @@
 
 	--flex-gap: 1.5em;
 
+	--stationary-header__height: 32.071px;
+
 	--minimap__size: 756px;
 }
 
@@ -124,10 +126,7 @@ td {
 }
 
 th, td {
-	border-top: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
-	border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
-	border-right: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
-	border-left: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+	border: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
 /* LAYOUT */
@@ -425,7 +424,7 @@ th, td {
 .artifacts-lite-table td:nth-child(3),
 .artifacts-lite-table td:nth-child(4),
 .artifacts-lite-table td:nth-child(5) {
-	font-size: 10px !important;
+	font-size: 9.965px !important;
 }
 
 .artifacts-table,
@@ -463,6 +462,153 @@ th, td {
 
 .spells-table td:nth-child(4) {
 	width: 66.76px;
+}
+
+.stationary-header-container {
+	border: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
+.stationary-header {
+	height: var(--stationary-header__height) !important;
+	z-index: 2;
+	position: relative;
+	width: 100%;
+}
+
+.monsters-table-container {
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-color: var(--color__scrollbar);
+	height: calc(100vh - var(--site-header__height) - var(--flex-gap) - (var(--stationary-header__height)) - (var(--table__border-width--thick) * 2));
+	z-index: 1;
+	position: relative;
+	border: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+	border-top: none;
+}
+
+.monsters-table {
+	width: 100%;
+  	table-layout: fixed;
+	z-index: 1;
+	position: relative;
+}
+
+.stationary-header th:first-child,
+.stationary-header td:first-child,
+.table-bottom th:first-child,
+.table-bottom td:first-child {
+  	border-left: none !important;
+}
+.stationary-header th:last-child,
+.stationary-header td:last-child {
+  	border-right: none;
+}
+.stationary-header tr:first-child th,
+.stationary-header tr:first-child td
+.table-bottom tr:first-child th,
+.table-bottom tr:first-child td {
+  	border-top: none !important;
+}
+.stationary-header tr:last-child th,
+.stationary-header tr:last-child td
+.table-bottom tr:last-child th,
+.table-bottom tr:last-child td {
+  	border-bottom: none !important;
+}
+
+.monsters-table th,
+.monsters-table td {
+	padding: 1.5px 4px 2px;
+}
+
+.monsters-table th {
+	font-size: 10px;
+}
+
+.monsters-table td:not(.tiny-text) {
+	font-size: 11px !important;
+}
+
+/* .monsters-table td .ellipsis {
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 97.21px;
+	white-space: normal;
+} */
+
+.monsters-table td:first-child,
+.monsters-table th:first-child {
+	width: 34px;
+}
+
+.monsters-table td:nth-child(2),
+.monsters-table th:nth-child(2) {
+	width: 106px;
+}
+
+.monsters-table td:nth-child(3),
+.monsters-table th:nth-child(3) {
+	width: 62px;
+}
+
+.monsters-table td:nth-child(4),
+.monsters-table th:nth-child(4) {
+	width: 42px;
+}
+
+.monsters-table td:nth-child(5),
+.monsters-table th:nth-child(5) {
+	width: 46px;
+}
+
+.monsters-table td:nth-child(6),
+.monsters-table th:nth-child(6) {
+	width: 48px;
+}
+
+.monsters-table td:nth-child(7),
+.monsters-table th:nth-child(7) {
+	width: 68px;
+}
+
+.monsters-table td:nth-child(8),
+.monsters-table th:nth-child(8) {
+	width: 40px;
+}
+
+.monsters-table td:nth-child(9),
+.monsters-table th:nth-child(9) {
+	width: 64px;
+}
+
+.monsters-table td:nth-child(10),
+.monsters-table th:nth-child(10) {
+	width: 36px;
+}
+
+.monsters-table td:nth-child(11),
+.monsters-table th:nth-child(11),
+.monsters-table td:nth-child(12),
+.monsters-table th:nth-child(12) {
+	width: 44px;
+}
+
+.monsters-table td:nth-child(13),
+.monsters-table th:nth-child(13) {
+	width: 80px;
+}
+
+.monsters-table td:nth-child(14),
+.monsters-table th:nth-child(14) {
+	width: 94px;
+}
+
+.monsters-table td:last-child,
+.monsters-table th:last-child {
+	width: auto;
 }
 
 .table-map-list {
@@ -648,6 +794,10 @@ th, td {
 /* UTILITIES */
 .small-text {
 	font-size: 11px !important;
+}
+
+.tiny-text {
+	font-size: 10px !important;
 }
 
 .tiny-grey {
