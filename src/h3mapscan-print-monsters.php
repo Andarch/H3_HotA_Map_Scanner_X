@@ -53,7 +53,6 @@
                     $resources[] = $sign . comma($amount) . " " . $this->h3mapscan->GetResourceById($rid);
                 }
                 ?>
-
             <tr>
                 <td class="table__row-header--default"><?= ++$n ?></td>
                 <td class="nowrap" nowrap="nowrap"><?= $monster["name"] ?></td>
@@ -71,10 +70,9 @@
                 <td class="ac"><?= $monster["artifact"] ?></td>
                 <td><?= $monster["message"] ?></td>
             </tr>
+            <?php
+            }
+            ?>
         </tbody>
     </table>
 </div>
-
-<?php
-            }
-
