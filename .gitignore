@@ -8,3 +8,7 @@
 /vendor/
 /.vscode/*
 !/.vscode/bookmarks.json
+node_modules/
+.prettierrc
+package.json
+package-lock.json
