@@ -610,17 +610,6 @@ td {
   width: 44px;
 }
 
-/* .monsters-table td:nth-child(13),
-.monsters-table th:nth-child(13) {
-	width: 80px;
-} */
-
-/*
-body > div > div.content > div.table-split-header-container > table > thead > tr:nth-child(1) > th:nth-child(13)
-body > div > div.content > div.table-split-header-container > table > thead > tr:nth-child(2) > th:nth-child(1)
-body > div > div.content > div.table-split-body-container > table > tbody > tr:nth-child(1) > td:nth-child(13)
-*/
-
 .monsters-table thead tr:nth-child(2) th:nth-child(1),
 .monsters-table thead tr:nth-child(2) th:nth-child(2),
 .monsters-table thead tr:nth-child(2) th:nth-child(3),
@@ -639,7 +628,7 @@ body > div > div.content > div.table-split-body-container > table > tbody > tr:n
 }
 
 .monsters-table td:nth-child(20),
-.monsters-table th:nth-child(20) {
+.monsters-table th:nth-child(14) {
   width: 94px;
 }
 
