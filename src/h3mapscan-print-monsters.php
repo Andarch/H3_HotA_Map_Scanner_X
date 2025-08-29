@@ -70,14 +70,6 @@
                 $gems = $resources[5] ?? EMPTY_DATA;
                 $gold = $resources[6] ?? EMPTY_DATA;
 
-                $wood_style = $wood === EMPTY_DATA ? "ac " : "";
-                $mercury_style = $mercury === EMPTY_DATA ? "ac " : "";
-                $ore_style = $ore === EMPTY_DATA ? "ac " : "";
-                $sulfur_style = $sulfur === EMPTY_DATA ? "ac " : "";
-                $crystal_style = $crystal === EMPTY_DATA ? "ac " : "";
-                $gems_style = $gems === EMPTY_DATA ? "ac " : "";
-                $gold_style = $gold === EMPTY_DATA ? "ac " : "";
-
                 $artifact = $monster["artifact"] !== "" ? $monster["artifact"] : EMPTY_DATA;
                 $message = $monster["message"] !== "" ? $monster["message"] : EMPTY_DATA;
                 ?>
@@ -94,15 +86,17 @@
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["joinPercent"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["upgraded"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["stackCount"] ?></td>
-                <td class="<?= $wood_style ?>tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
-                <td class="<?= $mercury_style ?>tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
-                <td class="<?= $ore_style ?>tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
-                <td class="<?= $sulfur_style ?>tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
-                <td class="<?= $crystal_style ?>tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
-                <td class="<?= $gems_style ?>tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
-                <td class="<?= $gold_style ?>tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
-                <td class="ac"><?= $artifact ?></td>
-                <td><?= $message ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
+                <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
+                <td>
+                    <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
+                </td>
             </tr>
             <?php
             }
