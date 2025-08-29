@@ -43,10 +43,8 @@
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
 
-                $count = !$monster["isValue"] ? comma($monster["count"]) : EMPTY_DATA;
-                $value = $monster["isValue"] ? comma($monster["value"]) : EMPTY_DATA;
                 if (!$monster["isValue"]) {
-                    $count = $monster["count"] > 0 ? comma($monster["count"]) : EMPTY_DATA;
+                    $count = $monster["count"] > 0 ? comma($monster["count"]) : "Random";
                     $value = EMPTY_DATA;
                 } else {
                     $count = EMPTY_DATA;
