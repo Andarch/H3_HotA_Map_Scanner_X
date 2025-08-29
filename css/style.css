@@ -5,6 +5,36 @@
   box-sizing: border-box;
 }
 
+/* Resource cell highlight styles */
+.resource-wood {
+  background-color: #a0522d !important;
+  color: #fff !important;
+}
+.resource-mercury {
+  background-color: #b8860b !important;
+  color: #fff !important;
+}
+.resource-ore {
+  background-color: #808080 !important;
+  color: #fff !important;
+}
+.resource-sulfur {
+  background-color: #e2c16b !important;
+  color: #222 !important;
+}
+.resource-crystal {
+  background-color: #7fffd4 !important;
+  color: #222 !important;
+}
+.resource-gems {
+  background-color: #4b0082 !important;
+  color: #fff !important;
+}
+.resource-gold {
+  background-color: #ffd700 !important;
+  color: #222 !important;
+}
+
 /* CUSTOM FONT */
 @font-face {
   font-family: "H3Reader";

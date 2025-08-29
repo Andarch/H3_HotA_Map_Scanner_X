@@ -62,13 +62,24 @@
                     $resources[] = $sign . comma($amount);
                 }
 
-                $wood = empty($resources) ? "" : $resources[0];
-                $mercury = empty($resources) ? "" : $resources[1];
-                $ore = empty($resources) ? "" : $resources[2];
-                $sulfur = empty($resources) ? "" : $resources[3];
-                $crystal = empty($resources) ? "" : $resources[4];
-                $gems = empty($resources) ? "" : $resources[5];
-                $gold = empty($resources) ? "" : $resources[6];
+                $wood = $resources[0] ?? EMPTY_DATA;
+                $mercury = $resources[1] ?? EMPTY_DATA;
+                $ore = $resources[2] ?? EMPTY_DATA;
+                $sulfur = $resources[3] ?? EMPTY_DATA;
+                $crystal = $resources[4] ?? EMPTY_DATA;
+                $gems = $resources[5] ?? EMPTY_DATA;
+                $gold = $resources[6] ?? EMPTY_DATA;
+
+                $wood_style = $wood === EMPTY_DATA ? "ac " : "";
+                $mercury_style = $mercury === EMPTY_DATA ? "ac " : "";
+                $ore_style = $ore === EMPTY_DATA ? "ac " : "";
+                $sulfur_style = $sulfur === EMPTY_DATA ? "ac " : "";
+                $crystal_style = $crystal === EMPTY_DATA ? "ac " : "";
+                $gems_style = $gems === EMPTY_DATA ? "ac " : "";
+                $gold_style = $gold === EMPTY_DATA ? "ac " : "";
+
+                $artifact = $monster["artifact"] !== "" ? $monster["artifact"] : EMPTY_DATA;
+                $message = $monster["message"] !== "" ? $monster["message"] : EMPTY_DATA;
                 ?>
             <tr>
                 <td class="table__row-header--default"><?= ++$n ?></td>
@@ -83,15 +94,15 @@
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["joinPercent"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["upgraded"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $monster["stackCount"] ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
-                <td class="tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
-                <td class="ac"><?= $monster["artifact"] ?></td>
-                <td><?= $monster["message"] ?></td>
+                <td class="<?= $wood_style ?>tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                <td class="<?= $mercury_style ?>tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                <td class="<?= $ore_style ?>tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                <td class="<?= $sulfur_style ?>tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                <td class="<?= $crystal_style ?>tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                <td class="<?= $gems_style ?>tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                <td class="<?= $gold_style ?>tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
+                <td class="ac"><?= $artifact ?></td>
+                <td><?= $message ?></td>
             </tr>
             <?php
             }
