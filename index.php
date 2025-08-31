@@ -30,6 +30,7 @@ $timestamp = time();
 	<script type="application/javascript" src="js/jquery-2.1.3.min.js?t=<?= $timestamp ?>"></script>
 	<script type="application/javascript" src="js/jquery-ui.js?t=<?= $timestamp ?>"></script>
 	<script type="application/javascript" src="js/mapread.js?t=<?= $timestamp ?>"></script>
+	<script type="application/javascript" src="js/select-row.js?t=<?= $timestamp ?>"></script>
 </head>
 
 <body>

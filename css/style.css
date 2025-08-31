@@ -809,12 +809,39 @@ td {
 }
 
 .obj-count-inactive {
+  background: var(--color-mineshaft);
   color: #707070;
 }
 
 .obj-count-active {
   background: #474640;
   color: white;
+}
+
+.obj-count-active td,
+.obj-count-inactive td {
+  background: none;
+}
+
+.obj-count-active.obj-count-selected,
+.obj-count-inactive.obj-count-selected {
+  background: var(--color-gold) !important;
+  color: black !important;
+}
+
+.obj-count-active.obj-count-selected td {
+  background: transparent !important;
+  color: black !important;
+}
+
+.obj-count-inactive.obj-count-selected td {
+  background: transparent !important;
+  color: black !important;
+}
+
+/* Optional: show it’s clickable */
+.obj-count-table tbody tr {
+  cursor: pointer;
 }
 
 .obj-count-total {
@@ -907,12 +934,6 @@ td {
   border-bottom: none !important;
 }
 
-.cell-hidden {
-  background: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
 .cell-greyed-out {
   background: var(--color__table-divider) !important;
   border-top: none !important;
@@ -924,14 +945,16 @@ td {
   border-top: none !important;
 }
 
-.cell-hidden:last-child {
-  border-right: none !important;
-  border-bottom: none !important;
-}
+/* .cell-hidden {
+  background: var(var(--color-lightgrey)) !important;
+} */
+
+/* .cell-hidden:last-child {
+  background: var(--color-lightgrey) !important;
+} */
 
 .cell-hidden:last-of-type {
-  border-right: none !important;
-  border-bottom: none !important;
+  background: var(--color-lightgrey) !important;
 }
 
 .thin-vertical-border {
