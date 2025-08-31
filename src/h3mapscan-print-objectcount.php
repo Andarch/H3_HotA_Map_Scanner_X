@@ -226,7 +226,7 @@ function DisplayObjCountTable($table) {
 	}
 
 	// Print table category title
-	echo '<table class="'.OBJCOUNT_TABLECLASS.'">
+	echo '<table class="table-small obj-count-table">
 			<thead>
 				<tr>
 					<th colspan="'.OBJCOUNT_COLSPAN.'" class="table__title-bar--small">'.$table->category.'</td>

@@ -818,29 +818,12 @@ td {
   color: white;
 }
 
-.obj-count-active td,
-.obj-count-inactive td {
-  background: none;
-}
-
-.obj-count-active.obj-count-selected,
-.obj-count-inactive.obj-count-selected {
+.obj-count-selected {
   background: var(--color-gold) !important;
   color: black !important;
 }
 
-.obj-count-active.obj-count-selected td {
-  background: transparent !important;
-  color: black !important;
-}
-
-.obj-count-inactive.obj-count-selected td {
-  background: transparent !important;
-  color: black !important;
-}
-
-/* Optional: show it’s clickable */
-.obj-count-table tbody tr {
+.obj-count-table tbody tr td:not(.cell-hidden) {
   cursor: pointer;
 }
 
@@ -945,17 +928,23 @@ td {
   border-top: none !important;
 }
 
-/* .cell-hidden {
-  background: var(var(--color-lightgrey)) !important;
-} */
+.cell-hidden {
+  background: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+}
 
 /* .cell-hidden:last-child {
-  background: var(--color-lightgrey) !important;
+  background: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
 } */
 
-.cell-hidden:last-of-type {
-  background: var(--color-lightgrey) !important;
-}
+/* .cell-hidden:last-of-type {
+  background: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+} */
 
 .thin-vertical-border {
   border-left: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);
