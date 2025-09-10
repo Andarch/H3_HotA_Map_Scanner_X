@@ -471,7 +471,7 @@ class H3MAPSCAN {
 
 		$this->HotaMapExtra(); //hota extras
 
-		// Artefacts
+		// Artifacts
 		$this->Artifacts();
 
 		//allowed spells and abilities
@@ -2325,12 +2325,12 @@ class H3MAPSCAN {
 						for($j = 0; $j < $bank['artnum']; $j++) {
 							$artid = $this->br->ReadUint32();
 							if($artid == HNONE32) {
-								$art = 'Random Artefact';
+								$art = 'Random Artifact';
 							}
 							else {
 								$art = $this->GetArtifactById($artid);
 							}
-							$bank['artefacts'][] = $art;
+							$bank['artifacts'][] = $art;
 							$this->artifacts_list[] = new ListObject($art, $this->curcoor, 'Creature Bank', OWNERNONE, 0, '', $this->curobjname);
 						}
 						$obj['data'] = $bank;
