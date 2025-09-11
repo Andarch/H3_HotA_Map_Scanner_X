@@ -19,8 +19,8 @@ $zoneColors = [
     'Pink' => [171, 129, 140],
     'Red' => [179, 76, 76],
     'Normal Land' => [77, 77, 77],
-    'Normal Water' => [80, 85, 88],
-    'Treasure' => [179, 170, 76]
+    'Normal Water' => [80, 85, 88]
+    // 'Treasure' => [179, 170, 76]
 ];
 $zoneTypes = [
     'Blue',
@@ -32,7 +32,7 @@ $zoneTypes = [
     'Pink',
     'Red',
     'Normal',
-    'Treasure',
+    // 'Treasure',
     'Total'
 ];
 
@@ -423,7 +423,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 
 	$xMinus1ObjIds = [
 		'4-0', '15-0',
-		'16-0', '16-1', '16-4', '16-5', '16-6', '16-21', '16-23', '16-24', '16-25', '16-27', '16-29', '16-31', '16-32',
+		'16-0', '16-1', '16-4', '16-5', '16-6', '16-23', '16-24', '16-25', '16-27', '16-29', '16-31', '16-32',
 		'24-0', '25-0', '28-0', '34-X', '41-0',
 		'43-4', '43-5', '43-6', '43-7', '44-4', '44-5', '44-6', '44-7',
 		'45-4', '45-5', '45-6', '45-7', '45-8', '45-13', '45-14', '45-15', '45-16', '45-19', '45-20', '45-21', '45-22', '45-23', '45-24',
@@ -610,8 +610,8 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(0).'</th>';
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(255).'</th>';
-	echo '<th class="table-small__divider"></th>';
-	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(999).'</th>';
+	// echo '<th class="table-small__divider"></th>';
+	// echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(999).'</th>';
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="table-small__column-header--total">Total</th>';
 	echo '</tr>';

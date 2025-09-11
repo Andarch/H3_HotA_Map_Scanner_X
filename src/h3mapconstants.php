@@ -489,8 +489,8 @@ class HeroesConstants
         5 => "Purple",
         6 => "Teal",
         7 => "Pink",
-        255 => "Neutral",
-        999 => "Super",
+        255 => "Neutral"
+        // 999 => "Super",
     ];
 
     public $PrimarySkill = [
