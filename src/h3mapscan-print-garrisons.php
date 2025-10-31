@@ -30,7 +30,6 @@
 
             $n = 0;
             foreach ($this->h3mapscan->garrisons_list as $garrison) {
-                // $owner = $this->h3mapscan->CS->PlayersColors[$garrison->owner];
                 $owner = $this->h3mapscan->GetPlayerColorById($garrison->owner);
                 ?>
                 <tr>
