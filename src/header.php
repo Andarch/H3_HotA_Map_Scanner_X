@@ -1,7 +1,8 @@
 <?php
 
-function generateHeader($headerInfo = null) {
-    if(isset($headerInfo)) {
+function generateHeader($headerInfo = null)
+{
+    if (isset($headerInfo)) {
         $name = $headerInfo['mapname'];
         $file = $headerInfo['mapfile'];
         $version = $headerInfo['version'];
@@ -12,11 +13,10 @@ function generateHeader($headerInfo = null) {
         $size = $headerInfo['mapsize'];
         $layers = $headerInfo['levels'];
         $description = preg_replace('/(<br\s*\/?>\s*)+/', ' ', $headerInfo['mapdesc']);
-        if($description == '') {
+        if ($description == '') {
             $description = EMPTY_DATA;
         }
-    }
-    else {
+    } else {
         $name = EMPTY_DATA;
         $file = EMPTY_DATA;
         $version = EMPTY_DATA;
@@ -39,13 +39,13 @@ function generateHeader($headerInfo = null) {
                     <td>Version</td>
                     <td>
                         <?php
-                        if($versionMajor != EMPTY_DATA && $versionMajor != 0) {
-                            echo 'HotA v'.$versionMajor.'.'.$versionMinor.'.'.$versionPatch.' (mv='.substr($version, 5).')';
-                        }
-                        else {
+                        if ($versionMajor != EMPTY_DATA && $versionMajor != 0) {
+                            echo 'HotA v' . $versionMajor . '.' . $versionMinor . '.' . $versionPatch . ' (mv=' . substr($version, 5) . ')';
+                        } else {
                             echo $version;
                         }
-                        ?></td>
+                        ?>
+                    </td>
 
                     <td>Size</td>
                     <td class="ac"><?php echo $size; ?></td>

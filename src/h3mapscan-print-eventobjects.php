@@ -17,15 +17,15 @@ echo '<table class="table-large">
 			<th class="nowrap" nowrap="nowrap" colspan="6">Rewards</th>
 			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
-foreach($this->h3mapscan->events_list as $evento) {
-	if($evento['objname'] == 'Event Object') {
+foreach ($this->h3mapscan->events_list as $evento) {
+	if ($evento['objname'] == 'Event Object') {
 		$event = $evento['data'];
 		$stack = '';
 		$msg = '';
 
-		if(!empty($event['MessageStack'])) {
+		if (!empty($event['MessageStack'])) {
 			$msg = nl2br($event['MessageStack']['message']);
-			if(array_key_exists('stack', $event['MessageStack'])) {
+			if (array_key_exists('stack', $event['MessageStack'])) {
 				$stack = $this->h3mapscan->PrintStack($event['MessageStack']['stack']);
 			}
 		}
@@ -34,21 +34,21 @@ foreach($this->h3mapscan->events_list as $evento) {
 		$content = $this->h3mapscan->CreateRewardContents($event);
 
 		echo '<tr>
-			<td class="table__row-header--default nowrap" nowrap="nowrap">'.(++$n).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$evento['objname'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$evento['pos']->GetCoords().'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['availableFor']).'</td>
-			<td class="ac" style="width:120px;">'.implode(', ', $event['difficulty']).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$event['removeAfterVisit'].'</td>
-			<td class="small-text nowrap" nowrap="nowrap">'.$stack.'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[1]).'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[2]).'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[3]).'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[4]).'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[5]).'</td>
-			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">'.implode('<br />', $content[6]).'</td>
-			<td class="small-text">'.$msg.'</td>
+			<td class="table__row-header--default nowrap" nowrap="nowrap">' . (++$n) . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $evento['objname'] . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $evento['pos']->GetCoords() . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $this->h3mapscan->PlayerColors($event['availableFor']) . '</td>
+			<td class="ac" style="width:120px;">' . implode(', ', $event['difficulty']) . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $event['humanOrAi'] . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $event['removeAfterVisit'] . '</td>
+			<td class="small-text nowrap" nowrap="nowrap">' . $stack . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[1]) . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[2]) . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[3]) . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[4]) . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[5]) . '</td>
+			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[6]) . '</td>
+			<td class="small-text">' . $msg . '</td>
 		</tr>';
 	}
 }
