@@ -587,35 +587,35 @@ class HeroesConstants
 
     //unused, but maybe in future
     /*
-		public $TeleportChannelType = [
-			0 => 'IMPASSABLE',
-			1 => 'BIDIRECTIONAL',
-			2 => 'UNIDIRECTIONAL',
-			3 => 'MIXED',
-		];
+        public $TeleportChannelType = [
+            0 => 'IMPASSABLE',
+            1 => 'BIDIRECTIONAL',
+            2 => 'UNIDIRECTIONAL',
+            3 => 'MIXED',
+        ];
 
-		public $RiverType = [
-			0 => 'NO RIVER',
-			1 => 'CLEAR RIVER',
-			2 => 'ICY RIVER',
-			3 => 'MUDDY RIVER',
-			4 => 'LAVA RIVER',
-		];
+        public $RiverType = [
+            0 => 'NO RIVER',
+            1 => 'CLEAR RIVER',
+            2 => 'ICY RIVER',
+            3 => 'MUDDY RIVER',
+            4 => 'LAVA RIVER',
+        ];
 
-		public $RoadType = [
-			0 => 'NO ROAD',
-			1 => 'DIRT ROAD',
-			2 => 'GRAVEL ROAD',
-			3 => 'COBBLESTONE ROAD',
-		];
+        public $RoadType = [
+            0 => 'NO ROAD',
+            1 => 'DIRT ROAD',
+            2 => 'GRAVEL ROAD',
+            3 => 'COBBLESTONE ROAD',
+        ];
 
-		public $SpellSchool = [
-			0 => 'AIR',
-			1 => 'FIRE',
-			2 => 'WATER',
-			3 => 'EARTH'
-		];
-		*/
+        public $SpellSchool = [
+            0 => 'AIR',
+            1 => 'FIRE',
+            2 => 'WATER',
+            3 => 'EARTH'
+        ];
+        */
 
     public $SecSkillLevel = [
         0 => "None",

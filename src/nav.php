@@ -3,43 +3,46 @@
 const HRULE1 = '<hr class="hr-thick">';
 const HRULE2 = '<hr class="hrule2">';
 
-function generateNav($map) {
+function generateNav($map)
+{
     ?>
 
     <div class="nav">
 
-    <?php
-    generateNavTop();
-    generateNavMain($map);
-    ?>
+        <?php
+        generateNavTop();
+        generateNavMain($map);
+        ?>
 
     </div>
 
     <?php
 }
 
-function generateNavTop() {
+function generateNavTop()
+{
     ?>
 
-        <div class="nav-top">
-            <hr class="hr-thick">
-            <table>
-                <tr>
-                    <td>
-                        <a href="index.php?scan=1">Scan</a>
-                    </td>
-                    <td>
-                        <a href="maplist.php">Map List</a>
-                    </td>
-                </tr>
-            </table>
-            <hr class="hr-thick">
-        </div>
+    <div class="nav-top">
+        <hr class="hr-thick">
+        <table>
+            <tr>
+                <td>
+                    <a href="index.php?scan=1">Scan</a>
+                </td>
+                <td>
+                    <a href="maplist.php">Map List</a>
+                </td>
+            </tr>
+        </table>
+        <hr class="hr-thick">
+    </div>
 
     <?php
 }
 
-function generateNavMain($map) {
+function generateNavMain($map)
+{
     $mapid = $_GET['mapid'] ?? '';
     $mapQueryString = $mapid ? "mapid=$mapid&" : '';
     $currentSection = $_GET['section'] ?? '';
@@ -58,6 +61,7 @@ function generateNavMain($map) {
         'Artifacts',
         'Spells',
         'Monsters',
+        'Garrisons',
         'Seer\'s Huts',
         'Quest Gates',
         'Quest Guards',
@@ -78,7 +82,7 @@ function generateNavMain($map) {
         'Spells (Lite)',
         'Map Heroes',
         'Towns',
-        'Monsters',
+        'Garrisons',
         'Quest Guards',
         'Town Events',
         'Event Objects',
@@ -91,13 +95,14 @@ function generateNavMain($map) {
         'Template Heroes',
         'Artifacts',
         'Spells',
+        'Monsters',
         'Seer\'s Huts',
         'Quest Gates',
         'Global Events',
         'Pandora\'s Boxes',
     ];
 
-    if($map && $map->map_name == '(C) TBD (Allies)') {
+    if ($map && $map->map_name == '(C) TBD (Allies)') {
         $key = array_search('Object Count', $sectionsWithHr1Below);
         array_splice($sectionsWithHr1Below, $key, 1);
         $sectionsWithHr2Below[] = 'Object Count';
@@ -111,15 +116,15 @@ function generateNavMain($map) {
 
     $navMain = '<div class="nav-main">';
     foreach ($sections as $section) {
-        if($section === 'General') {
+        if ($section === 'General') {
             // $navMain .= HRULE1;
         }
         $selectedClass = $section === $currentSection ? 'selected' : '';
         $anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
-        $navMain .= "<a href=\"?{$mapQueryString}section={$section}{$anchor}\" class=\"{$selectedClass}\">".ucfirst($section)."</a>";
-        if(in_array($section, $sectionsWithHr1Below)) {
+        $navMain .= "<a href=\"?{$mapQueryString}section={$section}{$anchor}\" class=\"{$selectedClass}\">" . ucfirst($section) . "</a>";
+        if (in_array($section, $sectionsWithHr1Below)) {
             $navMain .= HRULE1;
-        } else if(in_array($section, $sectionsWithHr2Below)) {
+        } else if (in_array($section, $sectionsWithHr2Below)) {
             $navMain .= HRULE2;
         }
     }

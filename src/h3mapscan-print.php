@@ -1,23 +1,26 @@
 <?php
 
-class H3MAPSCAN_PRINT {
+class H3MAPSCAN_PRINT
+{
 
 	public $h3mapscan;
-    public function __construct($h3mapscan, $section) {
-        $this->h3mapscan = $h3mapscan;
-        $this->PrintMapInfo($section);
-    }
+	public function __construct($h3mapscan, $section)
+	{
+		$this->h3mapscan = $h3mapscan;
+		$this->PrintMapInfo($section);
+	}
 
 	public $OBJCCS;
 
-    private function PrintMapInfo($section) {
-        $subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' '.$this->h3mapscan->hota_subrev : '';
-        $section = $_GET['section'] ?? 'general';
+	private function PrintMapInfo($section)
+	{
+		$subrev = ($this->h3mapscan->version == $this->h3mapscan::HOTA) ? ' ' . $this->h3mapscan->hota_subrev : '';
+		$section = $_GET['section'] ?? 'general';
 
-        switch ($section) {
-            case 'General':
-                include 'h3mapscan-print-general.php';
-                break;
+		switch ($section) {
+			case 'General':
+				include 'h3mapscan-print-general.php';
+				break;
 			case 'Terrain':
 				include 'h3mapscan-print-terrain.php';
 				break;
@@ -50,6 +53,9 @@ class H3MAPSCAN_PRINT {
 			case 'Monsters':
 				include 'h3mapscan-print-monsters.php';
 				break;
+			case 'Garrisons':
+				include 'h3mapscan-print-garrisons.php';
+				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
 				break;
@@ -72,9 +78,9 @@ class H3MAPSCAN_PRINT {
 			case 'Unused Portraits':
 				include 'h3mapscan-print-unusedportraits.php';
 				break;
-            default:
-                include 'h3mapscan-print-general.php';
-                break;
-        }
-    }
+			default:
+				include 'h3mapscan-print-general.php';
+				break;
+		}
+	}
 }

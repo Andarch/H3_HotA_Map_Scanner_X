@@ -515,7 +515,8 @@ td {
   height: var(--stationary-header__height) !important;
   z-index: 2;
   position: relative;
-  width: 100%;
+  /* width: 100%; */
+  table-layout: fixed;
 }
 
 /* Body */
@@ -535,7 +536,7 @@ td {
 }
 
 .table-split-body {
-  width: 100%;
+  /* width: 100%; */
   table-layout: fixed;
   z-index: 1;
   position: relative;
@@ -590,6 +591,14 @@ td {
 /* ************** */
 /* Monsters Table */
 /* ************** */
+
+.monsters-table-container {
+  width: 100%;
+}
+
+.monsters-table {
+  width: 100%;
+}
 
 .monsters-table td:first-child,
 .monsters-table th:first-child {
@@ -648,6 +657,10 @@ td {
   width: 44px;
 }
 
+.monsters-table th:nth-child(13) {
+  width: 308px;
+}
+
 .monsters-table thead tr:nth-child(2) th:nth-child(1),
 .monsters-table thead tr:nth-child(2) th:nth-child(2),
 .monsters-table thead tr:nth-child(2) th:nth-child(3),
@@ -672,6 +685,53 @@ td {
 
 .monsters-table td:last-child,
 .monsters-table th:last-child {
+  width: auto;
+}
+
+/* *************** */
+/* Garrisons Table */
+/* *************** */
+
+.garrisons-table-container {
+  width: 30%;
+}
+
+.garrisons-table {
+  width: 100%;
+}
+
+.garrisons-table td:first-child,
+.garrisons-table th:first-child {
+  width: 22px;
+}
+
+.garrisons-table td:nth-child(2),
+.garrisons-table th:nth-child(2) {
+  width: 100px;
+}
+
+.garrisons-table td:nth-child(3),
+.garrisons-table th:nth-child(3) {
+  width: 56px;
+}
+
+.garrisons-table td:nth-child(4),
+.garrisons-table th:nth-child(4) {
+  width: 62px;
+}
+
+.garrisons-table td:nth-child(5),
+.garrisons-table th:nth-child(5) {
+  width: 44px;
+}
+
+.garrisons-table td:nth-child(6),
+.garrisons-table th:nth-child(6) {
+  width: 64px;
+}
+
+.garrisons-table td:nth-child(7),
+.garrisons-table th:nth-child(7) {
   width: auto;
 }
 

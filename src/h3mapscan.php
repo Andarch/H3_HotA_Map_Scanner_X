@@ -104,6 +104,7 @@ class H3MAPSCAN
 	public $towns_list = [];
 	public $mines_list = [];
 	public $monsters_list = [];
+	public $garrisons_list = [];
 	public $event_list = []; //global events
 	public $quest_gates = [];
 	public $quest_guards = [];
@@ -1933,13 +1934,25 @@ class H3MAPSCAN
 					$this->br->SkipBytes(3);
 					$stack['monsters'] = $this->ReadCreatureSet(7);
 					if ($this->version > $this::ROE) {
-						$stack['removableUnits'] = $this->br->ReadUint8();
+						$stack['removableUnits'] = $this->br->ReadUint8() ? "TRUE" : "FALSE";
 					} else {
 						$stack['removableUnits'] = 1;
 					}
 					$this->br->SkipBytes(8);
 
 					$obj['data'] = $stack;
+
+					if ($obj["id"] == OBJECTS::GARRISON_HORIZONTAL) {
+						$direction = "Horizontal";
+					} elseif ($obj["id"] == OBJECTS::GARRISON_VERTICAL) {
+						$direction = "Vertical";
+					}
+					if ($obj["subid"] == 0) {
+						$name = "Garrison";
+					} elseif ($obj["subid"] == 1) {
+						$name = "Anti-magic Garrison";
+					}
+					$this->garrisons_list[] = new ListObject($name, $obj['pos'], 'Map', $stack['owner'], 0, $direction, $stack['removableUnits'], $stack['monsters']);
 					break;
 
 				case OBJECTS::ARTIFACT:
@@ -4196,8 +4209,9 @@ class ListObject
 	public $info;
 	public $add1; //additional info 1
 	public $add2; //additional info 2
+	public $add3; //additional info 3
 
-	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null)
+	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null, $add3 = null)
 	{
 		$this->name = $name;
 		$this->mapcoor = $coor;
@@ -4207,6 +4221,7 @@ class ListObject
 		$this->info = $info;
 		$this->add1 = $add1;
 		$this->add2 = $add2;
+		$this->add3 = $add3;
 	}
 }
 
