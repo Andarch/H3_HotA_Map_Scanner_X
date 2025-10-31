@@ -1,9 +1,3 @@
-/mapsimg/*
-!/mapsimg/.gitkeep
-*.h3m
-/maps/*
-!/maps/.gitkeep
-*.h3c
 .vs/
 /vendor/
 /.vscode/*
