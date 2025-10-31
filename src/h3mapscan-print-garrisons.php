@@ -23,9 +23,15 @@
         <tbody>
 
             <?php
+            // Sort $this->h3mapscan->garrisons_list by owner
+            usort($this->h3mapscan->garrisons_list, function ($a, $b) {
+                return $a->owner <=> $b->owner;
+            });
+
             $n = 0;
             foreach ($this->h3mapscan->garrisons_list as $garrison) {
-                $owner = $this->h3mapscan->CS->PlayersColors[$garrison->owner];
+                // $owner = $this->h3mapscan->CS->PlayersColors[$garrison->owner];
+                $owner = $this->h3mapscan->GetPlayerColorById($garrison->owner);
                 ?>
                 <tr>
                     <td class="table__row-header--default"><?= ++$n ?></td>
