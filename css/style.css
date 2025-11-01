@@ -698,7 +698,6 @@ td {
 
 .table-split-body-container.garrisons-table-container {
   height: calc(881.136px + var(--table__border-width--thick));
-  /* height: 881.136px; */
 }
 
 .garrisons-table {
@@ -1064,6 +1063,7 @@ td {
 
 .ellipsis1 {
   display: -webkit-box;
+  line-clamp: 1;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
