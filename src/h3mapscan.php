@@ -114,6 +114,13 @@ class H3MAPSCAN
 	public $keys_list = [];
 	public $monolith_list = [];
 
+	//Zones
+	public $zonetypes_img_g = null;
+	public $zonetypes_img_u = null;
+	public $zonecolors_img_g = null;
+	public $zonecolors_img_u = null;
+	public $has_zone_images = false;
+
 	//curent object being read and its coords
 	private $curobjtype;
 	private $curobjname;
@@ -1561,6 +1568,18 @@ class H3MAPSCAN
 
 	private function ReadObjects()
 	{
+		// $mapfilename = substr($this->mapfilename, 0, -4);
+		$mapfilename = $this->mapfilename;
+
+		$zonetypes_img_g_path = MAPDIR . "{$mapfilename}_zonetypes_g.png";
+		$zonetypes_img_u_path = MAPDIR . "{$mapfilename}_zonetypes_u.png";
+		$this->zonetypes_img_g = file_exists($zonetypes_img_g_path) ? imagecreatefrompng($zonetypes_img_g_path) : null;
+		$this->zonetypes_img_u = file_exists($zonetypes_img_u_path) ? imagecreatefrompng($zonetypes_img_u_path) : null;
+		$zonecolors_img_g_path = MAPDIR . "{$mapfilename}_zonecolors_g.png";
+		$zonecolors_img_u_path = MAPDIR . "{$mapfilename}_zonecolors_u.png";
+		$this->zonecolors_img_g = file_exists($zonecolors_img_g_path) ? imagecreatefrompng($zonecolors_img_g_path) : null;
+		$this->zonecolors_img_u = file_exists($zonecolors_img_u_path) ? imagecreatefrompng($zonecolors_img_u_path) : null;
+		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zonecolors_img_g && $this->zonecolors_img_u) ? true : false;
 
 		$this->InitializeObjectsCountArrays();
 
@@ -1586,6 +1605,29 @@ class H3MAPSCAN
 				$obj['id'] = $this->objTemplates[$obj['defnum']]->id;
 				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
+				$obj['zone_type'] = EMPTY_DATA;
+				$obj['zone_color'] = EMPTY_DATA;
+
+				if (!in_array($obj["id"], $this->CS->OmittedObjectsZones)) {
+					// Zones
+					$obj["posoffset"] = $this->GetCoordsOffset($obj["pos"], $obj["id"], $obj["subid"]);
+
+					if ($this->has_zone_images) {
+						$ERROR_TYPES = ["Out of Bounds", "Void", "Unknown"];
+						list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+						if (
+							($obj["id"] == OBJECTS::SHIPWRECK || $obj["id"] == OBJECTS::PRISON || $obj["id"] == OBJECTS::DWELLING_NORMAL || $obj["id"] == OBJECTS::DWELLING_MULTI) && (
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+							)
+						) {
+							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y, $obj["pos"]->z);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+						}
+					}
+					$obj['pos'] = $obj["posoffset"];
+					$this->curcoor = $obj['pos'];
+				}
+
 				if (!array_key_exists($obj['id'], $this->CS->OmittedObjectsAll)) {
 					// Object count - all
 					$obj['comboid'] = $this->GetComboId($obj['id'], $obj['subid']);
@@ -1598,10 +1640,11 @@ class H3MAPSCAN
 					$objcomboid = $obj['comboid'];
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
+					$objzonecolor = $obj['zone_color'];
 
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
-					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos);
+					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzonecolor);
 				}
 			} else {
 				$obj['id'] = OBJECT_INVALID;
@@ -1952,7 +1995,7 @@ class H3MAPSCAN
 					} elseif ($obj["subid"] == 1) {
 						$name = "Anti-magic Garrison";
 					}
-					$this->garrisons_list[] = new ListObject($name, $obj['pos'], 'Map', $stack['owner'], 0, $direction, $stack['removableUnits'], $stack['monsters']);
+					$this->garrisons_list[] = new ListObject($name, $obj['pos'], 'Map', $stack['owner'], 0, $direction, $stack['removableUnits'], $stack['monsters'], $obj['zone_type']);
 					break;
 
 				case OBJECTS::ARTIFACT:
@@ -2485,7 +2528,7 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos)
+	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzonecolor)
 	{
 		$truecomboid = $objid . '-' . $objsubid;
 		$creaturelevel = null;
@@ -2510,6 +2553,9 @@ class H3MAPSCAN
 			$objcategory = OBJ_CATEGORY::OTHER_DWELLINGS;
 		}
 		$this->objectCountPlayers[$objcategory][] = [
+			'id' => $objid,
+			'subid' => $objsubid,
+			'zone_color' => $objzonecolor,
 			'comboid' => $objcomboid,
 			'truecomboid' => $truecomboid,
 			'name' => $objname,
@@ -3900,6 +3946,365 @@ class H3MAPSCAN
 		}
 		return '? ' . $uid;
 	}
+	private function GetCoordsOffset(MapCoords $pos, int $id, int $subid): MapCoords
+	{
+		$OBJS_X_OFFSET_MINUS_1 = [
+			'4-0',
+			'15-0',
+			'16-0',
+			'16-1',
+			'16-4',
+			'16-5',
+			'16-6',
+			'16-23',
+			'16-24',
+			'16-25',
+			'16-27',
+			'16-29',
+			'16-31',
+			'16-32',
+			'24-0',
+			'25-0',
+			'28-0',
+			'34-X',
+			'41-0',
+			'43-4',
+			'43-5',
+			'43-6',
+			'43-7',
+			'44-4',
+			'44-5',
+			'44-6',
+			'44-7',
+			'45-4',
+			'45-5',
+			'45-6',
+			'45-7',
+			'45-8',
+			'45-13',
+			'45-14',
+			'45-15',
+			'45-16',
+			'45-19',
+			'45-20',
+			'45-21',
+			'45-22',
+			'45-23',
+			'45-24',
+			'51-0',
+			'52-0',
+			'53-0',
+			'53-1',
+			'53-2',
+			'53-3',
+			'53-4',
+			'53-5',
+			'53-6',
+			ABANDONED_MINE_COMBOID,
+			'54-X',
+			'55-0',
+			'62-1',
+			'71-0',
+			'72-0',
+			'73-0',
+			'74-0',
+			'75-0',
+			'83-X',
+			'84-0',
+			'87-0',
+			'92-0',
+			'95-0',
+			'96-0',
+			'102-0',
+			'103-0',
+			'104-0',
+			'106-0',
+			'107-0',
+			'112-0',
+			'113-0',
+			'144-2',
+			'144-5',
+			'144-6',
+			'144-9',
+			'144-10',
+			'145-0',
+			'146-1',
+			'146-3',
+			'146-4',
+			'162-0',
+			'163-0',
+			'164-0',
+			'212-0',
+			'212-1',
+			'212-2',
+			'212-3',
+			'212-4',
+			'212-5',
+			'212-6',
+			'212-7',
+			'213-0',
+			GARRISON_COMBOID,
+			AMGARRISON_COMBOID
+		];
+
+		$OBJS_X_OFFSET_MINUS_2 = [
+			'16-22',
+			'16-26',
+			'77-0',
+			'98-0',
+			'98-1',
+			'98-2',
+			'98-3',
+			'98-4',
+			'98-5',
+			'98-6',
+			'98-7',
+			'98-8',
+			'98-9',
+			'98-10'
+		];
+
+		$CONDITIONAL_X_MINUS_1 = [
+			'16-0',
+			'16-1',
+			'16-4',
+			'16-5',
+			'16-6',
+			'16-23',
+			'16-24',
+			'16-25',
+			'16-27',
+			'16-29',
+			'16-31',
+			'16-32',
+			'43-4',
+			'43-5',
+			'43-6',
+			'43-7',
+			'44-4',
+			'44-5',
+			'44-6',
+			'44-7',
+			'45-4',
+			'45-5',
+			'45-6',
+			'45-7',
+			'45-8',
+			'45-13',
+			'45-14',
+			'45-15',
+			'45-16',
+			'45-19',
+			'45-20',
+			'45-21',
+			'45-22',
+			'45-23',
+			'45-24',
+			'62-1',
+			'144-2',
+			'144-5',
+			'144-6',
+			'144-9',
+			'144-10',
+			'145-0',
+			'146-1',
+			'146-3',
+			'146-4',
+			'212-0',
+			'212-1',
+			'212-2',
+			'212-3',
+			'212-4',
+			'212-5',
+			'212-6',
+			'212-7',
+			GARRISON_COMBOID,
+			AMGARRISON_COMBOID
+		];
+
+		$CONDITIONAL_X_MINUS_2 = [
+			'16-22',
+			'16-26'
+		];
+
+		$OBJS_Y_OFFSET_MINUS_1 = [
+			'219-0',
+			'219-1',
+			GARRISON_COMBOID,
+			AMGARRISON_COMBOID
+		];
+
+		$CONDITIONAL_Y_OFFSET_MINUS_1 = [
+			GARRISON_COMBOID,
+			AMGARRISON_COMBOID
+		];
+
+		$comboid = $this->GetComboId($id, $subid);
+
+		$should_apply_minus1 = function (string $comboid, $id) use ($CONDITIONAL_X_MINUS_1): bool {
+			if (!in_array($comboid, $CONDITIONAL_X_MINUS_1)) {
+				return true;
+			}
+
+			// Creature Banks that need X-1
+			$creature_banks_x1 = [
+				'16-0',
+				'16-1',
+				'16-4',
+				'16-5',
+				'16-6',
+				'16-23',
+				'16-24',
+				'16-25',
+				'16-27',
+				'16-29',
+				'16-31',
+				'16-32'
+			];
+			if (in_array($comboid, $creature_banks_x1)) {
+				return true;
+			}
+
+			// One-Way Monolith Entrances/Exits - Big variants
+			$monolith_one_way_big = ['43-4', '43-5', '43-6', '43-7', '44-4', '44-5', '44-6', '44-7'];
+			if (in_array($comboid, $monolith_one_way_big)) {
+				return true;
+			}
+
+			// Two-Way Monoliths - Big and Water variants
+			$monolith_two_way_big = [
+				'45-4',
+				'45-5',
+				'45-6',
+				'45-7',
+				'45-8',
+				'45-13',
+				'45-14',
+				'45-15',
+				'45-16',
+				'45-19',
+				'45-20',
+				'45-21',
+				'45-22',
+				'45-23',
+				'45-24'
+			];
+			if (in_array($comboid, $monolith_two_way_big)) {
+				return true;
+			}
+
+			// Prison - Hero Camp
+			if ($comboid == '62-1') {
+				return true;
+			}
+
+			// HotA Visitable 1
+			$hota_vis1 = ['144-2', '144-5', '144-6', '144-9', '144-10'];
+			if (in_array($comboid, $hota_vis1)) {
+				return true;
+			}
+
+			// HotA Collectible - Ancient Lamp
+			if ($comboid == '145-0') {
+				return true;
+			}
+
+			// HotA Visitable 2
+			$hota_vis2 = ['146-1', '146-3', '146-4'];
+			if (in_array($comboid, $hota_vis2)) {
+				return true;
+			}
+
+			// Border Gates (all except Grave)
+			$border_gates = ['212-0', '212-1', '212-2', '212-3', '212-4', '212-5', '212-6', '212-7'];
+			if (in_array($comboid, $border_gates)) {
+				return true;
+			}
+
+			// Garrisons
+			$garrisons = [GARRISON_COMBOID, AMGARRISON_COMBOID];
+			if (in_array($comboid, $garrisons) && $id == 33) {
+				return true;
+			}
+
+			return false;
+		};
+
+		$should_apply_minus2 = function (string $comboid) use ($CONDITIONAL_X_MINUS_2): bool {
+			if (!in_array($comboid, $CONDITIONAL_X_MINUS_2)) {
+				return true;
+			}
+
+			// Creature Banks that need X-2
+			if (in_array($comboid, ['16-22', '16-26'])) {
+				return true;
+			}
+
+			return false;
+		};
+
+		$should_apply_y_minus1 = function (string $comboid, $id) use ($CONDITIONAL_Y_OFFSET_MINUS_1): bool {
+			if (!in_array($comboid, $CONDITIONAL_Y_OFFSET_MINUS_1)) {
+				return true;
+			}
+
+			// Garrisons
+			$garrisons = [GARRISON_COMBOID, AMGARRISON_COMBOID];
+			if (in_array($comboid, $garrisons) && $id == 219) {
+				return true;
+			}
+
+			return false;
+		};
+
+		$x = $pos->x;
+		$y = $pos->y;
+		$z = $pos->z;
+
+		if (in_array($comboid, $OBJS_X_OFFSET_MINUS_1) && $should_apply_minus1($comboid, $id)) {
+			$x -= 1;
+		} elseif (in_array($comboid, $OBJS_X_OFFSET_MINUS_2) && $should_apply_minus2($comboid)) {
+			$x -= 2;
+		} elseif (in_array($comboid, $OBJS_Y_OFFSET_MINUS_1) && $should_apply_y_minus1($comboid, $id)) {
+			$y -= 1;
+		}
+
+		return new MapCoords($x, $y, $z);
+	}
+
+	function GetZone(MapCoords $pos, $id): array
+	{
+		$x = $pos->x;
+		$y = $pos->y;
+		$z = $pos->z;
+
+		$get_pixel_rgb = function ($img_g, $img_u) use ($x, $y, $z) {
+			$img = ($z == 0) ? $img_g : $img_u;
+			$width = imagesx($img);
+			$height = imagesy($img);
+
+			if (!($x >= 0 && $x < $width && $y >= 0 && $y < $height)) {
+				return [null, "Out of Bounds"];
+			}
+
+			$color = imagecolorat($img, $x, $y);
+			$rgba = imagecolorsforindex($img, $color);
+
+			if ($rgba['alpha'] == 127) { // In PHP GD, alpha 127 is fully transparent
+				return [null, "Void"];
+			}
+
+			return [[$rgba['red'], $rgba['green'], $rgba['blue']], null];
+		};
+
+		list($rgb_types, $error_types) = $get_pixel_rgb($this->zonetypes_img_g, $this->zonetypes_img_u);
+		$zone_type = $error_types ?: ($this->CS->ZoneTypes[implode(',', $rgb_types)] ?? "Unknown");
+
+		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zonecolors_img_g, $this->zonecolors_img_u);
+		$zone_color = $error_colors ?: ($this->CS->ZoneColors[implode(',', $rgb_colors)] ?? "Unknown");
+
+		return [$zone_type, $zone_color];
+	}
 
 	//check, if map is compressed or not, compressed starts with 1F 8B 08 00 in LE, that's 0x00088B1F
 	private function IsGZIP()
@@ -4209,9 +4614,9 @@ class ListObject
 	public $info;
 	public $add1; //additional info 1
 	public $add2; //additional info 2
-	public $add3; //additional info 3
+	public $zonetype;
 
-	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null, $add3 = null)
+	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null, $zonetype = null)
 	{
 		$this->name = $name;
 		$this->mapcoor = $coor;
@@ -4221,7 +4626,7 @@ class ListObject
 		$this->info = $info;
 		$this->add1 = $add1;
 		$this->add2 = $add2;
-		$this->add3 = $add3;
+		$this->zonetype = $zonetype;
 	}
 }
 

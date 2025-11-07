@@ -10,6 +10,7 @@
                 <th>Type</th>
                 <th>Direction</th>
                 <th>Position</th>
+                <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
                 <th>Owner</th>
                 <th class="nowrap" nowrap="nowrap">Troops are<br />Removable</th>
                 <th>Guards</th>
@@ -38,6 +39,8 @@
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->info ?></td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                         <?= $garrison->mapcoor->GetCoords() ?>
+                    </td>
+                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->zonetype ?>
                     </td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $owner ?></td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->add1 ?></td>

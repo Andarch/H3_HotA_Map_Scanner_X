@@ -107,9 +107,6 @@ function generateNavMain($map)
         array_splice($sectionsWithHr1Below, $key, 1);
         $sectionsWithHr2Below[] = 'Object Count';
 
-        $sections[] = 'Objects by Zone';
-        $sectionsWithHr2Below[] = 'Objects by Zone';
-
         $sections[] = 'Unused Portraits';
         $sectionsWithHr1Below[] = 'Unused Portraits';
     }

@@ -729,16 +729,21 @@ td {
 
 .garrisons-table td:nth-child(5),
 .garrisons-table th:nth-child(5) {
-  width: 44px;
+  width: 34px;
 }
 
 .garrisons-table td:nth-child(6),
 .garrisons-table th:nth-child(6) {
-  width: 64px;
+  width: 44px;
 }
 
 .garrisons-table th:nth-child(7),
 .garrisons-table td:nth-child(7) {
+  width: 64px;
+}
+
+.garrisons-table th:nth-child(8),
+.garrisons-table td:nth-child(8) {
   width: 150px;
 }
 
