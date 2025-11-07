@@ -714,17 +714,17 @@ td {
 
 .garrisons-table td:nth-child(2),
 .garrisons-table th:nth-child(2) {
-  width: 100px;
+  width: 108px;
 }
 
 .garrisons-table td:nth-child(3),
 .garrisons-table th:nth-child(3) {
-  width: 58px;
+  width: 60px;
 }
 
 .garrisons-table td:nth-child(4),
 .garrisons-table th:nth-child(4) {
-  width: 62px;
+  width: 66px;
 }
 
 .garrisons-table td:nth-child(5),
@@ -737,19 +737,8 @@ td {
   width: 64px;
 }
 
-.garrisons-table th:nth-child(7) {
-  width: calc(150px * 7);
-}
-
-.garrisons-table td:nth-child(7),
-.garrisons-table td:nth-child(8),
-.garrisons-table td:nth-child(9),
-.garrisons-table td:nth-child(10),
-.garrisons-table td:nth-child(11),
-.garrisons-table td:nth-child(12),
-.garrisons-table td:nth-child(13) {
-  border-right: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);
-  border-left: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);
+.garrisons-table th:nth-child(7),
+.garrisons-table td:nth-child(7) {
   width: 150px;
 }
 

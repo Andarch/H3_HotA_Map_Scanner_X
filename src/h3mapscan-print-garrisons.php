@@ -12,7 +12,7 @@
                 <th>Position</th>
                 <th>Owner</th>
                 <th class="nowrap" nowrap="nowrap">Troops are<br />Removable</th>
-                <th colspan="7">Guards</th>
+                <th>Guards</th>
             </tr>
         </thead>
     </table>
@@ -34,20 +34,14 @@
                 ?>
                 <tr>
                     <td class="table__row-header--default"><?= ++$n ?></td>
-                    <td class="nowrap" nowrap="nowrap"><?= $garrison->name ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->info ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->mapcoor->GetCoords() ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $owner ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->add1 ?></td>
-                    <?php
-                    for ($i = 0; $i < 7; $i++) {
-                        ?>
-                        <td class="nowrap" nowrap="nowrap">
-                            <?= isset($garrison->add2[$i]) ? $this->h3mapscan->GetCreatureById($garrison->add2[$i]["id"]) . ": " . comma($garrison->add2[$i]["count"]) : "" ?>
-                        </td>
-                        <?php
-                    }
-                    ?>
+                    <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->name ?></td>
+                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->info ?></td>
+                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                        <?= $garrison->mapcoor->GetCoords() ?>
+                    </td>
+                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $owner ?></td>
+                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->add1 ?></td>
+                    <td class="nowrap" nowrap="nowrap"><?= $this->h3mapscan->PrintStack($garrison->add2) ?></td>
                 </tr>
                 <?php
             }
