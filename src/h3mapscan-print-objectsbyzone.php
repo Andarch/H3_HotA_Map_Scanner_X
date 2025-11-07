@@ -4,36 +4,36 @@
 require_once 'src/h3objcountconstants.php';
 
 /* DECLARATIONS */
-$h3mapscan =  $this->h3mapscan;
+$h3mapscan = $this->h3mapscan;
 $underground = $h3mapscan->underground;
 $zonesImageBaseFilename = pathinfo($h3mapscan->mapfile, PATHINFO_FILENAME);
 $objPerZone = $h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
 $zoneColors = [
-    'Blue' => [89, 110, 184],
-    'Tan' => [129, 108, 88],
-    'Green' => [71, 109, 54],
-    'Orange' => [179, 129, 76],
-    'Purple' => [109, 59, 120],
-    'Teal' => [50, 112, 116],
-    'Pink' => [171, 129, 140],
-    'Red' => [179, 76, 76],
-    'Normal Land' => [77, 77, 77],
-    'Normal Water' => [80, 85, 88]
-    // 'Treasure' => [179, 170, 76]
+	'Blue' => [89, 110, 184],
+	'Tan' => [129, 108, 88],
+	'Green' => [71, 109, 54],
+	'Orange' => [179, 129, 76],
+	'Purple' => [109, 59, 120],
+	'Teal' => [50, 112, 116],
+	'Pink' => [171, 129, 140],
+	'Red' => [179, 76, 76],
+	'Normal Land' => [77, 77, 77],
+	'Normal Water' => [80, 85, 88]
+	// 'Treasure' => [179, 170, 76]
 ];
 $zoneTypes = [
-    'Blue',
-    'Tan',
-    'Green',
-    'Orange',
-    'Purple',
-    'Teal',
-    'Pink',
-    'Red',
-    'Normal',
-    // 'Treasure',
-    'Total'
+	'Blue',
+	'Tan',
+	'Green',
+	'Orange',
+	'Purple',
+	'Teal',
+	'Pink',
+	'Red',
+	'Normal',
+	// 'Treasure',
+	'Total'
 ];
 
 /* MAIN */
@@ -42,15 +42,15 @@ echo '<div class="obz-container">';
 
 // Images table
 $timestamp = time();
-$imgmapnameg = MAPDIR.$zonesImageBaseFilename.'_g.png';
-$imgmapnameu = MAPDIR.$zonesImageBaseFilename.'_u.png';
-$imgzonesg = MAPDIR.$zonesImageBaseFilename.'_g2.png';
-$imgzonesu = MAPDIR.$zonesImageBaseFilename.'_u2.png';
-$imgground = file_exists($imgmapnameg) ? '<img src="'.$imgmapnameg.'?t='.$timestamp.'" />' : 'Map Ground';
-$output = '<div class="obz-map-images-container"><table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">'.$imgground.'</td>';
-if($underground) {
-	$imguground = file_exists($imgmapnameu) ? '<img src="'.$imgmapnameu.'?t='.$timestamp.'" />' : 'Map Underground';
-	$output .= '<td class="map-image-container">'.$imguground.'</td>';
+$imgmapnameg = MAPDIR . $zonesImageBaseFilename . '_g.png';
+$imgmapnameu = MAPDIR . $zonesImageBaseFilename . '_u.png';
+$imgzonesg = MAPDIR . $zonesImageBaseFilename . '_zonecolors_g.png';
+$imgzonesu = MAPDIR . $zonesImageBaseFilename . '_zonecolors_u.png';
+$imgground = file_exists($imgmapnameg) ? '<img src="' . $imgmapnameg . '?t=' . $timestamp . '" />' : 'Map Ground';
+$output = '<div class="obz-map-images-container"><table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">' . $imgground . '</td>';
+if ($underground) {
+	$imguground = file_exists($imgmapnameu) ? '<img src="' . $imgmapnameu . '?t=' . $timestamp . '" />' : 'Map Underground';
+	$output .= '<td class="map-image-container">' . $imguground . '</td>';
 }
 $output .= '</tr></table></div>';
 echo $output;
@@ -266,54 +266,64 @@ echo '</div></div>';
 
 /* END MAIN */
 
-function loadImageColors($filename) {
-    if (!file_exists($filename)) {
-        return null;
-    }
-    $image = imagecreatefrompng($filename);
-    $width = imagesx($image);
-    $height = imagesy($image);
-    $colors = [];
+function loadImageColors($filename)
+{
+	if (!file_exists($filename)) {
+		return null;
+	}
+	$image = imagecreatefrompng($filename);
+	$width = imagesx($image);
+	$height = imagesy($image);
+	$colors = [];
 
-    for ($x = 0; $x < $width; $x++) {
-        for ($y = 0; $y < $height; $y++) {
-            $rgba = imagecolorat($image, $x, $y);
+	for ($x = 0; $x < $width; $x++) {
+		for ($y = 0; $y < $height; $y++) {
+			$rgba = imagecolorat($image, $x, $y);
 			$alpha = ($rgba & 0x7F000000) >> 24;
-            $r = ($rgba >> 16) & 0xFF;
-            $g = ($rgba >> 8) & 0xFF;
-            $b = $rgba & 0xFF;
+			$r = ($rgba >> 16) & 0xFF;
+			$g = ($rgba >> 8) & 0xFF;
+			$b = $rgba & 0xFF;
 			$colors[$x][$y] = [$r, $g, $b];
-        }
-    }
-    imagedestroy($image);
-    return $colors;
+		}
+	}
+	imagedestroy($image);
+	return $colors;
 }
 
-function getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $tileColors, $zoneColors) {
+function getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $tileColors, $zoneColors)
+{
 	$color = $tileColors[$x][$y];
 
 	$moreXMinus1ObjIds = [
-		'17-X', '17-76', '17-100', '17-102', '20-0', '62-0', '85-0'
+		'17-X',
+		'17-76',
+		'17-100',
+		'17-102',
+		'20-0',
+		'62-0',
+		'85-0'
 	];
 
 	$horizontalGarrisonObjIds = [
-		'33-0', '33-1'
+		'33-0',
+		'33-1'
 	];
 
 	$verticalGarrisonObjIds = [
-		'219-0', '219-1'
+		'219-0',
+		'219-1'
 	];
 
-	if($color == [255, 255, 255]) {
-		if(in_array($objcomboid, $moreXMinus1ObjIds)) {
+	if ($color == [255, 255, 255]) {
+		if (in_array($objcomboid, $moreXMinus1ObjIds)) {
 			$color = $tileColors[$x - 1][$y];
-		} else if(in_array($objtruecomboid, $horizontalGarrisonObjIds)) {
+		} else if (in_array($objtruecomboid, $horizontalGarrisonObjIds)) {
 			$color = $tileColors[$x - 1][$y];
-		} else if(in_array($objtruecomboid, $verticalGarrisonObjIds)) {
+		} else if (in_array($objtruecomboid, $verticalGarrisonObjIds)) {
 			$color = $tileColors[$x][$y - 1];
 		} else if ($objcomboid == '212-1000') {
 			$color = $tileColors[$x - 1][$y];
-			if($color == [255, 255, 255]) {
+			if ($color == [255, 255, 255]) {
 				$color = $tileColors[$x][$y - 1];
 			}
 		} else if ($objcomboid == '31-0') {
@@ -321,16 +331,17 @@ function getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $tileColors, $
 		}
 	}
 
-    foreach ($zoneColors as $zone => $zoneColor) {
-        if ($color === $zoneColor) {
-            return $zone;
-        }
-    }
+	foreach ($zoneColors as $zone => $zoneColor) {
+		if ($color === $zoneColor) {
+			return $zone;
+		}
+	}
 
-    return null;
+	return null;
 }
 
-function ProcessObject($category, $name, $comboid) {
+function ProcessObject($category, $name, $comboid)
+{
 	$isFactionDwelling = false;
 	$objn = '';
 	switch ($category) {
@@ -399,7 +410,8 @@ function ProcessObject($category, $name, $comboid) {
 	return [$objn, $isFactionDwelling];
 }
 
-function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes) {
+function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes)
+{
 	$objCountPlayers = [];
 	$objProcessResult = [];
 
@@ -422,21 +434,117 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 	];
 
 	$xMinus1ObjIds = [
-		'4-0', '15-0',
-		'16-0', '16-1', '16-4', '16-5', '16-6', '16-23', '16-24', '16-25', '16-27', '16-29', '16-31', '16-32',
-		'24-0', '25-0', '28-0', '34-X', '41-0',
-		'43-4', '43-5', '43-6', '43-7', '44-4', '44-5', '44-6', '44-7',
-		'45-4', '45-5', '45-6', '45-7', '45-8', '45-13', '45-14', '45-15', '45-16', '45-19', '45-20', '45-21', '45-22', '45-23', '45-24',
-		'51-0', '52-0',
-		'53-0', '53-1', '53-2', '53-3', '53-4', '53-5', '53-6', ABANDONED_MINE_COMBOID,
-		'54-X', '55-0', '62-1', '71-0', '72-0', '73-0', '74-0', '75-0', '83-X', '84-0', '87-0', '92-0', '95-0', '96-0',
-		'102-0', '103-0', '104-0', '106-0', '107-0', '112-0', '113-0',
-		'144-2', '144-5', '144-6', '144-9', '144-10', '145-0', '146-1', '146-3', '146-4',
-		'162-0', '163-0', '164-0', '212-0', '212-1', '212-2', '212-3', '212-4', '212-5', '212-6', '212-7', '213-0'
+		'4-0',
+		'15-0',
+		'16-0',
+		'16-1',
+		'16-4',
+		'16-5',
+		'16-6',
+		'16-23',
+		'16-24',
+		'16-25',
+		'16-27',
+		'16-29',
+		'16-31',
+		'16-32',
+		'24-0',
+		'25-0',
+		'28-0',
+		'34-X',
+		'41-0',
+		'43-4',
+		'43-5',
+		'43-6',
+		'43-7',
+		'44-4',
+		'44-5',
+		'44-6',
+		'44-7',
+		'45-4',
+		'45-5',
+		'45-6',
+		'45-7',
+		'45-8',
+		'45-13',
+		'45-14',
+		'45-15',
+		'45-16',
+		'45-19',
+		'45-20',
+		'45-21',
+		'45-22',
+		'45-23',
+		'45-24',
+		'51-0',
+		'52-0',
+		'53-0',
+		'53-1',
+		'53-2',
+		'53-3',
+		'53-4',
+		'53-5',
+		'53-6',
+		ABANDONED_MINE_COMBOID,
+		'54-X',
+		'55-0',
+		'62-1',
+		'71-0',
+		'72-0',
+		'73-0',
+		'74-0',
+		'75-0',
+		'83-X',
+		'84-0',
+		'87-0',
+		'92-0',
+		'95-0',
+		'96-0',
+		'102-0',
+		'103-0',
+		'104-0',
+		'106-0',
+		'107-0',
+		'112-0',
+		'113-0',
+		'144-2',
+		'144-5',
+		'144-6',
+		'144-9',
+		'144-10',
+		'145-0',
+		'146-1',
+		'146-3',
+		'146-4',
+		'162-0',
+		'163-0',
+		'164-0',
+		'212-0',
+		'212-1',
+		'212-2',
+		'212-3',
+		'212-4',
+		'212-5',
+		'212-6',
+		'212-7',
+		'213-0'
 	];
 
 	$xMinus2ObjIds = [
-		'16-22', '16-26', '77-0', '98-0', '98-1', '98-2', '98-3', '98-4', '98-5', '98-6', '98-7', '98-8', '98-9', '98-10'
+		'16-22',
+		'16-26',
+		'77-0',
+		'98-0',
+		'98-1',
+		'98-2',
+		'98-3',
+		'98-4',
+		'98-5',
+		'98-6',
+		'98-7',
+		'98-8',
+		'98-9',
+		'98-10'
 	];
 
 	// Sort objects into appropriate player zone/color based on coordinates
@@ -459,10 +567,10 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		$mapsizeInt = $mapsizeArray[0];
 		$diffX = ($x >= $mapsizeInt) ? ($x - $mapsizeInt + 1) : 0;
 		$diffY = ($y >= $mapsizeInt) ? ($y - $mapsizeInt + 1) : 0;
-		if($diffX > 0) {
+		if ($diffX > 0) {
 			$x = $x - $diffX;
 		}
-		if($diffY > 0) {
+		if ($diffY > 0) {
 			$y = $y - $diffY;
 		}
 
@@ -499,7 +607,7 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 				$objCountPlayers[$objcomboid]['zones']['Total']++;
 			}
 		} else {
-			echo 'Error: Zone color not found for '.$objcomboid.' '.$objname.' at ['.$x.', '.$y.', '.$z.']<br>';
+			echo 'Error: Zone color not found for ' . $objcomboid . ' ' . $objname . ' at [' . $x . ', ' . $y . ', ' . $z . ']<br>';
 		}
 	}
 
@@ -523,14 +631,16 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		}
 	}
 
-    // Initialize the flat list with dwelling objects
-    if (in_array($table->category, [
-        OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL,
-        OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
-        OBJ_CATEGORY::NEUTRAL_DWELLINGS_2,
-        OBJ_CATEGORY::OTHER_DWELLINGS
-    ])) {
-        $ocDwellings = new OC_Dwellings();
+	// Initialize the flat list with dwelling objects
+	if (
+		in_array($table->category, [
+			OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL,
+			OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
+			OBJ_CATEGORY::NEUTRAL_DWELLINGS_2,
+			OBJ_CATEGORY::OTHER_DWELLINGS
+		])
+	) {
+		$ocDwellings = new OC_Dwellings();
 		switch ($table->category) {
 			case OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL:
 				foreach ($ocDwellings->FactionFlat as $name => $details) {
@@ -558,22 +668,22 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 				}
 				break;
 		}
-    }
+	}
 
-    // Add objects to the flat list
-    foreach ($objCountPlayers as $key => $obj) {
-        if ($table->category == OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL) {
-            $flatObjCountPlayers[$key] = [
-                'comboid' => $obj['comboid'],
-                'zones' => $obj['zones']
-            ];
-        } else {
-            $flatObjCountPlayers[$key] = [
-                'name' => $obj['name'],
-                'zones' => $obj['zones']
-            ];
-        }
-    }
+	// Add objects to the flat list
+	foreach ($objCountPlayers as $key => $obj) {
+		if ($table->category == OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL) {
+			$flatObjCountPlayers[$key] = [
+				'comboid' => $obj['comboid'],
+				'zones' => $obj['zones']
+			];
+		} else {
+			$flatObjCountPlayers[$key] = [
+				'name' => $obj['name'],
+				'zones' => $obj['zones']
+			];
+		}
+	}
 
 	// Sort the flat list by object name
 	if (!empty($table->customOrder)) {
@@ -593,23 +703,23 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 	// }
 
 	// Print table category title
-	echo '<table class="'.OBJCOUNT_TABLECLASS.'">
+	echo '<table class="' . OBJCOUNT_TABLECLASS . '">
 			<thead>
 				<tr>
-					<th colspan="'.OBJCOUNT_COLSPAN.'" class="table__title-bar--small2">'.$table->category.'</td>
+					<th colspan="' . OBJCOUNT_COLSPAN . '" class="table__title-bar--small2">' . $table->category . '</td>
 				</tr>';
 
 	// Print table header
 	echo '<tr>
 			<th>ID</th>
 			<th>Type</th>';
-	for ($n=0; $n < 7; $n++) {
-		echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById($n+1).'</th>';
+	for ($n = 0; $n < 7; $n++) {
+		echo '<th class="th-player-color">' . $h3mapscan->GetPlayerColorById($n + 1) . '</th>';
 	}
 	echo '<th class="table-small__divider"></th>';
-	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(0).'</th>';
+	echo '<th class="th-player-color">' . $h3mapscan->GetPlayerColorById(0) . '</th>';
 	echo '<th class="table-small__divider"></th>';
-	echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(255).'</th>';
+	echo '<th class="th-player-color">' . $h3mapscan->GetPlayerColorById(255) . '</th>';
 	// echo '<th class="table-small__divider"></th>';
 	// echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(999).'</th>';
 	echo '<th class="table-small__divider"></th>';
@@ -629,13 +739,13 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 			$rowTotal += $count;
 		}
 
-		if($rowTotal == 0) {
+		if ($rowTotal == 0) {
 			$classSuffix = ' obj-count-inactive';
 		} else {
 			$classSuffix = ' obj-count-active';
 		}
 
-		if(array_key_exists('name', $obj)) {
+		if (array_key_exists('name', $obj)) {
 			$v = $obj['name'];
 		} else {
 			$v = $k;
@@ -643,17 +753,17 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		}
 
 		echo '<tr>';
-		echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$k.'</td>';
-		echo '<td class="nowrap'.$classSuffix.'" nowrap="nowrap">'.$v.'</td>';
+		echo '<td class="ac nowrap' . $classSuffix . '" nowrap="nowrap">' . $k . '</td>';
+		echo '<td class="nowrap' . $classSuffix . '" nowrap="nowrap">' . $v . '</td>';
 
-		$n=0;
+		$n = 0;
 		$totalZoneCount = count(array_values($zoneTypes));
 		$currentZoneCount = 0;
 		$isBottomRow = ($currentObjCount == $totalObjCount);
 		foreach (array_values($zoneTypes) as $zone) {
 			$currentZoneCount++;
 			$isTotal = ($currentZoneCount == $totalZoneCount);
-			if ($zone == 'Red' || $zone == 'Normal' || $zone == 'Treasure' ||  $zone == 'Total') {
+			if ($zone == 'Red' || $zone == 'Normal' || $zone == 'Treasure' || $zone == 'Total') {
 				if (!$isBottomRow) {
 					echo '<td class="cell-greyed-out"></td>';
 				} else {
@@ -661,26 +771,26 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 				}
 			}
 			$count = $obj['zones'][$zone] == 0 ? EMPTY_DATA : $obj['zones'][$zone];
-			if($isTotal) {
-				if($rowTotal == 0) {
+			if ($isTotal) {
+				if ($rowTotal == 0) {
 					$classSuffix = ' obj-count-inactive';
 				} else {
 					$classSuffix = ' obj-count-total';
 				}
 			} else {
-				if($rowTotal == 0) {
+				if ($rowTotal == 0) {
 					$classSuffix = ' obj-count-inactive';
 				} else {
-					$classSuffix = ' player-dark'.($n+1);
+					$classSuffix = ' player-dark' . ($n + 1);
 				}
 			}
-			echo '<td class="ac nowrap'.$classSuffix.'" nowrap="nowrap">'.$count.'</td>';
+			echo '<td class="ac nowrap' . $classSuffix . '" nowrap="nowrap">' . $count . '</td>';
 			$n++;
 		}
 		echo '</tr>';
 	}
 
-    // End table
+	// End table
 	echo '</tbody></table>';
 
 	// Flex end if applicable
