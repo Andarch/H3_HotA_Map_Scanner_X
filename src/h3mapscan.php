@@ -1191,6 +1191,7 @@ class H3MAPSCAN
 		$hasName = $this->br->ReadUint8();
 		if ($hasName) {
 			$mapHero['mapHeroName'] = $this->ReadString();
+			$mapHero['defName'] = $this->GetHeroById($mapHero['subid']);
 		} else {
 			$mapHero['mapHeroName'] = $this->GetHeroById($mapHero['subid']);
 		}

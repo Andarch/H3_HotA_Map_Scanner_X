@@ -786,6 +786,7 @@ td {
   font-weight: bold;
   text-align: left;
   font-size: 18px !important;
+  color: white !important;
 }
 
 .table__title-bar--small {

@@ -55,6 +55,7 @@ function generateNavMain($map)
         'Disabled Heroes',
         'Template Heroes',
         'Map Heroes',
+        'Prisoners',
         'Global Events',
         'Town Events',
         'Towns',
@@ -73,6 +74,7 @@ function generateNavMain($map)
     $sectionsWithAnchors = [
         'Template Heroes' => 'heroes-table-2',
         'Map Heroes' => 'heroes-table-3',
+        'Prisoners' => 'heroes-table-4',
         'Quest Guards' => 'quest-guards-table',
     ];
 
@@ -80,7 +82,7 @@ function generateNavMain($map)
         'General',
         'Terrain',
         'Spells (Lite)',
-        'Map Heroes',
+        'Prisoners',
         'Towns',
         'Garrisons',
         'Quest Guards',
@@ -93,6 +95,7 @@ function generateNavMain($map)
         'Artifacts (Lite)',
         'Disabled Heroes',
         'Template Heroes',
+        'Map Heroes',
         'Artifacts',
         'Spells',
         'Monsters',

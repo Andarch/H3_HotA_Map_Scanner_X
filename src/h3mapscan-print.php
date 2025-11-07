@@ -33,6 +33,7 @@ class H3MAPSCAN_PRINT
 			case 'Disabled Heroes':
 			case 'Template Heroes':
 			case 'Map Heroes':
+			case 'Prisoners':
 				include 'h3mapscan-print-heroes.php';
 				break;
 			case 'Global Events':
