@@ -24,8 +24,17 @@
         <tbody>
 
             <?php
-            // Sort $this->h3mapscan->garrisons_list by owner
             usort($this->h3mapscan->garrisons_list, function ($a, $b) {
+                $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+                $posA = array_search($a->zonetype, $order);
+                $posB = array_search($b->zonetype, $order);
+
+                // First compare by zone type
+                if ($posA !== $posB) {
+                    return $posA <=> $posB;
+                }
+
+                // If zone types are equal, compare by owner
                 return $a->owner <=> $b->owner;
             });
 
@@ -40,7 +49,9 @@
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                         <?= $garrison->mapcoor->GetCoords() ?>
                     </td>
-                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->zonetype ?>
+                    <td class="ac nowrap zone-type" nowrap="nowrap"
+                        data-zone="<?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, 'UTF-8') ?>">
+                        <?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, 'UTF-8') ?>
                     </td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $owner ?></td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->add1 ?></td>

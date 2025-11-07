@@ -162,7 +162,7 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 		$bio = DEFAULT_DATA;
 	}
 
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['id']);
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['defName']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="2">' . (++$n) . '</td>
@@ -175,10 +175,10 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $gender . '</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $xp . '<br />' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="2">' . $priskills . '</td>
-			<td class="al small-text" rowspan="2" style="max-width:500px;">' . $skills . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="2">' . $artifacts . '</td>
-			<td class="small-text" rowspan="2" style="max-width:500px;">' . $spells . '</td>
-			<td class="small-text" rowspan="2" style="max-width:500px;">' . $bio . '</td>
+			<td class="al tiny-text" rowspan="2" style="max-width:500px;">' . $skills . '</td>
+			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="2">' . $artifacts . '</td>
+			<td class="tiny-text" rowspan="2" style="max-width:500px;">' . $spells . '</td>
+			<td class="tiny-text" rowspan="2" style="max-width:500px;">' . $bio . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header" nowrap="nowrap"
@@ -192,11 +192,12 @@ echo '</table>';
 //map heroes
 $n = 0;
 echo '<table id="heroes-table-3" class="table-large">
-		<tr><th class="table__title-bar--large" colspan="13">Map Heroes</td></tr>
+		<tr><th class="table__title-bar--large" colspan="15">Map Heroes</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
+			<th>Zone<br />Type</th>
 			<th>Coords</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -206,7 +207,17 @@ echo '<table id="heroes-table-3" class="table-large">
 			<th>Creatures</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
+			<th>Biography</th>
 		</tr>';
+
+// Sort $this->h3mapscan->heroes_list by 'zone_type' in this order: P1, P2, P3, P4, L1, W1, L2, W2, L3, W3, L4, W4, R1, R2, R3, R4
+usort($this->h3mapscan->heroes_list, function ($a, $b) {
+	$order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+	$posA = array_search($a['zone_type'], $order);
+	$posB = array_search($b['zone_type'], $order);
+	return $posA <=> $posB;
+});
+
 foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	if ($mapHero['data']['prisoner']) {
 		continue;
@@ -270,16 +281,25 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>';
+
+	if ($mapHero['zone_type'] == EMPTY_DATA) {
+		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['zone_type'] . '</td>';
+	} else {
+		$zoneTypeRow = '<td class="ac nowrap zone-type" nowrap="nowrap" rowspan="3" data-zone="' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '</td>';
+	}
+
+	echo $zoneTypeRow . '
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
+			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">' . $primary . '</td>
-			<td class="al small-text" rowspan="3" style="width:200px;">' . $secondary . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
-			<td class="small-text" rowspan="3" style="width:auto;">' . $spells . '</td>
+			<td class="al tiny-text" rowspan="3">' . $secondary . '</td>
+			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
+			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
+			<td class="tiny-text" rowspan="3">' . $spells . '</td>
+			<td class="tiny-text" rowspan="3">' . $mapHero['data']['bio'] . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
@@ -300,11 +320,12 @@ echo '</table>';
 //prisoners
 $n = 0;
 echo '<table id="heroes-table-4" class="table-large">
-		<tr><th class="table__title-bar--large" colspan="13">Prisoners</td></tr>
+		<tr><th class="table__title-bar--large" colspan="15">Prisoners</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
+			<th>Zone<br />Type</th>
 			<th>Coords</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -314,7 +335,17 @@ echo '<table id="heroes-table-4" class="table-large">
 			<th>Creatures</th>
 			<th>Artifacts</th>
 			<th>Spells</th>
+			<th>Biography</th>
 		</tr>';
+
+// Sort $this->h3mapscan->heroes_list by 'zone_type' in this order: P1, P2, P3, P4, L1, W1, L2, W2, L3, W3, L4, W4, R1, R2, R3, R4
+usort($this->h3mapscan->heroes_list, function ($a, $b) {
+	$order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+	$posA = array_search($a['zone_type'], $order);
+	$posB = array_search($b['zone_type'], $order);
+	return $posA <=> $posB;
+});
+
 foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	if (!$mapHero['data']['prisoner']) {
 		continue;
@@ -377,16 +408,25 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>';
+
+	if ($mapHero['zone_type'] == EMPTY_DATA) {
+		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['zone_type'] . '</td>';
+	} else {
+		$zoneTypeRow = '<td class="ac nowrap zone-type" nowrap="nowrap" rowspan="3" data-zone="' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '</td>';
+	}
+
+	echo $zoneTypeRow . '
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
-			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
+			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">' . $primary . '</td>
-			<td class="al small-text" rowspan="3" style="max-width:500px;">' . $secondary . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
-			<td class="small-text" rowspan="3" style="max-width:500px;">' . $spells . '</td>
+			<td class="al tiny-text" rowspan="3" style="max-width:500px;">' . $secondary . '</td>
+			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
+			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
+			<td class="tiny-text" rowspan="3">' . $spells . '</td>
+			<td class="tiny-text" rowspan="3" style="width:auto;">' . $mapHero['data']['bio'] . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"

@@ -586,7 +586,7 @@ td {
   font-size: 10px;
 }
 
-.table-split-body td:not(.tiny-text) {
+.table-split-body td:not(.tiny-text, .zone-type) {
   font-size: 11px !important;
 }
 
@@ -954,6 +954,31 @@ td {
 }
 
 /* UTILITIES */
+.zone-type {
+  font-size: 15px !important;
+  font-weight: bold;
+}
+
+.zone-type[data-zone="P1"] { background:hsl(127, 100%, 26%); }
+.zone-type[data-zone="P2"] { background:hsl(127, 100%, 22%); }
+.zone-type[data-zone="P3"] { background:hsl(127, 100%, 18%); }
+.zone-type[data-zone="P4"] { background:hsl(128, 100%, 14%); }
+
+.zone-type[data-zone="L1"] { background:hsl(37, 100%, 26%); }
+.zone-type[data-zone="L2"] { background:hsl(37, 100%, 22%); }
+.zone-type[data-zone="L3"] { background:hsl(37, 100%, 18%); }
+.zone-type[data-zone="L4"] { background:hsl(37, 100%, 14%); }
+
+.zone-type[data-zone="W1"] { background:hsl(211, 100%, 26%); }
+.zone-type[data-zone="W2"] { background:hsl(211, 100%, 22%); }
+.zone-type[data-zone="W3"] { background:hsl(211, 100%, 18%); }
+.zone-type[data-zone="W4"] { background:hsl(211, 100%, 14%); }
+
+.zone-type[data-zone="R1"] { background:hsl(0, 100%, 26%); }
+.zone-type[data-zone="R2"] { background:hsl(0, 100%, 22%); }
+.zone-type[data-zone="R3"] { background:hsl(0, 100%, 18%); }
+.zone-type[data-zone="R4"] { background:hsl(0, 100%, 14%); }
+
 .small-text {
   font-size: 11px !important;
 }
