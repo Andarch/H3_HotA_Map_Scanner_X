@@ -4273,7 +4273,7 @@ class H3MAPSCAN
 		return new MapCoords($x, $y, $z);
 	}
 
-	function GetZone(MapCoords $pos, $id): array
+	private function GetZone(MapCoords $pos, $id): array
 	{
 		$x = $pos->x;
 		$y = $pos->y;
@@ -4305,6 +4305,16 @@ class H3MAPSCAN
 		$zone_color = $error_colors ?: ($this->CS->ZoneColors[implode(',', $rgb_colors)] ?? "Unknown");
 
 		return [$zone_type, $zone_color];
+	}
+
+	public function GetPortraitByHeroId($portraitID, $defname)
+	{
+		if ($this->map_name == '(C) TBD (Allies)' && FromArray($portraitID, $this->CS->Portraits) == 'Giselle') {
+			return '/images/portraits/Juliana.bmp';
+		} else if (FromArray($portraitID, $this->CS->Portraits) == 'Default') {
+			return '/images/portraits/' . $defname . '.bmp';
+		}
+		return '/images/portraits/' . FromArray($portraitID, $this->CS->Portraits) . '.bmp';
 	}
 
 	//check, if map is compressed or not, compressed starts with 1F 8B 08 00 in LE, that's 0x00088B1F

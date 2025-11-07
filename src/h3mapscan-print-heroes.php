@@ -66,11 +66,12 @@ echo '<table class="table-large">
 $n = 0;
 echo '<table id="heroes-table-2" class="table-large">
 		<tr>
-			<th class="table__title-bar--large" colspan="12">Template Heroes</th>
+			<th class="table__title-bar--large" colspan="13">Template Heroes</th>
 		</tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
+			<th>Portrait</th>
 			<th>Class</th>
 			<th>Players</th>
 			<th>Gender</th>
@@ -161,21 +162,23 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 		$bio = DEFAULT_DATA;
 	}
 
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['id']);
+
 	echo '<tr>
-			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
+			<td class="table__row-header--default" rowspan="2">' . (++$n) . '</td>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-right:none;">Template</td>
-			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
-			style="border-bottom:1px dotted grey; border-left:none;">' . $templateHeroPrint['templateHeroName'] . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">' . $class . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">' . $players . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">' . $gender . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3">' . $xp . '<br />' . $level . '</td>
-			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">' . $priskills . '</td>
-			<td class="al small-text" rowspan="3" style="max-width:500px;">' . $skills . '</td>
-			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
-			<td class="small-text" rowspan="3" style="max-width:500px;">' . $spells . '</td>
-			<td class="small-text" rowspan="3" style="max-width:500px;">' . $bio . '</td>
+			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap" style="border-bottom:1px dotted grey; border-left:none;">' . $templateHeroPrint['templateHeroName'] . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $class . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $players . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $gender . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="2">' . $xp . '<br />' . $level . '</td>
+			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="2">' . $priskills . '</td>
+			<td class="al small-text" rowspan="2" style="max-width:500px;">' . $skills . '</td>
+			<td class="small-text nowrap" nowrap="nowrap" rowspan="2">' . $artifacts . '</td>
+			<td class="small-text" rowspan="2" style="max-width:500px;">' . $spells . '</td>
+			<td class="small-text" rowspan="2" style="max-width:500px;">' . $bio . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header" nowrap="nowrap"
@@ -189,10 +192,11 @@ echo '</table>';
 //map heroes
 $n = 0;
 echo '<table id="heroes-table-3" class="table-large">
-		<tr><th class="table__title-bar--large" colspan="12">Map Heroes</td></tr>
+		<tr><th class="table__title-bar--large" colspan="13">Map Heroes</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
+			<th>Portrait</th>
 			<th>Coords</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -258,21 +262,24 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($mapHero['data']['portrait'], $mapHero['data']['mapHeroName']);
+
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">' . $primary . '</td>
-			<td class="al small-text" rowspan="3" style="max-width:500px;">' . $secondary . '</td>
+			<td class="al small-text" rowspan="3" style="width:200px;">' . $secondary . '</td>
 			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
 			<td class="small-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
-			<td class="small-text" rowspan="3" style="max-width:500px;">' . $spells . '</td>
+			<td class="small-text" rowspan="3" style="width:auto;">' . $spells . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
@@ -293,10 +300,11 @@ echo '</table>';
 //prisoners
 $n = 0;
 echo '<table id="heroes-table-4" class="table-large">
-		<tr><th class="table__title-bar--large" colspan="12">Prisoners</td></tr>
+		<tr><th class="table__title-bar--large" colspan="13">Prisoners</td></tr>
 		<tr>
 			<th>#</th>
 			<th colspan="2">Hero</th>
+			<th>Portrait</th>
 			<th>Coords</th>
 			<th>Owner</th>
 			<th>Class</th>
@@ -361,12 +369,15 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($mapHero['data']['portrait'], $mapHero['data']['mapHeroName']);
+
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
