@@ -422,11 +422,11 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="3">' . $primary . '</td>
-			<td class="al tiny-text" rowspan="3" style="max-width:500px;">' . $secondary . '</td>
+			<td class="al tiny-text" rowspan="3">' . $secondary . '</td>
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
 			<td class="tiny-text" rowspan="3">' . $spells . '</td>
-			<td class="tiny-text" rowspan="3" style="width:auto;">' . $mapHero['data']['bio'] . '</td>
+			<td class="tiny-text" rowspan="3">' . $mapHero['data']['bio'] . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
