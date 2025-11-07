@@ -197,8 +197,8 @@ echo '<table id="heroes-table-3" class="table-large">
 			<th>#</th>
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
-			<th>Zone<br />Type</th>
 			<th>Coords</th>
+			<th>Zone<br />Type</th>
 			<th>Owner</th>
 			<th>Class</th>
 			<th>XP</th>
@@ -281,7 +281,8 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>';
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>';
 
 	if ($mapHero['zone_type'] == EMPTY_DATA) {
 		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['zone_type'] . '</td>';
@@ -290,7 +291,6 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	echo $zoneTypeRow . '
-			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
@@ -325,8 +325,8 @@ echo '<table id="heroes-table-4" class="table-large">
 			<th>#</th>
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
-			<th>Zone<br />Type</th>
 			<th>Coords</th>
+			<th>Zone<br />Type</th>
 			<th>Owner</th>
 			<th>Class</th>
 			<th>XP</th>
@@ -408,7 +408,8 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-right:none;">Map Object</td>
 			<td class="ac nowrap small-text fixed-height-row" nowrap="nowrap"
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
-			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>';
+			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="3" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
+			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>';
 
 	if ($mapHero['zone_type'] == EMPTY_DATA) {
 		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['zone_type'] . '</td>';
@@ -417,7 +418,6 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	echo $zoneTypeRow . '
-			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $mapHero['pos']->GetCoords() . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $color . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="3">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="3">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
