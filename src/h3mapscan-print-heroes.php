@@ -162,7 +162,7 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 		$bio = DEFAULT_DATA;
 	}
 
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['defName']);
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['id']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="2">' . (++$n) . '</td>
@@ -273,6 +273,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
+	if ($mapHero['data']['bio'] !== '') {
+		$bio = nl2br($templateHeroPrint['bio']);
+	} else {
+		$bio = DEFAULT_DATA;
+	}
+
 	if ($mapHero['data']['subid'] < 156) {
 		$defPortraitID = $mapHero['data']['subid'];
 	} else if ($mapHero['data']['subid'] < 178) {
@@ -293,7 +299,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	} else {
 		$portraitID = $mapHero['data']['portrait'];
 	}
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['mapHeroName']);
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['subid']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
@@ -319,7 +325,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
 			<td class="tiny-text" rowspan="3">' . $spells . '</td>
-			<td class="tiny-text" rowspan="3">' . $mapHero['data']['bio'] . '</td>
+			<td class="tiny-text" rowspan="3">' . $bio . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
@@ -420,6 +426,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
+	if ($mapHero['data']['bio'] !== '') {
+		$bio = nl2br($templateHeroPrint['bio']);
+	} else {
+		$bio = DEFAULT_DATA;
+	}
+
 	if ($mapHero['data']['subid'] < 156) {
 		$defPortraitID = $mapHero['data']['subid'];
 	} else if ($mapHero['data']['subid'] < 178) {
@@ -440,7 +452,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	} else {
 		$portraitID = $mapHero['data']['portrait'];
 	}
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['mapHeroName']);
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['subid']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
@@ -466,7 +478,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $troops . '</td>
 			<td class="tiny-text nowrap" nowrap="nowrap" rowspan="3">' . $artifacts . '</td>
 			<td class="tiny-text" rowspan="3">' . $spells . '</td>
-			<td class="tiny-text" rowspan="3">' . $mapHero['data']['bio'] . '</td>
+			<td class="tiny-text" rowspan="3">' . $bio . '</td>
 		</tr>
 		<tr>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"

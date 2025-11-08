@@ -4309,10 +4309,14 @@ class H3MAPSCAN
 		return [$zone_type, $zone_color];
 	}
 
-	public function GetPortraitByHeroId($portraitID, $defname)
+	public function GetPortraitByHeroId($portraitID, $heroID)
 	{
-		if ($this->map_name == '(C) TBD (Allies)' && FromArray($portraitID, $this->CS->Portraits) == 'Giselle') {
-			return '/images/portraits/Juliana.bmp';
+		if ($this->map_name == '(C) TBD (Allies)') {
+			if ($heroID == 178) {
+				return '/images/portraits/Juliana.bmp';
+			} else if ($heroID == 20) {
+				return '/images/portraits/Andarch.bmp';
+			}
 		}
 		return '/images/portraits/' . FromArray($portraitID, $this->CS->Portraits) . '.bmp';
 	}
