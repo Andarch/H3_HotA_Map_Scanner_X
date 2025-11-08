@@ -273,7 +273,27 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($mapHero['data']['portrait'], $mapHero['data']['mapHeroName']);
+	if ($mapHero['data']['subid'] < 156) {
+		$defPortraitID = $mapHero['data']['subid'];
+	} else if ($mapHero['data']['subid'] < 178) {
+		$defPortraitID = $mapHero['data']['subid'] + 7;
+	} else {
+		$defPortraitID = $mapHero['data']['subid'] + 8;
+	}
+	if (FromArray($mapHero['data']['portrait'], array: $this->h3mapscan->CS->Portraits) == 'Default') {
+		if ($mapHero['data']['templatePortrait'] >= 0) {
+			if (FromArray($mapHero['data']['templatePortrait'], $this->h3mapscan->CS->Portraits) == 'Default') {
+				$portraitID = $defPortraitID;
+			} else {
+				$portraitID = $mapHero['data']['templatePortrait'];
+			}
+		} else {
+			$portraitID = $defPortraitID;
+		}
+	} else {
+		$portraitID = $mapHero['data']['portrait'];
+	}
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['mapHeroName']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>
@@ -400,7 +420,27 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$spells = DEFAULT_DATA;
 	}
 
-	$portrait = $this->h3mapscan->GetPortraitByHeroId($mapHero['data']['portrait'], $mapHero['data']['mapHeroName']);
+	if ($mapHero['data']['subid'] < 156) {
+		$defPortraitID = $mapHero['data']['subid'];
+	} else if ($mapHero['data']['subid'] < 178) {
+		$defPortraitID = $mapHero['data']['subid'] + 7;
+	} else {
+		$defPortraitID = $mapHero['data']['subid'] + 8;
+	}
+	if (FromArray($mapHero['data']['portrait'], array: $this->h3mapscan->CS->Portraits) == 'Default') {
+		if ($mapHero['data']['templatePortrait'] >= 0) {
+			if (FromArray($mapHero['data']['templatePortrait'], $this->h3mapscan->CS->Portraits) == 'Default') {
+				$portraitID = $defPortraitID;
+			} else {
+				$portraitID = $mapHero['data']['templatePortrait'];
+			}
+		} else {
+			$portraitID = $defPortraitID;
+		}
+	} else {
+		$portraitID = $mapHero['data']['portrait'];
+	}
+	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['mapHeroName']);
 
 	echo '<tr>
 			<td class="table__row-header--default" rowspan="3">' . (++$n) . '</td>

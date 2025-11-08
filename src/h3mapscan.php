@@ -1177,9 +1177,9 @@ class H3MAPSCAN
 		$mapHero['mapHeroName'] = '';
 		$mapHero['templateHeroName'] = '';
 		$mapHero['defName'] = '';
-		$mapHero['epx'] = 0;
 		$mapHero['uid'] = 0;
-		$mapHero['portrait'] = 0;
+		$mapHero['portrait'] = -1;
+		$mapHero['templatePortrait'] = -1;
 
 		if ($this->version > $this::ROE) {
 			$mapHero['uid'] = $this->br->ReadUint32();
@@ -3449,6 +3449,8 @@ class H3MAPSCAN
 					$this->templateHeroes[$k]['mapHeroName'] = $mapHero['data']['mapHeroName'];
 					$this->templateHeroes[$k]['mapHeroFace'] = $mapHero['data']['portrait'];
 					$this->heroes_list[$l]['data']['templateHeroName'] = $templateHero['templateHeroName'];
+					$this->heroes_list[$l]['data']['templatePortrait'] = $templateHero['pface'];
+					// echo $this->heroes_list[$l]['data']['templatePortrait'];
 					$this->heroes_list[$l]['data']['defName'] = $templateHero['defName'];
 					if ($mapHero['data']['mapHeroName'] === $templateHero['defName'] && $templateHero['templateHeroName'] !== $templateHero['defName']) {
 						$this->templateHeroes[$k]['mapHeroName'] = $templateHero['templateHeroName'];
@@ -4311,8 +4313,6 @@ class H3MAPSCAN
 	{
 		if ($this->map_name == '(C) TBD (Allies)' && FromArray($portraitID, $this->CS->Portraits) == 'Giselle') {
 			return '/images/portraits/Juliana.bmp';
-		} else if (FromArray($portraitID, $this->CS->Portraits) == 'Default') {
-			return '/images/portraits/' . $defname . '.bmp';
 		}
 		return '/images/portraits/' . FromArray($portraitID, $this->CS->Portraits) . '.bmp';
 	}
