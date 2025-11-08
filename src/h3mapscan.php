@@ -2899,6 +2899,8 @@ class H3MAPSCAN
 			$reward = $this->ReadReward();
 			$hut['quests'][$qi] = array_merge($hut['quests'][$qi], $reward);
 
+			$hut['quests'][$qi]['repeat'] = 'No repeat';
+
 			$qi++;
 		}
 
@@ -2910,6 +2912,8 @@ class H3MAPSCAN
 
 				$reward = $this->ReadReward();
 				$hut['quests'][$qi] = array_merge($hut['quests'][$qi], $reward);
+
+				$hut['quests'][$qi]['repeat'] = 'Repeat';
 
 				$qi++;
 			}
