@@ -2472,7 +2472,7 @@ class HeroesConstants
         147 => "Dracon", //wizard
         148 => "Gelu", //ranger
         149 => "Kilgor", //barbarian
-        150 => "Lord Haart", //death knight
+        150 => "Haart Lich", //death knight
         151 => "Mutare", //overlord
         152 => "Roland", //knight
         153 => "Mutare Drake", //overlord
