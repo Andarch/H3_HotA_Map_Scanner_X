@@ -15,7 +15,7 @@ $exclude_names = [
 	"Spell Scroll"
 ];
 
-$artifacts = array_filter($artifacts, function($artifact) use ($exclude_names) {
+$artifacts = array_filter($artifacts, function ($artifact) use ($exclude_names) {
 	// Check if artifact name is in exclude list
 	if (in_array($artifact->name, $exclude_names)) {
 		return false;
@@ -54,14 +54,15 @@ for ($i = 0; $i < $numTables; $i++) {
 			<tbody>';
 	for ($j = 0; $j < $maxItems; $j++) {
 		$n = $i * $maxItems + $j;
-		if ($n == $totalItems) break;
+		if ($n == $totalItems)
+			break;
 		$art = $artifacts[$n];
 		echo '<tr>
-				<td class="table__row-header--default">'.(++$n).'</td>
-				<td class="nowrap" nowrap="nowrap">'.$art->name.'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$art->mapcoor->GetCoords().'</td>
-				<td class="ac nowrap" nowrap="nowrap">'.$art->parent.'</td>
-				<td class="nowrap" nowrap="nowrap">'.$art->add1.'</td>
+				<td class="table__row-header--default">' . (++$n) . '</td>
+				<td class="nowrap" nowrap="nowrap">' . $art->name . '</td>
+				<td class="ac nowrap" nowrap="nowrap">' . $art->mapcoor->GetCoords() . '</td>
+				<td class="ac nowrap" nowrap="nowrap">' . $art->parent . '</td>
+				<td class="nowrap" nowrap="nowrap">' . $art->add1 . '</td>
 				</tr>';
 	}
 	echo '</tbody>';
