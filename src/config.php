@@ -1,25 +1,26 @@
 <?php
-	DEFINE('TAB', "\t");
-	DEFINE('EOL', "\n");
-	DEFINE('ELD', "\r\n");
-	DEFINE('ENVE', '<br />');
+DEFINE('TAB', "\t");
+DEFINE('EOL', "\n");
+DEFINE('ELD', "\r\n");
+DEFINE('ENVE', '<br />');
 
-	//folder with heroes 3 maps, maps are originally compressed by GZIP
-	DEFINE('MAPDIR', './maps/');
+//folder with heroes 3 maps, maps are originally compressed by GZIP
+$mapdir = getenv('H3MAPDIR');
+DEFINE('MAPDIR', rtrim(str_replace('\\', '/', $mapdir), '/') . '/');
 
-	//folder with uncompressed maps
-	// DEFINE('MAPDIREXP', './mapsexp/');
+//folder with uncompressed maps
+// DEFINE('MAPDIREXP', './mapsexp/');
 
-	//folder with map images
-	DEFINE('MAPDIRIMG', './mapsimg/');
+//folder with map images
+DEFINE('MAPDIRIMG', './mapsimg/');
 
-	//folder with campaigns
-	// DEFINE('MAPDIRCAM', './mapscam/');
+//folder with campaigns
+// DEFINE('MAPDIRCAM', './mapscam/');
 
-	//folder with campaigns maps
-	// DEFINE('MAPDIRCAMEXP', './mapscam/exp/');
+//folder with campaigns maps
+// DEFINE('MAPDIRCAMEXP', './mapscam/exp/');
 
-	//folder with cached map info
-	// DEFINE('MAPDIRINFO', './mapsinfo/');
+//folder with cached map info
+// DEFINE('MAPDIRINFO', './mapsinfo/');
 
-	require_once './src/access.php';
+require_once './src/access.php';

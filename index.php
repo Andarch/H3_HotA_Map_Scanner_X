@@ -20,12 +20,12 @@ $timestamp = time();
 	<link rel="shortcut icon" href="images/hotaicon.png?t=<?= $timestamp ?>" type="image/x-icon" />
 	<link rel="stylesheet" href="css/style.css?v=<?= $timestamp ?>">
 
-    <?php
-    $isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-    if ($isLocalhost) {
-		echo '<link rel="stylesheet" href="css/local.css?v='.$timestamp.'">';
-    }
-    ?>
+	<?php
+	$isLocalhost = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+	if ($isLocalhost) {
+		echo '<link rel="stylesheet" href="css/local.css?v=' . $timestamp . '">';
+	}
+	?>
 
 	<script type="application/javascript" src="js/jquery-2.1.3.min.js?t=<?= $timestamp ?>"></script>
 	<script type="application/javascript" src="js/jquery-ui.js?t=<?= $timestamp ?>"></script>
@@ -36,150 +36,151 @@ $timestamp = time();
 <body>
 	<div class="grid-container">
 
-<?php
+		<?php
 
-require_once 'src/header.php';
-require_once 'src/nav.php';
-// generateNav();
+		require_once 'src/header.php';
+		require_once 'src/nav.php';
+		// generateNav();
+		
+		require_once 'src/h3mapscan.php';
+		require_once 'src/h3mapconstants.php';
+		require_once 'src/mapsupport.php';
 
-require_once 'src/h3mapscan.php';
-require_once 'src/h3mapconstants.php';
-require_once 'src/mapsupport.php';
+		$mapok = false;
+		$buildmap = true;
+		$mapfiledb = false;
+		$mapid = exget('mapid', 0);
 
-$mapok = false;
-$buildmap = true;
-$mapfiledb = false;
-$mapid = exget('mapid', 0);
+		$scan = exget('scan');
 
-$scan = exget('scan');
+		$mapcode = exget('mapcode');
+		$disp = '';
 
-$mapcode = exget('mapcode');
-$disp = '';
+		echo 'Map dir: ' . getenv('H3MAPDIR');
+		echo '<br />';
+		echo 'Map dir: ' . MAPDIR;
+		echo '<br />';
 
-if($mapid) {
-	if(exget('del')) {
-		$sql = "DELETE FROM heroes3_maps WHERE idm = $mapid";
-		mq($sql);
-	}
-	else {
-		$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapid";
-		$mapfiledb = mgr($sql);
-	}
-}
-elseif($scan) {
-	generateNav(null);
-	generateHeader();
+		if ($mapid) {
+			if (exget('del')) {
+				$sql = "DELETE FROM heroes3_maps WHERE idm = $mapid";
+				mq($sql);
+			} else {
+				$sql = "SELECT m.mapfile FROM heroes3_maps AS m WHERE m.idm = $mapid";
+				$mapfiledb = mgr($sql);
+			}
+		} elseif ($scan) {
+			generateNav(null);
+			generateHeader();
 
-	echo '<div class="content">';
+			echo '<div class="content">';
 
-	$scan = new ScanSubDir();
-	$scan->SetFilter(array('h3m'));
-	$scan->scansubdirs(MAPDIR);
-	$files = $scan->GetFiles();
+			$scan = new ScanSubDir();
+			$scan->SetFilter(array('h3m'));
+			$scan->scansubdirs(MAPDIR);
+			$files = $scan->GetFiles();
 
-	if(!empty($files)) {
-		echo 'Maps in folder which are not saved and scanned yet<br /><br />';
+			if (!empty($files)) {
+				echo 'Maps in folder which are not saved and scanned yet<br /><br />';
 
-		$displayed = 0;
-		$maplist = '';
-		$maplistjs = array();
+				$displayed = 0;
+				$maplist = '';
+				$maplistjs = array();
 
-		$mapdbs = array();
-		$sql = "SELECT m.mapfile, m.idm FROM heroes3_maps AS m";
-		$query = mq($sql);
-		while($res = mfa($query)) {
-			$mapdbs[$res['idm']] = $res['mapfile'];
-		}
+				$mapdbs = array();
+				$sql = "SELECT m.mapfile, m.idm FROM heroes3_maps AS m";
+				$query = mq($sql);
+				while ($res = mfa($query)) {
+					$mapdbs[$res['idm']] = $res['mapfile'];
+				}
 
-		foreach($files as $k => $mfile) {
-			$mapname = str_replace(MAPDIR, '', $mfile);
-			$par = base64_encode($mapname);
-			if($mapcode == $par) {
-				$disp = $mapname.'<br />';
-				//continue;
+				foreach ($files as $k => $mfile) {
+					$mapname = str_replace(MAPDIR, '', $mfile);
+					$par = base64_encode($mapname);
+					if ($mapcode == $par) {
+						$disp = $mapname . '<br />';
+						//continue;
+					}
+
+					$smapname = mes($mapname);
+
+					if (in_array($mapname, $mapdbs)) {
+						continue;
+					}
+
+					$maplistjs[] = $smapname;
+
+					$maplist .= ($k + 1) . ' <a href="?mapcode=' . $par . '">' . $mapname . '</a><br />';
+					$displayed++;
+				}
+
+				if ($displayed == 0) {
+					echo 'There are no maps to proccess in map folder. You can go to <a href="maplist.php">Map List</a><br /><br />';
+				} else {
+					echo '<a href="saveall" id="mapread" onclick="return false;">Read and save all maps</a><br />';
+					echo 'Total unsaved maps: ' . count($maplistjs);
+					if (!exget('nl', 0)) {
+						echo '<p>' . $maplist . '</p>';
+					}
+					// echo '<br /><p id="mapreadstate"></p>';
+					echo '<p id="maplist"></p>';
+					echo '<script type="text/javascript">' . EOL . 'var maplist = [' . EOL . TAB . '"' . implode('",' . EOL . TAB . '"', $maplistjs) . '"' . EOL . ']' . EOL . '</script>';
+				}
+
 			}
 
-			$smapname = mes($mapname);
+			echo '</div>';
+		} else {
+			generateNav(null);
+			generateHeader();
+			echo '<div class="content"></div>';
+		}
 
-			if(in_array($mapname, $mapdbs)) {
-				continue;
+		if ($mapfiledb) {
+			$mapfile = MAPDIR . $mapfiledb;
+			$mapok = true;
+		} elseif ($mapcode) {
+			$mapfile = MAPDIR . base64_decode($mapcode);
+			$mapok = true;
+		}
+
+		//read some maps only
+		if ($mapok) {
+			if ($disp) {
+				echo $disp;
 			}
 
-			$maplistjs[] = $smapname;
+			// $tm = new TimeMeasure();
+		
+			/*
+			H3M_WEBMODE
+			H3M_PRINTINFO
+			H3M_BUILDMAP
+			H3M_SAVEMAPDB
+			H3M_EXPORTMAP
+			H3M_BASICONLY
+			H3M_MAPHTMCACHE
+			H3M_SPECIALACCESS
+			*/
 
-			$maplist .= ($k + 1).' <a href="?mapcode='.$par.'">'.$mapname.'</a><br />';
-			$displayed++;
+			echo '<div class="content">';
+
+			$map = new H3MAPSCAN($mapfile, H3M_WEBMODE | H3M_PRINTINFO | H3M_BUILDMAP); // | H3M_BUILDMAP | H3M_SAVEMAPDB | H3M_MAPHTMCACHE
+			$map->ReadMap();
+
+			echo '</div>';
+
+			generateNav($map);
+
+			$headerInfo = $map->MapHeaderInfo();
+			generateHeader($headerInfo);
+
+			//$tm->Measure('End');
+			//$tm->showTimes();
 		}
 
-		if($displayed == 0) {
-			echo 'There are no maps to proccess in map folder. You can go to <a href="maplist.php">Map List</a><br /><br />';
-		}
-		else {
-			echo '<a href="saveall" id="mapread" onclick="return false;">Read and save all maps</a><br />';
-			echo 'Total unsaved maps: '.count($maplistjs);
-			if(!exget('nl', 0)) {
-				echo '<p>'.$maplist.'</p>';
-			}
-			// echo '<br /><p id="mapreadstate"></p>';
-			echo '<p id="maplist"></p>';
-			echo '<script type="text/javascript">'.EOL.'var maplist = ['.EOL.TAB.'"'.implode('",'.EOL.TAB.'"', $maplistjs).'"'.EOL.']'.EOL.'</script>';
-		}
-
-	}
-
-	echo '</div>';
-}
-else {
-	generateNav(null);
-	generateHeader();
-	echo '<div class="content"></div>';
-}
-
-if($mapfiledb) {
-	$mapfile = MAPDIR.$mapfiledb;
-	$mapok = true;
-}
-elseif($mapcode) {
-	$mapfile = MAPDIR.base64_decode($mapcode);
-	$mapok = true;
-}
-
-//read some maps only
-if($mapok) {
-	if($disp) {
-		echo $disp;
-	}
-
-	// $tm = new TimeMeasure();
-
-	/*
-	H3M_WEBMODE
-	H3M_PRINTINFO
-	H3M_BUILDMAP
-	H3M_SAVEMAPDB
-	H3M_EXPORTMAP
-	H3M_BASICONLY
-	H3M_MAPHTMCACHE
-	H3M_SPECIALACCESS
-	*/
-
-	echo '<div class="content">';
-
-	$map = new H3MAPSCAN($mapfile, H3M_WEBMODE | H3M_PRINTINFO | H3M_BUILDMAP); // | H3M_BUILDMAP | H3M_SAVEMAPDB | H3M_MAPHTMCACHE
-	$map->ReadMap();
-
-	echo '</div>';
-
-	generateNav($map);
-
-	$headerInfo = $map->MapHeaderInfo();
-	generateHeader($headerInfo);
-
-	//$tm->Measure('End');
-	//$tm->showTimes();
-}
-
-?>
+		?>
 
 </body>
+
 </html>
