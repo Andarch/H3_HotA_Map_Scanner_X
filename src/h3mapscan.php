@@ -1572,12 +1572,12 @@ class H3MAPSCAN
 		// $mapfilename = substr($this->mapfilename, 0, -4);
 		$mapfilename = $this->mapfilename;
 
-		$zonetypes_img_g_path = MAPDIR . "{$mapfilename}_zonetypes_g.png";
-		$zonetypes_img_u_path = MAPDIR . "{$mapfilename}_zonetypes_u.png";
+		$zonetypes_img_g_path = MAPDIR . "images\\{$mapfilename}_zonetypes_g.png";
+		$zonetypes_img_u_path = MAPDIR . "images\\{$mapfilename}_zonetypes_u.png";
 		$this->zonetypes_img_g = file_exists($zonetypes_img_g_path) ? imagecreatefrompng($zonetypes_img_g_path) : null;
 		$this->zonetypes_img_u = file_exists($zonetypes_img_u_path) ? imagecreatefrompng($zonetypes_img_u_path) : null;
-		$zonecolors_img_g_path = MAPDIR . "{$mapfilename}_zonecolors_g.png";
-		$zonecolors_img_u_path = MAPDIR . "{$mapfilename}_zonecolors_u.png";
+		$zonecolors_img_g_path = MAPDIR . "images\\{$mapfilename}_zonecolors_g.png";
+		$zonecolors_img_u_path = MAPDIR . "images\\{$mapfilename}_zonecolors_u.png";
 		$this->zonecolors_img_g = file_exists($zonecolors_img_g_path) ? imagecreatefrompng($zonecolors_img_g_path) : null;
 		$this->zonecolors_img_u = file_exists($zonecolors_img_u_path) ? imagecreatefrompng($zonecolors_img_u_path) : null;
 		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zonecolors_img_g && $this->zonecolors_img_u) ? true : false;
