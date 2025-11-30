@@ -50,8 +50,8 @@
                         <?= $garrison->mapcoor->GetCoords() ?>
                     </td>
                     <td class="ac nowrap zone-type" nowrap="nowrap"
-                        data-zone="<?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, 'UTF-8') ?>">
-                        <?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, 'UTF-8') ?>
+                        data-zone="<?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, "UTF-8") ?>">
+                        <?= htmlspecialchars($garrison->zonetype, ENT_QUOTES, "UTF-8") ?>
                     </td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $owner ?></td>
                     <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->add1 ?></td>
