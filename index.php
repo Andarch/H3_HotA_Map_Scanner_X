@@ -56,11 +56,6 @@ $timestamp = time();
 		$mapcode = exget('mapcode');
 		$disp = '';
 
-		echo 'Map dir: ' . getenv('H3MAPDIR');
-		echo '<br />';
-		echo 'Map dir: ' . MAPDIR;
-		echo '<br />';
-
 		if ($mapid) {
 			if (exget('del')) {
 				$sql = "DELETE FROM heroes3_maps WHERE idm = $mapid";
