@@ -8,11 +8,11 @@ echo '<table class="table-large">
 			<th class="nowrap" nowrap="nowrap">Object</th>
 			<th class="nowrap" nowrap="nowrap">Coords</th>
 			<th>#</th>
+			<th>Repeat</th>
 			<th>Type</th>
 			<th>Requirement</th>
 			<th>Deadline</th>
 			<th>Reward</th>
-			<th>Repeat</th>
 			<th>Text Give</th>
 			<th>Text Repeat</th>
 			<th>Text Finished</th>
@@ -55,11 +55,11 @@ foreach ($this->h3mapscan->seers_huts as $hut) {
         }
 
         echo '  <td class="ac table__nested-row-header" ' . $borderstyle . '>' . ($q + 1) . '</td>';
+        echo '  <td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '>' . $quest['repeat'] . '</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '>' . $quest['Qcategory'] . '</td>';
         echo '  <td class="' . $Qreqclass . ' ' . $borderstyle . '>' . $quest['Qrequirement'] . '</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '>' . $quest['Qdeadline'] . '</td>';
         echo '  <td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '>' . $quest['questreward'] . '</td>';
-        echo '  <td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '>' . $quest['repeat'] . '</td>';
         echo '  <td class="small-text" ' . $borderstyle . TEXT_COLUMN_WIDTH . '>' . nl2br($quest['textFirst']) . '</td>';
         echo '  <td class="small-text" ' . $borderstyle . TEXT_COLUMN_WIDTH . '>' . nl2br($quest['textRepeat']) . '</td>';
         echo '  <td class="small-text" ' . $borderstyle . TEXT_COLUMN_WIDTH . '>' . nl2br($quest['textDone']) . '</td>';

@@ -162,6 +162,7 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 		$bio = DEFAULT_DATA;
 	}
 
+	echo $templateHeroPrint['pface'] . ', ' . $templateHeroPrint['id'] . '<br />';
 	$portrait = $this->h3mapscan->GetPortraitByHeroId($templateHeroPrint['pface'], $templateHeroPrint['id']);
 
 	echo '<tr>

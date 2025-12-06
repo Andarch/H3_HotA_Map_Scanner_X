@@ -387,7 +387,7 @@ class H3MAPSCAN
 		}
 
 		$this->BuildMap(IMAGETYPE::NORMAL);
-		// if($this->map_name == '(C) TBD (Allies)') {
+		// if($this->map_name == '(C) Tides of War (Allies)') {
 		// 	$this->BuildMap(IMAGETYPE::PASSABILITY);
 		// }
 	}
@@ -4315,7 +4315,7 @@ class H3MAPSCAN
 
 	public function GetPortraitByHeroId($portraitID, $heroID)
 	{
-		if ($this->map_name == '(C) TBD (Allies)') {
+		if ($this->map_name == '(C) Tides of War (Allies)') {
 			if ($heroID == 178) {
 				return '/images/portraits/Juliana.bmp';
 			} else if ($heroID == 20) {
