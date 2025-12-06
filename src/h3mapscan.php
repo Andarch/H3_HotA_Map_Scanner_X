@@ -529,9 +529,6 @@ class H3MAPSCAN
 
 	private function ReadPlayersData()
 	{
-
-		//print('<br /><br /><br /><br />'); // Debug
-
 		//players
 		for ($i = 0; $i < PLAYERSNUM; $i++) {
 			$human = $this->br->ReadUint8();
@@ -569,8 +566,13 @@ class H3MAPSCAN
 			//def values
 			$this->players[$i]['HeroAtMain'] = EMPTY_DATA;
 			$this->players[$i]['GenerateHero'] = 0;
-			$this->players[$i]['HeroFace'] = [];
-			$this->players[$i]['HeroName'] = [];
+			$this->players[$i]['townpos'] = new MapCoords();
+			$this->players[$i]['RandomHero'] = '';
+			$this->players[$i]['StartingHeroID'] = OBJECT_INVALID;
+			$this->players[$i]['StartingHeroFace'] = OBJECT_INVALID;
+			$this->players[$i]['StartingHeroName'] = EMPTY_DATA;
+			$this->players[$i]['HeroIDs'] = [];
+			$this->players[$i]['HeroNames'] = [];
 			$this->players[$i]['HeroCount'] = 0;
 			$this->players[$i]['townsOwned'] = 0;
 			$this->players[$i]['placeholder'] = OBJECT_INVALID;
@@ -596,16 +598,6 @@ class H3MAPSCAN
 
 			$towns_allowed = [];
 
-			// if($towns == HNONE || $towns == HNONE_TOWN) {
-			// 	$towns_allowed[] = 'Random';
-			// }
-			// elseif($towns != HNULL) {
-			// 	for($n = 0; $n < $maxtowns; $n++) {
-			// 		if(($towns & (1 << $n)) != 0) {
-			// 			$towns_allowed[] = $this->GetTownById($n);
-			// 		}
-			// 	}
-			// }
 			for ($n = 0; $n < $maxtowns; $n++) {
 				if (($towns & (1 << $n)) != 0) {
 					$towns_allowed[] = $this->GetTownById($n);
@@ -613,17 +605,10 @@ class H3MAPSCAN
 			}
 			$this->players[$i]['towns_allowed'] = implode(', ', $towns_allowed);
 
-			//print('<br /><br />Player: '.$this->GetPlayerColorById($i)); // Debug
-
-			//print('<br />towns_allowed: '.$this->players[$i]['towns_allowed']); // Debug
-
 			$this->players[$i]['IsRandomTown'] = $this->br->ReadUint8();
 			$hasmaintown = $this->br->ReadUint8();
 			$this->players[$i]['HasMainTown'] = $this->yesOrNo($hasmaintown);
 
-			//print('<br />HasMainTown: '.$this->players[$i]['HasMainTown']); // Debug
-
-			//def values
 			$townpos;
 
 			if ($hasmaintown) {
@@ -632,65 +617,38 @@ class H3MAPSCAN
 					$this->players[$i]['GenerateHero'] = dechex($this->br->ReadUint8());
 				}
 				$townpos = new MapCoords($this->br->ReadUint8(), $this->br->ReadUint8(), $this->br->ReadUint8());
-
-				//print('<br />HeroAtMain: '.$this->players[$i]['HeroAtMain']); // Debug
-				//print('<br />townpos: '.$townpos->GetCoords()); // Debug
 			} else {
 				$townpos = new MapCoords();
 			}
 
 			$this->players[$i]['townpos'] = $townpos;
 
-			$heronum = 0;
 			$randomhero = $this->br->ReadUint8();
 			$this->players[$i]['RandomHero'] = $this->yesOrNo($randomhero);
 			$this->players[$i]['StartingHeroID'] = $this->br->ReadUint8();
 
-			//print('<br />StartingHeroID: '.$this->players[$i]['StartingHeroID']); // Debug
-
-			$this->players[$i]['MainHeroName'] = 'Random';
-
 			if ($this->players[$i]['StartingHeroID'] != HNONE) {
-				$heroface = $this->br->ReadUint8();
-
-				//print('<br />StartingHeroFace: '.$this->GetHeroById($heroface)); // Debug
-
-				$heroname = $this->ReadString();
-
-				//print('<br />StartingHeroName: '.$heroname); // Debug
-
-				if ($heroface != HNONE) {
-					$this->players[$i]['HeroFace'][] = $heroface;
-					$this->players[$i]['HeroName'][] = $heroname;
+				$this->players[$i]['StartingHeroFace'] = $this->br->ReadUint8();
+				$this->players[$i]['StartingHeroName'] = $this->ReadString();
+				if (!$this->players[$i]['StartingHeroName']) {
+					$this->players[$i]['StartingHeroName'] = $this->GetHeroById($this->players[$i]['StartingHeroID']);
 				}
-				$this->players[$i]['MainHeroName'] = $this->GetHeroById($heroface);
 
 				$this->br->SkipBytes(1);
 
-				if (!$this->isROE) {
+				$herocount = $this->br->ReadUint32();
+				$this->players[$i]['HeroCount'] = $herocount;
 
-					$herocount = $this->br->ReadUint32();
-					$this->players[$i]['HeroCount'] = $herocount;
+				for ($j = 0; $j < $herocount; $j++) {
+					$heroid = $this->br->ReadUint8();
 
-					//print('<br />herocount: '.$herocount); // Debug
+					$heroname = $this->ReadString();
 
-					//$this->br->SkipBytes(3);
-					for ($j = 0; $j < $herocount; $j++) {
-						$heroid = $this->br->ReadUint8();
-
-						//print('<br />heroid: '.$heroid); // Debug
-
-						$heroname = $this->ReadString();
-
-						//print('<br />heroname: '.$heroname); // Debug
-						//print('<br />GetHeroById: '.$this->GetHeroById($heroid)); // Debug
-
-						if (!$heroname) {
-							$heroname = $this->GetHeroById($heroid);
-						}
-						$this->players[$i]['HeroFace'][] = $heroid;
-						$this->players[$i]['HeroName'][] = $heroname;
+					if (!$heroname) {
+						$heroname = $this->GetHeroById($heroid);
 					}
+					$this->players[$i]['HeroIDs'][] = $heroid;
+					$this->players[$i]['HeroNames'][] = $heroname;
 				}
 			} else {
 				$this->br->SkipBytes(1);
@@ -698,29 +656,9 @@ class H3MAPSCAN
 				$herocount = $this->br->ReadUint32();
 				$this->players[$i]['HeroCount'] = $herocount;
 
-				//print('<br />PlaceholderHeroCount: '.$herocount); // Debug
-
 				for ($j = 0; $j < $herocount; $j++) {
 					$this->br->SkipBytes(5);
-					/*
-					$heroid = $this->br->ReadUint8();
-
-					print('<br />PlaceholderHeroID: '.$heroid); // Debug
-					print('<br />GetHeroById: '.$this->GetHeroById($heroid)); // Debug
-
-					$heroname = $this->ReadString();
-
-					print('<br />PlaceholderHeroName: '.$heroname); // Debug
-
-					if(!$heroname) {
-						$heroname = $this->GetHeroById($heroid);
-					}
-					$this->players[$i]['HeroFace'][] = $heroid;
-					$this->players[$i]['HeroName'][] = $heroname;
-					*/
 				}
-
-				//$this->players[$i]['placeholder'] = $this->br->ReadUint8(); //placeholder
 			}
 		}
 
@@ -3446,21 +3384,30 @@ class H3MAPSCAN
 			}
 		}
 
-		//update hero names from map to predefined array
-		foreach ($this->templateHeroes as $k => $templateHero) { //predefined
-			foreach ($this->heroes_list as $l => $mapHero) { //on map
+		//update hero names and portraits
+		foreach ($this->templateHeroes as $k => $templateHero) {
+			foreach ($this->heroes_list as $l => $mapHero) {
 				if ($templateHero['id'] == $mapHero['data']['subid']) {
 					$this->templateHeroes[$k]['mapHeroName'] = $mapHero['data']['mapHeroName'];
 					$this->templateHeroes[$k]['mapHeroFace'] = $mapHero['data']['portrait'];
 					$this->heroes_list[$l]['data']['templateHeroName'] = $templateHero['templateHeroName'];
 					$this->heroes_list[$l]['data']['templatePortrait'] = $templateHero['pface'];
-					// echo $this->heroes_list[$l]['data']['templatePortrait'];
 					$this->heroes_list[$l]['data']['defName'] = $templateHero['defName'];
 					if ($mapHero['data']['mapHeroName'] === $templateHero['defName'] && $templateHero['templateHeroName'] !== $templateHero['defName']) {
 						$this->templateHeroes[$k]['mapHeroName'] = $templateHero['templateHeroName'];
 						$this->heroes_list[$l]['data']['mapHeroName'] = $templateHero['templateHeroName'];
 					}
 					break;
+				}
+			}
+			for ($i = 0; $i < PLAYERSNUM; $i++) {
+				if ($templateHero['id'] == $this->players[$i]['StartingHeroID']) {
+					$this->players[$i]['StartingHeroName'] = $this->templateHeroes[$k]['mapHeroName'];
+				}
+				for ($j = 0; $j < count($this->players[$i]['HeroIDs']); $j++) {
+					if ($templateHero['id'] == $this->players[$i]['HeroIDs'][$j]) {
+						$this->players[$i]['HeroNames'][$j] = $this->templateHeroes[$k]['mapHeroName'];
+					}
 				}
 			}
 		}
