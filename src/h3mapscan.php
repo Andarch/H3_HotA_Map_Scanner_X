@@ -792,9 +792,9 @@ class H3MAPSCAN
 					$hero_event_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $hero_event_count; $i++) {
 						$event = [];
-						$event['event_id'] = $this->br->ReadUint32();
+						$event['id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
-						$event['event_name'] = $this->br->ReadString();
+						$event['name'] = $this->br->ReadString();
 						$this->hotaEvents['hero_events'][] = $event;
 					}
 
@@ -802,9 +802,9 @@ class H3MAPSCAN
 					$player_event_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $player_event_count; $i++) {
 						$event = [];
-						$event['event_id'] = $this->br->ReadUint32();
+						$event['id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
-						$event['event_name'] = $this->br->ReadString();
+						$event['name'] = $this->br->ReadString();
 						$this->hotaEvents['player_events'][] = $event;
 					}
 
@@ -812,9 +812,9 @@ class H3MAPSCAN
 					$town_event_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $town_event_count; $i++) {
 						$event = [];
-						$event['event_id'] = $this->br->ReadUint32();
+						$event['id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
-						$event['event_name'] = $this->br->ReadString();
+						$event['name'] = $this->br->ReadString();
 						$this->hotaEvents['town_events'][] = $event;
 					}
 
@@ -822,9 +822,9 @@ class H3MAPSCAN
 					$quest_event_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $quest_event_count; $i++) {
 						$event = [];
-						$event['event_id'] = $this->br->ReadUint32();
+						$event['id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
-						$event['event_name'] = $this->br->ReadString();
+						$event['name'] = $this->br->ReadString();
 						$this->hotaEvents['quest_events'][] = $event;
 					}
 
@@ -841,11 +841,11 @@ class H3MAPSCAN
 					// Variables
 					for ($i = 0; $i < $this->hotaEvents['variable_count']; $i++) {
 						$var = [];
-						$var['variable_id'] = $this->br->ReadUint32();
-						$var['variable_name'] = $this->br->ReadString();
+						$var['id'] = $this->br->ReadUint32();
+						$var['name'] = $this->br->ReadString();
 						$var['save_in_campaign'] = (bool) $this->br->ReadUint8();
 						$var['value_mode'] = $this->br->ReadUint8();
-						if ($var['value_mode'] == 0) { // VariableValueMode.InitialValue
+						if ($var['value_mode'] == 0) {
 							$var['value'] = $this->br->ReadUint32();
 						}
 						$this->hotaEvents['variables'][] = $var;
