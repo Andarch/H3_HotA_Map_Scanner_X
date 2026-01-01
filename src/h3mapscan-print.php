@@ -70,13 +70,13 @@ class H3MAPSCAN_PRINT
 			case 'Event Objects':
 				include 'h3mapscan-print-eventobjects.php';
 				break;
-			case 'HotA Hero Events':
-			case 'HotA Player Events':
-			case 'HotA Town Events':
-			case 'HotA Quest Events':
-			case 'HotA Variables':
-				include 'h3mapscan-print-hotaevents.php';
-				break;
+			// case 'HotA Hero Events':
+			// case 'HotA Player Events':
+			// case 'HotA Town Events':
+			// case 'HotA Quest Events':
+			// case 'HotA Variables':
+			// 	include 'h3mapscan-print-hotaevents.php';
+			// 	break;
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
 				break;

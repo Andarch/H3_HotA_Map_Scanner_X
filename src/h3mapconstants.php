@@ -479,6 +479,7 @@ class QUESTMISSION
 
 class HotaEventActions
 {
+    const MODIFY_VARIABLE = 3;
     const REMOVE_CURRENT_OBJECT = 5;
     const EXECUTE_EVENT = 24;
     const DISABLE_EVENT = 27;
@@ -487,6 +488,11 @@ class HotaEventActions
 //constants class with items names
 class HeroesConstants
 {
+    public $HotaModifyVariableMode = [
+        0 => "Increase",
+        1 => "Decrease",
+        2 => "Set",
+    ];
     public $HotaEventTypes = [
         0 => "Hero",
         1 => "Player",

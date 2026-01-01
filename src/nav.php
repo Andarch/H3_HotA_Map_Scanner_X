@@ -68,11 +68,11 @@ function generateNavMain($map)
         'Quest Guards',
         'Pandora\'s Boxes',
         'Event Objects',
-        'HotA Hero Events',
-        'HotA Player Events',
-        'HotA Town Events',
-        'HotA Quest Events',
-        'HotA Variables',
+        // 'HotA Hero Events',
+        // 'HotA Player Events',
+        // 'HotA Town Events',
+        // 'HotA Quest Events',
+        // 'HotA Variables',
         'Object Count',
     ];
 
@@ -81,10 +81,10 @@ function generateNavMain($map)
         'Map Heroes' => 'heroes-table-3',
         'Prisoners' => 'heroes-table-4',
         'Quest Guards' => 'quest-guards-table',
-        'HotA Player Events' => 'hota-player-events-table',
-        'HotA Town Events' => 'hota-town-events-table',
-        'HotA Quest Events' => 'hota-quest-events-table',
-        'HotA Variables' => 'hota-variables-table',
+        // 'HotA Player Events' => 'hota-player-events-table',
+        // 'HotA Town Events' => 'hota-town-events-table',
+        // 'HotA Quest Events' => 'hota-quest-events-table',
+        // 'HotA Variables' => 'hota-variables-table',
     ];
 
     $sectionsWithHr1Below = [
@@ -97,7 +97,7 @@ function generateNavMain($map)
         'Quest Guards',
         'Town Events',
         'Event Objects',
-        'HotA Variables',
+        // 'HotA Variables',
         'Object Count',
     ];
 
@@ -113,10 +113,10 @@ function generateNavMain($map)
         'Quest Gates',
         'Global Events',
         'Pandora\'s Boxes',
-        'HotA Hero Events',
-        'HotA Player Events',
-        'HotA Town Events',
-        'HotA Quest Events',
+        // 'HotA Hero Events',
+        // 'HotA Player Events',
+        // 'HotA Town Events',
+        // 'HotA Quest Events',
     ];
 
     if ($map && $map->map_name == '(C) Tides of War (Allies)') {

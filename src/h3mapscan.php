@@ -72,6 +72,7 @@ class H3MAPSCAN
 	public $rumors = [];
 	public $events = [];
 	public $hotaEvents = [];
+	public $hotaEventsRawBytes = [];
 
 	private $allowedArtifacts = [];
 	public $disabledArtifacts = [];
@@ -788,88 +789,119 @@ class H3MAPSCAN
 			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
 				//HotA Events
 				if ($this->br->ReadUint8()) {
-					// HotA events (hero, player, town, quest)
-					$eventTypes = ['hero_events', 'player_events', 'town_events', 'quest_events'];
-
-					foreach ($eventTypes as $eventType) {
-						$eventCount = $this->br->ReadUint32();
-
-						for ($i = 0; $i < $eventCount; $i++) {
-							$event = [];
-							$event['id'] = $this->br->ReadUint32();
-
-							$bytes = [];
-							for ($j = 0; $j < 5; $j++) {
-								$bytes[] = sprintf('%02X', $this->br->ReadUint8());
-							}
-							$event['bytes'] = implode(' ', $bytes);
-
-							$event['action_count'] = $this->br->ReadUint32();
-							$event['actions'] = [];
-							for ($j = 0; $j < $event['action_count']; $j++) {
-								$action = [];
-								$action['id'] = $this->br->ReadUint32();
-								if ($action['id'] == HotaEventActions::EXECUTE_EVENT) {
-									$action['event_type'] = $this->GetHotaEventTypeById($this->br->ReadUint32());
-									$action['event_id'] = $this->br->ReadUint32();
-									$action['desc'] = 'Execute Event' . PIPE_SEPARATOR . $action['event_type'] . PIPE_SEPARATOR . $action['event_id'];
-								}
-								$event['actions'][] = $action;
-							}
-
-							$event['name'] = $this->br->ReadString();
-							$this->hotaEvents[$eventType][] = $event;
+					// Set $this->hotaEventsRawBytes to the raw bytes of this section, excluding the byte that entered this if statement. The way to tell the section is ending is when a uint8 equals 166, which is the start of the next section.
+					while (true) {
+						$byte = $this->br->ReadUint8();
+						if ($byte === 166) {
+							// Rewind one byte so the next section can read its starting byte.
+							$this->br->SetPos($this->br->GetPos() - 1);
+							break;
 						}
+						$this->hotaEventsRawBytes[] = $byte;
 					}
 
-					// Variable count
-					$this->hotaEvents['variable_count'] = $this->br->ReadUint32();
 
-					// ID counters
-					$this->hotaEvents['hero_event_id_counter'] = $this->br->ReadUint32();
-					$this->hotaEvents['player_event_id_counter'] = $this->br->ReadUint32();
-					$this->hotaEvents['town_event_id_counter'] = $this->br->ReadUint32();
-					$this->hotaEvents['quest_event_id_counter'] = $this->br->ReadUint32();
-					$this->hotaEvents['variable_id_counter'] = $this->br->ReadUint32();
+					// $eventTypes = ['hero_events', 'player_events', 'town_events', 'quest_events'];
 
-					// Variables
-					for ($i = 0; $i < $this->hotaEvents['variable_count']; $i++) {
-						$var = [];
-						$var['id'] = $this->br->ReadUint32();
-						$var['name'] = $this->br->ReadString();
-						$var['save_in_campaign'] = (bool) $this->br->ReadUint8();
-						$var['value_mode'] = $this->br->ReadUint8();
-						if ($var['value_mode'] == 0) {
-							$var['value'] = $this->br->ReadUint32();
-						}
-						$this->hotaEvents['variables'][] = $var;
-					}
+					// foreach ($eventTypes as $eventType) {
+					// 	$eventCount = $this->br->ReadUint32();
 
-					// IDs
-					$hero_event_ids_count = $this->br->ReadUint32();
-					for ($i = 0; $i < $hero_event_ids_count; $i++) {
-						$this->hotaEvents['hero_event_ids'][] = $this->br->ReadUint32();
-					}
+					// 	for ($i = 0; $i < $eventCount; $i++) {
+					// 		$event = [];
+					// 		$event['id'] = $this->br->ReadUint32();
 
-					$player_event_ids_count = $this->br->ReadUint32();
-					for ($i = 0; $i < $player_event_ids_count; $i++) {
-						$this->hotaEvents['player_event_ids'][] = $this->br->ReadUint32();
-					}
+					// 		$bytes = [];
+					// 		for ($j = 0; $j < 5; $j++) {
+					// 			$bytes[] = sprintf('%02X', $this->br->ReadUint8());
+					// 		}
+					// 		$event['bytes'] = implode(' ', $bytes);
 
-					$town_event_ids_count = $this->br->ReadUint32();
-					for ($i = 0; $i < $town_event_ids_count; $i++) {
-						$this->hotaEvents['town_event_ids'][] = $this->br->ReadUint32();
-					}
+					// 		$event['action_count'] = $this->br->ReadUint32();
+					// 		$event['actions'] = [];
+					// 		for ($j = 0; $j < $event['action_count']; $j++) {
+					// 			$action = [];
+					// 			$action['action_id'] = $this->br->ReadUint32();
 
-					$quest_event_ids_count = $this->br->ReadUint32();
-					for ($i = 0; $i < $quest_event_ids_count; $i++) {
-						$this->hotaEvents['quest_event_ids'][] = $this->br->ReadUint32();
-					}
+					// 			switch ($action['action_id']) {
+					// 				case HotaEventActions::MODIFY_VARIABLE:
+					// 					$action['variable_id'] = $this->br->ReadUint32();
+					// 					$action['mode'] = $this->GetHotaModifyVariableModeById($this->br->ReadUint8());
+					// 					$bytes = [];
+					// 					for ($k = 0; $k < 5; $k++) {
+					// 						$bytes[] = sprintf('%02X', $this->br->ReadUint8());
+					// 					}
+					// 					$action['bytes'] = implode(' ', $bytes);
+					// 					$action['value'] = $this->br->ReadUint32();
+					// 					$action['desc'] = $action['mode'] . ' Variable ' . $action['variable_id'] . PIPE_SEPARATOR . $action['bytes'] . PIPE_SEPARATOR . $action['value'];
+					// 					break;
+					// 				case HotaEventActions::REMOVE_CURRENT_OBJECT:
+					// 					$action['desc'] = 'Remove Current Object';
+					// 					break;
+					// 				case HotaEventActions::EXECUTE_EVENT:
+					// 					$action['event_type'] = $this->GetHotaEventTypeById($this->br->ReadUint32());
+					// 					$action['event_id'] = $this->br->ReadUint32();
+					// 					$action['desc'] = 'Execute ' . $action['event_type'] . ' Event ' . $action['event_id'];
+					// 					break;
+					// 				case HotaEventActions::DISABLE_EVENT:
+					// 					$action['desc'] = 'Disable Event';
+					// 					break;
+					// 			}
+					// 			$event['actions'][] = $action;
+					// 		}
 
-					$variable_ids_count = $this->br->ReadUint32();
-					for ($i = 0; $i < $variable_ids_count; $i++) {
-						$this->hotaEvents['variable_ids'][] = $this->br->ReadUint32();
-					}
+					// 		$event['name'] = $this->br->ReadString();
+					// 		$this->hotaEvents[$eventType][] = $event;
+					// 	}
+					// }
+
+					// // Variable count
+					// $this->hotaEvents['variable_count'] = $this->br->ReadUint32();
+
+					// // ID counters
+					// $this->hotaEvents['hero_event_id_counter'] = $this->br->ReadUint32();
+					// $this->hotaEvents['player_event_id_counter'] = $this->br->ReadUint32();
+					// $this->hotaEvents['town_event_id_counter'] = $this->br->ReadUint32();
+					// $this->hotaEvents['quest_event_id_counter'] = $this->br->ReadUint32();
+					// $this->hotaEvents['variable_id_counter'] = $this->br->ReadUint32();
+
+					// // Variables
+					// for ($i = 0; $i < $this->hotaEvents['variable_count']; $i++) {
+					// 	$var = [];
+					// 	$var['id'] = $this->br->ReadUint32();
+					// 	$var['name'] = $this->br->ReadString();
+					// 	$var['save_in_campaign'] = (bool) $this->br->ReadUint8();
+					// 	$var['value_mode'] = $this->br->ReadUint8();
+					// 	if ($var['value_mode'] == 0) {
+					// 		$var['value'] = $this->br->ReadUint32();
+					// 	}
+					// 	$this->hotaEvents['variables'][] = $var;
+					// }
+
+					// // IDs
+					// $hero_event_ids_count = $this->br->ReadUint32();
+					// for ($i = 0; $i < $hero_event_ids_count; $i++) {
+					// 	$this->hotaEvents['hero_event_ids'][] = $this->br->ReadUint32();
+					// }
+
+					// $player_event_ids_count = $this->br->ReadUint32();
+					// for ($i = 0; $i < $player_event_ids_count; $i++) {
+					// 	$this->hotaEvents['player_event_ids'][] = $this->br->ReadUint32();
+					// }
+
+					// $town_event_ids_count = $this->br->ReadUint32();
+					// for ($i = 0; $i < $town_event_ids_count; $i++) {
+					// 	$this->hotaEvents['town_event_ids'][] = $this->br->ReadUint32();
+					// }
+
+					// $quest_event_ids_count = $this->br->ReadUint32();
+					// for ($i = 0; $i < $quest_event_ids_count; $i++) {
+					// 	$this->hotaEvents['quest_event_ids'][] = $this->br->ReadUint32();
+					// }
+
+					// $variable_ids_count = $this->br->ReadUint32();
+					// for ($i = 0; $i < $variable_ids_count; $i++) {
+					// 	$this->hotaEvents['variable_ids'][] = $this->br->ReadUint32();
+					// }
 				}
 			}
 		}
@@ -3948,6 +3980,11 @@ class H3MAPSCAN
 	private function GetHotaEventTypeById($id)
 	{
 		return FromArray($id, $this->CS->HotaEventTypes);
+	}
+
+	private function GetHotaModifyVariableModeById($id)
+	{
+		return FromArray($id, $this->CS->HotaModifyVariableMode);
 	}
 
 	private function GetSpellById($id)

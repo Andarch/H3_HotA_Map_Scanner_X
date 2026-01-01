@@ -30,7 +30,7 @@ foreach ($eventTables as $table) {
 			<td class="ac nowrap" nowrap="nowrap">' . $event['id'] . '</td>
 			<td class="nowrap" nowrap="nowrap">' . $event['name'] . '</td>
 			<td class="nowrap" nowrap="nowrap">' . $event['bytes'] . '</td>
-			<td class="nowrap" nowrap="nowrap">' . $actions . '</td>
+			<td class="small-text nowrap" nowrap="nowrap">' . $actions . '</td>
 		</tr>';
 	}
 	echo '</table>';
