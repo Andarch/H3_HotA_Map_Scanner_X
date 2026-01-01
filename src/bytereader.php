@@ -3,7 +3,8 @@
 const MAXINT32 = 0x80000000; //1 << 31;
 const MININT32 = 0x100000000; //1 << 32; //without minus
 
-class ByteReader {
+class ByteReader
+{
 
 	public $pos = 0;
 	public $length = 0;
@@ -11,23 +12,26 @@ class ByteReader {
 	public $skipstrings = false;
 
 
-	public function __construct($data = '') {
+	public function __construct($data = '')
+	{
 		$this->data = $data;
 		$this->pos = 0;
 		$this->length = strlen($this->data);
 	}
 
-	public function ReadUint8() {
-		if($this->pos >= $this->length) {
+	public function ReadUint8()
+	{
+		if ($this->pos >= $this->length) {
 			dbglog();
-			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
+			throw new Exception('Bad position 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 		return ord($this->data[$this->pos++]);
 	}
 
-	public function ReadUint16() {
-		if($this->pos >= $this->length - 1) {
-			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
+	public function ReadUint16()
+	{
+		if ($this->pos >= $this->length - 1) {
+			throw new Exception('Bad position 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
 		$res = ord($this->data[$this->pos++]);
@@ -35,104 +39,100 @@ class ByteReader {
 		return $res;
 	}
 
-	public function ReadUint32() {
-		if($this->pos >= $this->length - 3) {
-			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
+	public function ReadUint32()
+	{
+		if ($this->pos >= $this->length - 3) {
+			throw new Exception('Bad position 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
-		$res  = ord($this->data[$this->pos++]);
+		$res = ord($this->data[$this->pos++]);
 		$res += ord($this->data[$this->pos++]) << 8;
 		$res += ord($this->data[$this->pos++]) << 16;
 		$res += ord($this->data[$this->pos++]) << 24;
 		return $res;
 	}
 
-	public function ReadInt8() {
-		if($this->pos >= $this->length) {
-			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
+	public function ReadInt8()
+	{
+		if ($this->pos >= $this->length) {
+			throw new Exception('Bad position 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
-		$res  = ord($this->data[$this->pos++]);
-		if($res > 0x7E) {
+		$res = ord($this->data[$this->pos++]);
+		if ($res > 0x7E) {
 			$res -= 0x100;
 		}
 		return $res;
 	}
 
-	public function ReadInt32() {
-		if($this->pos >= $this->length - 3) {
-			throw new Exception('Bad position 0x'.dechex($this->pos).' '.$this->pos);
+	public function ReadInt32()
+	{
+		if ($this->pos >= $this->length - 3) {
+			throw new Exception('Bad position 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
-		$res  = ord($this->data[$this->pos++]);
+		$res = ord($this->data[$this->pos++]);
 		$res += ord($this->data[$this->pos++]) << 8;
 		$res += ord($this->data[$this->pos++]) << 16;
 		$res += ord($this->data[$this->pos++]) << 24;
-		if($res > MAXINT32) {
+		if ($res > MAXINT32) {
 			$res -= MININT32;
 		}
 		return $res;
 	}
 
-	public function ReadString($length = -1) {
+	public function ReadString($length = -1)
+	{
 		$res = '';
-		if($this->pos >= $this->length) {
+		if ($this->pos >= $this->length) {
 			dbglog();
 			$this->data = null;
-			throw new Exception('Bad string pos 0x'.dechex($this->pos).' '.$this->pos);
+			throw new Exception('Bad string pos 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
-		if($length == -1) {
+		if ($length == -1) {
 			$length = $this->ReadUint32();
-			if($length == 0) {
+			if ($length == 0) {
 				return $res;
 			}
-			if($length > 100000 || $length < 0) {
+			if ($length > 100000 || $length < 0) {
 				dbglog();
 				$this->data = null;
-				throw new Exception('Too long string '.$length);
+				throw new Exception('Too long string ' . $length . ' at pos 0x' . dechex($this->pos) . ' ' . $this->pos);
 			}
 
 			//fastread
-			if($this->skipstrings) {
+			if ($this->skipstrings) {
 				$this->pos += $length;
 				return '';
 			}
 
 			$res = substr($this->data, $this->pos, $length);
 			$this->pos += $length;
-		}
-		elseif($length > 0) {
+		} elseif ($length > 0) {
 			$res = trim(substr($this->data, $this->pos, $length));
 			$this->pos += $length;
-		}/*
-		else {
-			return;
-			while(ord($this->data[$this->pos]) != 0) {
-				$res .= $this->data[$this->pos++];
-			}
-			$this->pos++; // advance pointer after finding the 0
 		}
-		*/
 
 		return $res;
 	}
 
-	public function ReadStringH2() {
+	public function ReadStringH2()
+	{
 		$res = '';
-		if($this->pos >= $this->length) {
+		if ($this->pos >= $this->length) {
 			dbglog();
 			$this->data = null;
-			throw new Exception('Bad string pos '.$this->pos);
+			throw new Exception('Bad string pos 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
 		$length = $this->ReadUint16();
-		if($length == 0) {
+		if ($length == 0) {
 			return $res;
 		}
-		if($length > 100000 || $length < 0) {
+		if ($length > 100000 || $length < 0) {
 			dbglog();
 			$this->data = null;
-			throw new Exception('Too long string '.$length);
+			throw new Exception('Too long string ' . $length . ' at pos 0x' . dechex($this->pos) . ' ' . $this->pos . ' at pos 0x' . dechex($this->pos) . ' ' . $this->pos);
 		}
 
 		$res = substr($this->data, $this->pos, $length);
@@ -141,51 +141,62 @@ class ByteReader {
 		return $res;
 	}
 
-	public function SkipBytes($bytes = 31) {
+	public function SkipBytes($bytes = 31)
+	{
 		$this->pos += $bytes;
 	}
 
-	public function SetPos($pos) {
+	public function SetPos($pos)
+	{
 		$this->pos = $pos;
 	}
 
-	public function GetPos() {
+	public function GetPos()
+	{
 		return $this->pos;
 	}
 
-	public function ResetPos() {
+	public function ResetPos()
+	{
 		return $this->pos = 0;
 	}
 
-	public function Length() {
+	public function Length()
+	{
 		return strlen($this->data);
 	}
 
-	public function GetLength() {
+	public function GetLength()
+	{
 		return $this->length;
 	}
 
-	public function Rewind($bytes) {
+	public function Rewind($bytes)
+	{
 		$this->pos -= $bytes;
 	}
 
 	//print current position
-	public function ppos() {
-		vd(dechex($this->pos). ' '.$this->pos);
+	public function ppos()
+	{
+		vd(dechex($this->pos) . ' ' . $this->pos);
 	}
 
-	public function rpos() {
-		return '0x'.dechex($this->pos);
+	public function rpos()
+	{
+		return '0x' . dechex($this->pos);
 	}
 
-	public function pvar($var) {
-		echo ' '.dechex($var). ' '.$var.'<br />';
+	public function pvar($var)
+	{
+		echo ' ' . dechex($var) . ' ' . $var . '<br />';
 	}
 
-	public function bvar($var) {
+	public function bvar($var)
+	{
 		$bprint = sprintf('%08b', $var & 0xff);
-		if($var > 0xff) {
-			$bprint = sprintf('%08b', ($var >> 8) & 0xff).' '.$bprint;
+		if ($var > 0xff) {
+			$bprint = sprintf('%08b', ($var >> 8) & 0xff) . ' ' . $bprint;
 		}
 		return $bprint;
 	}

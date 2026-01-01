@@ -29,6 +29,7 @@ class H3MAPSCAN
 	const HOTA_SUBREV6 = 6;
 	const HOTA_SUBREV7 = 7;
 	const HOTA_SUBREV8 = 8;
+	const HOTA_SUBREV9 = 9;
 
 	//variables to simplify version checks
 	private $isROE = false;
@@ -95,6 +96,7 @@ class H3MAPSCAN
 	private $hota_arena = 0;
 	private $monplague_week = 0;
 	private $combat_round_limit = 0;
+	private $hota_unknown = 0;
 
 	//object of interest lists
 	public $artifacts_list = [];
@@ -279,7 +281,7 @@ class H3MAPSCAN
 	//return true on valid version, false otherwise
 	private function CheckVersion()
 	{
-		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV8));
+		return (in_array($this->version, [$this::ROE, $this::AB, $this::SOD, $this::WOG]) || ($this->version == $this::HOTA && $this->hota_subrev <= $this::HOTA_SUBREV9));
 	}
 
 	private function SaveMap()
@@ -452,6 +454,10 @@ class H3MAPSCAN
 
 		if ($this->hota_subrev >= $this::HOTA_SUBREV8) {
 			$this->hotaVersionLocked = $this->br->ReadUint8();
+		}
+
+		if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
+			$this->hota_unknown = $this->br->ReadUint32();
 		}
 
 		$this->any_hero_onmap = $this->br->ReadUint8(); //hero presence
@@ -679,7 +685,7 @@ class H3MAPSCAN
 				$heroes = 20;
 				break;
 			case $this::HOTA:
-				$heroes = 23;
+				// $heroes = 23;
 				break;
 		}
 
