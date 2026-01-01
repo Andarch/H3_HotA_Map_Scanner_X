@@ -794,7 +794,7 @@ class H3MAPSCAN
 						$byte = $this->br->ReadUint8();
 						if ($byte === 166) {
 							// Rewind one byte so the next section can read its starting byte.
-							$this->br->SetPos($this->br->GetPos() - 1);
+							$this->br->Rewind(1);
 							break;
 						}
 						$this->hotaEventsRawBytes[] = $byte;
@@ -1890,6 +1890,13 @@ class H3MAPSCAN
 					$event['difficulty'] = [];
 					$event['difficulty'] = $selectedDifficulties;
 
+					$unknown_byte = $this->br->ReadUint8();
+					if ($unknown_byte != 0) {
+						$event['hero_event_id'] = $this->br->ReadUint32();
+						$event['unknown_byte'] = $this->br->ReadUint8();
+					} else {
+						$event['unknown_byte'] = $unknown_byte;
+					}
 					$obj['data'] = $event;
 
 					$this->events_list[] = $obj;
@@ -2897,24 +2904,27 @@ class H3MAPSCAN
 			$event['firstOccurence'] = $this->br->ReadUint16() + 1;
 			$event['nextOccurence'] = $this->br->ReadUint16();
 
-			//DEBUG
-			// echo 'firstOccurence: '.($event['firstOccurence'] - 1).'<br />';
-			// echo 'interval: '.$event['nextOccurence'].'<br />';
-			//END DEBUG
-
 			$this->br->SkipBytes(16);
 
 			if ($this->hota_subrev >= $this::HOTA_SUBREV7) {
 				$difficulties = $this->br->ReadUint32();
 			}
 
-			if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-				$event['hotaLevel7b'] = $this->br->ReadInt32(); //hota_lvl_7b
-				$event['hotaAmount'] = $this->br->ReadInt32(); //hota_amount
-
-				for ($i = 0; $i < 6; $i++) {
-					$event['hotaSpecial'][] = $this->br->ReadUint8();
+			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
+				$event['eventType'] = $this->br->ReadUint8();
+				if ($event['eventType'] == 0) {
+					$event['hotaLevel7b'] = $this->br->ReadInt32();
+				} else if ($event['eventType'] == 1) {
+					$event['hotaTownEventId'] = $this->br->ReadUint32();
+					$this->br->SkipBytes(5);
 				}
+			} else if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
+				$event['hotaLevel7b'] = $this->br->ReadInt32();
+			}
+
+			$event['hotaAmount'] = $this->br->ReadInt32();
+			for ($i = 0; $i < 6; $i++) {
+				$event['hotaSpecial'][] = $this->br->ReadUint8();
 			}
 
 			if ($this->hota_subrev >= $this::HOTA_SUBREV7) {

@@ -551,7 +551,8 @@ class HeroesConstants
         25 => "Sorcery",
         26 => "Resistance",
         27 => "First Aid",
-        28 => "Interference", //hota
+        28 => "Interference",
+        29 => "Runes",
     ];
 
     public $Alignment = [

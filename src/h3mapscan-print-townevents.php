@@ -22,10 +22,10 @@ echo '<table class="table-large">
 			<th class="nowrap" nowrap="nowrap">Buildings</th>
 			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
-foreach($this->h3mapscan->towns_list as $towno) {
+foreach ($this->h3mapscan->towns_list as $towno) {
 	$town = $towno['data'];
 
-	if($town['eventsnum'] == 0) {
+	if ($town['eventsnum'] == 0) {
 		continue;
 	}
 
@@ -38,28 +38,28 @@ foreach($this->h3mapscan->towns_list as $towno) {
 	$ecount = $town['eventsnum'];
 
 	echo '<tr>
-		<td rowspan="'.$ecount.'" class="table__row-header--default" >'.(++$n).'</td>
-		<td rowspan="'.$ecount.'" class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
-		<td rowspan="'.$ecount.'" class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
-		<td rowspan="'.$ecount.'" class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
-		<td rowspan="'.$ecount.'" class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>';
+		<td rowspan="' . $ecount . '" class="table__row-header--default" >' . (++$n) . '</td>
+		<td rowspan="' . $ecount . '" class="ac nowrap" nowrap="nowrap">' . $town['name'] . '</td>
+		<td rowspan="' . $ecount . '" class="ac nowrap" nowrap="nowrap">' . $towno['pos']->GetCoords() . '</td>
+		<td rowspan="' . $ecount . '" class="nowrap" nowrap="nowrap">' . $town['player'] . '</td>
+		<td rowspan="' . $ecount . '" class="ac nowrap" nowrap="nowrap">' . $town['affiliation'] . '</td>';
 
 	usort($town['events'], 'SortTownEventsByDate');
-	foreach($town['events'] as $e => $event) {
+	foreach ($town['events'] as $e => $event) {
 		$additionalRow = false;
-        $lastAdditionalRow = false;
-		if($ecount > 1 && $e > 0) {
+		$lastAdditionalRow = false;
+		if ($ecount > 1 && $e > 0) {
 			echo '<tr>';
-            if($e < $ecount - 1) {
-                $additionalRow = true;
-            } else {
-                $lastAdditionalRow = true;
-            }
+			if ($e < $ecount - 1) {
+				$additionalRow = true;
+			} else {
+				$lastAdditionalRow = true;
+			}
 		}
 
-		$first = 'Day '.$event['firstOccurence'];
+		$first = 'Day ' . $event['firstOccurence'];
 		$period = '';
-		switch($event['nextOccurence']) {
+		switch ($event['nextOccurence']) {
 			case 0:
 				$period = EMPTY_DATA;
 				break;
@@ -67,123 +67,123 @@ foreach($this->h3mapscan->towns_list as $towno) {
 				$period = 'Every day';
 				break;
 			default:
-				$period = 'Every '.$event['nextOccurence'].' days';
+				$period = 'Every ' . $event['nextOccurence'] . ' days';
 				break;
 		}
 
 		$eres = [];
-		if(!empty($event['res'])) {
-			foreach($event['res'] as $r => $res) {
-				if($res != 0) {
+		if (!empty($event['res'])) {
+			foreach ($event['res'] as $r => $res) {
+				if ($res != 0) {
 					$sign = $res > 0 ? '+' : '';
-					$eres[] = $sign.comma($res).' '.$this->h3mapscan->GetResourceById($r);
+					$eres[] = $sign . comma($res) . ' ' . $this->h3mapscan->GetResourceById($r);
 				}
 			}
 		}
-		if(empty($eres)) {
+		if (empty($eres)) {
 			$eres[] = EMPTY_DATA;
 		}
 
 		$monsters = [];
-		foreach($event['monsters'] as $lvl => $amount) {
-			if(($lvl + 1) == 7 && $event['hotaLevel7b'] > 0) {
-				$monsters[] = 'Level 7a: +'.$amount;
+		foreach ($event['monsters'] as $lvl => $amount) {
+			if (($lvl + 1) == 7 && array_key_exists('hotaLevel7b', $event) && $event['hotaLevel7b'] > 0) {
+				$monsters[] = 'Level 7a: +' . $amount;
 				break;
 			}
-			if($amount > 0) {
+			if ($amount > 0) {
 				// $monname = $monlvlprint ? 'Level '.($lvl + 1).' Creatures' : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
 				// $monsters[] = '+'.$amount.' '.$monname;
-				$monsters[] = 'Level '.($lvl + 1).': +'.$amount;
+				$monsters[] = 'Level ' . ($lvl + 1) . ': +' . $amount;
 			}
 		}
-		if($event['hotaLevel7b'] > 0) {
-			$monsters[] = 'Level 7b: +'.$event['hotaLevel7b'];
+		if (array_key_exists('hotaLevel7b', $event) && $event['hotaLevel7b'] > 0) {
+			$monsters[] = 'Level 7b: +' . $event['hotaLevel7b'];
 		}
-		if(empty($monsters)) {
+		if (empty($monsters)) {
 			$monsters[] = EMPTY_DATA;
 		}
 
 		$buildings = [];
-		foreach($event['buildings'] as $k => $bbyte) {
+		foreach ($event['buildings'] as $k => $bbyte) {
 			for ($i = 0; $i < 8; $i++) {
-				if(($bbyte >> $i) & 0x01) {
+				if (($bbyte >> $i) & 0x01) {
 					$bid = $k * 8 + $i;
 					$buildings[] = $this->h3mapscan->GetBuildingById($bid);
 				}
 			}
 		}
-		if($event['hotaSpecial'][0] > 0) {
+		if ($event['hotaSpecial'][0] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial1 as $bit => $name) {
-				if($event['hotaSpecial'][0] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial1 as $bit => $name) {
+				if ($event['hotaSpecial'][0] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if($event['hotaSpecial'][1] > 0) {
+		if ($event['hotaSpecial'][1] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial2 as $bit => $name) {
-				if($event['hotaSpecial'][1] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial2 as $bit => $name) {
+				if ($event['hotaSpecial'][1] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if($event['hotaSpecial'][2] > 0) {
+		if ($event['hotaSpecial'][2] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial3 as $bit => $name) {
-				if($event['hotaSpecial'][2] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial3 as $bit => $name) {
+				if ($event['hotaSpecial'][2] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if($event['hotaSpecial'][3] > 0) {
+		if ($event['hotaSpecial'][3] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial4 as $bit => $name) {
-				if($event['hotaSpecial'][3] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial4 as $bit => $name) {
+				if ($event['hotaSpecial'][3] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if($event['hotaSpecial'][4] > 0) {
+		if ($event['hotaSpecial'][4] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial5 as $bit => $name) {
-				if($event['hotaSpecial'][4] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial5 as $bit => $name) {
+				if ($event['hotaSpecial'][4] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if($event['hotaSpecial'][5] > 0) {
+		if ($event['hotaSpecial'][5] > 0) {
 			$selectedSpecials = [];
-			foreach($this->h3mapscan->CS->TownEventHotaSpecial6 as $bit => $name) {
-				if($event['hotaSpecial'][5] & $bit) {
+			foreach ($this->h3mapscan->CS->TownEventHotaSpecial6 as $bit => $name) {
+				if ($event['hotaSpecial'][5] & $bit) {
 					$buildings[] = $name;
 				}
 			}
 		}
-		if(empty($buildings)) {
+		if (empty($buildings)) {
 			$buildings[] = EMPTY_DATA;
 		}
 
 		$borderstyle = '';
-        if($ecount > 1 && $e == 0) {
-            $borderstyle = 'style="border-bottom: 1px dotted grey;"';
-        } else if($additionalRow) {
-            $borderstyle = 'style="border-top: 1px dotted grey; border-bottom: 1px dotted grey;"';
-        } else if($lastAdditionalRow) {
-            $borderstyle = 'style="border-top: 1px dotted grey;"';
-        }
+		if ($ecount > 1 && $e == 0) {
+			$borderstyle = 'style="border-bottom: 1px dotted grey;"';
+		} else if ($additionalRow) {
+			$borderstyle = 'style="border-top: 1px dotted grey; border-bottom: 1px dotted grey;"';
+		} else if ($lastAdditionalRow) {
+			$borderstyle = 'style="border-top: 1px dotted grey;"';
+		}
 
 		echo '
-				<td class="ac table__nested-row-header" '.$borderstyle.'">'.($e + 1).'</td>
-				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$event['name'].'</td>
-				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$this->h3mapscan->PlayerColors($event['players']).'</td>
-				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$event['humanOrAi'].'</td>
-				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$first.'</td>
-				<td class="ac nowrap" nowrap="nowrap" '.$borderstyle.'">'.$period.'</td>
-				<td class="small-text nowrap" nowrap="nowrap" '.$borderstyle.'">'.implode('<br />', $eres).'</td>
-				<td class="small-text nowrap" nowrap="nowrap" '.$borderstyle.'">'.implode('<br />', $monsters).'</td>
-				<td class="small-text" '.$borderstyle.'">'.implode(', ', $buildings).'</td>
-				<td class="small-text" '.$borderstyle.'">'.nl2br($event['message']).'</td>';
+				<td class="ac table__nested-row-header" ' . $borderstyle . '">' . ($e + 1) . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $event['name'] . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $this->h3mapscan->PlayerColors($event['players']) . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $event['humanOrAi'] . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $first . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $period . '</td>
+				<td class="small-text nowrap" nowrap="nowrap" ' . $borderstyle . '">' . implode('<br />', $eres) . '</td>
+				<td class="small-text nowrap" nowrap="nowrap" ' . $borderstyle . '">' . implode('<br />', $monsters) . '</td>
+				<td class="small-text" ' . $borderstyle . '">' . implode(', ', $buildings) . '</td>
+				<td class="small-text" ' . $borderstyle . '">' . nl2br($event['message']) . '</td>';
 		echo '</tr>';
 	}
 }
