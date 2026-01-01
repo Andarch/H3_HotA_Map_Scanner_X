@@ -71,6 +71,7 @@ class H3MAPSCAN
 	private $rumorsCount = 0;
 	public $rumors = [];
 	public $events = [];
+	public $hotaEvents = [];
 
 	private $allowedArtifacts = [];
 	public $disabledArtifacts = [];
@@ -785,8 +786,97 @@ class H3MAPSCAN
 				$this->br->SkipBytes(8);
 			}
 			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
-				//Unknown
-				$this->br->SkipBytes(1);
+				//HotA Events
+				if ($this->br->ReadUint8()) {
+					// Hero events
+					$hero_event_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $hero_event_count; $i++) {
+						$event = [];
+						$event['event_id'] = $this->br->ReadUint32();
+						$this->br->SkipBytes(9);
+						$event['event_name'] = $this->br->ReadString();
+						$this->hota_events['hero_events'][] = $event;
+					}
+
+					// Player events
+					$player_event_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $player_event_count; $i++) {
+						$event = [];
+						$event['event_id'] = $this->br->ReadUint32();
+						$this->br->SkipBytes(9);
+						$event['event_name'] = $this->br->ReadString();
+						$this->hota_events['player_events'][] = $event;
+					}
+
+					// Town events
+					$town_event_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $town_event_count; $i++) {
+						$event = [];
+						$event['event_id'] = $this->br->ReadUint32();
+						$this->br->SkipBytes(9);
+						$event['event_name'] = $this->br->ReadString();
+						$this->hota_events['town_events'][] = $event;
+					}
+
+					// Quest events
+					$quest_event_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $quest_event_count; $i++) {
+						$event = [];
+						$event['event_id'] = $this->br->ReadUint32();
+						$this->br->SkipBytes(9);
+						$event['event_name'] = $this->br->ReadString();
+						$this->hota_events['quest_events'][] = $event;
+					}
+
+					// Variable count
+					$this->hota_events['variable_count'] = $this->br->ReadUint32();
+
+					// ID counters
+					$this->hota_events['hero_event_id_counter'] = $this->br->ReadUint32();
+					$this->hota_events['player_event_id_counter'] = $this->br->ReadUint32();
+					$this->hota_events['town_event_id_counter'] = $this->br->ReadUint32();
+					$this->hota_events['quest_event_id_counter'] = $this->br->ReadUint32();
+					$this->hota_events['variable_id_counter'] = $this->br->ReadUint32();
+
+					// Variables
+					for ($i = 0; $i < $this->hota_events['variable_count']; $i++) {
+						$var = [];
+						$var['variable_id'] = $this->br->ReadUint32();
+						$var['variable_name'] = $this->br->ReadString();
+						$var['save_in_campaign'] = (bool) $this->br->ReadUint8();
+						$var['value_mode'] = $this->br->ReadUint8();
+						if ($var['value_mode'] == 0) { // VariableValueMode.InitialValue
+							$var['value'] = $this->br->ReadUint32();
+						}
+						$this->hota_events['variables'][] = $var;
+					}
+
+					// IDs
+					$hero_event_ids_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $hero_event_ids_count; $i++) {
+						$this->hota_events['hero_event_ids'][] = $this->br->ReadUint32();
+					}
+
+					$player_event_ids_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $player_event_ids_count; $i++) {
+						$this->hota_events['player_event_ids'][] = $this->br->ReadUint32();
+					}
+
+					$town_event_ids_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $town_event_ids_count; $i++) {
+						$this->hota_events['town_event_ids'][] = $this->br->ReadUint32();
+					}
+
+					$quest_event_ids_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $quest_event_ids_count; $i++) {
+						$this->hota_events['quest_event_ids'][] = $this->br->ReadUint32();
+					}
+
+					$variable_ids_count = $this->br->ReadUint32();
+					for ($i = 0; $i < $variable_ids_count; $i++) {
+						$this->hota_events['variable_ids'][] = $this->br->ReadUint32();
+					}
+				}
 			}
 		}
 	}
