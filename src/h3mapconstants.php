@@ -30,13 +30,13 @@ const HNONE16 = 0xffff; //general heroes NONE value, 16 bit
 const HNONE_UNKNOWN = 0x9d30302b;
 const HNONE32 = 0xffffffff; //general heroes NONE value, 32 bit
 
-const COMBOID_SEPARATOR = '<span style="color:grey;"> | </span>';
-const ABANDONED_MINE_COMBOID = "53-7" . COMBOID_SEPARATOR . "220-X";
-const CURSED_GROUND_COMBOID = "21-0" . COMBOID_SEPARATOR . "223-0";
-const GARRISON_COMBOID = "33-0" . COMBOID_SEPARATOR . "219-0";
-const AMGARRISON_COMBOID = "33-1" . COMBOID_SEPARATOR . "219-1";
-const MAGIC_PLAINS_COMBOID = "46-0" . COMBOID_SEPARATOR . "230-0";
-const TRADING_POST_COMBOID = "99-0" . COMBOID_SEPARATOR . "221-0";
+const PIPE_SEPARATOR = '<span style="color:grey;"> | </span>';
+const ABANDONED_MINE_COMBOID = "53-7" . PIPE_SEPARATOR . "220-X";
+const CURSED_GROUND_COMBOID = "21-0" . PIPE_SEPARATOR . "223-0";
+const GARRISON_COMBOID = "33-0" . PIPE_SEPARATOR . "219-0";
+const AMGARRISON_COMBOID = "33-1" . PIPE_SEPARATOR . "219-1";
+const MAGIC_PLAINS_COMBOID = "46-0" . PIPE_SEPARATOR . "230-0";
+const TRADING_POST_COMBOID = "99-0" . PIPE_SEPARATOR . "221-0";
 
 const DEFAULT_DATA = '<span class="tiny-grey-italics">Default</span>';
 const TEXT_COLUMN_WIDTH = "min-width: 300px;";
@@ -477,9 +477,23 @@ class QUESTMISSION
     const HOTA_DIFFICULTY = 2;
 }
 
+class HotaEventActions
+{
+    const REMOVE_CURRENT_OBJECT = 5;
+    const EXECUTE_EVENT = 24;
+    const DISABLE_EVENT = 27;
+}
+
 //constants class with items names
 class HeroesConstants
 {
+    public $HotaEventTypes = [
+        0 => "Hero",
+        1 => "Player",
+        2 => "Town",
+        3 => "Quest",
+    ];
+
     public $PlayersColors = [
         0 => "Red",
         1 => "Blue",
