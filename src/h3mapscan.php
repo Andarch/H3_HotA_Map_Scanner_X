@@ -47,6 +47,9 @@ class H3MAPSCAN
 	public $hotaPatchVersion = 0;
 	public $hotaVersionLocked = 0;
 
+	public $variable_count_general = 0;
+	public $variables_general = [];
+
 	public $map_name = '';
 	public $description = '';
 	private $author = '';
@@ -96,7 +99,6 @@ class H3MAPSCAN
 	private $hota_arena = 0;
 	private $monplague_week = 0;
 	private $combat_round_limit = 0;
-	private $hota_unknown = 0;
 
 	//object of interest lists
 	public $artifacts_list = [];
@@ -457,7 +459,15 @@ class H3MAPSCAN
 		}
 
 		if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
-			$this->hota_unknown = $this->br->ReadUint32();
+			$this->variable_count_general = $this->br->ReadUint32();
+			for ($i = 0; $i < $this->variable_count_general; $i++) {
+				$var = [];
+				$name_length = $this->br->ReadUint32();
+				$var['name'] = $this->br->ReadString($name_length);
+				$var['initial_value'] = $this->br->ReadInt32();
+				$var['value_mode'] = $this->br->ReadUint8();
+				$this->variables_general[] = $var;
+			}
 		}
 
 		$this->any_hero_onmap = $this->br->ReadUint8(); //hero presence
@@ -773,6 +783,10 @@ class H3MAPSCAN
 			if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
 				//forbid_hiring_heroes 8*byte for each player
 				$this->br->SkipBytes(8);
+			}
+			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
+				//Unknown
+				$this->br->SkipBytes(1);
 			}
 		}
 	}
