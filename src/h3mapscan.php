@@ -3009,7 +3009,6 @@ class H3MAPSCAN
 		$hut['pos'] = $this->curcoor;
 
 		$this->seers_huts[] = $hut;
-
 		return $hut;
 	}
 
@@ -3036,6 +3035,10 @@ class H3MAPSCAN
 				$quest['textRepeat'] = EMPTY_DATA;
 				$quest['textDone'] = EMPTY_DATA;
 				return $quest;
+			case QUESTMISSION::LEVEL:
+				$quest['Qcategory'] = 'Level Minimum';
+				$quest['Qrequirement'] = 'Level ' . $this->br->ReadUint32();
+				break;
 			case QUESTMISSION::PRIMARY_STAT:
 				$quest['Qcategory'] = 'Primary Skills';
 				$quest['Qrequirement'] = EMPTY_DATA;
@@ -3047,10 +3050,6 @@ class H3MAPSCAN
 						$quest['Qrequirement'] = implode('<br />', $quest['Qarray']);
 					}
 				}
-				break;
-			case QUESTMISSION::LEVEL:
-				$quest['Qcategory'] = 'Level Minimum';
-				$quest['Qrequirement'] = 'Level ' . $this->br->ReadUint32();
 				break;
 			case QUESTMISSION::KILL_HERO:
 				$quest['Qcategory'] = 'Defeat Hero';
@@ -3106,8 +3105,8 @@ class H3MAPSCAN
 				$quest['Qrequirement'] = $this->GetPlayerColorById($qPlayer, true);
 				break;
 			case QUESTMISSION::HOTA_EXTRA:
-				$hotaquestid = $this->br->ReadUint32();
-				if ($hotaquestid == QUESTMISSION::HOTA_CLASS) {
+				$quest['$hotaquestid'] = $this->br->ReadUint32();
+				if ($quest['$hotaquestid'] == QUESTMISSION::HOTA_CLASS) {
 					$quest['Qcategory'] = 'Specific Class';
 					$class_count = $this->br->ReadUint32();
 					if ($class_count > 0) {
@@ -3123,11 +3122,11 @@ class H3MAPSCAN
 						}
 						$quest['Qrequirement'] = implode(', ', $class);
 					}
-				} elseif ($hotaquestid == QUESTMISSION::HOTA_NOTBEFORE) {
+				} elseif ($quest['$hotaquestid'] == QUESTMISSION::HOTA_NOTBEFORE) {
 					$quest['Qcategory'] = 'Return After';
 					$qReturnAfter = $this->br->ReadUint32();
 					$quest['Qrequirement'] = $this->ConvertDaysToMonthWeekDay($qReturnAfter);
-				} elseif ($hotaquestid == QUESTMISSION::HOTA_DIFFICULTY) {
+				} elseif ($quest['$hotaquestid'] == QUESTMISSION::HOTA_DIFFICULTY) {
 					$quest['Qcategory'] = 'Specific Difficulty';
 					$qDiffculty = $this->br->ReadUint32();
 					$difficultyMap = [
@@ -3145,7 +3144,13 @@ class H3MAPSCAN
 					}
 					;
 					$quest['Qrequirement'] = implode(', ', $selectedDifficulties);
+				} elseif ($quest['$hotaquestid'] == QUESTMISSION::HOTA_EXTENDED_EVENT) {
+					$quest['Qcategory'] = 'Extended Event';
+					$quest['hotaQuestEventId'] = $this->br->ReadUint32();
+					$this->br->SkipBytes(1);
+					$quest['Qrequirement'] = EMPTY_DATA;
 				}
+
 				break;
 		}
 

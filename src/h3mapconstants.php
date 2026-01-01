@@ -470,11 +470,11 @@ class QUESTMISSION
     const RESOURCES = 7;
     const HERO = 8;
     const PLAYER = 9;
-    const KEYMASTER = 10;
     const HOTA_EXTRA = 10;
     const HOTA_CLASS = 0;
     const HOTA_NOTBEFORE = 1;
     const HOTA_DIFFICULTY = 2;
+    const HOTA_EXTENDED_EVENT = 3;
 }
 
 class HotaEventActions
@@ -3033,7 +3033,7 @@ class HeroesConstants
         QUESTMISSION::RESOURCES => "Resources",
         QUESTMISSION::HERO => "Hero",
         QUESTMISSION::PLAYER => "Player",
-        QUESTMISSION::KEYMASTER => "Keymaster",
+        QUESTMISSION::HOTA_EXTENDED_EVENT => "Extended Event",
     ];
 
     public $Victory = [
