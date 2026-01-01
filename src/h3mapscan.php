@@ -795,7 +795,7 @@ class H3MAPSCAN
 						$event['event_id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
 						$event['event_name'] = $this->br->ReadString();
-						$this->hota_events['hero_events'][] = $event;
+						$this->hotaEvents['hero_events'][] = $event;
 					}
 
 					// Player events
@@ -805,7 +805,7 @@ class H3MAPSCAN
 						$event['event_id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
 						$event['event_name'] = $this->br->ReadString();
-						$this->hota_events['player_events'][] = $event;
+						$this->hotaEvents['player_events'][] = $event;
 					}
 
 					// Town events
@@ -815,7 +815,7 @@ class H3MAPSCAN
 						$event['event_id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
 						$event['event_name'] = $this->br->ReadString();
-						$this->hota_events['town_events'][] = $event;
+						$this->hotaEvents['town_events'][] = $event;
 					}
 
 					// Quest events
@@ -825,21 +825,21 @@ class H3MAPSCAN
 						$event['event_id'] = $this->br->ReadUint32();
 						$this->br->SkipBytes(9);
 						$event['event_name'] = $this->br->ReadString();
-						$this->hota_events['quest_events'][] = $event;
+						$this->hotaEvents['quest_events'][] = $event;
 					}
 
 					// Variable count
-					$this->hota_events['variable_count'] = $this->br->ReadUint32();
+					$this->hotaEvents['variable_count'] = $this->br->ReadUint32();
 
 					// ID counters
-					$this->hota_events['hero_event_id_counter'] = $this->br->ReadUint32();
-					$this->hota_events['player_event_id_counter'] = $this->br->ReadUint32();
-					$this->hota_events['town_event_id_counter'] = $this->br->ReadUint32();
-					$this->hota_events['quest_event_id_counter'] = $this->br->ReadUint32();
-					$this->hota_events['variable_id_counter'] = $this->br->ReadUint32();
+					$this->hotaEvents['hero_event_id_counter'] = $this->br->ReadUint32();
+					$this->hotaEvents['player_event_id_counter'] = $this->br->ReadUint32();
+					$this->hotaEvents['town_event_id_counter'] = $this->br->ReadUint32();
+					$this->hotaEvents['quest_event_id_counter'] = $this->br->ReadUint32();
+					$this->hotaEvents['variable_id_counter'] = $this->br->ReadUint32();
 
 					// Variables
-					for ($i = 0; $i < $this->hota_events['variable_count']; $i++) {
+					for ($i = 0; $i < $this->hotaEvents['variable_count']; $i++) {
 						$var = [];
 						$var['variable_id'] = $this->br->ReadUint32();
 						$var['variable_name'] = $this->br->ReadString();
@@ -848,33 +848,33 @@ class H3MAPSCAN
 						if ($var['value_mode'] == 0) { // VariableValueMode.InitialValue
 							$var['value'] = $this->br->ReadUint32();
 						}
-						$this->hota_events['variables'][] = $var;
+						$this->hotaEvents['variables'][] = $var;
 					}
 
 					// IDs
 					$hero_event_ids_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $hero_event_ids_count; $i++) {
-						$this->hota_events['hero_event_ids'][] = $this->br->ReadUint32();
+						$this->hotaEvents['hero_event_ids'][] = $this->br->ReadUint32();
 					}
 
 					$player_event_ids_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $player_event_ids_count; $i++) {
-						$this->hota_events['player_event_ids'][] = $this->br->ReadUint32();
+						$this->hotaEvents['player_event_ids'][] = $this->br->ReadUint32();
 					}
 
 					$town_event_ids_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $town_event_ids_count; $i++) {
-						$this->hota_events['town_event_ids'][] = $this->br->ReadUint32();
+						$this->hotaEvents['town_event_ids'][] = $this->br->ReadUint32();
 					}
 
 					$quest_event_ids_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $quest_event_ids_count; $i++) {
-						$this->hota_events['quest_event_ids'][] = $this->br->ReadUint32();
+						$this->hotaEvents['quest_event_ids'][] = $this->br->ReadUint32();
 					}
 
 					$variable_ids_count = $this->br->ReadUint32();
 					for ($i = 0; $i < $variable_ids_count; $i++) {
-						$this->hota_events['variable_ids'][] = $this->br->ReadUint32();
+						$this->hotaEvents['variable_ids'][] = $this->br->ReadUint32();
 					}
 				}
 			}
