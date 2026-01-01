@@ -3298,6 +3298,8 @@ class H3MAPSCAN
 				$difficulties = $this->br->ReadUint32();
 			}
 
+			$this->br->SkipBytes(1);
+
 			$this->events[] = $event;
 		}
 	}
