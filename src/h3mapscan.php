@@ -4063,15 +4063,6 @@ class H3MAPSCAN
 		return FromArray($id, $this->CS->SecSkillLevel);
 	}
 
-	public function GetLevelByExp($experience)
-	{
-		foreach ($this->CS->Experience as $lvl => $exp) {
-			if ($exp > $experience) {
-				return $lvl - 1;
-			}
-		}
-	}
-
 	private function GetMapObjectByPos($mapobjectid, $coords)
 	{
 		if ($mapobjectid == MAPOBJECTS::TOWN && $coords->x == HNONE) {

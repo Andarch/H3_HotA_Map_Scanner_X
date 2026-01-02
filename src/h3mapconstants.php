@@ -489,18 +489,6 @@ class HotaEventActions
 //constants class with items names
 class HeroesConstants
 {
-    public $HotaModifyVariableMode = [
-        0 => "Increase",
-        1 => "Decrease",
-        2 => "Set",
-    ];
-    public $HotaEventTypes = [
-        0 => "Hero",
-        1 => "Player",
-        2 => "Town",
-        3 => "Quest",
-    ];
-
     public $PlayersColors = [
         0 => "Red",
         1 => "Blue",
@@ -575,6 +563,7 @@ class HeroesConstants
         8 => "Conflux",
         9 => "Cove",
         10 => "Factory",
+        11 => "Bulwark",
     ];
 
     public $Affiliation = [
@@ -589,6 +578,7 @@ class HeroesConstants
         8 => "Conflux",
         9 => "Cove",
         10 => "Factory",
+        11 => "Bulwark",
         255 => "Random",
     ];
 
@@ -1029,22 +1019,22 @@ class HeroesConstants
         183 => "Crimson Couatl",
         184 => "Dreadnought",
         185 => "Juggernaut",
-        255 => "Random",
-    ];
+        186 => "Kobold",
+        187 => "Kobold Foreman",
+        188 => "Mountain Ram",
+        189 => "Argali",
+        190 => "Snow Elf",
+        191 => "Steel Elf",
+        192 => "Yeti",
+        193 => "Yeti Runemaster",
+        194 => "Shaman",
+        195 => "Great Shaman",
+        196 => "Mammoth",
+        197 => "War Mammoth",
+        198 => "Jotunn",
+        199 => "Jotunn Warlord",
 
-    //array with monster indexes for town events
-    public $TownUnits = [
-        [0, 2, 4, 6, 8, 10, 12], //castle
-        [14, 16, 18, 20, 22, 24, 26], //rampart
-        [28, 30, 32, 34, 36, 38, 40], //tower
-        [42, 44, 46, 48, 50, 52, 54], //inferno
-        [56, 58, 60, 62, 64, 66, 68], //necropolis
-        [70, 72, 74, 76, 78, 80, 82], //dungeon
-        [84, 86, 88, 90, 92, 94, 96], //stronghold
-        [98, 100, 102, 104, 106, 108, 110], //fortress
-        [118, 112, 115, 114, 113, 120, 130], //conflux
-        [153, 155, 157, 159, 161, 163, 165], //cove
-        [171, 173, 175, 177, 179, 181, 183, 185], //factory, 8 unit types
+        255 => "Random",
     ];
 
     public $monchar = [
@@ -1325,6 +1315,7 @@ class HeroesConstants
             8 => "Conflux",
             9 => "Cove",
             10 => "Factory",
+            11 => "Bulwark",
         ],
         99 => "Trading Post",
         100 => "Learning Stone",
@@ -1749,6 +1740,7 @@ class HeroesConstants
         "98-8" => ["name" => "Conflux", "category" => OBJ_CATEGORY::TOWNS],
         "98-9" => ["name" => "Cove", "category" => OBJ_CATEGORY::TOWNS],
         "98-10" => ["name" => "Factory", "category" => OBJ_CATEGORY::TOWNS],
+        "98-11" => ["name" => "Bulwark", "category" => OBJ_CATEGORY::TOWNS],
         TRADING_POST_COMBOID => ["name" => "Trading Post", "category" => OBJ_CATEGORY::TRADING],
         "100-0" => ["name" => "Learning Stone", "category" => OBJ_CATEGORY::XP],
         "101-0" => ["name" => "Treasure Chest", "category" => OBJ_CATEGORY::TREASURES],
@@ -2323,6 +2315,8 @@ class HeroesConstants
         19 => "Navigator",
         20 => "Mercenary",
         21 => "Artificer",
+        22 => "Chieftain",
+        23 => "Elder",
         255 => "Random",
     ];
 
@@ -2552,6 +2546,25 @@ class HeroesConstants
         195 => "Frederick", //*
         196 => "Tavin", //*
         197 => "Murdoch", //*
+        //Chieftain
+        198 => "Dhuin",
+        199 => "Oidana",
+        200 => "Neia",
+        201 => "Eikthum",
+        202 => "Creyle",
+        203 => "Spadum",
+        204 => "Kynr",
+        205 => "Ergon",
+        //Elder
+        206 => "Kriv",
+        207 => "Glacius",
+        208 => "Sial",
+        209 => "Dalton",
+        210 => "Biarma",
+        211 => "Akka",
+        212 => "Vehr",
+        213 => "Allora",
+        214 => "Haugir",
 
         255 => "Random",
         65533 => "Most Powerful Hero",
@@ -2759,6 +2772,23 @@ class HeroesConstants
         21,
         20,
         20, //factory campaign 195-197
+        22, //Chieftain
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        23, //Elder
+        23,
+        23,
+        23,
+        23,
+        23,
+        23,
+        23,
+        23,
     ];
 
     public $Buildings = [
@@ -2818,57 +2848,57 @@ class HeroesConstants
         47 => "47",
     ];
 
-    public $TownEventHotaSpecial1 = [
-        1 => "Lighthouse (Castle)",
-        2 => "Brotherhood of the Sword (Castle)",
-        4 => "Stables (Castle)",
-        16 => "Mystic Pond (Rampart)",
-        32 => "Fountain of Fortune (Rampart)",
-        64 => "Treasury (Rampart)",
-    ];
+    // public $TownEventHotaSpecial1 = [
+    //     1 => "Lighthouse (Castle)",
+    //     2 => "Brotherhood of the Sword (Castle)",
+    //     4 => "Stables (Castle)",
+    //     16 => "Mystic Pond (Rampart)",
+    //     32 => "Fountain of Fortune (Rampart)",
+    //     64 => "Treasury (Rampart)",
+    // ];
 
-    public $TownEventHotaSpecial2 = [
-        1 => "Library (Tower)",
-        2 => "Wall of Knowledge (Tower)",
-        4 => "Lookout Tower (Tower)",
-        16 => "Brimstone Stormclouds (Inferno)",
-        32 => "Castle Gate (Inferno)",
-        64 => "Order of Fire (Inferno)",
-    ];
+    // public $TownEventHotaSpecial2 = [
+    //     1 => "Library (Tower)",
+    //     2 => "Wall of Knowledge (Tower)",
+    //     4 => "Lookout Tower (Tower)",
+    //     16 => "Brimstone Stormclouds (Inferno)",
+    //     32 => "Castle Gate (Inferno)",
+    //     64 => "Order of Fire (Inferno)",
+    // ];
 
-    public $TownEventHotaSpecial3 = [
-        1 => "Cover of Darkness (Necropolis)",
-        2 => "Necromancy Amplifier (Necropolis)",
-        4 => "Skeleton Transformer (Necropolis)",
-        16 => "Mana Vortex (Dungeon)",
-        32 => "Portal of Summoning (Dungeon)",
-        64 => "Battle Scholar Academy (Dungeon)",
-    ];
+    // public $TownEventHotaSpecial3 = [
+    //     1 => "Cover of Darkness (Necropolis)",
+    //     2 => "Necromancy Amplifier (Necropolis)",
+    //     4 => "Skeleton Transformer (Necropolis)",
+    //     16 => "Mana Vortex (Dungeon)",
+    //     32 => "Portal of Summoning (Dungeon)",
+    //     64 => "Battle Scholar Academy (Dungeon)",
+    // ];
 
-    public $TownEventHotaSpecial4 = [
-        1 => "Escape Tunnel (Stronghold)",
-        2 => 'Freelancer\'s Guild (Stronghold)',
-        4 => "Ballista Yard (Stronghold)",
-        8 => "Hall of Valhalla (Stronghold)",
-        16 => "Cage of Warlords (Fortress)",
-        32 => "Glyphs of Fear (Fortress)",
-        64 => "Blood Obelisk (Fortress)",
-    ];
+    // public $TownEventHotaSpecial4 = [
+    //     1 => "Escape Tunnel (Stronghold)",
+    //     2 => 'Freelancer\'s Guild (Stronghold)',
+    //     4 => "Ballista Yard (Stronghold)",
+    //     8 => "Hall of Valhalla (Stronghold)",
+    //     16 => "Cage of Warlords (Fortress)",
+    //     32 => "Glyphs of Fear (Fortress)",
+    //     64 => "Blood Obelisk (Fortress)",
+    // ];
 
-    public $TownEventHotaSpecial5 = [
-        1 => "Magic University (Conflux)",
-        2 => "Horde Level 7",
-        16 => 'Thieves\' Guild (Cove)',
-        32 => "Grotto (Cove)",
-        64 => "Gunpowder Warehouse (Cove)",
-    ];
+    // public $TownEventHotaSpecial5 = [
+    //     1 => "Magic University (Conflux)",
+    //     2 => "Horde Level 7",
+    //     16 => 'Thieves\' Guild (Cove)',
+    //     32 => "Grotto (Cove)",
+    //     64 => "Gunpowder Warehouse (Cove)",
+    // ];
 
-    public $TownEventHotaSpecial6 = [
-        1 => "Bank (Factory)",
-        2 => "Dwelling Level 7b",
-        4 => "Dwelling Level 7b Upgrade",
-        8 => "Mana Generator (Factory)",
-    ];
+    // public $TownEventHotaSpecial6 = [
+    //     1 => "Bank (Factory)",
+    //     2 => "Dwelling Level 7b",
+    //     4 => "Dwelling Level 7b Upgrade",
+    //     8 => "Mana Generator (Factory)",
+    // ];
 
     public $MonolithsOne = [
         0 => "Blue One-Way Monolith",
@@ -2911,86 +2941,6 @@ class HeroesConstants
         22 => "Blue Two-Way Sea Portal",
         23 => "Green Two-Way Sea Portal",
         24 => "Yellow Two-Way Sea Portal",
-    ];
-
-    public $Experience = [
-        1 => 0,
-        2 => 1000,
-        3 => 2000,
-        4 => 3200,
-        5 => 4600,
-        6 => 6200,
-        7 => 8000,
-        8 => 10000,
-        9 => 12200,
-        10 => 14700,
-        11 => 17500,
-        12 => 20600,
-        13 => 24320,
-        14 => 28784,
-        15 => 34140,
-        16 => 40567,
-        17 => 48279,
-        18 => 57533,
-        19 => 68637,
-        20 => 81961,
-        21 => 97949,
-        22 => 117134,
-        23 => 140156,
-        24 => 167782,
-        25 => 200933,
-        26 => 240714,
-        27 => 288451,
-        28 => 345735,
-        29 => 414475,
-        30 => 496963,
-        31 => 595948,
-        32 => 714730,
-        33 => 857268,
-        34 => 1028313,
-        35 => 1233567,
-        36 => 1479871,
-        37 => 1775435,
-        38 => 2130111,
-        39 => 2555722,
-        40 => 3066455,
-        41 => 3679334,
-        42 => 4414788,
-        43 => 5297332,
-        44 => 6356384,
-        45 => 7627246,
-        46 => 9152280,
-        47 => 10982320,
-        48 => 13178368,
-        49 => 15813625,
-        50 => 18975933,
-        51 => 22770702,
-        52 => 27324424,
-        53 => 32788890,
-        54 => 39346249,
-        55 => 47215079,
-        56 => 56657675,
-        57 => 67988790,
-        58 => 81586128,
-        59 => 97902933,
-        60 => 117483099,
-        61 => 140979298,
-        62 => 169174736,
-        63 => 203009261,
-        64 => 243610691,
-        65 => 292332407,
-        66 => 350798466,
-        67 => 420957736,
-        68 => 505148860,
-        69 => 606178208,
-        70 => 727413425,
-        71 => 872895685,
-        72 => 1047474397,
-        73 => 1256968851,
-        74 => 1508362195,
-        75 => 1810034207,
-        //76 => -2122926675,
-        76 => 0x100000000,
     ];
 
     public $ObjectColors = [
@@ -3326,5 +3276,34 @@ class HeroesConstants
         225 => "Gruezak",
         226 => "Maximus",
         227 => "Balfour",
+        228 => "Dhuin",
+        229 => "Oidana",
+        230 => "Neia",
+        231 => "Eikthum",
+        232 => "Creyle",
+        233 => "Spadum",
+        234 => "Kynr",
+        235 => "Ergon",
+        236 => "Kriv",
+        237 => "Glacius",
+        238 => "Sial",
+        239 => "Dalton",
+        240 => "Biarma",
+        241 => "Akka",
+        242 => "Vehr",
+        243 => "Allora",
+        244 => "Haugir",
+    ];
+
+    public $HotaModifyVariableMode = [
+        0 => "Increase",
+        1 => "Decrease",
+        2 => "Set",
+    ];
+    public $HotaEventTypes = [
+        0 => "Hero",
+        1 => "Player",
+        2 => "Town",
+        3 => "Quest",
     ];
 }

@@ -92,8 +92,6 @@ foreach ($this->h3mapscan->towns_list as $towno) {
 				break;
 			}
 			if ($amount > 0) {
-				// $monname = $monlvlprint ? 'Level '.($lvl + 1).' Creatures' : $this->h3mapscan->GetCreatureById($this->h3mapscan->CS->TownUnits[$towno['subid']][$lvl]);
-				// $monsters[] = '+'.$amount.' '.$monname;
 				$monsters[] = 'Level ' . ($lvl + 1) . ': +' . $amount;
 			}
 		}
@@ -113,54 +111,54 @@ foreach ($this->h3mapscan->towns_list as $towno) {
 				}
 			}
 		}
-		if ($event['hotaSpecial'][0] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial1 as $bit => $name) {
-				if ($event['hotaSpecial'][0] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
-		if ($event['hotaSpecial'][1] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial2 as $bit => $name) {
-				if ($event['hotaSpecial'][1] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
-		if ($event['hotaSpecial'][2] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial3 as $bit => $name) {
-				if ($event['hotaSpecial'][2] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
-		if ($event['hotaSpecial'][3] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial4 as $bit => $name) {
-				if ($event['hotaSpecial'][3] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
-		if ($event['hotaSpecial'][4] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial5 as $bit => $name) {
-				if ($event['hotaSpecial'][4] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
-		if ($event['hotaSpecial'][5] > 0) {
-			$selectedSpecials = [];
-			foreach ($this->h3mapscan->CS->TownEventHotaSpecial6 as $bit => $name) {
-				if ($event['hotaSpecial'][5] & $bit) {
-					$buildings[] = $name;
-				}
-			}
-		}
+		// if ($event['hotaSpecial'][0] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial1 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][0] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
+		// if ($event['hotaSpecial'][1] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial2 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][1] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
+		// if ($event['hotaSpecial'][2] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial3 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][2] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
+		// if ($event['hotaSpecial'][3] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial4 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][3] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
+		// if ($event['hotaSpecial'][4] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial5 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][4] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
+		// if ($event['hotaSpecial'][5] > 0) {
+		// 	$selectedSpecials = [];
+		// 	foreach ($this->h3mapscan->CS->TownEventHotaSpecial6 as $bit => $name) {
+		// 		if ($event['hotaSpecial'][5] & $bit) {
+		// 			$buildings[] = $name;
+		// 		}
+		// 	}
+		// }
 		if (empty($buildings)) {
 			$buildings[] = EMPTY_DATA;
 		}
