@@ -2965,7 +2965,9 @@ class H3MAPSCAN
 			}
 
 			if ($this->hota_subrev >= $this::HOTA_SUBREV7) {
-				$allowNeutralTowns = $this->br->ReadUint8();
+				$event['allowNeutralTowns'] = $this->br->ReadUint8() == 1 ? 'Apply to</br>Neutral' : EMPTY_DATA;
+			} else {
+				$event['allowNeutralTowns'] = EMPTY_DATA;
 			}
 
 			for ($i = 0; $i < 6; $i++) {

@@ -15,6 +15,7 @@ echo '<table class="table-large">
 			<th class="nowrap" nowrap="nowrap">Name</th>
 			<th class="nowrap" nowrap="nowrap">Players</th>
 			<th class="nowrap" nowrap="nowrap">Human / AI</th>
+			<th class="nowrap" nowrap="nowrap">Neutral</th>
 			<th class="nowrap" nowrap="nowrap">First</th>
 			<th class="nowrap" nowrap="nowrap">Period</th>
 			<th class="nowrap" nowrap="nowrap">Resources</th>
@@ -178,6 +179,7 @@ foreach ($this->h3mapscan->towns_list as $towno) {
 				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $event['name'] . '</td>
 				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $this->h3mapscan->PlayerColors($event['players']) . '</td>
 				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $event['humanOrAi'] . '</td>
+				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $event['allowNeutralTowns'] . '</td>
 				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $first . '</td>
 				<td class="ac nowrap" nowrap="nowrap" ' . $borderstyle . '">' . $period . '</td>
 				<td class="small-text nowrap" nowrap="nowrap" ' . $borderstyle . '">' . implode('<br />', $eres) . '</td>
