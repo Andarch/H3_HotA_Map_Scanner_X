@@ -405,6 +405,7 @@ class MISC_OBJECTS_1
     const WARLOCKS_LAB = 9;
     const PROSPECTOR = 10;
     const TRAILBLAZER = 11;
+    const TRAPPER_LODGE = 12;
 }
 
 class MISC_OBJECTS_2
@@ -1393,6 +1394,7 @@ class HeroesConstants
             9 => 'Warlock\'s Lab',
             10 => "Prospector",
             11 => "Trailblazer",
+            12 => "Trapper Lodge",
         ],
         145 => [
             -1 => "Misc. Collectibles",
@@ -1785,6 +1787,7 @@ class HeroesConstants
         "144-9" => ["name" => 'Warlock\'s Lab', "category" => OBJ_CATEGORY::TRADING],
         "144-10" => ["name" => "Prospector", "category" => OBJ_CATEGORY::RESOURCE_GENERATORS],
         "144-11" => ["name" => "Trailblazer", "category" => OBJ_CATEGORY::MOVEMENT],
+        "144-12" => ["name" => "Trapper Lodge", "category" => OBJ_CATEGORY::RESOURCE_GENERATORS],
         "145-0" => ["name" => "Ancient Lamp", "category" => OBJ_CATEGORY::DWELLINGS],
         "145-1" => ["name" => "Sea Barrel", "category" => OBJ_CATEGORY::RESOURCES_2],
         "145-2" => ["name" => "Jetsam", "category" => OBJ_CATEGORY::RESOURCES_2],
