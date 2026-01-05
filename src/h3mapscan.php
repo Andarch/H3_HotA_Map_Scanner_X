@@ -789,17 +789,27 @@ class H3MAPSCAN
 			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
 				//HotA Events
 				if ($this->br->ReadUint8()) {
-					// Set $this->hotaEventsRawBytes to the raw bytes of this section, excluding the byte that entered this if statement. The way to tell the section is ending is when a uint8 equals 166, which is the start of the next section.
+					// Read bytes until we find 166 as u-int32 (A6 00 00 00), then seek back so next section can read it
+					$marker = "\xa6\x00\x00\x00";  // 166 as little-endian u-int32
+					$buffer = "";
+
 					while (true) {
 						$byte = $this->br->ReadUint8();
-						if ($byte === 166) {
-							// Rewind one byte so the next section can read its starting byte.
-							$this->br->Rewind(1);
+						$buffer .= chr($byte);
+
+						// Check if we found the marker
+						if ($buffer === $marker) {
+							// Rewind 4 bytes to leave marker for next section
+							$this->br->Rewind(4);
 							break;
 						}
-						$this->hotaEventsRawBytes[] = $byte;
-					}
 
+						// If buffer is full (4 bytes), move the oldest byte to hotaEventsRawBytes
+						if (strlen($buffer) === 4) {
+							$this->hotaEventsRawBytes[] = ord($buffer[0]);
+							$buffer = substr($buffer, 1);
+						}
+					}
 
 					// $eventTypes = ['hero_events', 'player_events', 'town_events', 'quest_events'];
 
