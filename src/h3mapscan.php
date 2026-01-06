@@ -1368,7 +1368,9 @@ class H3MAPSCAN
 
 		//extra hota stuff
 		if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-			$this->br->SkipBytes(6); //not really useful stuff for now
+			$mapHero['add_skills'] = $this->br->ReadUint8();
+			$mapHero['cannot_gain_xp'] = $this->br->ReadUint8();
+			$mapHero['level'] = $this->br->ReadUint32();
 		}
 
 		return $mapHero;

@@ -126,11 +126,11 @@ foreach ($templateHeroesPrint as $k => $templateHeroPrint) {
 
 	if ($templateHeroPrint['xp'] > 0) {
 		$xp = $templateHeroPrint['xp'] . ' XP';
-		$level = 'Level ' . $this->h3mapscan->GetLevelByExp($templateHeroPrint['xp']);
 	} else {
 		$xp = DEFAULT_DATA;
-		$level = '';
 	}
+
+	$level = $templateHeroPrint['level'] ?? '';
 
 	if (!empty($templateHeroPrint['priskills'])) {
 		$priskills = implode('<br />', $templateHeroPrint['priskills']);
@@ -234,7 +234,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mapHero['data']['subid']);
 
-	$level = $this->h3mapscan->GetLevelByExp($mapHero['data']['xp']);
+	$level = $mapHero['data']['level'];
 
 	if (!empty($mapHero['data']['priskills'])) {
 		$primary = implode('<br />', $mapHero['data']['priskills']);
@@ -387,7 +387,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mapHero['data']['subid']);
 
-	$level = $this->h3mapscan->GetLevelByExp($mapHero['data']['xp']);
+	$level = $mapHero['data']['level'];
 
 	if (!empty($mapHero['data']['priskills'])) {
 		$primary = implode('<br />', $mapHero['data']['priskills']);
