@@ -123,8 +123,8 @@ class H3MAPSCAN
 	//Zones
 	public $zonetypes_img_g = null;
 	public $zonetypes_img_u = null;
-	public $zonecolors_img_g = null;
-	public $zonecolors_img_u = null;
+	public $zoneplayers_img_g = null;
+	public $zoneplayers_img_u = null;
 	public $has_zone_images = false;
 
 	//curent object being read and its coords
@@ -1662,11 +1662,11 @@ class H3MAPSCAN
 		$zonetypes_img_u_path = MAPDIR . "images\\{$mapfilename}_zonetypes_u.png";
 		$this->zonetypes_img_g = file_exists($zonetypes_img_g_path) ? imagecreatefrompng($zonetypes_img_g_path) : null;
 		$this->zonetypes_img_u = file_exists($zonetypes_img_u_path) ? imagecreatefrompng($zonetypes_img_u_path) : null;
-		$zonecolors_img_g_path = MAPDIR . "images\\{$mapfilename}_zonecolors_g.png";
-		$zonecolors_img_u_path = MAPDIR . "images\\{$mapfilename}_zonecolors_u.png";
-		$this->zonecolors_img_g = file_exists($zonecolors_img_g_path) ? imagecreatefrompng($zonecolors_img_g_path) : null;
-		$this->zonecolors_img_u = file_exists($zonecolors_img_u_path) ? imagecreatefrompng($zonecolors_img_u_path) : null;
-		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zonecolors_img_g && $this->zonecolors_img_u) ? true : false;
+		$zoneplayers_img_g_path = MAPDIR . "images\\{$mapfilename}_zoneplayers_g.png";
+		$zoneplayers_img_u_path = MAPDIR . "images\\{$mapfilename}_zoneplayers_u.png";
+		$this->zoneplayers_img_g = file_exists($zoneplayers_img_g_path) ? imagecreatefrompng($zoneplayers_img_g_path) : null;
+		$this->zoneplayers_img_u = file_exists($zoneplayers_img_u_path) ? imagecreatefrompng($zoneplayers_img_u_path) : null;
+		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zoneplayers_img_g && $this->zoneplayers_img_u) ? true : false;
 
 		$this->InitializeObjectsCountArrays();
 
@@ -1701,7 +1701,7 @@ class H3MAPSCAN
 
 					if ($this->has_zone_images) {
 						$ERROR_TYPES = ["Out of Bounds", "Void", "Unknown"];
-						list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+						list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 
 						if (
 							($obj["id"] == OBJECTS::SHIPWRECK || $obj["id"] == OBJECTS::PRISON || $obj["id"] == OBJECTS::DWELLING_NORMAL || $obj["id"] == OBJECTS::DWELLING_MULTI) && (
@@ -1709,7 +1709,7 @@ class H3MAPSCAN
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
@@ -1718,7 +1718,7 @@ class H3MAPSCAN
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
@@ -1727,7 +1727,7 @@ class H3MAPSCAN
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
@@ -1736,7 +1736,7 @@ class H3MAPSCAN
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 2, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
@@ -1745,7 +1745,7 @@ class H3MAPSCAN
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"], $obj["id"]);
+							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
 						}
 					}
 					$obj['pos'] = $obj["posoffset"];
@@ -4433,7 +4433,7 @@ class H3MAPSCAN
 		return new MapCoords($x, $y, $z);
 	}
 
-	private function GetZone(MapCoords $pos, $id): array
+	private function GetZone(MapCoords $pos): array
 	{
 		$x = $pos->x;
 		$y = $pos->y;
@@ -4461,8 +4461,8 @@ class H3MAPSCAN
 		list($rgb_types, $error_types) = $get_pixel_rgb($this->zonetypes_img_g, $this->zonetypes_img_u);
 		$zone_type = $error_types ?: ($this->CS->ZoneTypes[implode(',', $rgb_types)] ?? "Unknown");
 
-		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zonecolors_img_g, $this->zonecolors_img_u);
-		$zone_color = $error_colors ?: ($this->CS->ZoneColors[implode(',', $rgb_colors)] ?? "Unknown");
+		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zoneplayers_img_g, $this->zoneplayers_img_u);
+		$zone_color = $error_colors ?: ($this->CS->zoneplayers[implode(',', $rgb_colors)] ?? "Unknown");
 
 		return [$zone_type, $zone_color];
 	}
