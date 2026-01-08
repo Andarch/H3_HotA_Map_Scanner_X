@@ -424,7 +424,7 @@ class H3MAPSCAN
 				$this->terrain_count = $this->br->ReadUint32();
 			}
 			if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-				$town_type_count = $this->br->ReadInt32();
+				$town_type_count = $this->br->ReadUint32();
 				$fixed_difficulty_level = $this->br->ReadUint8();
 			}
 		}
@@ -466,7 +466,7 @@ class H3MAPSCAN
 				$var = [];
 				$name_length = $this->br->ReadUint32();
 				$var['name'] = $this->br->ReadString($name_length);
-				$var['initial_value'] = $this->br->ReadInt32();
+				$var['initial_value'] = $this->br->ReadUint32();
 				$var['value_mode'] = $this->br->ReadUint8();
 				$this->variables_general[] = $var;
 			}
@@ -1248,7 +1248,7 @@ class H3MAPSCAN
 					/*for ($i = 0; $i < $limit; $i++) {
 						$add_skills = $this->br->ReadUint8();
 						$hero_level_is_fixed = $this->br->ReadUint8();
-						$level_fixed = $this->br->ReadInt32();
+						$level_fixed = $this->br->ReadUint32();
 					}*/
 				}
 				break;
@@ -2045,7 +2045,7 @@ class H3MAPSCAN
 					}
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						$monster['isValue'] = $this->br->ReadUint8();
-						$monster['value'] = $this->br->ReadInt32();
+						$monster['value'] = $this->br->ReadUint32();
 					}
 
 					$obj['data'] = $monster;
@@ -2358,7 +2358,7 @@ class H3MAPSCAN
 							}
 						}
 
-						$art_count = $this->br->ReadInt32();
+						$art_count = $this->br->ReadUint32();
 						for ($j = 0; $j < $art_count; $j++) {
 							$spell = '';
 							$artid = $this->br->ReadUint32();
@@ -2563,7 +2563,7 @@ class H3MAPSCAN
 				case OBJECTS::UNIVERSITY:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						$this->br->SkipBytes(8);
-						//$obj['data']['variant'] = $this->br->ReadInt32(); //-1 => random
+						//$obj['data']['variant'] = $this->br->ReadUint32();
 						//$obj['data']['skills'] = $this->br->ReadUint32();
 					}
 					break;
@@ -2571,7 +2571,7 @@ class H3MAPSCAN
 				case OBJECTS::MISC_OBJECTS_2:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4 && $obj['subid'] == 0) {
 						$this->br->SkipBytes(8);
-						//$obj['data']['variant'] = $this->br->ReadInt32(); //-1 => random
+						//$obj['data']['variant'] = $this->br->ReadUint32();
 						//$obj['data']['skills'] = $this->br->ReadUint32();
 					}
 					break;
@@ -2916,7 +2916,7 @@ class H3MAPSCAN
 			}
 		}
 		if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-			$settings_count = $this->br->ReadInt32(); //special settings for towns
+			$settings_count = $this->br->ReadUint32(); //special settings for towns
 			$this->br->SkipBytes($settings_count);
 		}
 
@@ -2962,16 +2962,16 @@ class H3MAPSCAN
 			if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
 				$event['eventType'] = $this->br->ReadUint8();
 				if ($event['eventType'] == 0) {
-					$event['hotaLevel7b'] = $this->br->ReadInt32();
+					$event['hotaLevel7b'] = $this->br->ReadUint32();
 				} else if ($event['eventType'] == 1) {
 					$event['hotaTownEventId'] = $this->br->ReadUint32();
 					$this->br->SkipBytes(5);
 				}
 			} else if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-				$event['hotaLevel7b'] = $this->br->ReadInt32();
+				$event['hotaLevel7b'] = $this->br->ReadUint32();
 			}
 
-			$event['hotaAmount'] = $this->br->ReadInt32();
+			$event['hotaAmount'] = $this->br->ReadUint32();
 			for ($i = 0; $i < 6; $i++) {
 				$event['hotaSpecial'][] = $this->br->ReadUint8();
 			}
@@ -3398,7 +3398,7 @@ class H3MAPSCAN
 	{
 		$resources = [];
 		for ($i = 0; $i < 7; $i++) {
-			$res = $this->br->ReadInt32();
+			$res = $this->br->ReadUint32();
 			if ($res != 0) {
 				$resources[$i] = $res;
 			}
@@ -3408,7 +3408,7 @@ class H3MAPSCAN
 
 	private function ReadPyramid()
 	{
-		$spellid = $this->br->ReadInt32();
+		$spellid = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 
 		if (!in_array($spellid, [HNONE, HNONE32])) {
@@ -3418,9 +3418,9 @@ class H3MAPSCAN
 
 	private function ReadGrave()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
-		$amount = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
+		$amount = $this->br->ReadUint32();
 		$resource = $this->br->ReadUint8();
 		$this->br->SkipBytes(5);
 
@@ -3435,7 +3435,7 @@ class H3MAPSCAN
 		$resources = [];
 
 		for ($i = 0; $i < 2; $i++) {
-			$amount = $this->br->ReadInt32();
+			$amount = $this->br->ReadUint32();
 			$resource = $this->GetResourceById($this->br->ReadUint8());
 			$resources[$resource] = $amount;
 		}
@@ -3444,18 +3444,18 @@ class H3MAPSCAN
 
 	private function ReadLeanTo()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
-		$amount = $this->br->ReadInt32();
+		$amount = $this->br->ReadUint32();
 		$resource = $this->GetResourceById($this->br->ReadUint8());
 		$this->br->SkipBytes(5);
 	}
 
 	private function ReadWagon()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
-		$amount = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
+		$amount = $this->br->ReadUint32();
 		$resource = $this->GetResourceById($this->br->ReadUint8());
 		$this->br->SkipBytes(5);
 
@@ -3466,49 +3466,49 @@ class H3MAPSCAN
 
 	private function ReadAncientLamp()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
-		$amount = $this->br->ReadInt32();
+		$amount = $this->br->ReadUint32();
 		$this->br->SkipBytes(6);
 	}
 
 	private function ReadSeaBarrel()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
-		$amount = $this->br->ReadInt32();
+		$amount = $this->br->ReadUint32();
 		$resource = $this->br->ReadUint8();
 		$this->br->SkipBytes(5);
 	}
 
 	private function ReadJetsam()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
 	private function ReadVialOfMana()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
 	private function ReadCorpse()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
 	private function ReadFlotsam()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
 	private function ReadSeaChest()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
 
 		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Sea Chest', OWNERNONE, 0, '', $this->curobjname);
@@ -3517,8 +3517,8 @@ class H3MAPSCAN
 
 	private function ReadShipwreckSurvivor()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
 
 		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Shipwreck Survivor', OWNERNONE, 0, '', $this->curobjname);
@@ -3527,8 +3527,8 @@ class H3MAPSCAN
 
 	private function ReadTreasureChest()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
 
 		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Treasure Chest', OWNERNONE, 0, '', $this->curobjname);
@@ -3537,14 +3537,14 @@ class H3MAPSCAN
 
 	private function ReadTreeOfKnowledge()
 	{
-		$contents = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
 	private function ReadWarriorsTomb()
 	{
-		$contents = $this->br->ReadInt32();
-		$artifact = $this->br->ReadInt32();
+		$contents = $this->br->ReadUint32();
+		$artifact = $this->br->ReadUint32();
 
 		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Warrior\'s Tomb', OWNERNONE, 0, '', $this->curobjname);
