@@ -34,9 +34,13 @@ foreach ($this->h3mapscan->events_list as $evento) {
 		echo '<tr>
 			<td class="table__row-header--default nowrap" nowrap="nowrap">' . (++$n) . '</td>
 			<td class="ac nowrap" nowrap="nowrap">' . $evento['objname'] . '</td>
-			<td class="ac nowrap" nowrap="nowrap">' . $evento['pos']->GetCoords() . '</td>
-			<td class="ac nowrap zone-type" nowrap="nowrap" data-zone="' . htmlspecialchars($evento['zone_type'], ENT_QUOTES, "UTF-8") . '">' . htmlspecialchars($evento['zone_type'], ENT_QUOTES, "UTF-8") . '</td>
-			<td class="ac" style="width:120px;">' . implode(', ', $event['difficulty']) . '</td>
+			<td class="ac nowrap" nowrap="nowrap">' . $evento['pos']->GetCoords() . '</td>';
+		if ($evento['zone_type'] == EMPTY_DATA) {
+			echo '<td class="ac nowrap" nowrap="nowrap">' . $evento['zone_type'] . '</td>';
+		} else {
+			echo '<td class="ac nowrap zone-type" nowrap="nowrap" data-zone="' . htmlspecialchars($evento['zone_type'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($evento['zone_type'], ENT_QUOTES, 'UTF-8') . '</td>';
+		}
+		echo '<td class="ac" style="width:120px;">' . implode(', ', $event['difficulty']) . '</td>
 			<td class="small-text nowrap" nowrap="nowrap">' . $stack . '</td>
 			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[1]) . '</td>
 			<td class="small-text thin-vertical-border nowrap" nowrap="nowrap">' . implode('<br />', $content[2]) . '</td>
