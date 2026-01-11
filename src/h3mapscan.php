@@ -799,9 +799,40 @@ class H3MAPSCAN
 
 						// Check if we found the marker
 						if ($buffer === $marker) {
-							// Rewind 4 bytes to leave marker for next section
-							$this->br->Rewind(4);
-							break;
+							// Validate this is actually the artifact section by checking next bytes
+							// Artifacts section has 166 artifacts represented as bits (ceil(166/8) = 21 bytes)
+							// So we peek ahead to see if the next ~21 bytes look like bit flags (not ASCII text)
+							$currentPos = $this->br->pos;
+							$validationBytes = [];
+							$isValidArtifactSection = true;
+
+							// Read next 21 bytes for validation
+							for ($i = 0; $i < 21; $i++) {
+								$validationBytes[] = $this->br->ReadUint8();
+							}
+
+							// Check if these bytes look like text (ASCII printable range: 32-126)
+							$asciiCount = 0;
+							foreach ($validationBytes as $vByte) {
+								if ($vByte >= 32 && $vByte <= 126) {
+									$asciiCount++;
+								}
+							}
+
+							// If more than 15 bytes are ASCII printable, this is likely a string, not artifact bits
+							if ($asciiCount > 15) {
+								$isValidArtifactSection = false;
+							}
+
+							// Restore position
+							$this->br->pos = $currentPos;
+
+							if ($isValidArtifactSection) {
+								// Rewind 4 bytes to leave marker for next section
+								$this->br->Rewind(4);
+								break;
+							}
+							// Otherwise, continue searching
 						}
 
 						// If buffer is full (4 bytes), move the oldest byte to hotaEventsRawBytes
@@ -919,16 +950,14 @@ class H3MAPSCAN
 
 	private function Artifacts()
 	{
-		// Reading allowed artifacts:	17 or 18 bytes, or X for HOTA
-		//1=disabled, 0=enabled
 		if ($this->isROE) {
 			return;
 		}
 
 		$bytes = $this->version == $this::AB ? 17 : 18;
 		if ($this->isHOTA) {
-			$artcount = $this->br->ReadUint32(); //artifact id count
-			$bytes = ceil($artcount / 8); //21
+			$artcount = $this->br->ReadUint32();
+			$bytes = ceil($artcount / 8);
 		}
 
 		for ($i = 0; $i < $bytes; $i++) {
@@ -937,9 +966,6 @@ class H3MAPSCAN
 			for ($n = 0; $n < 8; $n++) {
 				if (($byte & (1 << $n)) != 0) {
 					$ida = $i * 8 + $n;
-					//if(!$this->isWOG && $ida > 140) {
-					//	break;
-					//}
 					$this->disabledArtifacts[] = $this->GetArtifactById($ida);
 				}
 			}
