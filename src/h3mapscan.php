@@ -799,7 +799,7 @@ class H3MAPSCAN
 
 						// Check if we found the marker
 						if ($buffer === $marker) {
-							// Peek 42 bytes ahead and read hero count (expected 215 / 0xD7)
+							// Peek 38 bytes ahead and read hero count (expected 215 / 0xD7)
 							$currentPos = $this->br->pos;
 							$this->br->SkipBytes(38);
 							$heroCount = $this->br->ReadUint32();
