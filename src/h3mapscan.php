@@ -799,35 +799,13 @@ class H3MAPSCAN
 
 						// Check if we found the marker
 						if ($buffer === $marker) {
-							// Validate this is actually the artifact section by checking next bytes
-							// Artifacts section has 166 artifacts represented as bits (ceil(166/8) = 21 bytes)
-							// So we peek ahead to see if the next ~21 bytes look like bit flags (not ASCII text)
+							// Peek 42 bytes ahead and read hero count (expected 215 / 0xD7)
 							$currentPos = $this->br->pos;
-							$validationBytes = [];
-							$isValidArtifactSection = true;
+							$this->br->SkipBytes(38);
+							$heroCount = $this->br->ReadUint32();
+							$this->br->pos = $currentPos;  // restore position
 
-							// Read next 21 bytes for validation
-							for ($i = 0; $i < 21; $i++) {
-								$validationBytes[] = $this->br->ReadUint8();
-							}
-
-							// Check if these bytes look like text (ASCII printable range: 32-126)
-							$asciiCount = 0;
-							foreach ($validationBytes as $vByte) {
-								if ($vByte >= 32 && $vByte <= 126) {
-									$asciiCount++;
-								}
-							}
-
-							// If more than 15 bytes are ASCII printable, this is likely a string, not artifact bits
-							if ($asciiCount > 15) {
-								$isValidArtifactSection = false;
-							}
-
-							// Restore position
-							$this->br->pos = $currentPos;
-
-							if ($isValidArtifactSection) {
+							if ($heroCount === 215) {
 								// Rewind 4 bytes to leave marker for next section
 								$this->br->Rewind(4);
 								break;
