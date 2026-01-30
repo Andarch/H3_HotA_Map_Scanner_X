@@ -36,7 +36,7 @@
     </table>
 </div>
 
-<div class="table-split-body-container">
+<div class="table-split-body-container monsters-table-container">
     <table class="table-split-body monsters-table">
         <tbody>
 
