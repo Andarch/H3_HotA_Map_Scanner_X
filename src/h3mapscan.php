@@ -115,6 +115,10 @@ class H3MAPSCAN
 	public $campfires_list = [];
 	public $resources_list = [];
 	public $ancientlamps_list = [];
+	public $flotsamjetsam_list = [];
+	public $seabarrels_list = [];
+	public $seachests_list = [];
+	public $vialsofmana_list = [];
 	public $event_list = []; //global events
 	public $quest_gates = [];
 	public $quest_guards = [];
@@ -2465,7 +2469,7 @@ class H3MAPSCAN
 								$this->ReadSeaBarrel($obj);
 								break;
 							case 2:
-								$this->ReadJetsam($obj);
+								$this->ReadFlotsamJetsam($obj);
 								break;
 							case 3:
 								$this->ReadVialOfMana($obj);
@@ -2482,7 +2486,7 @@ class H3MAPSCAN
 
 				case OBJECTS::FLOTSAM:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadFlotsam();
+						$this->ReadFlotsamJetsam($obj);
 					}
 					break;
 
@@ -3442,11 +3446,7 @@ class H3MAPSCAN
 	private function ReadCampfire($obj)
 	{
 		$obj["mode"] = $this->br->ReadUint32();
-		if ($obj["mode"] === HNONE32) {
-			$obj["mode"] = DEFAULT_DATA;
-		} else {
-			$obj["mode"] = "Custom";
-		}
+		$obj['mode'] = $obj['mode'] != HNONE32 ? "Custom" : DEFAULT_DATA;
 		$this->br->SkipBytes(4);
 		$obj["resources"] = [];
 
@@ -3493,17 +3493,31 @@ class H3MAPSCAN
 
 	private function ReadSeaBarrel($obj)
 	{
-		$contents = $this->br->ReadUint32();
+		$obj['contents'] = $this->br->ReadUint32();
+		match ($obj['contents']) {
+			HNONE32 => $obj['contents'] = DEFAULT_DATA,
+			0 => $obj['contents'] = 'Custom',
+			1 => $obj['contents'] = 'Nothing',
+		};
 		$this->br->SkipBytes(4);
-		$amount = $this->br->ReadUint32();
-		$resource = $this->br->ReadUint8();
+		$obj['amount'] = $this->br->ReadUint32();
+		$obj['resource'] = $this->GetResourceById($this->br->ReadUint8());
 		$this->br->SkipBytes(5);
+		$this->seabarrels_list[] = $obj;
 	}
 
-	private function ReadJetsam($obj)
+	private function ReadFlotsamJetsam($obj)
 	{
-		$contents = $this->br->ReadUint32();
+		$obj['contents'] = $this->br->ReadUint32();
+		match ($obj['contents']) {
+			HNONE32 => $obj['contents'] = DEFAULT_DATA,
+			0 => $obj['contents'] = 'Nothing',
+			1 => $obj['contents'] = '5 Wood',
+			2 => $obj['contents'] = '5 Wood and 200 Gold',
+			3 => $obj['contents'] = '10 Wood and 500 Gold',
+		};
 		$this->br->SkipBytes(4);
+		$this->flotsamjetsam_list[] = $obj;
 	}
 
 	private function ReadVialOfMana($obj)
@@ -3513,12 +3527,6 @@ class H3MAPSCAN
 	}
 
 	private function ReadCorpse()
-	{
-		$contents = $this->br->ReadUint32();
-		$this->br->SkipBytes(4);
-	}
-
-	private function ReadFlotsam()
 	{
 		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);

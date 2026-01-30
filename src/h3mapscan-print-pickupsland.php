@@ -2,7 +2,7 @@
 /** @var H3MAPSCAN_PRINT $this */
 ?>
 
-<div class="flex-container2">
+<div class="flex-container">
 
     <!-- *************** -->
     <!-- Treasure Chests -->
@@ -214,10 +214,10 @@
                                 data-zone="<?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>">
                                 <?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $resource["mode"] ?>
                             </td>
-                            <td class="nowrap" nowrap="nowrap">
+                            <td class="small-text nowrap" nowrap="nowrap">
                                 <?= implode('<br>', array_map(function ($k, $v) {
                                     return $k . ': ' . $v;
                                 }, array_keys($resource["resources"]), $resource["resources"])) ?>

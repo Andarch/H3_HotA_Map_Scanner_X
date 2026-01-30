@@ -2,18 +2,18 @@
 /** @var H3MAPSCAN_PRINT $this */
 ?>
 
-<div class="flex-container2">
+<div class="flex-container">
 
-    <!-- *************** -->
-    <!-- Treasure Chests -->
-    <!-- *************** -->
+    <!-- ************** -->
+    <!-- Flotsam/Jetsam -->
+    <!-- ************** -->
 
-    <div class="treasurechests-table-container">
+    <div class="flotsamjetsam-table-container">
         <div class="table-split-header-container">
-            <table class="table-split-header treasurechests-table">
+            <table class="table-split-header flotsamjetsam-table">
                 <thead>
                     <tr>
-                        <th class="ac table__title-bar--large" colspan="6">Treasure Chests</th>
+                        <th class="ac table__title-bar--large" colspan="6">Flotsam/Jetsam</th>
                     </tr>
                     <tr>
                         <th>#</th>
@@ -21,18 +21,17 @@
                         <th>Coords</th>
                         <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
-                        <th>Artifact</th>
                     </tr>
                 </thead>
             </table>
         </div>
-        <button id="treasurechests-table-button" class="table-button">SHOW</button>
-        <div id="treasurechests-table" class="table-split-body-container treasurechests-table-body-container">
-            <table class="table-split-body treasurechests-table">
+        <button id="flotsamjetsam-table-button" class="table-button">SHOW</button>
+        <div id="flotsamjetsam-table" class="table-split-body-container flotsamjetsam-table-body-container">
+            <table class="table-split-body flotsamjetsam-table">
                 <tbody>
 
                     <?php
-                    usort($this->h3mapscan->treasurechests_list, function ($a, $b) {
+                    usort($this->h3mapscan->flotsamjetsam_list, function ($a, $b) {
                         $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
@@ -43,25 +42,22 @@
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->treasurechests_list as $treasurechest) {
+                    foreach ($this->h3mapscan->flotsamjetsam_list as $flotsamjetsam) {
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
                             <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $treasurechest["objname"] ?>
+                                <?= $flotsamjetsam["objname"] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $treasurechest["pos"]->GetCoords() ?>
+                                <?= $flotsamjetsam["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                                data-zone="<?= htmlspecialchars($flotsamjetsam["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($flotsamjetsam["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $treasurechest["contents"] ?>
-                            </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $treasurechest["artifact"] ?>
+                            <td class="small-text nowrap" nowrap="nowrap">
+                                <?= $flotsamjetsam["contents"] ?>
                             </td>
                         </tr>
                         <?php
@@ -72,85 +68,69 @@
         </div>
     </div>
 
-    <!-- ********* -->
-    <!-- Resources -->
-    <!-- ********* -->
+    <!-- *********** -->
+    <!-- Sea Barrels -->
+    <!-- *********** -->
 
-    <div class="resources-table-container">
+    <div class="seabarrels-table-container">
         <div class="table-split-header-container">
-            <table class="table-split-header resources-table">
+            <table class="table-split-header seabarrels-table">
                 <thead>
                     <tr>
-                        <th class="ac table__title-bar--large" colspan="7">Resources</th>
+                        <th class="ac table__title-bar--large" colspan="6">Sea Barrels</th>
                     </tr>
                     <tr>
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
                         <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
-                        <th>Amount</th>
-                        <th>Guards</th>
-                        <th>Message</th>
+                        <th class="nowrap" nowrap="nowrap">Contents</th>
+                        <th>Resources</th>
                     </tr>
                 </thead>
             </table>
         </div>
-        <button id="resources-table-button" class="table-button">SHOW</button>
-        <div id="resources-table" class="table-split-body-container resources-table-body-container">
-            <table class="table-split-body resources-table">
+        <button id="seabarrels-table-button" class="table-button">SHOW</button>
+        <div id="seabarrels-table" class="table-split-body-container seabarrels-table-body-container">
+            <table class="table-split-body seabarrels-table">
                 <tbody>
 
                     <?php
-                    usort($this->h3mapscan->resources_list, function ($a, $b) {
+                    usort($this->h3mapscan->seabarrels_list, function ($a, $b) {
                         $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
-                        $posA = $posA === false ? PHP_INT_MAX : $posA;
-                        $posB = $posB === false ? PHP_INT_MAX : $posB;
-
                         if ($posA !== $posB) {
                             return $posA <=> $posB;
                         }
-
-                        $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
-                            ? (float) $a["amount"]
-                            : -INF;
-                        $amountB = (isset($b["amount"]) && is_numeric($b["amount"]))
-                            ? (float) $b["amount"]
-                            : -INF;
-
-                        return $amountA <=> $amountB;
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->resources_list as $resource) {
-                        $guards = is_array($resource["common"]["guards"]) ? $this->h3mapscan->PrintStack($resource["common"]["guards"]) : EMPTY_DATA;
-                        $amount = $resource["amount"] != 0 ? comma($resource["amount"]) : DEFAULT_DATA;
+                    foreach ($this->h3mapscan->seabarrels_list as $seabarrel) {
+                        match ($seabarrel['contents']) {
+                            DEFAULT_DATA => $resources = DEFAULT_DATA,
+                            'Custom' => $resources = $seabarrel["resource"] . ': ' . $seabarrel["amount"],
+                            'Nothing' => $resources = EMPTY_DATA,
+                        };
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
                             <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["objname"] ?>
+                                <?= $seabarrel["objname"] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["pos"]->GetCoords() ?>
+                                <?= $seabarrel["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                                data-zone="<?= htmlspecialchars($seabarrel["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($seabarrel["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $amount ?>
+                            <td class="small-text ac nowrap" nowrap="nowrap">
+                                <?= $seabarrel["contents"] ?>
                             </td>
-                            <td class="nowrap" nowrap="nowrap">
-                                <?= $guards ?>
-                            </td>
-                            <td>
-                                <div class="ellipsis1"
-                                    title="<?= htmlspecialchars($resource["common"]["message"], ENT_QUOTES) ?>">
-                                    <?= $resource["common"]["message"] ?>
-                                </div>
+                            <td class="small-text nowrap" nowrap="nowrap">
+                                <?= $resources ?>
                             </td>
                         </tr>
                         <?php
@@ -161,16 +141,16 @@
         </div>
     </div>
 
-    <!-- ********* -->
-    <!-- Campfires -->
-    <!-- ********* -->
+    <!-- ********** -->
+    <!-- Sea Chests -->
+    <!-- ********** -->
 
     <div class="campfires-table-container">
         <div class="table-split-header-container">
             <table class="table-split-header campfires-table">
                 <thead>
                     <tr>
-                        <th class="ac table__title-bar--large" colspan="6">Campfires</th>
+                        <th class="ac table__title-bar--large" colspan="6">Sea Chests</th>
                     </tr>
                     <tr>
                         <th>#</th>
@@ -232,7 +212,7 @@
     </div>
 
     <!-- ************* -->
-    <!-- Ancient Lamps -->
+    <!-- Vials of Mana -->
     <!-- ************* -->
 
     <div class="ancientlamps-table-container">
@@ -240,7 +220,7 @@
             <table class="table-split-header ancientlamps-table">
                 <thead>
                     <tr>
-                        <th class="ac table__title-bar--large" colspan="6">Ancient Lamps</th>
+                        <th class="ac table__title-bar--large" colspan="6">Vials of Mana</th>
                     </tr>
                     <tr>
                         <th>#</th>
