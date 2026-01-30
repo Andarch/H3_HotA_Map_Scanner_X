@@ -111,6 +111,8 @@ class H3MAPSCAN
 	public $mines_list = [];
 	public $monsters_list = [];
 	public $garrisons_list = [];
+	public $campfires_list = [];
+	public $resources_list = [];
 	public $event_list = []; //global events
 	public $quest_gates = [];
 	public $quest_guards = [];
@@ -1793,7 +1795,7 @@ class H3MAPSCAN
 				case OBJECTS::EVENT:
 				case OBJECTS::PANDORAS_BOX:
 					$event = [];
-					$event['MessageStack'] = $this->ReadMessageAndGuards();
+					$event['MessageStack'] = $this->ReadCommon();
 
 					$event['gainedExp'] = $this->br->ReadUint32();
 					$event['manaDiff'] = $this->br->ReadInt32();
@@ -2144,7 +2146,7 @@ class H3MAPSCAN
 					$artifact['artid'] = OBJECT_INVALID;
 					$artifact['spellid'] = OBJECT_INVALID;
 
-					$artifact['stack'] = $this->ReadMessageAndGuards();
+					$artifact['stack'] = $this->ReadCommon();
 
 					if ($obj['id'] == OBJECTS::SPELL_SCROLL) {
 						$spellid = $this->br->ReadUint32();
@@ -2173,11 +2175,10 @@ class H3MAPSCAN
 
 				case OBJECTS::RANDOM_RESOURCE:
 				case OBJECTS::RESOURCE:
-					$res = [];
-					$res['stack'] = $this->ReadMessageAndGuards();
-					$res['amount'] = $this->br->ReadUint32();
+					$obj['common'] = $this->ReadCommon();
+					$obj['amount'] = $this->br->ReadUint32();
 					$this->br->SkipBytes(4);
-					$obj['data'] = $res;
+					$this->resources_list[] = $obj;
 					break;
 
 				case OBJECTS::RANDOM_TOWN:
@@ -2436,7 +2437,7 @@ class H3MAPSCAN
 
 				case OBJECTS::CAMPFIRE:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadCampfire();
+						$this->ReadCampfire($obj);
 					}
 					break;
 
@@ -3359,19 +3360,22 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ReadMessageAndGuards()
+	private function ReadCommon()
 	{
-		$mag = [];
-		$hasMessage = $this->br->ReadUint8();
-		if ($hasMessage) {
-			$mag['message'] = $this->ReadString();
+		$common = [];
+		$common['message'] = EMPTY_DATA;
+		$common['guards'] = EMPTY_DATA;
+
+		$hasCommon = $this->br->ReadUint8();
+		if ($hasCommon) {
+			$common['message'] = $this->ReadString();
 			$hasGuards = $this->br->ReadUint8();
 			if ($hasGuards) {
-				$mag['stack'] = $this->ReadCreatureSet(7);
+				$common['guards'] = $this->ReadCreatureSet(7);
 			}
 			$this->br->SkipBytes(4);
 		}
-		return $mag;
+		return $common;
 	}
 
 	private function ReadCreatureSet($number)
@@ -3433,17 +3437,24 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ReadCampfire()
+	private function ReadCampfire($obj)
 	{
-		$this->br->SkipBytes(8);
-		$resources = [];
+		$obj["mode"] = $this->br->ReadUint32();
+		if ($obj["mode"] === HNONE32) {
+			$obj["mode"] = DEFAULT_DATA;
+		} else {
+			$obj["mode"] = "Custom";
+		}
+		$this->br->SkipBytes(4);
+		$obj["resources"] = [];
 
 		for ($i = 0; $i < 2; $i++) {
 			$amount = $this->br->ReadUint32();
 			$resource = $this->GetResourceById($this->br->ReadUint8());
-			$resources[$resource] = $amount;
+			$obj["resources"][$resource] = $amount;
 		}
 
+		$this->campfires_list[] = $obj;
 	}
 
 	private function ReadLeanTo()
