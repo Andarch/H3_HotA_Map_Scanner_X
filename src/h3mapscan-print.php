@@ -57,6 +57,9 @@ class H3MAPSCAN_PRINT
 			case 'Garrisons':
 				include 'h3mapscan-print-garrisons.php';
 				break;
+			case 'Campfires':
+				include 'h3mapscan-print-campfires.php';
+				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';
 				break;
