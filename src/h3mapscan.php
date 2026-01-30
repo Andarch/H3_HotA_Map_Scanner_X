@@ -2721,7 +2721,7 @@ class H3MAPSCAN
 		}
 		if ($event['manaDiff'] != 0) {
 			$sign = $event['manaDiff'] > 0 ? '+' : '';
-			$content[1][] = $sign . comma($event['manaDiff']) . ' Mana';
+			$content[1][] = $sign . comma($event['manaDiff']) . ' Spell Points';
 		}
 		if ($event['moraleDiff'] != 0) {
 			$sign = $event['moraleDiff'] > 0 ? '+' : '';
@@ -3256,7 +3256,7 @@ class H3MAPSCAN
 				break;
 			case REWARDTYPE::MANA_POINTS:
 				$reward['value'] = $this->br->ReadUint32();
-				$reward['questreward'] = '+' . comma($reward['value']) . ' Mana';
+				$reward['questreward'] = '+' . comma($reward['value']) . ' Spell Points';
 				break;
 			case REWARDTYPE::MORALE_BONUS:
 				$reward['value'] = $this->br->ReadUint8();
@@ -3522,8 +3522,16 @@ class H3MAPSCAN
 
 	private function ReadVialOfMana($obj)
 	{
-		$contents = $this->br->ReadUint32();
+		$obj['contents'] = $this->br->ReadUint32();
+		match ($obj['contents']) {
+			HNONE32 => $obj['contents'] = DEFAULT_DATA,
+			0 => $obj['contents'] = '30 Spell Points',
+			1 => $obj['contents'] = '40 Spell Points',
+			2 => $obj['contents'] = '50 Spell Points',
+			3 => $obj['contents'] = '60 Spell Points',
+		};
 		$this->br->SkipBytes(4);
+		$this->vialsofmana_list[] = $obj;
 	}
 
 	private function ReadCorpse()

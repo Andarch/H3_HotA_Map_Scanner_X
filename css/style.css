@@ -1110,6 +1110,50 @@ td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
+/* ******************* */
+/* Vials of Mana Table */
+/* ******************* */
+
+.vialsofmana-table-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap));
+}
+
+.vialsofmana-table-body-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height) - var(--table__title-bar-large-height));
+}
+
+.vialsofmana-table td:first-child,
+.vialsofmana-table th:first-child {
+  width: 34px;
+}
+
+.vialsofmana-table td:nth-child(2),
+.vialsofmana-table th:nth-child(2) {
+  width: 72px;
+}
+
+.vialsofmana-table td:nth-child(3),
+.vialsofmana-table th:nth-child(3) {
+  width: 66px;
+}
+
+.vialsofmana-table td:nth-child(4),
+.vialsofmana-table th:nth-child(4) {
+  width: 34px;
+}
+
+.vialsofmana-table th:nth-child(5) {
+  width: calc(76px + 14.86px);
+}
+
+.vialsofmana-table td:nth-child(5) {
+  width: 76px;
+}
+
+.vialsofmana-table tr:last-child td {
+  border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
 /* ************ */
 /* Table Button */
 /* ************ */
@@ -1158,6 +1202,10 @@ td {
 
 #seachests-table-button {
   width: 506.57px;
+}
+
+#vialsofmana-table-button {
+  width: 298.57px;
 }
 
 /* ******** */

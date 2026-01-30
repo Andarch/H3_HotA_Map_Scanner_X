@@ -213,9 +213,9 @@
     <!-- Vials of Mana -->
     <!-- ************* -->
 
-    <div class="ancientlamps-table-container">
+    <div class="vialsofmana-table-container">
         <div class="table-split-header-container">
-            <table class="table-split-header ancientlamps-table">
+            <table class="table-split-header vialsofmana-table">
                 <thead>
                     <tr>
                         <th class="ac table__title-bar--large" colspan="6">Vials of Mana</th>
@@ -226,59 +226,43 @@
                         <th>Coords</th>
                         <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
-                        <th>Amount</th>
                     </tr>
                 </thead>
             </table>
         </div>
-        <button id="ancientlamps-table-button" class="table-button">SHOW</button>
-        <div id="ancientlamps-table" class="table-split-body-container ancientlamps-table-body-container">
-            <table class="table-split-body ancientlamps-table">
+        <button id="vialsofmana-table-button" class="table-button">SHOW</button>
+        <div id="vialsofmana-table" class="table-split-body-container vialsofmana-table-body-container">
+            <table class="table-split-body vialsofmana-table">
                 <tbody>
 
                     <?php
-                    usort($this->h3mapscan->ancientlamps_list, function ($a, $b) {
+                    usort($this->h3mapscan->vialsofmana_list, function ($a, $b) {
                         $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
-                        $posA = $posA === false ? PHP_INT_MAX : $posA;
-                        $posB = $posB === false ? PHP_INT_MAX : $posB;
-
                         if ($posA !== $posB) {
                             return $posA <=> $posB;
                         }
-
-                        $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
-                            ? (float) $a["amount"]
-                            : -INF;
-                        $amountB = (isset($b["amount"]) && is_numeric($b["amount"]))
-                            ? (float) $b["amount"]
-                            : -INF;
-
-                        return $amountA <=> $amountB;
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->ancientlamps_list as $ancientlamp) {
+                    foreach ($this->h3mapscan->vialsofmana_list as $vialofmana) {
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
                             <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $ancientlamp["objname"] ?>
+                                <?= $vialofmana["objname"] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $ancientlamp["pos"]->GetCoords() ?>
+                                <?= $vialofmana["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($ancientlamp["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($ancientlamp["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                                data-zone="<?= htmlspecialchars($vialofmana["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($vialofmana["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $ancientlamp["contents"] ?>
-                            </td>
-                            <td class="nowrap" nowrap="nowrap">
-                                <?= $ancientlamp["amount"] ?>
+                            <td class="small-text nowrap" nowrap="nowrap">
+                                <?= $vialofmana["contents"] ?>
                             </td>
                         </tr>
                         <?php
