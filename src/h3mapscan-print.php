@@ -57,8 +57,11 @@ class H3MAPSCAN_PRINT
 			case 'Garrisons':
 				include 'h3mapscan-print-garrisons.php';
 				break;
-			case 'Pickups':
-				include 'h3mapscan-print-pickups.php';
+			case 'Pickups (Land)':
+				include 'h3mapscan-print-pickupsland.php';
+				break;
+			case 'Pickups (Sea)':
+				include 'h3mapscan-print-pickupssea.php';
 				break;
 			case 'Seer\'s Huts':
 				include 'h3mapscan-print-seers.php';

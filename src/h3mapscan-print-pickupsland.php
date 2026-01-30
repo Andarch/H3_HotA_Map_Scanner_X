@@ -26,7 +26,8 @@
                 </thead>
             </table>
         </div>
-        <div class="table-split-body-container treasurechests-table-body-container">
+        <button id="treasurechests-table-button" class="table-button">SHOW</button>
+        <div id="treasurechests-table" class="table-split-body-container treasurechests-table-body-container">
             <table class="table-split-body treasurechests-table">
                 <tbody>
 
@@ -94,7 +95,8 @@
                 </thead>
             </table>
         </div>
-        <div class="table-split-body-container resources-table-body-container">
+        <button id="resources-table-button" class="table-button">SHOW</button>
+        <div id="resources-table" class="table-split-body-container resources-table-body-container">
             <table class="table-split-body resources-table">
                 <tbody>
 
@@ -181,7 +183,8 @@
                 </thead>
             </table>
         </div>
-        <div class="table-split-body-container campfires-table-body-container">
+        <button id="campfires-table-button" class="table-button">SHOW</button>
+        <div id="campfires-table" class="table-split-body-container campfires-table-body-container">
             <table class="table-split-body campfires-table">
                 <tbody>
 
@@ -250,7 +253,8 @@
                 </thead>
             </table>
         </div>
-        <div class="table-split-body-container ancientlamps-table-body-container">
+        <button id="ancientlamps-table-button" class="table-button">SHOW</button>
+        <div id="ancientlamps-table" class="table-split-body-container ancientlamps-table-body-container">
             <table class="table-split-body ancientlamps-table">
                 <tbody>
 

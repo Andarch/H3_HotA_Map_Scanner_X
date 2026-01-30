@@ -532,7 +532,7 @@ td {
 /* Body */
 
 .table-split-body-container {
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-color: var(--color__scrollbar);
   height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height));
@@ -759,6 +759,17 @@ td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
+/* ************** */
+/* Pickups Tables */
+/* ************** */
+
+#treasurechests-table,
+#resources-table,
+#campfires-table,
+#ancientlamps-table {
+  display: none;
+}
+
 /* ********************* */
 /* Treasure Chests Table */
 /* ********************* */
@@ -958,6 +969,44 @@ td {
 
 .ancientlamps-table tr:last-child td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
+/* ************ */
+/* Table Button */
+/* ************ */
+
+.table-button {
+  margin-top: 1px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px;
+  border-color: var(--color__body-fg);
+  border-style: solid;
+  border-width: 2px;
+  background: var(--color-mediumgrey);
+  color: var(--color_white);
+}
+
+.table-button:hover {
+  background-color: var(--color-gold);
+  color: var(--color-brown);
+}
+
+#treasurechests-table-button {
+  width: 370.57px;
+}
+
+#resources-table-button {
+  width: 396.57px;
+}
+
+#campfires-table-button {
+  width: 334.57px;
+}
+
+#ancientlamps-table-button {
+  width: 366.57px;
 }
 
 /* ******** */
