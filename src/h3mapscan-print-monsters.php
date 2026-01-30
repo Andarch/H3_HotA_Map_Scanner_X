@@ -8,7 +8,8 @@
             <tr>
                 <th rowspan="2">#</th>
                 <th rowspan="2">Type</th>
-                <th rowspan="2">Position</th>
+                <th rowspan="2">Coords</th>
+                <th rowspan="2">Zone<br />Type</th>
                 <th rowspan="2">Count</th>
                 <th rowspan="2">Value</th>
                 <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
@@ -40,22 +41,45 @@
         <tbody>
 
             <?php
+            usort($this->h3mapscan->monsters_list, function ($a, $b) {
+                $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+                $posA = array_search($a["zone_type"], $order);
+                $posB = array_search($b["zone_type"], $order);
+
+                $posA = $posA === false ? PHP_INT_MAX : $posA;
+                $posB = $posB === false ? PHP_INT_MAX : $posB;
+
+                if ($posA !== $posB) {
+                    return $posA <=> $posB;
+                }
+
+                $valueA = (isset($a["data"]["value"]) && is_numeric($a["data"]["value"]))
+                    ? (float) $a["data"]["value"]
+                    : -INF;
+                $valueB = (isset($b["data"]["value"]) && is_numeric($b["data"]["value"]))
+                    ? (float) $b["data"]["value"]
+                    : -INF;
+
+                return $valueA <=> $valueB;
+            });
+
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
-
-                if (!$monster["isValue"]) {
-                    $count = $monster["count"] > 0 ? comma($monster["count"]) : "Random";
+                // vd($monster);
+                // break;
+                if (!$monster["data"]["isValue"]) {
+                    $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : "Random";
                     $value = EMPTY_DATA;
                 } else {
                     $count = EMPTY_DATA;
-                    $value = comma($monster["value"]);
+                    $value = comma($monster["data"]["value"]);
                 }
                 $disposition =
-                    $monster["disposition"] !== "Precise"
-                        ? $monster["disposition"]
-                        : "Precise (" . $monster["preciseDisposition"] . ")";
+                    $monster["data"]["disposition"] !== "Precise"
+                    ? $monster["data"]["disposition"]
+                    : "Precise (" . $monster["data"]["preciseDisposition"] . ")";
                 $resources = [];
-                foreach ($monster["resources"] as $rid => $amount) {
+                foreach ($monster["data"]["resources"] as $rid => $amount) {
                     $sign = $amount > 0 ? "+" : "";
                     $resources[] = $sign . comma($amount);
                 }
@@ -68,35 +92,39 @@
                 $gems = $resources[5] ?? EMPTY_DATA;
                 $gold = $resources[6] ?? EMPTY_DATA;
 
-                $artifact = $monster["artifact"] !== "" ? $monster["artifact"] : EMPTY_DATA;
-                $message = $monster["message"] !== "" ? $monster["message"] : EMPTY_DATA;
+                $artifact = $monster["data"]["artifact"] !== "" ? $monster["data"]["artifact"] : EMPTY_DATA;
+                $message = $monster["data"]["message"] !== "" ? $monster["data"]["message"] : EMPTY_DATA;
                 ?>
-            <tr>
-                <td class="table__row-header--default"><?= ++$n ?></td>
-                <td class="nowrap" nowrap="nowrap"><?= $monster["name"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["neverGrows"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["neverFlees"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["joinForMoney"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["joinPercent"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["upgraded"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $monster["stackCount"] ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
-                <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
-                <td>
-                    <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
-                </td>
-            </tr>
-            <?php
+                <tr>
+                    <td class="table__row-header--default"><?= ++$n ?></td>
+                    <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
+                    <td class="ac nowrap zone-type" nowrap="nowrap"
+                        data-zone="<?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                        <?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                    </td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinForMoney"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinPercent"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["upgraded"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["stackCount"] ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
+                    <td>
+                        <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
+                    </td>
+                </tr>
+                <?php
             }
             ?>
         </tbody>

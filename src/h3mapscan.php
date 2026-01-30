@@ -2054,7 +2054,7 @@ class H3MAPSCAN
 
 					$obj['data'] = $monster;
 
-					$this->monsters_list[] = $monster;
+					$this->monsters_list[] = $obj;
 
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::MONSTER,
