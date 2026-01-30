@@ -114,6 +114,7 @@ class H3MAPSCAN
 	public $treasurechests_list = [];
 	public $campfires_list = [];
 	public $resources_list = [];
+	public $ancientlamps_list = [];
 	public $event_list = []; //global events
 	public $quest_gates = [];
 	public $quest_guards = [];
@@ -2458,16 +2459,16 @@ class H3MAPSCAN
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						switch ($obj['subid']) {
 							case 0:
-								$this->ReadAncientLamp();
+								$this->ReadAncientLamp($obj);
 								break;
 							case 1:
-								$this->ReadSeaBarrel();
+								$this->ReadSeaBarrel($obj);
 								break;
 							case 2:
-								$this->ReadJetsam();
+								$this->ReadJetsam($obj);
 								break;
 							case 3:
-								$this->ReadVialOfMana();
+								$this->ReadVialOfMana($obj);
 								break;
 						}
 					}
@@ -3480,15 +3481,17 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ReadAncientLamp()
+	private function ReadAncientLamp($obj)
 	{
-		$contents = $this->br->ReadUint32();
+		$obj['contents'] = $this->br->ReadUint32();
+		$obj['contents'] = $obj['contents'] != HNONE32 ? $obj['contents'] : DEFAULT_DATA;
 		$this->br->SkipBytes(4);
-		$amount = $this->br->ReadUint32();
+		$obj['amount'] = $this->br->ReadUint32();
 		$this->br->SkipBytes(6);
+		$this->ancientlamps_list[] = $obj;
 	}
 
-	private function ReadSeaBarrel()
+	private function ReadSeaBarrel($obj)
 	{
 		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
@@ -3497,13 +3500,13 @@ class H3MAPSCAN
 		$this->br->SkipBytes(5);
 	}
 
-	private function ReadJetsam()
+	private function ReadJetsam($obj)
 	{
 		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);
 	}
 
-	private function ReadVialOfMana()
+	private function ReadVialOfMana($obj)
 	{
 		$contents = $this->br->ReadUint32();
 		$this->br->SkipBytes(4);

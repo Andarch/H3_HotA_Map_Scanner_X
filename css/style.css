@@ -847,15 +847,15 @@ td {
 
 .resources-table th:nth-child(6),
 .resources-table td:nth-child(6) {
-  width: 150px;
+  width: 46px;
 }
 
 .resources-table th:nth-child(7) {
-  width: calc(100px + 14.86px);
+  width: calc(52px + 14.86px);
 }
 
 .resources-table td:nth-child(7) {
-  width: 100px;
+  width: 52px;
 }
 
 .resources-table tr:last-child td {
@@ -908,6 +908,55 @@ td {
 }
 
 .campfires-table tr:last-child td {
+  border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
+/* ******************* */
+/* Ancient Lamps Table */
+/* ******************* */
+
+.ancientlamps-table-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap));
+}
+
+.ancientlamps-table-body-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height) - var(--table__title-bar-large-height));
+}
+
+.ancientlamps-table td:first-child,
+.ancientlamps-table th:first-child {
+  width: 34px;
+}
+
+.ancientlamps-table td:nth-child(2),
+.ancientlamps-table th:nth-child(2) {
+  width: 78px;
+}
+
+.ancientlamps-table td:nth-child(3),
+.ancientlamps-table th:nth-child(3) {
+  width: 66px;
+}
+
+.ancientlamps-table td:nth-child(4),
+.ancientlamps-table th:nth-child(4) {
+  width: 34px;
+}
+
+.ancientlamps-table th:nth-child(5),
+.ancientlamps-table td:nth-child(5) {
+  width: 56px;
+}
+
+.ancientlamps-table th:nth-child(6) {
+  width: calc(82px + 14.86px);
+}
+
+.ancientlamps-table td:nth-child(6) {
+  width: 82px;
+}
+
+.ancientlamps-table tr:last-child td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
