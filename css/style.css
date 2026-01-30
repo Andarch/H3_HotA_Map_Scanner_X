@@ -701,7 +701,8 @@ td {
 
 .garrisons-table-container {
   /* width: 1537.9px; */
-  width: 100%;
+  /* width: 100%; */
+  width: 548px;
 }
 
 /* .table-split-body-container.garrisons-table-container {
