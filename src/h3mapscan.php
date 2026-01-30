@@ -111,6 +111,7 @@ class H3MAPSCAN
 	public $mines_list = [];
 	public $monsters_list = [];
 	public $garrisons_list = [];
+	public $treasurechests_list = [];
 	public $campfires_list = [];
 	public $resources_list = [];
 	public $event_list = []; //global events
@@ -2498,7 +2499,7 @@ class H3MAPSCAN
 
 				case OBJECTS::TREASURE_CHEST:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadTreasureChest();
+						$this->ReadTreasureChest($obj);
 					}
 					break;
 
@@ -3540,14 +3541,18 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ReadTreasureChest()
+	private function ReadTreasureChest($obj)
 	{
-		$contents = $this->br->ReadUint32();
-		$artifact = $this->br->ReadUint32();
+		$obj['contents'] = $this->br->ReadUint32();
+		$obj['contents'] = $obj['contents'] != HNONE32 ? $obj['contents'] : DEFAULT_DATA;
+		$obj['artifact'] = $this->br->ReadUint32();
+		$obj['artifact'] = $obj['artifact'] != HNONE32 ? $obj['artifact'] : DEFAULT_DATA;
 
-		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
-			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Treasure Chest', OWNERNONE, 0, '', $this->curobjname);
+		if (!in_array($obj['artifact'], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($obj['artifact']), $this->curcoor, 'Treasure Chest', OWNERNONE, 0, '', $this->curobjname);
 		}
+
+		$this->treasurechests_list[] = $obj;
 	}
 
 	private function ReadTreeOfKnowledge()

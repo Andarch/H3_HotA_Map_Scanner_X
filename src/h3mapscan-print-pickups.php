@@ -4,6 +4,73 @@
 
 <div class="flex-container2">
 
+    <!-- *************** -->
+    <!-- Treasure Chests -->
+    <!-- *************** -->
+
+    <div class="treasurechests-table-container">
+        <div class="table-split-header-container">
+            <table class="table-split-header treasurechests-table">
+                <thead>
+                    <tr>
+                        <th class="ac table__title-bar--large" colspan="6">Treasure Chests</td>
+                    </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Coords</th>
+                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Contents</th>
+                        <th>Artifact</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="table-split-body-container treasurechests-table-body-container">
+            <table class="table-split-body treasurechests-table">
+                <tbody>
+
+                    <?php
+                    usort($this->h3mapscan->treasurechests_list, function ($a, $b) {
+                        $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+                        $posA = array_search($a["zone_type"], $order);
+                        $posB = array_search($b["zone_type"], $order);
+
+                        if ($posA !== $posB) {
+                            return $posA <=> $posB;
+                        }
+                    });
+
+                    $n = 0;
+                    foreach ($this->h3mapscan->treasurechests_list as $treasurechest) {
+                        ?>
+                        <tr>
+                            <td class="table__row-header--default"><?= ++$n ?></td>
+                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                                <?= $treasurechest["objname"] ?>
+                            </td>
+                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                                <?= $treasurechest["pos"]->GetCoords() ?>
+                            </td>
+                            <td class="ac nowrap zone-type" nowrap="nowrap"
+                                data-zone="<?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            </td>
+                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                                <?= $treasurechest["contents"] ?>
+                            </td>
+                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                                <?= $treasurechest["artifact"] ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- ********* -->
     <!-- Resources -->
     <!-- ********* -->

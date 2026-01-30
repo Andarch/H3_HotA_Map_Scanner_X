@@ -759,6 +759,55 @@ td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
+/* ********************* */
+/* Treasure Chests Table */
+/* ********************* */
+
+.treasurechests-table-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap));
+}
+
+.treasurechests-table-body-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height) - var(--table__title-bar-large-height));
+}
+
+.treasurechests-table td:first-child,
+.treasurechests-table th:first-child {
+  width: 34px;
+}
+
+.treasurechests-table td:nth-child(2),
+.treasurechests-table th:nth-child(2) {
+  width: 82px;
+}
+
+.treasurechests-table td:nth-child(3),
+.treasurechests-table th:nth-child(3) {
+  width: 66px;
+}
+
+.treasurechests-table td:nth-child(4),
+.treasurechests-table th:nth-child(4) {
+  width: 34px;
+}
+
+.treasurechests-table th:nth-child(5),
+.treasurechests-table td:nth-child(5) {
+  width: 56px;
+}
+
+.treasurechests-table th:nth-child(6) {
+  width: calc(82px + 14.86px);
+}
+
+.treasurechests-table td:nth-child(6) {
+  width: 82px;
+}
+
+.treasurechests-table tr:last-child td {
+  border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
 /* *************** */
 /* Resources Table */
 /* *************** */
