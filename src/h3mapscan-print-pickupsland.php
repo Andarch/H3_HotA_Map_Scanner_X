@@ -57,10 +57,10 @@
                                 data-zone="<?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
                                 <?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $treasurechest["contents"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="small-text nowrap" nowrap="nowrap">
                                 <?= $treasurechest["artifact"] ?>
                             </td>
                         </tr>

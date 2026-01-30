@@ -2492,7 +2492,7 @@ class H3MAPSCAN
 
 				case OBJECTS::SEA_CHEST:
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-						$this->ReadSeaChest();
+						$this->ReadSeaChest($obj);
 					}
 					break;
 
@@ -3532,14 +3532,27 @@ class H3MAPSCAN
 		$this->br->SkipBytes(4);
 	}
 
-	private function ReadSeaChest()
+	private function ReadSeaChest($obj)
 	{
-		$contents = $this->br->ReadUint32();
-		$artifact = $this->br->ReadUint32();
-
-		if (!in_array($artifact, [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
-			$this->artifacts_list[] = new ListObject($this->GetArtifactById($artifact), $this->curcoor, 'Sea Chest', OWNERNONE, 0, '', $this->curobjname);
+		$obj['contents'] = $this->br->ReadUint32();
+		match ($obj['contents']) {
+			HNONE32 => $obj['contents'] = DEFAULT_DATA,
+			0 => $obj['contents'] = 'Nothing',
+			1 => $obj['contents'] = '1500 Gold',
+			2 => $obj['contents'] = '1000 Gold and Treasure Artifact',
+		};
+		$art = $this->br->ReadUint32();
+		if ($art != HNONE32) {
+			$obj['artifact'] = $this->GetArtifactById($art);
+		} else {
+			$obj['artifact'] = EMPTY_DATA;
 		}
+
+		if (!in_array($obj['artifact'], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+			$this->artifacts_list[] = new ListObject($this->GetArtifactById($obj['artifact']), $this->curcoor, 'Sea Chest', OWNERNONE, 0, '', $this->curobjname);
+		}
+
+		$this->seachests_list[] = $obj;
 	}
 
 	private function ReadShipwreckSurvivor()
@@ -3555,9 +3568,19 @@ class H3MAPSCAN
 	private function ReadTreasureChest($obj)
 	{
 		$obj['contents'] = $this->br->ReadUint32();
-		$obj['contents'] = $obj['contents'] != HNONE32 ? $obj['contents'] : DEFAULT_DATA;
-		$obj['artifact'] = $this->br->ReadUint32();
-		$obj['artifact'] = $obj['artifact'] != HNONE32 ? $obj['artifact'] : DEFAULT_DATA;
+		match ($obj['contents']) {
+			HNONE32 => $obj['contents'] = DEFAULT_DATA,
+			0 => $obj['contents'] = '1000 Gold or 500 XP',
+			1 => $obj['contents'] = '1500 Gold or 1000 XP',
+			2 => $obj['contents'] = '2000 Gold or 1500 XP',
+			3 => $obj['contents'] = 'Treasure Artifact',
+		};
+		$art = $this->br->ReadUint32();
+		if ($art != HNONE32) {
+			$obj['artifact'] = $this->GetArtifactById($art);
+		} else {
+			$obj['artifact'] = EMPTY_DATA;
+		}
 
 		if (!in_array($obj['artifact'], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
 			$this->artifacts_list[] = new ListObject($this->GetArtifactById($obj['artifact']), $this->curcoor, 'Treasure Chest', OWNERNONE, 0, '', $this->curobjname);

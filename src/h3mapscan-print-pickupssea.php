@@ -145,9 +145,9 @@
     <!-- Sea Chests -->
     <!-- ********** -->
 
-    <div class="campfires-table-container">
+    <div class="seachests-table-container">
         <div class="table-split-header-container">
-            <table class="table-split-header campfires-table">
+            <table class="table-split-header seachests-table">
                 <thead>
                     <tr>
                         <th class="ac table__title-bar--large" colspan="6">Sea Chests</th>
@@ -157,19 +157,19 @@
                         <th>Type</th>
                         <th>Coords</th>
                         <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
-                        <th class="nowrap" nowrap="nowrap">Mode</th>
-                        <th>Resources</th>
+                        <th class="nowrap" nowrap="nowrap">Contents</th>
+                        <th>Artifact</th>
                     </tr>
                 </thead>
             </table>
         </div>
-        <button id="campfires-table-button" class="table-button">SHOW</button>
-        <div id="campfires-table" class="table-split-body-container campfires-table-body-container">
-            <table class="table-split-body campfires-table">
+        <button id="seachests-table-button" class="table-button">SHOW</button>
+        <div id="seachests-table" class="table-split-body-container seachests-table-body-container">
+            <table class="table-split-body seachests-table">
                 <tbody>
 
                     <?php
-                    usort($this->h3mapscan->campfires_list, function ($a, $b) {
+                    usort($this->h3mapscan->seachests_list, function ($a, $b) {
                         $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
@@ -180,27 +180,25 @@
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->campfires_list as $resource) {
+                    foreach ($this->h3mapscan->seachests_list as $seachest) {
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
                             <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["objname"] ?>
+                                <?= $seachest["objname"] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["pos"]->GetCoords() ?>
+                                <?= $seachest["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                                data-zone="<?= htmlspecialchars($seachest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($seachest["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["mode"] ?>
+                            <td class="small-text ac nowrap" nowrap="nowrap">
+                                <?= $seachest["contents"] ?>
                             </td>
-                            <td class="nowrap" nowrap="nowrap">
-                                <?= implode('<br>', array_map(function ($k, $v) {
-                                    return $k . ': ' . $v;
-                                }, array_keys($resource["resources"]), $resource["resources"])) ?>
+                            <td class="small-text nowrap" nowrap="nowrap">
+                                <?= $seachest["artifact"] ?>
                             </td>
                         </tr>
                         <?php

@@ -801,15 +801,15 @@ td {
 
 .treasurechests-table th:nth-child(5),
 .treasurechests-table td:nth-child(5) {
-  width: 56px;
+  width: 116px;
 }
 
 .treasurechests-table th:nth-child(6) {
-  width: calc(82px + 14.86px);
+  width: calc(146px + 14.86px);
 }
 
 .treasurechests-table td:nth-child(6) {
-  width: 82px;
+  width: 146px;
 }
 
 .treasurechests-table tr:last-child td {
@@ -1061,6 +1061,55 @@ td {
   border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
+/* **************** */
+/* Sea Chests Table */
+/* **************** */
+
+.seachests-table-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap));
+}
+
+.seachests-table-body-container {
+  height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height) - var(--table__title-bar-large-height));
+}
+
+.seachests-table td:first-child,
+.seachests-table th:first-child {
+  width: 34px;
+}
+
+.seachests-table td:nth-child(2),
+.seachests-table th:nth-child(2) {
+  width: 58px;
+}
+
+.seachests-table td:nth-child(3),
+.seachests-table th:nth-child(3) {
+  width: 66px;
+}
+
+.seachests-table td:nth-child(4),
+.seachests-table th:nth-child(4) {
+  width: 34px;
+}
+
+.seachests-table th:nth-child(5),
+.seachests-table td:nth-child(5) {
+  width: 152px;
+}
+
+.seachests-table th:nth-child(6) {
+  width: calc(146px + 14.86px);
+}
+
+.seachests-table td:nth-child(6) {
+  width: 146px;
+}
+
+.seachests-table tr:last-child td {
+  border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
+}
+
 /* ************ */
 /* Table Button */
 /* ************ */
@@ -1084,7 +1133,7 @@ td {
 }
 
 #treasurechests-table-button {
-  width: 370.57px;
+  width: 494.57px;
 }
 
 #resources-table-button {
@@ -1105,6 +1154,10 @@ td {
 
 #seabarrels-table-button {
   width: 348.57px;
+}
+
+#seachests-table-button {
+  width: 506.57px;
 }
 
 /* ******** */
