@@ -200,27 +200,32 @@
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->campfires_list as $resource) {
+                    foreach ($this->h3mapscan->campfires_list as $campfire) {
+                        match ($campfire['mode']) {
+                            DEFAULT_DATA => $resources = EMPTY_DATA,
+                            'Custom' => $resources = implode('<br>', array_map(function ($k, $v) {
+                                    return $k . ': ' . $v;
+                                }, array_keys($campfire["resources"]), $campfire["resources"])),
+                            'Nothing' => $resources = EMPTY_DATA,
+                        };
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
                             <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["objname"] ?>
+                                <?= $campfire["objname"] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
-                                <?= $resource["pos"]->GetCoords() ?>
+                                <?= $campfire["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                                data-zone="<?= htmlspecialchars($campfire["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                                <?= htmlspecialchars($campfire["zone_type"], ENT_QUOTES, "UTF-8") ?>
                             </td>
                             <td class="small-text ac nowrap" nowrap="nowrap">
-                                <?= $resource["mode"] ?>
+                                <?= $campfire["mode"] ?>
                             </td>
                             <td class="small-text nowrap" nowrap="nowrap">
-                                <?= implode('<br>', array_map(function ($k, $v) {
-                                    return $k . ': ' . $v;
-                                }, array_keys($resource["resources"]), $resource["resources"])) ?>
+                                <?= $resources ?>
                             </td>
                         </tr>
                         <?php
@@ -283,6 +288,7 @@
 
                     $n = 0;
                     foreach ($this->h3mapscan->ancientlamps_list as $ancientlamp) {
+                        $ancientlamp['amount'] = $ancientlamp["contents"] != DEFAULT_DATA ? comma($ancientlamp["amount"]) : EMPTY_DATA;
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>

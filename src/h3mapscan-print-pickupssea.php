@@ -109,7 +109,7 @@
                     $n = 0;
                     foreach ($this->h3mapscan->seabarrels_list as $seabarrel) {
                         match ($seabarrel['contents']) {
-                            DEFAULT_DATA => $resources = DEFAULT_DATA,
+                            DEFAULT_DATA => $resources = EMPTY_DATA,
                             'Custom' => $resources = $seabarrel["resource"] . ': ' . $seabarrel["amount"],
                             'Nothing' => $resources = EMPTY_DATA,
                         };
