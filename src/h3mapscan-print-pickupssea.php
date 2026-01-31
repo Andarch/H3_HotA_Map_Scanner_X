@@ -25,7 +25,7 @@
                 </thead>
             </table>
         </div>
-        <button id="flotsamjetsam-table-button" class="table-button">SHOW</button>
+        <button id="flotsamjetsam-table-button" class="table-button"></button>
         <div id="flotsamjetsam-table" class="table-split-body-container flotsamjetsam-table-body-container">
             <table class="table-split-body flotsamjetsam-table">
                 <tbody>
@@ -90,7 +90,7 @@
                 </thead>
             </table>
         </div>
-        <button id="seabarrels-table-button" class="table-button">SHOW</button>
+        <button id="seabarrels-table-button" class="table-button"></button>
         <div id="seabarrels-table" class="table-split-body-container seabarrels-table-body-container">
             <table class="table-split-body seabarrels-table">
                 <tbody>
@@ -163,7 +163,7 @@
                 </thead>
             </table>
         </div>
-        <button id="seachests-table-button" class="table-button">SHOW</button>
+        <button id="seachests-table-button" class="table-button"></button>
         <div id="seachests-table" class="table-split-body-container seachests-table-body-container">
             <table class="table-split-body seachests-table">
                 <tbody>
@@ -230,7 +230,7 @@
                 </thead>
             </table>
         </div>
-        <button id="vialsofmana-table-button" class="table-button">SHOW</button>
+        <button id="vialsofmana-table-button" class="table-button"></button>
         <div id="vialsofmana-table" class="table-split-body-container vialsofmana-table-body-container">
             <table class="table-split-body vialsofmana-table">
                 <tbody>

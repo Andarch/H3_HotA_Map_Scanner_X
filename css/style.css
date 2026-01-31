@@ -1159,21 +1159,26 @@ td {
 /* ************ */
 
 .table-button {
-  margin-top: 1px;
-  font-size: 11px;
+  font-family: var(--font-family--default);
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
-  padding: 2px;
-  border-color: var(--color__body-fg);
+  padding-bottom: 2px;
+  border-color: var(--color-lightgrey);
   border-style: solid;
   border-width: 2px;
-  background: var(--color-mediumgrey);
-  color: var(--color_white);
+  background: var(--color-lightgrey);
+  color: var(--color-mediumgrey);
+}
+
+.table-button:after {
+  content: '↓\A0\A0\A0\A0\A0SHOW\A0\A0\A0\A0\A0↓';
 }
 
 .table-button:hover {
+  border-color: var(--color-gold);
   background-color: var(--color-gold);
-  color: var(--color-brown);
+  /* color: var(--color-brown); */
 }
 
 #treasurechests-table-button {
