@@ -1713,51 +1713,51 @@ class H3MAPSCAN
 
 					if ($this->has_zone_images) {
 						$ERROR_TYPES = ["Out of Bounds", "Void", "Unknown"];
-						list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+						list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 
 						if (
 							($obj["id"] == OBJECTS::SHIPWRECK || $obj["id"] == OBJECTS::PRISON || $obj["id"] == OBJECTS::DWELLING_NORMAL || $obj["id"] == OBJECTS::DWELLING_MULTI) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::FOUNTAIN_OF_YOUTH) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::MISC_OBJECTS_3) && $obj["subid"] == MISC_OBJECTS_3::QUEST_GATE && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::GARRISON_HORIZONTAL) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 2, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::GARRISON_VERTICAL) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_color"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_color"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
 					}
 					$obj['pos'] = $obj["posoffset"];
