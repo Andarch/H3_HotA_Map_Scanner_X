@@ -36,223 +36,189 @@ $zoneTypes = [
 
 /* MAIN */
 
-echo '<div class="obz-container">';
-
-// Images table
-$timestamp = time();
-$imgmapnameg = MAPDIR . $zonesImageBaseFilename . '_g.png';
-$imgmapnameu = MAPDIR . $zonesImageBaseFilename . '_u.png';
-$imgzonesg = MAPDIR . $zonesImageBaseFilename . '_zoneplayers_g.png';
-$imgzonesu = MAPDIR . $zonesImageBaseFilename . '_zoneplayers_u.png';
-
-echo '<div class="obz-tables-container" style="column-gap: 3em !important;">';
-
-// Create an array containing the coordinates of all towns (combo IDs = 77-0 and 98-0 thru 98-10)
-$townCoords = [];
-foreach ($objPerZone[OBJ_CATEGORY::TOWNS] as $comboid => $obj) {
-	$townCoords[] = $obj['pos']->GetCoords();
-}
-
-// If a Hero object (comboid of 34-X) is at the same position as any coords in $townCoords, remove the Hero from $objPerZone
-foreach ($objPerZone[OBJ_CATEGORY::HEROES_AND_INFO] as $comboid => $obj) {
-	if (in_array($obj['pos']->GetCoords(), $townCoords)) {
-		unset($objPerZone[OBJ_CATEGORY::HEROES_AND_INFO][$comboid]);
-	}
-}
-
-// Scan zone overlays
-$groundColors = loadImageColors($imgzonesg);
-$undergroundColors = loadImageColors($imgzonesu);
+echo '<div class="obz-container" style="column-gap: 3em !important;">';
 
 // Towns
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TOWNS], OBJ_CATEGORY::TOWNS, $sortOrder->Towns, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Heroes & Info
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::HEROES_AND_INFO], OBJ_CATEGORY::HEROES_AND_INFO, $sortOrder->HeroesAndInfo, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Monsters
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MONSTERS], OBJ_CATEGORY::MONSTERS, $sortOrder->Monsters, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Keymaster Tents
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::KEYMASTERS_TENTS], OBJ_CATEGORY::KEYMASTERS_TENTS, $sortOrder->KeymastersBorder, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Border Gates
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::BORDER_GATES], OBJ_CATEGORY::BORDER_GATES, $sortOrder->KeymastersBorder, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Border Guards
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::BORDER_GUARDS], OBJ_CATEGORY::BORDER_GUARDS, $sortOrder->KeymastersBorder, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 1-Way Monolith Entrances
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES], OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES, $sortOrder->OneWayMonoliths, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 1-Way Monolith Exits
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS], OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS, $sortOrder->OneWayMonoliths, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 1-Way Portal Entrances
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES], OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES, $sortOrder->OneWayPortals, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 1-Way Portal Exits
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS], OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS, $sortOrder->OneWayPortals, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 2-Way Monoliths
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TWO_WAY_MONOLITHS], OBJ_CATEGORY::TWO_WAY_MONOLITHS, $sortOrder->TwoWayMonoliths, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 2-Way Portals
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TWO_WAY_PORTALS], OBJ_CATEGORY::TWO_WAY_PORTALS, $sortOrder->TwoWayPortals, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // 2-Way Sea Portals
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TWO_WAY_SEA_PORTALS], OBJ_CATEGORY::TWO_WAY_SEA_PORTALS, $sortOrder->TwoWaySeaPortals, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Other Gateways
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::OTHER_GATEWAYS], OBJ_CATEGORY::OTHER_GATEWAYS, $sortOrder->OtherGateways, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Mines
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MINES], OBJ_CATEGORY::MINES, $sortOrder->Mines, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Warehouses
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::WAREHOUSES], OBJ_CATEGORY::WAREHOUSES, $sortOrder->Warehouses, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Dwellings by Level
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL], OBJ_CATEGORY::FACTION_DWELLINGS_BY_LEVEL, $sortOrder->DwellingsByLevel, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Neutral Dwellings 1
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::NEUTRAL_DWELLINGS_1], OBJ_CATEGORY::NEUTRAL_DWELLINGS_1, $sortOrder->NeutralDwellings1, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Neutral Dwellings 2
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::NEUTRAL_DWELLINGS_2], OBJ_CATEGORY::NEUTRAL_DWELLINGS_2, $sortOrder->NeutralDwellings2, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Other Dwellings
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::OTHER_DWELLINGS], OBJ_CATEGORY::OTHER_DWELLINGS, $sortOrder->OtherDwellings, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Garrisons / Quests
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::GARRISONS_QUESTS], OBJ_CATEGORY::GARRISONS_QUESTS, $sortOrder->GarrisonsQuests, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // War Machines & Upgrades
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES], OBJ_CATEGORY::WAR_MACHINES_AND_UPGRADES, $sortOrder->WarMachinesAndUpgrades, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Trading
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TRADING], OBJ_CATEGORY::TRADING, $sortOrder->Trading, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Creature Banks – Elite
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::CREATURE_BANKS_ELITE], OBJ_CATEGORY::CREATURE_BANKS_ELITE, $sortOrder->CreatureBanksElite, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Creature Banks – Artifacts
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::CREATURE_BANKS_ARTIFACTS], OBJ_CATEGORY::CREATURE_BANKS_ARTIFACTS, $sortOrder->CreatureBanksArtifacts, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Creature Banks – Resources
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::CREATURE_BANKS_RESOURCES], OBJ_CATEGORY::CREATURE_BANKS_RESOURCES, $sortOrder->CreatureBanksResources, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Creature Banks – Creatures
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::CREATURE_BANKS_CREATURES], OBJ_CATEGORY::CREATURE_BANKS_CREATURES, $sortOrder->CreatureBanksCreatures, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Boats & Airships
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::BOATS_AND_AIRSHIPS], OBJ_CATEGORY::BOATS_AND_AIRSHIPS, $sortOrder->BoatsAndAirships, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Primary Skills 1
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::PRIMARY_SKILLS_1], OBJ_CATEGORY::PRIMARY_SKILLS_1, $sortOrder->PrimarySkills1, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Primary Skills 2
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::PRIMARY_SKILLS_2], OBJ_CATEGORY::PRIMARY_SKILLS_2, $sortOrder->PrimarySkills2, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Secondary Skills
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::SECONDARY_SKILLS], OBJ_CATEGORY::SECONDARY_SKILLS, $sortOrder->SecondarySkills, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // XP
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::XP], OBJ_CATEGORY::XP, $sortOrder->XP, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Mana
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MANA], OBJ_CATEGORY::MANA, $sortOrder->Mana, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Multi-Bonus
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MULTI_BONUS], OBJ_CATEGORY::MULTI_BONUS, $sortOrder->MultiBonus, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Movement
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MOVEMENT], OBJ_CATEGORY::MOVEMENT, $sortOrder->Movement, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Morale
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MORALE], OBJ_CATEGORY::MORALE, $sortOrder->Morale, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Luck
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::LUCK], OBJ_CATEGORY::LUCK, $sortOrder->Luck, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Special
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::SPECIAL], OBJ_CATEGORY::SPECIAL, $sortOrder->Special, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Spells
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::SPELLS], OBJ_CATEGORY::SPELLS, $sortOrder->Spells, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Artifacts
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::ARTIFACTS], OBJ_CATEGORY::ARTIFACTS, $sortOrder->Artifacts, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Treasures
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::TREASURES], OBJ_CATEGORY::TREASURES, $sortOrder->Treasures, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Resources 1
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::RESOURCES_1], OBJ_CATEGORY::RESOURCES_1, $sortOrder->Resources1, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Resources 2
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::RESOURCES_2], OBJ_CATEGORY::RESOURCES_2, $sortOrder->Resources2, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Resource Generators
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::RESOURCE_GENERATORS], OBJ_CATEGORY::RESOURCE_GENERATORS, $sortOrder->ResourceGenerators, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
 // Scouting
 $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::SCOUTING], OBJ_CATEGORY::SCOUTING, $sortOrder->Scouting, null, null, null, OC_FLEXTYPE::NONE);
-DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
+DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes);
 
-// Magical Terrains – Spells
-// $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS], OBJ_CATEGORY::MAGICAL_TERRAINS_SPELLS, $sortOrder->MagicalTerrainsSpells, null, null, null, OC_FLEXTYPE::NONE);
-// DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
-
-// Magical Terrains – Bonuses
-// $table = new OC_Table(OC_TABLETYPE::NORMAL, $objPerZone[OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES], OBJ_CATEGORY::MAGICAL_TERRAINS_BONUSES, $sortOrder->MagicalTerrainsBonuses, null, null, null, OC_FLEXTYPE::NONE);
-// DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes);
-
-echo '</div></div>';
+echo '</div>';
 
 /* END MAIN */
 
@@ -350,33 +316,14 @@ function ProcessObject($category, $name, $comboid)
 	return [$objn, $isFactionDwelling];
 }
 
-function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3mapscan, $zoneColors, $zoneTypes)
+function DisplayObjCountZoneTable($table, $h3mapscan, $zoneColors, $zoneTypes)
 {
 	$objCountPlayers = [];
 	$objProcessResult = [];
 
-	// Set arrays for certain categories
-	$specialCategories = [
-		OBJ_CATEGORY::KEYMASTERS_TENTS,
-		OBJ_CATEGORY::BORDER_GATES,
-		OBJ_CATEGORY::BORDER_GUARDS,
-		OBJ_CATEGORY::ONE_WAY_MONOLITH_ENTRANCES,
-		OBJ_CATEGORY::ONE_WAY_MONOLITH_EXITS,
-		OBJ_CATEGORY::ONE_WAY_PORTAL_ENTRANCES,
-		OBJ_CATEGORY::ONE_WAY_PORTAL_EXITS,
-		OBJ_CATEGORY::TWO_WAY_MONOLITHS,
-		OBJ_CATEGORY::TWO_WAY_PORTALS,
-		OBJ_CATEGORY::TWO_WAY_SEA_PORTALS
-	];
-	$neutralDwellingCategories = [
-		OBJ_CATEGORY::NEUTRAL_DWELLINGS_1,
-		OBJ_CATEGORY::NEUTRAL_DWELLINGS_2
-	];
-
 	// Sort objects into appropriate player zone/color based on coordinates
 	foreach ($table->objects as $obj) {
-		$objcomboid = in_array($table->category, $neutralDwellingCategories) ? $obj['truecomboid'] : $obj['comboid'];
-		$objtruecomboid = $obj['truecomboid'];
+		$objcomboid = in_array($table->category, [OBJ_CATEGORY::NEUTRAL_DWELLINGS_1, OBJ_CATEGORY::NEUTRAL_DWELLINGS_2]) ? $obj['truecomboid'] : $obj['comboid'];
 		$objname = $obj['name'];
 		$x = $obj['pos']->x;
 		$y = $obj['pos']->y;
@@ -506,16 +453,11 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		});
 	}
 
-	// Flex start if applicable
-	// if ($table->flexType === OC_FLEXTYPE::START) {
-	// 	echo START_FLEX;
-	// }
-
 	// Print table category title
 	echo '<table class="' . OBJCOUNT_TABLECLASS . '" style="margin-bottom: 3em !important;">
 			<thead>
 				<tr>
-					<th colspan="100" class="table__title-bar--small2">' . $table->category . '</td>
+					<th colspan="100" class="table__title-bar--small2">' . $table->category . '</th>
 				</tr>';
 
 	// Print table header
@@ -529,8 +471,6 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 	echo '<th class="th-player-color">' . $h3mapscan->GetPlayerColorById(0) . '</th>';
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="th-player-color">' . $h3mapscan->GetPlayerColorById(255) . '</th>';
-	// echo '<th class="table-small__divider"></th>';
-	// echo '<th class="th-player-color">'.$h3mapscan->GetPlayerColorById(999).'</th>';
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="table-small__column-header--total">Total</th>';
 	echo '</tr>';
@@ -561,10 +501,14 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 			$k = $obj['comboid'];
 		}
 
-		echo '<tr>';
-		echo '<td class="ac nowrap' . $classSuffix . '" nowrap="nowrap">' . $k . '</td>';
-		echo '<td class="nowrap' . $classSuffix . '" nowrap="nowrap">' . $v . '</td>';
+		$styleSuffix1 = '';
+		$styleSuffix2 = '';
+		// $styleSuffix1 = ' style="width: 56px;"';
+		// $styleSuffix2 = ' style="width: 144px;"';
 
+		echo '<tr>';
+		echo '<td class="ac nowrap' . $classSuffix . '" nowrap="nowrap"' . $styleSuffix1 . '>' . $k . '</td>';
+		echo '<td class="nowrap' . $classSuffix . '" nowrap="nowrap"' . $styleSuffix2 . '>' . $v . '</td>';
 		$n = 0;
 		$totalZoneCount = count(array_values($zoneTypes));
 		$currentZoneCount = 0;
@@ -601,9 +545,4 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 
 	// End table
 	echo '</tbody></table>';
-
-	// Flex end if applicable
-	// if ($table->flexType === OC_FLEXTYPE::END) {
-	// 	echo END_FLEX;
-	// }
 }
