@@ -403,7 +403,7 @@ td {
   color: var(--color__body-fg);
   text-decoration: none;
   background-color: var(--color__nav-button-bg);
-  font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav__width--diff)), 20px);
+  font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav__width--diff)), 18px);
   padding: 0;
 }
 
@@ -1248,6 +1248,15 @@ td {
   height: var(--table__title-bar-large-height);
 }
 
+.table__title-bar--medium {
+  background: black;
+  font-weight: bold;
+  text-align: left;
+  font-size: 14px !important;
+  color: white !important;
+  /* height: var(--table__title-bar-large-height); */
+}
+
 .table__title-bar--small {
   background: var(--color-purple) !important;
   color: var(--color__body-fg);
@@ -1439,7 +1448,7 @@ td {
 }
 
 .th-player-color {
-  background: black;
+  background: var(--color-mineshaft);
   font-family: var(--font-family--default);
   font-size: 9px;
   min-width: var(--table-small__fixed-column-width) !important;

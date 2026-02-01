@@ -86,8 +86,8 @@ class H3MAPSCAN_PRINT
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
 				break;
-			case 'Object Count by Zone':
-				include 'h3mapscan-print-objectcountbyzone.php';
+			case 'Object Count by Player':
+				include 'h3mapscan-print-objectcountbyplayer.php';
 				break;
 			case 'Unused Portraits':
 				include 'h3mapscan-print-unusedportraits.php';

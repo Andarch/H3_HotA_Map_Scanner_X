@@ -128,8 +128,8 @@ function generateNavMain($map)
         array_splice($sectionsWithHr1Below, $key, 1);
         $sectionsWithHr2Below[] = 'Object Count';
 
-        $sections[] = 'Object Count by Zone';
-        $sectionsWithHr2Below[] = 'Object Count by Zone';
+        $sections[] = 'Object Count by Player';
+        $sectionsWithHr2Below[] = 'Object Count by Player';
 
         $sections[] = 'Unused Portraits';
         $sectionsWithHr1Below[] = 'Unused Portraits';
