@@ -2591,6 +2591,12 @@ class H3MAPSCAN
 					$this->obelisksnum++;
 					break;
 
+				case OBJECTS::MISC_OBJECTS_1:
+					if ($obj['subid'] == MISC_OBJECTS_1::TRAPPER_LODGE) {
+						$obj = $this->ReadTrapperLodge($obj);
+					}
+					break;
+
 
 				default:
 					//any other object, we dont want to save to array
@@ -3627,6 +3633,15 @@ class H3MAPSCAN
 		} else {
 			return $this->GetArtifactById($artid) . $spell;
 		}
+	}
+
+	private function ReadTrapperLodge($obj)
+	{
+		$obj['reward_type'] = $this->br->ReadUint32();
+		$obj['gold_amount'] = $this->br->ReadUint32();
+		$obj['creature_amount'] = $this->br->ReadUint32();
+		$obj['creature_id'] = $this->br->ReadUint32();
+		return $obj;
 	}
 
 
