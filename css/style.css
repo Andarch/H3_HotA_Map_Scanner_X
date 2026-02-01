@@ -403,7 +403,7 @@ td {
   color: var(--color__body-fg);
   text-decoration: none;
   background-color: var(--color__nav-button-bg);
-  font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav__width--diff)), 22px);
+  font-size: clamp(15.5px, calc(15.5px + 0.077335 * var(--nav__width--diff)), 20px);
   padding: 0;
 }
 

@@ -57,10 +57,10 @@ class H3MAPSCAN_PRINT
 			case 'Garrisons':
 				include 'h3mapscan-print-garrisons.php';
 				break;
-			case 'Pickups (Land)':
+			case 'Pickups - Land':
 				include 'h3mapscan-print-pickupsland.php';
 				break;
-			case 'Pickups (Sea)':
+			case 'Pickups - Sea':
 				include 'h3mapscan-print-pickupssea.php';
 				break;
 			case 'Seer\'s Huts':
@@ -85,6 +85,9 @@ class H3MAPSCAN_PRINT
 			// 	break;
 			case 'Object Count':
 				include 'h3mapscan-print-objectcount.php';
+				break;
+			case 'Object Count by Zone':
+				include 'h3mapscan-print-objectcountbyzone.php';
 				break;
 			case 'Unused Portraits':
 				include 'h3mapscan-print-unusedportraits.php';

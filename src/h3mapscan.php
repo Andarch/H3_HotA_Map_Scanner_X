@@ -1705,7 +1705,7 @@ class H3MAPSCAN
 				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
 				$obj['zone_type'] = EMPTY_DATA;
-				$obj['zone_color'] = EMPTY_DATA;
+				$obj['zone_player'] = EMPTY_DATA;
 
 				if (!in_array($obj["id"], $this->CS->OmittedObjectsZones)) {
 					// Zones
@@ -1776,11 +1776,11 @@ class H3MAPSCAN
 					$objcomboid = $obj['comboid'];
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
-					$objzonecolor = $obj['zone_color'];
+					$objzoneplayer = $obj['zone_player'];
 
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
-					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzonecolor);
+					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneplayer);
 				}
 			} else {
 				$obj['id'] = OBJECT_INVALID;
@@ -2676,7 +2676,7 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzonecolor)
+	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneplayer)
 	{
 		$truecomboid = $objid . '-' . $objsubid;
 		$creaturelevel = null;
@@ -2703,7 +2703,7 @@ class H3MAPSCAN
 		$this->objectCountPlayers[$objcategory][] = [
 			'id' => $objid,
 			'subid' => $objsubid,
-			'zone_color' => $objzonecolor,
+			'zone_player' => $objzoneplayer,
 			'comboid' => $objcomboid,
 			'truecomboid' => $truecomboid,
 			'name' => $objname,
@@ -4539,9 +4539,9 @@ class H3MAPSCAN
 		$zone_type = $error_types ?: ($this->CS->ZoneTypes[implode(',', $rgb_types)] ?? "Unknown");
 
 		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zoneplayers_img_g, $this->zoneplayers_img_u);
-		$zone_color = $error_colors ?: ($this->CS->zoneplayers[implode(',', $rgb_colors)] ?? "Unknown");
+		$zone_player = $error_colors ?: ($this->CS->ZonePlayers[implode(',', $rgb_colors)] ?? "Unknown");
 
-		return [$zone_type, $zone_color];
+		return [$zone_type, $zone_player];
 	}
 
 	public function GetPortraitByHeroId($portraitID, $heroID)

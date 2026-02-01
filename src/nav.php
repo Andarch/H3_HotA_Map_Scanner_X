@@ -63,8 +63,8 @@ function generateNavMain($map)
         'Spells',
         'Monsters',
         'Garrisons',
-        'Pickups (Land)',
-        'Pickups (Sea)',
+        'Pickups - Land',
+        'Pickups - Sea',
         'Seer\'s Huts',
         'Quest Gates',
         'Quest Guards',
@@ -95,7 +95,7 @@ function generateNavMain($map)
         'Spells (Lite)',
         'Prisoners',
         'Towns',
-        'Pickups (Sea)',
+        'Pickups - Sea',
         'Quest Guards',
         'Town Events',
         'Event Objects',
@@ -112,7 +112,7 @@ function generateNavMain($map)
         'Spells',
         'Monsters',
         'Garrisons',
-        'Pickups (Land)',
+        'Pickups - Land',
         'Seer\'s Huts',
         'Quest Gates',
         'Global Events',
@@ -127,6 +127,9 @@ function generateNavMain($map)
         $key = array_search('Object Count', $sectionsWithHr1Below);
         array_splice($sectionsWithHr1Below, $key, 1);
         $sectionsWithHr2Below[] = 'Object Count';
+
+        $sections[] = 'Object Count by Zone';
+        $sectionsWithHr2Below[] = 'Object Count by Zone';
 
         $sections[] = 'Unused Portraits';
         $sectionsWithHr1Below[] = 'Unused Portraits';

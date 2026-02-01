@@ -1,7 +1,6 @@
 <?php
 
 const OBJCOUNT_TABLECLASS = "table-small";
-const OBJCOUNT_COLSPAN = "100";
 
 class OC_TABLETYPE
 {
