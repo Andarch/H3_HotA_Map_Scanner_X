@@ -104,9 +104,11 @@ class H3MAPSCAN
 
 	//object of interest lists
 	public $artifacts_list = [];
+	/** @var array<int, array{pos: MapCoords, data: array, id: int, subid: int}> */
 	public $heroes_list = [];
 	public $heroes_placeholder = [];
 	public $spells_list = [];
+	/** @var array<int, array{pos: MapCoords, id: int, subid: int}> */
 	public $towns_list = [];
 	public $mines_list = [];
 	public $monsters_list = [];
@@ -1970,7 +1972,6 @@ class H3MAPSCAN
 					$tileowner = $obj['data']['PlayerColor'];
 					$this->heroes_list[] = $obj;
 
-					// $obj['pos']->x -= 1; //offset for hero in town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::HERO,
 						'objid' => $obj['id'],
@@ -2204,7 +2205,6 @@ class H3MAPSCAN
 
 					$this->towns_list[] = $obj;
 
-					// $obj['pos']->x -=2; //substract 2, to make position centered to town gate
 					$this->mapobjects[] = [
 						'object' => MAPOBJECTS::TOWN,
 						'objid' => $obj['id'],
@@ -3648,19 +3648,15 @@ class H3MAPSCAN
 
 	private function ParseFinish()
 	{
-		//determine if hero is in castle by tile being blocked
-		foreach ($this->mapobjects as $k => $mapobjh) {
-			if ($mapobjh['object'] == MAPOBJECTS::HERO) {
-				foreach ($this->mapobjects as $n => $mapobjl) {
-					if ($mapobjl['object'] == MAPOBJECTS::TOWN) {
-						if (
-							$mapobjh['pos']->x - 1 == $mapobjl['pos']->x //hero at castle has x-1 compared to castle coord
-							&& $mapobjh['pos']->y == $mapobjl['pos']->y
-							&& $mapobjh['pos']->z == $mapobjl['pos']->z
-						) {
-							$this->mapobjects[$k]['pos']->x -= 1;
-						}
-					}
+		//fix coords for hero in town
+		foreach ($this->heroes_list as $hero_idx => $hero) {
+			foreach ($this->towns_list as $town) {
+				if (
+					($hero['pos']->x - 1) == $town['pos']->x
+					&& $hero['pos']->y == $town['pos']->y
+					&& $hero['pos']->z == $town['pos']->z
+				) {
+					$this->heroes_list[$hero_idx]['pos']->x -= 1;
 				}
 			}
 		}

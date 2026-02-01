@@ -18,8 +18,8 @@ $zoneColors = [
 	'Teal' => [50, 112, 116],
 	'Pink' => [171, 129, 140],
 	'Red' => [179, 76, 76],
-	'Normal Land' => [77, 77, 77],
-	'Normal Water' => [80, 85, 88]
+	'Neutral Land' => [77, 77, 77],
+	'Neutral Water' => [80, 85, 88]
 ];
 $zoneTypes = [
 	'Blue',
@@ -44,14 +44,6 @@ $imgmapnameg = MAPDIR . $zonesImageBaseFilename . '_g.png';
 $imgmapnameu = MAPDIR . $zonesImageBaseFilename . '_u.png';
 $imgzonesg = MAPDIR . $zonesImageBaseFilename . '_zoneplayers_g.png';
 $imgzonesu = MAPDIR . $zonesImageBaseFilename . '_zoneplayers_u.png';
-$imgground = file_exists($imgmapnameg) ? '<img src="' . $imgmapnameg . '?t=' . $timestamp . '" />' : 'Map Ground';
-$output = '<div class="obz-map-images-container"><table class="table-small"><th>Ground</th><th>Underground</th><tr><td class="map-image-container">' . $imgground . '</td>';
-if ($underground) {
-	$imguground = file_exists($imgmapnameu) ? '<img src="' . $imgmapnameu . '?t=' . $timestamp . '" />' : 'Map Underground';
-	$output .= '<td class="map-image-container">' . $imguground . '</td>';
-}
-$output .= '</tr></table></div>';
-// echo $output;
 
 echo '<div class="obz-tables-container" style="column-gap: 3em !important;">';
 
@@ -288,56 +280,6 @@ function loadImageColors($filename)
 	return $colors;
 }
 
-function getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $tileColors, $zoneColors)
-{
-	$color = $tileColors[$x][$y];
-
-	// $moreXMinus1ObjIds = [
-	// 	'17-X',
-	// 	'17-76',
-	// 	'17-100',
-	// 	'17-102',
-	// 	'20-0',
-	// 	'62-0',
-	// 	'85-0'
-	// ];
-
-	// $horizontalGarrisonObjIds = [
-	// 	'33-0',
-	// 	'33-1'
-	// ];
-
-	// $verticalGarrisonObjIds = [
-	// 	'219-0',
-	// 	'219-1'
-	// ];
-
-	// if ($color == [255, 255, 255]) {
-	// 	if (in_array($objcomboid, $moreXMinus1ObjIds)) {
-	// 		$color = $tileColors[$x - 1][$y];
-	// 	} else if (in_array($objtruecomboid, $horizontalGarrisonObjIds)) {
-	// 		$color = $tileColors[$x - 1][$y];
-	// 	} else if (in_array($objtruecomboid, $verticalGarrisonObjIds)) {
-	// 		$color = $tileColors[$x][$y - 1];
-	// 	} else if ($objcomboid == '212-1000') {
-	// 		$color = $tileColors[$x - 1][$y];
-	// 		if ($color == [255, 255, 255]) {
-	// 			$color = $tileColors[$x][$y - 1];
-	// 		}
-	// 	} else if ($objcomboid == '31-0') {
-	// 		$color = $tileColors[$x - 1][$y - 1];
-	// 	}
-	// }
-
-	foreach ($zoneColors as $zone => $zoneColor) {
-		if ($color === $zoneColor) {
-			return $zone;
-		}
-	}
-
-	return null;
-}
-
 function ProcessObject($category, $name, $comboid)
 {
 	$isFactionDwelling = false;
@@ -431,120 +373,6 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		OBJ_CATEGORY::NEUTRAL_DWELLINGS_2
 	];
 
-	// $xMinus1ObjIds = [
-	// 	'4-0',
-	// 	'15-0',
-	// 	'16-0',
-	// 	'16-1',
-	// 	'16-4',
-	// 	'16-5',
-	// 	'16-6',
-	// 	'16-23',
-	// 	'16-24',
-	// 	'16-25',
-	// 	'16-27',
-	// 	'16-29',
-	// 	'16-31',
-	// 	'16-32',
-	// 	'24-0',
-	// 	'25-0',
-	// 	'28-0',
-	// 	'34-X',
-	// 	'41-0',
-	// 	'43-4',
-	// 	'43-5',
-	// 	'43-6',
-	// 	'43-7',
-	// 	'44-4',
-	// 	'44-5',
-	// 	'44-6',
-	// 	'44-7',
-	// 	'45-4',
-	// 	'45-5',
-	// 	'45-6',
-	// 	'45-7',
-	// 	'45-8',
-	// 	'45-13',
-	// 	'45-14',
-	// 	'45-15',
-	// 	'45-16',
-	// 	'45-19',
-	// 	'45-20',
-	// 	'45-21',
-	// 	'45-22',
-	// 	'45-23',
-	// 	'45-24',
-	// 	'51-0',
-	// 	'52-0',
-	// 	'53-0',
-	// 	'53-1',
-	// 	'53-2',
-	// 	'53-3',
-	// 	'53-4',
-	// 	'53-5',
-	// 	'53-6',
-	// 	ABANDONED_MINE_COMBOID,
-	// 	'54-X',
-	// 	'55-0',
-	// 	'62-1',
-	// 	'71-0',
-	// 	'72-0',
-	// 	'73-0',
-	// 	'74-0',
-	// 	'75-0',
-	// 	'83-X',
-	// 	'84-0',
-	// 	'87-0',
-	// 	'92-0',
-	// 	'95-0',
-	// 	'96-0',
-	// 	'102-0',
-	// 	'103-0',
-	// 	'104-0',
-	// 	'106-0',
-	// 	'107-0',
-	// 	'112-0',
-	// 	'113-0',
-	// 	'144-2',
-	// 	'144-5',
-	// 	'144-6',
-	// 	'144-9',
-	// 	'144-10',
-	// 	'145-0',
-	// 	'146-1',
-	// 	'146-3',
-	// 	'146-4',
-	// 	'162-0',
-	// 	'163-0',
-	// 	'164-0',
-	// 	'212-0',
-	// 	'212-1',
-	// 	'212-2',
-	// 	'212-3',
-	// 	'212-4',
-	// 	'212-5',
-	// 	'212-6',
-	// 	'212-7',
-	// 	'213-0'
-	// ];
-
-	// $xMinus2ObjIds = [
-	// 	'16-22',
-	// 	'16-26',
-	// 	'77-0',
-	// 	'98-0',
-	// 	'98-1',
-	// 	'98-2',
-	// 	'98-3',
-	// 	'98-4',
-	// 	'98-5',
-	// 	'98-6',
-	// 	'98-7',
-	// 	'98-8',
-	// 	'98-9',
-	// 	'98-10'
-	// ];
-
 	// Sort objects into appropriate player zone/color based on coordinates
 	foreach ($table->objects as $obj) {
 		$objcomboid = in_array($table->category, $neutralDwellingCategories) ? $obj['truecomboid'] : $obj['comboid'];
@@ -554,34 +382,10 @@ function DisplayObjCountZoneTable($table, $groundColors, $undergroundColors, $h3
 		$y = $obj['pos']->y;
 		$z = $obj['pos']->z;
 
-		// if (in_array($objcomboid, $xMinus1ObjIds)) {
-		// 	$x = $x - 1;
-		// } else if (in_array($objcomboid, $xMinus2ObjIds)) {
-		// 	$x = $x - 2;
-		// }
-
-		// Adjust position of objects that are out of bounds
-		$mapsizeArray = explode('x', $h3mapscan->map_size);
-		$mapsizeInt = $mapsizeArray[0];
-		$diffX = ($x >= $mapsizeInt) ? ($x - $mapsizeInt + 1) : 0;
-		$diffY = ($y >= $mapsizeInt) ? ($y - $mapsizeInt + 1) : 0;
-		if ($diffX > 0) {
-			$x = $x - $diffX;
-		}
-		if ($diffY > 0) {
-			$y = $y - $diffY;
-		}
-
-		// if ($z == 0) {
-		// 	$zone = getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $groundColors, $zoneColors);
-		// } elseif ($z == 1) {
-		// 	$zone = getZoneByColor($objcomboid, $objtruecomboid, $x, $y, $z, $undergroundColors, $zoneColors);
-		// }
-
 		$zone = $obj['zone_player'];
 
-		if (str_starts_with($zone, 'Normal')) {
-			$zone = 'Normal';
+		if (str_starts_with($zone, 'Neutral')) {
+			$zone = 'Neutral';
 		}
 
 		// Get player zone and add object to array
