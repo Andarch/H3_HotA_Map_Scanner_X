@@ -212,7 +212,7 @@ function DisplayObjCountZoneTable($table)
 	}
 
 	// Print table category title
-	echo '<table class="' . OBJCOUNT_TABLECLASS . '" style="margin-bottom: 3em !important;">
+	echo '<table class="table-large" style="margin-bottom: 3em !important;">
 			<thead>
 				<tr>
 					<th colspan="100" class="ac table__title-bar--medium">' . $table->category . '</th>

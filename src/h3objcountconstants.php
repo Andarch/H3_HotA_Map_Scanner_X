@@ -1,7 +1,5 @@
 <?php
 
-const OBJCOUNT_TABLECLASS = "table-small";
-
 class OC_TABLETYPE
 {
     const NORMAL = 1;
