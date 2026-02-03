@@ -1761,6 +1761,15 @@ class H3MAPSCAN
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 2, $obj["pos"]->z);
 							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
 						}
+
+						if (
+							($obj["id"] == OBJECTS::TAVERN) && (
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+							)
+						) {
+							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 2, $obj["pos"]->y, $obj["pos"]->z);
+							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+						}
 					}
 					$obj['pos'] = $obj["posoffset"];
 					$this->curcoor = $obj['pos'];

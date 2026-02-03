@@ -6,7 +6,7 @@ require_once 'src/h3objcountconstants.php';
 $objects = $this->h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
 $tables = [
-	[OBJ_CATEGORY::TOWNS, $sortOrder->Towns],
+	// [OBJ_CATEGORY::TOWNS, $sortOrder->Towns],
 	[OBJ_CATEGORY::HEROES_AND_INFO, $sortOrder->HeroesAndInfo],
 	[OBJ_CATEGORY::MONSTERS, $sortOrder->Monsters],
 	[OBJ_CATEGORY::KEYMASTERS_TENTS, $sortOrder->KeymastersBorder],
