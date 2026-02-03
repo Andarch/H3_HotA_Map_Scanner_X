@@ -7,7 +7,7 @@ $objects = $this->h3mapscan->objectCountPlayers;
 $sortOrder = new OC_Sort_Order();
 $tables = [
 	// [OBJ_CATEGORY::TOWNS, $sortOrder->Towns],
-	[OBJ_CATEGORY::HEROES_AND_INFO, $sortOrder->HeroesAndInfo],
+	// [OBJ_CATEGORY::HEROES_AND_INFO, $sortOrder->HeroesAndInfo],
 	[OBJ_CATEGORY::MONSTERS, $sortOrder->Monsters],
 	[OBJ_CATEGORY::KEYMASTERS_TENTS, $sortOrder->KeymastersBorder],
 	[OBJ_CATEGORY::BORDER_GATES, $sortOrder->KeymastersBorder],
@@ -87,7 +87,7 @@ function DisplayObjCountZoneTable($table)
 		$y = $obj['pos']->y;
 		$z = $obj['pos']->z;
 
-		$zone = $obj['zone_player'];
+		$zone = $obj['zone_owner'];
 
 		if (str_starts_with($zone, 'Neutral')) {
 			$zone = 'Neutral';

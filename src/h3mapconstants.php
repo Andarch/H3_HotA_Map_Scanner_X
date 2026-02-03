@@ -3033,7 +3033,7 @@ class HeroesConstants
         '0,23,64' => 'W4',
     ];
 
-    public $ZonePlayers = [
+    public $ZoneOwners = [
         '77,77,77' => 'Neutral',
         '80,85,88' => 'Neutral',
         '89,110,184' => 'Blue',

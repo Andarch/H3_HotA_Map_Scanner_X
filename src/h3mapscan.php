@@ -133,8 +133,8 @@ class H3MAPSCAN
 	//Zones
 	public $zonetypes_img_g = null;
 	public $zonetypes_img_u = null;
-	public $zoneplayers_img_g = null;
-	public $zoneplayers_img_u = null;
+	public $zoneowners_img_g = null;
+	public $zoneowners_img_u = null;
 	public $has_zone_images = false;
 
 	//curent object being read and its coords
@@ -1676,11 +1676,11 @@ class H3MAPSCAN
 		$zonetypes_img_u_path = MAPDIR . "images\\{$mapfilename}_zonetypes_u.png";
 		$this->zonetypes_img_g = file_exists($zonetypes_img_g_path) ? imagecreatefrompng($zonetypes_img_g_path) : null;
 		$this->zonetypes_img_u = file_exists($zonetypes_img_u_path) ? imagecreatefrompng($zonetypes_img_u_path) : null;
-		$zoneplayers_img_g_path = MAPDIR . "images\\{$mapfilename}_zoneplayers_g.png";
-		$zoneplayers_img_u_path = MAPDIR . "images\\{$mapfilename}_zoneplayers_u.png";
-		$this->zoneplayers_img_g = file_exists($zoneplayers_img_g_path) ? imagecreatefrompng($zoneplayers_img_g_path) : null;
-		$this->zoneplayers_img_u = file_exists($zoneplayers_img_u_path) ? imagecreatefrompng($zoneplayers_img_u_path) : null;
-		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zoneplayers_img_g && $this->zoneplayers_img_u) ? true : false;
+		$zoneowners_img_g_path = MAPDIR . "images\\{$mapfilename}_zoneowners_g.png";
+		$zoneowners_img_u_path = MAPDIR . "images\\{$mapfilename}_zoneowners_u.png";
+		$this->zoneowners_img_g = file_exists($zoneowners_img_g_path) ? imagecreatefrompng($zoneowners_img_g_path) : null;
+		$this->zoneowners_img_u = file_exists($zoneowners_img_u_path) ? imagecreatefrompng($zoneowners_img_u_path) : null;
+		$this->has_zone_images = ($this->zonetypes_img_g && $this->zonetypes_img_u && $this->zoneowners_img_g && $this->zoneowners_img_u) ? true : false;
 
 		$this->InitializeObjectsCountArrays();
 
@@ -1707,7 +1707,7 @@ class H3MAPSCAN
 				$obj['subid'] = $this->objTemplates[$obj['defnum']]->subid;
 
 				$obj['zone_type'] = EMPTY_DATA;
-				$obj['zone_player'] = EMPTY_DATA;
+				$obj['zone_owner'] = EMPTY_DATA;
 
 				if (!in_array($obj["id"], $this->CS->OmittedObjectsZones)) {
 					// Zones
@@ -1715,60 +1715,60 @@ class H3MAPSCAN
 
 					if ($this->has_zone_images) {
 						$ERROR_TYPES = ["Out of Bounds", "Void", "Unknown"];
-						list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+						list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 
 						if (
 							($obj["id"] == OBJECTS::SHIPWRECK || $obj["id"] == OBJECTS::PRISON || $obj["id"] == OBJECTS::DWELLING_NORMAL || $obj["id"] == OBJECTS::DWELLING_MULTI) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::FOUNTAIN_OF_YOUTH) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::MISC_OBJECTS_3) && $obj["subid"] == MISC_OBJECTS_3::QUEST_GATE && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x, $obj["pos"]->y - 1, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::GARRISON_HORIZONTAL) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 2, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::GARRISON_VERTICAL) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 1, $obj["pos"]->y - 2, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 
 						if (
 							($obj["id"] == OBJECTS::TAVERN) && (
-								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_player"], $ERROR_TYPES)
+								in_array($obj["zone_type"], $ERROR_TYPES) || in_array($obj["zone_owner"], $ERROR_TYPES)
 							)
 						) {
 							$obj["posoffset"] = new MapCoords($obj["pos"]->x - 2, $obj["pos"]->y, $obj["pos"]->z);
-							list($obj["zone_type"], $obj["zone_player"]) = $this->GetZone($obj["posoffset"]);
+							list($obj["zone_type"], $obj["zone_owner"]) = $this->GetZone($obj["posoffset"]);
 						}
 					}
 					$obj['pos'] = $obj["posoffset"];
@@ -1787,11 +1787,11 @@ class H3MAPSCAN
 					$objcomboid = $obj['comboid'];
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
-					$objzoneplayer = $obj['zone_player'];
+					$objzoneowner = $obj['zone_owner'];
 
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
-					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneplayer);
+					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner);
 				}
 			} else {
 				$obj['id'] = OBJECT_INVALID;
@@ -2685,7 +2685,7 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneplayer)
+	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner)
 	{
 		$truecomboid = $objid . '-' . $objsubid;
 		$creaturelevel = null;
@@ -2712,7 +2712,7 @@ class H3MAPSCAN
 		$this->objectCountPlayers[$objcategory][] = [
 			'id' => $objid,
 			'subid' => $objsubid,
-			'zone_player' => $objzoneplayer,
+			'zone_owner' => $objzoneowner,
 			'comboid' => $objcomboid,
 			'truecomboid' => $truecomboid,
 			'name' => $objname,
@@ -3666,7 +3666,7 @@ class H3MAPSCAN
 					&& $hero['pos']->z == $town['pos']->z
 				) {
 					$this->heroes_list[$hero_idx]['pos']->x -= 1;
-					list($this->heroes_list[$hero_idx]["zone_type"], $this->heroes_list[$hero_idx]["zone_player"]) = $this->GetZone($this->heroes_list[$hero_idx]['pos']);
+					list($this->heroes_list[$hero_idx]["zone_type"], $this->heroes_list[$hero_idx]["zone_owner"]) = $this->GetZone($this->heroes_list[$hero_idx]['pos']);
 				}
 			}
 		}
@@ -4550,10 +4550,10 @@ class H3MAPSCAN
 		list($rgb_types, $error_types) = $get_pixel_rgb($this->zonetypes_img_g, $this->zonetypes_img_u);
 		$zone_type = $error_types ?: ($this->CS->ZoneTypes[implode(',', $rgb_types)] ?? "Unknown");
 
-		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zoneplayers_img_g, $this->zoneplayers_img_u);
-		$zone_player = $error_colors ?: ($this->CS->ZonePlayers[implode(',', $rgb_colors)] ?? "Unknown");
+		list($rgb_colors, $error_colors) = $get_pixel_rgb($this->zoneowners_img_g, $this->zoneowners_img_u);
+		$zone_owner = $error_colors ?: ($this->CS->ZoneOwners[implode(',', $rgb_colors)] ?? "Unknown");
 
-		return [$zone_type, $zone_player];
+		return [$zone_type, $zone_owner];
 	}
 
 	public function GetPortraitByHeroId($portraitID, $heroID)
