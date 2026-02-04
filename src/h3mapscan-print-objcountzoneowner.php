@@ -81,7 +81,7 @@ function DisplayObjCountZoneTable($table)
 
 	// DEBUG
 	$table->objects = array_filter($table->objects, function ($obj) {
-		return $obj["zone_type"] === "P2";
+		return $obj["zone_type"] === "P4";
 	});
 
 	// Sort objects into appropriate player zone/color based on coordinates
