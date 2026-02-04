@@ -9,8 +9,8 @@
                 <th rowspan="2">#</th>
                 <th rowspan="2">Type</th>
                 <th rowspan="2">Coords</th>
-                <th rowspan="2">Zone<br />Type</th>
                 <th rowspan="2">Zone<br />Owner</th>
+                <th rowspan="2">Zone<br />Type</th>
                 <th rowspan="2">Count</th>
                 <th rowspan="2">Value</th>
                 <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
@@ -45,7 +45,7 @@
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
                 // First:
                 // Compare by zone_type
-                $order = ['P1', 'P2', 'P3', 'P4', 'L1', 'W1', 'L2', 'W2', 'L3', 'W3', 'L4', 'W4', 'R1', 'R2', 'R3', 'R4'];
+                $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
                 $posA = array_search($a["zone_type"], $order);
                 $posB = array_search($b["zone_type"], $order);
 
@@ -148,37 +148,39 @@
                 $artifact = $monster["data"]["artifact"] !== "" ? $monster["data"]["artifact"] : EMPTY_DATA;
                 $message = $monster["data"]["message"] !== "" ? $monster["data"]["message"] : EMPTY_DATA;
                 ?>
-                    <tr>
-                        <td class="table__row-header--default"><?= ++$n ?></td>
-                        <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
-                        <td class="ac nowrap zone-type" nowrap="nowrap"
-                            data-zone="<?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                            <?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>
-                        </td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $zone_owner ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinForMoney"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinPercent"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["upgraded"] ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["stackCount"] ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
-                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
-                        <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
-                        <td>
-                            <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
-                        </td>
-                    </tr>
-                    <?php
+                <tr>
+                    <td class="table__row-header--default"><?= ++$n ?></td>
+                    <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
+                    <td class="ac nowrap" nowrap="nowrap">
+                        <?= $zone_owner ?>
+                    </td>
+                    <td class="ac nowrap zone-type" nowrap="nowrap"
+                        data-zone="<?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>">
+                        <?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                    </td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinForMoney"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinPercent"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["upgraded"] ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["stackCount"] ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
+                    <td>
+                        <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
+                    </td>
+                </tr>
+                <?php
             }
             ?>
         </tbody>
