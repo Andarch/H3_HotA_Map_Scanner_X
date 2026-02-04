@@ -1788,10 +1788,11 @@ class H3MAPSCAN
 					$objname = $obj['objname'];
 					$objpos = $obj['pos'];
 					$objzoneowner = $obj['zone_owner'];
+					$objzonetype = $obj['zone_type'];
 
 					$this->objectCountAll[$objcategory][$objcomboid]['count']++;
 
-					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner);
+					$this->ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner, $objzonetype);
 				}
 			} else {
 				$obj['id'] = OBJECT_INVALID;
@@ -2685,7 +2686,7 @@ class H3MAPSCAN
 		}
 	}
 
-	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner)
+	private function ProcessPlayerObjectCount($objcategory, $objid, $objsubid, $objcomboid, $objname, $objpos, $objzoneowner, $objzonetype)
 	{
 		$truecomboid = $objid . '-' . $objsubid;
 		$creaturelevel = null;
@@ -2713,6 +2714,7 @@ class H3MAPSCAN
 			'id' => $objid,
 			'subid' => $objsubid,
 			'zone_owner' => $objzoneowner,
+			'zone_type' => $objzonetype,
 			'comboid' => $objcomboid,
 			'truecomboid' => $truecomboid,
 			'name' => $objname,
