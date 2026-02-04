@@ -8,7 +8,7 @@ $sortOrder = new OC_Sort_Order();
 $tables = [
 	// [OBJ_CATEGORY::TOWNS, $sortOrder->Towns],
 	// [OBJ_CATEGORY::HEROES_AND_INFO, $sortOrder->HeroesAndInfo],
-	[OBJ_CATEGORY::MONSTERS, $sortOrder->Monsters],
+	// [OBJ_CATEGORY::MONSTERS, $sortOrder->Monsters],
 	[OBJ_CATEGORY::KEYMASTERS_TENTS, $sortOrder->KeymastersBorder],
 	[OBJ_CATEGORY::BORDER_GATES, $sortOrder->KeymastersBorder],
 	[OBJ_CATEGORY::BORDER_GUARDS, $sortOrder->KeymastersBorder],
@@ -79,10 +79,11 @@ function DisplayObjCountZoneTable($table)
 		'Total'
 	];
 
-	// DEBUG
-	$table->objects = array_filter($table->objects, function ($obj) {
-		return $obj["zone_type"] === "P4";
-	});
+	// ***** DEBUG ***************************************************************************
+	// $table->objects = array_filter($table->objects, function ($obj) {
+	// 	return $obj["zone_type"] === "P4";
+	// });
+	// ***************************************************************************************
 
 	// Sort objects into appropriate player zone/color based on coordinates
 	foreach ($table->objects as $obj) {
