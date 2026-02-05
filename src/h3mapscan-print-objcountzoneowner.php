@@ -66,18 +66,7 @@ function DisplayObjCountZoneTable($table)
 {
 	$objectCounts = [];
 	$objProcessResult = [];
-	$obzKeys = [
-		'Blue',
-		'Tan',
-		'Green',
-		'Orange',
-		'Purple',
-		'Teal',
-		'Pink',
-		'Red',
-		'Neutral',
-		'Total'
-	];
+	$obzKeys = [2, 3, 4, 5, 6, 7, 8, 1, 256, 'Total'];
 
 	// ***** DEBUG ***************************************************************************
 	// $table->objects = array_filter($table->objects, function ($obj) {
@@ -232,9 +221,9 @@ function DisplayObjCountZoneTable($table)
 		echo '<th class="th-player-color"><span class="no-color-text color' . ($n + 2) . '">&nbsp;</span>&nbsp;</th>';
 	}
 	echo '<th class="table-small__divider"></th>';
-	echo '<th class="th-player-color"><span class="no-color-text color' . (1) . '">&nbsp;</span>&nbsp;</th>';
+	echo '<th class="th-player-color"><span class="no-color-text color1">&nbsp;</span>&nbsp;</th>';
 	echo '<th class="table-small__divider"></th>';
-	echo '<th class="th-player-color"><span class="no-color-text color' . (256) . '">&nbsp;</span>&nbsp;</th>';
+	echo '<th class="th-player-color"><span class="no-color-text color256">&nbsp;</span>&nbsp;</th>';
 	echo '<th class="table-small__divider"></th>';
 	echo '<th class="table-small__column-header--total">Total</th>';
 	echo '</tr>';
@@ -280,7 +269,7 @@ function DisplayObjCountZoneTable($table)
 		foreach ($obzKeys as $zone) {
 			$currentZoneCount++;
 			$isTotal = ($currentZoneCount == $totalZoneCount);
-			if ($zone == 'Red' || $zone == 'Neutral' || $zone == 'Total') {
+			if ($zone == 1 || $zone == 256 || $zone == 'Total') {
 				if (!$isBottomRow) {
 					echo '<td class="cell-greyed-out"></td>';
 				} else {
@@ -298,7 +287,7 @@ function DisplayObjCountZoneTable($table)
 				if ($rowTotal == 0) {
 					$classSuffix = ' obj-count-inactive';
 				} else {
-					$classSuffix = ' player-dark' . ($n + 1);
+					$classSuffix = ' player-dark' . ($n + 2);
 				}
 			}
 			echo '<td class="ac nowrap' . $classSuffix . '" nowrap="nowrap">' . $count . '</td>';
