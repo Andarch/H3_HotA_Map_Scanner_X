@@ -178,13 +178,7 @@
 
                     <?php
                     usort($this->h3mapscan->campfires_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -205,9 +199,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $campfire["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($campfire["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($campfire["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $campfire["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $campfire['zone_type'] ?>
                             </td>
                             <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $campfire["mode"] ?>
@@ -253,17 +246,13 @@
 
                     <?php
                     usort($this->h3mapscan->ancientlamps_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
+                        // Zone type and owner
+                        $cmp = $a["zone_type"] <=> $b["zone_type"]
+                            ?: $a["zone_owner"] <=> $b["zone_owner"];
+                        if ($cmp !== 0)
+                            return $cmp;
 
-                        $posA = $posA === false ? PHP_INT_MAX : $posA;
-                        $posB = $posB === false ? PHP_INT_MAX : $posB;
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
-
+                        // Amount
                         $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
                             ? (float) $a["amount"]
                             : -INF;
@@ -286,9 +275,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $ancientlamp["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($ancientlamp["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($ancientlamp["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $ancientlamp["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $ancientlamp['zone_type'] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $ancientlamp["contents"] ?>

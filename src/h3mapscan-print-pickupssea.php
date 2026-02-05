@@ -19,7 +19,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                     </tr>
                 </thead>
@@ -32,13 +32,7 @@
 
                     <?php
                     usort($this->h3mapscan->flotsamjetsam_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -52,9 +46,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $flotsamjetsam["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($flotsamjetsam["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($flotsamjetsam["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $flotsamjetsam["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $flotsamjetsam['zone_type'] ?>
                             </td>
                             <td class="small-text nowrap" nowrap="nowrap">
                                 <?= $flotsamjetsam["contents"] ?>
@@ -83,7 +76,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                         <th>Resources</th>
                     </tr>
@@ -97,13 +90,7 @@
 
                     <?php
                     usort($this->h3mapscan->seabarrels_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -122,9 +109,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $seabarrel["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($seabarrel["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($seabarrel["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $seabarrel["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $seabarrel['zone_type'] ?>
                             </td>
                             <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $seabarrel["contents"] ?>
@@ -156,7 +142,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                         <th>Artifact</th>
                     </tr>
@@ -170,13 +156,7 @@
 
                     <?php
                     usort($this->h3mapscan->seachests_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -190,9 +170,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $seachest["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($seachest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($seachest["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $seachest["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $seachest['zone_type'] ?>
                             </td>
                             <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $seachest["contents"] ?>
@@ -224,7 +203,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                     </tr>
                 </thead>
@@ -237,13 +216,7 @@
 
                     <?php
                     usort($this->h3mapscan->vialsofmana_list, function ($a, $b) {
-                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -257,9 +230,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $vialofmana["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($vialofmana["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($vialofmana["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $vialofmana["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $vialofmana['zone_type'] ?>
                             </td>
                             <td class="small-text nowrap" nowrap="nowrap">
                                 <?= $vialofmana["contents"] ?>
