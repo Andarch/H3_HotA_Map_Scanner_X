@@ -191,18 +191,9 @@ echo '</table>';
 
 // Sort heroes_list
 usort($this->h3mapscan->heroes_list, function ($a, $b) {
-	$order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
-
-	// First sort by level (descending - higher levels first)
-	$levelCompare = $a['data']['level'] <=> $b['data']['level'];
-	if ($levelCompare !== 0) {
-		return $levelCompare;
-	}
-
-	// Then by zone_type
-	$posA = array_search($a['zone_type'], $order);
-	$posB = array_search($b['zone_type'], $order);
-	return $posA <=> $posB;
+	return $a['data']['level'] <=> $b['data']['level']
+		?: $a['zone_type'] <=> $b['zone_type']
+		?: $a['zone_owner'] <=> $b['zone_owner'];
 });
 
 //map heroes
@@ -214,8 +205,7 @@ echo '<table id="heroes-table-3" class="table-small">
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
 			<th>Coords</th>
-			<th>Zone<br />Owner</th>
-			<th>Zone<br />Type</th>
+			<th>Zone</th>
 			<th>Class</th>
 			<th>XP</th>
 			<th>Primary<br />Skills</th>
@@ -239,18 +229,6 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	$objectOwner = $mapHero['data']['prisoner'] ? 'Prisoner' : $this->h3mapscan->GetPlayerColorById($mapHero['data']['PlayerColor']);
-
-	match ($mapHero["zone_owner"]) {
-		'Red' => $zone_owner = 1,
-		'Blue' => $zone_owner = 2,
-		'Tan' => $zone_owner = 3,
-		'Green' => $zone_owner = 4,
-		'Orange' => $zone_owner = 5,
-		'Purple' => $zone_owner = 6,
-		'Teal' => $zone_owner = 7,
-		'Pink' => $zone_owner = 8,
-		'Neutral' => $zone_owner = 256,
-	};
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mapHero['data']['subid']);
 
@@ -329,15 +307,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="4" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['pos']->GetCoords() . '</td>
-			<td class="ac nowrap player-dark' . $zone_owner . '" nowrap="nowrap" rowspan="4"></td>';
-
-	if ($mapHero['zone_type'] == EMPTY_DATA) {
-		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>';
-	} else {
-		$zoneTypeRow = '<td class="ac nowrap zone-type" nowrap="nowrap" rowspan="4" data-zone="' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '</td>';
-	}
-
-	echo $zoneTypeRow . '
+			<td class="ac nowrap zone-type player-dark' . $mapHero["zone_owner"] . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="4">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="4">' . $primary . '</td>
@@ -378,8 +348,7 @@ echo '<table id="heroes-table-4" class="table-small">
 			<th colspan="2">Hero</th>
 			<th>Portrait</th>
 			<th>Coords</th>
-			<th>Zone<br />Owner</th>
-			<th>Zone<br />Type</th>
+			<th>Zone</th>
 			<th>Class</th>
 			<th>XP</th>
 			<th>Primary<br />Skills</th>
@@ -402,18 +371,6 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	$objectOwner = $this->h3mapscan->GetPlayerColorById($mapHero['data']['PlayerColor']);
-
-	match ($mapHero["zone_owner"]) {
-		'Red' => $zone_owner = 1,
-		'Blue' => $zone_owner = 2,
-		'Tan' => $zone_owner = 3,
-		'Green' => $zone_owner = 4,
-		'Orange' => $zone_owner = 5,
-		'Purple' => $zone_owner = 6,
-		'Teal' => $zone_owner = 7,
-		'Pink' => $zone_owner = 8,
-		'Neutral' => $zone_owner = 256,
-	};
 
 	$class = $this->h3mapscan->GetHeroClassByHeroId($mapHero['data']['subid']);
 
@@ -492,15 +449,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="4" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['pos']->GetCoords() . '</td>
-			<td class="ac nowrap player-dark' . $zone_owner . '" nowrap="nowrap" rowspan="4"></td>';
-
-	if ($mapHero['zone_type'] == EMPTY_DATA) {
-		$zoneTypeRow = '<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>';
-	} else {
-		$zoneTypeRow = '<td class="ac nowrap zone-type" nowrap="nowrap" rowspan="4" data-zone="' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($mapHero['zone_type'], ENT_QUOTES, 'UTF-8') . '</td>';
-	}
-
-	echo $zoneTypeRow . '
+			<td class="ac nowrap zone-type player-dark' . $mapHero["zone_owner"] . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="4">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="4">' . $primary . '</td>

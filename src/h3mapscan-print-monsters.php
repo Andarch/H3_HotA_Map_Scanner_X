@@ -9,8 +9,7 @@
                 <th rowspan="2">#</th>
                 <th rowspan="2">Type</th>
                 <th rowspan="2">Coords</th>
-                <th rowspan="2">Zone<br />Owner</th>
-                <th rowspan="2">Zone<br />Type</th>
+                <th rowspan="2">Zone</th>
                 <th rowspan="2">Count</th>
                 <th rowspan="2">Value</th>
                 <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
@@ -43,52 +42,23 @@
 
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
-                // First:
-                // Compare by zone_type
-                $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
-                $posA = array_search($a["zone_type"], $order);
-                $posB = array_search($b["zone_type"], $order);
+                // Zone type and owner
+                $cmp = $a["zone_type"] <=> $b["zone_type"]
+                    ?: $a["zone_owner"] <=> $b["zone_owner"];
+                if ($cmp !== 0)
+                    return $cmp;
 
-                $posA = $posA === false ? PHP_INT_MAX : $posA;
-                $posB = $posB === false ? PHP_INT_MAX : $posB;
-
-                if ($posA !== $posB) {
-                    return $posA <=> $posB;
-                }
-
-                // Second:
-                // Compare by zone_owner
-                $ownerOrder = ['Red', 'Blue', 'Tan', 'Green', 'Orange', 'Purple', 'Teal', 'Pink'];
-                $ownerPosA = array_search($a["zone_owner"], $ownerOrder);
-                $ownerPosB = array_search($b["zone_owner"], $ownerOrder);
-
-                $ownerPosA = $ownerPosA === false ? PHP_INT_MAX : $ownerPosA;
-                $ownerPosB = $ownerPosB === false ? PHP_INT_MAX : $ownerPosB;
-
-                if ($ownerPosA !== $ownerPosB) {
-                    return $ownerPosA <=> $ownerPosB;
-                }
-
-                // Third:
-                // Compare by name (Random Monster comes after all other names)
+                // Name (Random Monster comes last)
                 $nameA = $a["data"]["name"];
                 $nameB = $b["data"]["name"];
                 $isRandomA = str_starts_with($nameA, "Random Monster");
                 $isRandomB = str_starts_with($nameB, "Random Monster");
 
-                if ($isRandomA && !$isRandomB) {
-                    return 1; // A comes after B
-                } elseif (!$isRandomA && $isRandomB) {
-                    return -1; // A comes before B
-                } else {
-                    $nameCmp = strcmp($nameA, $nameB);
-                    if ($nameCmp !== 0) {
-                        return $nameCmp;
-                    }
-                }
+                $cmp = ($isRandomA <=> $isRandomB) ?: strcmp($nameA, $nameB);
+                if ($cmp !== 0)
+                    return $cmp;
 
-                // Fourth:
-                // Compare by value
+                // Value
                 $valueA = (isset($a["data"]["value"]) && is_numeric($a["data"]["value"]))
                     ? (float) $a["data"]["value"]
                     : -INF;
@@ -100,26 +70,7 @@
             });
 
             $n = 0;
-            $previousowner = '';
-            $currentowner = '';
             foreach ($this->h3mapscan->monsters_list as $monster) {
-                $currentowner = $monster["zone_owner"];
-                if ($previousowner !== $currentowner) {
-                    $n = 0;
-                    $previousowner = $currentowner;
-                }
-                match ($monster["zone_owner"]) {
-                    'Red' => $zone_owner = $this->h3mapscan->GetPlayerColorById(0),
-                    'Blue' => $zone_owner = $this->h3mapscan->GetPlayerColorById(1),
-                    'Tan' => $zone_owner = $this->h3mapscan->GetPlayerColorById(2),
-                    'Green' => $zone_owner = $this->h3mapscan->GetPlayerColorById(3),
-                    'Orange' => $zone_owner = $this->h3mapscan->GetPlayerColorById(4),
-                    'Purple' => $zone_owner = $this->h3mapscan->GetPlayerColorById(5),
-                    'Teal' => $zone_owner = $this->h3mapscan->GetPlayerColorById(6),
-                    'Pink' => $zone_owner = $this->h3mapscan->GetPlayerColorById(7),
-                    'Neutral' => $zone_owner = $this->h3mapscan->GetPlayerColorById(255),
-                };
-
                 if (!$monster["data"]["isValue"]) {
                     $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : "Random";
                     $value = EMPTY_DATA;
@@ -152,12 +103,8 @@
                     <td class="table__row-header--default"><?= ++$n ?></td>
                     <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
-                    <td class="ac nowrap" nowrap="nowrap">
-                        <?= $zone_owner ?>
-                    </td>
-                    <td class="ac nowrap zone-type" nowrap="nowrap"
-                        data-zone="<?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                        <?= htmlspecialchars($monster["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                    <td class="ac nowrap zone-type player-dark<?= $monster["zone_owner"] ?>" nowrap="nowrap">
+                        <?= $monster['zone_type'] ?>
                     </td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>

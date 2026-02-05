@@ -19,7 +19,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                         <th>Artifact</th>
                     </tr>
@@ -33,13 +33,7 @@
 
                     <?php
                     usort($this->h3mapscan->treasurechests_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
+                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
                     });
 
                     $n = 0;
@@ -53,9 +47,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $treasurechest["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($treasurechest["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $treasurechest["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $treasurechest['zone_type'] ?>
                             </td>
                             <td class="small-text ac nowrap" nowrap="nowrap">
                                 <?= $treasurechest["contents"] ?>
@@ -87,7 +80,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th>Amount</th>
                         <th>Guards</th>
                         <th>Message</th>
@@ -102,17 +95,13 @@
 
                     <?php
                     usort($this->h3mapscan->resources_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
-                        $posA = array_search($a["zone_type"], $order);
-                        $posB = array_search($b["zone_type"], $order);
+                        // Zone type and owner
+                        $cmp = $a["zone_type"] <=> $b["zone_type"]
+                            ?: $a["zone_owner"] <=> $b["zone_owner"];
+                        if ($cmp !== 0)
+                            return $cmp;
 
-                        $posA = $posA === false ? PHP_INT_MAX : $posA;
-                        $posB = $posB === false ? PHP_INT_MAX : $posB;
-
-                        if ($posA !== $posB) {
-                            return $posA <=> $posB;
-                        }
-
+                        // Amount
                         $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
                             ? (float) $a["amount"]
                             : -INF;
@@ -136,9 +125,8 @@
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $resource["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type" nowrap="nowrap"
-                                data-zone="<?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>">
-                                <?= htmlspecialchars($resource["zone_type"], ENT_QUOTES, "UTF-8") ?>
+                            <td class="ac nowrap zone-type player-dark<?= $resource["zone_owner"] ?>" nowrap="nowrap">
+                                <?= $resource['zone_type'] ?>
                             </td>
                             <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
                                 <?= $amount ?>
@@ -176,7 +164,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Mode</th>
                         <th>Resources</th>
                     </tr>
@@ -190,7 +178,7 @@
 
                     <?php
                     usort($this->h3mapscan->campfires_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
@@ -251,7 +239,7 @@
                         <th>#</th>
                         <th>Type</th>
                         <th>Coords</th>
-                        <th class="nowrap" nowrap="nowrap">Zone<br />Type</th>
+                        <th class="nowrap" nowrap="nowrap">Zone</th>
                         <th class="nowrap" nowrap="nowrap">Contents</th>
                         <th>Amount</th>
                     </tr>
@@ -265,7 +253,7 @@
 
                     <?php
                     usort($this->h3mapscan->ancientlamps_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 

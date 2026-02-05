@@ -32,7 +32,7 @@
 
                     <?php
                     usort($this->h3mapscan->flotsamjetsam_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
@@ -97,7 +97,7 @@
 
                     <?php
                     usort($this->h3mapscan->seabarrels_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
@@ -170,7 +170,7 @@
 
                     <?php
                     usort($this->h3mapscan->seachests_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 
@@ -237,7 +237,7 @@
 
                     <?php
                     usort($this->h3mapscan->vialsofmana_list, function ($a, $b) {
-                        $order = ['P-1', 'P-2', 'P-3', 'P-4', 'L-1', 'W-1', 'L-2', 'W-2', 'L-3', 'W-3', 'L-4', 'W-4', 'R-1', 'R-2', 'R-3', 'R-4'];
+                        $order = ['1L', '1W', '2L', '2W', '3L', '3W', '4L', '4W'];
                         $posA = array_search($a["zone_type"], $order);
                         $posB = array_search($b["zone_type"], $order);
 

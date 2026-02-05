@@ -2149,7 +2149,7 @@ class H3MAPSCAN
 					} elseif ($obj["subid"] == 1) {
 						$name = "Anti-magic Garrison";
 					}
-					$this->garrisons_list[] = new ListObject($name, $obj['pos'], 'Map', $stack['owner'], 0, $direction, $stack['removableUnits'], $stack['monsters'], $obj['zone_type']);
+					$this->garrisons_list[] = new ListObject($name, $obj['pos'], 'Map', $stack['owner'], 0, $direction, $stack['removableUnits'], $stack['monsters'], $obj['zone_type'], $obj['zone_owner']);
 					break;
 
 				case OBJECTS::ARTIFACT:
@@ -4879,8 +4879,9 @@ class ListObject
 	public $add1; //additional info 1
 	public $add2; //additional info 2
 	public $zonetype;
+	public $zoneowner;
 
-	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null, $zonetype = null)
+	public function __construct($name, $coor, $parent, $owner = OWNERNONE, $count = 0, $info = '', $add1 = null, $add2 = null, $zonetype = null, $zoneowner = null)
 	{
 		$this->name = $name;
 		$this->mapcoor = $coor;
@@ -4891,6 +4892,7 @@ class ListObject
 		$this->add1 = $add1;
 		$this->add2 = $add2;
 		$this->zonetype = $zonetype;
+		$this->zoneowner = $zoneowner;
 	}
 }
 

@@ -621,57 +621,52 @@ td {
 
 .monsters-table td:nth-child(4),
 .monsters-table th:nth-child(4) {
-  width: 44px;
+  width: 34px;
 }
 
 .monsters-table td:nth-child(5),
 .monsters-table th:nth-child(5) {
-  width: 44px;
+  width: 48px;
 }
 
 .monsters-table td:nth-child(6),
 .monsters-table th:nth-child(6) {
-  width: 48px;
+  width: 46px;
 }
 
 .monsters-table td:nth-child(7),
 .monsters-table th:nth-child(7) {
-  width: 46px;
+  width: 48px;
 }
 
 .monsters-table td:nth-child(8),
 .monsters-table th:nth-child(8) {
-  width: 48px;
+  width: 68px;
 }
 
 .monsters-table td:nth-child(9),
 .monsters-table th:nth-child(9) {
-  width: 68px;
+  width: 40px;
 }
 
 .monsters-table td:nth-child(10),
 .monsters-table th:nth-child(10) {
-  width: 40px;
+  width: 64px;
 }
 
 .monsters-table td:nth-child(11),
 .monsters-table th:nth-child(11) {
-  width: 64px;
-}
-
-.monsters-table td:nth-child(12),
-.monsters-table th:nth-child(12) {
   width: 36px;
 }
 
+.monsters-table td:nth-child(12),
+.monsters-table th:nth-child(12),
 .monsters-table td:nth-child(13),
-.monsters-table th:nth-child(13),
-.monsters-table td:nth-child(14),
-.monsters-table th:nth-child(14) {
+.monsters-table th:nth-child(13) {
   width: 44px;
 }
 
-.monsters-table th:nth-child(15) {
+.monsters-table th:nth-child(14) {
   width: 308px;
 }
 
@@ -682,18 +677,18 @@ td {
 .monsters-table thead tr:nth-child(2) th:nth-child(5),
 .monsters-table thead tr:nth-child(2) th:nth-child(6),
 .monsters-table thead tr:nth-child(2) th:nth-child(7),
+.monsters-table tbody td:nth-child(14),
 .monsters-table tbody td:nth-child(15),
 .monsters-table tbody td:nth-child(16),
 .monsters-table tbody td:nth-child(17),
 .monsters-table tbody td:nth-child(18),
 .monsters-table tbody td:nth-child(19),
-.monsters-table tbody td:nth-child(20),
-.monsters-table tbody td:nth-child(21) {
+.monsters-table tbody td:nth-child(20) {
   width: 44px;
 }
 
-.monsters-table td:nth-child(22),
-.monsters-table th:nth-child(16) {
+.monsters-table td:nth-child(21),
+.monsters-table th:nth-child(15) {
   width: 158px;
 }
 
@@ -727,17 +722,17 @@ td {
 
 .garrisons-table td:nth-child(4),
 .garrisons-table th:nth-child(4) {
-  width: 66px;
+  width: 44px;
 }
 
 .garrisons-table td:nth-child(5),
 .garrisons-table th:nth-child(5) {
-  width: 34px;
+  width: 66px;
 }
 
 .garrisons-table td:nth-child(6),
 .garrisons-table th:nth-child(6) {
-  width: 44px;
+  width: 34px;
 }
 
 .garrisons-table th:nth-child(7),
@@ -1401,28 +1396,9 @@ td {
 /* UTILITIES */
 .zone-type {
   font-size: 14px !important;
-  font-weight: bold;
+  /* font-weight: bold; */
+  font-family: 'Bookman Old Style';
 }
-
-.zone-type[data-zone="P-1"] { background:hsl(127, 100%, 26%); }
-.zone-type[data-zone="P-2"] { background:hsl(127, 100%, 22%); }
-.zone-type[data-zone="P-3"] { background:hsl(127, 100%, 18%); }
-.zone-type[data-zone="P-4"] { background:hsl(128, 100%, 14%); }
-
-.zone-type[data-zone="L-1"] { background:hsl(37, 100%, 26%); }
-.zone-type[data-zone="L-2"] { background:hsl(37, 100%, 22%); }
-.zone-type[data-zone="L-3"] { background:hsl(37, 100%, 18%); }
-.zone-type[data-zone="L-4"] { background:hsl(37, 100%, 14%); }
-
-.zone-type[data-zone="W-1"] { background:hsl(211, 100%, 26%); }
-.zone-type[data-zone="W-2"] { background:hsl(211, 100%, 22%); }
-.zone-type[data-zone="W-3"] { background:hsl(211, 100%, 18%); }
-.zone-type[data-zone="W-4"] { background:hsl(211, 100%, 14%); }
-
-.zone-type[data-zone="R-1"] { background:hsl(0, 100%, 26%); }
-.zone-type[data-zone="R-2"] { background:hsl(0, 100%, 22%); }
-.zone-type[data-zone="R-3"] { background:hsl(0, 100%, 18%); }
-.zone-type[data-zone="R-4"] { background:hsl(0, 100%, 14%); }
 
 .small-text {
   font-size: 11px !important;
@@ -1679,45 +1655,36 @@ td {
 
 .player-dark1 {
   background: #662c2c;
-  font-weight: bold;
 }
 
 .player-dark2 {
   background: #29325c;
-  font-weight: bold;
 }
 
 .player-dark3 {
   background: #56483b;
-  font-weight: bold;
 }
 
 .player-dark4 {
   background: #3f5139;
-  font-weight: bold;
 }
 
 .player-dark5 {
   background: #6b4114;
-  font-weight: bold;
 }
 
 .player-dark6 {
   background: #503456;
-  font-weight: bold;
 }
 
 .player-dark7 {
   background: #2e4c4e;
-  font-weight: bold;
 }
 
 .player-dark8 {
   background: #5f394b;
-  font-weight: bold;
 }
 
 .player-dark256 {
   background: #484848;
-  font-weight: bold;
 }
