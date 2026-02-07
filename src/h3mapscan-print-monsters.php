@@ -43,7 +43,8 @@
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
                 // Zone type and owner
-                $cmp = $a["zone_type"] <=> $b["zone_type"]
+                $cmp = $a["data"]["disposition"] <=> $b["data"]["disposition"]
+                    ?: $a["zone_type"] <=> $b["zone_type"]
                     ?: $a["zone_owner"] <=> $b["zone_owner"];
                 if ($cmp !== 0)
                     return $cmp;
@@ -79,8 +80,8 @@
                     $value = comma($monster["data"]["value"]);
                 }
                 $disposition =
-                    $monster["data"]["disposition"] !== "Precise"
-                    ? $monster["data"]["disposition"]
+                    $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"]) !== "Precise"
+                    ? $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"])
                     : "Precise (" . $monster["data"]["preciseDisposition"] . ")";
                 $resources = [];
                 foreach ($monster["data"]["resources"] as $rid => $amount) {

@@ -2014,7 +2014,8 @@ class H3MAPSCAN
 
 					$monster['count'] = $this->br->ReadUint16();
 
-					$monster['disposition'] = $this->GetMonsterDisposition($this->br->ReadUint8());
+					// $monster['disposition'] = $this->GetMonsterDisposition($this->br->ReadUint8());
+					$monster['disposition'] = $this->br->ReadUint8();
 
 					$monster['message'] = '';
 					$monster['resources'] = [];
@@ -4018,7 +4019,7 @@ class H3MAPSCAN
 		return FromArray($monid, $this->CS->Monster);
 	}
 
-	private function GetMonsterDisposition($charid)
+	public function GetMonsterDisposition($charid)
 	{
 		return FromArray($charid, $this->CS->monchar);
 	}
