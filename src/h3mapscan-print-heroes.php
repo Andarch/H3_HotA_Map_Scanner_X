@@ -281,8 +281,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$defPortraitID = $mapHero['data']['subid'];
 	} else if ($mapHero['data']['subid'] < 178) {
 		$defPortraitID = $mapHero['data']['subid'] + 7;
-	} else {
+	} else if ($mapHero['data']['subid'] < 196) {
 		$defPortraitID = $mapHero['data']['subid'] + 8;
+	} else if ($mapHero['data']['subid'] < 198) {
+		$defPortraitID = $mapHero['data']['subid'] + 11;
+	} else {
+		$defPortraitID = $mapHero['data']['subid'] + 30;
 	}
 	if (FromArray($mapHero['data']['portrait'], array: $this->h3mapscan->CS->Portraits) == 'Default') {
 		if ($mapHero['data']['templatePortrait'] >= 0) {
@@ -423,8 +427,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 		$defPortraitID = $mapHero['data']['subid'];
 	} else if ($mapHero['data']['subid'] < 178) {
 		$defPortraitID = $mapHero['data']['subid'] + 7;
-	} else {
+	} else if ($mapHero['data']['subid'] < 196) {
 		$defPortraitID = $mapHero['data']['subid'] + 8;
+	} else if ($mapHero['data']['subid'] < 198) {
+		$defPortraitID = $mapHero['data']['subid'] + 11;
+	} else {
+		$defPortraitID = $mapHero['data']['subid'] + 30;
 	}
 	if (FromArray($mapHero['data']['portrait'], array: $this->h3mapscan->CS->Portraits) == 'Default') {
 		if ($mapHero['data']['templatePortrait'] >= 0) {
