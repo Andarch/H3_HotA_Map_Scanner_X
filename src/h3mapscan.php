@@ -4013,15 +4013,17 @@ class H3MAPSCAN
 
 	public function GetCreatureById($monid)
 	{
-		if ($this->isHOTA && $monid >= HOTA_MONSTER_IDS) {
-			return FromArray($monid, $this->CS->MonsterHota);
-		}
 		return FromArray($monid, $this->CS->Monster);
 	}
 
-	public function GetMonsterDisposition($charid)
+	public function GetMonsterDisposition($dispositionID)
 	{
-		return FromArray($charid, $this->CS->monchar);
+		return FromArray($dispositionID, $this->CS->monsterDisposition);
+	}
+
+	public function GetMonsterValue($monsterName)
+	{
+		return FromArray($monsterName, $this->CS->monsterValue);
 	}
 
 	public function GetResourceById($id)

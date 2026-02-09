@@ -77,7 +77,14 @@
                     $value = EMPTY_DATA;
                 } else {
                     $count = EMPTY_DATA;
-                    $value = comma($monster["data"]["value"]);
+                    if (!str_starts_with($monster["data"]["name"], "Random Monster")) {
+                        $approxCount = (int) floor(
+                            $monster["data"]["value"] / $this->h3mapscan->GetMonsterValue($monster["data"]["name"])
+                        );
+                        $value = comma($monster["data"]["value"]) . " (" . comma($approxCount) . ")";
+                    } else {
+                        $value = comma($monster["data"]["value"]);
+                    }
                 }
                 $disposition =
                     $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"]) !== "Precise"
