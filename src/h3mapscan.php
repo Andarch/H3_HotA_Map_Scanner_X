@@ -3675,7 +3675,9 @@ class H3MAPSCAN
 					&& $hero['pos']->z == $town['pos']->z
 				) {
 					$this->heroes_list[$hero_idx]['pos']->x -= 1;
-					list($this->heroes_list[$hero_idx]["zone_type"], $this->heroes_list[$hero_idx]["zone_owner"]) = $this->GetZone($this->heroes_list[$hero_idx]['pos']);
+					if ($this->has_zone_images) {
+						list($this->heroes_list[$hero_idx]["zone_type"], $this->heroes_list[$hero_idx]["zone_owner"]) = $this->GetZone($this->heroes_list[$hero_idx]['pos']);
+					}
 				}
 			}
 		}

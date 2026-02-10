@@ -18,7 +18,7 @@ const TILEBYTESIZE = 7;
 const HEROES_QUANTITY = 156; //156 ? ROE,AB,SOD,WOG
 const HEROES_QUANTITY_HOTA = 178; //HOTA
 const SPELLS_QUANTITY = 70; //69 visible in editor
-const MAX_TOWNS = 11; //original=9, HOTA=11
+const MAX_TOWNS = 12; //original=9, HOTA=12
 
 const PLAYERSNUM = 8;
 const HNULL = 0;

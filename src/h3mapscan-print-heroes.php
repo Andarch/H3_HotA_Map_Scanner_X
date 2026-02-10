@@ -272,7 +272,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	if ($mapHero['data']['bio'] !== '') {
-		$bio = nl2br($templateHeroPrint['bio']);
+		$bio = nl2br($mapHero['data']['bio']);
 	} else {
 		$bio = DEFAULT_DATA;
 	}
@@ -303,6 +303,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['subid']);
 
+	if ($this->h3mapscan->has_zone_images) {
+		$zoneClass = ' zone-type player-dark' . $mapHero["zone_owner"];
+	} else {
+		$zoneClass = '';
+	}
+
 	echo '<tr>
 			<td class="table__row-header--default" style="font-size: 11px"; rowspan="4">' . (++$n) . '</td>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
@@ -311,7 +317,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="4" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['pos']->GetCoords() . '</td>
-			<td class="ac nowrap zone-type player-dark' . $mapHero["zone_owner"] . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
+			<td class="ac nowrap' . $zoneClass . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="4">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="4">' . $primary . '</td>
@@ -418,7 +424,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 
 	if ($mapHero['data']['bio'] !== '') {
-		$bio = nl2br($templateHeroPrint['bio']);
+		$bio = nl2br($mapHero['data']['bio']);
 	} else {
 		$bio = DEFAULT_DATA;
 	}
@@ -449,6 +455,12 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 	}
 	$portrait = $this->h3mapscan->GetPortraitByHeroId($portraitID, $mapHero['data']['subid']);
 
+	if ($this->h3mapscan->has_zone_images) {
+		$zoneClass = ' zone-type player-dark' . $mapHero["zone_owner"];
+	} else {
+		$zoneClass = '';
+	}
+
 	echo '<tr>
 			<td class="table__row-header--default" style="font-size: 11px"; rowspan="4">' . (++$n) . '</td>
 			<td class="ar nowrap hero-name-row-header fixed-height-row" nowrap="nowrap"
@@ -457,7 +469,7 @@ foreach ($this->h3mapscan->heroes_list as $mapHero) {
 			style="border-bottom:1px dotted grey; border-left:none;">' . $mapHero['data']['mapHeroName'] . '</td>
 			<td class="ac nowrap small-text" nowrap="nowrap" rowspan="4" style="text-align: center; vertical-align: top;"><img src="' . $portrait . '"></td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $mapHero['pos']->GetCoords() . '</td>
-			<td class="ac nowrap zone-type player-dark' . $mapHero["zone_owner"] . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
+			<td class="ac nowrap' . $zoneClass . '" nowrap="nowrap" rowspan="4">' . $mapHero['zone_type'] . '</td>
 			<td class="ac nowrap" nowrap="nowrap" rowspan="4">' . $class . '</td>
 			<td class="ac small-text nowrap" nowrap="nowrap" rowspan="4">' . comma($mapHero['data']['xp']) . ' XP<br />Level ' . $level . '</td>
 			<td class="ar small-text nowrap" nowrap="nowrap" rowspan="4">' . $primary . '</td>

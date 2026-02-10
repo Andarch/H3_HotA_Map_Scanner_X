@@ -44,7 +44,8 @@
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
                 // Zone type and est. count
                 $cmp = $a["zone_type"] <=> $b["zone_type"]
-                    ?: $a["data"]["value"] <=> $b["data"]["value"];
+                    ?: $a["zone_owner"] <=> $b["zone_owner"]
+                    ?: $a["data"]["count"] <=> $b["data"]["count"];
                 if ($cmp !== 0)
                     return $cmp;
 
