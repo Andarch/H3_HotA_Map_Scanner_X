@@ -2070,6 +2070,12 @@ class H3MAPSCAN
 					if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
 						$monster['isValue'] = $this->br->ReadUint8();
 						$monster['value'] = $this->br->ReadUint32();
+						$monster['estCount'] = EMPTY_DATA;
+						if ($monster['isValue'] && !str_starts_with($monster["name"], "Random Monster")) {
+							$monster['estCount'] = (int) floor(
+								$monster["value"] / $this->GetMonsterValue($monster["name"])
+							);
+						}
 					}
 
 					$obj['data'] = $monster;

@@ -11,7 +11,7 @@
                 <th rowspan="2">Coords</th>
                 <th rowspan="2">Zone</th>
                 <th rowspan="2">Count</th>
-                <th rowspan="2">Value</th>
+                <th rowspan="2" colspan="2" class="ac nowrap" nowrap="nowrap">Value / Est. Count</th>
                 <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
                 <th rowspan="2">Disposition</th>
                 <th rowspan="2" class="ac nowrap" nowrap="nowrap">Never<br />Flees</th>
@@ -42,10 +42,10 @@
 
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
-                // Zone type and owner
+                // Zone type and est. count
                 $cmp = $a["data"]["disposition"] <=> $b["data"]["disposition"]
                     ?: $a["zone_type"] <=> $b["zone_type"]
-                    ?: $a["zone_owner"] <=> $b["zone_owner"];
+                    ?: $a["data"]["estCount"] <=> $b["data"]["estCount"];
                 if ($cmp !== 0)
                     return $cmp;
 
@@ -58,32 +58,24 @@
                 $cmp = ($isRandomA <=> $isRandomB) ?: strcmp($nameA, $nameB);
                 if ($cmp !== 0)
                     return $cmp;
-
-                // Value
-                $valueA = (isset($a["data"]["value"]) && is_numeric($a["data"]["value"]))
-                    ? (float) $a["data"]["value"]
-                    : -INF;
-                $valueB = (isset($b["data"]["value"]) && is_numeric($b["data"]["value"]))
-                    ? (float) $b["data"]["value"]
-                    : -INF;
-
-                return $valueA <=> $valueB;
             });
 
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
+                if ($monster["data"]["disposition"] == 0 || !$monster["data"]["isValue"] || str_starts_with($monster["data"]["name"], "Random Monster")) {
+                    continue;
+                }
+                $estCount = null;
                 if (!$monster["data"]["isValue"]) {
-                    $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : "Random";
+                    $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : DEFAULT_DATA;
                     $value = EMPTY_DATA;
                 } else {
                     $count = EMPTY_DATA;
-                    if (!str_starts_with($monster["data"]["name"], "Random Monster")) {
-                        $approxCount = (int) floor(
-                            $monster["data"]["value"] / $this->h3mapscan->GetMonsterValue($monster["data"]["name"])
-                        );
-                        $value = comma($monster["data"]["value"]) . " (" . comma($approxCount) . ")";
+                    $value = comma($monster["data"]["value"]);
+                    if (array_key_exists("estCount", $monster["data"]) && $monster["data"]["estCount"] !== EMPTY_DATA) {
+                        $estCount = comma($monster["data"]["estCount"]);
                     } else {
-                        $value = comma($monster["data"]["value"]);
+                        $estCount = EMPTY_DATA;
                     }
                 }
                 $disposition =
@@ -116,6 +108,7 @@
                     </td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $estCount !== null ? $estCount : "" ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>

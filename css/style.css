@@ -629,44 +629,56 @@ td {
   width: 48px;
 }
 
-.monsters-table td:nth-child(6),
 .monsters-table th:nth-child(6) {
-  width: 84px;
+  width: 100px;
 }
 
-.monsters-table td:nth-child(7),
-.monsters-table th:nth-child(7) {
-  width: 48px;
+.monsters-table td:nth-child(6),
+.monsters-table td:nth-child(7) {
+  width: 50px;
+}
+
+.monsters-table td:nth-child(6) {
+  border-right: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);
+}
+
+.monsters-table td:nth-child(7) {
+  border-left: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);
 }
 
 .monsters-table td:nth-child(8),
 .monsters-table th:nth-child(8) {
-  width: 68px;
+  width: 48px;
 }
 
 .monsters-table td:nth-child(9),
 .monsters-table th:nth-child(9) {
-  width: 40px;
+  width: 68px;
 }
 
 .monsters-table td:nth-child(10),
 .monsters-table th:nth-child(10) {
-  width: 64px;
+  width: 40px;
 }
 
 .monsters-table td:nth-child(11),
 .monsters-table th:nth-child(11) {
-  width: 36px;
+  width: 64px;
 }
 
 .monsters-table td:nth-child(12),
-.monsters-table th:nth-child(12),
+.monsters-table th:nth-child(12) {
+  width: 36px;
+}
+
 .monsters-table td:nth-child(13),
-.monsters-table th:nth-child(13) {
+.monsters-table th:nth-child(13),
+.monsters-table td:nth-child(14),
+.monsters-table th:nth-child(14) {
   width: 44px;
 }
 
-.monsters-table th:nth-child(14) {
+.monsters-table th:nth-child(15) {
   width: 308px;
 }
 
@@ -677,18 +689,18 @@ td {
 .monsters-table thead tr:nth-child(2) th:nth-child(5),
 .monsters-table thead tr:nth-child(2) th:nth-child(6),
 .monsters-table thead tr:nth-child(2) th:nth-child(7),
-.monsters-table tbody td:nth-child(14),
 .monsters-table tbody td:nth-child(15),
 .monsters-table tbody td:nth-child(16),
 .monsters-table tbody td:nth-child(17),
 .monsters-table tbody td:nth-child(18),
 .monsters-table tbody td:nth-child(19),
-.monsters-table tbody td:nth-child(20) {
+.monsters-table tbody td:nth-child(20),
+.monsters-table tbody td:nth-child(21) {
   width: 44px;
 }
 
-.monsters-table td:nth-child(21),
-.monsters-table th:nth-child(15) {
+.monsters-table td:nth-child(22),
+.monsters-table th:nth-child(16) {
   width: 158px;
 }
 
