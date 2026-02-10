@@ -43,11 +43,13 @@
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
                 // Zone type and est. count
-                $cmp = $a["zone_type"] <=> $b["zone_type"]
-                    ?: $a["zone_owner"] <=> $b["zone_owner"]
-                    ?: $a["data"]["count"] <=> $b["data"]["count"];
-                if ($cmp !== 0)
+                $cmp =
+                    $a["zone_type"] <=> $b["zone_type"] ?:
+                    $a["zone_owner"] <=> $b["zone_owner"] ?:
+                    $a["data"]["count"] <=> $b["data"]["count"];
+                if ($cmp !== 0) {
                     return $cmp;
+                }
 
                 // Name (Random Monster comes last)
                 $nameA = $a["data"]["name"];
@@ -55,13 +57,15 @@
                 $isRandomA = str_starts_with($nameA, "Random Monster");
                 $isRandomB = str_starts_with($nameB, "Random Monster");
 
-                $cmp = ($isRandomA <=> $isRandomB) ?: strcmp($nameA, $nameB);
-                if ($cmp !== 0)
+                $cmp = $isRandomA <=> $isRandomB ?: strcmp($nameA, $nameB);
+                if ($cmp !== 0) {
                     return $cmp;
+                }
             });
 
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
+
                 if ($monster["data"]["disposition"] == 0) {
                     continue;
                 }
@@ -80,8 +84,8 @@
                 }
                 $disposition =
                     $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"]) !== "Precise"
-                    ? $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"])
-                    : "Precise (" . $monster["data"]["preciseDisposition"] . ")";
+                        ? $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"])
+                        : "Precise (" . $monster["data"]["preciseDisposition"] . ")";
                 $resources = [];
                 foreach ($monster["data"]["resources"] as $rid => $amount) {
                     $sign = $amount > 0 ? "+" : "";
@@ -104,7 +108,7 @@
                     <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
                     <td class="ac nowrap zone-type player-dark<?= $monster["zone_owner"] ?>" nowrap="nowrap">
-                        <?= $monster['zone_type'] ?>
+                        <?= $monster["zone_type"] ?>
                     </td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
@@ -125,7 +129,10 @@
                     <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
                     <td>
-                        <div class="ellipsis1" title="<?= htmlspecialchars($message, ENT_QUOTES) ?>"><?= $message ?></div>
+                        <div class="ellipsis1" title="<?= htmlspecialchars(
+                            $message,
+                            ENT_QUOTES,
+                        ) ?>"><?= $message ?></div>
                     </td>
                 </tr>
                 <?php
