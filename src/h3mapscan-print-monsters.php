@@ -43,9 +43,8 @@
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
                 // Zone type and est. count
-                $cmp = $a["data"]["disposition"] <=> $b["data"]["disposition"]
-                    ?: $a["zone_type"] <=> $b["zone_type"]
-                    ?: $a["data"]["estCount"] <=> $b["data"]["estCount"];
+                $cmp = $a["zone_type"] <=> $b["zone_type"]
+                    ?: $a["data"]["value"] <=> $b["data"]["value"];
                 if ($cmp !== 0)
                     return $cmp;
 
@@ -62,7 +61,7 @@
 
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
-                if ($monster["data"]["disposition"] == 0 || !$monster["data"]["isValue"] || str_starts_with($monster["data"]["name"], "Random Monster")) {
+                if ($monster["data"]["disposition"] == 0) {
                     continue;
                 }
                 $estCount = null;
