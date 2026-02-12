@@ -1,8 +1,6 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-echo '<div class="flex-group">';
-
 echo '<div class="flex-container">';
 
 echo '<table class="table-large">
@@ -240,7 +238,5 @@ echo '<table class="table-large">
     '</td>
 		</tr>
 	</table>';
-
-echo "</div>";
 
 echo "</div>";

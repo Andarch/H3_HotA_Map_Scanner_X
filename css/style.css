@@ -171,6 +171,12 @@ td {
   min-height: 100vh;
 }
 
+@media (min-aspect-ratio: 16/9) {
+  .grid-container {
+    width: min(100%, calc(100vh * 16 / 9 + 309px));
+  }
+}
+
 .site-header {
   grid-area: site-header;
   position: sticky;
@@ -436,7 +442,6 @@ td {
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: start;
   column-gap: var(--flex-gap) !important;
 }
