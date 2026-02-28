@@ -173,7 +173,7 @@ td {
 
 @media (min-aspect-ratio: 16/9) {
   .grid-container {
-    width: min(100%, calc(100vh * 16 / 9 + 309px));
+    width: min(100%, calc(100vh * 16 / 9 + 395px));
   }
 }
 
