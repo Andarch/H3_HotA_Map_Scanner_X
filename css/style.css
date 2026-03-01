@@ -1256,7 +1256,8 @@ td {
 /* ********************* */
 
 .abandonedmines-table-container {
-  width: auto;
+  width: 586.45px;
+  /* width: auto; */
 }
 
 .abandonedmines-table td:first-child,
@@ -1281,25 +1282,15 @@ td {
 
 .abandonedmines-table td:nth-child(5),
 .abandonedmines-table th:nth-child(5) {
-  width: 100px;
+  width: 192px;
 }
 
-.abandonedmines-table td:nth-child(6),
 .abandonedmines-table th:nth-child(6) {
-  width: 34px;
+  width: calc(166px + 14.86px);
 }
 
-.abandonedmines-table th:nth-child(7),
-.abandonedmines-table td:nth-child(7) {
-  width: 64px;
-}
-
-.abandonedmines-table th:nth-child(8) {
-  width: calc(150px + 14.86px);
-}
-
-.abandonedmines-table td:nth-child(8) {
-  width: 150px;
+.abandonedmines-table td:nth-child(6) {
+  width: 166px;
 }
 
 .abandonedmines-table tr:last-child td {

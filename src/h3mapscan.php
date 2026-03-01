@@ -2504,13 +2504,28 @@ class H3MAPSCAN
                     if ($obj["id"] == OBJECTS::MINE && $obj["subid"] != 7) {
                         $mine["owner"] = $this->br->ReadUint32();
                     } else {
-                        $mine["resources"] = $this->br->ReadUint8();
+                        $resources_mask = $this->br->ReadUint8();
+                        $resources = "";
+                        $n = 0;
+                        for ($j = 0; $j < 7; $j++) {
+                            if ($resources_mask & (1 << $j)) {
+                                if ($n++ > 0) {
+                                    $resources .= ", ";
+                                }
+                                $resources .= $this->GetResourceById($j);
+                            }
+                        }
+                        $mine["resources"] = $resources;
                         $this->br->SkipBytes(3);
                         $mine["is_custom"] = $this->br->ReadUint8();
                         $monster_type = $this->GetCreatureById($this->br->ReadUint32());
                         $monster_min = $this->br->ReadUint32();
                         $monster_max = $this->br->ReadUint32();
-                        $mine["guards"] = $monster_type . ": " . $monster_min . "–" . $monster_max;
+                        if ($monster_min == $monster_max) {
+                            $mine["guards"] = $monster_type . ": " . comma($monster_min);
+                        } else {
+                            $mine["guards"] = $monster_type . ": " . comma($monster_min) . "–" . comma($monster_max);
+                        }
                     }
 
                     $obj["data"] = $mine;

@@ -28,14 +28,16 @@
 
             $n = 0;
             foreach ($this->h3mapscan->mines_list as $mine) {
-                $guards = ""; ?>
+                if ($mine["id"] == OBJECTS::MINE && $mine["subid"] != 7) {
+                    continue;
+                } ?>
             <tr>
                 <td class="table__row-header--default"><?= ++$n ?></td>
                 <td class="nowrap" nowrap="nowrap">Abandoned Mine</td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $mine["pos"]->GetCoords() ?></td>
                 <td class="ac zone-type player-dark<?= $mine["zone_owner"] ?>"><?= $mine["zone_type"] ?></td>
                 <td class="nowrap" nowrap="nowrap"><?= $mine["data"]["resources"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $mine["data"]["guards"] ?></td>
+                <td class="nowrap" nowrap="nowrap"><?= $mine["data"]["guards"] ?></td>
             </tr>
             <?php
             }
