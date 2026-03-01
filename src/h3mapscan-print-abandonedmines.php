@@ -1,7 +1,29 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
-?>
 
+$mines = $this->h3mapscan->mines_list;
+
+// Filter to only abandoned mines
+$mines = array_filter($mines, function ($mine) {
+    return !($mine["id"] == OBJECTS::MINE && $mine["subid"] != 7);
+});
+
+// Re-index array
+$mines = array_values($mines);
+
+// Sort
+usort($mines, function ($a, $b) {
+    return $a["zone_owner"] <=> $b["zone_owner"] ?: $a["zone_type"] <=> $b["zone_type"];
+});
+
+$maxItems = 40;
+$totalItems = count($mines);
+$numTables = ceil($totalItems / $maxItems);
+
+echo '<div class="flex-container">';
+
+for ($i = 0; $i < $numTables; $i++) {
+    echo '<div>
 <div class="table-split-header-container abandonedmines-table-container">
     <table class="table-split-header abandonedmines-table">
         <thead>
@@ -19,29 +41,44 @@
 
 <div class="table-split-body-container abandonedmines-table-container">
     <table class="table-split-body abandonedmines-table">
-        <tbody>
+        <tbody>';
 
-            <?php
-            usort($this->h3mapscan->mines_list, function ($a, $b) {
-                return $a["zone_owner"] <=> $b["zone_owner"] ?: $a["zone_type"] <=> $b["zone_type"];
-            });
+    $n = $i * $maxItems;
+    for ($j = 0; $j < $maxItems; $j++) {
+        $idx = $i * $maxItems + $j;
+        if ($idx == $totalItems) {
+            break;
+        }
+        $mine = $mines[$idx];
+        echo '<tr>
+                <td class="table__row-header--default">' .
+            ++$n .
+            '</td>
+                <td class="small-text nowrap" nowrap="nowrap">' .
+            $mine["objname"] .
+            '</td>
+                <td class="small-text ac nowrap" nowrap="nowrap">' .
+            $mine["pos"]->GetCoords() .
+            '</td>
+                <td class="small-text ac zone-type player-dark' .
+            $mine["zone_owner"] .
+            '">' .
+            $mine["zone_type"] .
+            '</td>
+                <td class="small-text small-text nowrap" nowrap="nowrap">' .
+            $mine["data"]["resources"] .
+            '</td>
+                <td class="small-text nowrap" nowrap="nowrap">' .
+            $mine["data"]["guards"] .
+            '</td>
+            </tr>';
+    }
 
-            $n = 0;
-            foreach ($this->h3mapscan->mines_list as $mine) {
-                if ($mine["id"] == OBJECTS::MINE && $mine["subid"] != 7) {
-                    continue;
-                } ?>
-            <tr>
-                <td class="table__row-header--default"><?= ++$n ?></td>
-                <td class="nowrap" nowrap="nowrap"><?= $mine["objname"] ?></td>
-                <td class="ac nowrap" nowrap="nowrap"><?= $mine["pos"]->GetCoords() ?></td>
-                <td class="ac zone-type player-dark<?= $mine["zone_owner"] ?>"><?= $mine["zone_type"] ?></td>
-                <td class="nowrap" nowrap="nowrap"><?= $mine["data"]["resources"] ?></td>
-                <td class="nowrap" nowrap="nowrap"><?= $mine["data"]["guards"] ?></td>
-            </tr>
-            <?php
-            }
-            ?>
-        </tbody>
+    echo '</tbody>
     </table>
 </div>
+</div>';
+}
+
+echo "</div>";
+?>

@@ -1256,8 +1256,10 @@ td {
 /* ********************* */
 
 .abandonedmines-table-container {
-  width: 586.45px;
+  width: 571.6px;
   /* width: auto; */
+  height: auto;
+  overflow-y: initial;
 }
 
 .abandonedmines-table td:first-child,
@@ -1286,7 +1288,8 @@ td {
 }
 
 .abandonedmines-table th:nth-child(6) {
-  width: calc(166px + 14.86px);
+  /* width: calc(166px + 14.86px); */
+  width: 166px;
 }
 
 .abandonedmines-table td:nth-child(6) {
