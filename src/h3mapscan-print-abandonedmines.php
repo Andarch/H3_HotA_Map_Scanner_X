@@ -23,7 +23,7 @@
 
             <?php
             usort($this->h3mapscan->mines_list, function ($a, $b) {
-                return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
+                return $a["zone_owner"] <=> $b["zone_owner"] ?: $a["zone_type"] <=> $b["zone_type"];
             });
 
             $n = 0;
@@ -33,7 +33,7 @@
                 } ?>
             <tr>
                 <td class="table__row-header--default"><?= ++$n ?></td>
-                <td class="nowrap" nowrap="nowrap">Abandoned Mine</td>
+                <td class="nowrap" nowrap="nowrap"><?= $mine["objname"] ?></td>
                 <td class="ac nowrap" nowrap="nowrap"><?= $mine["pos"]->GetCoords() ?></td>
                 <td class="ac zone-type player-dark<?= $mine["zone_owner"] ?>"><?= $mine["zone_type"] ?></td>
                 <td class="nowrap" nowrap="nowrap"><?= $mine["data"]["resources"] ?></td>
