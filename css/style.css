@@ -538,7 +538,8 @@ td {
   border: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 } */
 
-.table-split-header {
+.table-split-header,
+.table-split-header th {
   height: var(--stationary-header__height) !important;
   z-index: 2;
   position: relative;
@@ -1248,6 +1249,61 @@ td {
 
 #vialsofmana-table-button {
   width: 298.57px;
+}
+
+/* ********************* */
+/* Abandoned Mines Table */
+/* ********************* */
+
+.abandonedmines-table-container {
+  width: auto;
+}
+
+.abandonedmines-table td:first-child,
+.abandonedmines-table th:first-child {
+  width: 28px;
+}
+
+.abandonedmines-table td:nth-child(2),
+.abandonedmines-table th:nth-child(2) {
+  width: 88px;
+}
+
+.abandonedmines-table td:nth-child(3),
+.abandonedmines-table th:nth-child(3) {
+  width: 62px;
+}
+
+.abandonedmines-table td:nth-child(4),
+.abandonedmines-table th:nth-child(4) {
+  width: 34px;
+}
+
+.abandonedmines-table td:nth-child(5),
+.abandonedmines-table th:nth-child(5) {
+  width: 100px;
+}
+
+.abandonedmines-table td:nth-child(6),
+.abandonedmines-table th:nth-child(6) {
+  width: 34px;
+}
+
+.abandonedmines-table th:nth-child(7),
+.abandonedmines-table td:nth-child(7) {
+  width: 64px;
+}
+
+.abandonedmines-table th:nth-child(8) {
+  width: calc(150px + 14.86px);
+}
+
+.abandonedmines-table td:nth-child(8) {
+  width: 150px;
+}
+
+.abandonedmines-table tr:last-child td {
+  border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
 }
 
 /* ******** */

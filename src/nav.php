@@ -11,8 +11,7 @@ function generateNav($map)
 
         <?php
         generateNavTop();
-        generateNavMain($map);
-        ?>
+        generateNavMain($map);?>
 
     </div>
 
@@ -43,46 +42,47 @@ function generateNavTop()
 
 function generateNavMain($map)
 {
-    $mapid = $_GET['mapid'] ?? '';
-    $mapQueryString = $mapid ? "mapid=$mapid&" : '';
-    $currentSection = $_GET['section'] ?? '';
+    $mapid = $_GET["mapid"] ?? "";
+    $mapQueryString = $mapid ? "mapid=$mapid&" : "";
+    $currentSection = $_GET["section"] ?? "";
 
     $sections = [
-        'General',
-        'Terrain',
-        'Artifacts (Lite)',
-        'Spells (Lite)',
-        'Disabled Heroes',
-        'Template Heroes',
-        'Map Heroes',
-        'Prisoners',
-        'Global Events',
-        'Town Events',
-        'Towns',
-        'Artifacts',
-        'Spells',
-        'Monsters',
-        'Garrisons',
-        'Pickups - Land',
-        'Pickups - Sea',
+        "General",
+        "Terrain",
+        "Artifacts (Lite)",
+        "Spells (Lite)",
+        "Disabled Heroes",
+        "Template Heroes",
+        "Map Heroes",
+        "Prisoners",
+        "Global Events",
+        "Town Events",
+        "Towns",
+        "Artifacts",
+        "Spells",
+        "Monsters",
+        "Garrisons",
+        "Pickups - Land",
+        "Pickups - Sea",
+        "Abandoned Mines",
         'Seer\'s Huts',
-        'Quest Gates',
-        'Quest Guards',
+        "Quest Gates",
+        "Quest Guards",
         'Pandora\'s Boxes',
-        'Event Objects',
+        "Event Objects",
         // 'HotA Hero Events',
         // 'HotA Player Events',
         // 'HotA Town Events',
         // 'HotA Quest Events',
         // 'HotA Variables',
-        'Object Count',
+        "Object Count",
     ];
 
     $sectionsWithAnchors = [
-        'Template Heroes' => 'heroes-table-2',
-        'Map Heroes' => 'heroes-table-3',
-        'Prisoners' => 'heroes-table-4',
-        'Quest Guards' => 'quest-guards-table',
+        "Template Heroes" => "heroes-table-2",
+        "Map Heroes" => "heroes-table-3",
+        "Prisoners" => "heroes-table-4",
+        "Quest Guards" => "quest-guards-table",
         // 'HotA Player Events' => 'hota-player-events-table',
         // 'HotA Town Events' => 'hota-town-events-table',
         // 'HotA Quest Events' => 'hota-quest-events-table',
@@ -90,32 +90,33 @@ function generateNavMain($map)
     ];
 
     $sectionsWithHr1Below = [
-        'General',
-        'Terrain',
-        'Spells (Lite)',
-        'Prisoners',
-        'Towns',
-        'Pickups - Sea',
-        'Quest Guards',
-        'Town Events',
-        'Event Objects',
+        "General",
+        "Terrain",
+        "Spells (Lite)",
+        "Prisoners",
+        "Towns",
+        "Abandoned Mines",
+        "Quest Guards",
+        "Town Events",
+        "Event Objects",
         // 'HotA Variables',
-        'Object Count',
+        "Object Count",
     ];
 
     $sectionsWithHr2Below = [
-        'Artifacts (Lite)',
-        'Disabled Heroes',
-        'Template Heroes',
-        'Map Heroes',
-        'Artifacts',
-        'Spells',
-        'Monsters',
-        'Garrisons',
-        'Pickups - Land',
+        "Artifacts (Lite)",
+        "Disabled Heroes",
+        "Template Heroes",
+        "Map Heroes",
+        "Artifacts",
+        "Spells",
+        "Monsters",
+        "Garrisons",
+        "Pickups - Land",
+        "Pickups - Sea",
         'Seer\'s Huts',
-        'Quest Gates',
-        'Global Events',
+        "Quest Gates",
+        "Global Events",
         'Pandora\'s Boxes',
         // 'HotA Hero Events',
         // 'HotA Player Events',
@@ -123,33 +124,36 @@ function generateNavMain($map)
         // 'HotA Quest Events',
     ];
 
-    if ($map && $map->map_name == '(C) Tides of War (Allies)') {
-        $key = array_search('Object Count', $sectionsWithHr1Below);
+    if ($map && $map->map_name == "(C) Tides of War (Allies)") {
+        $key = array_search("Object Count", $sectionsWithHr1Below);
         array_splice($sectionsWithHr1Below, $key, 1);
-        $sectionsWithHr2Below[] = 'Object Count';
+        $sectionsWithHr2Below[] = "Object Count";
 
-        $sections[] = 'Objects by Zone Owner';
-        $sectionsWithHr2Below[] = 'Objects by Zone Owner';
+        $sections[] = "Objects by Zone Owner";
+        $sectionsWithHr2Below[] = "Objects by Zone Owner";
 
-        $sections[] = 'Unused Portraits';
-        $sectionsWithHr1Below[] = 'Unused Portraits';
+        $sections[] = "Unused Portraits";
+        $sectionsWithHr1Below[] = "Unused Portraits";
     }
 
     $navMain = '<div class="nav-main">';
     foreach ($sections as $section) {
-        if ($section === 'General') {
+        if ($section === "General") {
             // $navMain .= HRULE1;
         }
-        $selectedClass = $section === $currentSection ? 'selected' : '';
-        $anchor = isset($sectionsWithAnchors[$section]) ? '#' . $sectionsWithAnchors[$section] : '';
-        $navMain .= "<a href=\"?{$mapQueryString}section={$section}{$anchor}\" class=\"{$selectedClass}\">" . ucfirst($section) . "</a>";
+        $selectedClass = $section === $currentSection ? "selected" : "";
+        $anchor = isset($sectionsWithAnchors[$section]) ? "#" . $sectionsWithAnchors[$section] : "";
+        $navMain .=
+            "<a href=\"?{$mapQueryString}section={$section}{$anchor}\" class=\"{$selectedClass}\">" .
+            ucfirst($section) .
+            "</a>";
         if (in_array($section, $sectionsWithHr1Below)) {
             $navMain .= HRULE1;
-        } else if (in_array($section, $sectionsWithHr2Below)) {
+        } elseif (in_array($section, $sectionsWithHr2Below)) {
             $navMain .= HRULE2;
         }
     }
-    $navMain .= '</div>';
+    $navMain .= "</div>";
 
     echo $navMain;
 }

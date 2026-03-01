@@ -2501,47 +2501,20 @@ class H3MAPSCAN
 
                 case OBJECTS::MINE:
                 case OBJECTS::ABANDONED_MINE_2:
-                    $mine["owner"] = $this->br->ReadUint8(); //owner or resource mask for abandoned mine
-                    $this->br->SkipBytes(3);
-                    $tileowner = $mine["owner"];
-
-                    $resource = "";
-                    //subteranean and some other mines dont have correct objid, but subid is always 7 for abandoned mine
-                    if ($obj["id"] == OBJECTS::ABANDONED_MINE_2 || $obj["subid"] == 7) {
-                        $n = 0;
-                        //in this case, tileowner is mask for possible resources
-                        for ($j = 0; $j < 7; $j++) {
-                            if ($tileowner & (1 << $j)) {
-                                if ($n++ > 0) {
-                                    $resource .= ", ";
-                                }
-                                $resource .= $this->GetResourceById($j);
-                            }
-                        }
-                        $tileowner = HNONE;
-
-                        if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
-                            $this->br->SkipBytes(13);
-                            //not used
-                            /*uchar selected_variant;
-							uint32 guard_id;
-							uint32 quantity_min;
-							uint32 quantity_max;*/
-                        }
+                    if ($obj["id"] == OBJECTS::MINE && $obj["subid"] != 7) {
+                        $mine["owner"] = $this->br->ReadUint32();
                     } else {
-                        $resource = $this->GetResourceById($obj["subid"]);
+                        $mine["resources"] = $this->br->ReadUint8();
+                        $this->br->SkipBytes(3);
+                        $mine["is_custom"] = $this->br->ReadUint8();
+                        $monster_type = $this->GetCreatureById($this->br->ReadUint32());
+                        $monster_min = $this->br->ReadUint32();
+                        $monster_max = $this->br->ReadUint32();
+                        $mine["guards"] = $monster_type . ": " . $monster_min . "–" . $monster_max;
                     }
 
-                    $this->mines_list[] = new Listobject(
-                        $this->GetMineById($obj["subid"]),
-                        $this->curcoor,
-                        "",
-                        $tileowner,
-                        0,
-                        $resource,
-                    );
-
                     $obj["data"] = $mine;
+                    $this->mines_list[] = $obj;
                     break;
 
                 case OBJECTS::DWELLING_NORMAL:
