@@ -13,24 +13,30 @@ usort($this->h3mapscan->towns_list, function ($a, $b) {
     }
 });
 
-echo '<table class="table-small towns-table">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Owner</th>
-				<th>Town<br />Name</th>
-				<th>Coords</th>
-				<th>Zone</th>
-				<th># of<br />Events</th>
-				<th>Garrison</th>
-				<th>Spell<br />Research</th>
-				<th>Spells<br />Always</th>
-				<th>Spells<br />Disabled</th>
-				<th>Buildings<br />Built</th>
-				<th>Buildings<br />Disabled</th>
-			</tr>
-		</thead>
-    	<tbody>';
+echo '
+    <div class="table-split-header-container">
+        <table class="table-split-header towns-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Owner</th>
+                    <th>Town<br />Name</th>
+                    <th>Coords</th>
+                    <th>Zone</th>
+                    <th># of<br />Events</th>
+                    <th>Garrison</th>
+                    <th>Spell<br />Research</th>
+                    <th>Spells<br />Always</th>
+                    <th>Spells<br />Disabled</th>
+                    <th>Buildings<br />Built</th>
+                    <th>Buildings<br />Disabled</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="table-split-body-container">
+        <table class="table-split-body towns-table">
+            <tbody>';
 
 $n = 0;
 foreach ($this->h3mapscan->towns_list as $towno) {
@@ -138,4 +144,7 @@ foreach ($this->h3mapscan->towns_list as $towno) {
         '</td>
 	</tr>';
 }
-echo "</tbody></table>";
+echo '
+            </tbody>
+        </table>
+    </div>';
