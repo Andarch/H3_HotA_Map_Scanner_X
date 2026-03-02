@@ -1,81 +1,136 @@
 <?php
 /** @var H3MAPSCAN_PRINT $this */
 
-usort($this->h3mapscan->towns_list, 'SortTownsByName');
-$n = 0;
-echo '<table class="table-large">
+usort($this->h3mapscan->towns_list, function ($a, $b) {
+    $cmp =
+        $a["data"]["owner"] <=> $b["data"]["owner"] ?:
+        $a["subid"] <=> $b["subid"] ?:
+        // $a["data"]["affiliation"] <=> $b["data"]["affiliation"] ?:
+            $a["data"]["name"] <=> $b["data"]["name"];
+    if ($cmp !== 0) {
+        return $cmp;
+    }
+});
+
+echo '<table class="table-small towns-table">
 		<thead>
 			<tr>
-				<th class="nowrap" nowrap="nowrap">#</th>
-				<th class="nowrap" nowrap="nowrap">Town<br />Name</th>
-				<th class="nowrap" nowrap="nowrap">Coords</th>
-				<th class="nowrap" nowrap="nowrap">Owner</th>
-				<th class="nowrap" nowrap="nowrap">Faction</th>
-				<th class="nowrap" nowrap="nowrap"># of<br />Events</th>
-				<th class="nowrap" nowrap="nowrap">Garrison</th>
-				<th class="nowrap" nowrap="nowrap">Spell<br />Research</th>
-				<th class="nowrap" nowrap="nowrap">Spells<br />Always</th>
-				<th class="nowrap" nowrap="nowrap">Spells<br />Disabled</th>
-				<th class="nowrap" nowrap="nowrap">Buildings<br />Built</th>
-				<th class="nowrap" nowrap="nowrap">Buildings<br />Disabled</th>
+				<th>#</th>
+				<th>Town<br />Name</th>
+				<th>Coords</th>
+				<th>Owner</th>
+				<th>Faction</th>
+				<th># of<br />Events</th>
+				<th>Garrison</th>
+				<th>Spell<br />Research</th>
+				<th>Spells<br />Always</th>
+				<th>Spells<br />Disabled</th>
+				<th>Buildings<br />Built</th>
+				<th>Buildings<br />Disabled</th>
 			</tr>
 		</thead>
     	<tbody>';
-foreach($this->h3mapscan->towns_list as $towno) {
-	$town = $towno['data'];
 
-	if(!empty($town['stack'])) {
-		$garrison = $this->h3mapscan->PrintStack($town['stack']);
-	} else {
-		$garrison = EMPTY_DATA;
-	}
+$n = 0;
+foreach ($this->h3mapscan->towns_list as $towno) {
+    $town = $towno["data"];
 
-	if(!empty($town['spellsA'])) {
-		$spellsAlways = implode(', ', $town['spellsA']);
-	} else {
-		$spellsAlways = EMPTY_DATA;
-	}
+    if (!empty($town["stack"])) {
+        $garrison = $this->h3mapscan->PrintStack($town["stack"]);
+    } else {
+        $garrison = EMPTY_DATA;
+    }
 
-	if(!empty($town['spellsD'])) {
-		$spellsDisabled = implode(', ', $town['spellsD']);
-	} else {
-		$spellsDisabled = EMPTY_DATA;
-	}
+    if (!empty($town["spellsA"])) {
+        $spellsAlways = implode(
+            ",<wbr /> ",
+            array_map(function ($item) {
+                return str_replace(" ", "&nbsp;", $item);
+            }, $town["spellsA"]),
+        );
+    } else {
+        $spellsAlways = EMPTY_DATA;
+    }
 
-	$buildingsBuilt = '';
-	$buildingsDisabled = '';
+    if (!empty($town["spellsD"])) {
+        $spellsDisabled = implode(
+            ",<wbr /> ",
+            array_map(function ($item) {
+                return str_replace(" ", "&nbsp;", $item);
+            }, $town["spellsD"]),
+        );
+    } else {
+        $spellsDisabled = EMPTY_DATA;
+    }
 
-	if($town['hasCustomBuildings']) {
-		if(!empty($town['buildingsBuilt'])) {
-			$buildingsBuilt = implode(', ', $town['buildingsBuilt']);
-		} else {
-			$buildingsBuilt = EMPTY_DATA;
-		}
+    $buildingsBuilt = "";
+    $buildingsDisabled = "";
 
-		if(!empty($town['buildingsDisabled'])) {
-			$buildingsDisabled = implode(', ', $town['buildingsDisabled']);
-		} else {
-			$buildingsDisabled = EMPTY_DATA;
-		}
-	} else if($town['hasFort']) {
-		$buildingsBuilt = 'Fort';
-	} else {
-		$buildingsBuilt = EMPTY_DATA;
-	}
+    if ($town["hasCustomBuildings"]) {
+        if (!empty($town["buildingsBuilt"])) {
+            $buildingsBuilt = implode(
+                ",<wbr /> ",
+                array_map(function ($item) {
+                    return str_replace(" ", "&nbsp;", $item);
+                }, $town["buildingsBuilt"]),
+            );
+        } else {
+            $buildingsBuilt = EMPTY_DATA;
+        }
 
-	echo '<tr>
-			<td class="table__row-header--default nowrap" nowrap="nowrap">'.(++$n).'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$town['name'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$towno['pos']->GetCoords().'</td>
-			<td class="nowrap" nowrap="nowrap">'.$town['player'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$town['affiliation'].'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$town['eventsnum'].'</td>
-			<td class="small-text nowrap" nowrap="nowrap">'.$garrison.'</td>
-			<td class="ac nowrap" nowrap="nowrap">'.$town['spell_research'].'</td>
-			<td class="small-text">'.$spellsAlways.'</td>
-			<td class="small-text">'.$spellsDisabled.'</td>
-			<td class="small-text">'.$buildingsBuilt.'</td>
-			<td class="small-text">'.$buildingsDisabled.'</td>
+        if (!empty($town["buildingsDisabled"])) {
+            $buildingsDisabled = implode(
+                ",<wbr /> ",
+                array_map(function ($item) {
+                    return str_replace(" ", "&nbsp;", $item);
+                }, $town["buildingsDisabled"]),
+            );
+        } else {
+            $buildingsDisabled = EMPTY_DATA;
+        }
+    } elseif ($town["hasFort"]) {
+        $buildingsBuilt = "Fort";
+    } else {
+        $buildingsBuilt = EMPTY_DATA;
+    }
+
+    echo '<tr>
+			<td class="table__row-header--default nowrap" nowrap="nowrap">' .
+        ++$n .
+        '</td>
+			<td class="ac nowrap" nowrap="nowrap">' .
+        $town["name"] .
+        '</td>
+			<td class="ac nowrap" nowrap="nowrap">' .
+        $towno["pos"]->GetCoords() .
+        '</td>
+			<td class="nowrap" nowrap="nowrap">' .
+        $town["player"] .
+        '</td>
+			<td class="ac nowrap" nowrap="nowrap">' .
+        $town["affiliation"] .
+        '</td>
+			<td class="ac nowrap" nowrap="nowrap">' .
+        $town["eventsnum"] .
+        '</td>
+			<td class="nowrap" nowrap="nowrap">' .
+        $garrison .
+        '</td>
+			<td class="ac nowrap" nowrap="nowrap">' .
+        $town["spell_research"] .
+        '</td>
+			<td>' .
+        $spellsAlways .
+        '</td>
+			<td>' .
+        $spellsDisabled .
+        '</td>
+			<td>' .
+        $buildingsBuilt .
+        '</td>
+			<td>' .
+        $buildingsDisabled .
+        '</td>
 	</tr>';
 }
-echo '</tbody></table>';
+echo "</tbody></table>";

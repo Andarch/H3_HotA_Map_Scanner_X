@@ -5337,11 +5337,6 @@ function ListSortByName($a, $b)
     }
 }
 
-function SortTownsByName($a, $b)
-{
-    return strcmp($a["data"]["name"], $b["data"]["name"]);
-}
-
 function SortTownEventsByDate($a, $b)
 {
     if ($a["firstOccurence"] > $b["firstOccurence"]) {

@@ -460,6 +460,61 @@ td {
   justify-content: flex-start;
 }
 
+/* ***** */
+/* Towns */
+/* ***** */
+
+.towns-table td {
+  font-size: 11px !important;
+}
+
+.towns-table td:nth-child(7),
+.towns-table td:nth-child(9),
+.towns-table td:nth-child(10),
+.towns-table td:nth-child(11),
+.towns-table td:nth-child(12) {
+  font-size: 10px !important;
+}
+
+.towns-table td:nth-child(9),
+.towns-table th:nth-child(9),
+.towns-table td:nth-child(10),
+.towns-table th:nth-child(10),
+.towns-table td:nth-child(11),
+.towns-table th:nth-child(11),
+.towns-table td:nth-child(12),
+.towns-table th:nth-child(12) {
+  min-width: 170px;
+  max-width: 857.28px;
+}
+
+/* *********** */
+/* Town Events */
+/* *********** */
+
+.town-events-table td {
+  font-size: 11px !important;
+}
+
+.town-events-table td:nth-child(13),
+.town-events-table td:nth-child(14),
+.town-events-table td:nth-child(15),
+.town-events-table td:nth-child(16) {
+  font-size: 10px !important;
+}
+
+.town-events-table td:nth-child(15) {
+  max-width: 600px;
+}
+
+.town-events-table td:nth-child(16) {
+  min-width: 100px;
+}
+
+.town-events-table td:not(:nth-child(8)):not(:nth-child(15)):not(:nth-child(16)) {
+  white-space: nowrap;
+}
+
 /* *********************** */
 /* Artifacts/Spells (lite) */
 /* *********************** */
