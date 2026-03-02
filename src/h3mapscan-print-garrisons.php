@@ -8,10 +8,9 @@
             <tr>
                 <th>#</th>
                 <th>Type</th>
-                <th>Direction</th>
-                <th>Owner</th>
                 <th>Coords</th>
                 <th>Zone</th>
+                <th>Owner</th>
                 <th class="nowrap" nowrap="nowrap">Troops are<br />Removable</th>
                 <th>Guards</th>
             </tr>
@@ -33,17 +32,10 @@
                 $owner = $this->h3mapscan->GetPlayerColorById($garrison->owner); ?>
                 <tr>
                     <td class="table__row-header--default"><?= ++$n ?></td>
-                    <td class="nowrap" nowrap="nowrap"><?= $garrison->name ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->info ?></td>
-                    <td class="ac nowrap" nowrap="nowrap">
-                        <?= $owner ?>
-                    </td>
-                    <td class="ac nowrap" nowrap="nowrap">
-                        <?= $garrison->mapcoor->GetCoords() ?>
-                    </td>
-                    <td class="ac nowrap zone-type player-dark<?= $garrison->zoneowner ?>" nowrap="nowrap">
-                        <?= $garrison->zonetype ?>
-                    </td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->name ?><br><span style="font-size: 10px;">(<?= $garrison->info ?>)</span></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->mapcoor->GetCoords() ?></td>
+                    <td class="ac nowrap zone-type player-dark<?= $garrison->zoneowner ?>" nowrap="nowrap"><?= $garrison->zonetype ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $owner ?></td>
                     <td class="ac nowrap" nowrap="nowrap"><?= $garrison->add1 ?></td>
                     <td class="tiny-text nowrap" nowrap="nowrap"><?= $this->h3mapscan->PrintStack(
                         $garrison->add2,

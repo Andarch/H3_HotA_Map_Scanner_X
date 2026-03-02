@@ -557,10 +557,6 @@ td {
   height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height));
   z-index: 1;
   position: relative;
-  /* border-right: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick); */
-  /* border-bottom: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick); */
-  /* border-top: none; */
-  /* background: rgba(0, 0, 0, 0.5); */
 }
 
 .table-split-body {
@@ -571,12 +567,6 @@ td {
   border: var(--table__border-style--thick) var(--table__border-width--thick) var(--table__border-color--thick);
   border-top: none;
 }
-
-/* .table-split-body tr,
-.table-split-body td {
-  height: 1px !important;
-  max-height: 1px !important;
-} */
 
 /* Borders */
 
@@ -601,16 +591,10 @@ td {
   border-bottom: none;
 }
 
-/* Padding */
-
-.table-split-header th,
-.table-split-body td {
-  padding: 1.5px 4px 2px;
-}
-
 /* Font size */
 
 .table-split-header th {
+  padding: 1.5px 4px 2px;
   font-size: 10px;
 }
 
@@ -618,6 +602,10 @@ td {
   height: 1px;
   padding: 0.25px 4px 0.5px;
   font-size: 10px;
+}
+
+.table-split-body tr:nth-child(even) td:not(:first-child):not(:nth-child(4)) {
+  background: #111;
 }
 
 /* ************** */
@@ -753,7 +741,7 @@ td {
 /* *************** */
 
 .garrisons-table-container {
-  width: 564.71px;
+  width: 504.45px;
 }
 
 .garrisons-table td:not(:last-child) {
@@ -772,34 +760,29 @@ td {
 
 .garrisons-table td:nth-child(3),
 .garrisons-table th:nth-child(3) {
-  width: 60px;
+  width: 66px;
 }
 
 .garrisons-table td:nth-child(4),
 .garrisons-table th:nth-child(4) {
-  width: 44px;
+  width: 34px;
 }
 
 .garrisons-table td:nth-child(5),
 .garrisons-table th:nth-child(5) {
-  width: 66px;
+  width: 44px;
 }
 
-.garrisons-table td:nth-child(6),
-.garrisons-table th:nth-child(6) {
-  width: 34px;
-}
-
-.garrisons-table th:nth-child(7),
-.garrisons-table td:nth-child(7) {
+.garrisons-table th:nth-child(6),
+.garrisons-table td:nth-child(6) {
   width: 64px;
 }
 
-.garrisons-table th:nth-child(8) {
+.garrisons-table th:nth-child(7) {
   width: calc(150px + 14.86px);
 }
 
-.garrisons-table td:nth-child(8) {
+.garrisons-table td:nth-child(7) {
   width: 150px;
 }
 
