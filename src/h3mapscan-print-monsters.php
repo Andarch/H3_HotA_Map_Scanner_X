@@ -42,22 +42,23 @@
 
             <?php
             usort($this->h3mapscan->monsters_list, function ($a, $b) {
-                // Zone type and est. count
-                $cmp =
-                    $a["zone_type"] <=> $b["zone_type"] ?:
-                    $a["zone_owner"] <=> $b["zone_owner"] ?:
-                    $a["data"]["count"] <=> $b["data"]["count"];
-                if ($cmp !== 0) {
-                    return $cmp;
-                }
-
-                // Name (Random Monster comes last)
+                // Name (Random Monster comes first)
                 $nameA = $a["data"]["name"];
                 $nameB = $b["data"]["name"];
                 $isRandomA = str_starts_with($nameA, "Random Monster");
                 $isRandomB = str_starts_with($nameB, "Random Monster");
 
-                $cmp = $isRandomA <=> $isRandomB ?: strcmp($nameA, $nameB);
+                $cmp = $isRandomB <=> $isRandomA ?: strcmp($nameA, $nameB);
+                if ($cmp !== 0) {
+                    return $cmp;
+                }
+
+                // Zone type and est. count
+                $cmp =
+                    $a["data"]["disposition"] <=> $b["data"]["disposition"] ?:
+                    $a["zone_type"] <=> $b["zone_type"] ?:
+                    $a["zone_owner"] <=> $b["zone_owner"] ?:
+                    $a["data"]["count"] <=> $b["data"]["count"];
                 if ($cmp !== 0) {
                     return $cmp;
                 }
@@ -66,9 +67,9 @@
             $n = 0;
             foreach ($this->h3mapscan->monsters_list as $monster) {
 
-                if ($monster["data"]["disposition"] == 0) {
-                    continue;
-                }
+                // if ($monster["data"]["disposition"] == 0) {
+                //     continue;
+                // }
                 $estCount = null;
                 if (!$monster["data"]["isValue"]) {
                     $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : DEFAULT_DATA;
