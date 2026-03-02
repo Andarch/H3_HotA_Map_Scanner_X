@@ -485,7 +485,8 @@ td {
 .towns-table td:nth-child(12),
 .towns-table th:nth-child(12) {
   min-width: 170px;
-  max-width: 857.28px;
+  /* max-width: 857.28px; */
+  max-width: 400px;
 }
 
 /* *********** */
