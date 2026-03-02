@@ -3129,7 +3129,7 @@ class H3MAPSCAN
         }
 
         $town["owner"] = $this->br->ReadUint8();
-        $town["player"] = $this->GetPlayerColorById($town["owner"], true);
+        $town["player"] = $this->GetPlayerColorById($town["owner"]);
 
         $hasName = $this->br->ReadUint8();
         if ($hasName) {

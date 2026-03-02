@@ -117,6 +117,7 @@
 }
 
 /* BASE STYLES */
+
 html {
   font-size: var(--font-size--default);
 }
@@ -161,6 +162,7 @@ td {
 }
 
 /* LAYOUT */
+
 .grid-container {
   display: grid;
   grid-template-areas: "nav site-header" "nav content";
@@ -468,22 +470,29 @@ td {
   font-size: 11px !important;
 }
 
-.towns-table td:nth-child(8),
+.towns-table hr {
+  height: 1px;
+  border: none;
+  margin: 1px 3px;
+  background-color: var(--color-mediumgrey);
+}
+
+.towns-table td:nth-child(7),
+.towns-table td:nth-child(9),
 .towns-table td:nth-child(10),
 .towns-table td:nth-child(11),
-.towns-table td:nth-child(12),
-.towns-table td:nth-child(13) {
+.towns-table td:nth-child(12) {
   font-size: 10px !important;
 }
 
+.towns-table td:nth-child(9),
+.towns-table th:nth-child(9),
 .towns-table td:nth-child(10),
 .towns-table th:nth-child(10),
 .towns-table td:nth-child(11),
 .towns-table th:nth-child(11),
 .towns-table td:nth-child(12),
-.towns-table th:nth-child(12),
-.towns-table td:nth-child(13),
-.towns-table th:nth-child(13) {
+.towns-table th:nth-child(12) {
   min-width: 170px;
   max-width: 400px;
 }
@@ -1376,6 +1385,7 @@ td {
 }
 
 /* COMPONENTS */
+
 .table__title-bar--large {
   background: var(--color-purple);
   font-weight: bold;
@@ -1531,9 +1541,20 @@ td {
 }
 
 /* UTILITIES */
+
+.alt-font {
+  font-family: var(--font-family--special);
+}
+
+.bold {
+  font-weight: bold;
+}
+.name {
+  font-family: var(--font-family--special);
+  color: white;
+}
+
 .zone-type {
-  /* font-size: 14px !important; */
-  /* font-weight: bold; */
   line-height: 0;
   font-family: 'Bookman Old Style';
 }
@@ -1598,18 +1619,6 @@ td {
   border-right: none !important;
   border-bottom: none !important;
 }
-
-/* .cell-hidden:last-child {
-  background: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-} */
-
-/* .cell-hidden:last-of-type {
-  background: none !important;
-  border-right: none !important;
-  border-bottom: none !important;
-} */
 
 .thin-vertical-border {
   border-left: var(--table__border-style--thin) var(--table__border-width--thin) var(--table__border-color--thin);

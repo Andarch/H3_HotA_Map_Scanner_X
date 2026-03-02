@@ -17,11 +17,10 @@ echo '<table class="table-small towns-table">
 		<thead>
 			<tr>
 				<th>#</th>
+				<th>Owner</th>
 				<th>Town<br />Name</th>
 				<th>Coords</th>
 				<th>Zone</th>
-				<th>Owner</th>
-				<th>Faction</th>
 				<th># of<br />Events</th>
 				<th>Garrison</th>
 				<th>Spell<br />Research</th>
@@ -101,8 +100,13 @@ foreach ($this->h3mapscan->towns_list as $towno) {
         ++$n .
         '</td>
 			<td class="ac nowrap" nowrap="nowrap">' .
-        $town["name"] .
+        $town["player"] .
         '</td>
+			<td class="ac nowrap" nowrap="nowrap"><span style="font-size: 12px;">' .
+        $town["name"] .
+        '</span><hr /><span class="tiny-text">' .
+        $town["affiliation"] .
+        '</span></td>
 			<td class="ac nowrap" nowrap="nowrap">' .
         $towno["pos"]->GetCoords() .
         '</td>
@@ -110,12 +114,6 @@ foreach ($this->h3mapscan->towns_list as $towno) {
         $towno["zone_owner"] .
         '" nowrap="nowrap">' .
         $towno["zone_type"] .
-        '</td>
-			<td class="nowrap" nowrap="nowrap">' .
-        $town["player"] .
-        '</td>
-			<td class="ac nowrap" nowrap="nowrap">' .
-        $town["affiliation"] .
         '</td>
 			<td class="ac nowrap" nowrap="nowrap">' .
         $town["eventsnum"] .
