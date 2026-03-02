@@ -36,7 +36,6 @@ echo '<table class="table-small towns-table">
 $n = 0;
 foreach ($this->h3mapscan->towns_list as $towno) {
     $town = $towno["data"];
-    vd($town["owner"]);
 
     if (!empty($town["stack"])) {
         $garrison = $this->h3mapscan->PrintStack($town["stack"]);
