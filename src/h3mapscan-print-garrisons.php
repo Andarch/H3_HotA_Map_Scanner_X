@@ -30,23 +30,24 @@
 
             $n = 0;
             foreach ($this->h3mapscan->garrisons_list as $garrison) {
-                $owner = $this->h3mapscan->GetPlayerColorById($garrison->owner);
-                ?>
+                $owner = $this->h3mapscan->GetPlayerColorById($garrison->owner); ?>
                 <tr>
                     <td class="table__row-header--default"><?= ++$n ?></td>
-                    <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->name ?></td>
-                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->info ?></td>
-                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                    <td class="nowrap" nowrap="nowrap"><?= $garrison->name ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->info ?></td>
+                    <td class="ac nowrap" nowrap="nowrap">
                         <?= $owner ?>
                     </td>
-                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                    <td class="ac nowrap" nowrap="nowrap">
                         <?= $garrison->mapcoor->GetCoords() ?>
                     </td>
                     <td class="ac nowrap zone-type player-dark<?= $garrison->zoneowner ?>" nowrap="nowrap">
                         <?= $garrison->zonetype ?>
                     </td>
-                    <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;"><?= $garrison->add1 ?></td>
-                    <td class="nowrap" nowrap="nowrap"><?= $this->h3mapscan->PrintStack($garrison->add2) ?></td>
+                    <td class="ac nowrap" nowrap="nowrap"><?= $garrison->add1 ?></td>
+                    <td class="tiny-text nowrap" nowrap="nowrap"><?= $this->h3mapscan->PrintStack(
+                        $garrison->add2,
+                    ) ?></td>
                 </tr>
                 <?php
             }

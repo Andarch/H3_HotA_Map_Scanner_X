@@ -572,11 +572,11 @@ td {
   border-top: none;
 }
 
-.table-split-body tr,
+/* .table-split-body tr,
 .table-split-body td {
-  height: 18.36px;
-  max-height: 18.36px;
-}
+  height: 1px !important;
+  max-height: 1px !important;
+} */
 
 /* Borders */
 
@@ -614,8 +614,10 @@ td {
   font-size: 10px;
 }
 
-.table-split-body td:not(.tiny-text, .zone-type) {
-  font-size: 11px !important;
+.table-split-body td {
+  height: 1px;
+  padding: 0.25px 4px 0.5px;
+  font-size: 10px;
 }
 
 /* ************** */
@@ -706,6 +708,7 @@ td {
 
 .monsters-table th:nth-child(14) {
   width: 308px;
+  height: calc(var(--stationary-header__height) / 2) !important;
 }
 
 .monsters-table thead tr:nth-child(2) th:nth-child(1),
@@ -725,6 +728,16 @@ td {
   width: 44px;
 }
 
+.monsters-table thead tr:nth-child(2) th:nth-child(1),
+.monsters-table thead tr:nth-child(2) th:nth-child(2),
+.monsters-table thead tr:nth-child(2) th:nth-child(3),
+.monsters-table thead tr:nth-child(2) th:nth-child(4),
+.monsters-table thead tr:nth-child(2) th:nth-child(5),
+.monsters-table thead tr:nth-child(2) th:nth-child(6),
+.monsters-table thead tr:nth-child(2) th:nth-child(7) {
+  height: calc(var(--stationary-header__height) / 2) !important;
+}
+
 .monsters-table td:nth-child(22),
 .monsters-table th:nth-child(15) {
   width: 158px;
@@ -741,6 +754,10 @@ td {
 
 .garrisons-table-container {
   width: 564.71px;
+}
+
+.garrisons-table td:not(:last-child) {
+  font-size: 11px;
 }
 
 .garrisons-table td:first-child,
@@ -1257,24 +1274,23 @@ td {
 
 .abandonedmines-table-container {
   width: 571.6px;
-  /* width: auto; */
   height: auto;
   overflow-y: initial;
 }
 
 .abandonedmines-table td:first-child,
 .abandonedmines-table th:first-child {
-  width: 28px;
+  width: 20px;
 }
 
 .abandonedmines-table td:nth-child(2),
 .abandonedmines-table th:nth-child(2) {
-  width: 88px;
+  width: 82px;
 }
 
 .abandonedmines-table td:nth-child(3),
 .abandonedmines-table th:nth-child(3) {
-  width: 62px;
+  width: 58px;
 }
 
 .abandonedmines-table td:nth-child(4),
@@ -1284,16 +1300,12 @@ td {
 
 .abandonedmines-table td:nth-child(5),
 .abandonedmines-table th:nth-child(5) {
-  width: 192px;
+  width: 176px;
 }
 
+.abandonedmines-table td:nth-child(6),
 .abandonedmines-table th:nth-child(6) {
-  /* width: calc(166px + 14.86px); */
-  width: 166px;
-}
-
-.abandonedmines-table td:nth-child(6) {
-  width: 166px;
+  width: 152px;
 }
 
 .abandonedmines-table tr:last-child td {
@@ -1482,8 +1494,9 @@ td {
 
 /* UTILITIES */
 .zone-type {
-  font-size: 14px !important;
+  /* font-size: 14px !important; */
   /* font-weight: bold; */
+  line-height: 0;
   font-family: 'Bookman Old Style';
 }
 

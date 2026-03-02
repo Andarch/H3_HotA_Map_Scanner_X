@@ -32,29 +32,29 @@
 
                     <?php
                     usort($this->h3mapscan->flotsamjetsam_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->flotsamjetsam_list as $flotsamjetsam) {
-                        ?>
+                    foreach ($this->h3mapscan->flotsamjetsam_list as $flotsamjetsam) { ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $flotsamjetsam["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $flotsamjetsam["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type player-dark<?= $flotsamjetsam["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $flotsamjetsam['zone_type'] ?>
+                            <td class="ac nowrap zone-type player-dark<?= $flotsamjetsam[
+                                "zone_owner"
+                            ] ?>" nowrap="nowrap">
+                                <?= $flotsamjetsam["zone_type"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $flotsamjetsam["contents"] ?>
                             </td>
                         </tr>
-                        <?php
-                    }
+                        <?php }
                     ?>
                 </tbody>
             </table>
@@ -90,32 +90,31 @@
 
                     <?php
                     usort($this->h3mapscan->seabarrels_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
                     foreach ($this->h3mapscan->seabarrels_list as $seabarrel) {
-                        match ($seabarrel['contents']) {
-                            DEFAULT_DATA => $resources = EMPTY_DATA,
-                            'Custom' => $resources = $seabarrel["resource"] . ': ' . $seabarrel["amount"],
-                            'Nothing' => $resources = EMPTY_DATA,
-                        };
-                        ?>
+                        match ($seabarrel["contents"]) {
+                            DEFAULT_DATA => ($resources = EMPTY_DATA),
+                            "Custom" => ($resources = $seabarrel["resource"] . ": " . $seabarrel["amount"]),
+                            "Nothing" => ($resources = EMPTY_DATA),
+                        }; ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $seabarrel["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $seabarrel["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type player-dark<?= $seabarrel["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $seabarrel['zone_type'] ?>
+                                <?= $seabarrel["zone_type"] ?>
                             </td>
-                            <td class="small-text ac nowrap" nowrap="nowrap">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $seabarrel["contents"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $resources ?>
                             </td>
                         </tr>
@@ -156,32 +155,30 @@
 
                     <?php
                     usort($this->h3mapscan->seachests_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->seachests_list as $seachest) {
-                        ?>
+                    foreach ($this->h3mapscan->seachests_list as $seachest) { ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $seachest["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $seachest["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type player-dark<?= $seachest["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $seachest['zone_type'] ?>
+                                <?= $seachest["zone_type"] ?>
                             </td>
-                            <td class="small-text ac nowrap" nowrap="nowrap">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $seachest["contents"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $seachest["artifact"] ?>
                             </td>
                         </tr>
-                        <?php
-                    }
+                        <?php }
                     ?>
                 </tbody>
             </table>
@@ -216,29 +213,27 @@
 
                     <?php
                     usort($this->h3mapscan->vialsofmana_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->vialsofmana_list as $vialofmana) {
-                        ?>
+                    foreach ($this->h3mapscan->vialsofmana_list as $vialofmana) { ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $vialofmana["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $vialofmana["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type player-dark<?= $vialofmana["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $vialofmana['zone_type'] ?>
+                                <?= $vialofmana["zone_type"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $vialofmana["contents"] ?>
                             </td>
                         </tr>
-                        <?php
-                    }
+                        <?php }
                     ?>
                 </tbody>
             </table>

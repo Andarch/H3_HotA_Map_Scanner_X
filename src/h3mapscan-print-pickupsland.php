@@ -33,32 +33,32 @@
 
                     <?php
                     usort($this->h3mapscan->treasurechests_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
-                    foreach ($this->h3mapscan->treasurechests_list as $treasurechest) {
-                        ?>
+                    foreach ($this->h3mapscan->treasurechests_list as $treasurechest) { ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $treasurechest["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $treasurechest["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type player-dark<?= $treasurechest["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $treasurechest['zone_type'] ?>
+                            <td class="ac nowrap zone-type player-dark<?= $treasurechest[
+                                "zone_owner"
+                            ] ?>" nowrap="nowrap">
+                                <?= $treasurechest["zone_type"] ?>
                             </td>
-                            <td class="small-text ac nowrap" nowrap="nowrap">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $treasurechest["contents"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $treasurechest["artifact"] ?>
                             </td>
                         </tr>
-                        <?php
-                    }
+                        <?php }
                     ?>
                 </tbody>
             </table>
@@ -96,39 +96,38 @@
                     <?php
                     usort($this->h3mapscan->resources_list, function ($a, $b) {
                         // Zone type and owner
-                        $cmp = $a["zone_type"] <=> $b["zone_type"]
-                            ?: $a["zone_owner"] <=> $b["zone_owner"];
-                        if ($cmp !== 0)
+                        $cmp = $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
+                        if ($cmp !== 0) {
                             return $cmp;
+                        }
 
                         // Amount
-                        $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
-                            ? (float) $a["amount"]
-                            : -INF;
-                        $amountB = (isset($b["amount"]) && is_numeric($b["amount"]))
-                            ? (float) $b["amount"]
-                            : -INF;
+                        $amountA = isset($a["amount"]) && is_numeric($a["amount"]) ? (float) $a["amount"] : -INF;
+                        $amountB = isset($b["amount"]) && is_numeric($b["amount"]) ? (float) $b["amount"] : -INF;
 
                         return $amountA <=> $amountB;
                     });
 
                     $n = 0;
                     foreach ($this->h3mapscan->resources_list as $resource) {
-                        $guards = is_array($resource["common"]["guards"]) ? $this->h3mapscan->PrintStack($resource["common"]["guards"]) : EMPTY_DATA;
+
+                        $guards = is_array($resource["common"]["guards"])
+                            ? $this->h3mapscan->PrintStack($resource["common"]["guards"])
+                            : EMPTY_DATA;
                         $amount = $resource["amount"] != 0 ? comma($resource["amount"]) : DEFAULT_DATA;
                         ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $resource["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $resource["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type player-dark<?= $resource["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $resource['zone_type'] ?>
+                                <?= $resource["zone_type"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $amount ?>
                             </td>
                             <td class="nowrap" nowrap="nowrap">
@@ -178,34 +177,40 @@
 
                     <?php
                     usort($this->h3mapscan->campfires_list, function ($a, $b) {
-                        return $a['zone_type'] <=> $b['zone_type'] ?: $a['zone_owner'] <=> $b['zone_owner'];
+                        return $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
                     });
 
                     $n = 0;
                     foreach ($this->h3mapscan->campfires_list as $campfire) {
-                        match ($campfire['mode']) {
-                            DEFAULT_DATA => $resources = EMPTY_DATA,
-                            'Custom' => $resources = implode('<br>', array_map(function ($k, $v) {
-                                    return $k . ': ' . $v;
-                                }, array_keys($campfire["resources"]), $campfire["resources"])),
-                            'Nothing' => $resources = EMPTY_DATA,
-                        };
-                        ?>
+                        match ($campfire["mode"]) {
+                            DEFAULT_DATA => ($resources = EMPTY_DATA),
+                            "Custom" => ($resources = implode(
+                                "<br>",
+                                array_map(
+                                    function ($k, $v) {
+                                        return $k . ": " . $v;
+                                    },
+                                    array_keys($campfire["resources"]),
+                                    $campfire["resources"],
+                                ),
+                            )),
+                            "Nothing" => ($resources = EMPTY_DATA),
+                        }; ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $campfire["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $campfire["pos"]->GetCoords() ?>
                             </td>
                             <td class="ac nowrap zone-type player-dark<?= $campfire["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $campfire['zone_type'] ?>
+                                <?= $campfire["zone_type"] ?>
                             </td>
-                            <td class="small-text ac nowrap" nowrap="nowrap">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $campfire["mode"] ?>
                             </td>
-                            <td class="small-text nowrap" nowrap="nowrap">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $resources ?>
                             </td>
                         </tr>
@@ -247,38 +252,36 @@
                     <?php
                     usort($this->h3mapscan->ancientlamps_list, function ($a, $b) {
                         // Zone type and owner
-                        $cmp = $a["zone_type"] <=> $b["zone_type"]
-                            ?: $a["zone_owner"] <=> $b["zone_owner"];
-                        if ($cmp !== 0)
+                        $cmp = $a["zone_type"] <=> $b["zone_type"] ?: $a["zone_owner"] <=> $b["zone_owner"];
+                        if ($cmp !== 0) {
                             return $cmp;
+                        }
 
                         // Amount
-                        $amountA = (isset($a["amount"]) && is_numeric($a["amount"]))
-                            ? (float) $a["amount"]
-                            : -INF;
-                        $amountB = (isset($b["amount"]) && is_numeric($b["amount"]))
-                            ? (float) $b["amount"]
-                            : -INF;
+                        $amountA = isset($a["amount"]) && is_numeric($a["amount"]) ? (float) $a["amount"] : -INF;
+                        $amountB = isset($b["amount"]) && is_numeric($b["amount"]) ? (float) $b["amount"] : -INF;
 
                         return $amountA <=> $amountB;
                     });
 
                     $n = 0;
                     foreach ($this->h3mapscan->ancientlamps_list as $ancientlamp) {
-                        $ancientlamp['amount'] = $ancientlamp["contents"] != DEFAULT_DATA ? comma($ancientlamp["amount"]) : EMPTY_DATA;
-                        ?>
+                        $ancientlamp["amount"] =
+                            $ancientlamp["contents"] != DEFAULT_DATA ? comma($ancientlamp["amount"]) : EMPTY_DATA; ?>
                         <tr>
                             <td class="table__row-header--default"><?= ++$n ?></td>
-                            <td class="nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="nowrap" nowrap="nowrap">
                                 <?= $ancientlamp["objname"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $ancientlamp["pos"]->GetCoords() ?>
                             </td>
-                            <td class="ac nowrap zone-type player-dark<?= $ancientlamp["zone_owner"] ?>" nowrap="nowrap">
-                                <?= $ancientlamp['zone_type'] ?>
+                            <td class="ac nowrap zone-type player-dark<?= $ancientlamp[
+                                "zone_owner"
+                            ] ?>" nowrap="nowrap">
+                                <?= $ancientlamp["zone_type"] ?>
                             </td>
-                            <td class="ac nowrap" nowrap="nowrap" style="font-size: 12px !important;">
+                            <td class="ac nowrap" nowrap="nowrap">
                                 <?= $ancientlamp["contents"] ?>
                             </td>
                             <td class="nowrap" nowrap="nowrap">

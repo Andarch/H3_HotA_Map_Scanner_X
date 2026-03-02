@@ -16,7 +16,7 @@ usort($mines, function ($a, $b) {
     return $a["zone_owner"] <=> $b["zone_owner"] ?: $a["zone_type"] <=> $b["zone_type"];
 });
 
-$maxItems = 40;
+$maxItems = 60;
 $totalItems = count($mines);
 $numTables = ceil($totalItems / $maxItems);
 
@@ -54,21 +54,21 @@ for ($i = 0; $i < $numTables; $i++) {
                 <td class="table__row-header--default">' .
             ++$n .
             '</td>
-                <td class="small-text nowrap" nowrap="nowrap">' .
+                <td class="nowrap" nowrap="nowrap">' .
             $mine["objname"] .
             '</td>
-                <td class="small-text ac nowrap" nowrap="nowrap">' .
+                <td class="ac nowrap" nowrap="nowrap">' .
             $mine["pos"]->GetCoords() .
             '</td>
-                <td class="small-text ac zone-type player-dark' .
+                <td class="ac zone-type player-dark' .
             $mine["zone_owner"] .
             '">' .
             $mine["zone_type"] .
             '</td>
-                <td class="small-text small-text nowrap" nowrap="nowrap">' .
+                <td class="nowrap" nowrap="nowrap">' .
             $mine["data"]["resources"] .
             '</td>
-                <td class="small-text nowrap" nowrap="nowrap">' .
+                <td class="nowrap" nowrap="nowrap">' .
             $mine["data"]["guards"] .
             '</td>
             </tr>';
