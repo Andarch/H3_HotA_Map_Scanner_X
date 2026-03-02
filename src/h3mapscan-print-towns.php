@@ -4,9 +4,10 @@
 usort($this->h3mapscan->towns_list, function ($a, $b) {
     $cmp =
         $a["data"]["owner"] <=> $b["data"]["owner"] ?:
+        $a["zone_owner"] <=> $b["zone_owner"] ?:
         $a["subid"] <=> $b["subid"] ?:
-        // $a["data"]["affiliation"] <=> $b["data"]["affiliation"] ?:
-            $a["data"]["name"] <=> $b["data"]["name"];
+        $a["zone_type"] <=> $b["zone_type"] ?:
+        $a["data"]["name"] <=> $b["data"]["name"];
     if ($cmp !== 0) {
         return $cmp;
     }
@@ -18,6 +19,7 @@ echo '<table class="table-small towns-table">
 				<th>#</th>
 				<th>Town<br />Name</th>
 				<th>Coords</th>
+				<th>Zone</th>
 				<th>Owner</th>
 				<th>Faction</th>
 				<th># of<br />Events</th>
@@ -34,6 +36,7 @@ echo '<table class="table-small towns-table">
 $n = 0;
 foreach ($this->h3mapscan->towns_list as $towno) {
     $town = $towno["data"];
+    vd($town["owner"]);
 
     if (!empty($town["stack"])) {
         $garrison = $this->h3mapscan->PrintStack($town["stack"]);
@@ -103,6 +106,11 @@ foreach ($this->h3mapscan->towns_list as $towno) {
         '</td>
 			<td class="ac nowrap" nowrap="nowrap">' .
         $towno["pos"]->GetCoords() .
+        '</td>
+            <td class="ac nowrap zone-type player-dark' .
+        $towno["zone_owner"] .
+        '" nowrap="nowrap">' .
+        $towno["zone_type"] .
         '</td>
 			<td class="nowrap" nowrap="nowrap">' .
         $town["player"] .
