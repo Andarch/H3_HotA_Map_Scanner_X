@@ -4,7 +4,7 @@
 echo '<div class="flex-container">';
 
 usort($this->h3mapscan->events, "EventSortByDate");
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
 			<th class="nowrap" nowrap="nowrap">Name</th>
