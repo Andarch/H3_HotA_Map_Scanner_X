@@ -1451,7 +1451,8 @@ td {
 }
 
 .table__title-bar--small {
-  background: var(--color-purple) !important;
+  /* background: var(--color-purple) !important; */
+  background: black;
   color: var(--color__body-fg);
   font-size: 11px !important;
 }
@@ -1515,11 +1516,12 @@ td {
   padding: 1.5px 4px 2px;
 }
 
-.table-small td:first-child {
-  font-size: 9px;
+.table-small td:first-child:not(.table-small__first-child-override, .obj-count-ids) {
+  font-size: 10px;
 }
 
-.table-small td:not(td:first-child) {
+.table-small td:not(td:first-child),
+.table-small__first-child-override {
   font-size: 12px;
 }
 
@@ -1567,6 +1569,10 @@ td {
 
 .obj-count-table tbody tr td:not(.cell-hidden) {
   cursor: pointer;
+}
+
+.obj-count-ids {
+  font-size: 9px;
 }
 
 .obj-count-total {

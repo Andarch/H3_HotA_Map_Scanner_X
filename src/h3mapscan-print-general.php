@@ -3,8 +3,9 @@
 
 echo '<div class="flex-container">';
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 	<tr>
+		<th class="ac nowrap" nowrap="nowrap">#</th>
 		<th class="ac nowrap" nowrap="nowrap">Color</th>
 		<th class="ac nowrap" nowrap="nowrap">Team</th>
 		<th class="ac nowrap" nowrap="nowrap">Player<br />Type</th>
@@ -18,6 +19,7 @@ echo '<table class="table-large">
 		<th class="ac nowrap" nowrap="nowrap">Specific Heros<br />on Map</th>
 	</tr>';
 
+$n = 0;
 foreach ($this->h3mapscan->players as $k => $player) {
     $tm = $this->h3mapscan->teams[$k];
     $teamNum = $tm + 1;
@@ -37,6 +39,9 @@ foreach ($this->h3mapscan->players as $k => $player) {
     }
 
     echo '<tr>
+			<td class="table__row-header--default">' .
+        ++$n .
+        '</td>
 			<td class="nowrap" nowrap="nowrap">' .
         $this->h3mapscan->GetPlayerColorById($k, true) .
         '</td>
@@ -78,7 +83,7 @@ echo "</div>";
 
 echo '<div class="flex-container">';
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 <tr>
 	<th>#</th>
 	<th class="nowrap" nowrap="nowrap">Player</th>
@@ -112,34 +117,34 @@ foreach ($this->h3mapscan->townTypeCounts as $player => $towns) {
 
 echo "</table>";
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap">Difficulty</th>
 		</tr>
 		<tr>
-			<td class="ac nowrap" nowrap="nowrap">' .
+			<td class="table-small__first-child-override ac nowrap" nowrap="nowrap">' .
     $this->h3mapscan->map_diffname .
     '</td>
 		</tr>
 	</table>';
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap">Victory<br />Condition</th>
 		</tr>
 		<tr>
-			<td class="ac">' .
+			<td class="table-small__first-child-override ac">' .
     $this->h3mapscan->victoryInfo .
     '</td>
 		</tr>
 	</table>';
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th class="ac nowrap" nowrap="nowrap">Loss<br />Condition</th>
 		</tr>
 		<tr>
-			<td class="ac">' .
+			<td class="table-small__first-child-override ac">' .
     $this->h3mapscan->lossInfo .
     '</td>
 		</tr>
@@ -147,7 +152,7 @@ echo '<table class="table-large">
 
 sort($this->h3mapscan->disabledArtifacts);
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th>#</th>
 			<th>Disabled Artifacts</th>
@@ -166,7 +171,7 @@ echo "</table>";
 
 sort($this->h3mapscan->disabledComboArtifacts);
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th>#</th>
 			<th>Disabled Assemble/Disassemble</th>
@@ -185,7 +190,7 @@ echo "</table>";
 
 sort($this->h3mapscan->disabledSpells);
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th>#</th>
 			<th>Disabled Spells</th>
@@ -204,7 +209,7 @@ echo "</table>";
 
 sort($this->h3mapscan->disabledSkills);
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th>#</th>
 			<th>Disabled Skills</th>
@@ -221,18 +226,18 @@ foreach ($this->h3mapscan->disabledSkills as $k => $spell) {
 }
 echo "</table>";
 
-echo '<table class="table-large">
+echo '<table class="table-small">
 		<tr>
 			<th colspan="2">Grail</th>
 		</tr>
 		<tr>
-			<td class="table__row-header--alt ar">Has Grail</td>
+			<td class="table-small__first-child-override table__row-header--alt ar">Has Grail</td>
 			<td class="ac">' .
     ($this->h3mapscan->hasGrail ? "Yes" : "No") .
     '</td>
 		</tr>
 		<tr>
-			<td class="table__row-header--alt ar"># of Obelisks</td>
+			<td class="table-small__first-child-override table__row-header--alt ar"># of Obelisks</td>
 			<td class="ac">' .
     $this->h3mapscan->obelisksnum .
     '</td>
