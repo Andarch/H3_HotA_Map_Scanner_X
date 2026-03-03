@@ -3923,14 +3923,15 @@ class H3MAPSCAN
             1 => ($obj["contents"] = "1500 Gold"),
             2 => ($obj["contents"] = "1000 Gold and Treasure Artifact"),
         };
-        $art = $this->br->ReadUint32();
-        if ($art != HNONE32) {
-            $obj["artifact"] = $this->GetArtifactById($art);
+
+        $obj["artifact_id"] = $this->br->ReadUint32();
+        if ($obj["artifact_id"] != HNONE32) {
+            $obj["artifact"] = $this->GetArtifactById($obj["artifact_id"]);
         } else {
             $obj["artifact"] = EMPTY_DATA;
         }
 
-        if (!in_array($obj["artifact"], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+        if (!in_array($obj["artifact"], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32, EMPTY_DATA])) {
             $this->artifacts_list[] = new ListObject(
                 $this->GetArtifactById($obj["artifact"]),
                 $this->curcoor,
@@ -3973,14 +3974,15 @@ class H3MAPSCAN
             2 => ($obj["contents"] = "2000 Gold or 1500 XP"),
             3 => ($obj["contents"] = "Treasure Artifact"),
         };
-        $art = $this->br->ReadUint32();
-        if ($art != HNONE32) {
-            $obj["artifact"] = $this->GetArtifactById($art);
+
+        $obj["artifact_id"] = $this->br->ReadUint32();
+        if ($obj["artifact_id"] != HNONE32) {
+            $obj["artifact"] = $this->GetArtifactById($obj["artifact_id"]);
         } else {
             $obj["artifact"] = EMPTY_DATA;
         }
 
-        if (!in_array($obj["artifact"], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32])) {
+        if (!in_array($obj["artifact"], [HOTA_RANDOM, HNONE, HNONE16, HNONE_UNKNOWN, HNONE32, EMPTY_DATA])) {
             $this->artifacts_list[] = new ListObject(
                 $this->GetArtifactById($obj["artifact"]),
                 $this->curcoor,
