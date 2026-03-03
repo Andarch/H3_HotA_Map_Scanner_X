@@ -3,7 +3,7 @@
 
 echo '<div class="flex-container">';
 
-usort($this->h3mapscan->events, 'EventSortByDate');
+usort($this->h3mapscan->events, "EventSortByDate");
 echo '<table class="table-large">
 		<tr>
 			<th class="nowrap" nowrap="nowrap">#</th>
@@ -16,40 +16,63 @@ echo '<table class="table-large">
 			<th class="nowrap" nowrap="nowrap">Text</th>
 		</tr>';
 
-foreach($this->h3mapscan->events as $k => $event) {
-	$first = 'Day '.$event['first'];
-	$period = '';
-	switch($event['interval']) {
-		case 0:
-			$period = EMPTY_DATA;
-			break;
-		case 1:
-			$period = 'Every day';
-			break;
-		default:
-			$period = 'Every '.$event['interval'].' days';
-			break;
-	}
+foreach ($this->h3mapscan->events as $k => $event) {
+    $firstDay = (int) $event["first"];
+    $month = intdiv($firstDay - 1, 28) + 1;
+    $dayOfMonth = (($firstDay - 1) % 28) + 1;
+    $week = intdiv($dayOfMonth - 1, 7) + 1;
+    $dayOfWeek = (($dayOfMonth - 1) % 7) + 1;
+    $firstLong = "Month " . $month . ", Week " . $week . ", Day " . $dayOfWeek;
+    $first = "Day " . $event["first"] . " (" . $firstLong . ")";
 
-	$eres = [];
-	foreach($event['resources'] as $r => $res) {
-        if($res != 0) {
-            $sign = $res > 0 ? '+' : '';
-            $eres[] = $sign.comma($res).' '.$this->h3mapscan->GetResourceById($r);
+    $period = "";
+    switch ($event["interval"]) {
+        case 0:
+            $period = EMPTY_DATA;
+            break;
+        case 1:
+            $period = "Every day";
+            break;
+        default:
+            $period = "Every " . $event["interval"] . " days";
+            break;
+    }
+
+    $eres = [];
+    foreach ($event["resources"] as $r => $res) {
+        if ($res != 0) {
+            $sign = $res > 0 ? "+" : "";
+            $eres[] = $sign . comma($res) . " " . $this->h3mapscan->GetResourceById($r);
         }
-	}
+    }
 
-	echo '<tr>
-		<td class="table__row-header--default nowrap" nowrap="nowrap">'.($k+1).'</td>
-		<td class="nowrap" nowrap="nowrap">'.$event['name'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$event['humanOrAi'].'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$this->h3mapscan->PlayerColors($event['players'], false).'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$first.'</td>
-		<td class="ac nowrap" nowrap="nowrap">'.$period.'</td>
-		<td class="small-text nowrap" nowrap="nowrap">'.implode('<br />', $eres).'</td>
-		<td class="small-text">'.nl2br($event['message']).'</td>
+    echo '<tr>
+		<td class="table__row-header--default nowrap" nowrap="nowrap">' .
+        ($k + 1) .
+        '</td>
+		<td class="nowrap" nowrap="nowrap">' .
+        $event["name"] .
+        '</td>
+		<td class="ac nowrap" nowrap="nowrap">' .
+        $event["humanOrAi"] .
+        '</td>
+		<td class="ac nowrap" nowrap="nowrap">' .
+        $this->h3mapscan->PlayerColors($event["players"], false) .
+        '</td>
+		<td class="ac nowrap" nowrap="nowrap">' .
+        $first .
+        '</td>
+		<td class="ac nowrap" nowrap="nowrap">' .
+        $period .
+        '</td>
+		<td class="small-text nowrap" nowrap="nowrap">' .
+        implode("<br />", $eres) .
+        '</td>
+		<td class="small-text">' .
+        nl2br($event["message"]) .
+        '</td>
 	</tr>';
 }
-echo '</table>';
+echo "</table>";
 
-echo '</div>';
+echo "</div>";
