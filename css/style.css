@@ -722,6 +722,16 @@ td {
 /* Monsters Table */
 /* ************** */
 
+.monsters-controls-container {
+  height: 50px;
+  width: 100%;
+  margin-bottom: var(--flex-gap);
+  background: #28282880;
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--color-mediumgrey);
+}
+
 .monsters-table-container {
   height: calc(100vh - var(--site-header__height) - var(--flex-gap) - var(--stationary-header__height) - (2 * var(--table__border-width--thick)));
 }

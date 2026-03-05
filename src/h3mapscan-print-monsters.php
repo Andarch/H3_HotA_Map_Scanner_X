@@ -2,143 +2,148 @@
 /** @var H3MAPSCAN_PRINT $this */
 ?>
 
-<div class="table-split-header-container">
-    <table class="table-split-header monsters-table">
-        <thead>
-            <tr>
-                <th rowspan="2">#</th>
-                <th rowspan="2">Type</th>
-                <th rowspan="2">Coords</th>
-                <th rowspan="2">Zone</th>
-                <th rowspan="2">Count</th>
-                <th rowspan="2" colspan="2" class="ac nowrap" nowrap="nowrap">Value / Est. Count</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
-                <th rowspan="2">Disposition</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Never<br />Flees</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join Only<br />for Money</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join<br />%</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Upg.<br />Stack</th>
-                <th rowspan="2" class="ac nowrap" nowrap="nowrap">Stack<br />Count</th>
-                <th colspan="7">Resources</th>
-                <th rowspan="2">Artifact</th>
-                <th rowspan="2">Message</th>
-            </tr>
-            <tr>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Wood</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Mercury</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Ore</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Sulfur</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Crystal</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gems</th>
-                <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gold</th>
-            </tr>
-        </thead>
-    </table>
-</div>
+<div class="flex-container">
+    <div class="monsters-controls-container">
 
-<div class="table-split-body-container monsters-table-container">
-    <table class="table-split-body monsters-table">
-        <tbody>
+    </div>
+    <div class="table-split-header-container">
+        <table class="table-split-header monsters-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">#</th>
+                    <th rowspan="2">Type</th>
+                    <th rowspan="2">Coords</th>
+                    <th rowspan="2">Zone</th>
+                    <th rowspan="2">Count</th>
+                    <th rowspan="2" colspan="2" class="ac nowrap" nowrap="nowrap">Value / Est. Count</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Doesn't<br />Grow</th>
+                    <th rowspan="2">Disposition</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Never<br />Flees</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join Only<br />for Money</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Join<br />%</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Upg.<br />Stack</th>
+                    <th rowspan="2" class="ac nowrap" nowrap="nowrap">Stack<br />Count</th>
+                    <th colspan="7">Resources</th>
+                    <th rowspan="2">Artifact</th>
+                    <th rowspan="2">Message</th>
+                </tr>
+                <tr>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Wood</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Mercury</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Ore</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Sulfur</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Crystal</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gems</th>
+                    <th class="tiny-header-text ac nowrap" nowrap="nowrap">Gold</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 
-            <?php
-            usort($this->h3mapscan->monsters_list, function ($a, $b) {
-                // Name (Random Monster comes first)
-                $nameA = $a["data"]["name"];
-                $nameB = $b["data"]["name"];
-                $isRandomA = str_starts_with($nameA, "Random Monster");
-                $isRandomB = str_starts_with($nameB, "Random Monster");
+    <div class="table-split-body-container monsters-table-container">
+        <table class="table-split-body monsters-table">
+            <tbody>
 
-                $cmp = $isRandomB <=> $isRandomA ?: strcmp($nameA, $nameB);
-                if ($cmp !== 0) {
-                    return $cmp;
-                }
+                <?php
+                usort($this->h3mapscan->monsters_list, function ($a, $b) {
+                    // Name (Random Monster comes first)
+                    $nameA     = $a["data"]["name"];
+                    $nameB     = $b["data"]["name"];
+                    $isRandomA = str_starts_with($nameA, "Random Monster");
+                    $isRandomB = str_starts_with($nameB, "Random Monster");
 
-                // Zone type and est. count
-                $cmp =
-                    $a["data"]["disposition"] <=> $b["data"]["disposition"] ?:
-                    $a["zone_type"] <=> $b["zone_type"] ?:
-                    $a["zone_owner"] <=> $b["zone_owner"] ?:
-                    $a["data"]["count"] <=> $b["data"]["count"];
-                if ($cmp !== 0) {
-                    return $cmp;
-                }
-            });
-
-            $n = 0;
-            foreach ($this->h3mapscan->monsters_list as $monster) {
-
-                // if ($monster["data"]["disposition"] == 0) {
-                //     continue;
-                // }
-                $estCount = null;
-                if (!$monster["data"]["isValue"]) {
-                    $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : DEFAULT_DATA;
-                    $value = EMPTY_DATA;
-                } else {
-                    $count = EMPTY_DATA;
-                    $value = comma($monster["data"]["value"]);
-                    if (array_key_exists("estCount", $monster["data"]) && $monster["data"]["estCount"] !== EMPTY_DATA) {
-                        $estCount = comma($monster["data"]["estCount"]);
-                    } else {
-                        $estCount = EMPTY_DATA;
+                    $cmp = $isRandomB <=> $isRandomA ?: strcmp($nameA, $nameB);
+                    if ($cmp !== 0) {
+                        return $cmp;
                     }
-                }
-                $disposition =
-                    $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"]) !== "Precise"
+
+                    // Zone type and est. count
+                    $cmp =
+                        $a["data"]["disposition"] <=> $b["data"]["disposition"] ?:
+                        $a["zone_type"] <=> $b["zone_type"] ?:
+                        $a["zone_owner"] <=> $b["zone_owner"] ?:
+                        $a["data"]["count"] <=> $b["data"]["count"];
+                    if ($cmp !== 0) {
+                        return $cmp;
+                    }
+                });
+
+                $n = 0;
+                foreach ($this->h3mapscan->monsters_list as $monster) {
+
+                    // if ($monster["data"]["disposition"] == 0) {
+                    //     continue;
+                    // }
+                    $estCount = null;
+                    if (!$monster["data"]["isValue"]) {
+                        $count = $monster["data"]["count"] > 0 ? comma($monster["data"]["count"]) : DEFAULT_DATA;
+                        $value = EMPTY_DATA;
+                    } else {
+                        $count = EMPTY_DATA;
+                        $value = comma($monster["data"]["value"]);
+                        if (array_key_exists("estCount", $monster["data"]) && $monster["data"]["estCount"] !== EMPTY_DATA) {
+                            $estCount = comma($monster["data"]["estCount"]);
+                        } else {
+                            $estCount = EMPTY_DATA;
+                        }
+                    }
+                    $disposition =
+                        $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"]) !== "Precise"
                         ? $this->h3mapscan->GetMonsterDisposition($monster["data"]["disposition"])
                         : "Precise (" . $monster["data"]["preciseDisposition"] . ")";
-                $resources = [];
-                foreach ($monster["data"]["resources"] as $rid => $amount) {
-                    $sign = $amount > 0 ? "+" : "";
-                    $resources[] = $sign . comma($amount);
+                    $resources   = [];
+                    foreach ($monster["data"]["resources"] as $rid => $amount) {
+                        $sign        = $amount > 0 ? "+" : "";
+                        $resources[] = $sign . comma($amount);
+                    }
+
+                    $wood    = $resources[0] ?? EMPTY_DATA;
+                    $mercury = $resources[1] ?? EMPTY_DATA;
+                    $ore     = $resources[2] ?? EMPTY_DATA;
+                    $sulfur  = $resources[3] ?? EMPTY_DATA;
+                    $crystal = $resources[4] ?? EMPTY_DATA;
+                    $gems    = $resources[5] ?? EMPTY_DATA;
+                    $gold    = $resources[6] ?? EMPTY_DATA;
+
+                    $artifact = $monster["data"]["artifact"] !== "" ? $monster["data"]["artifact"] : EMPTY_DATA;
+                    $message  = $monster["data"]["message"] !== "" ? $monster["data"]["message"] : EMPTY_DATA;
+                    ?>
+                    <tr>
+                        <td class="table__row-header--default"><?= ++$n ?></td>
+                        <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
+                        <td class="ac nowrap zone-type player-dark<?= $monster["zone_owner"] ?>" nowrap="nowrap">
+                            <?= $monster["zone_type"] ?>
+                        </td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $estCount !== null ? $estCount : "" ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinForMoney"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinPercent"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["upgraded"] ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["stackCount"] ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
+                        <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
+                        <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
+                        <td>
+                            <div class="ellipsis1" title="<?= htmlspecialchars(
+                                $message,
+                                ENT_QUOTES,
+                            ) ?>"><?= $message ?></div>
+                        </td>
+                    </tr>
+                    <?php
                 }
-
-                $wood = $resources[0] ?? EMPTY_DATA;
-                $mercury = $resources[1] ?? EMPTY_DATA;
-                $ore = $resources[2] ?? EMPTY_DATA;
-                $sulfur = $resources[3] ?? EMPTY_DATA;
-                $crystal = $resources[4] ?? EMPTY_DATA;
-                $gems = $resources[5] ?? EMPTY_DATA;
-                $gold = $resources[6] ?? EMPTY_DATA;
-
-                $artifact = $monster["data"]["artifact"] !== "" ? $monster["data"]["artifact"] : EMPTY_DATA;
-                $message = $monster["data"]["message"] !== "" ? $monster["data"]["message"] : EMPTY_DATA;
                 ?>
-                <tr>
-                    <td class="table__row-header--default"><?= ++$n ?></td>
-                    <td class="nowrap" nowrap="nowrap"><?= $monster["data"]["name"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["pos"]->GetCoords() ?></td>
-                    <td class="ac nowrap zone-type player-dark<?= $monster["zone_owner"] ?>" nowrap="nowrap">
-                        <?= $monster["zone_type"] ?>
-                    </td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $count ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $value ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $estCount !== null ? $estCount : "" ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverGrows"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $disposition ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["neverFlees"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinForMoney"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["joinPercent"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["upgraded"] ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $monster["data"]["stackCount"] ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $wood ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $mercury ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $ore ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $sulfur ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $crystal ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gems ?></td>
-                    <td class="ac tiny-text nowrap" nowrap="nowrap"><?= $gold ?></td>
-                    <td class="ac nowrap" nowrap="nowrap"><?= $artifact ?></td>
-                    <td>
-                        <div class="ellipsis1" title="<?= htmlspecialchars(
-                            $message,
-                            ENT_QUOTES,
-                        ) ?>"><?= $message ?></div>
-                    </td>
-                </tr>
-                <?php
-            }
-            ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
