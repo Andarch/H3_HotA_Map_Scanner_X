@@ -856,39 +856,29 @@ class H3MAPSCAN
                     // Read bytes until we find 166 as u-int32 (A6 00 00 00), then seek back so next section can read it
                     $marker = "\xa6\x00\x00\x00"; // 166 as little-endian u-int32
                     $buffer = "";
-                    $count  = 0;
 
-                    while ($count < 30000) {
-                        $count++;
+                    while (true) {
                         $byte    = $this->br->ReadUint8();
                         $buffer .= chr($byte);
 
-                        if ($count >= 29000) {
-                            echo "Count: ";
-                            vd($count);
-                            echo "Byte: ";
-                            vd($byte);
-                            echo "Buffer: ";
-                            vd($buffer);
-                            echo "Marker: ";
-                            vd($marker);
-                            echo ENVE;
-                        }
-
                         // Check if we found the marker
                         if ($buffer === $marker) {
-                            // Peek 38 bytes ahead and read hero count (expected 215 / 0xD7)
+                            // Peek ahead and read hero count (expected 215 / 0xD7)
                             $currentPos = $this->br->pos;
-                            $this->br->SkipBytes(38);
+                            $this->br->SkipBytes(34);
+
+                            $rumorCount = $this->br->ReadUint32();
+                            if ($rumorCount < 1000) {
+                                for ($i = 0; $i < $rumorCount; $i++) {
+                                    $nameLength = $this->br->ReadUint32();
+                                    $this->br->SkipBytes($nameLength);
+                                    $descLength = $this->br->ReadUint32();
+                                    $this->br->SkipBytes($descLength);
+                                }
+                            }
+
                             $heroCount     = $this->br->ReadUint32();
                             $this->br->pos = $currentPos; // restore position
-
-                            // vd($count);
-                            // vd($byte);
-                            // vd($buffer);
-                            // vd($marker);
-                            // vd($currentPos);
-                            // vd($heroCount);
 
                             if ($heroCount === 215) {
                                 // Rewind 4 bytes to leave marker for next section
