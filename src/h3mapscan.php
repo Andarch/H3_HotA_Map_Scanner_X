@@ -102,6 +102,8 @@ class H3MAPSCAN
     private $monplague_week     = 0;
     private $combat_round_limit = 0;
 
+    private $forbid_hiring_heroes = [];
+
     //object of interest lists
     public $artifacts_list = [];
     /** @var array<int, array{pos: MapCoords, data: array, id: int, subid: int}> */
@@ -842,18 +844,36 @@ class H3MAPSCAN
             }
             if ($this->hota_subrev >= $this::HOTA_SUBREV4) {
                 //forbid_hiring_heroes 8*byte for each player
-                $this->br->SkipBytes(8);
+                $this->forbid_hiring_heroes = [];
+                for ($i = 0; $i < 8; $i++) {
+                    $this->forbid_hiring_heroes[] = $this->br->ReadUint8();
+                }
             }
+
             if ($this->hota_subrev >= $this::HOTA_SUBREV9) {
                 //HotA Events
                 if ($this->br->ReadUint8()) {
                     // Read bytes until we find 166 as u-int32 (A6 00 00 00), then seek back so next section can read it
                     $marker = "\xa6\x00\x00\x00"; // 166 as little-endian u-int32
                     $buffer = "";
+                    $count  = 0;
 
-                    while (true) {
+                    while ($count < 30000) {
+                        $count++;
                         $byte    = $this->br->ReadUint8();
                         $buffer .= chr($byte);
+
+                        if ($count >= 29000) {
+                            echo "Count: ";
+                            vd($count);
+                            echo "Byte: ";
+                            vd($byte);
+                            echo "Buffer: ";
+                            vd($buffer);
+                            echo "Marker: ";
+                            vd($marker);
+                            echo ENVE;
+                        }
 
                         // Check if we found the marker
                         if ($buffer === $marker) {
@@ -862,6 +882,13 @@ class H3MAPSCAN
                             $this->br->SkipBytes(38);
                             $heroCount     = $this->br->ReadUint32();
                             $this->br->pos = $currentPos; // restore position
+
+                            // vd($count);
+                            // vd($byte);
+                            // vd($buffer);
+                            // vd($marker);
+                            // vd($currentPos);
+                            // vd($heroCount);
 
                             if ($heroCount === 215) {
                                 // Rewind 4 bytes to leave marker for next section
@@ -1036,6 +1063,7 @@ class H3MAPSCAN
 
     private function Rumors()
     {
+        echo "RUMORS\n";
         $this->rumorsCount = $this->br->ReadUint32();
         if ($this->rumorsCount) {
             for ($i = 0; $i < $this->rumorsCount; $i++) {
